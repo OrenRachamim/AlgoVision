@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+out/
+.algovision/
+*.csv
+!tests/data/*.csv
+.venv/
+.DS_Store
