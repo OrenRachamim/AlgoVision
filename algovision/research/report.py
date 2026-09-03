@@ -64,7 +64,7 @@ def chart_excess(t: pd.DataFrame, h: int, path: Path) -> str:
     ax.set_yticks(y)
     ax.set_yticklabels([f"{p}  (n={int(n)})" for p, n in zip(d.index, d["n"])], fontsize=8, color=C["ink"])
     what = "local random entries (same stock, +-6 months)" if pre == "xloc" else "random-date entries"
-    _style(ax, f"Mean {h}-bar return in excess of {what}, 95% bootstrap CI", "excess return, %")
+    _style(ax, f"Mean {h}-bar excess return vs {what}", "excess return, % (dot = mean, bar = 95% bootstrap CI)")
     ax.grid(True, axis="y", color=C["grid"], lw=0.4)
     return _save(fig, plt, path)
 
