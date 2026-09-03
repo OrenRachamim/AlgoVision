@@ -14,6 +14,7 @@ import pandas as pd
 from algovision.core.types import DetectorConfig
 from algovision.data.provider import DataProvider
 from algovision.data.universe import get_universe
+from algovision.research.events import add_local_baseline
 from algovision.research.run import hindsight_subset, run_hindsight, run_walkforward, save_outputs
 
 
@@ -59,6 +60,12 @@ def cmd_research(args) -> int:
                    "errors": wf_err}
         print(f"walk-forward done: {len(wf)} events, {time.time() - t0:.0f}s", file=sys.stderr)
 
+    provider = DataProvider(**{**provider_kwargs, "offline": True})
+    if len(events):
+        print("computing local random baselines...", file=sys.stderr)
+        events = add_local_baseline(events, lambda s: provider.get(s, args.period, args.interval))
+    if wf is not None and len(wf):
+        wf = add_local_baseline(wf, lambda s: provider.get(s, args.period, args.interval))
     meta = {"generated": dt.datetime.now().isoformat(timespec="seconds"), "universe": args.universe,
             "n_symbols": len(symbols), "period": args.period, "interval": args.interval, "benchmark": args.benchmark,
             "config": cfg.to_dict(), "errors": errors, "walkforward": wf_meta, "elapsed_s": time.time() - t0}

@@ -52,17 +52,19 @@ def _save(fig, plt, path: Path) -> str:
 
 
 def chart_excess(t: pd.DataFrame, h: int, path: Path) -> str:
-    d = t.drop(index="ALL", errors="ignore").sort_values(f"xrand_{h}")
+    pre = "xloc" if f"xloc_{h}" in t.columns and np.isfinite(t[f"xloc_{h}"]).any() else "xrand"
+    d = t.drop(index="ALL", errors="ignore").sort_values(f"{pre}_{h}")
     fig, ax, plt = _fig(8, 0.35 * len(d) + 1.5)
     y = np.arange(len(d))
-    lo = d[f"xrand_{h}"] - d[f"xrand_lo_{h}"]
-    hi = d[f"xrand_hi_{h}"] - d[f"xrand_{h}"]
-    ax.errorbar(d[f"xrand_{h}"] * 100, y, xerr=[lo * 100, hi * 100], fmt="o", color=C["s1"], ecolor=C["s1"],
+    lo = d[f"{pre}_{h}"] - d[f"{pre}_lo_{h}"]
+    hi = d[f"{pre}_hi_{h}"] - d[f"{pre}_{h}"]
+    ax.errorbar(d[f"{pre}_{h}"] * 100, y, xerr=[lo * 100, hi * 100], fmt="o", color=C["s1"], ecolor=C["s1"],
                 elinewidth=1.5, capsize=3, ms=6)
     ax.axvline(0, color=C["axis"], lw=1)
     ax.set_yticks(y)
     ax.set_yticklabels([f"{p}  (n={int(n)})" for p, n in zip(d.index, d["n"])], fontsize=8, color=C["ink"])
-    _style(ax, f"Mean {h}-bar return in excess of random-date entries (95% bootstrap CI)", "excess return, %")
+    what = "local random entries (same stock, +-6 months)" if pre == "xloc" else "random-date entries"
+    _style(ax, f"Mean {h}-bar return in excess of {what}, 95% bootstrap CI", "excess return, %")
     ax.grid(True, axis="y", color=C["grid"], lw=0.4)
     return _save(fig, plt, path)
 
@@ -86,7 +88,7 @@ def chart_hit(t: pd.DataFrame, h: int, path: Path) -> str:
 def chart_calibration(cal: pd.DataFrame, h: int, path: Path) -> str:
     fig, ax, plt = _fig(7, 3.6)
     x = np.arange(len(cal))
-    ax.bar(x, cal["xrand"] * 100, color=C["s1"], width=0.6)
+    ax.bar(x, cal["xloc" if "xloc" in cal.columns else "xrand"] * 100, color=C["s1"], width=0.6)
     ax.axhline(0, color=C["axis"], lw=1)
     ax.set_xticks(x)
     ax.set_xticklabels([f"{a:.2f}-{b:.2f}\n(n={int(n)})" for a, b, n in zip(cal["score_min"], cal["score_max"], cal["n"])],
@@ -102,7 +104,7 @@ def chart_calibration(cal: pd.DataFrame, h: int, path: Path) -> str:
 def chart_year(by: pd.DataFrame, h: int, path: Path) -> str:
     fig, ax, plt = _fig(7, 3.4)
     x = np.arange(len(by))
-    ax.bar(x, by["xrand"] * 100, color=C["s1"], width=0.6)
+    ax.bar(x, by["xloc" if "xloc" in by.columns else "xrand"] * 100, color=C["s1"], width=0.6)
     ax.axhline(0, color=C["axis"], lw=1)
     ax.set_xticks(x)
     ax.set_xticklabels([f"{i}\n(n={int(n)})" for i, n in zip(by.index, by["n"])], fontsize=8, color=C["ink"])
@@ -131,7 +133,10 @@ def verdict(row: pd.Series, h: int = 20) -> str:
     n = row.get("n", 0)
     if n < MIN_N_VERDICT:
         return "insufficient data"
-    lo, hi, p = row.get(f"xrand_lo_{h}"), row.get(f"xrand_hi_{h}"), row.get(f"p_{h}")
+    if f"xloc_lo_{h}" in row.index and np.isfinite(row.get(f"xloc_lo_{h}", np.nan)):
+        lo, hi, p = row.get(f"xloc_lo_{h}"), row.get(f"xloc_hi_{h}"), row.get(f"ploc_{h}")
+    else:
+        lo, hi, p = row.get(f"xrand_lo_{h}"), row.get(f"xrand_hi_{h}"), row.get(f"p_{h}")
     pf = row.get("profit_factor", np.nan)
     if np.isfinite(lo) and lo > 0 and p < 0.05:
         return "edge vs random (statistically significant)"
@@ -175,8 +180,11 @@ def build_markdown(events: pd.DataFrame, structures: pd.DataFrame, wf: Optional[
 * Three baselines: raw, **minus SPY** over the same window, and **minus random-date entries in the same stock and
   direction** (20 draws per event). The random-date baseline cancels each stock's drift and the survivorship bias
   of using today's index members, so it is the number to trust.
-* `p` is a one-sided permutation p-value: the share of "no-skill" replicates (one random date per event) whose mean
-  return is at least as good as the pattern's. CIs are 95% bootstrap intervals of the mean excess return.
+* A fourth, stricter baseline, **local random entries** (`xloc`): random dates within +-126 bars of the signal in the
+  same stock and direction. This also cancels the *regime* around the signal (bear patterns cluster in bear phases),
+  so it is the number the verdicts are based on.
+* `p` / `p_loc` are one-sided permutation p-values: the share of "no-skill" replicates (one random date per event)
+  whose mean return is at least as good as the pattern's. CIs are 95% bootstrap intervals of the mean excess return.
 * Trade simulation: enter at next open, exit at the measured-move **target** or the pattern **stop** (whichever is
   touched first; stop wins ties) or after 60 bars. R = result / initial risk. Profit factor = gross wins / gross losses in R.
 * **Walk-forward validation**: on a random subsample the detectors were re-run bar by bar seeing only past data;
@@ -190,27 +198,38 @@ def build_markdown(events: pd.DataFrame, structures: pd.DataFrame, wf: Optional[
     md.append(f"* Excess over SPY: **{a[f'xspy_{h}'] * 100:+.2f}%**; excess over random-date entries: "
               f"**{a[f'xrand_{h}'] * 100:+.2f}%** (95% CI {a[f'xrand_lo_{h}'] * 100:+.2f}% to {a[f'xrand_hi_{h}'] * 100:+.2f}%, "
               f"permutation p = {a[f'p_{h}']:.3f}).")
+    if f"xloc_{h}" in a.index and np.isfinite(a[f"xloc_{h}"]):
+        md.append(f"* Excess over **local** random entries (same stock, +-6 months): **{a[f'xloc_{h}'] * 100:+.2f}%** "
+                  f"(95% CI {a[f'xloc_lo_{h}'] * 100:+.2f}% to {a[f'xloc_hi_{h}'] * 100:+.2f}%, p = {a[f'ploc_{h}']:.3f}; "
+                  f"local random hit rate {a[f'loc_hit_{h}'] * 100:.1f}%).")
     md.append(f"* Trade simulation: target hit first {a['target_rate'] * 100:.1f}%, stop hit first {a['stop_rate'] * 100:.1f}%, "
               f"average R = {a.get('avg_r', np.nan):+.2f}, profit factor {a.get('profit_factor', np.nan):.2f}, "
               f"average reward:risk {a.get('avg_reward_risk', np.nan):.2f}.\n")
     md.append("## Per-pattern results\n")
-    cols = ["n", "n_symbols", f"hit_{h}", f"rand_hit_{h}", f"ret_{h}", f"xspy_{h}", f"xrand_{h}", f"xrand_lo_{h}",
-            f"xrand_hi_{h}", f"p_{h}", "target_rate", "stop_rate", "avg_r", "profit_factor", "verdict"]
-    md.append(_fmt_table(t, cols, [f"hit_{h}", f"rand_hit_{h}", f"ret_{h}", f"xspy_{h}", f"xrand_{h}", f"xrand_lo_{h}",
-                                   f"xrand_hi_{h}", "target_rate", "stop_rate"], {f"p_{h}": 3, "avg_r": 2, "profit_factor": 2}))
+    has_loc = f"xloc_{h}" in t.columns
+    cols = ["n", "n_symbols", f"hit_{h}", f"rand_hit_{h}", f"ret_{h}", f"xspy_{h}", f"xrand_{h}", f"p_{h}"]
+    if has_loc:
+        cols += [f"xloc_{h}", f"xloc_lo_{h}", f"xloc_hi_{h}", f"ploc_{h}"]
+    cols += ["target_rate", "stop_rate", "avg_r", "profit_factor", "verdict"]
+    md.append(_fmt_table(t, cols, [f"hit_{h}", f"rand_hit_{h}", f"ret_{h}", f"xspy_{h}", f"xrand_{h}", f"xloc_{h}",
+                                   f"xloc_lo_{h}", f"xloc_hi_{h}", "target_rate", "stop_rate"],
+                         {f"p_{h}": 3, f"ploc_{h}": 3, "avg_r": 2, "profit_factor": 2}))
     md.append("\n## Across horizons (all patterns pooled)\n")
     rows = []
     for hh in HORIZONS:
-        rows.append({"horizon": hh, "n": int(a[f"n_{hh}"]), "hit": a[f"hit_{hh}"], "rand_hit": a[f"rand_hit_{hh}"],
-                     "ret": a[f"ret_{hh}"], "xspy": a[f"xspy_{hh}"], "xrand": a[f"xrand_{hh}"],
-                     "ci_lo": a[f"xrand_lo_{hh}"], "ci_hi": a[f"xrand_hi_{hh}"], "p": a[f"p_{hh}"]})
+        if not a.get(f"n_{hh}", 0):
+            continue
+        rows.append({"horizon": hh, "n": int(a[f"n_{hh}"]), "hit": a.get(f"hit_{hh}"), "rand_hit": a.get(f"rand_hit_{hh}"),
+                     "ret": a.get(f"ret_{hh}"), "xspy": a.get(f"xspy_{hh}"), "xrand": a.get(f"xrand_{hh}"),
+                     "ci_lo": a.get(f"xrand_lo_{hh}"), "ci_hi": a.get(f"xrand_hi_{hh}"), "p": a.get(f"p_{hh}"),
+                     "xloc": a.get(f"xloc_{hh}", np.nan), "p_loc": a.get(f"ploc_{hh}", np.nan)})
     hz = pd.DataFrame(rows).set_index("horizon")
     out["horizons"] = hz
-    md.append(_fmt_table(hz, list(hz.columns), ["hit", "rand_hit", "ret", "xspy", "xrand", "ci_lo", "ci_hi"], {"p": 3}))
+    md.append(_fmt_table(hz, list(hz.columns), ["hit", "rand_hit", "ret", "xspy", "xrand", "ci_lo", "ci_hi", "xloc"], {"p": 3, "p_loc": 3}))
     md.append("\n## By direction\n")
     bd = breakdown(events, "direction", h)
     out["by_direction"] = bd
-    md.append(_fmt_table(bd, list(bd.columns), ["ret", "xspy", "xrand", "hit", "target_rate", "stop_rate"], {"avg_r": 2}))
+    md.append(_fmt_table(bd, list(bd.columns), ["ret", "xspy", "xrand", "xloc", "hit", "target_rate", "stop_rate"], {"avg_r": 2}))
     cal = calibration(events, h)
     out["calibration"] = cal
     if len(cal):
@@ -221,31 +240,36 @@ def build_markdown(events: pd.DataFrame, structures: pd.DataFrame, wf: Optional[
                              ["ret", "xrand", "hit", "target_rate"], {"score_max": 2, "avg_r": 2}))
     st_ = score_threshold_table(events, h)
     out["score_threshold"] = st_
-    md.append("\n## Raising the scanner threshold\n")
-    md.append(_fmt_table(st_, list(st_.columns), ["hit", "ret", "xrand", "target_rate"], {"avg_r": 2}))
+    if len(st_):
+        md.append("\n## Raising the scanner threshold\n")
+        md.append(_fmt_table(st_, list(st_.columns), ["hit", "ret", "xrand", "xloc", "target_rate"], {"avg_r": 2}))
     ct = conditional_table(events, h)
     out["conditional"] = ct
-    md.append(f"\n## Conditional view per pattern (excess {h}-bar return over random; blank = fewer than 100 events)\n")
-    ccols = [c for c in ct.columns if c.startswith("xrand")] + ["n", "years", "years_positive"]
-    md.append(_fmt_table(ct, ccols, [c for c in ccols if c.startswith("xrand")]))
+    if len(ct):
+        md.append(f"\n## Conditional view per pattern (excess {h}-bar return over local random entries; blank = fewer than 100 events)\n")
+        ccols = [c for c in ct.columns if c.startswith("xrand")] + ["n", "years", "years_positive"]
+        md.append(_fmt_table(ct, ccols, [c for c in ccols if c.startswith("xrand")]))
     md.append("\n## Breakout volume\n")
     ev2 = events.copy()
     ev2["volume_bucket"] = volume_buckets(ev2)
     bv = breakdown(ev2.dropna(subset=["volume_bucket"]), "volume_bucket", h)
     out["by_volume"] = bv
-    md.append(_fmt_table(bv, list(bv.columns), ["ret", "xspy", "xrand", "hit", "target_rate", "stop_rate"], {"avg_r": 2}))
+    md.append(_fmt_table(bv, list(bv.columns), ["ret", "xspy", "xrand", "xloc", "hit", "target_rate", "stop_rate"], {"avg_r": 2}))
     md.append("\n## By year\n")
     by = breakdown(events, "year", h)
     out["by_year"] = by
-    md.append(_fmt_table(by, list(by.columns), ["ret", "xspy", "xrand", "hit", "target_rate", "stop_rate"], {"avg_r": 2}))
+    md.append(_fmt_table(by, list(by.columns), ["ret", "xspy", "xrand", "xloc", "hit", "target_rate", "stop_rate"], {"avg_r": 2}))
     md.append("\n## By pivot scale\n")
     bs = breakdown(events, "scale", h)
     out["by_scale"] = bs
-    md.append(_fmt_table(bs, list(bs.columns), ["ret", "xspy", "xrand", "hit", "target_rate", "stop_rate"], {"avg_r": 2}))
+    md.append(_fmt_table(bs, list(bs.columns), ["ret", "xspy", "xrand", "xloc", "hit", "target_rate", "stop_rate"], {"avg_r": 2}))
     if len(structures):
         st = structure_table(structures)
         out["structures"] = st
         md.append("\n## Forming setups: once the shape is complete, does it confirm?\n")
+        md.append("`failed` means price broke the *opposite* way (or invalidated the shape) before confirming. "
+                  "Flags, cups, rectangles and symmetrical triangles have no failure rule in the detectors - they are only "
+                  "recorded once they break out - so their 100% is by construction, not evidence.\n")
         md.append(_fmt_table(st, list(st.columns), ["confirm_rate", "fail_rate", "expire_rate"]))
     if wf is not None and len(wf):
         wmeta = meta.get("walkforward", {})
@@ -272,7 +296,8 @@ def build_markdown(events: pd.DataFrame, structures: pd.DataFrame, wf: Optional[
         md.append(f"* {h}-bar mean return: hindsight {cmp_[f'hindsight_ret_{h}'] * 100:+.2f}% vs walk-forward "
                   f"{cmp_[f'walkforward_ret_{h}'] * 100:+.2f}%; hit rate {cmp_[f'hindsight_hit_{h}'] * 100:.1f}% vs "
                   f"{cmp_[f'walkforward_hit_{h}'] * 100:.1f}%; excess over random {cmp_[f'hindsight_xrand_{h}'] * 100:+.2f}% vs "
-                  f"{cmp_[f'walkforward_xrand_{h}'] * 100:+.2f}%.")
+                  f"{cmp_[f'walkforward_xrand_{h}'] * 100:+.2f}%; excess over local random {cmp_[f'hindsight_xloc_{h}'] * 100:+.2f}% vs "
+                  f"{cmp_[f'walkforward_xloc_{h}'] * 100:+.2f}%.")
         md.append(f"* Target-first rate: {cmp_['hindsight_target_rate'] * 100:.1f}% vs {cmp_['walkforward_target_rate'] * 100:.1f}%; "
                   f"average R: {cmp_['hindsight_avg_r']:+.2f} vs {cmp_['walkforward_avg_r']:+.2f}.\n")
         tw = summary_table(wf)

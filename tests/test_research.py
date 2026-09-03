@@ -96,3 +96,15 @@ def test_report_writes_files(synthetic_events, tmp_path):
                                                        "period": "-", "benchmark": "-", "config": {"min_score": 0.6}})
     assert p.exists() and (tmp_path / "report.md").exists() and (tmp_path / "summary_by_pattern.csv").exists()
     assert "Per-pattern results" in (tmp_path / "report.md").read_text()
+
+
+def test_local_baseline_columns():
+    from algovision.research.events import add_local_baseline
+    df, _ = GENERATORS["Falling Wedge"]()
+    ev, _ = build_events("FW", df)
+    E = add_local_baseline(pd.DataFrame(ev), lambda s: df)
+    assert "xloc_20" in E.columns and E["xloc_5"].notna().any()
+    cols = [c for c in E.columns if c.startswith("loc_5_")]
+    assert len(cols) == 20
+    row = E[E["xloc_5"].notna()].iloc[0]
+    assert np.isclose(row["xloc_5"], row["ret_5"] - np.mean(row[cols].astype(float)))

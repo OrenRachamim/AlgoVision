@@ -14,6 +14,7 @@ Every *confirmed* pattern becomes one event.  To keep the study honest:
 
 from __future__ import annotations
 
+import zlib
 from typing import Dict, List, Optional, Sequence, Tuple
 
 import numpy as np
@@ -114,7 +115,7 @@ def build_events(symbol: str, df: pd.DataFrame, bench: Optional[pd.DataFrame] = 
     close = df["Close"].to_numpy(dtype=float)
     vol = df["Volume"].to_numpy(dtype=float) if "Volume" in df.columns else None
     b = align_benchmark(df, bench)
-    rng = np.random.default_rng(seed + (hash(symbol) % 100000))
+    rng = np.random.default_rng(seed + (zlib.crc32(symbol.encode()) % 100000))
     dates = df.index
     events: List[Dict] = []
     structures: List[Dict] = []
@@ -167,3 +168,45 @@ def build_events(symbol: str, df: pd.DataFrame, bench: Optional[pd.DataFrame] = 
         row.update(simulate_trade(high, low, close, e, entry, d, m.target, m.stop, max_hold))
         events.append(row)
     return events, structures
+
+
+LOCAL_WINDOW = 126   # +- half a year of bars around the signal
+
+
+def add_local_baseline(events: pd.DataFrame, get_frame, horizons: Sequence[int] = HORIZONS,
+                       random_draws: int = RANDOM_DRAWS, window: int = LOCAL_WINDOW, seed: int = 1) -> pd.DataFrame:
+    """Add ``xloc_h`` / ``loc_h_k`` columns: excess over random entries near the signal.
+
+    Random dates are drawn from the same stock within ``window`` bars before or
+    after the entry (excluding the event's own holding window), same direction
+    and holding period.  This cancels the *regime* around the signal, not just
+    the stock's long-run drift.  ``get_frame(symbol)`` must return the OHLCV
+    DataFrame the events were built from.
+    """
+    ev = events.copy()
+    for h in horizons:
+        ev[f"xloc_{h}"] = np.nan
+        for k in range(random_draws):
+            ev[f"loc_{h}_{k}"] = np.nan
+    for symbol, idx in ev.groupby("symbol").groups.items():
+        df = get_frame(symbol)
+        open_ = df["Open"].to_numpy(dtype=float)
+        close = df["Close"].to_numpy(dtype=float)
+        n = len(df)
+        rng = np.random.default_rng(seed + (zlib.crc32(symbol.encode()) % 100000))
+        for i in idx:
+            e = int(ev.at[i, "entry_idx"])
+            d = int(ev.at[i, "dir"])
+            for h in horizons:
+                if not np.isfinite(ev.at[i, f"ret_{h}"]):
+                    continue
+                lo, hi = max(1, e - window), min(n - h, e + window)
+                cand = np.arange(lo, hi + 1)
+                cand = cand[(cand < e - h) | (cand > e + h)]      # do not overlap the event itself
+                if len(cand) < 5:
+                    continue
+                pick = rng.choice(cand, size=random_draws, replace=len(cand) < random_draws)
+                rr = d * (close[pick + h - 1] / open_[pick] - 1.0)
+                ev.loc[i, [f"loc_{h}_{k}" for k in range(random_draws)]] = rr
+                ev.at[i, f"xloc_{h}"] = ev.at[i, f"ret_{h}"] - float(rr.mean())
+    return ev

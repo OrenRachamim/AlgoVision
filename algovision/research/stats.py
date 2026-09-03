@@ -55,8 +55,8 @@ def permutation_pvalue(actual: np.ndarray, rand_matrix: np.ndarray, reps: int = 
     return {"p_one_sided": p1, "p_two_sided": p2, "z": float(z), "rand_mean": float(mu)}
 
 
-def _rand_matrix(g: pd.DataFrame, h: int) -> np.ndarray:
-    cols = [f"rand_{h}_{k}" for k in range(RANDOM_DRAWS) if f"rand_{h}_{k}" in g.columns]
+def _rand_matrix(g: pd.DataFrame, h: int, prefix: str = "rand") -> np.ndarray:
+    cols = [f"{prefix}_{h}_{k}" for k in range(RANDOM_DRAWS) if f"{prefix}_{h}_{k}" in g.columns]
     return g[cols].to_numpy(dtype=float)
 
 
@@ -85,6 +85,13 @@ def summarize_group(g: pd.DataFrame, horizons: Sequence[int] = HORIZONS, key_h: 
         if ok.sum() > 2:
             t = sps.ttest_1samp(xr[np.isfinite(xr)], 0.0)
             out[f"t_{h}"] = float(t.statistic)
+        if f"xloc_{h}" in g.columns and np.isfinite(g[f"xloc_{h}"]).any():
+            xl = g[f"xloc_{h}"].to_numpy(dtype=float)
+            out[f"xloc_{h}"] = float(np.nanmean(xl))
+            out[f"xloc_lo_{h}"], out[f"xloc_hi_{h}"] = bootstrap_mean_ci(xl)
+            lm = _rand_matrix(g, h, "loc")
+            out[f"loc_hit_{h}"] = float(np.nanmean(lm > 0)) if lm.size else np.nan
+            out[f"ploc_{h}"] = permutation_pvalue(r, lm)["p_one_sided"] if lm.size else np.nan
     # trade simulation
     out["target_rate"] = float((g["exit_reason"] == "target").mean())
     out["stop_rate"] = float((g["exit_reason"] == "stop").mean())
@@ -127,23 +134,30 @@ def calibration(events: pd.DataFrame, h: int = 20, bins: int = 5) -> pd.DataFram
     if len(g) < bins * 5:
         return pd.DataFrame()
     g["score_bin"] = pd.qcut(g["score"], bins, duplicates="drop")
-    t = g.groupby("score_bin", observed=True).agg(
+    agg = dict(
         n=("score", "size"), score_min=("score", "min"), score_max=("score", "max"),
         ret=(f"ret_{h}", "mean"), xrand=(f"xrand_{h}", "mean"), hit=(f"ret_{h}", lambda x: float((x > 0).mean())),
         target_rate=("exit_reason", lambda x: float((x == "target").mean())),
         avg_r=("r_multiple", "mean"))
-    rho, p = sps.spearmanr(g["score"], g[f"xrand_{h}"], nan_policy="omit")
+    xcol = f"xloc_{h}" if f"xloc_{h}" in g.columns else f"xrand_{h}"
+    if xcol != f"xrand_{h}":
+        agg["xloc"] = (xcol, "mean")
+    t = g.groupby("score_bin", observed=True).agg(**agg)
+    rho, p = sps.spearmanr(g["score"], g[xcol], nan_policy="omit")
     t.attrs["spearman_rho"], t.attrs["spearman_p"] = float(rho), float(p)
     return t
 
 
 def breakdown(events: pd.DataFrame, col: str, h: int = 20) -> pd.DataFrame:
     g = events[np.isfinite(events[f"ret_{h}"])]
-    t = g.groupby(col, observed=True).agg(
+    agg = dict(
         n=("score", "size"), ret=(f"ret_{h}", "mean"), xspy=(f"xspy_{h}", "mean"), xrand=(f"xrand_{h}", "mean"),
         hit=(f"ret_{h}", lambda x: float((x > 0).mean())),
         target_rate=("exit_reason", lambda x: float((x == "target").mean())),
         stop_rate=("exit_reason", lambda x: float((x == "stop").mean())), avg_r=("r_multiple", "mean"))
+    if f"xloc_{h}" in g.columns:
+        agg["xloc"] = (f"xloc_{h}", "mean")
+    t = g.groupby(col, observed=True).agg(**agg)
     return t
 
 
@@ -195,6 +209,7 @@ def compare_walkforward(hind: pd.DataFrame, wf: pd.DataFrame, h: int = 20, tol_b
         out[f"{name}_ret_{h}"] = float(r.mean()) if len(r) else np.nan
         out[f"{name}_hit_{h}"] = float((r > 0).mean()) if len(r) else np.nan
         out[f"{name}_xrand_{h}"] = float(np.nanmean(df[f"xrand_{h}"])) if len(df) else np.nan
+        out[f"{name}_xloc_{h}"] = float(np.nanmean(df[f"xloc_{h}"])) if len(df) and f"xloc_{h}" in df.columns else np.nan
         out[f"{name}_target_rate"] = float((df["exit_reason"] == "target").mean()) if len(df) else np.nan
         out[f"{name}_avg_r"] = float(np.nanmean(df["r_multiple"])) if len(df) else np.nan
     return out
@@ -203,24 +218,27 @@ def compare_walkforward(hind: pd.DataFrame, wf: pd.DataFrame, h: int = 20, tol_b
 def conditional_table(events: pd.DataFrame, h: int = 20, min_n: int = 100) -> pd.DataFrame:
     """Per-pattern excess return under a few trading-relevant conditions."""
     g = events[np.isfinite(events[f"ret_{h}"])].copy()
+    xcol = f"xloc_{h}" if f"xloc_{h}" in g.columns else f"xrand_{h}"
     g["vol_hi"] = g["breakout_vol_ratio"] >= 1.5
     g["delayed"] = g["delay_bars"] > 0
     g["extended"] = g["gap_from_level"] > 0.03
     rows = []
     for pat, gg in g.groupby("pattern"):
-        row = {"pattern": pat, "n": len(gg), "xrand_all": gg[f"xrand_{h}"].mean()}
+        row = {"pattern": pat, "n": len(gg), "xrand_all": gg[xcol].mean()}
         for name, mask in (("vol>=1.5x", gg["vol_hi"]), ("vol<1.5x", ~gg["vol_hi"]),
                            ("same-bar", ~gg["delayed"]), ("delayed", gg["delayed"]),
                            ("extended>3%", gg["extended"]), ("near level", ~gg["extended"])):
             sub = gg[mask]
             row[f"n {name}"] = len(sub)
-            row[f"xrand {name}"] = sub[f"xrand_{h}"].mean() if len(sub) >= min_n else np.nan
+            row[f"xrand {name}"] = sub[xcol].mean() if len(sub) >= min_n else np.nan
         # stability: share of years with positive excess
-        yr = gg.groupby("year")[f"xrand_{h}"].agg(["mean", "size"])
+        yr = gg.groupby("year")[xcol].agg(["mean", "size"])
         yr = yr[yr["size"] >= 30]
         row["years"] = int(len(yr))
         row["years_positive"] = int((yr["mean"] > 0).sum())
         rows.append(row)
+    if not rows:
+        return pd.DataFrame()
     return pd.DataFrame(rows).set_index("pattern")
 
 
@@ -234,6 +252,9 @@ def score_threshold_table(events: pd.DataFrame, h: int = 20, thresholds=(0.6, 0.
         r = g[f"ret_{h}"].to_numpy(dtype=float)
         rows.append({"min_score": th, "n": len(g), "hit": float((r > 0).mean()), "ret": float(r.mean()),
                      "xrand": float(g[f"xrand_{h}"].mean()),
+                     "xloc": float(g[f"xloc_{h}"].mean()) if f"xloc_{h}" in g.columns else np.nan,
                      "target_rate": float((g["exit_reason"] == "target").mean()),
                      "avg_r": float(np.nanmean(g["r_multiple"]))})
+    if not rows:
+        return pd.DataFrame(columns=["n", "hit", "ret", "xrand", "xloc", "target_rate", "avg_r"])
     return pd.DataFrame(rows).set_index("min_score")
