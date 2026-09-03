@@ -163,6 +163,25 @@ def build_parser() -> argparse.ArgumentParser:
     r.add_argument("--max-age", type=float, default=12.0)
     r.add_argument("-v", "--verbose", action="store_true")
 
+    dd = sub.add_parser("deepdive", help="deep dive on one pattern: features, filters, exits, entries, portfolio (train/test split)")
+    dd.add_argument("--pattern", required=True, help="e.g. 'Falling Wedge' or alias 'falling-wedge'")
+    dd.add_argument("--universe", "-u", default="all", choices=UNIVERSES)
+    dd.add_argument("--symbols", default=None)
+    dd.add_argument("--limit", type=int, default=0)
+    dd.add_argument("--period", default="10y")
+    dd.add_argument("--interval", default="1d")
+    dd.add_argument("--split", default="2023-01-01", help="test period starts here")
+    dd.add_argument("--out", default=None, help="default out/deepdive/<pattern>")
+    dd.add_argument("--min-score", type=float, default=None)
+    dd.add_argument("--config", default=None)
+    dd.add_argument("--workers", type=int, default=4)
+    dd.add_argument("--cache-dir", default=None)
+    dd.add_argument("--csv-dir", default=None)
+    dd.add_argument("--offline", action="store_true")
+    dd.add_argument("--no-cache", action="store_true")
+    dd.add_argument("--max-age", type=float, default=12.0)
+    dd.add_argument("-v", "--verbose", action="store_true")
+
     sub.add_parser("patterns", help="list supported patterns")
     sub.add_parser("universe", help="print the bundled universes").add_argument("--name", default="sp500", choices=UNIVERSES)
     return ap
@@ -246,6 +265,9 @@ def main(argv: Optional[List[str]] = None) -> int:
     if args.cmd == "research":
         from algovision.research.cli import cmd_research
         return cmd_research(args)
+    if args.cmd == "deepdive":
+        from algovision.research.cli import cmd_deepdive
+        return cmd_deepdive(args)
     if args.cmd == "scan":
         return cmd_scan(args)
     return cmd_analyze(args)

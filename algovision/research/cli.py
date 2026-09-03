@@ -79,3 +79,41 @@ def cmd_research(args) -> int:
         q = write_shortterm_report(out, events, wf, lambda s: provider.get(s, args.period, args.interval))
         print(f"wrote {q}", file=sys.stderr)
     return 0
+
+
+def cmd_deepdive(args) -> int:
+    from algovision.cli import _config
+    from algovision.patterns import resolve_patterns
+    from algovision.research.deepdive import collect_pattern_events, write_deepdive_report
+
+    cfg = _config(args)
+    pattern = resolve_patterns([args.pattern])[0]
+    symbols = [s.strip().upper() for s in args.symbols.split(",")] if args.symbols else get_universe(args.universe)
+    if args.limit:
+        symbols = symbols[: args.limit]
+    provider_kwargs = dict(cache_dir=None if args.no_cache else (Path(args.cache_dir) if args.cache_dir else DataProvider.__init__.__defaults__[0]),
+                           csv_dir=Path(args.csv_dir) if args.csv_dir else None, max_age_hours=args.max_age,
+                           offline=args.offline, workers=1)
+    if not args.offline:   # warm the cache once, concurrently
+        DataProvider(**{**provider_kwargs, "workers": args.workers}).get_many(list(symbols) + ["SPY"], args.period, args.interval)
+    t0 = time.time()
+    print(f"deep dive: {pattern} over {len(symbols)} symbols", file=sys.stderr)
+    events, errors = collect_pattern_events(symbols, {**provider_kwargs, "offline": True}, pattern, cfg, args.period,
+                                            args.interval, args.workers,
+                                            progress=lambda i, n, ne: print(f"  [{i}/{n}] events={ne}", file=sys.stderr))
+    if not len(events):
+        print("no events", file=sys.stderr)
+        return 1
+    provider = DataProvider(**{**provider_kwargs, "offline": True})
+    cache = {}
+
+    def gf(s):
+        if s not in cache:
+            cache[s] = provider.get(s, args.period, args.interval)
+        return cache[s]
+
+    events = add_local_baseline(events, gf)
+    out = Path(args.out) if args.out else Path("out/deepdive") / pattern.replace(" ", "_").lower()
+    p = write_deepdive_report(out, pattern, events, gf, args.split)
+    print(f"wrote {p} ({time.time() - t0:.0f}s, {len(errors)} symbol errors)", file=sys.stderr)
+    return 0

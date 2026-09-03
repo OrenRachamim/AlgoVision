@@ -140,3 +140,58 @@ def test_shortterm_grid_on_synthetic():
     assert len(g) == 2 and (g["n"] == len(E)).all()
     assert {"net_ret", "excess", "p", "profit_factor", "hit"} <= set(g.columns)
     assert g["excess"].iloc[0] > 0     # textbook breakouts continue for a couple of bars
+
+
+def test_deepdive_analyses_on_synthetic():
+    from algovision.core.types import DetectorConfig
+    from algovision.data.synthetic import random_walk
+    from algovision.research import deepdive as dd
+    from algovision.research.events import add_local_baseline
+    frames = {f"RW{i}": random_walk(900, seed=10 + i, noise=0.015) for i in range(6)}
+
+    class P:
+        def get(self, s, period, interval):
+            return frames[s]
+
+    dd._PROVIDER, dd._SPY = P(), None
+    rows = []
+    for s in frames:
+        for pat in ("Falling Wedge", "Rising Wedge", "Symmetrical Triangle"):
+            _, ev, err = dd._task((s, pat, "10y", "1d", DetectorConfig().to_dict()))
+            assert err is None, err
+            rows += ev
+    E = pd.DataFrame(rows)
+    assert len(E) >= 10 and {"convergence", "height_pct", "dist_ma200", "atr_at_signal"} <= set(E.columns)
+    E = add_local_baseline(E, lambda s: frames[s])
+    split = str(pd.to_datetime(E["signal_date"]).median().date())
+    ft = dd.feature_table(E, split, features=["score", "convergence"], bins=2, min_events=20, min_bin=5)
+    assert len(ft) and {"train", "test"} <= set(ft["period"])
+    ex = dd.exit_table(E, lambda s: frames[s], split)
+    assert len(ex) and "avg_r" in ex.columns
+    en = dd.entry_table(E, lambda s: frames[s], split)
+    assert len(en) and "next open" in set(en["entry"])
+    curve = dd.portfolio_curve(E, lambda s: frames[s], hold=10)
+    st = dd.curve_stats(curve)
+    assert st["days"] > 0 and "max_drawdown" in st
+
+
+def test_deepdive_report_writes(tmp_path):
+    from algovision.core.types import DetectorConfig
+    from algovision.data.synthetic import random_walk
+    from algovision.research import deepdive as dd
+    from algovision.research.events import add_local_baseline
+    frames = {f"RW{i}": random_walk(1200, seed=20 + i, noise=0.015) for i in range(8)}
+
+    class P:
+        def get(self, s, period, interval):
+            return frames[s]
+
+    dd._PROVIDER, dd._SPY = P(), None
+    rows = []
+    for s in frames:
+        for pat in ("Falling Wedge", "Rising Wedge", "Symmetrical Triangle", "Double Bottom"):
+            rows += dd._task((s, pat, "10y", "1d", DetectorConfig().to_dict()))[1]
+    E = add_local_baseline(pd.DataFrame(rows), lambda s: frames[s])
+    split = str(pd.to_datetime(E["signal_date"]).median().date())
+    p = dd.write_deepdive_report(tmp_path, "Synthetic", E, lambda s: frames[s], split)
+    assert p.exists() and (tmp_path / "equity.png").exists() and (tmp_path / "filters.csv").exists()

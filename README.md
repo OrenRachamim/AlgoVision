@@ -224,7 +224,9 @@ Method, in short:
 
 The findings of the study run on 2016-2026 data are summarised in
 [`docs/research.md`](docs/research.md); the short-horizon variant (hold 1-5 bars, take-profit) in
-[`docs/research_shortterm.md`](docs/research_shortterm.md) (`--short-term`).
+[`docs/research_shortterm.md`](docs/research_shortterm.md) (`--short-term`); the single-pattern deep dive
+(features, filters, exits, entries, portfolio, train/test split) in
+[`docs/research_falling_wedge.md`](docs/research_falling_wedge.md) (`python -m algovision deepdive --pattern falling-wedge`).
 
 ## Project layout
 

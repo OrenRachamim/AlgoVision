@@ -103,6 +103,11 @@ resolve no better. Use the score to rank charts for reading, not to size positio
 Holding 1-5 bars and taking 1-3 % when offered does not change the conclusion: the pattern adds 2-3 bps per trade
 over the same rule on random dates, which is below transaction costs. Details in [`research_shortterm.md`](research_shortterm.md).
 
+## Falling Wedge deep dive
+
+What makes the best pattern work and how to trade it, with a train/test split:
+[`research_falling_wedge.md`](research_falling_wedge.md).
+
 ## Bottom line
 
 Do not trust a setup because the scanner found it. As a class, the classic patterns on daily large-cap charts
