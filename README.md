@@ -239,7 +239,9 @@ The findings of the study run on 2016-2026 data are summarised in
 [`docs/research_shortterm.md`](docs/research_shortterm.md) (`--short-term`); the single-pattern deep dive
 (features, filters, exits, entries, portfolio, train/test split) in
 [`docs/research_falling_wedge.md`](docs/research_falling_wedge.md) (`python -m algovision deepdive --pattern falling-wedge`); momentum and short-term reversal on the same universe in
-[`docs/research_factors.md`](docs/research_factors.md) (`python -m algovision factors`).
+[`docs/research_factors.md`](docs/research_factors.md) (`python -m algovision factors`); five further anomalies in
+[`docs/research_anomalies.md`](docs/research_anomalies.md), of which one survived and has a live scan:
+`python -m algovision newsday`.
 
 ## Project layout
 

@@ -30,7 +30,7 @@ from algovision.research.stats import bootstrap_mean_ci, wilson
 # ----------------------------------------------------------------------------
 def load_panel(symbols: Sequence[str], get_frame: Callable[[str], pd.DataFrame], min_bars: int = 300) -> Dict[str, pd.DataFrame]:
     """Wide Open/High/Low/Close frames (dates x symbols), NaN where a stock has no bar."""
-    cols = {"Open": {}, "High": {}, "Low": {}, "Close": {}}
+    cols = {"Open": {}, "High": {}, "Low": {}, "Close": {}, "Volume": {}}
     for s in symbols:
         try:
             df = get_frame(s)

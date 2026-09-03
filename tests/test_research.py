@@ -220,3 +220,27 @@ def test_factors_engine_on_synthetic():
     assert ("all", 2.0, 1) in tab.index
     curve = F.reversal_portfolio(ev, panel, hold=3)
     assert len(curve) > 100
+
+
+def test_anomalies_engine_on_synthetic(tmp_path):
+    from algovision.data.synthetic import random_walk
+    from algovision.research import anomalies as A, factors as F
+    frames = {f"S{i}": random_walk(1200, seed=300 + i, noise=0.02) for i in range(40)}
+    spy = random_walk(1200, seed=778, noise=0.01)
+    panel = F.load_panel(list(frames), lambda s: frames[s])
+    split = str(panel["Close"].index[600].date())
+    ev = A.news_gap_events(panel, spy["Close"], gap_min=0.005, vol_mult=1.1, entry="next_open")
+    assert len(ev) > 20 and {"gap", "dir", "xloc_60", "below_ma200"} <= set(ev.columns)
+    tab = A.news_gap_table(ev, split)
+    assert ("all", 1) in tab.index or ("all", -1) in tab.index
+    oi = A.overnight_intraday(panel, spy, split)
+    assert ("SPY", "overnight", "test") in oi.index
+    tom = A.turn_of_month(spy["Close"].pct_change().dropna(), split)
+    assert set(tom.index) == {"all", "train", "test"} and 0.2 < tom.loc["all", "share_invested"] < 0.5
+    vm = A.vol_managed(spy, split)
+    assert "vm_sharpe" in vm.columns
+    sectors = {s: ("A" if i % 2 else "B") for i, s in enumerate(frames)}
+    bt = F.cross_sectional_backtest(panel, A.residual_signal(sectors, 5), "W", n_groups=4, min_names=20)
+    assert len(bt) > 20
+    sig = A.newsday_signals(lambda s: frames[s], list(frames), gap_min=0.01, vol_mult=1.0, max_age=50, require_deep=False)
+    assert set(sig.columns) >= {"symbol", "news_date", "bars_ago", "gap", "bars_left"}

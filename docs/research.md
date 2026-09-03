@@ -112,6 +112,11 @@ What makes the best pattern work and how to trade it, with a train/test split:
 
 The two classic anomalies on the same data: [`research_factors.md`](research_factors.md).
 
+## Beyond patterns
+
+Five pre-registered anomalies, one survivor (big news days in beaten-down stocks):
+[`research_anomalies.md`](research_anomalies.md).
+
 ## Bottom line
 
 Do not trust a setup because the scanner found it. As a class, the classic patterns on daily large-cap charts

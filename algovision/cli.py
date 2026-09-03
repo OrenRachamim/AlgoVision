@@ -214,6 +214,23 @@ def build_parser() -> argparse.ArgumentParser:
     fa.add_argument("--max-age", type=float, default=12.0)
     fa.add_argument("-v", "--verbose", action="store_true")
 
+    nd = sub.add_parser("newsday", help="live scan: big news-gap days in beaten-down stocks (docs/research_anomalies.md)")
+    nd.add_argument("--universe", "-u", default="all", choices=UNIVERSES)
+    nd.add_argument("--symbols", default=None)
+    nd.add_argument("--period", default="2y")
+    nd.add_argument("--max-age", type=int, default=5, help="news day within the last N bars")
+    nd.add_argument("--gap-min", type=float, default=0.04)
+    nd.add_argument("--vol-mult", type=float, default=3.0)
+    nd.add_argument("--any-below-ma200", action="store_true", help="drop the 'down >8%% over 6 months' requirement")
+    nd.add_argument("--csv", default=None)
+    nd.add_argument("--cache-dir", default=None)
+    nd.add_argument("--csv-dir", default=None)
+    nd.add_argument("--offline", action="store_true")
+    nd.add_argument("--no-cache", action="store_true")
+    nd.add_argument("--max-age-hours", type=float, default=12.0, dest="max_age_hours")
+    nd.add_argument("--workers", type=int, default=4)
+    nd.add_argument("-v", "--verbose", action="store_true")
+
     sub.add_parser("patterns", help="list supported patterns")
     sub.add_parser("universe", help="print the bundled universes").add_argument("--name", default="sp500", choices=UNIVERSES)
     return ap
@@ -303,6 +320,9 @@ def main(argv: Optional[List[str]] = None) -> int:
     if args.cmd == "factors":
         from algovision.research.cli import cmd_factors
         return cmd_factors(args)
+    if args.cmd == "newsday":
+        from algovision.research.cli import cmd_newsday
+        return cmd_newsday(args)
     if args.cmd == "scan":
         return cmd_scan(args)
     return cmd_analyze(args)

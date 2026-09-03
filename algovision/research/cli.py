@@ -138,3 +138,31 @@ def cmd_factors(args) -> int:
                              progress=lambda msg: print(f"  {msg} ({time.time() - t0:.0f}s)", file=sys.stderr))
     print(f"wrote {p}", file=sys.stderr)
     return 0
+
+
+def cmd_newsday(args) -> int:
+    from algovision.research.anomalies import newsday_signals
+
+    symbols = [s.strip().upper() for s in args.symbols.split(",")] if args.symbols else get_universe(args.universe)
+    provider = DataProvider(cache_dir=None if args.no_cache else (Path(args.cache_dir) if args.cache_dir else DataProvider.__init__.__defaults__[0]),
+                            csv_dir=Path(args.csv_dir) if args.csv_dir else None, max_age_hours=args.max_age_hours,
+                            offline=args.offline, workers=args.workers)
+    frames = provider.get_many(symbols, args.period, "1d")
+    sig = newsday_signals(lambda s: frames[s], [s for s in symbols if s in frames], gap_min=args.gap_min,
+                          vol_mult=args.vol_mult, max_age=args.max_age, require_deep=not args.any_below_ma200)
+    if not len(sig):
+        print("No signals.")
+    else:
+        show = sig.copy()
+        for c in ("gap", "day_return", "ret_6m", "dist_ma200", "since_news"):
+            show[c] = (show[c] * 100).map(lambda v: f"{v:+.1f}%")
+        show["volume_ratio"] = show["volume_ratio"].map(lambda v: f"{v:.1f}x")
+        import pandas as pd
+        with pd.option_context("display.width", 200, "display.max_columns", None):
+            print(show.to_string(index=False))
+        print(f"\n{len(sig)} signal(s) out of {len(frames)} symbols. Rule tested in docs/research_anomalies.md: "
+              "buy at the next open after the news day, hold ~60 bars; ~+6-7% vs random entry, hit ~62%, in both 2016-22 and 2023-26.")
+    if args.csv:
+        sig.to_csv(args.csv, index=False)
+        print(f"wrote {args.csv}")
+    return 0
