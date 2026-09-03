@@ -8,5 +8,7 @@ out/
 .algovision/
 *.csv
 !tests/data/*.csv
+!docs/**/*.csv
+!journal/*.csv
 .venv/
 .DS_Store

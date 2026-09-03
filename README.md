@@ -243,6 +243,18 @@ The findings of the study run on 2016-2026 data are summarised in
 [`docs/research_anomalies.md`](docs/research_anomalies.md), of which one survived and has a live scan:
 `python -m algovision newsday`.
 
+## Forward test (`journal` command)
+
+```bash
+python -m algovision journal --out journal
+```
+
+Downloads fresh prices, logs today's live signals from the two rules that survived the research
+(news-day in a beaten-down stock, hold 60 bars; beaten-down Falling Wedge breakout, hold 20 bars) to
+`journal/signals.csv`, marks every earlier signal to market (entry = next open after the signal) and writes
+`journal/<date>.md` plus `journal/latest.md` with running hit rates and mean returns against the research
+expectation. A scheduled routine runs it every trading day after the US close and commits the journal.
+
 ## Project layout
 
 ```

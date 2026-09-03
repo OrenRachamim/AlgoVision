@@ -231,6 +231,15 @@ def build_parser() -> argparse.ArgumentParser:
     nd.add_argument("--workers", type=int, default=4)
     nd.add_argument("-v", "--verbose", action="store_true")
 
+    jo = sub.add_parser("journal", help="daily forward test: log live signals and mark previous ones to market")
+    jo.add_argument("--out", default="journal")
+    jo.add_argument("--universe", "-u", default="all", choices=UNIVERSES)
+    jo.add_argument("--period", default="2y")
+    jo.add_argument("--cache-dir", default=None)
+    jo.add_argument("--max-age", type=float, default=0.5, help="hours; prices older than this are re-downloaded")
+    jo.add_argument("--workers", type=int, default=4)
+    jo.add_argument("--date", default=None, help="log date (default today)")
+
     sub.add_parser("patterns", help="list supported patterns")
     sub.add_parser("universe", help="print the bundled universes").add_argument("--name", default="sp500", choices=UNIVERSES)
     return ap
@@ -320,6 +329,12 @@ def main(argv: Optional[List[str]] = None) -> int:
     if args.cmd == "factors":
         from algovision.research.cli import cmd_factors
         return cmd_factors(args)
+    if args.cmd == "journal":
+        from algovision.journal import run as run_journal
+        p = run_journal(Path(args.out), args.universe, args.period, Path(args.cache_dir) if args.cache_dir else None,
+                        args.max_age, args.workers, args.date)
+        print(p.read_text())
+        return 0
     if args.cmd == "newsday":
         from algovision.research.cli import cmd_newsday
         return cmd_newsday(args)

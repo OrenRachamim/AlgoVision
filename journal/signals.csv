@@ -1,0 +1,2 @@
+logged,rule,symbol,signal_date,status,ref_price,entry_date,entry_price,hold_bars,note
+2026-09-03,falling_wedge_beaten_down,VST,2026-09-02,open,143.4600,,,20,"score 0.72, stop 130.64, level 137.09"

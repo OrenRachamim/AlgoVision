@@ -128,3 +128,33 @@ def test_scanner_context_and_beaten_down_filter(csv_dir):
     # the filter never lets through a match that the unfiltered scan would not have produced
     keys = {(m.symbol, m.pattern, m.start_idx) for m in res.matches}
     assert all((m.symbol, m.pattern, m.start_idx) in keys for m in strict.matches)
+
+
+def test_journal_logs_and_marks_to_market(tmp_path, monkeypatch):
+    import algovision.journal as J
+    from algovision.data.synthetic import random_walk, wedge
+    frames = {"AAA": random_walk(700, seed=41), "BBB": random_walk(700, seed=42)}
+    monkeypatch.setattr(J, "get_universe", lambda u: list(frames))
+
+    class P:
+        def __init__(self, *a, **k):
+            pass
+
+        def get_many(self, symbols, period, interval):
+            return {s: frames[s] for s in symbols}
+
+    monkeypatch.setattr(J, "DataProvider", P)
+    p = J.run(tmp_path, today="2026-01-01")
+    assert p.exists() and (tmp_path / "signals.csv").exists()
+    # inject a past signal and check mark-to-market fills entry and result
+    sig = pd.read_csv(tmp_path / "signals.csv", dtype=str)
+    row = {"logged": "2025-01-01", "rule": "newsday", "symbol": "AAA", "signal_date": str(frames["AAA"].index[100].date()),
+           "status": "open", "ref_price": "100", "entry_date": "", "entry_price": "", "hold_bars": "60", "note": "test"}
+    sig = pd.concat([sig, pd.DataFrame([row])], ignore_index=True)
+    sig.to_csv(tmp_path / "signals.csv", index=False)
+    J.run(tmp_path, today="2026-01-02")
+    m = pd.read_csv(tmp_path / "mark_to_market.csv")
+    r = m[(m.symbol == "AAA") & (m.rule == "newsday")].iloc[0]
+    assert r["done"] == True and r["bars_elapsed"] == 60  # noqa: E712
+    assert abs(float(r["entry_price"]) - float(frames["AAA"]["Open"].iloc[101])) < 1e-6
+    assert "closed trades" in (tmp_path / "latest.md").read_text()
