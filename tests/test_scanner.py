@@ -156,5 +156,5 @@ def test_journal_logs_and_marks_to_market(tmp_path, monkeypatch):
     m = pd.read_csv(tmp_path / "mark_to_market.csv")
     r = m[(m.symbol == "AAA") & (m.rule == "newsday")].iloc[0]
     assert r["done"] == True and r["bars_elapsed"] == 60  # noqa: E712
-    assert abs(float(r["entry_price"]) - float(frames["AAA"]["Open"].iloc[101])) < 1e-6
+    assert abs(float(r["entry_price"]) - float(frames["AAA"]["Open"].iloc[101])) < 1e-3   # stored with 4 decimals
     assert "closed trades" in (tmp_path / "latest.md").read_text()
