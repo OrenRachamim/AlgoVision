@@ -98,6 +98,11 @@ resolve no better. Use the score to rank charts for reading, not to size positio
 * Daily bars, US large caps, 2016-2026 (mostly a bull market with two drawdowns). Other timeframes and
   universes may behave differently and would need the same test.
 
+## Short-horizon variant
+
+Holding 1-5 bars and taking 1-3 % when offered does not change the conclusion: the pattern adds 2-3 bps per trade
+over the same rule on random dates, which is below transaction costs. Details in [`research_shortterm.md`](research_shortterm.md).
+
 ## Bottom line
 
 Do not trust a setup because the scanner found it. As a class, the classic patterns on daily large-cap charts

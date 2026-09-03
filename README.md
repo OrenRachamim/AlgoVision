@@ -223,7 +223,8 @@ Method, in short:
   fail or expire?
 
 The findings of the study run on 2016-2026 data are summarised in
-[`docs/research.md`](docs/research.md).
+[`docs/research.md`](docs/research.md); the short-horizon variant (hold 1-5 bars, take-profit) in
+[`docs/research_shortterm.md`](docs/research_shortterm.md) (`--short-term`).
 
 ## Project layout
 
