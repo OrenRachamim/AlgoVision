@@ -155,6 +155,7 @@ def build_parser() -> argparse.ArgumentParser:
     r.add_argument("--wf-window", type=int, default=400, help="walk-forward: detection window in bars")
     r.add_argument("--wf-step", type=int, default=1)
     r.add_argument("--seed", type=int, default=42)
+    r.add_argument("--short-term", action="store_true", help="also run the short-horizon exit study (hold 1-5 bars, take-profit)")
     r.add_argument("--cache-dir", default=None)
     r.add_argument("--csv-dir", default=None)
     r.add_argument("--offline", action="store_true")

@@ -108,3 +108,35 @@ def test_local_baseline_columns():
     assert len(cols) == 20
     row = E[E["xloc_5"].notna()].iloc[0]
     assert np.isclose(row["xloc_5"], row["ret_5"] - np.mean(row[cols].astype(float)))
+
+
+def test_shortterm_evaluate_rules():
+    from algovision.research.shortterm import Paths, evaluate
+    p = Paths(op=np.array([[0.0, 0.01, 0.05]]), hi=np.array([[0.005, 0.03, 0.06]]), lo=np.array([[-0.01, -0.005, 0.0]]),
+              cl=np.array([[0.002, 0.02, 0.055]]), valid=np.array([True]))
+    r, b = evaluate(p, 3, 0.02, None)
+    assert r[0] == pytest.approx(0.02) and b[0] == 2          # target touched on bar 2, fills at target
+    r, b = evaluate(p, 3, 0.04, None)
+    assert r[0] == pytest.approx(0.05) and b[0] == 3          # gaps through target: fills at the open
+    r, b = evaluate(p, 3, None, 0.008)
+    assert r[0] == pytest.approx(-0.008) and b[0] == 1        # stop on bar 1
+    r, b = evaluate(p, 3, 0.02, 0.008)
+    assert r[0] == pytest.approx(-0.008)                      # stop wins
+    r, b = evaluate(p, 1, None, None)
+    assert r[0] == pytest.approx(0.002)                       # time exit at close
+
+
+def test_shortterm_grid_on_synthetic():
+    from algovision.research.shortterm import build_paths, strategy_grid
+    frames, ev = {}, []
+    for name, gen in GENERATORS.items():
+        df, _ = gen()
+        frames[name] = df
+        e, _ = build_events(name, df)
+        ev += e
+    E = pd.DataFrame(ev)
+    pe, pr, order = build_paths(E, lambda s: frames[s])
+    g = strategy_grid(E, pe, pr, order, holds=(2,), targets=(0.02, None), stops=(None,), min_n=5)
+    assert len(g) == 2 and (g["n"] == len(E)).all()
+    assert {"net_ret", "excess", "p", "profit_factor", "hit"} <= set(g.columns)
+    assert g["excess"].iloc[0] > 0     # textbook breakouts continue for a couple of bars

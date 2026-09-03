@@ -74,4 +74,8 @@ def cmd_research(args) -> int:
     from algovision.research.report import write_research_report
     p = write_research_report(out, events, structures, wf, meta)
     print(f"wrote {p}", file=sys.stderr)
+    if getattr(args, "short_term", False) and len(events):
+        from algovision.research.shortterm import write_shortterm_report
+        q = write_shortterm_report(out, events, wf, lambda s: provider.get(s, args.period, args.interval))
+        print(f"wrote {q}", file=sys.stderr)
     return 0
