@@ -117,3 +117,24 @@ def cmd_deepdive(args) -> int:
     p = write_deepdive_report(out, pattern, events, gf, args.split)
     print(f"wrote {p} ({time.time() - t0:.0f}s, {len(errors)} symbol errors)", file=sys.stderr)
     return 0
+
+
+def cmd_factors(args) -> int:
+    from algovision.research.factors import write_factors_report
+
+    symbols = [s.strip().upper() for s in args.symbols.split(",")] if args.symbols else get_universe(args.universe)
+    if args.limit:
+        symbols = symbols[: args.limit]
+    provider_kwargs = dict(cache_dir=None if args.no_cache else (Path(args.cache_dir) if args.cache_dir else DataProvider.__init__.__defaults__[0]),
+                           csv_dir=Path(args.csv_dir) if args.csv_dir else None, max_age_hours=args.max_age,
+                           offline=args.offline, workers=args.workers)
+    provider = DataProvider(**provider_kwargs)
+    if not args.offline:
+        provider.get_many(list(symbols) + ["SPY"], args.period, args.interval)
+    offline = DataProvider(**{**provider_kwargs, "offline": True})
+    t0 = time.time()
+    p = write_factors_report(Path(args.out), symbols, lambda s: offline.get(s, args.period, args.interval),
+                             split_date=args.split, cost_bps=args.cost_bps,
+                             progress=lambda msg: print(f"  {msg} ({time.time() - t0:.0f}s)", file=sys.stderr))
+    print(f"wrote {p}", file=sys.stderr)
+    return 0

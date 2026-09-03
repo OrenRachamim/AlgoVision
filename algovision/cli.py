@@ -197,6 +197,23 @@ def build_parser() -> argparse.ArgumentParser:
     dd.add_argument("--max-age", type=float, default=12.0)
     dd.add_argument("-v", "--verbose", action="store_true")
 
+    fa = sub.add_parser("factors", help="classic anomalies on the universe: cross-sectional momentum, trend filter, short-term reversal")
+    fa.add_argument("--universe", "-u", default="all", choices=UNIVERSES)
+    fa.add_argument("--symbols", default=None)
+    fa.add_argument("--limit", type=int, default=0)
+    fa.add_argument("--period", default="10y")
+    fa.add_argument("--interval", default="1d")
+    fa.add_argument("--split", default="2023-01-01")
+    fa.add_argument("--out", default="out/factors")
+    fa.add_argument("--cost-bps", type=float, default=10.0, help="per-side cost on turnover for ranked portfolios")
+    fa.add_argument("--workers", type=int, default=4)
+    fa.add_argument("--cache-dir", default=None)
+    fa.add_argument("--csv-dir", default=None)
+    fa.add_argument("--offline", action="store_true")
+    fa.add_argument("--no-cache", action="store_true")
+    fa.add_argument("--max-age", type=float, default=12.0)
+    fa.add_argument("-v", "--verbose", action="store_true")
+
     sub.add_parser("patterns", help="list supported patterns")
     sub.add_parser("universe", help="print the bundled universes").add_argument("--name", default="sp500", choices=UNIVERSES)
     return ap
@@ -283,6 +300,9 @@ def main(argv: Optional[List[str]] = None) -> int:
     if args.cmd == "deepdive":
         from algovision.research.cli import cmd_deepdive
         return cmd_deepdive(args)
+    if args.cmd == "factors":
+        from algovision.research.cli import cmd_factors
+        return cmd_factors(args)
     if args.cmd == "scan":
         return cmd_scan(args)
     return cmd_analyze(args)

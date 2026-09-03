@@ -195,3 +195,28 @@ def test_deepdive_report_writes(tmp_path):
     split = str(pd.to_datetime(E["signal_date"]).median().date())
     p = dd.write_deepdive_report(tmp_path, "Synthetic", E, lambda s: frames[s], split)
     assert p.exists() and (tmp_path / "equity.png").exists() and (tmp_path / "filters.csv").exists()
+
+
+def test_factors_engine_on_synthetic():
+    from algovision.data.synthetic import random_walk
+    from algovision.research import factors as F
+    frames = {f"S{i}": random_walk(1500, seed=100 + i, noise=0.015, drift=0.0003 * (i % 5)) for i in range(120)}
+    spy = random_walk(1500, seed=999, noise=0.01)
+    panel = F.load_panel(list(frames), lambda s: frames[s])
+    assert panel["Close"].shape == (1500, 120)
+    bt = F.cross_sectional_backtest(panel, F.momentum_signal(252, 21), "M", n_groups=5, min_names=50)
+    assert len(bt) > 10 and {"G1", "G5", "long_short", "universe"} <= set(bt.columns)
+    assert (bt["G1_turnover"].between(0, 1)).all()
+    summ = F.summarize_groups(bt, 12, 5, split_date=str(bt.index[len(bt) // 2].date()))
+    assert ("test", "long_short") in summ.index and "sharpe" in summ.columns
+    # persistent drift differences must show up as a positive momentum spread
+    assert summ.loc[("all", "long_short"), "mean_period"] > 0
+    assert summ.loc[("all", "top_minus_universe"), "mean_period"] > 0
+    ts = F.timeseries_momentum(spy)
+    assert set(ts) >= {"buy_and_hold", "tsmom_252", "ma200"}
+    ev = F.reversal_events(panel, spy["Close"], thresholds=(2.0,), horizons=(1, 3))
+    assert len(ev) > 100 and {"xloc_1", "ret_3", "direction"} <= set(ev.columns)
+    tab = F.reversal_table(ev, (1, 3))
+    assert ("all", 2.0, 1) in tab.index
+    curve = F.reversal_portfolio(ev, panel, hold=3)
+    assert len(curve) > 100

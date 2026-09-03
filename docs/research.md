@@ -108,6 +108,10 @@ over the same rule on random dates, which is below transaction costs. Details in
 What makes the best pattern work and how to trade it, with a train/test split:
 [`research_falling_wedge.md`](research_falling_wedge.md).
 
+## Momentum and short-term reversal
+
+The two classic anomalies on the same data: [`research_factors.md`](research_factors.md).
+
 ## Bottom line
 
 Do not trust a setup because the scanner found it. As a class, the classic patterns on daily large-cap charts
