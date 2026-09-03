@@ -169,6 +169,13 @@ class DetectorConfig:
     volume_lookback: int = 20
     cross_pattern_overlap: Optional[float] = 0.6   # IoU above which two patterns are one interpretation
 
+    # context filters applied by the scanner (None / False = off).  Research
+    # (docs/research_falling_wedge.md) found bottom-reversal patterns only work
+    # in "beaten-down" stocks: 6-month return below -8% and price below the 200-day MA.
+    filter_max_ret_126: Optional[float] = None     # keep matches whose 6-month return is below this
+    filter_below_ma200: bool = False               # keep matches whose price is below the 200-day MA
+    filter_min_atr_pct: Optional[float] = None     # keep matches whose ATR/price is above this
+
     # head & shoulders
     hs_shoulder_tol: float = 0.06
     hs_min_head_prominence: float = 0.015

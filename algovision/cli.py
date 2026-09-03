@@ -41,6 +41,15 @@ def _config(args) -> DetectorConfig:
         cfg.recent_bars = args.recent_bars
     if getattr(args, "min_score", None) is not None:
         cfg.min_score = args.min_score
+    if getattr(args, "beaten_down", False):
+        cfg.filter_max_ret_126 = -0.08
+        cfg.filter_below_ma200 = True
+    if getattr(args, "max_6m_return", None) is not None:
+        cfg.filter_max_ret_126 = args.max_6m_return
+    if getattr(args, "below_ma200", False):
+        cfg.filter_below_ma200 = True
+    if getattr(args, "min_atr_pct", None) is not None:
+        cfg.filter_min_atr_pct = args.min_atr_pct
     if getattr(args, "config", None):
         with open(args.config, "r", encoding="utf-8") as fh:
             for k, v in json.load(fh).items():
@@ -99,6 +108,12 @@ def _add_common(p: argparse.ArgumentParser, default_mode: str) -> None:
     p.add_argument("--min-score", type=float, default=None, help="minimum confidence 0-1 (default 0.60)")
     p.add_argument("--recent-bars", type=int, default=None, help="bars back that still count as 'current' (default 15)")
     p.add_argument("--config", default=None, help="JSON file overriding DetectorConfig fields")
+    p.add_argument("--beaten-down", action="store_true",
+                   help="only stocks down >8%% over 6 months AND below their 200-day MA (the regime where "
+                        "bottom-reversal patterns showed an edge; see docs/research_falling_wedge.md)")
+    p.add_argument("--max-6m-return", type=float, default=None, help="keep only matches with 6-month return below this fraction, e.g. -0.08")
+    p.add_argument("--below-ma200", action="store_true", help="keep only matches with price below the 200-day MA")
+    p.add_argument("--min-atr-pct", type=float, default=None, help="keep only matches with ATR/price above this, e.g. 0.02")
     p.add_argument("--top", type=int, default=0, help="only print/plot the N best matches")
     p.add_argument("--explain", action="store_true", help="print the full 'why' for every match")
     p.add_argument("--csv", default=None, help="write results table to CSV")

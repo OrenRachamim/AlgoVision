@@ -111,6 +111,18 @@ NVDA: Double Bottom (bullish, confirmed, score 0.90) 2026-06-29 -> 2026-08-05, b
   outcome after breakout: +5b: +1.9%, +10b: -0.8%, +20b: +2.4%, target not hit
 ```
 
+### Context filters
+
+The research (`docs/research_falling_wedge.md`) found that bottom-reversal patterns only carry an edge in
+*beaten-down* stocks. Every match now reports its context (6-month return, distance from the 200-day MA,
+ATR %) and the scanner can filter on it:
+
+```bash
+# only stocks down >8% over 6 months and below their 200-day MA
+python -m algovision scan -u all -p falling-wedge,ihs --mode current --beaten-down --explain
+# fine-grained: --max-6m-return -0.15 --below-ma200 --min-atr-pct 0.02
+```
+
 ### Scan modes
 
 * `--mode current` – setups whose structure ended within `--recent-bars`

@@ -107,3 +107,24 @@ def test_cli_analyze_csv_dir(csv_dir, tmp_path):
                "--csv", str(tmp_path / "out.csv"), "--json", str(tmp_path / "out.json"), "--explain"])
     assert rc == 0
     assert (tmp_path / "out.csv").exists() and (tmp_path / "out.json").exists()
+
+
+def test_scanner_context_and_beaten_down_filter(csv_dir):
+    from algovision.core.types import DetectorConfig
+    provider = DataProvider(cache_dir=None, csv_dir=csv_dir)
+    symbols = [p.stem for p in csv_dir.glob("*.csv")]
+    res = Scanner(provider).scan(symbols, mode="all")
+    assert res.matches
+    for m in res.matches:
+        ctx = m.metrics["context"]
+        assert {"ret_126", "dist_ma200", "atr_pct", "beaten_down"} <= set(ctx)
+        assert any(r.startswith("Context at signal") for r in m.reasons)
+    frame = res.to_frame()
+    assert {"ret_6m", "dist_ma200", "beaten_down"} <= set(frame.columns)
+    strict = Scanner(provider, DetectorConfig(filter_max_ret_126=-0.08, filter_below_ma200=True)).scan(symbols, mode="all")
+    assert len(strict.matches) <= len(res.matches)
+    for m in strict.matches:
+        assert m.metrics["context"]["ret_126"] < -0.08 and m.metrics["context"]["dist_ma200"] < 0
+    # the filter never lets through a match that the unfiltered scan would not have produced
+    keys = {(m.symbol, m.pattern, m.start_idx) for m in res.matches}
+    assert all((m.symbol, m.pattern, m.start_idx) in keys for m in strict.matches)
