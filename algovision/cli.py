@@ -139,6 +139,29 @@ def build_parser() -> argparse.ArgumentParser:
     d.add_argument("--out", default="out/demo", help="output directory for charts + report")
     d.add_argument("--explain", action="store_true")
 
+    r = sub.add_parser("research", help="event study: can the setups be trusted? (hindsight + walk-forward)")
+    r.add_argument("--universe", "-u", default="all", choices=UNIVERSES)
+    r.add_argument("--symbols", default=None, help="comma list overriding the universe")
+    r.add_argument("--limit", type=int, default=0)
+    r.add_argument("--period", default="10y")
+    r.add_argument("--interval", default="1d")
+    r.add_argument("--benchmark", default="SPY")
+    r.add_argument("--out", default="out/research")
+    r.add_argument("--min-score", type=float, default=None)
+    r.add_argument("--config", default=None)
+    r.add_argument("--workers", type=int, default=4)
+    r.add_argument("--wf-symbols", type=int, default=60, help="walk-forward validation sample size (0 = skip)")
+    r.add_argument("--wf-bars", type=int, default=1000, help="walk-forward: last N bars per symbol")
+    r.add_argument("--wf-window", type=int, default=400, help="walk-forward: detection window in bars")
+    r.add_argument("--wf-step", type=int, default=1)
+    r.add_argument("--seed", type=int, default=42)
+    r.add_argument("--cache-dir", default=None)
+    r.add_argument("--csv-dir", default=None)
+    r.add_argument("--offline", action="store_true")
+    r.add_argument("--no-cache", action="store_true")
+    r.add_argument("--max-age", type=float, default=12.0)
+    r.add_argument("-v", "--verbose", action="store_true")
+
     sub.add_parser("patterns", help="list supported patterns")
     sub.add_parser("universe", help="print the bundled universes").add_argument("--name", default="sp500", choices=UNIVERSES)
     return ap
@@ -219,6 +242,9 @@ def main(argv: Optional[List[str]] = None) -> int:
         return 0
     if args.cmd == "demo":
         return cmd_demo(args)
+    if args.cmd == "research":
+        from algovision.research.cli import cmd_research
+        return cmd_research(args)
     if args.cmd == "scan":
         return cmd_scan(args)
     return cmd_analyze(args)

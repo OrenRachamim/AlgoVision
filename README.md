@@ -194,6 +194,37 @@ lines, reasons, metrics, outcome`.
 All tolerances live in `DetectorConfig` (`algovision/core/types.py`) and can be
 overridden from a JSON file with `--config`.
 
+## Can the setups be trusted? (`research` command)
+
+The scanner tells you *what* it sees; the research module tells you whether
+that has predicted anything. It runs an event study over a whole universe and
+writes a report (`report.md`, `report.html`, charts, `events.csv`):
+
+```bash
+python -m algovision research --universe all --period 10y --out out/research --wf-symbols 80
+```
+
+Method, in short:
+
+* every **confirmed** pattern is an event; the signal bar is the later of the
+  breakout and the bar at which the last swing point became knowable, entry is
+  the **next open** (no look-ahead);
+* forward returns at 5/10/20/40/60 bars, **signed by the pattern's direction**,
+  compared with three baselines: raw, minus SPY, and minus **random-date
+  entries in the same stock and direction** (this cancels drift and the
+  survivorship bias of using today's index members);
+* permutation p-values and bootstrap CIs for the excess return, Wilson CIs for
+  hit rates, a target/stop trade simulation in R-multiples, score calibration,
+  stability by year, breakout-volume and other conditional views;
+* a **walk-forward** re-run (bar-by-bar, past data only) on a random subsample,
+  compared with the fast hindsight method to quantify any remaining look-ahead
+  bias;
+* the "forming" question: once a shape is complete, how often does it confirm,
+  fail or expire?
+
+The findings of the study run on 2016-2026 data are summarised in
+[`docs/research.md`](docs/research.md).
+
 ## Project layout
 
 ```
@@ -201,6 +232,7 @@ algovision/
   core/      types (PatternMatch, DetectorConfig), pivots, geometry helpers
   data/      universe lists (bundled snapshot + refresh), price provider + cache, synthetic generators
   patterns/  one module per pattern family + registry (detect_all)
+  research/  event study: events, stats, walk-forward validation, report
   scanner.py universe scanning, current/history modes, forward outcomes
   plotting.py, report.py, cli.py
 tests/       pytest suite (synthetic textbook patterns, scanner, provider, CLI)
