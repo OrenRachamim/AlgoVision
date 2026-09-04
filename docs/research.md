@@ -117,6 +117,11 @@ The two classic anomalies on the same data: [`research_factors.md`](research_fac
 Five pre-registered anomalies, one survivor (big news days in beaten-down stocks):
 [`research_anomalies.md`](research_anomalies.md).
 
+## Exit rules on random entries
+
+Take-profit +2 % / stop −20 % above the 200-day MA: 93 % hit rate, 4.6 bp per day of capital, i.e. buy-and-hold in disguise:
+[`research_tpsl.md`](research_tpsl.md).
+
 ## Bottom line
 
 Do not trust a setup because the scanner found it. As a class, the classic patterns on daily large-cap charts

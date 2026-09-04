@@ -244,3 +244,20 @@ def test_anomalies_engine_on_synthetic(tmp_path):
     assert len(bt) > 20
     sig = A.newsday_signals(lambda s: frames[s], list(frames), gap_min=0.01, vol_mult=1.0, max_age=50, require_deep=False)
     assert set(sig.columns) >= {"symbol", "news_date", "bars_ago", "gap", "bars_left"}
+
+
+def test_tpsl_rule_and_slot_portfolio():
+    from algovision.data.synthetic import random_walk
+    from algovision.research import factors as F, tpsl as T
+    frames = {f"S{i}": random_walk(700, seed=400 + i, noise=0.015) for i in range(12)}
+    panel = F.load_panel(list(frames), lambda s: frames[s])
+    tr = T.simulate_rule(panel, tp=0.02, sl=0.20, max_hold=100, filter_fn=T.ABOVE_MA200, entry_stride=5)
+    assert len(tr) > 100 and set(tr["reason"]) <= {"target", "stop", "time", "end"}
+    st = T.trade_stats(tr)
+    assert 0.5 < st["hit"] < 1.0 and st["mean_days"] > 1
+    wins = tr[tr.reason == "target"]
+    assert (wins["ret"] >= 0.02 - 0.0005 - 1e-9).all()          # target fills at the target or better, minus cost
+    stops = tr[tr.reason == "stop"]
+    assert (stops["ret"] <= -0.20 - 0.0005 + 1e-9).all()       # stop fills at the stop or worse
+    curve = T.slot_portfolio(panel, 0.02, 0.20, slots=5, max_hold=100, filter_fn=T.above_ma200_vec)
+    assert len(curve) > 300 and np.isfinite(curve).all()
