@@ -52,3 +52,48 @@ lose 19 %. The strategy earns what the market pays for holding stocks, about 5 b
 psychologically pleasant shape. There is no exit rule that changes that number; only the entry can, and this
 project has measured which entries do (see the news-day and beaten-down findings): a few percent per trade,
 not per day.
+
+## By stock type and by parameters
+
+Every 10th day of every stock is an entry (115,444 trades per cell, no filter), each trade tagged with the stock's
+state at entry; 25 cells (take-profit 1/2/3/5/10 % × stop 5/10/20/50 %/none). Full table:
+[`research/tpsl/groups_grid.csv`](research/tpsl/groups_grid.csv). Numbers are **return per day of capital (bp)**,
+and in brackets the **edge over holding the same stock for the same days** (bp/day).
+
+| stock type | TP 2 / SL 20 | TP 5 / SL 20 | TP 5 / no stop | TP 10 / no stop | B&H same days |
+|---|---|---|---|---|---|
+| all | 5.2 (−0.3) | 5.4 (−0.2) | 6.0 (−0.1) | 5.8 (0.0) | 5.6-6.0 |
+| above 200-day MA | 4.3 (−0.2) | 4.7 (−0.1) | 5.3 (0.0) | 5.1 (0.0) | 5.1 |
+| below 200-day MA | 6.0 (−0.5) | 5.8 (−0.2) | 6.4 (−0.1) | 6.0 (−0.1) | 6.5 |
+| beaten-down (below MA, 6m < −8 %) | 9.2 (−0.6) | 8.9 (−0.3) | 9.0 (−0.1) | 8.5 (0.0) | 9.8 |
+| high volatility tercile | 11.3 (−0.7) | 10.9 (−0.5) | 10.6 (−0.2) | 9.9 (−0.1) | 12.0 |
+| low volatility tercile | 3.2 (−0.2) | 3.6 (0.0) | 4.2 (0.0) | 4.1 (0.0) | 3.4 |
+| 6-month losers | 7.6 (−0.5) | 7.4 (−0.3) | 7.8 (−0.1) | 7.3 (0.0) | 8.1 |
+| 6-month winners | 4.5 (−0.2) | 5.0 (−0.1) | 5.6 (0.0) | 5.6 (0.0) | 4.7 |
+| NASDAQ-100 | 6.5 (−0.8) | 7.4 (−0.4) | 8.1 (−0.2) | 8.0 (−0.1) | 7.3 |
+| S&P-only | 4.9 (−0.2) | 5.1 (−0.1) | 5.6 (−0.1) | 5.4 (0.0) | 5.1 |
+| Information Technology | 6.3 | 7.5 | 8.6 | 8.6 | 8.9 |
+| Consumer Staples | 4.2 | 3.7 | 4.1 | 3.6 | 3.9 |
+| Energy | 3.2 | 4.6 | 4.1 | 4.5 | 4.3 |
+
+Three facts hold in every row, every sector, every cell:
+
+1. **The edge over buy-and-hold is never positive.** All 125 group × cell combinations sit between −7 and
+   +0.1 bp/day. Tight stops are the most expensive (TP 1 % / SL 5 %: −2 bp/day overall, −7 bp/day in
+   high-volatility stocks, where a 5 % stop is hit by noise 40 % of the time). "No stop" is always the best
+   column, i.e. the closer the rule gets to plain holding, the better it does.
+2. **Differences between stock types are differences in drift, not in the rule.** Beaten-down stocks earn
+   9 bp/day under the rule because they earn 10 bp/day when simply held (the bounce found in the pattern
+   study); high-volatility stocks 11 vs 12; low-volatility 3-4 vs 3. The rule tracks the stock's own drift
+   minus a small toll.
+3. **Hit rates are the same everywhere** (93-94 % for TP 2 / SL 20 in every group) and say nothing about
+   profit: the low-volatility group has the same hit rate as the high-volatility group and a third of the return.
+
+Out of sample: in 2023-26 the beaten-down group's edge over holding turned marginally positive (+0.2 to +0.4
+bp/day, from −0.7 to −1.3 in 2016-22), which is noise around zero, not a finding.
+
+**Conclusion:** there is no stock type and no take-profit / stop-loss pair for which the exit rule earns more than
+holding the stock. Picking *which* stocks to hold (beaten-down, high volatility, tech) moves the return per day
+from 3 to 11 bp; picking *how* to exit moves it by at most −2 bp. The only thing a stop does is cap the size of a
+single loss, at a price of 0.2-2 bp a day, which is a reasonable insurance premium to pay but not a source of
+return.

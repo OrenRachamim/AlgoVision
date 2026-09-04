@@ -32,6 +32,8 @@ def simulate_rule(panel: Dict[str, pd.DataFrame], tp: float, sl: Optional[float]
         n = len(c)
         ok = np.isfinite(c) & np.isfinite(o)
         ma200 = pd.Series(c).rolling(200).mean().to_numpy()
+        tr_ = np.maximum(h - l, np.maximum(np.abs(h - np.roll(c, 1)), np.abs(l - np.roll(c, 1))))
+        atr = pd.Series(tr_).rolling(14).mean().to_numpy()
         for t in range(start_bar, n - 2, entry_stride):
             if not ok[t] or not ok[t + 1]:
                 continue
@@ -62,7 +64,10 @@ def simulate_rule(panel: Dict[str, pd.DataFrame], tp: float, sl: Optional[float]
             days = k + 1
             ret = exit_px / px - 1.0 - cost
             rows.append({"symbol": s, "date": close.index[t], "entry": px, "exit": exit_px, "days": days,
-                         "reason": reason, "ret": ret, "bh_ret": c[e + k] / px - 1.0})
+                         "reason": reason, "ret": ret, "bh_ret": c[e + k] / px - 1.0,
+                         "above_ma200": bool(c[t] > ma200[t]) if np.isfinite(ma200[t]) else None,
+                         "ret_126": c[t] / c[t - 126] - 1.0 if t >= 126 and np.isfinite(c[t - 126]) else np.nan,
+                         "atr_pct": atr[t] / c[t] if np.isfinite(atr[t]) else np.nan})
     return pd.DataFrame(rows)
 
 
