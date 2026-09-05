@@ -224,3 +224,17 @@ def test_daily_report_helpers_and_parallel_fetch_signature():
     rows = parse_form4("junk before " + xml + " junk after")
     assert len(rows) == 1 and rows[0]["symbol"] == "XYZ" and rows[0]["code"] == "P" and rows[0]["value"] == 50500.0
     assert rows[0]["is_ceo_cfo"] and rows[0]["is_officer"] and rows[0]["is_director"]
+
+
+def test_notify_chunks_and_skips_without_config(tmp_path, monkeypatch):
+    from algovision.notify import _chunks, deliver, markdown_to_html
+    text = "\n".join(f"line {i} " + "x" * 100 for i in range(100))
+    parts = _chunks(text, limit=1000)
+    assert all(len(p) <= 1000 for p in parts) and "".join(parts) == text
+    for v in ("TELEGRAM_BOT_TOKEN", "TELEGRAM_CHAT_ID", "SMTP_USER", "SMTP_PASSWORD"):
+        monkeypatch.delenv(v, raising=False)
+    f = tmp_path / "r.md"
+    f.write_text("# Report\n\n| a | b |\n|---|---|\n| 1 | 2 |\n", encoding="utf-8")
+    st = deliver(f)
+    assert st["telegram"].startswith("skipped") and st["email"].startswith("skipped")
+    assert "<table" in markdown_to_html(f.read_text())

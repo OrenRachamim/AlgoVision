@@ -279,6 +279,16 @@ One file with the day's insider purchases (beaten-down first), news-day and wedg
 top-15 with explanations, and the running forward-test results against SPY. A scheduled routine runs both
 after every US close and commits the result to `journal/`.
 
+## Delivery (`notify` command)
+
+```bash
+python -m algovision notify --file journal/report_latest.md
+```
+
+Sends a report to Telegram (`TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`) and/or e-mail over SMTP (`SMTP_USER`,
+`SMTP_PASSWORD`, optional `SMTP_HOST`, `SMTP_PORT`, `REPORT_EMAIL_TO`). Channels without variables are skipped.
+Secrets live in environment variables, never in the repository.
+
 ## Forward test (`journal` command)
 
 ```bash

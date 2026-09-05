@@ -271,6 +271,12 @@ def build_parser() -> argparse.ArgumentParser:
     dr.add_argument("--workers", type=int, default=4)
     dr.add_argument("--date", default=None)
 
+    no = sub.add_parser("notify", help="send a report file to Telegram / e-mail (configured by environment variables, see algovision/notify.py)")
+    no.add_argument("--file", default="journal/report_latest.md")
+    no.add_argument("--subject", default=None)
+    no.add_argument("--no-telegram", action="store_true")
+    no.add_argument("--no-email", action="store_true")
+
     sub.add_parser("patterns", help="list supported patterns")
     sub.add_parser("universe", help="print the bundled universes").add_argument("--name", default="sp500", choices=UNIVERSES)
     return ap
@@ -360,6 +366,11 @@ def main(argv: Optional[List[str]] = None) -> int:
     if args.cmd == "factors":
         from algovision.research.cli import cmd_factors
         return cmd_factors(args)
+    if args.cmd == "notify":
+        from algovision.notify import deliver
+        for ch, st in deliver(Path(args.file), args.subject, telegram=not args.no_telegram, email=not args.no_email).items():
+            print(f"{ch}: {st}")
+        return 0
     if args.cmd == "daily-report":
         from algovision.daily_report import build_report
         p = build_report(Path(args.out), args.universe, Path(args.cache_dir) if args.cache_dir else None, args.insider_days,
