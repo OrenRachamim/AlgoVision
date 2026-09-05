@@ -18,8 +18,8 @@ def stock_state(df: pd.DataFrame) -> Dict[str, float]:
 
 
 def insider_signals(frames: Dict[str, pd.DataFrame], symbols: Iterable[str], days: int = 45, min_value: float = 100_000,
-                    require_beaten: bool = True, cache_dir=None, progress=None) -> Tuple[pd.DataFrame, pd.DataFrame]:
-    tx = recent_transactions(days=days, cache_dir=cache_dir, symbols=symbols, progress=progress)
+                    require_beaten: bool = True, cache_dir=None, progress=None, workers: int = 4) -> Tuple[pd.DataFrame, pd.DataFrame]:
+    tx = recent_transactions(days=days, cache_dir=cache_dir, symbols=symbols, progress=progress, workers=workers)
     if not len(tx):
         return pd.DataFrame(), tx
     buys = tx[(tx["code"] == "P") & (tx["value"] >= min_value)]

@@ -2,22 +2,9 @@
 
 Data through 2026-09-04; 518 of 518 symbols loaded.
 
-## New signals today (12)
+## New signals today (0)
 
-| rule         | symbol   | signal_date   |   ref_price |   hold_bars | note                                                                                                                                                                         |
-|:-------------|:---------|:--------------|------------:|------------:|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| newsday      | LULU     | 2026-09-04    |      100.61 |          60 | gap -19.4%, vol 8.7x, 6m -41%, vs MA200 -34%                                                                                                                                 |
-| newsday      | FICO     | 2026-09-04    |      932.26 |          60 | gap -16.5%, vol 5.6x, 6m -37%, vs MA200 -29%                                                                                                                                 |
-| growth_top10 | SNDK     | 2026-09-04    |     1740    |         250 | score 0.94; revenue +251% yoy (3y CAGR +49%); op margin +42% (+72.5% vs last year), FCF margin +34%; ROE +33%; 12-1 momentum +1914% (above 200-day MA, +73%), 1y drawdown -2 |
-| growth_top10 | MU       | 2026-09-04    |     1016.59 |         250 | score 0.90; revenue +346% yoy (3y CAGR +7%); EPS +1368% yoy; op margin +66% (+57.0% vs last year), FCF margin +29%; ROE +50%; 12-1 momentum +611% (above 200-day MA, +68%),  |
-| growth_top10 | WDC      | 2026-09-04    |      467.46 |         250 | score 0.86; revenue +45% yoy (3y CAGR +27%); EPS +989% yoy; op margin +31% (+12.6% vs last year), FCF margin +25%; ROE +67%; 12-1 momentum +400% (above 200-day MA, +25%), 1 |
-| growth_top10 | FIX      | 2026-09-04    |     1610.34 |         250 | score 0.81; revenue +50% yoy (3y CAGR +30%); EPS +92% yoy; op margin +16% (+3.3% vs last year), FCF margin +19%; ROE +45%; 12-1 momentum +137% (above 200-day MA, +8%), 1y d |
-| growth_top10 | EXPE     | 2026-09-04    |      298.04 |         250 | score 0.77; revenue +14% yoy (3y CAGR +8%); EPS +189% yoy; op margin +17% (+5.0% vs last year), FCF margin +28%; ROE +168%; 12-1 momentum +42% (above 200-day MA, +16%), 1y  |
-| growth_top10 | LLY      | 2026-09-04    |     1149.36 |         250 | score 0.76; revenue +48% yoy (3y CAGR +32%); EPS +26% yoy; op margin +50% (+9.1% vs last year), FCF margin +17%; ROE +79%; 12-1 momentum +61% (above 200-day MA, +8%), 1y dr |
-| growth_top10 | INCY     | 2026-09-04    |      126.75 |         250 | score 0.75; revenue +38% yoy (3y CAGR +15%); EPS +38% yoy; op margin +32% (+16.3% vs last year), FCF margin +32%; ROE +25%; 12-1 momentum +39% (above 200-day MA, +21%), 1y  |
-| growth_top10 | COF      | 2026-09-04    |      219.6  |         250 | score 0.75; revenue +27% yoy (3y CAGR +16%); op margin n/a (n/a vs last year), FCF margin +48%; ROE +9%; 12-1 momentum -2% (above 200-day MA, +7%), 1y drawdown -14%; fwd P/ |
-| growth_top10 | ASML     | 2026-09-04    |     1714.88 |         250 | score 0.75; revenue +21% yoy (3y CAGR +16%); EPS +28% yoy; op margin +35% (+2.4% vs last year), FCF margin +25%; ROE +49%; 12-1 momentum +128% (above 200-day MA, +16%), 1y  |
-| growth_top10 | FANG     | 2026-09-04    |      199.22 |         250 | score 0.75; revenue +51% yoy (3y CAGR +16%); EPS +179% yoy; op margin +36% (+14.3% vs last year), FCF margin +22%; ROE +4%; 12-1 momentum +35% (above 200-day MA, +11%), 1y  |
+none
 
 ## Running results
 
@@ -38,15 +25,15 @@ Data through 2026-09-04; 518 of 518 symbols loaded.
 | rule                      | symbol   | signal_date   | entry_date   |   entry_price |   bars_elapsed |   hold_bars | ret    |
 |:--------------------------|:---------|:--------------|:-------------|--------------:|---------------:|------------:|:-------|
 | falling_wedge_beaten_down | VST      | 2026-09-02    | 2026-09-03   |           145 |              2 |          20 | +2.97% |
-| newsday                   | LULU     | 2026-09-04    |              |               |            nan |          60 |        |
-| newsday                   | FICO     | 2026-09-04    |              |               |            nan |          60 |        |
-| growth_top10              | SNDK     | 2026-09-04    |              |               |            nan |         250 |        |
-| growth_top10              | MU       | 2026-09-04    |              |               |            nan |         250 |        |
-| growth_top10              | WDC      | 2026-09-04    |              |               |            nan |         250 |        |
-| growth_top10              | FIX      | 2026-09-04    |              |               |            nan |         250 |        |
-| growth_top10              | EXPE     | 2026-09-04    |              |               |            nan |         250 |        |
-| growth_top10              | LLY      | 2026-09-04    |              |               |            nan |         250 |        |
-| growth_top10              | INCY     | 2026-09-04    |              |               |            nan |         250 |        |
-| growth_top10              | COF      | 2026-09-04    |              |               |            nan |         250 |        |
-| growth_top10              | ASML     | 2026-09-04    |              |               |            nan |         250 |        |
-| growth_top10              | FANG     | 2026-09-04    |              |               |            nan |         250 |        |
+| newsday                   | LULU     | 2026-09-04    | nan          |           nan |            nan |          60 |        |
+| newsday                   | FICO     | 2026-09-04    | nan          |           nan |            nan |          60 |        |
+| growth_top10              | SNDK     | 2026-09-04    | nan          |           nan |            nan |         250 |        |
+| growth_top10              | MU       | 2026-09-04    | nan          |           nan |            nan |         250 |        |
+| growth_top10              | WDC      | 2026-09-04    | nan          |           nan |            nan |         250 |        |
+| growth_top10              | FIX      | 2026-09-04    | nan          |           nan |            nan |         250 |        |
+| growth_top10              | EXPE     | 2026-09-04    | nan          |           nan |            nan |         250 |        |
+| growth_top10              | LLY      | 2026-09-04    | nan          |           nan |            nan |         250 |        |
+| growth_top10              | INCY     | 2026-09-04    | nan          |           nan |            nan |         250 |        |
+| growth_top10              | COF      | 2026-09-04    | nan          |           nan |            nan |         250 |        |
+| growth_top10              | ASML     | 2026-09-04    | nan          |           nan |            nan |         250 |        |
+| growth_top10              | FANG     | 2026-09-04    | nan          |           nan |            nan |         250 |        |

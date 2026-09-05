@@ -268,6 +268,17 @@ directors, and lists purchases in beaten-down stocks, the rule that tested at +1
 and +15 % over 120 in both halves of 2016-2026 ([`docs/research_insiders.md`](docs/research_insiders.md)).
 The daily journal logs these as `insider_buy_beaten_down` (hold 120 bars).
 
+## Daily report (`daily-report` command)
+
+```bash
+python -m algovision journal --out journal        # refresh data, log signals, mark to market
+python -m algovision daily-report --out journal   # journal/report_<date>.md from cache
+```
+
+One file with the day's insider purchases (beaten-down first), news-day and wedge signals, the growth
+top-15 with explanations, and the running forward-test results against SPY. A scheduled routine runs both
+after every US close and commits the result to `journal/`.
+
 ## Forward test (`journal` command)
 
 ```bash

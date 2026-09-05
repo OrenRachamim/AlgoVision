@@ -204,3 +204,23 @@ def test_insider_cluster_and_single_events():
     assert ev.iloc[0]["n_insiders"] == 2 and bool(ev.iloc[0]["ceo_cfo"]) is True
     sg = single_events(tx, min_value=100_000)
     assert len(sg) == 3      # A, C, D (B is within 30 days of A, E within 30 days of D)
+
+
+def test_daily_report_helpers_and_parallel_fetch_signature():
+    import inspect
+    from algovision.daily_report import _pct, build_report
+    from algovision.data.insiders_live import recent_transactions, parse_form4
+    assert _pct(0.1234) == "+12%" and _pct(-0.05, 1) == "-5.0%" and _pct(float("nan")) == ""
+    assert "workers" in inspect.signature(recent_transactions).parameters
+    assert "insider_days" in inspect.signature(build_report).parameters
+    xml = """<ownershipDocument><issuer><issuerTradingSymbol>xyz</issuerTradingSymbol></issuer>
+    <reportingOwner><reportingOwnerId><rptOwnerCik>1</rptOwnerCik><rptOwnerName>Doe Jane</rptOwnerName></reportingOwnerId>
+    <reportingOwnerRelationship><isDirector>1</isDirector><isOfficer>1</isOfficer><officerTitle>Chief Executive Officer</officerTitle></reportingOwnerRelationship></reportingOwner>
+    <nonDerivativeTable><nonDerivativeTransaction><transactionDate><value>2026-09-01</value></transactionDate>
+    <transactionCoding><transactionCode>P</transactionCode></transactionCoding>
+    <transactionAmounts><transactionShares><value>1000</value></transactionShares><transactionPricePerShare><value>50.5</value></transactionPricePerShare></transactionAmounts>
+    </nonDerivativeTransaction><nonDerivativeTransaction><transactionCoding><transactionCode>M</transactionCode></transactionCoding></nonDerivativeTransaction>
+    </nonDerivativeTable></ownershipDocument>"""
+    rows = parse_form4("junk before " + xml + " junk after")
+    assert len(rows) == 1 and rows[0]["symbol"] == "XYZ" and rows[0]["code"] == "P" and rows[0]["value"] == 50500.0
+    assert rows[0]["is_ceo_cfo"] and rows[0]["is_officer"] and rows[0]["is_director"]

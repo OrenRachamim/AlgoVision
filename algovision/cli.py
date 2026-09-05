@@ -262,6 +262,15 @@ def build_parser() -> argparse.ArgumentParser:
     ins.add_argument("--max-age", type=float, default=12.0)
     ins.add_argument("--workers", type=int, default=4)
 
+    dr = sub.add_parser("daily-report", help="write the one-file daily report (insiders, signals, growth screen, journal results) from cache")
+    dr.add_argument("--out", default="journal")
+    dr.add_argument("--universe", "-u", default="all", choices=UNIVERSES)
+    dr.add_argument("--insider-days", type=int, default=45)
+    dr.add_argument("--top", type=int, default=15)
+    dr.add_argument("--cache-dir", default=None)
+    dr.add_argument("--workers", type=int, default=4)
+    dr.add_argument("--date", default=None)
+
     sub.add_parser("patterns", help="list supported patterns")
     sub.add_parser("universe", help="print the bundled universes").add_argument("--name", default="sp500", choices=UNIVERSES)
     return ap
@@ -351,6 +360,12 @@ def main(argv: Optional[List[str]] = None) -> int:
     if args.cmd == "factors":
         from algovision.research.cli import cmd_factors
         return cmd_factors(args)
+    if args.cmd == "daily-report":
+        from algovision.daily_report import build_report
+        p = build_report(Path(args.out), args.universe, Path(args.cache_dir) if args.cache_dir else None, args.insider_days,
+                         args.top, args.date, args.workers)
+        print(p.read_text(encoding="utf-8"))
+        return 0
     if args.cmd == "insiders":
         from algovision.insiders_scan import insider_signals, format_signals
         symbols = get_universe(args.universe)

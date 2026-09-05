@@ -107,7 +107,7 @@ def parse_form4(text: str) -> List[Dict]:
 
 
 def recent_transactions(days: int = 45, cache_dir: Optional[Path] = None, symbols: Optional[Iterable[str]] = None,
-                        progress=None) -> pd.DataFrame:
+                        progress=None, workers: int = 4) -> pd.DataFrame:
     """Officer / director open-market trades filed in the last ``days`` calendar days."""
     cache = Path(cache_dir or _DEFAULT_CACHE) / "edgar"
     cache.mkdir(parents=True, exist_ok=True)
@@ -119,18 +119,26 @@ def recent_transactions(days: int = 45, cache_dir: Optional[Path] = None, symbol
     today = pd.Timestamp.today().normalize()
     rows: List[Dict] = []
     bdays = pd.bdate_range(today - pd.Timedelta(days=days), today)
+    from concurrent.futures import ThreadPoolExecutor
+
+    def fetch_one(e):
+        fp = cache / e["path"].replace("/", "_")
+        if fp.exists():
+            return e, fp.read_text(errors="ignore")
+        raw = _get(f"https://www.sec.gov/Archives/{e['path']}")
+        if raw is None:
+            return e, None
+        text = raw.decode("latin-1", errors="ignore")
+        fp.write_text(text)
+        return e, text
+
     for i, day in enumerate(bdays):
         entries = daily_form4(day, ciks, cache)
-        for e in entries:
-            fp = cache / e["path"].replace("/", "_")
-            if fp.exists():
-                text = fp.read_text(errors="ignore")
-            else:
-                raw = _get(f"https://www.sec.gov/Archives/{e['path']}")
-                if raw is None:
-                    continue
-                text = raw.decode("latin-1", errors="ignore")
-                fp.write_text(text)
+        with ThreadPoolExecutor(max_workers=workers) as ex:      # SEC allows 10 req/s; 4 workers x 0.12 s sleep stays well under
+            results = list(ex.map(fetch_one, entries))
+        for e, text in results:
+            if text is None:
+                continue
             for r in parse_form4(text):
                 r["filing_date"] = day
                 r["issuer_cik"] = e["cik"]
