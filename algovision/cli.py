@@ -240,6 +240,17 @@ def build_parser() -> argparse.ArgumentParser:
     jo.add_argument("--workers", type=int, default=4)
     jo.add_argument("--date", default=None, help="log date (default today)")
 
+    gr = sub.add_parser("growth", help="long-horizon growth screen: growth + quality + momentum + valuation ranks with explanations")
+    gr.add_argument("--universe", "-u", default="all", choices=UNIVERSES)
+    gr.add_argument("--top", type=int, default=20)
+    gr.add_argument("--csv", default=None)
+    gr.add_argument("--explain", action="store_true")
+    gr.add_argument("--max-per-sector", type=int, default=0, help="cap names per sector in the printed list (0 = no cap)")
+    gr.add_argument("--cache-dir", default=None)
+    gr.add_argument("--offline", action="store_true")
+    gr.add_argument("--max-age", type=float, default=12.0)
+    gr.add_argument("--workers", type=int, default=4)
+
     sub.add_parser("patterns", help="list supported patterns")
     sub.add_parser("universe", help="print the bundled universes").add_argument("--name", default="sp500", choices=UNIVERSES)
     return ap
@@ -329,6 +340,29 @@ def main(argv: Optional[List[str]] = None) -> int:
     if args.cmd == "factors":
         from algovision.research.cli import cmd_factors
         return cmd_factors(args)
+    if args.cmd == "growth":
+        from algovision.growth import format_table, price_features, score, top_table
+        from algovision.data.fundamentals import FundamentalsProvider
+        from algovision.data.universe import load_snapshot
+        import pandas as pd
+        symbols = get_universe(args.universe)
+        cache = Path(args.cache_dir) if args.cache_dir else DataProvider.__init__.__defaults__[0]
+        frames = DataProvider(cache_dir=cache, max_age_hours=args.max_age, offline=args.offline, workers=args.workers).get_many(symbols, "2y", "1d")
+        fund = FundamentalsProvider(cache_dir=cache, max_age_hours=max(args.max_age, 24), workers=args.workers, offline=args.offline).feature_table(symbols)
+        sectors = {x["symbol"]: x["sector"] for x in load_snapshot()["sp500"]}
+        sc = score(fund, price_features(frames), sectors)
+        from algovision.growth import diversified_top
+        t = top_table(diversified_top(sc, args.top, args.max_per_sector) if args.max_per_sector else sc, args.top)
+        with pd.option_context("display.width", 250, "display.max_columns", None):
+            print(format_table(t))
+        if args.explain:
+            for sym, r in t.iterrows():
+                print(f"\n{sym}: {r['why']}")
+        print(f"\n{len(sc)} of {len(fund)} symbols pass the filters (revenue growing yoy, positive FCF or operating profit).")
+        if args.csv:
+            sc.to_csv(args.csv)
+            print(f"wrote {args.csv}")
+        return 0
     if args.cmd == "journal":
         from algovision.journal import run as run_journal
         p = run_journal(Path(args.out), args.universe, args.period, Path(args.cache_dir) if args.cache_dir else None,

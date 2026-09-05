@@ -141,9 +141,10 @@ def test_journal_logs_and_marks_to_market(tmp_path, monkeypatch):
             pass
 
         def get_many(self, symbols, period, interval):
-            return {s: frames[s] for s in symbols}
+            return {s: frames[s] for s in symbols if s in frames}
 
     monkeypatch.setattr(J, "DataProvider", P)
+    monkeypatch.setattr(J, "collect_growth", lambda *a, **k: [])
     p = J.run(tmp_path, today="2026-01-01")
     assert p.exists() and (tmp_path / "signals.csv").exists()
     # inject a past signal and check mark-to-market fills entry and result
@@ -158,3 +159,31 @@ def test_journal_logs_and_marks_to_market(tmp_path, monkeypatch):
     assert r["done"] == True and r["bars_elapsed"] == 60  # noqa: E712
     assert abs(float(r["entry_price"]) - float(frames["AAA"]["Open"].iloc[101])) < 1e-3   # stored with 4 decimals
     assert "closed trades" in (tmp_path / "latest.md").read_text()
+
+
+def test_fundamentals_features_and_growth_score():
+    from algovision.data.fundamentals import features
+    from algovision.growth import diversified_top, price_features, score
+    from algovision.data.synthetic import random_walk
+
+    def series(vals, start=2022):
+        return [{"date": f"{start + i}-12-31", "value": v} for i, v in enumerate(vals)]
+
+    raw = {"annualTotalRevenue": series([100, 130, 170, 220]), "quarterlyTotalRevenue": series([50, 55, 60, 65, 70], 2025),
+           "quarterlyNetIncome": series([10, 11, 12, 13, 14], 2025), "quarterlyDilutedEPS": series([1, 1.1, 1.2, 1.3, 1.4], 2025),
+           "quarterlyGrossProfit": series([30, 33, 36, 39, 42], 2025), "quarterlyOperatingIncome": series([12, 14, 15, 16, 18], 2025),
+           "quarterlyFreeCashFlow": series([9, 10, 11, 12, 13], 2025), "quarterlyTotalDebt": series([20] * 5, 2025),
+           "quarterlyStockholdersEquity": series([100] * 5, 2025), "quarterlyBasicAverageShares": series([10, 10, 9.9, 9.8, 9.7], 2025),
+           "trailingMarketCap": series([1000.0]), "trailingPegRatio": series([1.2]), "trailingPeRatio": series([25.0]),
+           "trailingForwardPeRatio": series([20.0]), "annualDilutedEPS": series([3, 3.6, 4.2, 5.0])}
+    f = features(raw)
+    assert abs(f["rev_cagr_3y"] - ((220 / 100) ** (1 / 3) - 1)) < 1e-9
+    assert abs(f["rev_yoy_q"] - 0.4) < 1e-9 and abs(f["share_change_1y"] - (-0.03)) < 1e-9
+    assert f["op_margin"] > 0.2 and f["fcf_margin"] > 0.1 and f["roe"] > 0.4
+    frames = {f"S{i}": random_walk(400, seed=500 + i, drift=0.0005 * (i % 3)) for i in range(6)}
+    fund = pd.DataFrame([{**features(raw), "symbol": s} for s in frames]).set_index("symbol")
+    fund.loc["S0", "rev_yoy_q"] = -0.1     # fails the growth filter
+    sc = score(fund, price_features(frames), {s: ("Tech" if i < 4 else "Health") for i, s in enumerate(frames)})
+    assert "S0" not in sc.index and sc["score"].between(0, 1).all() and (sc["why"].str.len() > 20).all()
+    d = diversified_top(sc, n=4, max_per_sector=2)
+    assert len(d) <= 4 and d["sector"].value_counts().max() <= 2

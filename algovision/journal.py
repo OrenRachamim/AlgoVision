@@ -23,6 +23,7 @@ from algovision.scanner import Scanner
 RULES = {
     "newsday": {"hold": 60, "expect": "+6-7% vs random, hit ~62% (docs/research_anomalies.md)"},
     "falling_wedge_beaten_down": {"hold": 20, "expect": "+3% vs random, hit ~60% (docs/research_falling_wedge.md)"},
+    "growth_top10": {"hold": 250, "expect": "long-horizon growth screen, judged against SPY over the same period (docs/growth_screen.md)"},
 }
 COLS = ["logged", "rule", "symbol", "signal_date", "status", "ref_price", "entry_date", "entry_price", "hold_bars",
         "note"]
@@ -36,6 +37,26 @@ def _load(path: Path) -> pd.DataFrame:
                 df[c] = ""
         return df[COLS]
     return pd.DataFrame(columns=COLS)
+
+
+def collect_growth(frames: Dict[str, pd.DataFrame], symbols: List[str], today: str, cache_dir=None, n: int = 10) -> List[Dict]:
+    """Today's diversified growth top-10 as long-horizon positions (entry next open, reviewed after 250 bars)."""
+    from algovision.data.fundamentals import FundamentalsProvider
+    from algovision.data.universe import load_snapshot
+    from algovision.growth import diversified_top, price_features, score
+    fund = FundamentalsProvider(cache_dir=cache_dir if cache_dir else _DEFAULT_CACHE, max_age_hours=24).feature_table(symbols)
+    if not len(fund):
+        return []
+    sectors = {x["symbol"]: x["sector"] for x in load_snapshot()["sp500"]}
+    top = diversified_top(score(fund, price_features(frames), sectors), n, 3)
+    rows = []
+    for sym, r in top.iterrows():
+        df = frames[sym]
+        rows.append({"logged": today, "rule": "growth_top10", "symbol": sym,
+                     "signal_date": pd.Timestamp(df.index[-1]).strftime("%Y-%m-%d"), "status": "open",
+                     "ref_price": f"{float(df['Close'].iloc[-1]):.4f}", "entry_date": "", "entry_price": "",
+                     "hold_bars": RULES["growth_top10"]["hold"], "note": f"score {r['score']:.2f}; {r['why'][:160]}"})
+    return rows
 
 
 def collect_signals(frames: Dict[str, pd.DataFrame], symbols: List[str], today: str) -> List[Dict]:
@@ -63,14 +84,14 @@ def collect_signals(frames: Dict[str, pd.DataFrame], symbols: List[str], today: 
     return rows
 
 
-def mark_to_market(journal: pd.DataFrame, frames: Dict[str, pd.DataFrame]) -> pd.DataFrame:
+def mark_to_market(journal: pd.DataFrame, frames: Dict[str, pd.DataFrame], bench: Optional[pd.DataFrame] = None) -> pd.DataFrame:
     """Fill entry prices (next open after the signal) and compute results for every logged signal."""
     out = []
     for r in journal.itertuples():
         rec = r._asdict()
         rec.pop("Index", None)
         df = frames.get(r.symbol)
-        rec.update({"bars_elapsed": np.nan, "last_price": np.nan, "ret": np.nan, "done": False})
+        rec.update({"bars_elapsed": np.nan, "last_price": np.nan, "ret": np.nan, "done": False, "spy_ret": np.nan})
         if df is None:
             out.append(rec)
             continue
@@ -88,6 +109,9 @@ def mark_to_market(journal: pd.DataFrame, frames: Dict[str, pd.DataFrame]) -> pd
             rec["ret"] = last / float(rec["entry_price"]) - 1.0
             rec["done"] = bool(entry_pos + hold - 1 <= len(df) - 1)
             rec["status"] = "closed" if rec["done"] else "open"
+            if bench is not None:
+                b = bench.reindex(idx).ffill()
+                rec["spy_ret"] = float(b["Close"].iloc[exit_pos] / b["Open"].iloc[entry_pos] - 1.0)
         out.append(rec)
     return pd.DataFrame(out)
 
@@ -107,6 +131,9 @@ def summary(mtm: pd.DataFrame) -> str:
             r = open_["ret"].astype(float).dropna()
             if len(r):
                 lines.append(f"- open trades mark-to-market: mean {r.mean() * 100:+.2f}%, hit {(r > 0).mean() * 100:.0f}%")
+        sp = g["spy_ret"].astype(float).dropna() if "spy_ret" in g.columns else pd.Series(dtype=float)
+        if len(sp):
+            lines.append(f"- SPY over the same holding periods: mean {sp.mean() * 100:+.2f}% (excess {(g['ret'].astype(float).dropna().mean() - sp.mean()) * 100:+.2f}%)")
         lines.append("")
     return "\n".join(lines)
 
@@ -119,15 +146,25 @@ def run(out_dir: Path, universe: str = "all", period: str = "2y", cache_dir: Opt
     symbols = get_universe(universe)
     provider = DataProvider(cache_dir=cache_dir if cache_dir else _DEFAULT_CACHE, max_age_hours=max_age_hours,
                             workers=workers)
-    frames = provider.get_many(symbols, period, "1d")
+    frames = provider.get_many(list(symbols) + ["SPY"], period, "1d")
+    bench = frames.pop("SPY", None)
     last_bar = max(pd.Timestamp(df.index[-1]) for df in frames.values()).strftime("%Y-%m-%d")
     journal = _load(out_dir / "signals.csv")
     new_rows = collect_signals(frames, symbols, today)
+    try:
+        growth_rows = collect_growth(frames, symbols, today, cache_dir)
+    except Exception as exc:  # noqa: BLE001 - fundamentals are optional for the journal
+        growth_rows = []
+        print(f"growth screen skipped: {exc}")
+    # a growth name already held (open position) is not re-logged; a name that drops out simply stops being added
+    open_growth = set(journal[(journal["rule"] == "growth_top10") & (journal["status"] != "closed")]["symbol"])
+    growth_rows = [r for r in growth_rows if r["symbol"] not in open_growth]
+    new_rows += growth_rows
     existing = set(zip(journal["rule"], journal["symbol"], journal["signal_date"]))
     added = [r for r in new_rows if (r["rule"], r["symbol"], r["signal_date"]) not in existing]
     if added:
         journal = pd.concat([journal, pd.DataFrame(added)[COLS].astype(str)], ignore_index=True)
-    mtm = mark_to_market(journal, frames) if len(journal) else journal.assign(ret=np.nan, done=False)
+    mtm = mark_to_market(journal, frames, bench) if len(journal) else journal.assign(ret=np.nan, done=False)
     if len(mtm):
         journal = mtm[COLS].astype(str)
     journal.to_csv(out_dir / "signals.csv", index=False)

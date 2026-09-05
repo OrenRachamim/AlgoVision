@@ -243,6 +243,18 @@ The findings of the study run on 2016-2026 data are summarised in
 [`docs/research_anomalies.md`](docs/research_anomalies.md), of which one survived and has a live scan:
 `python -m algovision newsday`.
 
+## Growth screen (`growth` command)
+
+```bash
+python -m algovision growth --top 20 --explain --max-per-sector 3
+```
+
+Long-horizon selection: revenue / EPS growth and margin trend (40 %), quality (20 %), price momentum (25 %,
+the one backtested block), valuation sanity (15 %), with a one-line "why" per name and a cyclical-peak flag.
+Fundamentals come from Yahoo's time-series endpoint (`algovision/data/fundamentals.py`). See
+[`docs/growth_screen.md`](docs/growth_screen.md). The daily journal logs the diversified top 10 and marks it
+against SPY.
+
 ## Forward test (`journal` command)
 
 ```bash
