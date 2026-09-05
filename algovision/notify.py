@@ -2,7 +2,10 @@
 
 Configuration is by environment variables only (never stored in the repo):
 
-* Telegram: ``TELEGRAM_BOT_TOKEN`` (from @BotFather) and ``TELEGRAM_CHAT_ID`` (your chat with the bot).
+* Telegram, direct: ``TELEGRAM_BOT_TOKEN`` (from @BotFather) and ``TELEGRAM_CHAT_ID`` (your chat with the bot).
+* Telegram, relay: ``TELEGRAM_RELAY_URL`` and ``TELEGRAM_RELAY_SECRET`` - an HTTPS endpoint that holds the bot
+  credentials itself and accepts ``POST {"text", "secret"}`` or ``POST {"filename", "content", "caption", "secret"}``
+  (the existing Val Town relay used by the other routines). Used when the direct variables are absent.
 * E-mail (SMTP): ``SMTP_HOST`` (default smtp.gmail.com), ``SMTP_PORT`` (default 587), ``SMTP_USER``,
   ``SMTP_PASSWORD`` (for Gmail: an app password), ``REPORT_EMAIL_TO`` (default = SMTP_USER).
 
@@ -35,14 +38,37 @@ def _chunks(text: str, limit: int = TELEGRAM_LIMIT) -> List[str]:
     return out
 
 
+def _relay() -> Optional[Dict[str, str]]:
+    url, secret = os.environ.get("TELEGRAM_RELAY_URL"), os.environ.get("TELEGRAM_RELAY_SECRET")
+    return {"url": url, "secret": secret} if url and secret else None
+
+
+def _relay_post(payload: Dict[str, str], timeout: int) -> Dict:
+    import requests
+
+    relay = _relay()
+    if not relay:
+        raise RuntimeError("TELEGRAM_RELAY_URL / TELEGRAM_RELAY_SECRET not set")
+    r = requests.post(relay["url"], json={**payload, "secret": relay["secret"]}, timeout=timeout)
+    body = r.json() if r.headers.get("content-type", "").startswith("application/json") else {}
+    if not r.ok or not body.get("ok", False):
+        raise RuntimeError(f"relay returned {r.status_code}: {body.get('error') or body.get('telegram') or r.text[:200]}")
+    return body
+
+
 def send_telegram(text: str, token: Optional[str] = None, chat_id: Optional[str] = None, timeout: int = 30) -> int:
-    """Send ``text`` as one or more plain-text messages; returns the number of messages sent."""
+    """Send ``text`` as one or more plain-text messages; returns the number of messages sent.
+
+    Uses the bot API directly when ``TELEGRAM_BOT_TOKEN``/``TELEGRAM_CHAT_ID`` are set, otherwise the relay.
+    """
     import requests
 
     token = token or os.environ.get("TELEGRAM_BOT_TOKEN")
     chat_id = chat_id or os.environ.get("TELEGRAM_CHAT_ID")
     if not token or not chat_id:
-        raise RuntimeError("TELEGRAM_BOT_TOKEN / TELEGRAM_CHAT_ID not set")
+        if _relay():
+            return int(_relay_post({"text": text}, timeout=max(timeout, 60)).get("sent", 1))
+        raise RuntimeError("TELEGRAM_BOT_TOKEN / TELEGRAM_CHAT_ID (or TELEGRAM_RELAY_URL / TELEGRAM_RELAY_SECRET) not set")
     n = 0
     for part in _chunks(text):
         r = requests.post(f"https://api.telegram.org/bot{token}/sendMessage",
@@ -59,7 +85,11 @@ def send_telegram_document(path: Path, token: Optional[str] = None, chat_id: Opt
     token = token or os.environ.get("TELEGRAM_BOT_TOKEN")
     chat_id = chat_id or os.environ.get("TELEGRAM_CHAT_ID")
     if not token or not chat_id:
-        raise RuntimeError("TELEGRAM_BOT_TOKEN / TELEGRAM_CHAT_ID not set")
+        if _relay():
+            _relay_post({"filename": Path(path).name, "content": Path(path).read_text(encoding="utf-8"),
+                         "caption": caption[:1000]}, timeout=timeout)
+            return
+        raise RuntimeError("TELEGRAM_BOT_TOKEN / TELEGRAM_CHAT_ID (or TELEGRAM_RELAY_URL / TELEGRAM_RELAY_SECRET) not set")
     with open(path, "rb") as fh:
         r = requests.post(f"https://api.telegram.org/bot{token}/sendDocument", data={"chat_id": chat_id, "caption": caption[:1000]},
                           files={"document": (Path(path).name, fh)}, timeout=timeout)

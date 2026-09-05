@@ -285,9 +285,17 @@ after every US close and commits the result to `journal/`.
 python -m algovision notify --file journal/report_latest.md
 ```
 
-Sends a report to Telegram (`TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`) and/or e-mail over SMTP (`SMTP_USER`,
-`SMTP_PASSWORD`, optional `SMTP_HOST`, `SMTP_PORT`, `REPORT_EMAIL_TO`). Channels without variables are skipped.
-Secrets live in environment variables, never in the repository.
+Sends a report to Telegram and/or e-mail. Channels without variables are skipped; secrets live in environment
+variables, never in the repository.
+
+* Telegram, direct: `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`.
+* Telegram, relay: `TELEGRAM_RELAY_URL`, `TELEGRAM_RELAY_SECRET` - an HTTPS endpoint that holds the bot credentials
+  and accepts `POST {"text","secret"}` / `POST {"filename","content","caption","secret"}`. Used when the direct
+  variables are absent. The text is sent in <=4000-character messages and the full report as a `.md` document.
+* E-mail over SMTP: `SMTP_USER`, `SMTP_PASSWORD`, optional `SMTP_HOST`, `SMTP_PORT`, `REPORT_EMAIL_TO`.
+
+Every ticker in the daily report and the journal tables is a link to its TradingView chart
+(`https://www.tradingview.com/chart/?symbol=SYM`).
 
 ## Forward test (`journal` command)
 

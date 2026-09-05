@@ -238,3 +238,39 @@ def test_notify_chunks_and_skips_without_config(tmp_path, monkeypatch):
     st = deliver(f)
     assert st["telegram"].startswith("skipped") and st["email"].startswith("skipped")
     assert "<table" in markdown_to_html(f.read_text())
+
+
+def test_tradingview_links_and_relay(monkeypatch, tmp_path):
+    from algovision.links import tradingview_url, tv
+    from algovision import notify
+
+    assert tradingview_url("brk.b") == "https://www.tradingview.com/chart/?symbol=BRK.B"
+    assert tv("VST") == "[VST](https://www.tradingview.com/chart/?symbol=VST)"
+
+    calls = []
+
+    class _Resp:
+        ok = True
+        status_code = 200
+        headers = {"content-type": "application/json"}
+        text = ""
+
+        def json(self):
+            return {"ok": True, "sent": 2}
+
+    def fake_post(url, json=None, timeout=None):
+        calls.append((url, json))
+        return _Resp()
+
+    import requests
+    monkeypatch.setattr(requests, "post", fake_post)
+    for k in ("TELEGRAM_BOT_TOKEN", "TELEGRAM_CHAT_ID"):
+        monkeypatch.delenv(k, raising=False)
+    monkeypatch.setenv("TELEGRAM_RELAY_URL", "https://relay.example/")
+    monkeypatch.setenv("TELEGRAM_RELAY_SECRET", "s3cret")
+    assert notify.send_telegram("hello") == 2
+    assert calls[0][0] == "https://relay.example/" and calls[0][1] == {"text": "hello", "secret": "s3cret"}
+    f = tmp_path / "r.md"
+    f.write_text("# t\nbody", encoding="utf-8")
+    notify.send_telegram_document(f, caption="cap")
+    assert calls[1][1]["filename"] == "r.md" and calls[1][1]["content"] == "# t\nbody" and calls[1][1]["caption"] == "cap"

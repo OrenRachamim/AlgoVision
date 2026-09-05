@@ -16,6 +16,7 @@ import pandas as pd
 
 from algovision.core.types import DetectorConfig
 from algovision.data.provider import DataProvider, _DEFAULT_CACHE
+from algovision.links import tv
 from algovision.data.universe import get_universe
 from algovision.research.anomalies import newsday_signals
 from algovision.scanner import Scanner
@@ -195,7 +196,9 @@ def run(out_dir: Path, universe: str = "all", period: str = "2y", cache_dir: Opt
     md = [f"# Forward-test journal - {today}\n", f"Data through {last_bar}; {len(frames)} of {len(symbols)} symbols loaded.\n",
           f"## New signals today ({len(added)})\n"]
     if added:
-        md.append(pd.DataFrame(added)[["rule", "symbol", "signal_date", "ref_price", "hold_bars", "note"]].to_markdown(index=False))
+        show = pd.DataFrame(added)[["rule", "symbol", "signal_date", "ref_price", "hold_bars", "note"]].copy()
+        show["symbol"] = show["symbol"].map(tv)
+        md.append(show.to_markdown(index=False))
     else:
         md.append("none")
     md.append("\n## Running results\n")
@@ -206,6 +209,7 @@ def run(out_dir: Path, universe: str = "all", period: str = "2y", cache_dir: Opt
             md.append("\n## Open positions\n")
             show = open_[["rule", "symbol", "signal_date", "entry_date", "entry_price", "bars_elapsed", "hold_bars", "ret"]].copy()
             show["ret"] = show["ret"].astype(float).map(lambda v: "" if pd.isna(v) else f"{v * 100:+.2f}%")
+            show["symbol"] = show["symbol"].map(tv)
             md.append(show.to_markdown(index=False))
     daily = out_dir / f"{today}.md"
     daily.write_text("\n".join(md), encoding="utf-8")

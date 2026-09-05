@@ -16,6 +16,7 @@ import pandas as pd
 from algovision.core.types import DetectorConfig
 from algovision.data.provider import DataProvider, _DEFAULT_CACHE
 from algovision.data.universe import get_universe, load_snapshot
+from algovision.links import tv
 from algovision.scanner import Scanner
 
 
@@ -39,7 +40,8 @@ def build_report(out_dir: Path, universe: str = "all", cache_dir: Optional[Path]
     frames = provider.get_many(symbols, "2y", "1d")
     last_bar = max(pd.Timestamp(df.index[-1]) for df in frames.values()).strftime("%Y-%m-%d")
     sectors = {x["symbol"]: x["sector"] for x in load_snapshot()["sp500"]}
-    md: List[str] = [f"# AlgoVision daily report - {today}\n", f"Prices through {last_bar}; {len(frames)} of {len(symbols)} symbols.\n"]
+    md: List[str] = [f"# AlgoVision daily report - {today}\n", f"Prices through {last_bar}; {len(frames)} of {len(symbols)} symbols. "
+                     "Every ticker links to its TradingView chart.\n"]
 
     # 1. insider buying (the strongest tested rule)
     md.append("## 1. Insider buying (SEC Form 4, officers & directors, last "
@@ -61,7 +63,7 @@ def build_report(out_dir: Path, universe: str = "all", cache_dir: Optional[Path]
                 md.append("none\n")
                 continue
             t = pd.DataFrame({
-                "symbol": d["symbol"], "sector": d["symbol"].map(lambda s: sectors.get(s, "")), "last filing": d["last_filing"],
+                "symbol": d["symbol"].map(tv), "sector": d["symbol"].map(lambda s: sectors.get(s, "")), "last filing": d["last_filing"],
                 "cluster (2+ insiders/30d)": np.where(d["cluster"], "yes", "no"), "insiders 30d": d["n_insiders_30d"],
                 "buys": d["n_buys"], "total": d["total_value"].map(lambda v: f"${v / 1e6:.2f}M"),
                 "avg price": d["avg_price"].map(lambda v: f"{v:.2f}"), "last": d["last_close"].map(lambda v: f"{v:.2f}"),
@@ -79,6 +81,7 @@ def build_report(out_dir: Path, universe: str = "all", cache_dir: Optional[Path]
             t[c] = t[c].map(lambda v: _pct(v, 1))
         t["volume_ratio"] = t["volume_ratio"].map(lambda v: f"{v:.1f}x")
         t["sector"] = t["symbol"].map(lambda s: sectors.get(s, ""))
+        t["symbol"] = t["symbol"].map(tv)
         md.append(t.to_markdown(index=False) + "\n")
     else:
         md.append("none\n")
@@ -90,7 +93,7 @@ def build_report(out_dir: Path, universe: str = "all", cache_dir: Optional[Path]
         if df is None or len(df) < 260:
             continue
         for m in sc.analyse_frame(s, df, mode="current"):
-            rows.append({"symbol": s, "status": m.status, "score": round(m.score, 2), "start": m.start_date, "end": m.end_date,
+            rows.append({"symbol": tv(s), "status": m.status, "score": round(m.score, 2), "start": m.start_date, "end": m.end_date,
                          "breakout": m.breakout_date or "", "level": round(m.level, 2), "stop": round(m.stop, 2),
                          "last": round(m.last_close, 2), "6m": _pct(m.metrics["context"]["ret_126"]), "vs MA200": _pct(m.metrics["context"]["dist_ma200"])})
     md.append("### Falling Wedge in beaten-down stocks (confirmed = broke out within 5 bars; forming = still inside; hold ~20 bars; tested +3% vs random)\n")
@@ -104,7 +107,7 @@ def build_report(out_dir: Path, universe: str = "all", cache_dir: Optional[Path]
         scored = score(fund, price_features(frames), sectors)
         top = diversified_top(scored, growth_top, 3)
         t = pd.DataFrame({
-            "symbol": top.index, "sector": top["sector"].values, "score": top["score"].round(2).values,
+            "symbol": [tv(x) for x in top.index], "sector": top["sector"].values, "score": top["score"].round(2).values,
             "rev yoy": top["rev_yoy_q"].map(_pct).values, "3y CAGR": top["rev_cagr_3y"].map(_pct).values,
             "op margin": top["op_margin"].map(_pct).values, "FCF margin": top["fcf_margin"].map(_pct).values,
             "12-1 mom": top["ret_12_1"].map(_pct).values, "fwd P/E": top["forward_pe"].map(lambda v: "" if pd.isna(v) else f"{v:.0f}").values,
@@ -113,7 +116,7 @@ def build_report(out_dir: Path, universe: str = "all", cache_dir: Optional[Path]
         md.append(t.to_markdown(index=False) + "\n")
         md.append("Why (top 5):\n")
         for sym, r in top.head(5).iterrows():
-            md.append(f"- **{sym}**: {r['why']}")
+            md.append(f"- **{tv(sym)}**: {r['why']}")
         conc = top["sector"].value_counts()
         md.append(f"\nSector concentration in the top {growth_top}: " + ", ".join(f"{k} {v}" for k, v in conc.items()) + "\n")
     except Exception as exc:  # noqa: BLE001
