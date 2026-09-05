@@ -122,6 +122,11 @@ Five pre-registered anomalies, one survivor (big news days in beaten-down stocks
 Take-profit +2 % / stop −20 % above the 200-day MA: 93 % hit rate, 4.6 bp per day of capital, i.e. buy-and-hold in disguise:
 [`research_tpsl.md`](research_tpsl.md).
 
+## Insider buying
+
+SEC Form 4 open-market purchases, especially in beaten-down stocks: +10 % over 60 bars and +15 % over 120 in both periods:
+[`research_insiders.md`](research_insiders.md).
+
 ## Bottom line
 
 Do not trust a setup because the scanner found it. As a class, the classic patterns on daily large-cap charts

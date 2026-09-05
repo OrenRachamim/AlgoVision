@@ -241,7 +241,8 @@ The findings of the study run on 2016-2026 data are summarised in
 [`docs/research_falling_wedge.md`](docs/research_falling_wedge.md) (`python -m algovision deepdive --pattern falling-wedge`); momentum and short-term reversal on the same universe in
 [`docs/research_factors.md`](docs/research_factors.md) (`python -m algovision factors`); five further anomalies in
 [`docs/research_anomalies.md`](docs/research_anomalies.md), of which one survived and has a live scan:
-`python -m algovision newsday`.
+`python -m algovision newsday`; insider buying from SEC Form 4 data in
+[`docs/research_insiders.md`](docs/research_insiders.md).
 
 ## Growth screen (`growth` command)
 

@@ -251,6 +251,17 @@ def build_parser() -> argparse.ArgumentParser:
     gr.add_argument("--max-age", type=float, default=12.0)
     gr.add_argument("--workers", type=int, default=4)
 
+    ins = sub.add_parser("insiders", help="live scan: officer/director open-market purchases (SEC Form 4, EDGAR daily index)")
+    ins.add_argument("--days", type=int, default=45, help="look back this many calendar days of filings")
+    ins.add_argument("--min-value", type=float, default=100_000)
+    ins.add_argument("--any-regime", action="store_true", help="also show purchases in stocks that are not beaten-down")
+    ins.add_argument("--universe", "-u", default="all", choices=UNIVERSES)
+    ins.add_argument("--csv", default=None)
+    ins.add_argument("--cache-dir", default=None)
+    ins.add_argument("--offline", action="store_true")
+    ins.add_argument("--max-age", type=float, default=12.0)
+    ins.add_argument("--workers", type=int, default=4)
+
     sub.add_parser("patterns", help="list supported patterns")
     sub.add_parser("universe", help="print the bundled universes").add_argument("--name", default="sp500", choices=UNIVERSES)
     return ap
@@ -340,6 +351,17 @@ def main(argv: Optional[List[str]] = None) -> int:
     if args.cmd == "factors":
         from algovision.research.cli import cmd_factors
         return cmd_factors(args)
+    if args.cmd == "insiders":
+        from algovision.insiders_scan import insider_signals, format_signals
+        symbols = get_universe(args.universe)
+        cache = Path(args.cache_dir) if args.cache_dir else DataProvider.__init__.__defaults__[0]
+        frames = DataProvider(cache_dir=cache, max_age_hours=args.max_age, offline=args.offline, workers=args.workers).get_many(symbols, "2y", "1d")
+        sig, tx = insider_signals(frames, symbols, days=args.days, min_value=args.min_value, require_beaten=not args.any_regime,
+                                  cache_dir=cache, progress=lambda i, n, k: print(f"  EDGAR day {i}/{n}, {k} trades", file=sys.stderr) if i % 10 == 0 or i == n else None)
+        print(format_signals(sig, tx))
+        if args.csv:
+            sig.to_csv(args.csv, index=False)
+        return 0
     if args.cmd == "growth":
         from algovision.growth import format_table, price_features, score, top_table
         from algovision.data.fundamentals import FundamentalsProvider

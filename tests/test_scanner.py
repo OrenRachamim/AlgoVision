@@ -187,3 +187,19 @@ def test_fundamentals_features_and_growth_score():
     assert "S0" not in sc.index and sc["score"].between(0, 1).all() and (sc["why"].str.len() > 20).all()
     d = diversified_top(sc, n=4, max_per_sector=2)
     assert len(d) <= 4 and d["sector"].value_counts().max() <= 2
+
+
+def test_insider_cluster_and_single_events():
+    from algovision.data.insiders import cluster_events, single_events
+    rows = []
+    for owner, day in (("A", 1), ("B", 10), ("C", 40), ("D", 100), ("E", 105)):
+        rows.append({"symbol": "XYZ", "owner_cik": owner, "filing_date": pd.Timestamp("2024-01-01") + pd.Timedelta(days=day),
+                     "value": 200_000.0, "code": "P", "is_ceo_cfo": owner == "A"})
+    rows.append({"symbol": "XYZ", "owner_cik": "F", "filing_date": pd.Timestamp("2024-02-01"), "value": 50_000.0, "code": "S", "is_ceo_cfo": False})
+    tx = pd.DataFrame(rows)
+    ev = cluster_events(tx, window_days=30, min_insiders=2)
+    # A+B complete a cluster on day 10; C is alone in its window; D+E complete another on day 105
+    assert list(ev["date"]) == [pd.Timestamp("2024-01-11"), pd.Timestamp("2024-04-15")]
+    assert ev.iloc[0]["n_insiders"] == 2 and bool(ev.iloc[0]["ceo_cfo"]) is True
+    sg = single_events(tx, min_value=100_000)
+    assert len(sg) == 3      # A, C, D (B is within 30 days of A, E within 30 days of D)

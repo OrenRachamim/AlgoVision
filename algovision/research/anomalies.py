@@ -230,3 +230,83 @@ def newsday_signals(get_frame: Callable[[str], pd.DataFrame], symbols: Sequence[
     cols = ["symbol", "news_date", "bars_ago", "gap", "day_return", "volume_ratio", "ret_6m", "dist_ma200",
             "close_on_news_day", "last_close", "since_news", "bars_left"]
     return pd.DataFrame(rows, columns=cols).sort_values(["bars_ago", "ret_6m"]).reset_index(drop=True)
+
+
+# ----------------------------------------------------------------------------
+# generic dated-event study (used for insider trades and any external event list)
+# ----------------------------------------------------------------------------
+def dated_event_returns(panel: Dict[str, pd.DataFrame], spy_close: pd.Series, events: pd.DataFrame,
+                        horizons: Sequence[int] = (5, 20, 60, 120, 250), direction: int = 1,
+                        local_window: int = 126, random_draws: int = 10, seed: int = 9) -> pd.DataFrame:
+    """Attach forward returns to (symbol, date) events.
+
+    Entry at the open of the first bar *after* the event date (the filing is public
+    by then), returns to the close ``h`` bars later, signed by ``direction``; local
+    random baseline and SPY-adjusted returns as in the other studies; plus the
+    stock's state at the event (6-month return, below 200-day MA).
+    """
+    import zlib
+    close, open_ = panel["Close"], panel["Open"]
+    idx = close.index
+    spy = spy_close.reindex(idx).ffill().to_numpy(dtype=float)
+    hmax = max(horizons)
+    rows: List[Dict] = []
+    for sym, g in events.groupby("symbol"):
+        if sym not in close.columns:
+            continue
+        c, o = close[sym].to_numpy(dtype=float), open_[sym].to_numpy(dtype=float)
+        n = len(c)
+        rng = np.random.default_rng(seed + zlib.crc32(sym.encode()) % 100000)
+        for ev in g.itertuples():
+            t = idx.searchsorted(pd.Timestamp(ev.date))          # first bar >= event date
+            if t >= n or idx[t] != pd.Timestamp(ev.date):
+                t = t if t < n else n                            # event on a non-trading day: next bar is the first >= date
+            e = t + 1 if (t < n and idx[t] == pd.Timestamp(ev.date)) else t
+            if e < 210 or e + hmax >= n or not np.isfinite(o[e]) or not np.isfinite(c[e - 1]):
+                continue
+            px = o[e]
+            ma200 = np.nanmean(c[e - 200:e])
+            row = {k: v for k, v in ev._asdict().items() if k != "Index"}
+            row.update({"entry_date": idx[e], "entry": float(px), "ret_126": float(c[e - 1] / c[e - 127] - 1.0),
+                        "below_ma200": bool(c[e - 1] < ma200), "dist_ma200": float(c[e - 1] / ma200 - 1.0)})
+            for h in horizons:
+                r = direction * (c[e + h - 1] / px - 1.0)
+                row[f"ret_{h}"] = r
+                row[f"xspy_{h}"] = r - direction * (spy[e + h - 1] / spy[e] - 1.0)
+                lo, hi = max(1, e - local_window), min(n - h - 1, e + local_window)
+                cand = np.arange(lo, hi + 1)
+                cand = cand[(np.abs(cand - e) > h) & np.isfinite(o[cand]) & np.isfinite(c[cand + h - 1])]
+                if len(cand) >= 5:
+                    pick = rng.choice(cand, size=random_draws, replace=len(cand) < random_draws)
+                    row[f"xloc_{h}"] = r - float(np.mean(direction * (c[pick + h - 1] / o[pick] - 1.0)))
+                else:
+                    row[f"xloc_{h}"] = np.nan
+            rows.append(row)
+    return pd.DataFrame(rows)
+
+
+def event_table(ev: pd.DataFrame, split: str, horizons=(5, 20, 60, 120, 250), cost: float = 0.001,
+                by: Sequence[str] = ()) -> pd.DataFrame:
+    rows = []
+    d = pd.to_datetime(ev["entry_date"])
+    for pname, mask in (("all", np.ones(len(ev), bool)), ("train", (d < split).to_numpy()), ("test", (d >= split).to_numpy())):
+        g0 = ev[mask]
+        groups = g0.groupby(list(by)) if by else [((), g0)]
+        for key, g in groups:
+            key = key if isinstance(key, tuple) else (key,)
+            rec = {"period": pname, **dict(zip(by, key)), "n": len(g), "n_symbols": g["symbol"].nunique()}
+            for h in horizons:
+                r = g[f"ret_{h}"].to_numpy(dtype=float) - cost
+                x = g[f"xloc_{h}"].to_numpy(dtype=float)
+                ok = np.isfinite(r) & np.isfinite(x)
+                if ok.sum() < 10:
+                    continue
+                lo, hi = bootstrap_mean_ci(x[ok], reps=500)
+                rec[f"net_{h}"] = float(r[ok].mean())
+                rec[f"hit_{h}"] = float((r[ok] > 0).mean())
+                rec[f"xspy_{h}"] = float(np.nanmean(g[f"xspy_{h}"]))
+                rec[f"xloc_{h}"] = float(x[ok].mean())
+                rec[f"xloc_lo_{h}"], rec[f"xloc_hi_{h}"] = lo, hi
+                rec[f"t_{h}"] = _tstat(x[ok])
+            rows.append(rec)
+    return pd.DataFrame(rows).set_index(["period", *by] if by else ["period"])
