@@ -24,6 +24,7 @@ RULES = {
     "newsday": {"hold": 60, "expect": "+6-7% vs random, hit ~62% (docs/research_anomalies.md)"},
     "falling_wedge_beaten_down": {"hold": 20, "expect": "+3% vs random, hit ~60% (docs/research_falling_wedge.md)"},
     "growth_top10": {"hold": 250, "expect": "long-horizon growth screen, judged against SPY over the same period (docs/growth_screen.md)"},
+    "insider_buy_beaten_down": {"hold": 120, "expect": "+10% vs random at 60 bars, +15% at 120, hit ~68% (docs/research_insiders.md)"},
 }
 COLS = ["logged", "rule", "symbol", "signal_date", "status", "ref_price", "entry_date", "entry_price", "hold_bars",
         "note"]
@@ -56,6 +57,20 @@ def collect_growth(frames: Dict[str, pd.DataFrame], symbols: List[str], today: s
                      "signal_date": pd.Timestamp(df.index[-1]).strftime("%Y-%m-%d"), "status": "open",
                      "ref_price": f"{float(df['Close'].iloc[-1]):.4f}", "entry_date": "", "entry_price": "",
                      "hold_bars": RULES["growth_top10"]["hold"], "note": f"score {r['score']:.2f}; {r['why'][:160]}"})
+    return rows
+
+
+def collect_insiders(frames: Dict[str, pd.DataFrame], symbols: List[str], today: str, cache_dir=None) -> List[Dict]:
+    """Officer/director purchases >= $100k filed in the last 7 days in beaten-down stocks."""
+    from algovision.insiders_scan import insider_signals
+    sig, _ = insider_signals(frames, symbols, days=7, min_value=100_000, require_beaten=True, cache_dir=cache_dir)
+    rows = []
+    for r in sig.itertuples():
+        rows.append({"logged": today, "rule": "insider_buy_beaten_down", "symbol": r.symbol, "signal_date": r.last_filing,
+                     "status": "open", "ref_price": f"{r.last_close:.4f}", "entry_date": "", "entry_price": "",
+                     "hold_bars": RULES["insider_buy_beaten_down"]["hold"],
+                     "note": f"{'cluster, ' if r.cluster else ''}{r.n_buys} buy(s) ${r.total_value / 1e6:.2f}M @ {r.avg_price:.2f}, "
+                             f"6m {r.ret_6m * 100:+.0f}%, vs MA200 {r.dist_ma200 * 100:+.0f}%; {r.buyers[:60]}"})
     return rows
 
 
@@ -160,6 +175,13 @@ def run(out_dir: Path, universe: str = "all", period: str = "2y", cache_dir: Opt
     open_growth = set(journal[(journal["rule"] == "growth_top10") & (journal["status"] != "closed")]["symbol"])
     growth_rows = [r for r in growth_rows if r["symbol"] not in open_growth]
     new_rows += growth_rows
+    try:
+        ins_rows = collect_insiders(frames, symbols, today, cache_dir)
+    except Exception as exc:  # noqa: BLE001 - EDGAR is optional for the journal
+        ins_rows = []
+        print(f"insider scan skipped: {exc}")
+    open_ins = set(journal[(journal["rule"] == "insider_buy_beaten_down") & (journal["status"] != "closed")]["symbol"])
+    new_rows += [r for r in ins_rows if r["symbol"] not in open_ins]
     existing = set(zip(journal["rule"], journal["symbol"], journal["signal_date"]))
     added = [r for r in new_rows if (r["rule"], r["symbol"], r["signal_date"]) not in existing]
     if added:

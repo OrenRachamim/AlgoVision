@@ -256,6 +256,18 @@ Fundamentals come from Yahoo's time-series endpoint (`algovision/data/fundamenta
 [`docs/growth_screen.md`](docs/growth_screen.md). The daily journal logs the diversified top 10 and marks it
 against SPY.
 
+## Insider buying (`insiders` command)
+
+```bash
+python -m algovision insiders --days 45            # beaten-down stocks with officer/director purchases >= $100k
+python -m algovision insiders --days 45 --any-regime
+```
+
+Reads Form 4 filings from EDGAR's daily index (last N days), parses open-market trades by officers and
+directors, and lists purchases in beaten-down stocks, the rule that tested at +10 % vs random over 60 bars
+and +15 % over 120 in both halves of 2016-2026 ([`docs/research_insiders.md`](docs/research_insiders.md)).
+The daily journal logs these as `insider_buy_beaten_down` (hold 120 bars).
+
 ## Forward test (`journal` command)
 
 ```bash

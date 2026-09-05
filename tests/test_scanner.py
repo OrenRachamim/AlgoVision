@@ -145,6 +145,7 @@ def test_journal_logs_and_marks_to_market(tmp_path, monkeypatch):
 
     monkeypatch.setattr(J, "DataProvider", P)
     monkeypatch.setattr(J, "collect_growth", lambda *a, **k: [])
+    monkeypatch.setattr(J, "collect_insiders", lambda *a, **k: [])
     p = J.run(tmp_path, today="2026-01-01")
     assert p.exists() and (tmp_path / "signals.csv").exists()
     # inject a past signal and check mark-to-market fills entry and result
