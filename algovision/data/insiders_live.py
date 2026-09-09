@@ -44,18 +44,39 @@ def _get(url: str, timeout: int = 60) -> Optional[bytes]:
     return None
 
 
+def _index_is_settled(day: pd.Timestamp, today: Optional[pd.Timestamp] = None) -> bool:
+    """True when EDGAR's daily index for ``day`` can no longer grow.
+
+    The index of the current business day fills up during the day and filings accepted after
+    17:30 ET are dated the next business day, so today's and the previous business day's index
+    are re-fetched on every run instead of being served from the cache.
+    """
+    today = (today if today is not None else pd.Timestamp.today()).normalize()
+    return day.normalize() < today - pd.offsets.BDay(1)
+
+
 def daily_form4(day: pd.Timestamp, ciks: Iterable[str], cache_dir: Path) -> List[Dict]:
-    """Form 4 entries (issuer CIK, path) for one day, restricted to ``ciks``."""
+    """Form 4 entries (issuer CIK, path) for one day, restricted to ``ciks``.
+
+    Settled days are read from the cache; today and the previous business day are always
+    fetched fresh (the fresh copy overwrites the cache, so the last fetch inside that window
+    is the one kept once the day settles; a failed fetch falls back to the cached copy).
+    """
     q = (day.month - 1) // 3 + 1
     p = cache_dir / f"form.{day:%Y%m%d}.idx"
-    if p.exists():
+    settled = _index_is_settled(day)
+    if settled and p.exists():
         text = p.read_text(errors="ignore")
     else:
         raw = _get(f"https://www.sec.gov/Archives/edgar/daily-index/{day.year}/QTR{q}/form.{day:%Y%m%d}.idx")
         if raw is None:
-            return []
-        text = raw.decode("latin-1")
-        p.write_text(text)
+            if p.exists():
+                text = p.read_text(errors="ignore")
+            else:
+                return []
+        else:
+            text = raw.decode("latin-1")
+            p.write_text(text)
     ciks = set(ciks)
     out = []
     for line in text.splitlines():
