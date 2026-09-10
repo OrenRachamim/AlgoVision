@@ -297,6 +297,11 @@ variables, never in the repository.
 Every ticker in the daily report and the journal tables is a link to its TradingView chart
 (`https://www.tradingview.com/chart/?symbol=SYM`).
 
+What is delivered: the message text is only the short "what is new" note (`journal/new_latest.md`, written by
+`daily-report`: the signals the journal logged today and the tickers that entered or left each report table
+since the previous report, with TradingView links); the full report travels as an attached `.md` file and is
+never sent as text. Pass `--summary` to use a different note.
+
 ## Forward test (`journal` command)
 
 ```bash

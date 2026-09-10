@@ -240,6 +240,49 @@ def test_notify_chunks_and_skips_without_config(tmp_path, monkeypatch):
     assert "<table" in markdown_to_html(f.read_text())
 
 
+def test_deliver_sends_note_as_text_and_report_as_file(tmp_path, monkeypatch):
+    from algovision import notify
+
+    report = tmp_path / "report_latest.md"
+    report.write_text("# AlgoVision daily report - 2026-09-09\n\nbody " * 3, encoding="utf-8")
+    (tmp_path / "new_latest.md").write_text("# AlgoVision 2026-09-09: what is new\n- newsday: [CASY](https://www.tradingview.com/chart/?symbol=CASY)\n",
+                                            encoding="utf-8")
+    sent = {}
+    monkeypatch.setattr(notify, "send_telegram", lambda text, html=False, **k: sent.update(text=text, html=html) or 1)
+    monkeypatch.setattr(notify, "send_telegram_document", lambda path, caption="", **k: sent.update(doc=Path(path).name))
+    monkeypatch.setattr(notify, "send_email", lambda subject, text, to=None, html=None, attachment=None:
+                        sent.update(mail_text=text, attachment=Path(attachment).name) or "x@y")
+    st = notify.deliver(report)
+    assert sent["html"] and '<a href="https://www.tradingview.com/chart/?symbol=CASY">CASY</a>' in sent["text"]
+    assert "<b>AlgoVision 2026-09-09: what is new</b>" in sent["text"]
+    assert "body" not in sent["text"] and sent["doc"] == "report_latest.md"
+    assert sent["attachment"] == "report_latest.md" and "body" not in sent["mail_text"]
+    assert st["telegram"].startswith("sent") and st["email"].startswith("sent")
+
+
+def test_whatsnew_diff(tmp_path):
+    from algovision.whatsnew import build_whatsnew, section_tickers
+
+    def report(date, beaten, wedge):
+        rows = lambda syms: "\n".join(f"| [{s}](https://www.tradingview.com/chart/?symbol={s}) | x |" for s in syms)
+        return (f"# AlgoVision daily report - {date}\n\n## 1. Insider buying\n\n### Beaten-down stocks (the tested setup)\n\n"
+                f"| symbol | sector |\n|---|---|\n{rows(beaten)}\n\n### Other stocks with insider purchases (context)\n\nnone\n\n"
+                f"## 2. Short-horizon signals\n\n### News-day rule\n\nnone\n\n### Falling Wedge in beaten-down stocks\n\n"
+                f"| symbol |\n|---|\n{rows(wedge)}\n\n## 3. Growth screen (top 15)\n\nnone\n\n## 4. Forward test (journal)\n")
+
+    (tmp_path / "report_2026-09-08.md").write_text(report("2026-09-08", ["AAA", "BBB"], ["WWW"]), encoding="utf-8")
+    today = report("2026-09-09", ["BBB", "CCC"], ["WWW", "XXX"])
+    (tmp_path / "latest.md").write_text("# j\n\n## New signals today (1)\n\n| rule | symbol | signal_date | ref_price | hold_bars | note |\n"
+                                        "|:--|:--|:--|--:|--:|:--|\n| newsday | [CCC](u) | 2026-09-09 | 10 | 60 | gap |\n\n## Running results\n",
+                                        encoding="utf-8")
+    sec = section_tickers(today)
+    assert sec["Insider buys, beaten-down (tested setup)"] == ["BBB", "CCC"] and sec["Falling wedge, beaten-down"] == ["WWW", "XXX"]
+    txt = build_whatsnew(tmp_path, "2026-09-09", today)
+    assert "since 2026-09-08" in txt and "- newsday: [CCC](u) 2026-09-09 @ 10, hold 60 bars. gap" in txt
+    assert "Insider buys, beaten-down (tested setup): [CCC](https://www.tradingview.com/chart/?symbol=CCC)" in txt
+    assert "Falling wedge, beaten-down: [XXX]" in txt and "Insider buys, beaten-down (tested setup): AAA" in txt
+
+
 def test_tradingview_links_and_relay(monkeypatch, tmp_path):
     from algovision.links import tradingview_url, tv
     from algovision import notify

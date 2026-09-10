@@ -132,7 +132,11 @@ def build_report(out_dir: Path, universe: str = "all", cache_dir: Optional[Path]
         md.append("no journal yet\n")
     md.append("\n---\nSystematic screens and a forward test, not investment advice. Survivorship bias applies to all backtests "
               "(today's index members); see docs/research*.md for methods and caveats.\n")
+    from algovision.whatsnew import write_whatsnew
+
+    text = "\n".join(md)
+    write_whatsnew(out_dir, today, text)          # compares with the previous dated report before it is overwritten
     path = out_dir / f"report_{today}.md"
-    path.write_text("\n".join(md), encoding="utf-8")
-    (out_dir / "report_latest.md").write_text("\n".join(md), encoding="utf-8")
+    path.write_text(text, encoding="utf-8")
+    (out_dir / "report_latest.md").write_text(text, encoding="utf-8")
     return path

@@ -274,6 +274,7 @@ def build_parser() -> argparse.ArgumentParser:
     no = sub.add_parser("notify", help="send a report file to Telegram / e-mail (configured by environment variables, see algovision/notify.py)")
     no.add_argument("--file", default="journal/report_latest.md")
     no.add_argument("--subject", default=None)
+    no.add_argument("--summary", default=None, help="'what is new' note sent as the message text (default: new_latest.md next to --file)")
     no.add_argument("--no-telegram", action="store_true")
     no.add_argument("--no-email", action="store_true")
 
@@ -368,7 +369,8 @@ def main(argv: Optional[List[str]] = None) -> int:
         return cmd_factors(args)
     if args.cmd == "notify":
         from algovision.notify import deliver
-        for ch, st in deliver(Path(args.file), args.subject, telegram=not args.no_telegram, email=not args.no_email).items():
+        for ch, st in deliver(Path(args.file), args.subject, telegram=not args.no_telegram, email=not args.no_email,
+                              summary=Path(args.summary) if args.summary else None).items():
             print(f"{ch}: {st}")
         return 0
     if args.cmd == "daily-report":
