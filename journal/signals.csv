@@ -19,3 +19,4 @@ logged,rule,symbol,signal_date,status,ref_price,entry_date,entry_price,hold_bars
 2026-09-09,insider_buy_beaten_down,TSN,2026-09-08,open,51.7400,2026-09-09,52.3200,120,"1 buy(s) $1.00M @ 51.50, 6m -13%, vs MA200 -13%; Schomburger Jeffrey K"
 2026-09-10,newsday,COO,2026-09-10,open,54.1700,2026-09-11,54.6600,60,"gap -18.5%, vol 9.0x, 6m -27%, vs MA200 -26%"
 2026-09-11,falling_wedge_beaten_down,TXT,2026-09-11,open,81.0000,2026-09-14,80.1900,20,"score 0.77, stop 78.19, level 78.33"
+2026-09-15,newsday,AXON,2026-09-15,open,442.0800,,,60,"gap -5.1%, vol 3.7x, 6m -10%, vs MA200 -12%"
