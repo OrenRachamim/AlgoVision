@@ -122,6 +122,8 @@ Five pre-registered anomalies, one survivor (big news days in beaten-down stocks
 Take-profit +2 % / stop −20 % above the 200-day MA: 93 % hit rate, 4.6 bp per day of capital, i.e. buy-and-hold in disguise:
 [`research_tpsl.md`](research_tpsl.md).
 
+On the tested entries (wedge, news day, insider buy): take-profit, rising target, per-day threshold and trailing stop all earn less than the plain time exit, per trade and per bar of capital: [`research_exits.md`](research_exits.md).
+
 ## Insider buying
 
 SEC Form 4 open-market purchases, especially in beaten-down stocks: +10 % over 60 bars and +15 % over 120 in both periods:

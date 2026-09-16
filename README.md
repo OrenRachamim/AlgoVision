@@ -236,7 +236,7 @@ Method, in short:
 
 The findings of the study run on 2016-2026 data are summarised in
 [`docs/research.md`](docs/research.md); the short-horizon variant (hold 1-5 bars, take-profit) in
-[`docs/research_shortterm.md`](docs/research_shortterm.md) (`--short-term`); the single-pattern deep dive
+[`docs/research_shortterm.md`](docs/research_shortterm.md) (`--short-term`); exit rules on the tested entries (time vs take-profit, rising target, per-day threshold, trailing stop) in [`docs/research_exits.md`](docs/research_exits.md) (`python -m algovision.research.exits`); the single-pattern deep dive
 (features, filters, exits, entries, portfolio, train/test split) in
 [`docs/research_falling_wedge.md`](docs/research_falling_wedge.md) (`python -m algovision deepdive --pattern falling-wedge`); momentum and short-term reversal on the same universe in
 [`docs/research_factors.md`](docs/research_factors.md) (`python -m algovision factors`); five further anomalies in
