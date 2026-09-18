@@ -25,8 +25,10 @@ python -m algovision growth --top 20 --explain --max-per-sector 3
   business, not a proven predictor. Academic evidence for profitability/quality factors is decent, for
   "high revenue growth" it is weak to negative (growth is priced in, and fastest-growth names underperform on
   average). The screen leans on quality and valuation to offset that.
-* The daily journal logs the diversified top 10 as long positions (`growth_top10`, reviewed after 250 bars) and
-  marks them against SPY over the same period. That forward test is the real evaluation; expect to wait a year.
+* The daily journal logged the diversified top 10 as long positions (`growth_top10`, 250-bar horizon) from
+  2026-09-04 to 2026-09-17 and then stopped: the screen was dropped from the daily report and the journal as
+  not relevant to the project's focus (beaten-down setups). The logged rows stay in `journal/signals.csv` for
+  reference but are no longer reported. The screen remains available as `python -m algovision growth`.
 * Concentration risk is structural: growth screens cluster in whatever is booming (today: AI semiconductors and
   memory). The sector cap limits it; it does not remove it.
 

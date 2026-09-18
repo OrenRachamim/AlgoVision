@@ -1,6 +1,6 @@
-"""One-file daily report: insider buying, short-horizon signals, growth screen, forward-test results.
+"""One-file daily report: insider buying, short-horizon signals, forward-test results.
 
-Designed to run right after ``journal`` (which refreshes prices, fundamentals and EDGAR filings), fully from
+Designed to run right after ``journal`` (which refreshes prices and EDGAR filings), fully from
 cache, and to be pasted / translated verbatim by the scheduled routine.
 """
 
@@ -26,8 +26,7 @@ def _pct(v, d=0):
 
 def build_report(out_dir: Path, universe: str = "all", cache_dir: Optional[Path] = None, insider_days: int = 45,
                  growth_top: int = 15, today: Optional[str] = None, workers: int = 4) -> Path:
-    from algovision.data.fundamentals import FundamentalsProvider
-    from algovision.growth import diversified_top, price_features, score
+    """``growth_top`` is accepted for backward compatibility and ignored: the growth screen is no longer part of the report."""
     from algovision.insiders_scan import insider_signals
     from algovision.research.anomalies import newsday_signals
 
@@ -98,31 +97,8 @@ def build_report(out_dir: Path, universe: str = "all", cache_dir: Optional[Path]
                          "last": round(m.last_close, 2), "6m": _pct(m.metrics["context"]["ret_126"]), "vs MA200": _pct(m.metrics["context"]["dist_ma200"])})
     md.append("### Falling Wedge in beaten-down stocks (confirmed = broke out within 5 bars; forming = still inside; hold ~20 bars; tested +3% vs random)\n")
     md.append((pd.DataFrame(rows).sort_values(["status", "score"], ascending=[True, False]).to_markdown(index=False) if rows else "none") + "\n")
-    # 3. growth screen
-    md.append(f"## 3. Growth screen (top {growth_top}, max 3 per sector)\n")
-    md.append("Growth 40% (revenue yoy, 3y CAGR, EPS yoy, margin change), quality 20%, momentum 25% (the only backtested block), "
-              "valuation 15%. Not investment advice; the fundamental blocks are untested and are being forward-tested in the journal.\n")
-    try:
-        fund = FundamentalsProvider(cache_dir=cache, offline=True).feature_table(symbols)
-        scored = score(fund, price_features(frames), sectors)
-        top = diversified_top(scored, growth_top, 3)
-        t = pd.DataFrame({
-            "symbol": [tv(x) for x in top.index], "sector": top["sector"].values, "score": top["score"].round(2).values,
-            "rev yoy": top["rev_yoy_q"].map(_pct).values, "3y CAGR": top["rev_cagr_3y"].map(_pct).values,
-            "op margin": top["op_margin"].map(_pct).values, "FCF margin": top["fcf_margin"].map(_pct).values,
-            "12-1 mom": top["ret_12_1"].map(_pct).values, "fwd P/E": top["forward_pe"].map(lambda v: "" if pd.isna(v) else f"{v:.0f}").values,
-            "PEG": top["peg"].map(lambda v: "" if pd.isna(v) else f"{v:.1f}").values,
-            "caution": np.where(top["cyclical_flag"].values, "cyclical peak", "")})
-        md.append(t.to_markdown(index=False) + "\n")
-        md.append("Why (top 5):\n")
-        for sym, r in top.head(5).iterrows():
-            md.append(f"- **{tv(sym)}**: {r['why']}")
-        conc = top["sector"].value_counts()
-        md.append(f"\nSector concentration in the top {growth_top}: " + ", ".join(f"{k} {v}" for k, v in conc.items()) + "\n")
-    except Exception as exc:  # noqa: BLE001
-        md.append(f"growth screen unavailable: {exc}\n")
-    # 4. forward-test journal
-    md.append("## 4. Forward test (journal)\n")
+    # 3. forward-test journal
+    md.append("## 3. Forward test (journal)\n")
     latest = out_dir / "latest.md"
     if latest.exists():
         text = latest.read_text(encoding="utf-8")

@@ -253,8 +253,8 @@ python -m algovision growth --top 20 --explain --max-per-sector 3
 Long-horizon selection: revenue / EPS growth and margin trend (40 %), quality (20 %), price momentum (25 %,
 the one backtested block), valuation sanity (15 %), with a one-line "why" per name and a cyclical-peak flag.
 Fundamentals come from Yahoo's time-series endpoint (`algovision/data/fundamentals.py`). See
-[`docs/growth_screen.md`](docs/growth_screen.md). The daily journal logs the diversified top 10 and marks it
-against SPY.
+[`docs/growth_screen.md`](docs/growth_screen.md). It is a standalone command only: the daily report and the journal
+no longer include it (the fundamental blocks are untested).
 
 ## Insider buying (`insiders` command)
 
@@ -275,8 +275,8 @@ python -m algovision journal --out journal        # refresh data, log signals, m
 python -m algovision daily-report --out journal   # journal/report_<date>.md from cache
 ```
 
-One file with the day's insider purchases (beaten-down first), news-day and wedge signals, the growth
-top-15 with explanations, and the running forward-test results against SPY. A scheduled routine runs both
+One file with the day's insider purchases (beaten-down first), news-day and wedge signals, and the running
+forward-test results against SPY. A scheduled routine runs both
 after every US close and commits the result to `journal/`.
 
 ## Delivery (`notify` command)

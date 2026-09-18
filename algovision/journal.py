@@ -24,9 +24,10 @@ from algovision.scanner import Scanner
 RULES = {
     "newsday": {"hold": 60, "expect": "+6-7% vs random, hit ~62% (docs/research_anomalies.md)"},
     "falling_wedge_beaten_down": {"hold": 20, "expect": "+3% vs random, hit ~60% (docs/research_falling_wedge.md)"},
-    "growth_top10": {"hold": 250, "expect": "long-horizon growth screen, judged against SPY over the same period (docs/growth_screen.md)"},
     "insider_buy_beaten_down": {"hold": 120, "expect": "+10% vs random at 60 bars, +15% at 120, hit ~68% (docs/research_insiders.md)"},
 }
+# rules that were logged in the past but are no longer tracked or reported (rows stay in signals.csv)
+RETIRED_RULES = {"growth_top10"}
 COLS = ["logged", "rule", "symbol", "signal_date", "status", "ref_price", "entry_date", "entry_price", "hold_bars",
         "note"]
 
@@ -39,26 +40,6 @@ def _load(path: Path) -> pd.DataFrame:
                 df[c] = ""
         return df[COLS]
     return pd.DataFrame(columns=COLS)
-
-
-def collect_growth(frames: Dict[str, pd.DataFrame], symbols: List[str], today: str, cache_dir=None, n: int = 10) -> List[Dict]:
-    """Today's diversified growth top-10 as long-horizon positions (entry next open, reviewed after 250 bars)."""
-    from algovision.data.fundamentals import FundamentalsProvider
-    from algovision.data.universe import load_snapshot
-    from algovision.growth import diversified_top, price_features, score
-    fund = FundamentalsProvider(cache_dir=cache_dir if cache_dir else _DEFAULT_CACHE, max_age_hours=24).feature_table(symbols)
-    if not len(fund):
-        return []
-    sectors = {x["symbol"]: x["sector"] for x in load_snapshot()["sp500"]}
-    top = diversified_top(score(fund, price_features(frames), sectors), n, 3)
-    rows = []
-    for sym, r in top.iterrows():
-        df = frames[sym]
-        rows.append({"logged": today, "rule": "growth_top10", "symbol": sym,
-                     "signal_date": pd.Timestamp(df.index[-1]).strftime("%Y-%m-%d"), "status": "open",
-                     "ref_price": f"{float(df['Close'].iloc[-1]):.4f}", "entry_date": "", "entry_price": "",
-                     "hold_bars": RULES["growth_top10"]["hold"], "note": f"score {r['score']:.2f}; {r['why'][:160]}"})
-    return rows
 
 
 def collect_insiders(frames: Dict[str, pd.DataFrame], symbols: List[str], today: str, cache_dir=None) -> List[Dict]:
@@ -168,15 +149,6 @@ def run(out_dir: Path, universe: str = "all", period: str = "2y", cache_dir: Opt
     journal = _load(out_dir / "signals.csv")
     new_rows = collect_signals(frames, symbols, today)
     try:
-        growth_rows = collect_growth(frames, symbols, today, cache_dir)
-    except Exception as exc:  # noqa: BLE001 - fundamentals are optional for the journal
-        growth_rows = []
-        print(f"growth screen skipped: {exc}")
-    # a growth name already held (open position) is not re-logged; a name that drops out simply stops being added
-    open_growth = set(journal[(journal["rule"] == "growth_top10") & (journal["status"] != "closed")]["symbol"])
-    growth_rows = [r for r in growth_rows if r["symbol"] not in open_growth]
-    new_rows += growth_rows
-    try:
         ins_rows = collect_insiders(frames, symbols, today, cache_dir)
     except Exception as exc:  # noqa: BLE001 - EDGAR is optional for the journal
         ins_rows = []
@@ -201,10 +173,11 @@ def run(out_dir: Path, universe: str = "all", period: str = "2y", cache_dir: Opt
         md.append(show.to_markdown(index=False))
     else:
         md.append("none")
+    shown = mtm[~mtm["rule"].isin(RETIRED_RULES)] if len(mtm) else mtm
     md.append("\n## Running results\n")
-    md.append(summary(mtm) if len(mtm) else "no signals logged yet")
-    if len(mtm):
-        open_ = mtm[mtm["done"] != True]  # noqa: E712
+    md.append(summary(shown) if len(shown) else "no signals logged yet")
+    if len(shown):
+        open_ = shown[shown["done"] != True]  # noqa: E712
         if len(open_):
             md.append("\n## Open positions\n")
             show = open_[["rule", "symbol", "signal_date", "entry_date", "entry_price", "bars_elapsed", "hold_bars", "ret"]].copy()

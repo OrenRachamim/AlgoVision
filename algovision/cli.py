@@ -262,11 +262,11 @@ def build_parser() -> argparse.ArgumentParser:
     ins.add_argument("--max-age", type=float, default=12.0)
     ins.add_argument("--workers", type=int, default=4)
 
-    dr = sub.add_parser("daily-report", help="write the one-file daily report (insiders, signals, growth screen, journal results) from cache")
+    dr = sub.add_parser("daily-report", help="write the one-file daily report (insiders, signals, journal results) from cache")
     dr.add_argument("--out", default="journal")
     dr.add_argument("--universe", "-u", default="all", choices=UNIVERSES)
     dr.add_argument("--insider-days", type=int, default=45)
-    dr.add_argument("--top", type=int, default=15)
+    dr.add_argument("--top", type=int, default=15, help="ignored (kept for compatibility; the growth screen is no longer part of the report)")
     dr.add_argument("--cache-dir", default=None)
     dr.add_argument("--workers", type=int, default=4)
     dr.add_argument("--date", default=None)
