@@ -23,4 +23,7 @@ logged,rule,symbol,signal_date,status,ref_price,entry_date,entry_price,hold_bars
 2026-09-16,growth_top10,NEM,2026-09-16,open,121.7600,2026-09-17,125.5000,250,"score 0.73; revenue +15% yoy (3y CAGR +24%); EPS +11% yoy; op margin +55% (+6.1% vs last year), FCF margin +38%; ROE +24%; 12-1 momentum +53% (above 200-day MA, +11%), 1y d"
 2026-09-16,insider_buy_beaten_down,COO,2026-09-15,open,54.6100,2026-09-16,54.3700,120,"cluster, 4 buy(s) $1.33M @ 53.88, 6m -24%, vs MA200 -25%; Keel Paul A; Kurzius Lawrence Erik; Rosebrough Walter M Jr"
 2026-09-16,insider_buy_beaten_down,UBER,2026-09-10,open,70.9700,2026-09-11,72.9900,120,"1 buy(s) $10.01M @ 70.96, 6m -9%, vs MA200 -6%; KHOSROWSHAHI DARA"
-2026-09-17,growth_top10,ALL,2026-09-17,open,252.2100,,,250,"score 0.73; revenue +11% yoy (3y CAGR +10%); EPS +61% yoy; op margin n/a (n/a vs last year), FCF margin +18%; ROE +39%; 12-1 momentum +35% (above 200-day MA, +14%), 1y draw"
+2026-09-17,growth_top10,ALL,2026-09-17,open,252.2100,2026-09-18,251.4100,250,"score 0.73; revenue +11% yoy (3y CAGR +10%); EPS +61% yoy; op margin n/a (n/a vs last year), FCF margin +18%; ROE +39%; 12-1 momentum +35% (above 200-day MA, +14%), 1y draw"
+2026-09-18,newsday,NFLX,2026-09-18,open,71.7900,,,60,"gap -5.4%, vol 4.3x, 6m -22%, vs MA200 -16%"
+2026-09-18,falling_wedge_beaten_down,LMT,2026-09-18,open,533.3800,,,20,"score 0.77, stop 515.54, level 531.15"
+2026-09-18,falling_wedge_beaten_down,TDG,2026-09-18,open,1086.0500,,,20,"score 0.60, stop 1062.38, level 1083.72"
