@@ -1,6 +1,5 @@
 """Per-stock briefs: the rule-based read, the markdown and the file writer on synthetic data."""
 
-import numpy as np
 import pandas as pd
 
 from algovision import briefs as B
@@ -68,9 +67,9 @@ def test_markdown_and_writer(tmp_path, monkeypatch):
     day = pd.Timestamp(df.index[-10]).strftime("%Y-%m-%d")
     data = {"profile": _profile(), "news": _news(day)}
     row, md = B.build_brief("TST", df, data, ["news-day"], insider_buying=False)
-    for piece in ("**Read:", "Where the stock is", "What moved it", "What analysts say", "Last report and estimates", "Fundamentals", "Test Corp cuts guidance"):
+    for piece in ("**Read:", "Where the stock is", "Why it fell", "What analysts say", "Last report and estimates", "Fundamentals", "Test Corp cuts guidance"):
         assert piece in md
-    assert row["symbol"] == "TST" and row["consensus"] == "buy"
+    assert row["symbol"] == "TST" and row["consensus"] == "buy" and "why fell" in row
 
     class FakeProvider:
         def __init__(self, *a, **k):
@@ -85,3 +84,52 @@ def test_markdown_and_writer(tmp_path, monkeypatch):
     text = path.read_text()
     assert (tmp_path / "briefs_latest.md").exists() and len(rows) == 1
     assert "## Summary" in text and "no data" in text and "[TST]" in text
+
+
+def _drop_frame():
+    df = random_walk(400, seed=7).copy()
+    pos = len(df) - 30
+    df.iloc[pos:, df.columns.get_loc("Close")] *= 0.85  # -15% gap that stays: the largest down day of the window
+    df["Volume"] = 1_000_000.0
+    df.iloc[pos, df.columns.get_loc("Volume")] = 4_000_000.0
+    return df, pd.Timestamp(df.index[pos]).strftime("%Y-%m-%d")
+
+
+def test_decline_reason_found_only_with_evidence():
+    df, day = _drop_frame()
+    ctx = B.price_context(df)
+    assert ctx["biggest_drops"][0][0] == day and ctx["drop_volume"][day] > 3
+    an, ea = B.analyst_view(_profile()), B.earnings_view(_profile())
+    # a headline that names the company and states a cause on the drop day
+    why = B.decline_reason("TST", "Test Corp", ctx, _news(day), an, ea)
+    assert why["found"] and "guidance" in why["cause"] and any(day in d["day"] and d["evidence"] for d in why["days"])
+    # a headline that does not name the company is not evidence
+    other = [{"title": "Widgets sector cuts guidance", "summary": "", "publisher": "Wire", "date": day, "link": ""}]
+    why = B.decline_reason("TST", "Test Corp", ctx, other, an, ea)
+    assert not why["found"] and why["cause"] == "heavy volume, cause not found"
+    # nothing near the day: not found, and the markdown says so instead of guessing
+    why = B.decline_reason("TST", "Test Corp", ctx, [], an, ea)
+    assert not why["found"]
+    md = B.brief_markdown("TST", [], ctx, an, ea, B.fundamentals_view(_profile()), [], "flat", 0.0, [], why)
+    assert "No cause found in the data" in md and "No cause found for this day" in md
+    # a market-wide down day counts as evidence
+    bench = df.copy()
+    bench["Close"] = 100.0
+    bench.iloc[df.index.get_loc(pd.Timestamp(day)):, bench.columns.get_loc("Close")] = 97.0
+    why = B.decline_reason("TST", "Test Corp", ctx, [], an, ea, bench=bench)
+    assert why["found"] and why["cause"] == "market-wide"
+
+
+def test_decline_reason_uses_8k_filings():
+    df, day = _drop_frame()
+    ctx = B.price_context(df)
+    prof = _profile()
+    q_end = int(pd.Timestamp(day).timestamp()) - 86400 * 35
+    hist = [{"quarter": q_end, "epsActual": 0.9, "epsEstimate": 1.0, "surprisePercent": -0.1}]
+    prev = (pd.Timestamp(day) - pd.Timedelta(days=1)).strftime("%Y-%m-%d")
+    filings = [{"date": prev, "form": "8-K", "items": ["2.02"], "what": ["results of operations (earnings release)"]},
+               {"date": "2020-01-01", "form": "8-K", "items": ["5.02"], "what": ["officer or director change"]}]
+    why = B.decline_reason("TST", "Test Corp", ctx, [], B.analyst_view(prof), B.earnings_view(prof), filings=filings, earn_hist=hist)
+    assert why["found"] and why["cause"] == "earnings"
+    top = next(d for d in why["days"] if d["day"] == day)
+    assert any("8-K filed" in e and "EPS 0.90 vs 1.00" in e and "-10.0%" in e for e in top["evidence"])

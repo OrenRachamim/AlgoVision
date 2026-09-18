@@ -280,11 +280,14 @@ research brief per listed stock, and the running forward-test results against SP
 after every US close and commits the result to `journal/`.
 
 The briefs themselves go to `journal/briefs_<date>.md` (`algovision/briefs.py`): for every stock in the report tables,
-where it is (drawdown, moving averages, RSI), what moved it (largest down days with the headlines around them, latest
-news with summaries), what analysts say (consensus, targets, upgrades / downgrades, estimate revisions), the last
-report and the estimates, the fundamentals, and a rule-based read (signs of a bottom / undecided / still falling)
-whose signals are listed. Data: Yahoo Finance's quoteSummary and news feed (`algovision/data/briefs_data.py`, cached
-for a day). `--no-briefs` skips it.
+where it is (drawdown, moving averages, RSI), why it fell (the three largest down days of the last 90 bars, each with
+the evidence found: headlines that name the company and state a cause, an 8-K filed that day or the evening before
+with what it was about, rating or target cuts right after, abnormal volume, a market-wide down day; when nothing is
+found the brief says "not found" rather than guessing, and says when a day predates the news feed), the latest news
+with summaries, what analysts say (consensus, targets, upgrades / downgrades, estimate revisions), the last report
+and the estimates, the fundamentals, and a rule-based read (signs of a bottom / undecided / still falling) whose
+signals are listed. Data: Yahoo Finance's quoteSummary and news feed plus the EDGAR submissions index for 8-Ks
+(`algovision/data/briefs_data.py`, cached for a day). `--no-briefs` skips it.
 
 ## Delivery (`notify` command)
 

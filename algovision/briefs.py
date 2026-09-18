@@ -1,8 +1,9 @@
 """One research brief per stock in the daily report.
 
 Every name in the report tables is a stock that has fallen or just had news. The brief answers, from data:
-what the stock has done (price context), what moved it (the largest down days with the headlines around
-them, plus the latest news with one-paragraph summaries), what analysts say (consensus, targets, recent
+what the stock has done (price context), why it fell (the largest down days with the evidence found around
+each: headlines naming the company that state a cause, 8-K filings, rating cuts, market-wide days; otherwise
+"not found", nothing is inferred), the latest news with one-paragraph summaries, what analysts say (consensus, targets, recent
 upgrades / downgrades, estimate revisions), what the last report showed (EPS vs estimate, revenue growth,
 next report date), the fundamentals (valuation, margins, cash flow, balance sheet), and a **rule-based
 read**: signs of a bottom / undecided / still falling. The read is a transparent score over listed
@@ -12,6 +13,7 @@ signals, not a forecast; the signals are printed with it so the reader can disag
 from __future__ import annotations
 
 import datetime as dt
+import re
 from pathlib import Path
 from typing import Dict, Iterable, List, Optional, Tuple
 
@@ -75,6 +77,12 @@ def price_context(df: pd.DataFrame) -> Dict:
     hi_i, lo_i = win.idxmax(), win.idxmin()
     ret = c.pct_change()
     drops = ret.tail(90).nsmallest(3)
+    vol = df["Volume"].astype(float) if "Volume" in df.columns else pd.Series(np.nan, index=df.index)
+    vol_ratio = {}
+    for i in drops.index:
+        pos = df.index.get_loc(i)
+        base = vol.iloc[max(0, pos - 20):pos].median()
+        vol_ratio[pd.Timestamp(i).strftime("%Y-%m-%d")] = float(vol.iloc[pos] / base) if base and base == base else None
     delta = c.diff().tail(15)
     up, down = delta.clip(lower=0).mean(), -delta.clip(upper=0).mean()
     rsi = 100 - 100 / (1 + up / down) if down > 0 else 100.0
@@ -90,7 +98,132 @@ def price_context(df: pd.DataFrame) -> Dict:
         "new_low_5d": bool(win.tail(5).min() <= float(win.min())),
         "higher_low": bool(low20 > low_prev) if low_prev == low_prev else None, "rsi14": float(rsi),
         "biggest_drops": [(pd.Timestamp(i).strftime("%Y-%m-%d"), float(v)) for i, v in drops.items()],
+        "drop_volume": vol_ratio,
     }
+
+
+# words that make a headline near a down day a plausible stated cause, and what to call it (matched on word boundaries)
+CAUSE_WORDS = {
+    "earnings": ("earnings", "results", "quarter", "quarterly", "q1", "q2", "q3", "q4", "eps", "revenue", "revenues", "profit", "profits"),
+    "guidance": ("guidance", "outlook", "forecast", "warns", "warning", "lowers", "cuts forecast", "cut its", "trims"),
+    "rating cut": ("downgrade", "downgrades", "downgraded", "price target", "target cut", "cuts target", "lowers target"),
+    "legal/regulatory": ("lawsuit", "probe", "investigation", "sec", "doj", "ftc", "fda", "recall", "antitrust", "regulator", "regulators",
+                         "fined", "tariff", "tariffs", "subpoena"),
+    "deal/financing": ("acquisition", "acquire", "acquires", "merger", "offering", "convertible", "dilution", "notes", "buyout", "spin-off", "spinoff"),
+    "management": ("ceo", "cfo", "resigns", "resignation", "steps down", "departure"),
+    "demand/competition": ("demand", "competition", "competitor", "loses", "lost", "contract", "delay", "delays", "slowdown", "weak", "weakness"),
+    "price move": ("falls", "fall", "fell", "drops", "drop", "dropped", "plunge", "plunges", "plunged", "tumble", "tumbles", "tumbled", "sinks", "sank",
+                   "slides", "slid", "slump", "slumps", "sell-off", "selloff", "52-week low", "why", "down today", "shares down", "slammed"),
+}
+_CAUSE_RE = {k: re.compile(r"\b(?:" + "|".join(re.escape(w) for w in words) + r")\b") for k, words in CAUSE_WORDS.items()}
+RISE_WORDS = ("jump", "jumps", "soars", "soar", "rally", "rallies", "gains", "climbs", "surges", "strength seen", "up today", "rises", "rebound")
+# boilerplate that names the company but never states a cause
+NOISE_TITLES = ("trending stock", "should you buy", "what to know beyond", "which is the better", "better value stock", "dips more than",
+                "outpaces stock market", "settling at", "zacks rank", "moving average", "investors heavily search", "vs.", "here's why you should",
+                "is a great choice", "stock is up today", "stock is down today", "buy the dip")
+
+
+def _company_tokens(symbol: str, name: str) -> List[str]:
+    stop = {"the", "inc", "inc.", "corp", "corp.", "corporation", "co", "co.", "company", "plc", "ltd", "holdings", "group", "&", "and", "of"}
+    toks = [t.strip(",.") for t in (name or "").split()]
+    toks = [t for t in toks if t.lower() not in stop and len(t) > 2]
+    return [symbol.upper()] + toks[:2]
+
+
+_8K_TAGS = {"2.02": "earnings", "5.02": "management", "2.05": "restructuring", "2.06": "impairment", "1.01": "deal/financing",
+            "1.02": "deal/financing", "2.01": "deal/financing", "2.03": "deal/financing", "3.02": "deal/financing", "4.02": "restatement",
+            "1.03": "bankruptcy", "4.01": "auditor change", "7.01": "company disclosure (8-K)", "8.01": "company disclosure (8-K)"}
+
+
+def _filings_near(filings: List[Dict], day: str, earn_hist: List[Dict]) -> Tuple[List[str], List[str]]:
+    """8-K filings on the drop day or the evening before (release after the close -> drop next session)."""
+    d0 = pd.Timestamp(day)
+    ev, tags = [], []
+    for f in filings or []:
+        if not f.get("date"):
+            continue
+        lag = (d0 - pd.Timestamp(f["date"])).days
+        if not 0 <= lag <= 1:
+            continue
+        codes = [c for c in f.get("items", []) if c in _8K_TAGS]
+        if not codes:
+            continue
+        tags += [_8K_TAGS[c] for c in codes]
+        text = f"8-K filed {f['date']}: " + "; ".join(f.get("what") or codes)
+        if "2.02" in codes:
+            fdate = pd.Timestamp(f["date"])
+            q = [h for h in earn_hist or [] if h.get("quarter") and h.get("epsActual") is not None
+                 and 0 <= (fdate - pd.Timestamp(int(h["quarter"]), unit="s")).days <= 75]
+            if q:
+                h = max(q, key=lambda h: h["quarter"])
+                text += (f" (quarter to {_date(h['quarter'])}: EPS {_num(h['epsActual'], 2)} vs {_num(h.get('epsEstimate'), 2)} expected"
+                         + (f", {_pct(h['surprisePercent'], 1)}" if h.get("surprisePercent") is not None else "") + ")")
+        ev.append(text)
+    return ev, tags
+
+
+def decline_reason(symbol: str, name: str, ctx: Dict, news: List[Dict], an: Dict, ea: Dict, bench: Optional[pd.DataFrame] = None,
+                   filings: Optional[List[Dict]] = None, earn_hist: Optional[List[Dict]] = None) -> Dict:
+    """Evidence for why the stock fell on its largest down days: headlines that name the company and state a cause,
+    8-K filings on the day (earnings release, officer change, deal...), rating or target cuts right after, abnormal
+    volume, or a market-wide down day. Nothing is inferred beyond that."""
+    toks = _company_tokens(symbol, name)
+    bench_ret = bench["Close"].astype(float).pct_change() if bench is not None and len(bench) else None
+    dated = [x["date"] for x in news if x.get("date")]
+    oldest = min(dated) if dated else None
+    days, tags = [], []
+    for day, r in ctx["biggest_drops"]:
+        ev, day_tags = [], []
+        scored = []
+        for x in [x for x in news if x.get("date") and -1 <= (pd.Timestamp(x["date"]) - pd.Timestamp(day)).days <= 2]:
+            title, summ = (x.get("title") or "").lower(), (x.get("summary") or "").lower()
+            if not any(t.lower() in f"{title} {summ}" for t in toks) or any(n in title for n in NOISE_TITLES):
+                continue
+            in_title = [k for k, rx in _CAUSE_RE.items() if rx.search(title)]
+            in_summ = [k for k, rx in _CAUSE_RE.items() if rx.search(summ) and k not in in_title]
+            causes = [k for k in in_title + in_summ if k != "price move"]
+            score = 2 * len([k for k in in_title if k != "price move"]) + len([k for k in in_summ if k != "price move"])
+            score += 2 if "price move" in in_title else (1 if "price move" in in_summ else 0)
+            if any(w in title for w in RISE_WORDS):
+                score -= 3
+            if score <= 0 or not in_title:  # the title itself must state a cause or describe the fall
+                continue
+            scored.append((score, x, causes or ["news"]))
+        scored.sort(key=lambda t: (-t[0], abs((pd.Timestamp(t[1]["date"]) - pd.Timestamp(day)).days)))
+        fev, ftags = _filings_near(filings or [], day, earn_hist or [])
+        ev += fev
+        day_tags += ftags
+        for _, x, causes in scored[:3]:
+            day_tags += causes
+            ev.append(f"{x['date']} {x['title']}" + (f" ({x['publisher']})" if x.get("publisher") else "")
+                      + (f": {_sentences(x['summary'], 200)}" if x.get("summary") else ""))
+        d0 = pd.Timestamp(day)
+        cuts = [a for a in an.get("actions", [])
+                if a.get("date") and -1 <= (pd.Timestamp(a["date"]) - d0).days <= 3
+                and (a.get("action") == "down" or a.get("target_action") == "Lowers")]
+        if cuts:
+            day_tags.append("rating cut")
+            ev.append("rating/target cuts right after: " + "; ".join(
+                f"{a['firm']} {'downgrade' if a.get('action') == 'down' else 'target cut'}"
+                + (f" {_num(a.get('prior_target'), 0)} -> {_num(a.get('target'), 0)}" if a.get("target") and a.get("prior_target") else "")
+                for a in cuts[:3]))
+        spy = None
+        if bench_ret is not None and d0 in bench_ret.index:
+            spy = float(bench_ret.loc[d0])
+            if spy <= -0.015:
+                day_tags.append("market-wide")
+                ev.append(f"market-wide day: SPY {_pct(spy, 1)}")
+        vr = ctx.get("drop_volume", {}).get(day)
+        volume = f"{vr:.1f}x normal volume" if vr else ""
+        if vr and vr >= 2.5 and not day_tags:
+            day_tags.append("company event (heavy volume, cause not found)")
+        days.append({"day": day, "ret": r, "volume": volume, "spy": spy, "evidence": ev, "tags": list(dict.fromkeys(day_tags)),
+                     "before_feed": bool(oldest and (pd.Timestamp(oldest) - d0).days > 2)})
+        tags += day_tags
+    found = any(d["evidence"] for d in days)
+    tags = [t for t in dict.fromkeys(tags) if not t.startswith("company event")]
+    return {"found": found, "days": days, "oldest_news": oldest, "cause": ", ".join(tags) if tags else ("heavy volume, cause not found" if any(
+        t.startswith("company event") for d in days for t in d["tags"]) else "not found")}
 
 
 def analyst_view(profile: Dict) -> Dict:
@@ -262,7 +395,7 @@ def _news_near(news: List[Dict], day: str, window: int = 3) -> List[Dict]:
 # markdown
 # ----------------------------------------------------------------------------
 def brief_markdown(symbol: str, tables: List[str], ctx: Dict, an: Dict, ea: Dict, fu: Dict, news: List[Dict],
-                   label: str, score: float, why: List[str]) -> str:
+                   label: str, score: float, why: List[str], why_fell: Optional[Dict] = None) -> str:
     md = [f"## {tv(symbol)} {fu.get('name') or ''}".rstrip(), ""]
     md.append(f"*In today's tables: {', '.join(tables) if tables else '-'}. {fu.get('sector') or ''} / {fu.get('industry') or ''}.*")
     if fu.get("summary"):
@@ -277,11 +410,23 @@ def brief_markdown(symbol: str, tables: List[str], ctx: Dict, an: Dict, ea: Dict
               f"vs 50-day {_pct(ctx['dist_ma50'])}, vs 200-day {_pct(ctx['dist_ma200'])}; RSI(14) {ctx['rsi14']:.0f}."
               + (f" 52-week change {_pct(fu['chg_52w'])} vs S&P 500 {_pct(fu['spx_52w'])}." if fu.get("chg_52w") is not None else ""))
     md.append("")
-    md.append("**What moved it.** Largest down days in the last 90 bars:")
-    for day, r in ctx["biggest_drops"]:
-        near = _news_near(news, day)
-        head = "; ".join(f"{x['title']}" + (f" ({x['date']})" if x["date"] != day else "") for x in near[:2])
-        md.append(f"- {day}: {_pct(r, 1)}" + (f". News around it: {head}" if head else ""))
+    why = why_fell or {"found": False, "days": [], "cause": "not found"}
+    md.append("**Why it fell.** " + (
+        f"Cause found in the data ({why['cause']}). Largest down days in the last 90 bars and the evidence around each:" if why["found"]
+        else "No cause found in the data: no headline naming the company with a stated reason within 2 days of the largest down days, "
+             "no 8-K filing (earnings release, officer change, deal) on those days, no rating or target cut right after, and no "
+             "market-wide sell-off. Largest down days in the last 90 bars:"))
+    for d in why["days"]:
+        extra = ", ".join(x for x in (d["volume"], f"SPY {_pct(d['spy'], 1)}" if d.get("spy") is not None else "") if x)
+        line = f"- {d['day']}: {_pct(d['ret'], 1)}" + (f" ({extra})" if extra else "")
+        if d["evidence"]:
+            md.append(line + ":")
+            md += [f"  - {e}" for e in d["evidence"]]
+        elif d.get("before_feed"):
+            md.append(line + f". No cause found for this day (before the news feed starts on {why['oldest_news']}; "
+                      "only 8-K filings, rating changes and the market were checked).")
+        else:
+            md.append(line + ". No cause found for this day.")
     if news:
         md.append("")
         md.append("Latest news:")
@@ -342,17 +487,20 @@ def brief_markdown(symbol: str, tables: List[str], ctx: Dict, an: Dict, ea: Dict
     return "\n".join(md)
 
 
-def build_brief(symbol: str, df: pd.DataFrame, data: Dict, tables: List[str], insider_buying: bool = False) -> Tuple[Dict, str]:
+def build_brief(symbol: str, df: pd.DataFrame, data: Dict, tables: List[str], insider_buying: bool = False,
+                bench: Optional[pd.DataFrame] = None) -> Tuple[Dict, str]:
     profile, news = data.get("profile") or {}, data.get("news") or []
     ctx = price_context(df)
     an, ea, fu = analyst_view(profile), earnings_view(profile), fundamentals_view(profile)
     label, score, why = verdict(ctx, an, ea, fu, insider_buying)
-    row = {"symbol": symbol, "tables": ", ".join(tables), "read": LABELS[label].split(" (")[0], "score": score,
+    why_fell = decline_reason(symbol, fu.get("name") or "", ctx, news, an, ea, bench, filings=data.get("filings") or [],
+                              earn_hist=(profile.get("earningsHistory") or {}).get("history") or [])
+    row = {"symbol": symbol, "tables": ", ".join(tables), "read": LABELS[label].split(" (")[0], "score": score, "why fell": why_fell["cause"],
            "last": ctx["last"], "from 52w high": ctx["drawdown"], "vs MA50": ctx["dist_ma50"], "vs MA200": ctx["dist_ma200"],
            "consensus": (an.get("key") or "").replace("_", " "), "analysts": an.get("n"), "target upside": an.get("upside"),
            "up/down 90d": f"{an.get('n_up', 0)}/{an.get('n_down', 0)}", "EPS est 30d": ea.get("y0_rev_30d"),
            "last surprise": ea.get("surprise"), "next report": ea.get("next_date")}
-    return row, brief_markdown(symbol, tables, ctx, an, ea, fu, news, label, score, why)
+    return row, brief_markdown(symbol, tables, ctx, an, ea, fu, news, label, score, why, why_fell)
 
 
 def summary_table(rows: List[Dict]) -> str:
@@ -363,6 +511,7 @@ def summary_table(rows: List[Dict]) -> str:
     d = d.sort_values(["read", "score"], key=lambda s: s.map(order) if s.name == "read" else -s).reset_index(drop=True)
     out = pd.DataFrame({
         "symbol": d["symbol"].map(tv), "in tables": d["tables"], "read": d["read"], "score": d["score"].map(lambda v: f"{v:+g}"),
+        "why fell": d["why fell"] if "why fell" in d else "",
         "last": d["last"].map(lambda v: f"{v:.2f}"), "from 52w high": d["from 52w high"].map(_pct), "vs MA50": d["vs MA50"].map(_pct),
         "consensus": d["consensus"], "analysts": d["analysts"].map(lambda v: "" if v is None or pd.isna(v) else f"{int(v)}"),
         "target upside": d["target upside"].map(_pct), "up/down 90d": d["up/down 90d"],
@@ -374,7 +523,7 @@ def summary_table(rows: List[Dict]) -> str:
 
 def write_briefs(out_dir: Path, today: str, symbols: Iterable[str], frames: Dict[str, pd.DataFrame], tables: Dict[str, List[str]],
                  insider_symbols: Iterable[str] = (), cache_dir: Optional[Path] = None, workers: int = 4, offline: bool = False,
-                 progress=None) -> Tuple[Path, List[Dict]]:
+                 progress=None, bench: Optional[pd.DataFrame] = None) -> Tuple[Path, List[Dict]]:
     """Write ``briefs_<today>.md`` / ``briefs_latest.md`` for every symbol and return the summary rows."""
     from algovision.data.briefs_data import BriefsProvider
     from algovision.data.provider import _DEFAULT_CACHE
@@ -390,14 +539,16 @@ def write_briefs(out_dir: Path, today: str, symbols: Iterable[str], frames: Dict
             parts.append(f"## {tv(s)}\n\nno data\n")
             continue
         try:
-            row, md = build_brief(s, frames[s], data[s], tables.get(s, []), insider_buying=s in insiders)
+            row, md = build_brief(s, frames[s], data[s], tables.get(s, []), insider_buying=s in insiders, bench=bench)
         except Exception as exc:  # one bad profile must not sink the whole file
             parts.append(f"## {tv(s)}\n\nbrief unavailable: {exc}\n")
             continue
         rows.append(row)
         parts.append(md)
     head = [f"# AlgoVision stock briefs - {today}\n",
-            f"One brief per name in today's report tables ({len(symbols)} stocks): where the stock is, what moved it, what analysts "
+            f"One brief per name in today's report tables ({len(symbols)} stocks): where the stock is, why it fell (only evidence "
+            "found in the data: headlines naming the company near the largest down days, rating cuts, market-wide days; otherwise "
+            "\"not found\"), what analysts "
             "say, the last report and the estimates, the fundamentals, and a rule-based read (signs of a bottom / undecided / "
             "still falling) whose signals are listed so it can be checked. Data: Yahoo Finance (analysts, estimates, "
             "statistics, news). Systematic screens, not investment advice.\n",
