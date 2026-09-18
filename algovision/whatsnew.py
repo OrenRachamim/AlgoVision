@@ -84,7 +84,7 @@ def journal_new_signals(out_dir: Path) -> List[str]:
     return out
 
 
-def build_whatsnew(out_dir: Path, today: str, report_text: Optional[str] = None) -> str:
+def build_whatsnew(out_dir: Path, today: str, report_text: Optional[str] = None, briefs_url: Optional[str] = None) -> str:
     out_dir = Path(out_dir)
     text = report_text if report_text is not None else (out_dir / "report_latest.md").read_text(encoding="utf-8")
     cur = section_tickers(text)
@@ -120,12 +120,14 @@ def build_whatsnew(out_dir: Path, today: str, report_text: Optional[str] = None)
              "News-day": "news-day", "Falling wedge, beaten-down": "falling wedge"}
     counts = ", ".join(f"{short.get(label, label)} {len(v)}" for label, v in cur.items())
     md.append(f"Tables now: {counts}. Full report attached. Not investment advice.")
+    if briefs_url:
+        md.append(f"One research brief per listed stock (price context, what moved it, analysts, last report, fundamentals, rule-based read): {briefs_url}")
     return "\n".join(md) + "\n"
 
 
-def write_whatsnew(out_dir: Path, today: str, report_text: Optional[str] = None) -> Path:
+def write_whatsnew(out_dir: Path, today: str, report_text: Optional[str] = None, briefs_url: Optional[str] = None) -> Path:
     out_dir = Path(out_dir)
-    text = build_whatsnew(out_dir, today, report_text)
+    text = build_whatsnew(out_dir, today, report_text, briefs_url)
     (out_dir / f"new_{today}.md").write_text(text, encoding="utf-8")
     p = out_dir / "new_latest.md"
     p.write_text(text, encoding="utf-8")

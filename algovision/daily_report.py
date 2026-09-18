@@ -1,12 +1,13 @@
-"""One-file daily report: insider buying, short-horizon signals, forward-test results.
+"""One-file daily report: insider buying, short-horizon signals, one research brief per listed stock, forward-test results.
 
-Designed to run right after ``journal`` (which refreshes prices and EDGAR filings), fully from
-cache, and to be pasted / translated verbatim by the scheduled routine.
+Designed to run right after ``journal`` (which refreshes prices and EDGAR filings), from cache except the
+per-stock briefs (analysts, estimates, news from Yahoo Finance, cached for a day), and to be pasted / translated verbatim by the scheduled routine.
 """
 
 from __future__ import annotations
 
 import datetime as dt
+import os
 from pathlib import Path
 from typing import Dict, List, Optional
 
@@ -20,12 +21,16 @@ from algovision.links import tv
 from algovision.scanner import Scanner
 
 
+# where the committed briefs file can be read (the journal directory is pushed after every run)
+BRIEFS_URL = os.environ.get("ALGOVISION_BRIEFS_URL", "https://github.com/OrenRachamim/AlgoVision/blob/claude/stock-pattern-detection-b94x35/journal/briefs_{date}.md")
+
+
 def _pct(v, d=0):
     return "" if v is None or pd.isna(v) else f"{v * 100:+.{d}f}%"
 
 
 def build_report(out_dir: Path, universe: str = "all", cache_dir: Optional[Path] = None, insider_days: int = 45,
-                 growth_top: int = 15, today: Optional[str] = None, workers: int = 4) -> Path:
+                 growth_top: int = 15, today: Optional[str] = None, workers: int = 4, briefs: bool = True) -> Path:
     """``growth_top`` is accepted for backward compatibility and ignored: the growth screen is no longer part of the report."""
     from algovision.insiders_scan import insider_signals
     from algovision.research.anomalies import newsday_signals
@@ -53,9 +58,17 @@ def build_report(out_dir: Path, universe: str = "all", cache_dir: Optional[Path]
     except Exception as exc:  # noqa: BLE001
         sig, tx = pd.DataFrame(), pd.DataFrame()
         md.append(f"EDGAR scan failed: {exc}\n")
+    brief_tables: Dict[str, List[str]] = {}
+
+    def tag(syms, label):
+        for x in syms:
+            brief_tables.setdefault(x, []).append(label)
+
     if len(sig):
         bd = sig[sig["beaten_down"]]
         rest = sig[~sig["beaten_down"]]
+        tag(bd["symbol"], "insider buys (beaten-down)")
+        tag(rest["symbol"], "insider buys (other)")
         for title, d in (("### Beaten-down stocks (the tested setup)", bd), ("### Other stocks with insider purchases (context)", rest)):
             md.append(title + "\n")
             if not len(d):
@@ -75,6 +88,7 @@ def build_report(out_dir: Path, universe: str = "all", cache_dir: Optional[Path]
     nd = newsday_signals(lambda s: frames[s], [s for s in symbols if s in frames], max_age=5)
     md.append("### News-day rule (>=4% gap on >=3x volume in a beaten-down stock, last 5 bars; hold ~60 bars; tested +6-7% vs random)\n")
     if len(nd):
+        tag(nd["symbol"], "news-day")
         t = nd[["symbol", "news_date", "bars_ago", "gap", "volume_ratio", "ret_6m", "dist_ma200", "last_close", "since_news", "bars_left"]].copy()
         for c in ("gap", "ret_6m", "dist_ma200", "since_news"):
             t[c] = t[c].map(lambda v: _pct(v, 1))
@@ -92,13 +106,33 @@ def build_report(out_dir: Path, universe: str = "all", cache_dir: Optional[Path]
         if df is None or len(df) < 260:
             continue
         for m in sc.analyse_frame(s, df, mode="current"):
+            tag([s], "falling wedge")
             rows.append({"symbol": tv(s), "status": m.status, "score": round(m.score, 2), "start": m.start_date, "end": m.end_date,
                          "breakout": m.breakout_date or "", "level": round(m.level, 2), "stop": round(m.stop, 2),
                          "last": round(m.last_close, 2), "6m": _pct(m.metrics["context"]["ret_126"]), "vs MA200": _pct(m.metrics["context"]["dist_ma200"])})
     md.append("### Falling Wedge in beaten-down stocks (confirmed = broke out within 5 bars; forming = still inside; hold ~20 bars; tested +3% vs random)\n")
     md.append((pd.DataFrame(rows).sort_values(["status", "score"], ascending=[True, False]).to_markdown(index=False) if rows else "none") + "\n")
-    # 3. forward-test journal
-    md.append("## 3. Forward test (journal)\n")
+    # 3. one research brief per name in the tables above
+    md.append("## 3. Stock briefs (one per name in the tables above)\n")
+    briefs_written = False
+    if briefs and brief_tables:
+        from algovision.briefs import write_briefs
+        try:
+            bpath, brows = write_briefs(out_dir, today, list(brief_tables), frames, brief_tables,
+                                        insider_symbols=[x for x, t in brief_tables.items() if any(l.startswith("insider") for l in t)],
+                                        cache_dir=cache, workers=workers)
+            from algovision.briefs import summary_table
+            md.append(f"Full briefs (price context, what moved it, analysts, last report, fundamentals) for {len(brows)} stocks in "
+                      f"`{bpath.name}`. The *read* column is a rule-based score over listed signals (signs of a bottom / undecided / "
+                      "still falling), not a forecast.\n")
+            md.append(summary_table(brows))
+            briefs_written = True
+        except Exception as exc:  # noqa: BLE001
+            md.append(f"briefs unavailable: {exc}\n")
+    else:
+        md.append("skipped\n")
+    # 4. forward-test journal
+    md.append("## 4. Forward test (journal)\n")
     latest = out_dir / "latest.md"
     if latest.exists():
         text = latest.read_text(encoding="utf-8")
@@ -111,7 +145,8 @@ def build_report(out_dir: Path, universe: str = "all", cache_dir: Optional[Path]
     from algovision.whatsnew import write_whatsnew
 
     text = "\n".join(md)
-    write_whatsnew(out_dir, today, text)          # compares with the previous dated report before it is overwritten
+    briefs_url = BRIEFS_URL.format(date=today) if briefs_written else None
+    write_whatsnew(out_dir, today, text, briefs_url)   # compares with the previous dated report before it is overwritten
     path = out_dir / f"report_{today}.md"
     path.write_text(text, encoding="utf-8")
     (out_dir / "report_latest.md").write_text(text, encoding="utf-8")

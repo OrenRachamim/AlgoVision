@@ -270,6 +270,7 @@ def build_parser() -> argparse.ArgumentParser:
     dr.add_argument("--cache-dir", default=None)
     dr.add_argument("--workers", type=int, default=4)
     dr.add_argument("--date", default=None)
+    dr.add_argument("--no-briefs", action="store_true", help="skip the per-stock research briefs (no network needed then)")
 
     no = sub.add_parser("notify", help="send a report file to Telegram / e-mail (configured by environment variables, see algovision/notify.py)")
     no.add_argument("--file", default="journal/report_latest.md")
@@ -376,7 +377,7 @@ def main(argv: Optional[List[str]] = None) -> int:
     if args.cmd == "daily-report":
         from algovision.daily_report import build_report
         p = build_report(Path(args.out), args.universe, Path(args.cache_dir) if args.cache_dir else None, args.insider_days,
-                         args.top, args.date, args.workers)
+                         args.top, args.date, args.workers, briefs=not args.no_briefs)
         print(p.read_text(encoding="utf-8"))
         return 0
     if args.cmd == "insiders":
