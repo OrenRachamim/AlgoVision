@@ -1,68 +1,66 @@
 # AlgoVision stock briefs - 2026-09-21
 
-One brief per name in today's report tables (57 stocks): where the stock is, why it fell (only evidence found in the data: headlines naming the company near the largest down days, rating cuts, market-wide days; otherwise "not found"), what analysts say, the last report and the estimates, the fundamentals, and a rule-based read (signs of a bottom / undecided / still falling) whose signals are listed so it can be checked. Data: Yahoo Finance (analysts, estimates, statistics, news). Systematic screens, not investment advice.
+One brief per name in today's report tables (55 stocks): where the stock is, why it fell (only evidence found in the data: headlines naming the company near the largest down days, rating cuts, market-wide days; otherwise "not found"), what analysts say, the last report and the estimates, the fundamentals, and a rule-based read (signs of a bottom / undecided / still falling) whose signals are listed so it can be checked. Data: Yahoo Finance (analysts, estimates, statistics, news). Systematic screens, not investment advice.
 
 ## Summary
 
 | symbol                                                 | in tables                                 | read              |   score | why fell                                                                         |    last | from 52w high   | vs MA50   | consensus   |   analysts | target upside   | up/down 90d   | EPS est 30d   | last surprise   | next report   |
 |:-------------------------------------------------------|:------------------------------------------|:------------------|--------:|:---------------------------------------------------------------------------------|--------:|:----------------|:----------|:------------|-----------:|:----------------|:--------------|:--------------|:----------------|:--------------|
-| [AMT](https://www.tradingview.com/chart/?symbol=AMT)   | insider buys (other)                      | signs of a bottom |    10.5 | not found                                                                        |  173.98 | -10%            | +1%       | buy         |         23 | +24%            | 3/0           | +5.8%         | +20.6%          | 2026-10-27    |
-| [ECL](https://www.tradingview.com/chart/?symbol=ECL)   | insider buys (other)                      | signs of a bottom |     8.5 | market-wide                                                                      |  269.46 | -12%            | -3%       | buy         |         21 | +21%            | 1/0           | -0.1%         | +0.5%           | 2026-10-27    |
-| [INTC](https://www.tradingview.com/chart/?symbol=INTC) | insider buys (other)                      | signs of a bottom |     7.5 | market-wide                                                                      |  108.6  | -23%            | +12%      | buy         |         43 | +7%             | 1/0           | +0.5%         | +94.6%          | 2026-10-22    |
-| [KDP](https://www.tradingview.com/chart/?symbol=KDP)   | insider buys (other)                      | signs of a bottom |     7.5 | not found                                                                        |   30.96 | -8%             | -1%       | buy         |         17 | +17%            | 2/0           | +0.2%         | +6.2%           | 2026-10-26    |
-| [DVN](https://www.tradingview.com/chart/?symbol=DVN)   | insider buys (other)                      | signs of a bottom |     7.5 | earnings                                                                         |   48.61 | -5%             | +6%       | strong buy  |         28 | +24%            | 0/0           | -1.9%         | +11.3%          | 2026-11-04    |
-| [VRSK](https://www.tradingview.com/chart/?symbol=VRSK) | falling wedge                             | signs of a bottom |     6.5 | earnings, management, rating cut                                                 |  175.41 | -30%            | -7%       | buy         |         17 | +34%            | 1/0           | -0.0%         | +2.4%           | 2026-10-28    |
-| [LMT](https://www.tradingview.com/chart/?symbol=LMT)   | falling wedge                             | signs of a bottom |     6   | heavy volume, cause not found                                                    |  533.38 | -20%            | -4%       | buy         |         18 | +20%            | 2/0           | +0.1%         | +10.3%          | 2026-10-20    |
-| [FOX](https://www.tradingview.com/chart/?symbol=FOX)   | insider buys (other)                      | signs of a bottom |     5.5 | deal/financing, company disclosure (8-K)                                         |   57.74 | -14%            | +3%       |             |            |                 | 1/1           |               |                 | 2026-10-29    |
-| [AME](https://www.tradingview.com/chart/?symbol=AME)   | insider buys (other)                      | signs of a bottom |     5.5 | market-wide                                                                      |  237.64 | -8%             | -1%       | buy         |         18 | +17%            | 0/0           | +0.2%         | +4.8%           | 2026-10-29    |
-| [AXON](https://www.tradingview.com/chart/?symbol=AXON) | news-day                                  | signs of a bottom |     5.5 | earnings, deal/financing, company disclosure (8-K), demand/competition           |  447.76 | -42%            | -18%      | buy         |         19 | +58%            | 0/0           | -0.6%         | +2.0%           | 2026-11-03    |
-| [XYL](https://www.tradingview.com/chart/?symbol=XYL)   | falling wedge                             | signs of a bottom |     5.5 | market-wide, management, company disclosure (8-K), earnings, guidance            |  107.56 | -29%            | -7%       | buy         |         16 | +43%            | 1/0           | -0.0%         | +9.2%           | 2026-11-03    |
-| [HON](https://www.tradingview.com/chart/?symbol=HON)   | falling wedge                             | signs of a bottom |     5   | deal/financing, earnings, management, company disclosure (8-K), rating cut       |  206.46 | -20%            | -8%       | buy         |         22 | +28%            | 2/0           | -0.2%         | +7.2%           | 2026-10-22    |
-| [PFE](https://www.tradingview.com/chart/?symbol=PFE)   | insider buys (other)                      | signs of a bottom |     4.5 | company disclosure (8-K), management, rating cut                                 |   27.66 | -5%             | +4%       | buy         |         26 | +4%             | 0/1           | +0.0%         | +12.9%          | 2026-11-03    |
-| [IDXX](https://www.tradingview.com/chart/?symbol=IDXX) | falling wedge                             | signs of a bottom |     4.5 | market-wide                                                                      |  511.65 | -33%            | -7%       | buy         |         13 | +37%            | 0/0           | +1.2%         | +8.5%           | 2026-11-02    |
-| [UBER](https://www.tradingview.com/chart/?symbol=UBER) | insider buys (other)                      | signs of a bottom |     4   | earnings                                                                         |   70.5  | -30%            | -4%       | buy         |         46 | +44%            | 0/0           | -1.3%         | +40.2%          | 2026-11-03    |
-| [CEG](https://www.tradingview.com/chart/?symbol=CEG)   | insider buys (beaten-down)                | signs of a bottom |     3.5 | heavy volume, cause not found                                                    |  254.71 | -37%            | -6%       | buy         |         20 | +37%            | 0/0           | +0.3%         | +11.7%          | 2026-11-09    |
-| [WELL](https://www.tradingview.com/chart/?symbol=WELL) | insider buys (other)                      | signs of a bottom |     3.5 | company disclosure (8-K)                                                         |  228.87 | -9%             | -3%       | buy         |         22 | +15%            | 0/0           |               | -16.9%          | 2026-10-26    |
-| [NFLX](https://www.tradingview.com/chart/?symbol=NFLX) | news-day                                  | signs of a bottom |     3   | earnings, rating cut                                                             |   71.79 | -42%            | -5%       | buy         |         45 | +30%            | 0/2           | +0.0%         | +1.5%           | 2026-10-20    |
-| [PODD](https://www.tradingview.com/chart/?symbol=PODD) | insider buys (beaten-down)                | undecided         |     2.5 | earnings, rating cut, market-wide                                                |  140.6  | -59%            | -7%       | buy         |         22 | +22%            | 0/5           | -0.1%         | +14.3%          | 2026-11-05    |
-| [BSX](https://www.tradingview.com/chart/?symbol=BSX)   | insider buys (beaten-down)                | undecided         |     2.5 | rating cut                                                                       |   43.34 | -59%            | -7%       | buy         |         29 | +42%            | 0/2           | -0.7%         | +3.9%           | 2026-10-28    |
-| [MSCI](https://www.tradingview.com/chart/?symbol=MSCI) | insider buys (other)                      | undecided         |     2.5 | earnings, rating cut                                                             |  552.87 | -14%            | -3%       | buy         |         17 | +25%            | 0/0           | +0.4%         | -0.8%           | 2026-10-20    |
-| [ALGN](https://www.tradingview.com/chart/?symbol=ALGN) | falling wedge                             | undecided         |     2.5 | management, company disclosure (8-K)                                             |  147.61 | -25%            | -11%      | buy         |         15 | +41%            | 0/0           | +0.0%         | +1.7%           | 2026-10-28    |
-| [LHX](https://www.tradingview.com/chart/?symbol=LHX)   | falling wedge                             | undecided         |     2.5 | earnings, rating cut, management, company disclosure (8-K)                       |  247.29 | -34%            | -10%      | buy         |         14 | +38%            | 0/0           | +1.0%         | +27.9%          | 2026-10-29    |
-| [TXT](https://www.tradingview.com/chart/?symbol=TXT)   | falling wedge                             | undecided         |     2.5 | earnings, market-wide                                                            |   79.69 | -21%            | -7%       | buy         |         15 | +28%            | 0/0           | +0.1%         | +4.8%           | 2026-10-22    |
-| [ARE](https://www.tradingview.com/chart/?symbol=ARE)   | insider buys (other)                      | undecided         |     2   | earnings, rating cut                                                             |   53.3  | -35%            | +5%       | hold        |         14 | +0%             | 0/0           | -29.1%        | +26.2%          | 2026-10-26    |
-| [MO](https://www.tradingview.com/chart/?symbol=MO)     | insider buys (other)                      | undecided         |     2   | earnings, rating cut                                                             |   69.52 | -6%             | +2%       | hold        |         11 | +1%             | 0/0           | +0.0%         | -1.2%           | 2026-10-29    |
-| [YUM](https://www.tradingview.com/chart/?symbol=YUM)   | falling wedge                             | undecided         |     2   | rating cut                                                                       |  137.99 | -17%            | -7%       | buy         |         23 | +25%            | 1/0           | -3.7%         | +3.7%           | 2026-11-03    |
-| [AON](https://www.tradingview.com/chart/?symbol=AON)   | insider buys (other)                      | undecided         |     1.5 | deal/financing, company disclosure (8-K), rating cut                             |  295.64 | -22%            | -14%      | buy         |         19 | +30%            | 0/1           | -1.6%         | +0.3%           | 2026-10-30    |
-| [INTU](https://www.tradingview.com/chart/?symbol=INTU) | falling wedge                             | undecided         |     1.5 | earnings, restructuring, company disclosure (8-K)                                |  303.19 | -56%            | -7%       | buy         |         31 | +34%            | 0/4           | -12.1%        | +12.3%          | 2026-11-19    |
-| [MCD](https://www.tradingview.com/chart/?symbol=MCD)   | falling wedge                             | undecided         |     1.5 | not found                                                                        |  248.24 | -26%            | -6%       | buy         |         31 | +26%            | 0/0           | -0.1%         | +1.8%           | 2026-11-05    |
-| [NEE](https://www.tradingview.com/chart/?symbol=NEE)   | falling wedge                             | undecided         |     1.5 | deal/financing, company disclosure (8-K), management                             |   80.47 | -17%            | -5%       | buy         |         18 | +22%            | 0/0           | +0.0%         | +3.8%           | 2026-10-27    |
-| [TDG](https://www.tradingview.com/chart/?symbol=TDG)   | falling wedge                             | undecided         |     1.5 | company disclosure (8-K), rating cut, market-wide                                | 1086.05 | -25%            | -10%      | buy         |         19 | +39%            | 0/2           | +0.0%         | +5.5%           | 2026-11-05    |
-| [TSN](https://www.tradingview.com/chart/?symbol=TSN)   | insider buys (beaten-down), falling wedge | undecided         |     1   | company disclosure (8-K), management, rating cut                                 |   52.77 | -22%            | -6%       | hold        |         12 | +22%            | 1/0           | -6.2%         | +0.3%           | 2026-11-09    |
-| [TFC](https://www.tradingview.com/chart/?symbol=TFC)   | insider buys (other)                      | undecided         |     1   | management, company disclosure (8-K), deal/financing, guidance, rating cut       |   48.56 | -10%            | -5%       | hold        |         18 | +13%            | 0/6           | +0.5%         | +13.8%          | 2026-10-16    |
-| [TAP](https://www.tradingview.com/chart/?symbol=TAP)   | falling wedge                             | undecided         |     1   | not found                                                                        |   37.53 | -29%            | -8%       | hold        |         21 | +21%            | 0/0           | -0.2%         | +4.4%           | 2026-11-03    |
-| [TMUS](https://www.tradingview.com/chart/?symbol=TMUS) | falling wedge                             | undecided         |     1   | earnings, rating cut, news                                                       |  168.18 | -28%            | -7%       | buy         |         24 | +45%            | 1/1           | +0.0%         | +14.9%          | 2026-10-28    |
-| [WEC](https://www.tradingview.com/chart/?symbol=WEC)   | falling wedge                             | undecided         |     1   | company disclosure (8-K)                                                         |  103.17 | -12%            | -5%       | buy         |         17 | +18%            | 0/0           | +0.1%         | +12.3%          | 2026-10-29    |
-| [APTV](https://www.tradingview.com/chart/?symbol=APTV) | insider buys (beaten-down)                | undecided         |     0.5 | earnings, rating cut, market-wide                                                |   43.59 | -51%            | -14%      | buy         |         18 | +53%            | 0/2           | +0.0%         | +14.1%          | 2026-10-29    |
-| [AOS](https://www.tradingview.com/chart/?symbol=AOS)   | falling wedge                             | undecided         |     0.5 | earnings, rating cut, market-wide                                                |   56.95 | -28%            | -6%       | hold        |         11 | +23%            | 0/0           | -0.1%         | +11.5%          | 2026-10-27    |
-| [DOW](https://www.tradingview.com/chart/?symbol=DOW)   | falling wedge                             | undecided         |     0.5 | rating cut                                                                       |   28.73 | -30%            | -4%       | buy         |         16 | +20%            | 0/1           | -4.9%         | +12.6%          | 2026-10-22    |
-| [VST](https://www.tradingview.com/chart/?symbol=VST)   | insider buys (beaten-down)                | undecided         |     0   | rating cut, market-wide                                                          |  140.67 | -35%            | -5%       | strong buy  |         19 | +55%            | 0/0           | -1.8%         | -54.2%          | 2026-11-05    |
-| [FISV](https://www.tradingview.com/chart/?symbol=FISV) | insider buys (beaten-down)                | undecided         |     0   | management, company disclosure (8-K)                                             |   47.19 | -65%            | -9%       | hold        |         27 | +28%            | 0/0           | -0.3%         | -3.9%           | 2026-10-28    |
-| [STZ](https://www.tradingview.com/chart/?symbol=STZ)   | falling wedge                             | undecided         |     0   | company disclosure (8-K), earnings, rating cut                                   |  118.97 | -28%            | -9%       | buy         |         23 | +42%            | 0/0           | -0.1%         | +7.1%           | 2026-10-06    |
-| [LII](https://www.tradingview.com/chart/?symbol=LII)   | falling wedge                             | undecided         |     0   | earnings, rating cut, market-wide                                                |  359.23 | -37%            | -18%      | buy         |         13 | +37%            | 0/1           | -0.3%         | +0.3%           | 2026-10-28    |
-| [NVR](https://www.tradingview.com/chart/?symbol=NVR)   | insider buys (other)                      | undecided         |    -0.5 | rating cut, earnings                                                             | 6150.47 | -25%            | -3%       | hold        |          5 | +10%            | 1/0           | +0.0%         | -6.7%           | 2026-10-21    |
-| [CRH](https://www.tradingview.com/chart/?symbol=CRH)   | falling wedge                             | undecided         |    -0.5 | earnings, deal/financing, news, rating cut, management, company disclosure (8-K) |   86.15 | -34%            | -10%      | strong buy  |         24 | +57%            | 0/0           | -0.8%         | -4.2%           | 2026-10-29    |
-| [PPL](https://www.tradingview.com/chart/?symbol=PPL)   | falling wedge                             | undecided         |    -0.5 | deal/financing, company disclosure (8-K)                                         |   33.34 | -15%            | -4%       | buy         |         15 | +21%            | 0/0           | +0.1%         | -4.0%           | 2026-11-04    |
-| [PEG](https://www.tradingview.com/chart/?symbol=PEG)   | falling wedge                             | undecided         |    -0.5 | rating cut                                                                       |   69.77 | -18%            | -7%       | buy         |         18 | +22%            | 0/0           | +0.0%         | +7.7%           | 2026-11-02    |
-| [SO](https://www.tradingview.com/chart/?symbol=SO)     | falling wedge                             | undecided         |    -0.5 | rating cut                                                                       |   85.52 | -12%            | -6%       | hold        |         19 | +17%            | 0/1           | +0.1%         | +11.8%          | 2026-10-29    |
-| [COO](https://www.tradingview.com/chart/?symbol=COO)   | insider buys (beaten-down)                | undecided         |    -1   | earnings, company disclosure (8-K), guidance, demand/competition, rating cut     |   55.29 | -34%            | -21%      | buy         |         14 | +20%            | 0/4           | -2.1%         | +2.7%           |               |
-| [DTE](https://www.tradingview.com/chart/?symbol=DTE)   | falling wedge                             | undecided         |    -1   | company disclosure (8-K)                                                         |  128.52 | -17%            | -8%       | buy         |         14 | +22%            | 0/0           | +0.0%         | +16.3%          | 2026-10-29    |
-| [NCLH](https://www.tradingview.com/chart/?symbol=NCLH) | falling wedge                             | undecided         |    -1   | earnings, rating cut, market-wide                                                |   14.12 | -45%            | -21%      | buy         |         25 | +45%            | 0/2           | +0.2%         | +22.8%          | 2026-11-04    |
-| [CINF](https://www.tradingview.com/chart/?symbol=CINF) | insider buys (other)                      | undecided         |    -1.5 | rating cut                                                                       |  169    | -12%            | -3%       | hold        |          6 | +13%            | 0/2           | -1.6%         | -21.3%          | 2026-10-26    |
-| [ATO](https://www.tradingview.com/chart/?symbol=ATO)   | falling wedge                             | undecided         |    -1.5 | rating cut                                                                       |  160.3  | -16%            | -6%       | hold        |         11 | +16%            | 0/1           | -0.1%         | +5.6%           | 2026-11-04    |
-| [EXC](https://www.tradingview.com/chart/?symbol=EXC)   | falling wedge                             | undecided         |    -1.5 | earnings, company disclosure (8-K), rating cut                                   |   42.07 | -15%            | -6%       | hold        |         17 | +16%            | 0/0           | +0.1%         | -3.9%           | 2026-11-03    |
-| [NRG](https://www.tradingview.com/chart/?symbol=NRG)   | falling wedge                             | undecided         |    -1.5 | earnings, rating cut, market-wide                                                |  103.66 | -43%            | -15%      | buy         |         16 | +82%            | 0/0           | +0.3%         | -14.4%          | 2026-11-05    |
-| [CMS](https://www.tradingview.com/chart/?symbol=CMS)   | falling wedge                             | still falling     |    -2.5 | rating cut                                                                       |   65.34 | -17%            | -7%       | buy         |         12 | +20%            | 0/1           | -0.0%         | +3.1%           | 2026-10-29    |
+| [AMT](https://www.tradingview.com/chart/?symbol=AMT)   | insider buys (other)                      | signs of a bottom |    10.5 | not found                                                                        |  174.6  | -9%             | +1%       | buy         |         23 | +24%            | 3/0           | +5.8%         | +20.6%          | 2026-10-27    |
+| [INTC](https://www.tradingview.com/chart/?symbol=INTC) | insider buys (other)                      | signs of a bottom |     7.5 | market-wide                                                                      |  121.78 | -14%            | +25%      | buy         |         43 | +7%             | 1/0           | +0.5%         | +94.6%          | 2026-10-22    |
+| [AME](https://www.tradingview.com/chart/?symbol=AME)   | insider buys (other)                      | signs of a bottom |     7.5 | market-wide                                                                      |  241.23 | -7%             | +0%       | buy         |         18 | +17%            | 0/0           | +0.2%         | +4.8%           | 2026-10-29    |
+| [ECL](https://www.tradingview.com/chart/?symbol=ECL)   | insider buys (other)                      | signs of a bottom |     7.5 | market-wide                                                                      |  269.98 | -12%            | -3%       | buy         |         21 | +21%            | 1/0           | -0.1%         | +0.5%           | 2026-10-27    |
+| [KDP](https://www.tradingview.com/chart/?symbol=KDP)   | insider buys (other)                      | signs of a bottom |     7.5 | not found                                                                        |   30.62 | -9%             | -2%       | buy         |         17 | +17%            | 2/0           | +0.2%         | +6.2%           | 2026-10-26    |
+| [DVN](https://www.tradingview.com/chart/?symbol=DVN)   | insider buys (other)                      | signs of a bottom |     7.5 | earnings                                                                         |   47.59 | -7%             | +3%       | strong buy  |         28 | +24%            | 0/0           | -1.9%         | +11.3%          | 2026-11-04    |
+| [VRSK](https://www.tradingview.com/chart/?symbol=VRSK) | falling wedge                             | signs of a bottom |     6.5 | earnings, management, rating cut                                                 |  172.02 | -31%            | -9%       | buy         |         17 | +34%            | 1/0           | -0.0%         | +2.4%           | 2026-10-28    |
+| [LMT](https://www.tradingview.com/chart/?symbol=LMT)   | falling wedge                             | signs of a bottom |     6   | heavy volume, cause not found                                                    |  535.4  | -20%            | -3%       | buy         |         18 | +20%            | 2/0           | +0.1%         | +10.3%          | 2026-10-20    |
+| [FOX](https://www.tradingview.com/chart/?symbol=FOX)   | insider buys (other)                      | signs of a bottom |     5.5 | deal/financing, company disclosure (8-K)                                         |   57.9  | -14%            | +3%       |             |            |                 | 1/1           |               |                 | 2026-10-29    |
+| [AXON](https://www.tradingview.com/chart/?symbol=AXON) | news-day                                  | signs of a bottom |     5.5 | earnings, deal/financing, company disclosure (8-K), demand/competition           |  452.06 | -42%            | -17%      | buy         |         19 | +58%            | 0/0           | -0.6%         | +2.0%           | 2026-11-03    |
+| [XYL](https://www.tradingview.com/chart/?symbol=XYL)   | falling wedge                             | signs of a bottom |     5.5 | market-wide, management, company disclosure (8-K), earnings, guidance            |  107.24 | -29%            | -7%       | buy         |         16 | +43%            | 1/0           | -0.0%         | +9.2%           | 2026-11-03    |
+| [HON](https://www.tradingview.com/chart/?symbol=HON)   | falling wedge                             | signs of a bottom |     5   | deal/financing, earnings, management, company disclosure (8-K), rating cut       |  206.48 | -20%            | -8%       | buy         |         22 | +28%            | 2/0           | -0.2%         | +7.2%           | 2026-10-22    |
+| [PFE](https://www.tradingview.com/chart/?symbol=PFE)   | insider buys (other)                      | signs of a bottom |     4.5 | company disclosure (8-K), management, rating cut                                 |   27.74 | -4%             | +4%       | buy         |         26 | +4%             | 0/1           | +0.0%         | +12.9%          | 2026-11-03    |
+| [DOV](https://www.tradingview.com/chart/?symbol=DOV)   | falling wedge                             | signs of a bottom |     4.5 | earnings, company disclosure (8-K), rating cut, market-wide                      |  186.09 | -20%            | -8%       | buy         |         18 | +32%            | 1/0           | -0.0%         | +0.8%           | 2026-10-22    |
+| [IDXX](https://www.tradingview.com/chart/?symbol=IDXX) | falling wedge                             | signs of a bottom |     4.5 | market-wide                                                                      |  515.3  | -33%            | -6%       | buy         |         13 | +37%            | 0/0           | +1.2%         | +8.5%           | 2026-11-02    |
+| [UBER](https://www.tradingview.com/chart/?symbol=UBER) | insider buys (other)                      | signs of a bottom |     4   | earnings                                                                         |   70.84 | -29%            | -4%       | buy         |         46 | +44%            | 0/0           | -1.3%         | +40.2%          | 2026-11-03    |
+| [TPR](https://www.tradingview.com/chart/?symbol=TPR)   | falling wedge                             | signs of a bottom |     4   | earnings, rating cut                                                             |  113.07 | -31%            | -16%      | buy         |         20 | +47%            | 0/0           | +1.6%         | +3.4%           | 2026-11-05    |
+| [WELL](https://www.tradingview.com/chart/?symbol=WELL) | insider buys (other)                      | signs of a bottom |     3.5 | company disclosure (8-K)                                                         |  232.76 | -7%             | -2%       | buy         |         22 | +15%            | 0/0           |               | -16.9%          | 2026-10-26    |
+| [CEG](https://www.tradingview.com/chart/?symbol=CEG)   | insider buys (other)                      | signs of a bottom |     3.5 | heavy volume, cause not found                                                    |  262.11 | -35%            | -3%       | buy         |         20 | +37%            | 0/0           | +0.3%         | +11.7%          | 2026-11-09    |
+| [NFLX](https://www.tradingview.com/chart/?symbol=NFLX) | news-day                                  | signs of a bottom |     3   | earnings, rating cut                                                             |   73.36 | -41%            | -3%       | buy         |         45 | +30%            | 0/2           | +0.0%         | +1.5%           | 2026-10-20    |
+| [PODD](https://www.tradingview.com/chart/?symbol=PODD) | insider buys (beaten-down)                | undecided         |     2.5 | earnings, rating cut, market-wide                                                |  140.53 | -59%            | -6%       | buy         |         22 | +22%            | 0/5           | -0.1%         | +14.3%          | 2026-11-05    |
+| [BSX](https://www.tradingview.com/chart/?symbol=BSX)   | insider buys (beaten-down)                | undecided         |     2.5 | rating cut                                                                       |   43.72 | -58%            | -7%       | buy         |         29 | +42%            | 0/2           | -0.7%         | +3.9%           | 2026-10-28    |
+| [MSCI](https://www.tradingview.com/chart/?symbol=MSCI) | insider buys (other)                      | undecided         |     2.5 | earnings, rating cut                                                             |  558.97 | -13%            | -2%       | buy         |         17 | +25%            | 0/0           | +0.4%         | -0.8%           | 2026-10-20    |
+| [ALGN](https://www.tradingview.com/chart/?symbol=ALGN) | falling wedge                             | undecided         |     2.5 | management, company disclosure (8-K)                                             |  146.88 | -26%            | -11%      | buy         |         15 | +41%            | 0/0           | +0.0%         | +1.7%           | 2026-10-28    |
+| [LHX](https://www.tradingview.com/chart/?symbol=LHX)   | falling wedge                             | undecided         |     2.5 | earnings, rating cut, management, company disclosure (8-K)                       |  246.93 | -34%            | -9%       | buy         |         14 | +38%            | 0/0           | +1.0%         | +27.9%          | 2026-10-29    |
+| [ARE](https://www.tradingview.com/chart/?symbol=ARE)   | insider buys (other)                      | undecided         |     2   | earnings, rating cut                                                             |   53.34 | -35%            | +5%       | hold        |         14 | +0%             | 0/0           | -29.1%        | +26.2%          | 2026-10-26    |
+| [MO](https://www.tradingview.com/chart/?symbol=MO)     | insider buys (other)                      | undecided         |     2   | earnings, rating cut                                                             |   68.53 | -7%             | +0%       | hold        |         11 | +1%             | 0/0           | +0.0%         | -1.2%           | 2026-10-29    |
+| [YUM](https://www.tradingview.com/chart/?symbol=YUM)   | falling wedge                             | undecided         |     2   | rating cut                                                                       |  139.33 | -16%            | -6%       | buy         |         23 | +25%            | 1/0           | -3.7%         | +3.7%           | 2026-11-03    |
+| [AON](https://www.tradingview.com/chart/?symbol=AON)   | insider buys (beaten-down)                | undecided         |     1.5 | deal/financing, company disclosure (8-K), rating cut                             |  290.82 | -24%            | -15%      | buy         |         19 | +30%            | 0/1           | -1.6%         | +0.3%           | 2026-10-30    |
+| [FICO](https://www.tradingview.com/chart/?symbol=FICO) | falling wedge                             | undecided         |     1.5 | earnings, rating cut                                                             |  924.52 | -51%            | -17%      | buy         |         19 | +56%            | 0/1           | -0.2%         | +3.4%           | 2026-11-04    |
+| [MCD](https://www.tradingview.com/chart/?symbol=MCD)   | falling wedge                             | undecided         |     1.5 | not found                                                                        |  247.88 | -26%            | -6%       | buy         |         31 | +26%            | 0/0           | -0.1%         | +1.8%           | 2026-11-05    |
+| [NEE](https://www.tradingview.com/chart/?symbol=NEE)   | falling wedge                             | undecided         |     1.5 | deal/financing, company disclosure (8-K), management                             |   79.63 | -17%            | -6%       | buy         |         18 | +22%            | 0/0           | +0.0%         | +3.8%           | 2026-10-27    |
+| [TDG](https://www.tradingview.com/chart/?symbol=TDG)   | falling wedge                             | undecided         |     1.5 | company disclosure (8-K), rating cut, market-wide                                | 1109.65 | -23%            | -8%       | buy         |         19 | +39%            | 0/2           | +0.0%         | +5.5%           | 2026-11-05    |
+| [TSN](https://www.tradingview.com/chart/?symbol=TSN)   | insider buys (beaten-down), falling wedge | undecided         |     1   | company disclosure (8-K), management, rating cut                                 |   52.02 | -23%            | -7%       | hold        |         12 | +22%            | 1/0           | -6.2%         | +0.3%           | 2026-11-09    |
+| [TFC](https://www.tradingview.com/chart/?symbol=TFC)   | insider buys (other)                      | undecided         |     1   | management, company disclosure (8-K), deal/financing, guidance, rating cut       |   49    | -9%             | -4%       | hold        |         18 | +13%            | 0/6           | +0.5%         | +13.8%          | 2026-10-16    |
+| [TMUS](https://www.tradingview.com/chart/?symbol=TMUS) | falling wedge                             | undecided         |     1   | earnings, rating cut, news                                                       |  165.27 | -30%            | -8%       | buy         |         24 | +45%            | 1/1           | +0.0%         | +14.9%          | 2026-10-28    |
+| [APTV](https://www.tradingview.com/chart/?symbol=APTV) | insider buys (beaten-down)                | undecided         |     0.5 | earnings, rating cut, market-wide                                                |   43.57 | -51%            | -13%      | buy         |         18 | +53%            | 0/2           | +0.0%         | +14.1%          | 2026-10-29    |
+| [AOS](https://www.tradingview.com/chart/?symbol=AOS)   | falling wedge                             | undecided         |     0.5 | earnings, rating cut, market-wide                                                |   56.96 | -28%            | -6%       | hold        |         11 | +23%            | 0/0           | -0.1%         | +11.5%          | 2026-10-27    |
+| [INTU](https://www.tradingview.com/chart/?symbol=INTU) | falling wedge                             | undecided         |     0.5 | earnings, restructuring, company disclosure (8-K)                                |  304.12 | -56%            | -6%       | buy         |         31 | +34%            | 0/4           | -12.1%        | +12.3%          | 2026-11-19    |
+| [VST](https://www.tradingview.com/chart/?symbol=VST)   | insider buys (other)                      | undecided         |     0   | rating cut, market-wide                                                          |  140.78 | -35%            | -4%       | strong buy  |         19 | +55%            | 0/0           | -1.8%         | -54.2%          | 2026-11-05    |
+| [LII](https://www.tradingview.com/chart/?symbol=LII)   | falling wedge                             | undecided         |     0   | earnings, rating cut, market-wide                                                |  363.64 | -37%            | -16%      | buy         |         13 | +37%            | 0/1           | -0.3%         | +0.3%           | 2026-10-28    |
+| [SRE](https://www.tradingview.com/chart/?symbol=SRE)   | falling wedge                             | undecided         |     0   | company disclosure (8-K), rating cut                                             |   81.2  | -18%            | -6%       | buy         |         17 | +25%            | 1/1           | +0.1%         | +9.6%           | 2026-11-04    |
+| [NVR](https://www.tradingview.com/chart/?symbol=NVR)   | insider buys (other)                      | undecided         |    -0.5 | rating cut, earnings                                                             | 6188.95 | -24%            | -2%       | hold        |          5 | +10%            | 1/0           | +0.0%         | -6.7%           | 2026-10-21    |
+| [CRH](https://www.tradingview.com/chart/?symbol=CRH)   | falling wedge                             | undecided         |    -0.5 | earnings, deal/financing, news, rating cut, management, company disclosure (8-K) |   87.14 | -33%            | -9%       | strong buy  |         24 | +57%            | 0/0           | -0.8%         | -4.2%           | 2026-10-29    |
+| [DOW](https://www.tradingview.com/chart/?symbol=DOW)   | falling wedge                             | undecided         |    -0.5 | rating cut                                                                       |   28.27 | -31%            | -6%       | buy         |         16 | +20%            | 0/1           | -4.9%         | +12.6%          | 2026-10-22    |
+| [PPL](https://www.tradingview.com/chart/?symbol=PPL)   | falling wedge                             | undecided         |    -0.5 | deal/financing, company disclosure (8-K)                                         |   33.05 | -16%            | -5%       | buy         |         15 | +21%            | 0/0           | +0.1%         | -4.0%           | 2026-11-04    |
+| [PEG](https://www.tradingview.com/chart/?symbol=PEG)   | falling wedge                             | undecided         |    -0.5 | rating cut                                                                       |   69.31 | -18%            | -7%       | buy         |         18 | +22%            | 0/0           | +0.0%         | +7.7%           | 2026-11-02    |
+| [COO](https://www.tradingview.com/chart/?symbol=COO)   | insider buys (beaten-down)                | undecided         |    -1   | earnings, company disclosure (8-K), guidance, demand/competition, rating cut     |   54.12 | -36%            | -22%      | buy         |         14 | +20%            | 0/4           | -2.1%         | +2.7%           |               |
+| [FISV](https://www.tradingview.com/chart/?symbol=FISV) | insider buys (beaten-down)                | undecided         |    -1   | management, company disclosure (8-K)                                             |   46.47 | -65%            | -10%      | hold        |         27 | +28%            | 0/0           | -0.3%         | -3.9%           | 2026-10-28    |
+| [NRG](https://www.tradingview.com/chart/?symbol=NRG)   | falling wedge                             | undecided         |    -1.5 | earnings, rating cut, market-wide                                                |  103.28 | -44%            | -15%      | buy         |         16 | +82%            | 0/0           | +0.3%         | -14.4%          | 2026-11-05    |
+| [NCLH](https://www.tradingview.com/chart/?symbol=NCLH) | falling wedge                             | still falling     |    -2   | earnings, rating cut, market-wide                                                |   14.24 | -44%            | -19%      | buy         |         25 | +45%            | 0/2           | +0.2%         | +22.8%          | 2026-11-04    |
+| [CINF](https://www.tradingview.com/chart/?symbol=CINF) | insider buys (other)                      | still falling     |    -2.5 | rating cut                                                                       |  166.85 | -13%            | -4%       | hold        |          6 | +13%            | 0/2           | -1.6%         | -21.3%          | 2026-10-26    |
+| [ATO](https://www.tradingview.com/chart/?symbol=ATO)   | falling wedge                             | still falling     |    -2.5 | rating cut                                                                       |  158.27 | -17%            | -7%       | hold        |         11 | +16%            | 0/1           | -0.1%         | +5.6%           | 2026-11-04    |
+| [CMS](https://www.tradingview.com/chart/?symbol=CMS)   | falling wedge                             | still falling     |    -2.5 | rating cut                                                                       |   64.7  | -18%            | -8%       | buy         |         12 | +20%            | 0/1           | -0.0%         | +3.1%           | 2026-10-29    |
+| [ZTS](https://www.tradingview.com/chart/?symbol=ZTS)   | falling wedge                             | still falling     |    -3   | management, earnings, rating cut                                                 |   71.33 | -51%            | -5%       | buy         |         15 | +35%            | 0/1           | -9.8%         | +0.9%           | 2026-11-03    |
 
 ## [APTV](https://www.tradingview.com/chart/?symbol=APTV) Aptiv PLC
 
@@ -71,7 +69,7 @@ One brief per name in today's report tables (57 stocks): where the stock is, why
 
 **Read: undecided (no clear base yet)** (score +0.5). Signals: -1 price below its 50-day average; -1 new 52-week low within the last 5 bars; +1 analyst consensus buy (18 analysts); +1 mean price target +53% above the price; -1 more downgrades than upgrades in 90 days (2 vs 0); -1 analysts cutting price targets (11 cuts vs 2 raises in 90 days); -0.5 estimate revisions mostly down (0 up / 17 down in 30 days); +0.5 last quarter beat estimates (+14.1%); +0.5 revenue growing (+2% yoy); +0.5 positive free cash flow; +0.5 forward P/E 7 below trailing 20 (earnings expected to grow); +1 insiders bought (in today's insider table).
 
-**Where the stock is.** Last 43.59, -51% from the 52-week high (88.67 on 2026-01-09), +1% above the 52-week low (43.34 on 2026-09-16). 1m -11%, 3m -32%, 6m -37%, 1y -47%; vs 50-day -14%, vs 200-day -33%; RSI(14) 42. 52-week change -49% vs S&P 500 +14%.
+**Where the stock is.** Last 43.57, -51% from the 52-week high (88.67 on 2026-01-09), +1% above the 52-week low (43.34 on 2026-09-16). 1m -7%, 3m -31%, 6m -36%, 1y -49%; vs 50-day -13%, vs 200-day -33%; RSI(14) 41. 52-week change -49% vs S&P 500 +14%.
 
 **Why it fell.** Cause found in the data (earnings, rating cut, market-wide). Largest down days in the last 90 bars and the evidence around each:
 - 2026-08-04: -16.6% (7.7x normal volume, SPY +1.8%):
@@ -109,7 +107,7 @@ Last 90 days: 0 upgrades, 2 downgrades, 2 target raises, 11 target cuts.
 
 **Read: undecided (no clear base yet)** (score -1). Signals: -1 price below its 50-day average; -1 new 52-week low within the last 5 bars; +1 analyst consensus buy (14 analysts); -1 more downgrades than upgrades in 90 days (4 vs 0); -1 analysts cutting price targets (10 cuts vs 2 raises in 90 days); -1 current-year EPS estimate cut -2.1% in 30 days; +0.5 last quarter beat estimates (+2.7%); +0.5 revenue growing (+1% yoy); +0.5 positive free cash flow; +0.5 forward P/E 12 below trailing 19 (earnings expected to grow); +1 insiders bought (in today's insider table).
 
-**Where the stock is.** Last 55.29, -34% from the 52-week high (84.32 on 2026-01-06), +4% above the 52-week low (53.27 on 2026-09-15). 1m -28%, 3m -16%, 6m -22%, 1y -14%; vs 50-day -21%, vs 200-day -24%; RSI(14) 19. 52-week change -19% vs S&P 500 +14%.
+**Where the stock is.** Last 54.12, -36% from the 52-week high (84.32 on 2026-01-06), +2% above the 52-week low (53.27 on 2026-09-15). 1m -29%, 3m -17%, 6m -23%, 1y -19%; vs 50-day -22%, vs 200-day -25%; RSI(14) 17. 52-week change -19% vs S&P 500 +14%.
 
 **Why it fell.** Cause found in the data (earnings, company disclosure (8-K), guidance, demand/competition, rating cut). Largest down days in the last 90 bars and the evidence around each:
 - 2026-09-10: -14.7% (12.0x normal volume, SPY -0.6%):
@@ -147,42 +145,42 @@ Last 90 days: 0 upgrades, 4 downgrades, 2 target raises, 10 target cuts.
 
 **Fundamentals.** Market cap $10.5B; P/E 19.0 trailing, 11.8 forward, PEG 0.52; EV/revenue 3.1, EV/EBITDA 14.1, P/B 1.3. Margins: gross +66%, operating +21%, net +13%; ROE +7%. Free cash flow $542.6M (yield +5.2%); cash $154.7M, debt $2.8B, debt/equity 0.34, current ratio 1.22. Short interest +5.3% of float. Beta 0.82.
 
-## [VST](https://www.tradingview.com/chart/?symbol=VST) Vistra Corp.
+## [AON](https://www.tradingview.com/chart/?symbol=AON) Aon plc
 
-*In today's tables: insider buys (beaten-down). Utilities / Utilities - Independent Power Producers.*
-*Vistra Corp., together with its subsidiaries, operates as an integrated retail electricity and power generation company in the United States. The company operates through five segments: Retail, Texas, East, West, and Asset Closure.*
+*In today's tables: insider buys (beaten-down). Financial Services / Insurance Brokers.*
+*Aon plc operates as a professional services firm in the United States, rest of the Americas, the United Kingdom, Ireland, rest of Europe, the Middle East, Africa, and the Asia Pacific. It operates through Risk Capital and Human Capital segments.*
 
-**Read: undecided (no clear base yet)** (score +0). Signals: -1 price below its 50-day average; +1 analyst consensus strong buy (19 analysts); +1 mean price target +55% above the price; -1 current-year EPS estimate cut -1.8% in 30 days; -1 last quarter missed estimates (-54.2%); -0.5 revenue shrinking (-6% yoy); +0.5 positive free cash flow; -0.5 high leverage (debt/equity 3.7); +0.5 forward P/E 14 below trailing 24 (earnings expected to grow); +1 insiders bought (in today's insider table).
+**Read: undecided (no clear base yet)** (score +1.5). Signals: -1 price below its 50-day average; -1 new 52-week low within the last 5 bars; +1 analyst consensus buy (19 analysts); +1 mean price target +30% above the price; -1 more downgrades than upgrades in 90 days (1 vs 0); +1 analysts raising price targets (16 raises vs 9 cuts in 90 days); -0.5 estimate revisions mostly down (1 up / 13 down in 30 days); -1 current-year EPS estimate cut -1.6% in 30 days; +0.5 last quarter beat estimates (+0.3%); +0.5 revenue growing (+2% yoy); +0.5 positive free cash flow; +0.5 forward P/E 15 below trailing 16 (earnings expected to grow); +1 insiders bought (in today's insider table).
 
-**Where the stock is.** Last 140.67, -35% from the 52-week high (217.02 on 2025-09-22), +5% above the 52-week low (134.52 on 2026-05-19). 1m -1%, 3m -14%, 6m -16%, 1y -32%; vs 50-day -5%, vs 200-day -10%; RSI(14) 51. 52-week change -35% vs S&P 500 +14%.
+**Where the stock is.** Last 290.82, -24% from the 52-week high (380.39 on 2026-07-28), +0% above the 52-week low (290.82 on 2026-09-21). 1m -17%, 3m -7%, 6m -10%, 1y -17%; vs 50-day -15%, vs 200-day -13%; RSI(14) 20. 52-week change -16% vs S&P 500 +14%.
 
-**Why it fell.** Cause found in the data (rating cut, market-wide). Largest down days in the last 90 bars and the evidence around each:
-- 2026-08-04: -8.2% (3.0x normal volume, SPY +1.8%). No cause found for this day (before the news feed starts on 2026-09-14; only 8-K filings, rating changes and the market were checked).
-- 2026-07-28: -5.4% (1.6x normal volume, SPY +0.2%):
-  - rating/target cuts right after: UBS target cut 233 -> 227; TD Cowen target cut 230 -> 222
-- 2026-06-10: -5.3% (1.1x normal volume, SPY -1.6%):
-  - market-wide day: SPY -1.6%
+**Why it fell.** Cause found in the data (deal/financing, company disclosure (8-K), rating cut). Largest down days in the last 90 bars and the evidence around each:
+- 2026-08-31: -9.5% (3.5x normal volume, SPY -0.3%):
+  - 8-K filed 2026-08-31: material agreement; Reg FD disclosure
+  - rating/target cuts right after: Evercore ISI Group target cut 436 -> 423; BMO Capital target cut 375 -> 360; Piper Sandler target cut 391 -> 349
+- 2026-09-09: -3.5% (3.1x normal volume, SPY -0.5%). No cause found for this day (before the news feed starts on 2026-09-15; only 8-K filings, rating changes and the market were checked).
+- 2026-06-25: -2.9% (1.1x normal volume, SPY +0.1%). No cause found for this day (before the news feed starts on 2026-09-15; only 8-K filings, rating changes and the market were checked).
 
 Latest news:
-- 2026-09-19 3 Stocks to Buy Before Wall Street Catches On Before September Ends (24/7 Wall St.): A chipmaker and two power producers are raising forecasts and signing hyperscaler contracts while their stocks sit well off their peaks. That gap between fundamentals and price action may not last past September.
-- 2026-09-18 The Anthropic IPO Could Be Bigger Than SpaceX. Here's What That Means for Vistra, Bloom Energy, and Oklo. (Motley Fool): Spending from the AI giant could flow through nicely to electric power providers.
-- 2026-09-18 Vistra (VST) Stock Fair Value Edges Lower As Analysts Weigh AI Demand And Risks (Simply Wall St.): Vistra’s updated fair value estimate of US$217.42, down from US$225.29, signals a modest reset in how analysts are framing the stock’s upside. Recent research ties this change to a more careful balance between enthusiasm for AI driven power demand and concerns about policy, regul
-- 2026-09-17 Vistra vs. Constellation vs. Talen Energy: Which Nuclear-Heavy Stock Is the Better AI-Power Bet? (Motley Fool): AI data centers are driving enormous demand for reliable, around-the-clock electricity, and these companies provide it.
-- 2026-09-17 The AI Boom Has a Power Problem. These 3 Utilities Are Getting Paid to Solve It. (24/7 Wall St.): PJM capacity prices just hit the ceiling for the third straight auction, and the utilities scrambling to meet hyperscaler demand are not all playing the same game. Three names are getting paid to solve the grid crisis in very different ways, with very different risks hiding behin
-- 2026-09-17 Seaport Global Adjusts Price Target on Vistra to $226 From $223, Keeps Buy Rating (MT Newswires)
+- 2026-09-18 Employer Health Costs Surge: What it Means for EHTH, CNC & UNH (Zacks): eHealth says surging 2027 health costs are pushing smaller employers toward ICHRAs, potentially expanding individual coverage demand.
+- 2026-09-18 Top Research Reports for AMD, Linde & Amgen (Zacks): AMD, Linde and Amgen highlight AI demand, contracted growth and drug launches, while supply, margin and pipeline risks remain key factors.
+- 2026-09-18 CPA Australia urges fixes to proposed 30% minimum trust tax regime (The Accountant): CPA Australia warned that taxpayers may spend up to $1.99bn (A$2.8bn) on advice to assess the proposed rules.
+- 2026-09-17 Aon’s $17 Billion USI Deal: What Hedge Fund Sentiment Says About AON and KKR (Insider Monkey): Aon Plc (NYSE:AON) confirmed on August 31 that it will buy USI Insurance Services from KKR & Co. Inc. (NYSE:KKR) for $17.0 billion in an all-cash deal funded by new debt. Aon expects $395 million in annual run-rate synergies, with the deal accretive to adjusted earnings per share
+- 2026-09-17 Aon Stock Has Fallen 20% From Its Highs to a 52-Week Low. Is the USI Selloff a Buying Opportunity? (TIKR): Key Stats for Aon StockCurrent Price: $304. 67Target Price (Mid): ~$425Street Target: ~$383Potential Total Return: ~40%Annualized IRR: ~8% / yearWhat Happened?Aon plc (AON) closed at $304.
+- 2026-09-17 Can Marsh's AI Strategy Offset Softer Insurance Pricing? (Zacks): MRSH is leaning on AI, data and technology to support growth and margins as softer insurance pricing puts pressure on premium-linked revenues.
 
-**What analysts say.** Consensus **strong buy** (19 analysts, mean rating 1.4 on a 1-5 scale); strong buy 4, buy 15, hold 0, sell 0, strong sell 1 (bullish share 95% now vs 95% three months ago). Mean target 217.58 (+55% from the price; range 106.00-305.00). 
-Last 90 days: 0 upgrades, 0 downgrades, 3 target raises, 3 target cuts.
-- 2026-08-24 Mizuho: initiates Outperform, target 169
-- 2026-08-21 Morgan Stanley: maintains Overweight, target 212 -> 227
-- 2026-08-19 TD Cowen: maintains Buy, target 222 -> 221
-- 2026-07-28 UBS: maintains Buy, target 233 -> 227
-- 2026-07-28 Morgan Stanley: maintains Overweight, target 208 -> 212
-- 2026-07-27 TD Cowen: maintains Buy, target 230 -> 222
+**What analysts say.** Consensus **buy** (19 analysts, mean rating 2.1 on a 1-5 scale); strong buy 4, buy 9, hold 5, sell 1, strong sell 2 (bullish share 62% now vs 64% three months ago). Mean target 383.84 (+30% from the price; range 264.00-435.00). 
+Last 90 days: 0 upgrades, 1 downgrades, 16 target raises, 9 target cuts.
+- 2026-09-16 Mizuho: maintains Outperform, target 398 -> 366
+- 2026-09-14 TD Cowen: maintains Buy, target 416 -> 420
+- 2026-09-02 Evercore ISI Group: maintains Outperform, target 436 -> 423
+- 2026-09-01 BMO Capital: maintains Market Perform, target 375 -> 360
+- 2026-09-01 Keefe, Bruyette & Woods: maintains Outperform, target 412 -> 417
+- 2026-09-01 Piper Sandler: maintains Neutral, target 391 -> 349
 
-**Last report and estimates.** Quarter to 2026-06-30: EPS 0.76 vs 1.66 expected (-54.2%); beat in 1 of the last 4 quarters. Revenue -6% yoy, earnings -6% yoy (latest quarter). Next report 2026-11-05 (estimated date): EPS 2.59 expected (+48% yoy), revenue +53% yoy. Current-year EPS estimate -1.8% in 30 days, -1.0% in 90 days (2 up / 4 down revisions); growth expected +335% this year, +10% next. 
+**Last report and estimates.** Quarter to 2026-06-30: EPS 3.81 vs 3.80 expected (+0.3%); beat in 4 of the last 4 quarters. Revenue +2% yoy, earnings -3% yoy (latest quarter). Next report 2026-10-30 (estimated date): EPS 3.36 expected (+10% yoy), revenue +2% yoy. Current-year EPS estimate -1.6% in 30 days, -1.9% in 90 days (1 up / 13 down revisions); growth expected +10% this year, +8% next. 
 
-**Fundamentals.** Market cap $47.2B; P/E 23.7 trailing, 13.6 forward, PEG 0.35; EV/revenue 3.6, EV/EBITDA 10.5, P/B 15.7. Margins: gross +38%, operating +14%, net +12%; ROE +43%. Free cash flow $37.1M (yield +0.1%); cash $435.0M, debt $20.5B, debt/equity 3.73, current ratio 0.97. Dividend yield +0.6%. Short interest +3.7% of float. Beta 1.41.
+**Fundamentals.** Market cap $62.7B; P/E 16.3 trailing, 14.6 forward, PEG 2.32; EV/revenue 4.4, EV/EBITDA 13.2, P/B 6.5. Margins: gross +48%, operating +23%, net +22%; ROE +45%. Free cash flow $3.2B (yield +5.1%); cash $1.1B, debt $15.9B, debt/equity 1.63, current ratio 1.03. Dividend yield +1.1%. Short interest +1.8% of float. Beta 0.66.
 
 ## [TSN](https://www.tradingview.com/chart/?symbol=TSN) Tyson Foods, Inc.
 
@@ -191,7 +189,7 @@ Last 90 days: 0 upgrades, 0 downgrades, 3 target raises, 3 target cuts.
 
 **Read: undecided (no clear base yet)** (score +1). Signals: -1 price below its 50-day average; +1 mean price target +22% above the price; +1 more upgrades than downgrades in 90 days (1 vs 0); -1 analysts cutting price targets (7 cuts vs 0 raises in 90 days); -1 current-year EPS estimate cut -6.2% in 30 days; +0.5 last quarter beat estimates (+0.3%); -0.5 revenue shrinking (-0% yoy); +0.5 positive free cash flow; +0.5 forward P/E 13 below trailing 33 (earnings expected to grow); +1 insiders bought (in today's insider table).
 
-**Where the stock is.** Last 52.77, -22% from the 52-week high (67.54 on 2026-05-04), +8% above the 52-week low (49.00 on 2025-10-29). 1m -9%, 3m -4%, 6m -9%, 1y +1%; vs 50-day -6%, vs 200-day -11%; RSI(14) 40. 52-week change -2% vs S&P 500 +14%.
+**Where the stock is.** Last 52.02, -23% from the 52-week high (67.54 on 2026-05-04), +6% above the 52-week low (49.00 on 2025-10-29). 1m -10%, 3m -5%, 6m -9%, 1y -0%; vs 50-day -7%, vs 200-day -12%; RSI(14) 37. 52-week change -2% vs S&P 500 +14%.
 
 **Why it fell.** Cause found in the data (company disclosure (8-K), management, rating cut). Largest down days in the last 90 bars and the evidence around each:
 - 2026-09-03: -7.3% (2.9x normal volume, SPY +1.0%):
@@ -227,9 +225,9 @@ Last 90 days: 1 upgrades, 0 downgrades, 0 target raises, 7 target cuts.
 
 *In today's tables: insider buys (beaten-down).  / .*
 
-**Read: undecided (no clear base yet)** (score +0). Signals: -1 price below its 50-day average; +1 50-day average turning up; +1 mean price target +28% above the price; -1 analysts cutting price targets (15 cuts vs 1 raises in 90 days); -0.5 estimate revisions mostly down (0 up / 31 down in 30 days); -1 last quarter missed estimates (-3.9%); +0.5 forward P/E 6 below trailing 9 (earnings expected to grow); +1 insiders bought (in today's insider table).
+**Read: undecided (no clear base yet)** (score -1). Signals: -1 price below its 50-day average; +1 50-day average turning up; -1 new 52-week low within the last 5 bars; +1 mean price target +28% above the price; -1 analysts cutting price targets (15 cuts vs 1 raises in 90 days); -0.5 estimate revisions mostly down (0 up / 31 down in 30 days); -1 last quarter missed estimates (-3.9%); +0.5 forward P/E 6 below trailing 9 (earnings expected to grow); +1 insiders bought (in today's insider table).
 
-**Where the stock is.** Last 47.19, -65% from the 52-week high (134.18 on 2025-09-17), +0% above the 52-week low (47.18 on 2026-06-22). 1m -9%, 3m -1%, 6m -17%, 1y -64%; vs 50-day -9%, vs 200-day -18%; RSI(14) 32.
+**Where the stock is.** Last 46.47, -65% from the 52-week high (132.87 on 2025-09-18), +0% above the 52-week low (46.47 on 2026-09-21). 1m -10%, 3m -2%, 6m -19%, 1y -65%; vs 50-day -10%, vs 200-day -19%; RSI(14) 28.
 
 **Why it fell.** Cause found in the data (management, company disclosure (8-K)). Largest down days in the last 90 bars and the evidence around each:
 - 2026-06-15: -10.9% (4.3x normal volume, SPY +1.8%):
@@ -258,41 +256,6 @@ Last 90 days: 0 upgrades, 0 downgrades, 1 target raises, 15 target cuts.
 
 **Fundamentals.** Market cap $25.1B; P/E 9.0 trailing, 5.9 forward, PEG ; EV/revenue , EV/EBITDA , P/B . Margins: gross , operating , net ; ROE . Free cash flow  (yield ); cash , debt , debt/equity , current ratio . 
 
-## [CEG](https://www.tradingview.com/chart/?symbol=CEG) Constellation Energy Corporation
-
-*In today's tables: insider buys (beaten-down). Utilities / Utilities - Independent Power Producers.*
-*Constellation Energy Corporation produces and sells energy products and services in the United States. The company operates through five segments: Mid-Atlantic, Midwest, New York, ERCOT, and Other Power Regions. It offers electricity, natural gas, energy-related products, and sustainable solutions.*
-
-**Read: signs of a bottom (more likely up than down)** (score +3.5). Signals: -1 price below its 50-day average; +1 50-day average turning up; +1 analyst consensus buy (20 analysts); +1 mean price target +37% above the price; -1 analysts cutting price targets (7 cuts vs 1 raises in 90 days); +0.5 estimate revisions mostly up (14 up / 2 down in 30 days); +0.5 last quarter beat estimates (+11.7%); +0.5 revenue growing (+23% yoy); -0.5 negative free cash flow; +0.5 forward P/E 19 below trailing 25 (earnings expected to grow); +1 insiders bought (in today's insider table).
-
-**Where the stock is.** Last 254.71, -37% from the 52-week high (401.70 on 2025-10-15), +8% above the 52-week low (236.14 on 2026-07-01). 1m -7%, 3m -7%, 6m -19%, 1y -20%; vs 50-day -6%, vs 200-day -13%; RSI(14) 35. 52-week change -27% vs S&P 500 +14%.
-
-**Why it fell.** No cause found in the data: no headline naming the company with a stated reason within 2 days of the largest down days, no 8-K filing (earnings release, officer change, deal) on those days, no rating or target cut right after, and no market-wide sell-off. Largest down days in the last 90 bars:
-- 2026-06-01: -7.7% (3.6x normal volume, SPY +0.3%). No cause found for this day (before the news feed starts on 2026-09-17; only 8-K filings, rating changes and the market were checked).
-- 2026-09-14: -7.1% (1.6x normal volume, SPY -0.4%). No cause found for this day (before the news feed starts on 2026-09-17; only 8-K filings, rating changes and the market were checked).
-- 2026-05-13: -6.4% (2.4x normal volume, SPY +0.6%). No cause found for this day (before the news feed starts on 2026-09-17; only 8-K filings, rating changes and the market were checked).
-
-Latest news:
-- 2026-09-21 Constellation Energy Stock Fell 13% Last Week. Analysts Still See 37% Upside From Here. (TIKR): Key TakeawaysOverhang Selloff: Constellation Energy stock fell 13% over six trading sessions between September 9 and September 18, closing at $254. 71 as Calpine-related shares continued hitting the market and rising bond yields pressured nuclear and utility names sector-wide.
-- 2026-09-21 CEG Shares Climb Overnight: This Analyst Sees Nearly 45% Upside From Here (Stocktwits): Morgan Stanley hiked its target on Constellation Energy to $369 from $364 and maintained an ‘Overweight’ rating on the shares.
-- 2026-09-20 I Own Constellation for the Nuclear Fleet, Not the AI Headlines. Here's Why That Matters Now. (Motley Fool): Constellation Energy has the largest nuclear fleet in the country and should benefit from rising power demand in the decades ahead.
-- 2026-09-19 3 Stocks to Buy Before Wall Street Catches On Before September Ends (24/7 Wall St.): A chipmaker and two power producers are raising forecasts and signing hyperscaler contracts while their stocks sit well off their peaks. That gap between fundamentals and price action may not last past September.
-- 2026-09-18 Equity Overhang Weighs on Constellation Energy (CEG) Despite Solid Core Fundamentals (Insider Monkey): Reaves W H & Co Inc’s second-quarter 2026 investor letter reports a 10.55% increase for its “Reaves Long Term Value Wrap Strategy,” outperforming the MSCI USA Infrastructure Index’s 6.31% decline. The letter can be downloaded here. Cash distributions grew 6.7% in the quarter comp
-- 2026-09-18 DTE Could Be One of the Quiet Winners of the Data Center Boom (24/7 Wall St.): DTE Energy has been quietly signing contracts with some of the biggest hyperscalers on the planet, and the numbers behind that pipeline suggest most investors are not yet pricing in what it could mean for earnings growth.
-
-**What analysts say.** Consensus **buy** (20 analysts, mean rating 1.5 on a 1-5 scale); strong buy 6, buy 13, hold 3, sell 0, strong sell 0 (bullish share 86% now vs 87% three months ago). Mean target 348.55 (+37% from the price; range 290.00-441.00). 
-Last 90 days: 0 upgrades, 0 downgrades, 1 target raises, 7 target cuts.
-- 2026-09-18 Morgan Stanley: maintains Overweight, target 364 -> 369
-- 2026-08-21 Morgan Stanley: maintains Overweight, target 366 -> 364
-- 2026-08-11 Argus Research: maintains Buy, target 350 -> 325
-- 2026-07-28 UBS: maintains Buy, target 388 -> 380
-- 2026-07-28 Barclays: maintains Overweight, target 358 -> 324
-- 2026-07-27 TD Cowen: maintains Buy, target 381 -> 368
-
-**Last report and estimates.** Quarter to 2026-06-30: EPS 2.55 vs 2.28 expected (+11.7%); beat in 3 of the last 4 quarters. Revenue +23% yoy, earnings -47% yoy (latest quarter). Next report 2026-11-09 (estimated date): EPS 3.75 expected (+23% yoy), revenue +42% yoy. Current-year EPS estimate +0.3% in 30 days, +3.5% in 90 days (14 up / 2 down revisions); growth expected +29% this year, +10% next. 
-
-**Fundamentals.** Market cap $90.2B; P/E 24.9 trailing, 19.1 forward, PEG 3.74; EV/revenue 3.7, EV/EBITDA 14.4, P/B 2.8. Margins: gross +22%, operating +9%, net +11%; ROE +15%. Free cash flow $-6.6B (yield -7.3%); cash $697.0M, debt $24.7B, debt/equity 0.76, current ratio 1.46. Dividend yield +0.7%. Short interest +3.6% of float. Beta 1.12.
-
 ## [PODD](https://www.tradingview.com/chart/?symbol=PODD) Insulet Corporation
 
 *In today's tables: insider buys (beaten-down). Healthcare / Medical Devices.*
@@ -300,7 +263,7 @@ Last 90 days: 0 upgrades, 0 downgrades, 1 target raises, 7 target cuts.
 
 **Read: undecided (no clear base yet)** (score +2.5). Signals: -1 price below its 50-day average; +1 analyst consensus buy (22 analysts); +1 mean price target +22% above the price; -1 more downgrades than upgrades in 90 days (5 vs 0); -1 analysts cutting price targets (15 cuts vs 1 raises in 90 days); +0.5 estimate revisions mostly up (15 up / 7 down in 30 days); +0.5 last quarter beat estimates (+14.3%); +0.5 revenue growing (+24% yoy); +0.5 positive free cash flow; +0.5 forward P/E 18 below trailing 26 (earnings expected to grow); +1 insiders bought (in today's insider table).
 
-**Where the stock is.** Last 140.60, -59% from the 52-week high (346.36 on 2025-11-19), +7% above the 52-week low (131.96 on 2026-09-11). 1m -7%, 3m -4%, 6m -39%, 1y -56%; vs 50-day -7%, vs 200-day -30%; RSI(14) 46. 52-week change -58% vs S&P 500 +14%.
+**Where the stock is.** Last 140.53, -59% from the 52-week high (346.36 on 2025-11-19), +6% above the 52-week low (131.96 on 2026-09-11). 1m -4%, 3m +1%, 6m -38%, 1y -58%; vs 50-day -6%, vs 200-day -30%; RSI(14) 44. 52-week change -58% vs S&P 500 +14%.
 
 **Why it fell.** Cause found in the data (earnings, rating cut, market-wide). Largest down days in the last 90 bars and the evidence around each:
 - 2026-08-05: -20.1% (5.5x normal volume, SPY -0.2%):
@@ -338,7 +301,7 @@ Last 90 days: 0 upgrades, 5 downgrades, 1 target raises, 15 target cuts.
 
 **Read: undecided (no clear base yet)** (score +2.5). Signals: -1 price below its 50-day average; +1 50-day average turning up; +1 analyst consensus buy (29 analysts); +1 mean price target +42% above the price; -1 more downgrades than upgrades in 90 days (2 vs 0); -1 analysts cutting price targets (19 cuts vs 0 raises in 90 days); -0.5 estimate revisions mostly down (0 up / 25 down in 30 days); +0.5 last quarter beat estimates (+3.9%); +0.5 revenue growing (+8% yoy); +0.5 positive free cash flow; +0.5 forward P/E 13 below trailing 18 (earnings expected to grow); +1 insiders bought (in today's insider table).
 
-**Where the stock is.** Last 43.34, -59% from the 52-week high (104.98 on 2025-11-13), +2% above the 52-week low (42.63 on 2026-07-14). 1m -17%, 3m -4%, 6m -38%, 1y -56%; vs 50-day -7%, vs 200-day -33%; RSI(14) 37. 52-week change -55% vs S&P 500 +14%.
+**Where the stock is.** Last 43.72, -58% from the 52-week high (104.98 on 2025-11-13), +3% above the 52-week low (42.63 on 2026-07-14). 1m -11%, 3m -1%, 6m -37%, 1y -55%; vs 50-day -7%, vs 200-day -32%; RSI(14) 38. 52-week change -55% vs S&P 500 +14%.
 
 **Why it fell.** Cause found in the data (rating cut). Largest down days in the last 90 bars and the evidence around each:
 - 2026-05-27: -12.5% (3.1x normal volume, SPY -0.0%). No cause found for this day (before the news feed starts on 2026-09-16; only 8-K filings, rating changes and the market were checked).
@@ -374,7 +337,7 @@ Last 90 days: 0 upgrades, 2 downgrades, 0 target raises, 19 target cuts.
 
 **Read: signs of a bottom (more likely up than down)** (score +4). Signals: -1 price below its 50-day average; +1 50-day average turning up; +1 higher low over the last 20 bars than the 20 before; +1 analyst consensus buy (46 analysts); +1 mean price target +44% above the price; -1 analysts cutting price targets (10 cuts vs 1 raises in 90 days); +0.5 estimate revisions mostly up (27 up / 2 down in 30 days); -1 current-year EPS estimate cut -1.3% in 30 days; +0.5 last quarter beat estimates (+40.2%); +0.5 revenue growing (+12% yoy); +0.5 positive free cash flow; +1 insiders bought (in today's insider table).
 
-**Where the stock is.** Last 70.50, -30% from the 52-week high (100.10 on 2025-10-06), +7% above the 52-week low (65.94 on 2026-07-24). 1m -10%, 3m -2%, 6m -6%, 1y -24%; vs 50-day -4%, vs 200-day -7%; RSI(14) 32. 52-week change -29% vs S&P 500 +14%.
+**Where the stock is.** Last 70.84, -29% from the 52-week high (100.10 on 2025-10-06), +7% above the 52-week low (65.94 on 2026-07-24). 1m -10%, 3m -1%, 6m -4%, 1y -25%; vs 50-day -4%, vs 200-day -6%; RSI(14) 25. 52-week change -29% vs S&P 500 +14%.
 
 **Why it fell.** Cause found in the data (earnings). Largest down days in the last 90 bars and the evidence around each:
 - 2026-08-05: -5.3% (3.4x normal volume, SPY -0.2%):
@@ -410,7 +373,7 @@ Last 90 days: 0 upgrades, 0 downgrades, 1 target raises, 10 target cuts.
 
 **Read: signs of a bottom (more likely up than down)** (score +5.5). Signals: +1 price above its 50-day average; +1 50-day average turning up; +1 higher low over the last 20 bars than the 20 before; +0.5 revenue growing (+28% yoy); +0.5 positive free cash flow; +0.5 forward P/E 10 below trailing 15 (earnings expected to grow); +1 insiders bought (in today's insider table).
 
-**Where the stock is.** Last 57.74, -14% from the 52-week high (67.07 on 2026-01-05), +31% above the 52-week low (44.17 on 2026-06-25). 1m -4%, 3m +24%, 6m +12%, 1y +9%; vs 50-day +3%, vs 200-day +2%; RSI(14) 42. 52-week change +3% vs S&P 500 +14%.
+**Where the stock is.** Last 57.90, -14% from the 52-week high (67.07 on 2026-01-05), +31% above the 52-week low (44.17 on 2026-06-25). 1m -4%, 3m +30%, 6m +12%, 1y +8%; vs 50-day +3%, vs 200-day +2%; RSI(14) 40. 52-week change +3% vs S&P 500 +14%.
 
 **Why it fell.** Cause found in the data (deal/financing, company disclosure (8-K)). Largest down days in the last 90 bars and the evidence around each:
 - 2026-06-15: -15.2% (7.6x normal volume, SPY +1.8%):
@@ -443,9 +406,9 @@ Last 90 days: 1 upgrades, 1 downgrades, 1 target raises, 0 target cuts.
 *In today's tables: insider buys (other). Technology / Semiconductors.*
 *Intel Corporation designs, develops, manufactures, markets, sells, and services computing and related end products and services in the United States, Ireland, Israel, and internationally. It operates through three segments: CCG, DCAI, and Intel Foundry.*
 
-**Read: signs of a bottom (more likely up than down)** (score +7.5). Signals: +1 price above its 50-day average; +1 higher low over the last 20 bars than the 20 before; +1 analyst consensus buy (43 analysts); +1 more upgrades than downgrades in 90 days (1 vs 0); +1 analysts raising price targets (18 raises vs 6 cuts in 90 days); +0.5 last quarter beat estimates (+94.6%); +0.5 revenue growing (+25% yoy); +0.5 positive free cash flow; +1 insiders bought (in today's insider table).
+**Read: signs of a bottom (more likely up than down)** (score +7.5). Signals: +1 price above its 50-day average; +1 higher low over the last 20 bars than the 20 before; +1 analyst consensus buy (43 analysts); +1 more upgrades than downgrades in 90 days (1 vs 0); +1 analysts raising price targets (17 raises vs 6 cuts in 90 days); +0.5 last quarter beat estimates (+94.6%); +0.5 revenue growing (+25% yoy); +0.5 positive free cash flow; +1 insiders bought (in today's insider table).
 
-**Where the stock is.** Last 108.60, -23% from the 52-week high (140.94 on 2026-06-22), +278% above the 52-week low (28.76 on 2025-09-22). 1m +17%, 3m -19%, 6m +135%, 1y +336%; vs 50-day +12%, vs 200-day +41%; RSI(14) 68. 52-week change +278% vs S&P 500 +14%.
+**Where the stock is.** Last 121.78, -14% from the 52-week high (140.94 on 2026-06-22), +323% above the 52-week low (28.76 on 2025-09-22). 1m +32%, 3m -14%, 6m +178%, 1y +298%; vs 50-day +25%, vs 200-day +57%; RSI(14) 78. 52-week change +278% vs S&P 500 +14%.
 
 **Why it fell.** Cause found in the data (market-wide). Largest down days in the last 90 bars and the evidence around each:
 - 2026-06-05: -11.3% (1.2x normal volume, SPY -2.6%):
@@ -462,7 +425,7 @@ Latest news:
 - 2026-09-19 Applied Materials vs. Intel: Examining Revenue Growth Trajectories of These Artificial Intelligence Companies: Applied Materials has posted three consecutive quarterly gains and now generates $9.1 billion in revenue, while Intel's operating margin sits at half that of its competitor.
 
 **What analysts say.** Consensus **buy** (43 analysts, mean rating 2.5 on a 1-5 scale); strong buy 1, buy 14, hold 32, sell 1, strong sell 1 (bullish share 31% now vs 27% three months ago). Mean target 116.37 (+7% from the price; range 75.00-200.00). 
-Last 90 days: 1 upgrades, 0 downgrades, 18 target raises, 6 target cuts.
+Last 90 days: 1 upgrades, 0 downgrades, 17 target raises, 6 target cuts.
 - 2026-09-15 Tigress Financial: maintains Buy, target 118 -> 145
 - 2026-09-10 Piper Sandler: initiates Neutral, target 110
 - 2026-09-08 Northland Capital Markets: upgrades Market Perform -> Outperform, target 120
@@ -474,43 +437,6 @@ Last 90 days: 1 upgrades, 0 downgrades, 18 target raises, 6 target cuts.
 
 **Fundamentals.** Market cap $574.1B; P/E  trailing, 52.7 forward, PEG 1.36; EV/revenue 10.2, EV/EBITDA 34.7, P/B 6.3. Margins: gross +39%, operating +12%, net -20%; ROE -11%. Free cash flow $4.9B (yield +0.8%); cash $29.7B, debt $50.5B, debt/equity 0.49, current ratio 1.60. Short interest +2.9% of float. Beta 2.23.
 
-## [AON](https://www.tradingview.com/chart/?symbol=AON) Aon plc
-
-*In today's tables: insider buys (other). Financial Services / Insurance Brokers.*
-*Aon plc operates as a professional services firm in the United States, rest of the Americas, the United Kingdom, Ireland, rest of Europe, the Middle East, Africa, and the Asia Pacific. It operates through Risk Capital and Human Capital segments.*
-
-**Read: undecided (no clear base yet)** (score +1.5). Signals: -1 price below its 50-day average; -1 new 52-week low within the last 5 bars; +1 analyst consensus buy (19 analysts); +1 mean price target +30% above the price; -1 more downgrades than upgrades in 90 days (1 vs 0); +1 analysts raising price targets (16 raises vs 9 cuts in 90 days); -0.5 estimate revisions mostly down (1 up / 13 down in 30 days); -1 current-year EPS estimate cut -1.6% in 30 days; +0.5 last quarter beat estimates (+0.3%); +0.5 revenue growing (+2% yoy); +0.5 positive free cash flow; +0.5 forward P/E 15 below trailing 16 (earnings expected to grow); +1 insiders bought (in today's insider table).
-
-**Where the stock is.** Last 295.64, -22% from the 52-week high (380.39 on 2026-07-28), +0% above the 52-week low (295.64 on 2026-09-18). 1m -15%, 3m -7%, 6m -6%, 1y -17%; vs 50-day -14%, vs 200-day -12%; RSI(14) 25. 52-week change -16% vs S&P 500 +14%.
-
-**Why it fell.** Cause found in the data (deal/financing, company disclosure (8-K), rating cut). Largest down days in the last 90 bars and the evidence around each:
-- 2026-08-31: -9.5% (3.5x normal volume, SPY -0.3%):
-  - 8-K filed 2026-08-31: material agreement; Reg FD disclosure
-  - rating/target cuts right after: Evercore ISI Group target cut 436 -> 423; BMO Capital target cut 375 -> 360; Piper Sandler target cut 391 -> 349
-- 2026-09-09: -3.5% (3.1x normal volume, SPY -0.5%). No cause found for this day (before the news feed starts on 2026-09-15; only 8-K filings, rating changes and the market were checked).
-- 2026-06-25: -2.9% (1.1x normal volume, SPY +0.1%). No cause found for this day (before the news feed starts on 2026-09-15; only 8-K filings, rating changes and the market were checked).
-
-Latest news:
-- 2026-09-18 Employer Health Costs Surge: What it Means for EHTH, CNC & UNH (Zacks): eHealth says surging 2027 health costs are pushing smaller employers toward ICHRAs, potentially expanding individual coverage demand.
-- 2026-09-18 Top Research Reports for AMD, Linde & Amgen (Zacks): AMD, Linde and Amgen highlight AI demand, contracted growth and drug launches, while supply, margin and pipeline risks remain key factors.
-- 2026-09-18 CPA Australia urges fixes to proposed 30% minimum trust tax regime (The Accountant): CPA Australia warned that taxpayers may spend up to $1.99bn (A$2.8bn) on advice to assess the proposed rules.
-- 2026-09-17 Aon’s $17 Billion USI Deal: What Hedge Fund Sentiment Says About AON and KKR (Insider Monkey): Aon Plc (NYSE:AON) confirmed on August 31 that it will buy USI Insurance Services from KKR & Co. Inc. (NYSE:KKR) for $17.0 billion in an all-cash deal funded by new debt. Aon expects $395 million in annual run-rate synergies, with the deal accretive to adjusted earnings per share
-- 2026-09-17 Aon Stock Has Fallen 20% From Its Highs to a 52-Week Low. Is the USI Selloff a Buying Opportunity? (TIKR): Key Stats for Aon StockCurrent Price: $304. 67Target Price (Mid): ~$425Street Target: ~$383Potential Total Return: ~40%Annualized IRR: ~8% / yearWhat Happened?Aon plc (AON) closed at $304.
-- 2026-09-17 Can Marsh's AI Strategy Offset Softer Insurance Pricing? (Zacks): MRSH is leaning on AI, data and technology to support growth and margins as softer insurance pricing puts pressure on premium-linked revenues.
-
-**What analysts say.** Consensus **buy** (19 analysts, mean rating 2.1 on a 1-5 scale); strong buy 4, buy 9, hold 5, sell 1, strong sell 2 (bullish share 62% now vs 64% three months ago). Mean target 383.84 (+30% from the price; range 264.00-435.00). 
-Last 90 days: 0 upgrades, 1 downgrades, 16 target raises, 9 target cuts.
-- 2026-09-16 Mizuho: maintains Outperform, target 398 -> 366
-- 2026-09-14 TD Cowen: maintains Buy, target 416 -> 420
-- 2026-09-02 Evercore ISI Group: maintains Outperform, target 436 -> 423
-- 2026-09-01 BMO Capital: maintains Market Perform, target 375 -> 360
-- 2026-09-01 Keefe, Bruyette & Woods: maintains Outperform, target 412 -> 417
-- 2026-09-01 Piper Sandler: maintains Neutral, target 391 -> 349
-
-**Last report and estimates.** Quarter to 2026-06-30: EPS 3.81 vs 3.80 expected (+0.3%); beat in 4 of the last 4 quarters. Revenue +2% yoy, earnings -3% yoy (latest quarter). Next report 2026-10-30 (estimated date): EPS 3.36 expected (+10% yoy), revenue +2% yoy. Current-year EPS estimate -1.6% in 30 days, -1.9% in 90 days (1 up / 13 down revisions); growth expected +10% this year, +8% next. 
-
-**Fundamentals.** Market cap $62.7B; P/E 16.3 trailing, 14.6 forward, PEG 2.32; EV/revenue 4.4, EV/EBITDA 13.2, P/B 6.5. Margins: gross +48%, operating +23%, net +22%; ROE +45%. Free cash flow $3.2B (yield +5.1%); cash $1.1B, debt $15.9B, debt/equity 1.63, current ratio 1.03. Dividend yield +1.1%. Short interest +1.8% of float. Beta 0.66.
-
 ## [WELL](https://www.tradingview.com/chart/?symbol=WELL) Welltower Inc.
 
 *In today's tables: insider buys (other). Real Estate / REIT - Healthcare Facilities.*
@@ -518,7 +444,7 @@ Last 90 days: 0 upgrades, 1 downgrades, 16 target raises, 9 target cuts.
 
 **Read: signs of a bottom (more likely up than down)** (score +3.5). Signals: -1 price below its 50-day average; +1 50-day average turning up; +1 higher low over the last 20 bars than the 20 before; +1 analyst consensus buy (22 analysts); -1 last quarter missed estimates (-16.9%); +0.5 revenue growing (+39% yoy); +0.5 positive free cash flow; +0.5 forward P/E 72 below trailing 103 (earnings expected to grow); +1 insiders bought (in today's insider table).
 
-**Where the stock is.** Last 228.87, -9% from the 52-week high (251.12 on 2026-07-24), +41% above the 52-week low (162.79 on 2025-09-19). 1m -3%, 3m +11%, 6m +12%, 1y +40%; vs 50-day -3%, vs 200-day +8%; RSI(14) 32. 52-week change +37% vs S&P 500 +14%.
+**Where the stock is.** Last 232.76, -7% from the 52-week high (251.12 on 2026-07-24), +43% above the 52-week low (162.79 on 2025-09-19). 1m -2%, 3m +10%, 6m +20%, 1y +42%; vs 50-day -2%, vs 200-day +10%; RSI(14) 42. 52-week change +37% vs S&P 500 +14%.
 
 **Why it fell.** Cause found in the data (company disclosure (8-K)). Largest down days in the last 90 bars and the evidence around each:
 - 2026-06-01: -3.9% (1.2x normal volume, SPY +0.3%):
@@ -540,14 +466,51 @@ Latest news:
 
 **Fundamentals.** Market cap $164.9B; P/E 103.1 trailing, 72.0 forward, PEG 3.66; EV/revenue 14.4, EV/EBITDA 55.1, P/B 3.5. Margins: gross +40%, operating +17%, net +12%; ROE +4%. Free cash flow $2.8B (yield +1.7%); cash $2.0B, debt $19.7B, debt/equity 0.41, current ratio 1.32. Dividend yield +1.5%. Short interest +2.9% of float. Beta 0.76.
 
+## [VST](https://www.tradingview.com/chart/?symbol=VST) Vistra Corp.
+
+*In today's tables: insider buys (other). Utilities / Utilities - Independent Power Producers.*
+*Vistra Corp., together with its subsidiaries, operates as an integrated retail electricity and power generation company in the United States. The company operates through five segments: Retail, Texas, East, West, and Asset Closure.*
+
+**Read: undecided (no clear base yet)** (score +0). Signals: -1 price below its 50-day average; +1 analyst consensus strong buy (19 analysts); +1 mean price target +55% above the price; -1 current-year EPS estimate cut -1.8% in 30 days; -1 last quarter missed estimates (-54.2%); -0.5 revenue shrinking (-6% yoy); +0.5 positive free cash flow; -0.5 high leverage (debt/equity 3.7); +0.5 forward P/E 14 below trailing 24 (earnings expected to grow); +1 insiders bought (in today's insider table).
+
+**Where the stock is.** Last 140.78, -35% from the 52-week high (217.02 on 2025-09-22), +5% above the 52-week low (134.52 on 2026-05-19). 1m +1%, 3m -16%, 6m -3%, 1y -33%; vs 50-day -4%, vs 200-day -10%; RSI(14) 55. 52-week change -35% vs S&P 500 +14%.
+
+**Why it fell.** Cause found in the data (rating cut, market-wide). Largest down days in the last 90 bars and the evidence around each:
+- 2026-08-04: -8.2% (3.0x normal volume, SPY +1.8%). No cause found for this day (before the news feed starts on 2026-09-14; only 8-K filings, rating changes and the market were checked).
+- 2026-07-28: -5.4% (1.6x normal volume, SPY +0.2%):
+  - rating/target cuts right after: UBS target cut 233 -> 227; TD Cowen target cut 230 -> 222
+- 2026-06-10: -5.3% (1.1x normal volume, SPY -1.6%):
+  - market-wide day: SPY -1.6%
+
+Latest news:
+- 2026-09-19 3 Stocks to Buy Before Wall Street Catches On Before September Ends (24/7 Wall St.): A chipmaker and two power producers are raising forecasts and signing hyperscaler contracts while their stocks sit well off their peaks. That gap between fundamentals and price action may not last past September.
+- 2026-09-18 The Anthropic IPO Could Be Bigger Than SpaceX. Here's What That Means for Vistra, Bloom Energy, and Oklo. (Motley Fool): Spending from the AI giant could flow through nicely to electric power providers.
+- 2026-09-18 Vistra (VST) Stock Fair Value Edges Lower As Analysts Weigh AI Demand And Risks (Simply Wall St.): Vistra’s updated fair value estimate of US$217.42, down from US$225.29, signals a modest reset in how analysts are framing the stock’s upside. Recent research ties this change to a more careful balance between enthusiasm for AI driven power demand and concerns about policy, regul
+- 2026-09-17 Vistra vs. Constellation vs. Talen Energy: Which Nuclear-Heavy Stock Is the Better AI-Power Bet? (Motley Fool): AI data centers are driving enormous demand for reliable, around-the-clock electricity, and these companies provide it.
+- 2026-09-17 The AI Boom Has a Power Problem. These 3 Utilities Are Getting Paid to Solve It. (24/7 Wall St.): PJM capacity prices just hit the ceiling for the third straight auction, and the utilities scrambling to meet hyperscaler demand are not all playing the same game. Three names are getting paid to solve the grid crisis in very different ways, with very different risks hiding behin
+- 2026-09-17 Seaport Global Adjusts Price Target on Vistra to $226 From $223, Keeps Buy Rating (MT Newswires)
+
+**What analysts say.** Consensus **strong buy** (19 analysts, mean rating 1.4 on a 1-5 scale); strong buy 4, buy 15, hold 0, sell 0, strong sell 1 (bullish share 95% now vs 95% three months ago). Mean target 217.58 (+55% from the price; range 106.00-305.00). 
+Last 90 days: 0 upgrades, 0 downgrades, 3 target raises, 3 target cuts.
+- 2026-08-24 Mizuho: initiates Outperform, target 169
+- 2026-08-21 Morgan Stanley: maintains Overweight, target 212 -> 227
+- 2026-08-19 TD Cowen: maintains Buy, target 222 -> 221
+- 2026-07-28 UBS: maintains Buy, target 233 -> 227
+- 2026-07-28 Morgan Stanley: maintains Overweight, target 208 -> 212
+- 2026-07-27 TD Cowen: maintains Buy, target 230 -> 222
+
+**Last report and estimates.** Quarter to 2026-06-30: EPS 0.76 vs 1.66 expected (-54.2%); beat in 1 of the last 4 quarters. Revenue -6% yoy, earnings -6% yoy (latest quarter). Next report 2026-11-05 (estimated date): EPS 2.59 expected (+48% yoy), revenue +53% yoy. Current-year EPS estimate -1.8% in 30 days, -1.0% in 90 days (2 up / 4 down revisions); growth expected +335% this year, +10% next. 
+
+**Fundamentals.** Market cap $47.2B; P/E 23.7 trailing, 13.6 forward, PEG 0.35; EV/revenue 3.6, EV/EBITDA 10.5, P/B 15.7. Margins: gross +38%, operating +14%, net +12%; ROE +43%. Free cash flow $37.1M (yield +0.1%); cash $435.0M, debt $20.5B, debt/equity 3.73, current ratio 0.97. Dividend yield +0.6%. Short interest +3.7% of float. Beta 1.41.
+
 ## [AME](https://www.tradingview.com/chart/?symbol=AME) AMETEK, Inc.
 
 *In today's tables: insider buys (other). Industrials / Specialty Industrial Machinery.*
 *AMETEK, Inc. manufactures and sells electronic instruments (EIG) and electromechanical (EMG) devices in the United States and internationally. It operates through EIG and EMG segments.*
 
-**Read: signs of a bottom (more likely up than down)** (score +5.5). Signals: -1 price below its 50-day average; +1 50-day average turning up; +1 analyst consensus buy (18 analysts); +1 analysts raising price targets (12 raises vs 0 cuts in 90 days); +0.5 estimate revisions mostly up (17 up / 0 down in 30 days); +0.5 last quarter beat estimates (+4.8%); +0.5 revenue growing (+15% yoy); +0.5 positive free cash flow; +0.5 forward P/E 25 below trailing 35 (earnings expected to grow); +1 insiders bought (in today's insider table).
+**Read: signs of a bottom (more likely up than down)** (score +7.5). Signals: +1 price above its 50-day average; +1 50-day average turning up; +1 analyst consensus buy (18 analysts); +1 analysts raising price targets (12 raises vs 0 cuts in 90 days); +0.5 estimate revisions mostly up (17 up / 0 down in 30 days); +0.5 last quarter beat estimates (+4.8%); +0.5 revenue growing (+15% yoy); +0.5 positive free cash flow; +0.5 forward P/E 25 below trailing 35 (earnings expected to grow); +1 insiders bought (in today's insider table).
 
-**Where the stock is.** Last 237.64, -8% from the 52-week high (258.14 on 2026-08-12), +33% above the 52-week low (178.19 on 2025-10-10). 1m -2%, 3m +0%, 6m +13%, 1y +28%; vs 50-day -1%, vs 200-day +5%; RSI(14) 44. 52-week change +26% vs S&P 500 +14%.
+**Where the stock is.** Last 241.23, -7% from the 52-week high (258.14 on 2026-08-12), +35% above the 52-week low (178.19 on 2025-10-10). 1m +1%, 3m +0%, 6m +16%, 1y +29%; vs 50-day +0%, vs 200-day +6%; RSI(14) 56. 52-week change +26% vs S&P 500 +14%.
 
 **Why it fell.** Cause found in the data (market-wide). Largest down days in the last 90 bars and the evidence around each:
 - 2026-06-10: -3.5% (0.9x normal volume, SPY -1.6%):
@@ -583,7 +546,7 @@ Last 90 days: 0 upgrades, 0 downgrades, 12 target raises, 0 target cuts.
 
 **Read: undecided (no clear base yet)** (score +1). Signals: -1 price below its 50-day average; +1 50-day average turning up; -1 more downgrades than upgrades in 90 days (6 vs 0); -1 analysts cutting price targets (7 cuts vs 4 raises in 90 days); +0.5 estimate revisions mostly up (16 up / 0 down in 30 days); +0.5 last quarter beat estimates (+13.8%); +0.5 revenue growing (+8% yoy); +0.5 forward P/E 10 below trailing 11 (earnings expected to grow); +1 insiders bought (in today's insider table).
 
-**Where the stock is.** Last 48.56, -10% from the 52-week high (54.14 on 2026-02-06), +23% above the 52-week low (39.40 on 2025-10-16). 1m -5%, 3m +1%, 6m +13%, 1y +12%; vs 50-day -5%, vs 200-day -1%; RSI(14) 39. 52-week change +7% vs S&P 500 +14%.
+**Where the stock is.** Last 49.00, -9% from the 52-week high (54.14 on 2026-02-06), +24% above the 52-week low (39.40 on 2025-10-16). 1m -2%, 3m +1%, 6m +13%, 1y +11%; vs 50-day -4%, vs 200-day -0%; RSI(14) 41. 52-week change +7% vs S&P 500 +14%.
 
 **Why it fell.** Cause found in the data (management, company disclosure (8-K), deal/financing, guidance, rating cut). Largest down days in the last 90 bars and the evidence around each:
 - 2026-06-15: -6.2% (3.0x normal volume, SPY +1.8%):
@@ -624,7 +587,7 @@ Last 90 days: 0 upgrades, 6 downgrades, 4 target raises, 7 target cuts.
 
 **Read: signs of a bottom (more likely up than down)** (score +4.5). Signals: +1 price above its 50-day average; +1 50-day average turning up; +1 higher low over the last 20 bars than the 20 before; +1 analyst consensus buy (26 analysts); -1 mean price target only +4% from the price; -1 more downgrades than upgrades in 90 days (1 vs 0); -1 analysts cutting price targets (6 cuts vs 1 raises in 90 days); +0.5 estimate revisions mostly up (15 up / 4 down in 30 days); +0.5 last quarter beat estimates (+12.9%); +0.5 revenue growing (+3% yoy); +0.5 positive free cash flow; +0.5 forward P/E 10 below trailing 36 (earnings expected to grow); +1 insiders bought (in today's insider table).
 
-**Where the stock is.** Last 27.66, -5% from the 52-week high (29.02 on 2026-09-02), +25% above the 52-week low (22.05 on 2025-09-25). 1m -2%, 3m +12%, 6m +4%, 1y +23%; vs 50-day +4%, vs 200-day +8%; RSI(14) 44. 52-week change +15% vs S&P 500 +14%.
+**Where the stock is.** Last 27.74, -4% from the 52-week high (29.02 on 2026-09-02), +26% above the 52-week low (22.05 on 2025-09-25). 1m -0%, 3m +13%, 6m +6%, 1y +23%; vs 50-day +4%, vs 200-day +8%; RSI(14) 46. 52-week change +15% vs S&P 500 +14%.
 
 **Why it fell.** Cause found in the data (company disclosure (8-K), management, rating cut). Largest down days in the last 90 bars and the evidence around each:
 - 2026-06-24: -2.8% (2.2x normal volume, SPY -0.0%). No cause found for this day (before the news feed starts on 2026-09-18; only 8-K filings, rating changes and the market were checked).
@@ -662,7 +625,7 @@ Last 90 days: 0 upgrades, 1 downgrades, 1 target raises, 6 target cuts.
 
 **Read: undecided (no clear base yet)** (score +2.5). Signals: -1 price below its 50-day average; +1 analyst consensus buy (17 analysts); +1 mean price target +25% above the price; -1 last quarter missed estimates (-0.8%); +0.5 revenue growing (+12% yoy); +0.5 positive free cash flow; +0.5 forward P/E 25 below trailing 30 (earnings expected to grow); +1 insiders bought (in today's insider table).
 
-**Where the stock is.** Last 552.87, -14% from the 52-week high (641.54 on 2026-06-01), +9% above the 52-week low (506.19 on 2026-02-11). 1m -2%, 3m -5%, 6m +0%, 1y -3%; vs 50-day -3%, vs 200-day -3%; RSI(14) 41. 52-week change -3% vs S&P 500 +14%.
+**Where the stock is.** Last 558.97, -13% from the 52-week high (641.54 on 2026-06-01), +10% above the 52-week low (506.19 on 2026-02-11). 1m -2%, 3m -3%, 6m +2%, 1y +2%; vs 50-day -2%, vs 200-day -2%; RSI(14) 44. 52-week change -3% vs S&P 500 +14%.
 
 **Why it fell.** Cause found in the data (earnings, rating cut). Largest down days in the last 90 bars and the evidence around each:
 - 2026-07-21: -10.1% (3.0x normal volume, SPY +0.8%):
@@ -697,9 +660,9 @@ Last 90 days: 0 upgrades, 0 downgrades, 4 target raises, 3 target cuts.
 *In today's tables: insider buys (other). Basic Materials / Specialty Chemicals.*
 *Ecolab Inc. provides water, hygiene, and infection prevention solutions and services in the United States and internationally. The company operates through four segments: Global Water, Global Institutional & Specialty, Global Pest Elimination, and Global Life Sciences.*
 
-**Read: signs of a bottom (more likely up than down)** (score +8.5). Signals: -1 price below its 50-day average; +1 50-day average turning up; +1 higher low over the last 20 bars than the 20 before; +1 analyst consensus buy (21 analysts); +1 mean price target +21% above the price; +1 more upgrades than downgrades in 90 days (1 vs 0); +1 analysts raising price targets (6 raises vs 0 cuts in 90 days); +0.5 estimate revisions mostly up (13 up / 5 down in 30 days); +0.5 last quarter beat estimates (+0.5%); +0.5 revenue growing (+10% yoy); +0.5 positive free cash flow; +0.5 forward P/E 29 below trailing 36 (earnings expected to grow); +1 insiders bought (in today's insider table).
+**Read: signs of a bottom (more likely up than down)** (score +7.5). Signals: -1 price below its 50-day average; +1 50-day average turning up; +1 analyst consensus buy (21 analysts); +1 mean price target +21% above the price; +1 more upgrades than downgrades in 90 days (1 vs 0); +1 analysts raising price targets (6 raises vs 0 cuts in 90 days); +0.5 estimate revisions mostly up (13 up / 5 down in 30 days); +0.5 last quarter beat estimates (+0.5%); +0.5 revenue growing (+10% yoy); +0.5 positive free cash flow; +0.5 forward P/E 29 below trailing 36 (earnings expected to grow); +1 insiders bought (in today's insider table).
 
-**Where the stock is.** Last 269.46, -12% from the 52-week high (305.88 on 2026-02-27), +10% above the 52-week low (244.41 on 2026-05-19). 1m -5%, 3m +0%, 6m +5%, 1y +3%; vs 50-day -3%, vs 200-day -1%; RSI(14) 21. 52-week change +1% vs S&P 500 +14%.
+**Where the stock is.** Last 269.98, -12% from the 52-week high (305.88 on 2026-02-27), +10% above the 52-week low (244.41 on 2026-05-19). 1m -4%, 3m +1%, 6m +6%, 1y +3%; vs 50-day -3%, vs 200-day -1%; RSI(14) 20. 52-week change +1% vs S&P 500 +14%.
 
 **Why it fell.** Cause found in the data (market-wide). Largest down days in the last 90 bars and the evidence around each:
 - 2026-07-08: -3.2% (0.7x normal volume, SPY -0.3%). No cause found for this day (before the news feed starts on 2026-08-19; only 8-K filings, rating changes and the market were checked).
@@ -735,7 +698,7 @@ Last 90 days: 1 upgrades, 0 downgrades, 6 target raises, 0 target cuts.
 
 **Read: signs of a bottom (more likely up than down)** (score +10.5). Signals: +1 price above its 50-day average; +1 50-day average turning up; +1 higher low over the last 20 bars than the 20 before; +1 analyst consensus buy (23 analysts); +1 mean price target +24% above the price; +1 more upgrades than downgrades in 90 days (3 vs 0); +1 analysts raising price targets (4 raises vs 1 cuts in 90 days); +0.5 estimate revisions mostly up (7 up / 0 down in 30 days); +1 current-year EPS estimate raised +5.8% in 30 days; +0.5 last quarter beat estimates (+20.6%); +0.5 revenue growing (+5% yoy); +0.5 positive free cash flow; -0.5 high leverage (debt/equity 4.4); +1 insiders bought (in today's insider table).
 
-**Where the stock is.** Last 173.98, -10% from the 52-week high (192.28 on 2026-06-05), +7% above the 52-week low (162.11 on 2026-07-06). 1m -0%, 3m -1%, 6m -3%, 1y -8%; vs 50-day +1%, vs 200-day -1%; RSI(14) 50. 52-week change -10% vs S&P 500 +14%.
+**Where the stock is.** Last 174.60, -9% from the 52-week high (192.28 on 2026-06-05), +8% above the 52-week low (162.11 on 2026-07-06). 1m -1%, 3m -1%, 6m +1%, 1y -6%; vs 50-day +1%, vs 200-day -0%; RSI(14) 47. 52-week change -10% vs S&P 500 +14%.
 
 **Why it fell.** No cause found in the data: no headline naming the company with a stated reason within 2 days of the largest down days, no 8-K filing (earnings release, officer change, deal) on those days, no rating or target cut right after, and no market-wide sell-off. Largest down days in the last 90 bars:
 - 2026-08-05: -4.1% (1.8x normal volume, SPY -0.2%). No cause found for this day (before the news feed starts on 2026-09-04; only 8-K filings, rating changes and the market were checked).
@@ -770,7 +733,7 @@ Last 90 days: 3 upgrades, 0 downgrades, 4 target raises, 1 target cuts.
 
 **Read: undecided (no clear base yet)** (score +2). Signals: +1 price above its 50-day average; +1 50-day average turning up; +1 higher low over the last 20 bars than the 20 before; -1 mean price target only +0% from the price; -0.5 estimate revisions mostly down (0 up / 4 down in 30 days); -1 current-year EPS estimate cut -29.1% in 30 days; +0.5 last quarter beat estimates (+26.2%); -0.5 revenue shrinking (-12% yoy); +0.5 positive free cash flow; +1 insiders bought (in today's insider table).
 
-**Where the stock is.** Last 53.30, -35% from the 52-week high (82.43 on 2025-09-18), +34% above the 52-week low (39.89 on 2026-04-28). 1m +5%, 3m +6%, 6m +11%, 1y -34%; vs 50-day +5%, vs 200-day +8%; RSI(14) 53. 52-week change -38% vs S&P 500 +14%.
+**Where the stock is.** Last 53.34, -35% from the 52-week high (81.98 on 2025-09-23), +34% above the 52-week low (39.89 on 2026-04-28). 1m +1%, 3m +7%, 6m +16%, 1y -35%; vs 50-day +5%, vs 200-day +8%; RSI(14) 56. 52-week change -38% vs S&P 500 +14%.
 
 **Why it fell.** Cause found in the data (earnings, rating cut). Largest down days in the last 90 bars and the evidence around each:
 - 2026-08-04: -7.8% (2.9x normal volume, SPY +1.8%):
@@ -801,6 +764,41 @@ Last 90 days: 0 upgrades, 0 downgrades, 5 target raises, 3 target cuts.
 
 **Fundamentals.** Market cap $9.2B; P/E  trailing, -65.8 forward, PEG 3.24; EV/revenue 9.0, EV/EBITDA 14.4, P/B 0.6. Margins: gross +68%, operating +17%, net -36%; ROE -4%. Free cash flow $1.3B (yield +14.7%); cash $470.4M, debt $13.2B, debt/equity 0.69, current ratio 2.35. Dividend yield +5.4%. Short interest +5.9% of float. Beta 1.17.
 
+## [CEG](https://www.tradingview.com/chart/?symbol=CEG) Constellation Energy Corporation
+
+*In today's tables: insider buys (other). Utilities / Utilities - Independent Power Producers.*
+*Constellation Energy Corporation produces and sells energy products and services in the United States. The company operates through five segments: Mid-Atlantic, Midwest, New York, ERCOT, and Other Power Regions. It offers electricity, natural gas, energy-related products, and sustainable solutions.*
+
+**Read: signs of a bottom (more likely up than down)** (score +3.5). Signals: -1 price below its 50-day average; +1 50-day average turning up; +1 analyst consensus buy (20 analysts); +1 mean price target +37% above the price; -1 analysts cutting price targets (7 cuts vs 1 raises in 90 days); +0.5 estimate revisions mostly up (14 up / 2 down in 30 days); +0.5 last quarter beat estimates (+11.7%); +0.5 revenue growing (+23% yoy); -0.5 negative free cash flow; +0.5 forward P/E 19 below trailing 25 (earnings expected to grow); +1 insiders bought (in today's insider table).
+
+**Where the stock is.** Last 262.11, -35% from the 52-week high (401.70 on 2025-10-15), +11% above the 52-week low (236.14 on 2026-07-01). 1m -4%, 3m -5%, 6m -7%, 1y -18%; vs 50-day -3%, vs 200-day -10%; RSI(14) 42. 52-week change -27% vs S&P 500 +14%.
+
+**Why it fell.** No cause found in the data: no headline naming the company with a stated reason within 2 days of the largest down days, no 8-K filing (earnings release, officer change, deal) on those days, no rating or target cut right after, and no market-wide sell-off. Largest down days in the last 90 bars:
+- 2026-06-01: -7.7% (3.6x normal volume, SPY +0.3%). No cause found for this day (before the news feed starts on 2026-09-17; only 8-K filings, rating changes and the market were checked).
+- 2026-09-14: -7.1% (1.6x normal volume, SPY -0.4%). No cause found for this day (before the news feed starts on 2026-09-17; only 8-K filings, rating changes and the market were checked).
+- 2026-05-13: -6.4% (2.4x normal volume, SPY +0.6%). No cause found for this day (before the news feed starts on 2026-09-17; only 8-K filings, rating changes and the market were checked).
+
+Latest news:
+- 2026-09-21 Constellation Energy Stock Fell 13% Last Week. Analysts Still See 37% Upside From Here. (TIKR): Key TakeawaysOverhang Selloff: Constellation Energy stock fell 13% over six trading sessions between September 9 and September 18, closing at $254. 71 as Calpine-related shares continued hitting the market and rising bond yields pressured nuclear and utility names sector-wide.
+- 2026-09-21 CEG Shares Climb Overnight: This Analyst Sees Nearly 45% Upside From Here (Stocktwits): Morgan Stanley hiked its target on Constellation Energy to $369 from $364 and maintained an ‘Overweight’ rating on the shares.
+- 2026-09-20 I Own Constellation for the Nuclear Fleet, Not the AI Headlines. Here's Why That Matters Now. (Motley Fool): Constellation Energy has the largest nuclear fleet in the country and should benefit from rising power demand in the decades ahead.
+- 2026-09-19 3 Stocks to Buy Before Wall Street Catches On Before September Ends (24/7 Wall St.): A chipmaker and two power producers are raising forecasts and signing hyperscaler contracts while their stocks sit well off their peaks. That gap between fundamentals and price action may not last past September.
+- 2026-09-18 Equity Overhang Weighs on Constellation Energy (CEG) Despite Solid Core Fundamentals (Insider Monkey): Reaves W H & Co Inc’s second-quarter 2026 investor letter reports a 10.55% increase for its “Reaves Long Term Value Wrap Strategy,” outperforming the MSCI USA Infrastructure Index’s 6.31% decline. The letter can be downloaded here. Cash distributions grew 6.7% in the quarter comp
+- 2026-09-18 DTE Could Be One of the Quiet Winners of the Data Center Boom (24/7 Wall St.): DTE Energy has been quietly signing contracts with some of the biggest hyperscalers on the planet, and the numbers behind that pipeline suggest most investors are not yet pricing in what it could mean for earnings growth.
+
+**What analysts say.** Consensus **buy** (20 analysts, mean rating 1.5 on a 1-5 scale); strong buy 6, buy 13, hold 3, sell 0, strong sell 0 (bullish share 86% now vs 87% three months ago). Mean target 348.55 (+37% from the price; range 290.00-441.00). 
+Last 90 days: 0 upgrades, 0 downgrades, 1 target raises, 7 target cuts.
+- 2026-09-18 Morgan Stanley: maintains Overweight, target 364 -> 369
+- 2026-08-21 Morgan Stanley: maintains Overweight, target 366 -> 364
+- 2026-08-11 Argus Research: maintains Buy, target 350 -> 325
+- 2026-07-28 UBS: maintains Buy, target 388 -> 380
+- 2026-07-28 Barclays: maintains Overweight, target 358 -> 324
+- 2026-07-27 TD Cowen: maintains Buy, target 381 -> 368
+
+**Last report and estimates.** Quarter to 2026-06-30: EPS 2.55 vs 2.28 expected (+11.7%); beat in 3 of the last 4 quarters. Revenue +23% yoy, earnings -47% yoy (latest quarter). Next report 2026-11-09 (estimated date): EPS 3.75 expected (+23% yoy), revenue +42% yoy. Current-year EPS estimate +0.3% in 30 days, +3.5% in 90 days (14 up / 2 down revisions); growth expected +29% this year, +10% next. 
+
+**Fundamentals.** Market cap $90.2B; P/E 24.9 trailing, 19.1 forward, PEG 3.74; EV/revenue 3.7, EV/EBITDA 14.4, P/B 2.8. Margins: gross +22%, operating +9%, net +11%; ROE +15%. Free cash flow $-6.6B (yield -7.3%); cash $697.0M, debt $24.7B, debt/equity 0.76, current ratio 1.46. Dividend yield +0.7%. Short interest +3.6% of float. Beta 1.12.
+
 ## [NVR](https://www.tradingview.com/chart/?symbol=NVR) NVR, Inc.
 
 *In today's tables: insider buys (other). Consumer Cyclical / Residential Construction.*
@@ -808,7 +806,7 @@ Last 90 days: 0 upgrades, 0 downgrades, 5 target raises, 3 target cuts.
 
 **Read: undecided (no clear base yet)** (score -0.5). Signals: -1 price below its 50-day average; +1 more upgrades than downgrades in 90 days (1 vs 0); -1 analysts cutting price targets (3 cuts vs 0 raises in 90 days); -1 last quarter missed estimates (-6.7%); -0.5 revenue shrinking (-11% yoy); +0.5 positive free cash flow; +0.5 forward P/E 15 below trailing 16 (earnings expected to grow); +1 insiders bought (in today's insider table).
 
-**Where the stock is.** Last 6150.47, -25% from the 52-week high (8178.48 on 2025-09-18), +11% above the 52-week low (5563.62 on 2026-05-15). 1m -4%, 3m -5%, 6m -4%, 1y -24%; vs 50-day -3%, vs 200-day -9%; RSI(14) 41. 52-week change -22% vs S&P 500 +14%.
+**Where the stock is.** Last 6188.95, -24% from the 52-week high (8178.00 on 2025-10-03), +11% above the 52-week low (5563.62 on 2026-05-15). 1m -2%, 3m -3%, 6m -3%, 1y -24%; vs 50-day -2%, vs 200-day -8%; RSI(14) 41. 52-week change -22% vs S&P 500 +14%.
 
 **Why it fell.** Cause found in the data (rating cut, earnings). Largest down days in the last 90 bars and the evidence around each:
 - 2026-07-08: -4.0% (0.9x normal volume, SPY -0.3%). No cause found for this day (before the news feed starts on 2026-08-14; only 8-K filings, rating changes and the market were checked).
@@ -844,7 +842,7 @@ Last 90 days: 1 upgrades, 0 downgrades, 0 target raises, 3 target cuts.
 
 **Read: signs of a bottom (more likely up than down)** (score +7.5). Signals: -1 price below its 50-day average; +1 50-day average turning up; +1 higher low over the last 20 bars than the 20 before; +1 analyst consensus buy (17 analysts); +1 more upgrades than downgrades in 90 days (2 vs 0); +1 analysts raising price targets (7 raises vs 0 cuts in 90 days); +0.5 estimate revisions mostly up (7 up / 3 down in 30 days); +0.5 last quarter beat estimates (+6.2%); +0.5 revenue growing (+76% yoy); +0.5 positive free cash flow; +0.5 forward P/E 12 below trailing 31 (earnings expected to grow); +1 insiders bought (in today's insider table).
 
-**Where the stock is.** Last 30.96, -8% from the 52-week high (33.50 on 2026-06-29), +25% above the 52-week low (24.70 on 2025-10-06). 1m -0%, 3m +1%, 6m +16%, 1y +17%; vs 50-day -1%, vs 200-day +7%; RSI(14) 40. 52-week change +19% vs S&P 500 +14%.
+**Where the stock is.** Last 30.62, -9% from the 52-week high (33.50 on 2026-06-29), +24% above the 52-week low (24.70 on 2025-10-06). 1m -3%, 3m -0%, 6m +17%, 1y +16%; vs 50-day -2%, vs 200-day +5%; RSI(14) 33. 52-week change +19% vs S&P 500 +14%.
 
 **Why it fell.** No cause found in the data: no headline naming the company with a stated reason within 2 days of the largest down days, no 8-K filing (earnings release, officer change, deal) on those days, no rating or target cut right after, and no market-wide sell-off. Largest down days in the last 90 bars:
 - 2026-07-06: -4.7% (1.6x normal volume, SPY +0.9%). No cause found for this day (before the news feed starts on 2026-09-14; only 8-K filings, rating changes and the market were checked).
@@ -879,7 +877,7 @@ Last 90 days: 2 upgrades, 0 downgrades, 7 target raises, 0 target cuts.
 
 **Read: signs of a bottom (more likely up than down)** (score +7.5). Signals: +1 price above its 50-day average; +1 50-day average turning up; +1 higher low over the last 20 bars than the 20 before; +1 analyst consensus strong buy (28 analysts); +1 mean price target +24% above the price; +0.5 estimate revisions mostly up (13 up / 4 down in 30 days); -1 current-year EPS estimate cut -1.9% in 30 days; +0.5 last quarter beat estimates (+11.3%); +0.5 revenue growing (+64% yoy); +0.5 positive free cash flow; +0.5 forward P/E 9 below trailing 11 (earnings expected to grow); +1 insiders bought (in today's insider table).
 
-**Where the stock is.** Last 48.61, -5% from the 52-week high (51.37 on 2026-03-27), +57% above the 52-week low (30.95 on 2025-10-17). 1m +2%, 3m +16%, 6m +1%, 1y +41%; vs 50-day +6%, vs 200-day +12%; RSI(14) 58. 52-week change +44% vs S&P 500 +14%.
+**Where the stock is.** Last 47.59, -7% from the 52-week high (51.37 on 2026-03-27), +54% above the 52-week low (30.95 on 2025-10-17). 1m -3%, 3m +11%, 6m -1%, 1y +39%; vs 50-day +3%, vs 200-day +9%; RSI(14) 52. 52-week change +44% vs S&P 500 +14%.
 
 **Why it fell.** Cause found in the data (earnings). Largest down days in the last 90 bars and the evidence around each:
 - 2026-09-16: -5.6% (1.5x normal volume, SPY -0.4%). No cause found for this day.
@@ -913,9 +911,9 @@ Last 90 days: 0 upgrades, 0 downgrades, 5 target raises, 7 target cuts.
 *In today's tables: insider buys (other). Financial Services / Insurance - Property & Casualty.*
 *Cincinnati Financial Corporation provides property casualty insurance products in the United States. The company operates through five segments: Commercial Lines Insurance, Personal Lines Insurance, Excess and Surplus Lines Insurance, Life Insurance, and Investments.*
 
-**Read: undecided (no clear base yet)** (score -1.5). Signals: -1 price below its 50-day average; +1 higher low over the last 20 bars than the 20 before; -1 more downgrades than upgrades in 90 days (2 vs 0); -0.5 estimate revisions mostly down (0 up / 8 down in 30 days); -1 current-year EPS estimate cut -1.6% in 30 days; -1 last quarter missed estimates (-21.3%); +0.5 revenue growing (+32% yoy); +0.5 positive free cash flow; +1 insiders bought (in today's insider table).
+**Read: still falling (more likely down)** (score -2.5). Signals: -1 price below its 50-day average; -1 more downgrades than upgrades in 90 days (2 vs 0); -0.5 estimate revisions mostly down (0 up / 8 down in 30 days); -1 current-year EPS estimate cut -1.6% in 30 days; -1 last quarter missed estimates (-21.3%); +0.5 revenue growing (+32% yoy); +0.5 positive free cash flow; +1 insiders bought (in today's insider table).
 
-**Where the stock is.** Last 169.00, -12% from the 52-week high (192.03 on 2026-07-02), +13% above the 52-week low (148.90 on 2025-10-16). 1m +0%, 3m -0%, 6m +8%, 1y +12%; vs 50-day -3%, vs 200-day +2%; RSI(14) 41. 52-week change +9% vs S&P 500 +14%.
+**Where the stock is.** Last 166.85, -13% from the 52-week high (192.03 on 2026-07-02), +12% above the 52-week low (148.90 on 2025-10-16). 1m -1%, 3m -3%, 6m +7%, 1y +9%; vs 50-day -4%, vs 200-day +0%; RSI(14) 38. 52-week change +9% vs S&P 500 +14%.
 
 **Why it fell.** Cause found in the data (rating cut). Largest down days in the last 90 bars and the evidence around each:
 - 2026-07-15: -4.2% (1.3x normal volume, SPY +0.4%). No cause found for this day (before the news feed starts on 2026-08-27; only 8-K filings, rating changes and the market were checked).
@@ -951,7 +949,7 @@ Last 90 days: 0 upgrades, 2 downgrades, 3 target raises, 2 target cuts.
 
 **Read: undecided (no clear base yet)** (score +2). Signals: +1 price above its 50-day average; +1 higher low over the last 20 bars than the 20 before; -1 mean price target only +1% from the price; -0.5 estimate revisions mostly down (3 up / 6 down in 30 days); -1 last quarter missed estimates (-1.2%); +0.5 revenue growing (+1% yoy); +0.5 positive free cash flow; +0.5 forward P/E 12 below trailing 15 (earnings expected to grow); +1 insiders bought (in today's insider table).
 
-**Where the stock is.** Last 69.52, -6% from the 52-week high (73.74 on 2026-07-29), +33% above the 52-week low (52.19 on 2026-01-07). 1m +7%, 3m +2%, 6m +12%, 1y +13%; vs 50-day +2%, vs 200-day +7%; RSI(14) 69. 52-week change +9% vs S&P 500 +14%.
+**Where the stock is.** Last 68.53, -7% from the 52-week high (73.74 on 2026-07-29), +31% above the 52-week low (52.19 on 2026-01-07). 1m +4%, 3m +0%, 6m +11%, 1y +14%; vs 50-day +0%, vs 200-day +6%; RSI(14) 56. 52-week change +9% vs S&P 500 +14%.
 
 **Why it fell.** Cause found in the data (earnings, rating cut). Largest down days in the last 90 bars and the evidence around each:
 - 2026-07-30: -9.3% (3.3x normal volume, SPY +1.7%):
@@ -984,7 +982,7 @@ Last 90 days: 0 upgrades, 0 downgrades, 1 target raises, 1 target cuts.
 
 **Read: signs of a bottom (more likely up than down)** (score +3). Signals: -1 price below its 50-day average; +1 50-day average turning up; +1 higher low over the last 20 bars than the 20 before; +1 analyst consensus buy (45 analysts); +1 mean price target +30% above the price; -1 more downgrades than upgrades in 90 days (2 vs 0); -1 analysts cutting price targets (23 cuts vs 2 raises in 90 days); +0.5 last quarter beat estimates (+1.5%); +0.5 revenue growing (+13% yoy); +0.5 positive free cash flow; +0.5 forward P/E 19 below trailing 23 (earnings expected to grow).
 
-**Where the stock is.** Last 71.79, -42% from the 52-week high (124.14 on 2025-10-21), +6% above the 52-week low (67.60 on 2026-07-20). 1m -11%, 3m -7%, 6m -22%, 1y -42%; vs 50-day -5%, vs 200-day -16%; RSI(14) 33. 52-week change -42% vs S&P 500 +14%.
+**Where the stock is.** Last 73.36, -41% from the 52-week high (124.14 on 2025-10-21), +9% above the 52-week low (67.60 on 2026-07-20). 1m -8%, 3m +1%, 6m -20%, 1y -39%; vs 50-day -3%, vs 200-day -14%; RSI(14) 33. 52-week change -42% vs S&P 500 +14%.
 
 **Why it fell.** Cause found in the data (earnings, rating cut). Largest down days in the last 90 bars and the evidence around each:
 - 2026-07-17: -7.3% (3.1x normal volume, SPY -1.0%):
@@ -1021,7 +1019,7 @@ Last 90 days: 0 upgrades, 2 downgrades, 2 target raises, 23 target cuts.
 
 **Read: signs of a bottom (more likely up than down)** (score +5.5). Signals: -1 price below its 50-day average; +1 50-day average turning up; +1 analyst consensus buy (19 analysts); +1 mean price target +58% above the price; +1 analysts raising price targets (7 raises vs 0 cuts in 90 days); +0.5 estimate revisions mostly up (11 up / 5 down in 30 days); +0.5 last quarter beat estimates (+2.0%); +0.5 revenue growing (+35% yoy); +0.5 positive free cash flow; +0.5 forward P/E 42 below trailing 185 (earnings expected to grow).
 
-**Where the stock is.** Last 447.76, -42% from the 52-week high (777.58 on 2025-09-23), +29% above the 52-week low (345.94 on 2026-04-10). 1m -31%, 3m +6%, 6m -11%, 1y -40%; vs 50-day -18%, vs 200-day -11%; RSI(14) 23. 52-week change -42% vs S&P 500 +14%.
+**Where the stock is.** Last 452.06, -42% from the 52-week high (777.58 on 2025-09-23), +31% above the 52-week low (345.94 on 2026-04-10). 1m -26%, 3m +10%, 6m -9%, 1y -41%; vs 50-day -17%, vs 200-day -10%; RSI(14) 25. 52-week change -42% vs S&P 500 +14%.
 
 **Why it fell.** Cause found in the data (earnings, deal/financing, company disclosure (8-K), demand/competition). Largest down days in the last 90 bars and the evidence around each:
 - 2026-08-06: -14.3% (2.8x normal volume, SPY -0.2%):
@@ -1061,7 +1059,7 @@ Last 90 days: 0 upgrades, 0 downgrades, 7 target raises, 0 target cuts.
 
 **Read: undecided (no clear base yet)** (score +0.5). Signals: -1 price below its 50-day average; +1 mean price target +23% above the price; -0.5 estimate revisions mostly down (0 up / 10 down in 30 days); +0.5 last quarter beat estimates (+11.5%); -0.5 revenue shrinking (-1% yoy); +0.5 positive free cash flow; +0.5 forward P/E 14 below trailing 16 (earnings expected to grow).
 
-**Where the stock is.** Last 56.95, -28% from the 52-week high (79.53 on 2026-02-10), +3% above the 52-week low (55.44 on 2026-06-01). 1m -11%, 3m -2%, 6m -11%, 1y -20%; vs 50-day -6%, vs 200-day -11%; RSI(14) 26. 52-week change -21% vs S&P 500 +14%.
+**Where the stock is.** Last 56.96, -28% from the 52-week high (79.53 on 2026-02-10), +3% above the 52-week low (55.44 on 2026-06-01). 1m -9%, 3m -2%, 6m -10%, 1y -20%; vs 50-day -6%, vs 200-day -11%; RSI(14) 31. 52-week change -21% vs S&P 500 +14%.
 
 **Why it fell.** Cause found in the data (earnings, rating cut, market-wide). Largest down days in the last 90 bars and the evidence around each:
 - 2026-06-17: -3.9% (1.1x normal volume, SPY -1.2%). No cause found for this day (before the news feed starts on 2026-08-03; only 8-K filings, rating changes and the market were checked).
@@ -1096,7 +1094,7 @@ Last 90 days: 0 upgrades, 0 downgrades, 1 target raises, 2 target cuts.
 
 **Read: undecided (no clear base yet)** (score +2.5). Signals: -1 price below its 50-day average; +1 analyst consensus buy (15 analysts); +1 mean price target +41% above the price; -0.5 estimate revisions mostly down (3 up / 10 down in 30 days); +0.5 last quarter beat estimates (+1.7%); +0.5 revenue growing (+4% yoy); +0.5 positive free cash flow; +0.5 forward P/E 12 below trailing 26 (earnings expected to grow).
 
-**Where the stock is.** Last 147.61, -25% from the 52-week high (197.51 on 2026-02-11), +18% above the 52-week low (124.88 on 2025-09-25). 1m -9%, 3m -19%, 6m -16%, 1y +14%; vs 50-day -11%, vs 200-day -14%; RSI(14) 35. 52-week change +13% vs S&P 500 +14%.
+**Where the stock is.** Last 146.88, -26% from the 52-week high (197.51 on 2026-02-11), +18% above the 52-week low (124.88 on 2025-09-25). 1m -8%, 3m -15%, 6m -15%, 1y +11%; vs 50-day -11%, vs 200-day -14%; RSI(14) 35. 52-week change +13% vs S&P 500 +14%.
 
 **Why it fell.** Cause found in the data (management, company disclosure (8-K)). Largest down days in the last 90 bars and the evidence around each:
 - 2026-07-08: -5.7% (0.9x normal volume, SPY -0.3%). No cause found for this day (before the news feed starts on 2026-09-05; only 8-K filings, rating changes and the market were checked).
@@ -1126,9 +1124,9 @@ Last 90 days: 0 upgrades, 0 downgrades, 1 target raises, 0 target cuts.
 *In today's tables: falling wedge. Utilities / Utilities - Regulated Gas.*
 *Atmos Energy Corporation, together with its subsidiaries, engages in the regulated natural gas distribution, and pipeline and storage businesses in the United States. It operates through two segments, Distribution, and Pipeline and Storage.*
 
-**Read: undecided (no clear base yet)** (score -1.5). Signals: -1 price below its 50-day average; -1 more downgrades than upgrades in 90 days (1 vs 0); -1 analysts cutting price targets (6 cuts vs 2 raises in 90 days); +0.5 estimate revisions mostly up (3 up / 0 down in 30 days); +0.5 last quarter beat estimates (+5.6%); +0.5 revenue growing (+5% yoy); -0.5 negative free cash flow; +0.5 forward P/E 18 below trailing 19 (earnings expected to grow).
+**Read: still falling (more likely down)** (score -2.5). Signals: -1 price below its 50-day average; -1 new 52-week low within the last 5 bars; -1 more downgrades than upgrades in 90 days (1 vs 0); -1 analysts cutting price targets (6 cuts vs 2 raises in 90 days); +0.5 estimate revisions mostly up (3 up / 0 down in 30 days); +0.5 last quarter beat estimates (+5.6%); +0.5 revenue growing (+5% yoy); -0.5 negative free cash flow; +0.5 forward P/E 18 below trailing 19 (earnings expected to grow).
 
-**Where the stock is.** Last 160.30, -16% from the 52-week high (190.06 on 2026-04-09), +1% above the 52-week low (158.76 on 2025-09-18). 1m -6%, 3m -5%, 6m -12%, 1y +0%; vs 50-day -6%, vs 200-day -7%; RSI(14) 28. 52-week change -2% vs S&P 500 +14%.
+**Where the stock is.** Last 158.27, -17% from the 52-week high (190.06 on 2026-04-09), +0% above the 52-week low (158.27 on 2026-09-21). 1m -7%, 3m -6%, 6m -11%, 1y -0%; vs 50-day -7%, vs 200-day -9%; RSI(14) 25. 52-week change -2% vs S&P 500 +14%.
 
 **Why it fell.** Cause found in the data (rating cut). Largest down days in the last 90 bars and the evidence around each:
 - 2026-05-15: -2.4% (1.9x normal volume, SPY -1.2%). No cause found for this day (before the news feed starts on 2026-08-27; only 8-K filings, rating changes and the market were checked).
@@ -1164,7 +1162,7 @@ Last 90 days: 0 upgrades, 1 downgrades, 2 target raises, 6 target cuts.
 
 **Read: still falling (more likely down)** (score -2.5). Signals: -1 price below its 50-day average; -1 new 52-week low within the last 5 bars; +1 analyst consensus buy (12 analysts); +1 mean price target +20% above the price; -1 more downgrades than upgrades in 90 days (1 vs 0); -1 analysts cutting price targets (7 cuts vs 4 raises in 90 days); -0.5 estimate revisions mostly down (0 up / 6 down in 30 days); +0.5 last quarter beat estimates (+3.1%); -0.5 revenue shrinking (-0% yoy); -0.5 negative free cash flow; +0.5 forward P/E 16 below trailing 20 (earnings expected to grow).
 
-**Where the stock is.** Last 65.34, -17% from the 52-week high (78.69 on 2026-04-09), +0% above the 52-week low (65.34 on 2026-09-18). 1m -7%, 3m -10%, 6m -14%, 1y -4%; vs 50-day -7%, vs 200-day -10%; RSI(14) 23. 52-week change -7% vs S&P 500 +14%.
+**Where the stock is.** Last 64.70, -18% from the 52-week high (78.69 on 2026-04-09), +0% above the 52-week low (64.70 on 2026-09-21). 1m -7%, 3m -12%, 6m -12%, 1y -5%; vs 50-day -8%, vs 200-day -10%; RSI(14) 21. 52-week change -7% vs S&P 500 +14%.
 
 **Why it fell.** Cause found in the data (rating cut). Largest down days in the last 90 bars and the evidence around each:
 - 2026-07-30: -2.8% (1.0x normal volume, SPY +1.7%):
@@ -1193,44 +1191,6 @@ Last 90 days: 0 upgrades, 1 downgrades, 4 target raises, 7 target cuts.
 
 **Fundamentals.** Market cap $20.5B; P/E 19.6 trailing, 15.7 forward, PEG 2.36; EV/revenue 4.6, EV/EBITDA 13.4, P/B 2.1. Margins: gross +40%, operating +17%, net +12%; ROE +9%. Free cash flow $-2.2B (yield -10.7%); cash $241.0M, debt $19.3B, debt/equity 1.86, current ratio 0.94. Dividend yield +3.5%. Short interest +0.0% of float. Beta 0.33.
 
-## [STZ](https://www.tradingview.com/chart/?symbol=STZ) Constellation Brands, Inc.
-
-*In today's tables: falling wedge. Consumer Defensive / Beverages - Brewers.*
-*Constellation Brands, Inc., together with its subsidiaries, produces, imports, markets, and sells beer, wine, and spirits in the United States, Canada, Mexico, New Zealand, and Italy.*
-
-**Read: undecided (no clear base yet)** (score +0). Signals: -1 price below its 50-day average; -1 new 52-week low within the last 5 bars; +1 analyst consensus buy (23 analysts); +1 mean price target +42% above the price; -1 analysts cutting price targets (12 cuts vs 1 raises in 90 days); +0.5 last quarter beat estimates (+7.1%); -0.5 revenue shrinking (-3% yoy); +0.5 positive free cash flow; +0.5 forward P/E 10 below trailing 11 (earnings expected to grow).
-
-**Where the stock is.** Last 118.97, -28% from the 52-week high (164.28 on 2026-02-04), +0% above the 52-week low (118.97 on 2026-09-18). 1m -11%, 3m -15%, 6m -21%, 1y -8%; vs 50-day -9%, vs 200-day -17%; RSI(14) 23. 52-week change -11% vs S&P 500 +14%.
-
-**Why it fell.** Cause found in the data (company disclosure (8-K), earnings, rating cut). Largest down days in the last 90 bars and the evidence around each:
-- 2026-08-17: -6.2% (1.5x normal volume, SPY -0.5%). No cause found for this day (before the news feed starts on 2026-09-10; only 8-K filings, rating changes and the market were checked).
-- 2026-09-08: -5.6% (2.8x normal volume, SPY -0.5%):
-  - 8-K filed 2026-09-08: Reg FD disclosure
-  - 2026-09-10 Constellation Brands to Report Second Quarter  Fiscal 2027 Financial Results on October 6, 2026,  After Market Close and Host Conference Call on  October 7, 2026, at 8:00 AM ET: ROCHESTER, N.Y., Sept. 10, 2026 (GLOBE NEWSWIRE) -- Constellation Brands, Inc.
-  - rating/target cuts right after: Deutsche Bank target cut 150 -> 136
-- 2026-07-06: -4.9% (1.5x normal volume, SPY +0.9%). No cause found for this day (before the news feed starts on 2026-09-10; only 8-K filings, rating changes and the market were checked).
-
-Latest news:
-- 2026-09-20 3 Relentless Dividend Stocks to Buy in September (Motley Fool): These stocks offer above-average yields and solid dividend growth.
-- 2026-09-18 Constellation Brands' Premiumization and Innovation Aid Growth (Zacks): STZ's premium portfolio and beer leadership continue to fuel growth as it doubles down on innovation and premiumization.
-- 2026-09-18 Svedka can bring “fresh energy” to UK vodka market, Sazerac says (Just Drinks): Svedka will go on sale in the UK from 28 September through selected Tesco stores, One Stop, and Booker Cash and Carry.
-- 2026-09-17 Should Constellation Brands’ (STZ) Early Debt Redemption Reframe How Investors View Its Capital Allocation Priorities? (Simply Wall St.): Constellation Brands, the U.S. total beverage alcohol company, has already redeemed in full its US$600,000,000 4.350% Senior Notes due 2027, with the cash redemption price calculated under the supplemental indenture terms and communicated to noteholders via the trustee. This earl
-- 2026-09-17 TD Cowen Adjusts Price Target on Constellation Brands to $150 From $174, Keeps Buy Rating (MT Newswires)
-- 2026-09-16 MO Stock: Altria Returned Billions To Shareholders. What’s The Catch? (Trefis): A tobacco giant sent a torrent of cash back to its owners. Here’s what that money actually bought, and what has to go right for the checks to keep coming.
-
-**What analysts say.** Consensus **buy** (23 analysts, mean rating 2.0 on a 1-5 scale); strong buy 3, buy 11, hold 8, sell 0, strong sell 2 (bullish share 58% now vs 61% three months ago). Mean target 168.65 (+42% from the price; range 115.00-209.00). 
-Last 90 days: 0 upgrades, 0 downgrades, 1 target raises, 12 target cuts.
-- 2026-09-17 TD Cowen: maintains Buy, target 174 -> 150
-- 2026-09-14 Jefferies: maintains Hold, target 147 -> 135
-- 2026-09-11 Deutsche Bank: maintains Hold, target 150 -> 136
-- 2026-07-21 Barclays: maintains Equal-Weight, target 139 -> 132
-- 2026-07-02 Jefferies: maintains Hold, target 157 -> 147
-- 2026-07-02 BMO Capital: reiterates Outperform, target 190
-
-**Last report and estimates.** Quarter to 2026-05-31: EPS 3.43 vs 3.20 expected (+7.1%); beat in 4 of the last 4 quarters. Revenue -3% yoy, earnings +31% yoy (latest quarter). Next report 2026-10-06: EPS 3.60 expected (-1% yoy), revenue +3% yoy. Current-year EPS estimate -0.1% in 30 days, +0.1% in 90 days (10 up / 11 down revisions); growth expected -0% this year, +5% next. 
-
-**Fundamentals.** Market cap $20.3B; P/E 11.3 trailing, 9.6 forward, PEG 1.51; EV/revenue 3.4, EV/EBITDA 9.0, P/B 2.5. Margins: gross +53%, operating +36%, net +20%; ROE +24%. Free cash flow $2.2B (yield +10.9%); cash $96.6M, debt $10.5B, debt/equity 1.23, current ratio 0.91. Dividend yield +3.5%. Short interest +5.5% of float. Beta 0.40.
-
 ## [CRH](https://www.tradingview.com/chart/?symbol=CRH) CRH plc
 
 *In today's tables: falling wedge. Basic Materials / Building Materials.*
@@ -1238,7 +1198,7 @@ Last 90 days: 0 upgrades, 0 downgrades, 1 target raises, 12 target cuts.
 
 **Read: undecided (no clear base yet)** (score -0.5). Signals: -1 price below its 50-day average; -1 new 52-week low within the last 5 bars; +1 analyst consensus strong buy (24 analysts); +1 mean price target +57% above the price; -1 analysts cutting price targets (4 cuts vs 1 raises in 90 days); -1 last quarter missed estimates (-4.2%); +0.5 revenue growing (+6% yoy); +0.5 positive free cash flow; +0.5 forward P/E 13 below trailing 15 (earnings expected to grow).
 
-**Where the stock is.** Last 86.15, -34% from the 52-week high (129.92 on 2026-01-09), +0% above the 52-week low (86.15 on 2026-09-18). 1m -9%, 3m -22%, 6m -14%, 1y -22%; vs 50-day -10%, vs 200-day -21%; RSI(14) 26. 52-week change -25% vs S&P 500 +14%.
+**Where the stock is.** Last 87.14, -33% from the 52-week high (129.92 on 2026-01-09), +1% above the 52-week low (86.15 on 2026-09-18). 1m -6%, 3m -21%, 6m -13%, 1y -22%; vs 50-day -9%, vs 200-day -20%; RSI(14) 29. 52-week change -25% vs S&P 500 +14%.
 
 **Why it fell.** Cause found in the data (earnings, deal/financing, news, rating cut, management, company disclosure (8-K)). Largest down days in the last 90 bars and the evidence around each:
 - 2026-05-19: -4.7% (1.4x normal volume, SPY -0.7%). No cause found for this day (before the news feed starts on 2026-08-18; only 8-K filings, rating changes and the market were checked).
@@ -1270,14 +1230,48 @@ Last 90 days: 0 upgrades, 0 downgrades, 1 target raises, 4 target cuts.
 
 **Fundamentals.** Market cap $57.3B; P/E 15.2 trailing, 13.3 forward, PEG 1.55; EV/revenue 2.0, EV/EBITDA 9.8, P/B 2.4. Margins: gross +36%, operating +19%, net +10%; ROE +16%. Free cash flow $2.0B (yield +3.5%); cash $3.0B, debt $19.8B, debt/equity 0.78, current ratio 1.58. Dividend yield +1.8%. Short interest +2.2% of float. Beta 1.20.
 
+## [DOV](https://www.tradingview.com/chart/?symbol=DOV) Dover Corporation
+
+*In today's tables: falling wedge. Industrials / Specialty Industrial Machinery.*
+*Dover Corporation provides equipment and components, consumable supplies, aftermarket parts, software and digital solutions, and support services worldwide.*
+
+**Read: signs of a bottom (more likely up than down)** (score +4.5). Signals: -1 price below its 50-day average; +1 analyst consensus buy (18 analysts); +1 mean price target +32% above the price; +1 more upgrades than downgrades in 90 days (1 vs 0); +0.5 estimate revisions mostly up (12 up / 2 down in 30 days); +0.5 last quarter beat estimates (+0.8%); +0.5 revenue growing (+7% yoy); +0.5 positive free cash flow; +0.5 forward P/E 16 below trailing 23 (earnings expected to grow).
+
+**Where the stock is.** Last 186.09, -20% from the 52-week high (231.59 on 2026-02-20), +17% above the 52-week low (159.53 on 2025-10-13). 1m -7%, 3m -19%, 6m -11%, 1y +9%; vs 50-day -8%, vs 200-day -11%; RSI(14) 29. 52-week change +10% vs S&P 500 +14%.
+
+**Why it fell.** Cause found in the data (earnings, company disclosure (8-K), rating cut, market-wide). Largest down days in the last 90 bars and the evidence around each:
+- 2026-07-23: -7.8% (4.2x normal volume, SPY -1.2%):
+  - 8-K filed 2026-07-23: results of operations (earnings release); Reg FD disclosure (quarter to 2026-06-30: EPS 2.74 vs 2.72 expected, +0.8%)
+  - rating/target cuts right after: RBC Capital target cut 252 -> 227; BMO Capital target cut 255 -> 240
+- 2026-06-10: -3.3% (1.1x normal volume, SPY -1.6%):
+  - market-wide day: SPY -1.6%
+- 2026-07-01: -3.2% (1.4x normal volume, SPY -0.1%). No cause found for this day (before the news feed starts on 2026-08-27; only 8-K filings, rating changes and the market were checked).
+
+Latest news:
+- 2026-09-18 Dover (DOV) Upgraded to Buy: Here's What You Should Know (Zacks): Dover (DOV) has been upgraded to a Zacks Rank #2 (Buy), reflecting growing optimism about the company's earnings prospects. This might drive the stock higher in the near term.
+- 2026-09-16 Dover Announces Third Quarter 2026 Earnings Release Date, Conference Call and Webcast (PR Newswire): Dover (NYSE: DOV) announced today that it will release third quarter 2026 earnings at approximately 6:00 a.m. Central time (7:00 a.m. Eastern time) on Thursday, October 22, 2026. Later that morning, Dover will host a conference call at 8:30 a.m. Central time (9:30 a.m. Eastern ti
+- 2026-09-16 3 of Wall Street’s Favorite Stocks That Fall Short (StockStory): The stocks in this article have caught Wall Street’s attention in a big way, with price targets implying returns above 20%. But investors should take these forecasts with a grain of salt because analysts typically say nice things about companies so their firms can win business in
+- 2026-09-15 Is Dover Stock Underperforming the Dow? (Barchart): Dover has trailed the broader Dow Jones Industrial over the past year, although analysts remain cautiously optimistic about its outlook.
+- 2026-09-09 Blackmer Launches Behind-the-Rotor Seal for G Series Internal Gear Pumps (PR Newswire): Blackmer, part of PSG, a Dover (NYSE: DOV) company, and a global leader in rotating pumps and reciprocating compressor technologies, today announced the launch of a behind-the-rotor seal for its Blackmer® G Series Internal Gear Pumps. The new seal design delivers improved protect
+- 2026-09-04 3 Reasons to Avoid DOV and 1 Stock to Buy Instead (StockStory): Over the last six months, Dover’s shares have sunk to $191.08, producing a disappointing 13.9% loss - a stark contrast to the S&P 500’s 11.7% gain. This may have investors wondering how to approach the situation.
+
+**What analysts say.** Consensus **buy** (18 analysts, mean rating 1.6 on a 1-5 scale); strong buy 0, buy 13, hold 4, sell 0, strong sell 1 (bullish share 72% now vs 67% three months ago). Mean target 245.72 (+32% from the price; range 168.00-288.00). 
+Last 90 days: 1 upgrades, 0 downgrades, 0 target raises, 2 target cuts.
+- 2026-07-24 RBC Capital: maintains Sector Perform, target 252 -> 227
+- 2026-07-24 BMO Capital: upgrades Market Perform -> Outperform, target 255 -> 240
+
+**Last report and estimates.** Quarter to 2026-06-30: EPS 2.74 vs 2.72 expected (+0.8%); beat in 4 of the last 4 quarters. Revenue +7% yoy, earnings +14% yoy (latest quarter). Next report 2026-10-22: EPS 2.86 expected (+9% yoy), revenue +6% yoy. Current-year EPS estimate -0.0% in 30 days, +0.4% in 90 days (12 up / 2 down revisions); growth expected +11% this year, +9% next. 
+
+**Fundamentals.** Market cap $25.1B; P/E 22.5 trailing, 16.0 forward, PEG 1.46; EV/revenue 3.2, EV/EBITDA 14.0, P/B 3.3. Margins: gross +40%, operating +19%, net +13%; ROE +15%. Free cash flow $906.5M (yield +3.6%); cash $1.8B, debt $3.3B, debt/equity 0.42, current ratio 1.98. Dividend yield +1.1%. Short interest +4.3% of float. Beta 1.15.
+
 ## [DOW](https://www.tradingview.com/chart/?symbol=DOW) Dow Inc.
 
 *In today's tables: falling wedge. Basic Materials / Chemicals.*
 *Dow Inc., through its subsidiaries, provides various materials science solutions for packaging, infrastructure, mobility, and consumer applications in the United States, Canada, Europe, the Middle East, Africa, India, the Asia Pacific, and Latin America.*
 
-**Read: undecided (no clear base yet)** (score +0.5). Signals: -1 price below its 50-day average; +1 50-day average turning up; +1 higher low over the last 20 bars than the 20 before; +1 analyst consensus buy (16 analysts); -1 more downgrades than upgrades in 90 days (1 vs 0); -1 analysts cutting price targets (8 cuts vs 1 raises in 90 days); -1 current-year EPS estimate cut -4.9% in 30 days; +0.5 last quarter beat estimates (+12.6%); +0.5 revenue growing (+20% yoy); +0.5 positive free cash flow.
+**Read: undecided (no clear base yet)** (score -0.5). Signals: -1 price below its 50-day average; +1 50-day average turning up; +1 analyst consensus buy (16 analysts); -1 more downgrades than upgrades in 90 days (1 vs 0); -1 analysts cutting price targets (8 cuts vs 1 raises in 90 days); -1 current-year EPS estimate cut -4.9% in 30 days; +0.5 last quarter beat estimates (+12.6%); +0.5 revenue growing (+20% yoy); +0.5 positive free cash flow.
 
-**Where the stock is.** Last 28.73, -30% from the 52-week high (40.97 on 2026-03-30), +46% above the 52-week low (19.68 on 2025-10-10). 1m -8%, 3m -8%, 6m -22%, 1y +23%; vs 50-day -4%, vs 200-day -8%; RSI(14) 41. 52-week change +24% vs S&P 500 +14%.
+**Where the stock is.** Last 28.27, -31% from the 52-week high (40.97 on 2026-03-30), +44% above the 52-week low (19.68 on 2025-10-10). 1m -13%, 3m -7%, 6m -21%, 1y +23%; vs 50-day -6%, vs 200-day -9%; RSI(14) 37. 52-week change +24% vs S&P 500 +14%.
 
 **Why it fell.** Cause found in the data (rating cut). Largest down days in the last 90 bars and the evidence around each:
 - 2026-08-25: -4.1% (1.0x normal volume, SPY +0.3%). No cause found for this day (before the news feed starts on 2026-09-12; only 8-K filings, rating changes and the market were checked).
@@ -1306,76 +1300,43 @@ Last 90 days: 0 upgrades, 1 downgrades, 1 target raises, 8 target cuts.
 
 **Fundamentals.** Market cap $20.8B; P/E  trailing, 16.1 forward, PEG 38.89; EV/revenue 0.9, EV/EBITDA 9.5, P/B 1.3. Margins: gross +10%, operating +12%, net -3%; ROE -6%. Free cash flow $237.6M (yield +1.1%); cash $4.2B, debt $19.4B, debt/equity 1.12, current ratio 1.75. Dividend yield +4.9%. Short interest +5.8% of float. Beta 0.42.
 
-## [DTE](https://www.tradingview.com/chart/?symbol=DTE) DTE Energy Company
+## [FICO](https://www.tradingview.com/chart/?symbol=FICO) Fair Isaac Corporation
 
-*In today's tables: falling wedge. Utilities / Utilities - Regulated Electric.*
-*DTE Energy Company engages in energy-related businesses and services.*
+*In today's tables: falling wedge. Technology / Software - Application.*
+*Fair Isaac Corporation provides analytics software in the Americas, Europe, the Middle East, Africa, and the Asia Pacific. It operates through two segments, Scores and Software.*
 
-**Read: undecided (no clear base yet)** (score -1). Signals: -1 price below its 50-day average; +1 analyst consensus buy (14 analysts); +1 mean price target +22% above the price; -1 analysts cutting price targets (8 cuts vs 2 raises in 90 days); -0.5 estimate revisions mostly down (1 up / 5 down in 30 days); +0.5 last quarter beat estimates (+16.3%); -0.5 revenue shrinking (-2% yoy); -0.5 negative free cash flow; -0.5 high leverage (debt/equity 2.3); +0.5 forward P/E 15 below trailing 20 (earnings expected to grow).
+**Read: undecided (no clear base yet)** (score +1.5). Signals: -1 price below its 50-day average; +1 analyst consensus buy (19 analysts); +1 mean price target +56% above the price; -1 more downgrades than upgrades in 90 days (1 vs 0); -0.5 estimate revisions mostly down (7 up / 12 down in 30 days); +0.5 last quarter beat estimates (+3.4%); +0.5 revenue growing (+26% yoy); +0.5 positive free cash flow; +0.5 forward P/E 17 below trailing 27 (earnings expected to grow).
 
-**Where the stock is.** Last 128.52, -17% from the 52-week high (154.43 on 2026-06-26), +2% above the 52-week low (125.65 on 2025-12-19). 1m -8%, 3m -12%, 6m -12%, 1y -2%; vs 50-day -8%, vs 200-day -8%; RSI(14) 22. 52-week change -6% vs S&P 500 +14%.
+**Where the stock is.** Last 924.52, -51% from the 52-week high (1879.55 on 2025-10-07), +0% above the 52-week low (922.37 on 2026-04-10). 1m -20%, 3m -15%, 6m -18%, 1y -39%; vs 50-day -17%, vs 200-day -27%; RSI(14) 25. 52-week change -38% vs S&P 500 +14%.
 
-**Why it fell.** Cause found in the data (company disclosure (8-K)). Largest down days in the last 90 bars and the evidence around each:
-- 2026-05-15: -2.8% (1.0x normal volume, SPY -1.2%):
-  - 8-K filed 2026-05-15: Reg FD disclosure
-- 2026-08-10: -2.2% (1.3x normal volume, SPY -0.0%). No cause found for this day (before the news feed starts on 2026-08-28; only 8-K filings, rating changes and the market were checked).
-- 2026-06-01: -2.1% (1.1x normal volume, SPY +0.3%). No cause found for this day (before the news feed starts on 2026-08-28; only 8-K filings, rating changes and the market were checked).
-
-Latest news:
-- 2026-09-18 DTE Could Be One of the Quiet Winners of the Data Center Boom (24/7 Wall St.): DTE Energy has been quietly signing contracts with some of the biggest hyperscalers on the planet, and the numbers behind that pipeline suggest most investors are not yet pricing in what it could mean for earnings growth.
-- 2026-09-18 DTE Energy (DTE) Stock May Be 13% Undervalued On Dividend Strength (Simply Wall St.): DTE Energy has delivered a 35.0% total return over the past three years, which puts fresh focus on a simple question for income-focused holders. Is the current share price giving you a dividend stream that lines up with what you are paying today? The 35.0% gain over three years m
-- 2026-09-18 Morgan Stanley Adjusts DTE Energy Price Target to $141 From $148, Maintains Overweight Rating (MT Newswires)
-- 2026-09-17 Social Buzz: Wallstreetbets Stocks Advance Premarket Thursday; Nebius Group, AMD to Open Higher (MT Newswires)
-- 2026-09-16 DTE Is Sitting on an AI-Era Power Opportunity (24/7 Wall St.): Michigan's largest utility just signed hyperscale data center deals that could rewrite its earnings story, but a recent sell-off near 52-week lows is raising questions about whether the opportunity is real or already priced in.
-- 2026-09-16 Is DTE Energy Stock Underperforming the Dow? (Barchart): While DTE Energy has underperformed relative to the Dow over the past year, Wall Street analysts maintain a moderately optimistic outlook on the stock’s prospects.
-
-**What analysts say.** Consensus **buy** (14 analysts, mean rating 1.9 on a 1-5 scale); strong buy 2, buy 8, hold 7, sell 0, strong sell 0 (bullish share 59% now vs 59% three months ago). Mean target 156.36 (+22% from the price; range 141.00-168.00). 
-Last 90 days: 0 upgrades, 0 downgrades, 2 target raises, 8 target cuts.
-- 2026-09-18 Morgan Stanley: maintains Overweight, target 148 -> 141
-- 2026-08-28 BMO Capital: maintains Market Perform, target 150 -> 143
-- 2026-08-27 Mizuho: maintains Outperform, target 164 -> 152
-- 2026-08-21 Morgan Stanley: maintains Overweight, target 153 -> 148
-- 2026-08-04 Truist Securities: maintains Buy, target 166 -> 160
-- 2026-07-29 Mizuho: maintains Outperform, target 165 -> 164
-
-**Last report and estimates.** Quarter to 2026-06-30: EPS 1.32 vs 1.14 expected (+16.3%); beat in 3 of the last 4 quarters. Revenue -2% yoy, earnings +22% yoy (latest quarter). Next report 2026-10-29: EPS 2.40 expected (+7% yoy), revenue -3% yoy. Current-year EPS estimate +0.0% in 30 days, -0.0% in 90 days (1 up / 5 down revisions); growth expected +5% this year, +9% next. 
-
-**Fundamentals.** Market cap $26.7B; P/E 20.3 trailing, 15.4 forward, PEG 1.65; EV/revenue 3.3, EV/EBITDA 15.1, P/B 2.2. Margins: gross +29%, operating +14%, net +8%; ROE +11%. Free cash flow $-2.6B (yield -9.7%); cash $42.0M, debt $27.8B, debt/equity 2.29, current ratio 0.80. Dividend yield +3.6%. Short interest +2.7% of float. Beta 0.39.
-
-## [EXC](https://www.tradingview.com/chart/?symbol=EXC) Exelon Corporation
-
-*In today's tables: falling wedge. Utilities / Utilities - Regulated Electric.*
-*Exelon Corporation, a utility services holding company, engages in the energy distribution and transmission businesses in the United States.*
-
-**Read: undecided (no clear base yet)** (score -1.5). Signals: -1 price below its 50-day average; -1 last quarter missed estimates (-3.9%); +0.5 revenue growing (+10% yoy); -0.5 negative free cash flow; +0.5 forward P/E 14 below trailing 15 (earnings expected to grow).
-
-**Where the stock is.** Last 42.07, -15% from the 52-week high (49.35 on 2026-03-16), +1% above the 52-week low (41.58 on 2025-09-18). 1m -6%, 3m -7%, 6m -11%, 1y +1%; vs 50-day -6%, vs 200-day -7%; RSI(14) 34. 52-week change -3% vs S&P 500 +14%.
-
-**Why it fell.** Cause found in the data (earnings, company disclosure (8-K), rating cut). Largest down days in the last 90 bars and the evidence around each:
-- 2026-07-30: -3.1% (2.1x normal volume, SPY +1.7%):
-  - 8-K filed 2026-07-30: results of operations (earnings release); Reg FD disclosure (quarter to 2026-06-30: EPS 0.43 vs 0.45 expected, -3.9%)
-- 2026-08-21: -2.8% (0.8x normal volume, SPY +0.4%):
-  - rating/target cuts right after: Morgan Stanley target cut 55 -> 53
-- 2026-07-15: -2.5% (0.9x normal volume, SPY +0.4%). No cause found for this day (before the news feed starts on 2026-09-10; only 8-K filings, rating changes and the market were checked).
+**Why it fell.** Cause found in the data (earnings, rating cut). Largest down days in the last 90 bars and the evidence around each:
+- 2026-07-30: -17.0% (4.4x normal volume, SPY +1.7%):
+  - 8-K filed 2026-07-29: results of operations (earnings release) (quarter to 2026-06-30: EPS 12.18 vs 11.78 expected, +3.4%)
+  - rating/target cuts right after: RBC Capital target cut 2,400 -> 1,525
+- 2026-09-04: -16.7% (5.8x normal volume, SPY -0.4%). No cause found for this day (before the news feed starts on 2026-09-11; only 8-K filings, rating changes and the market were checked).
+- 2026-08-03: -6.9% (2.8x normal volume, SPY +1.4%):
+  - rating/target cuts right after: Wolfe Research downgrade
 
 Latest news:
-- 2026-09-20 Exelon (EXC), Why Is The Utility Getting Fresh Attention? (Simply Wall St.): Exelon (EXC) has drawn fresh attention after recent trading, with the share price closing at US$42.07. Investors now have a clearer snapshot of how this regulated utility group currently trades. Recent trading has been softer, with the share price return declining 1.34% over the 
-- 2026-09-18 The Zacks Analyst Blog Highlights Exelon, PG&E and Centuri (Zacks): Exelon, PG&E and Centuri are included in this Analyst Blog.
-- 2026-09-18 Exxon’s 11 Million-Gallon Refinery Goes Dark. How High Can Midwest Gas Prices Go? (24/7 Wall St.): A flooded pump has knocked one of the Midwest's biggest refineries offline at the worst possible moment, and fuel markets from Chicago to Pittsburgh are already stretched thin. The question now is how long Exxon can stay dark before prices in the region hit a new breaking point.
-- 2026-09-18 Morgan Stanley Adjusts Price Target on Exelon to $50 From $53, Keeps Equalweight Rating (MT Newswires)
-- 2026-09-17 3 Utility Stocks to Track as Fed Delivers First Rate Hike Since 2023 (Zacks): Exelon, PG&E and Centuri stand out as utilities positioned to navigate higher rates with solid interest coverage and improving 2026 earnings estimates.
-- 2026-09-16 Alphabet, Exelon, and Patterson-UTI Just Paid Shareholders. Here’s What They Got. (24/7 Wall St.): Three companies with nothing in common all sent checks to shareholders within the same two-day window, and the reasons behind each payment reveal something very different about where each business is headed.
+- 2026-09-21 UK Consumers Rein In Credit Card Spending in July but Balances Hit Record High for Second Month (Business Wire): LONDON, September 21, 2026--After an increase in spending on credit cards in June, data analysis by global analytics software leader FICO (NYSE: FICO) shows a drop in July. However, despite lower spending, the average active balance climbed to a new record high for the second con
+- 2026-09-21 AFRM Stock Rises Overnight: Affirm CEO Says AI Won’t Put Human Underwriters ‘Out Of Business’ (Stocktwits): Affirm CEO Max Levchin said in an interview with CNBC that while human underwriters “could never do what we're doing with transformers,” they would not replace them completely.
+- 2026-09-20 FICO Stock Has Fallen 43% From Its Peak. Does the Selloff Make Sense? (TIKR): Key Stats for Fair Isaac Corporation 52-Week Range: $870. 01 to $1,998.
+- 2026-09-19 How Investors Are Reacting To Fair Isaac (FICO) Making FICO Score 10T Free For FHA Lenders (Simply Wall St.): Fair Isaac recently announced that its latest credit scoring model, FICO Score 10T, will be available at no cost alongside Classic FICO for FHA-approved mortgage lenders starting January 1, 2027, using trended credit and rental payment data to give a more detailed view of borrowe
+- 2026-09-19 Fair Isaac (FICO) Could Be 34% Undervalued As FHA Mortgage Score Expansion Nears (Simply Wall St.): Fair Isaac (FICO) is back in focus after announcing that its FICO Score 10T model will be available to FHA-approved mortgage lenders starting January 1, 2027. This move expands its role in housing credit decisions. Against this product news backdrop, Fair Isaac’s share price has 
+- 2026-09-18 Here's How Affirm's AI Upgrade Could Strengthen Credit Underwriting (Zacks): AFRM's new AI model uses 14 years of data to expand credit approvals, boost completed purchases and improve early loan performance.
 
-**What analysts say.** Consensus **hold** (17 analysts, mean rating 2.8 on a 1-5 scale); strong buy 0, buy 4, hold 15, sell 2, strong sell 0 (bullish share 19% now vs 18% three months ago). Mean target 48.71 (+16% from the price; range 41.00-58.00). 
-Last 90 days: 0 upgrades, 0 downgrades, 1 target raises, 3 target cuts.
-- 2026-09-18 Morgan Stanley: maintains Equal-Weight, target 53 -> 50
-- 2026-08-21 Morgan Stanley: maintains Equal-Weight, target 55 -> 53
-- 2026-08-13 Truist Securities: maintains Hold, target 50 -> 48
-- 2026-07-16 Truist Securities: maintains Hold, target 49 -> 50
+**What analysts say.** Consensus **buy** (19 analysts, mean rating 2.0 on a 1-5 scale); strong buy 5, buy 9, hold 6, sell 1, strong sell 0 (bullish share 67% now vs 76% three months ago). Mean target 1,440.16 (+56% from the price; range 696.00-1,750.00). 
+Last 90 days: 0 upgrades, 1 downgrades, 2 target raises, 3 target cuts.
+- 2026-08-12 UBS: maintains Neutral, target 1,200 -> 1,130
+- 2026-08-10 Barclays: maintains Overweight, target 1,950 -> 1,700
+- 2026-08-03 Wolfe Research: downgrades Outperform -> Peer Perform
+- 2026-07-30 RBC Capital: maintains Outperform, target 2,400 -> 1,525
+- 2026-07-30 Wells Fargo: maintains Overweight, target 1,400 -> 1,450
+- 2026-07-30 Needham: reiterates Buy, target 1,650
 
-**Last report and estimates.** Quarter to 2026-06-30: EPS 0.43 vs 0.45 expected (-3.9%); beat in 3 of the last 4 quarters. Revenue +10% yoy, earnings -0% yoy (latest quarter). Next report 2026-11-03 (estimated date): EPS 0.81 expected (-6% yoy), revenue +2% yoy. Current-year EPS estimate +0.1% in 30 days, +0.0% in 90 days (3 up / 3 down revisions); growth expected +3% this year, +6% next. 
+**Last report and estimates.** Quarter to 2026-06-30: EPS 12.18 vs 11.78 expected (+3.4%); beat in 4 of the last 4 quarters. Revenue +26% yoy, earnings +41% yoy (latest quarter). Next report 2026-11-04 (estimated date): EPS 11.06 expected (+43% yoy), revenue +29% yoy. Current-year EPS estimate -0.2% in 30 days, -0.1% in 90 days (7 up / 12 down revisions); growth expected +44% this year, +23% next. 
 
-**Fundamentals.** Market cap $43.3B; P/E 15.5 trailing, 13.8 forward, PEG 2.26; EV/revenue 3.7, EV/EBITDA 11.3, P/B 1.5. Margins: gross +42%, operating +17%, net +11%; ROE +10%. Free cash flow $-2.7B (yield -6.2%); cash $1.8B, debt $52.7B, debt/equity 1.77, current ratio 1.09. Dividend yield +4.0%. Short interest +3.5% of float. Beta 0.39.
+**Fundamentals.** Market cap $20.0B; P/E 26.7 trailing, 17.4 forward, PEG 0.76; EV/revenue 10.8, EV/EBITDA 20.5, P/B . Margins: gross +85%, operating +54%, net +34%; ROE . Free cash flow $774.4M (yield +3.9%); cash $248.4M, debt $5.6B, debt/equity , current ratio 1.18. Short interest +10.0% of float. Beta 1.32.
 
 ## [HON](https://www.tradingview.com/chart/?symbol=HON) Honeywell International Inc.
 
@@ -1384,7 +1345,7 @@ Last 90 days: 0 upgrades, 0 downgrades, 1 target raises, 3 target cuts.
 
 **Read: signs of a bottom (more likely up than down)** (score +5). Signals: -1 price below its 50-day average; +1 analyst consensus buy (22 analysts); +1 mean price target +28% above the price; +1 more upgrades than downgrades in 90 days (2 vs 0); +1 analysts raising price targets (10 raises vs 5 cuts in 90 days); +0.5 estimate revisions mostly up (5 up / 1 down in 30 days); +0.5 last quarter beat estimates (+7.2%); +0.5 revenue growing (+4% yoy); +0.5 positive free cash flow.
 
-**Where the stock is.** Last 206.46, -20% from the 52-week high (257.94 on 2026-03-02), +6% above the 52-week low (194.68 on 2025-11-20). 1m -7%, 3m -14%, 6m -13%, 1y +1%; vs 50-day -8%, vs 200-day -10%; RSI(14) 29. 52-week change -0% vs S&P 500 +14%.
+**Where the stock is.** Last 206.48, -20% from the 52-week high (257.94 on 2026-03-02), +6% above the 52-week low (194.68 on 2025-11-20). 1m -5%, 3m -13%, 6m -10%, 1y +1%; vs 50-day -8%, vs 200-day -10%; RSI(14) 32. 52-week change -0% vs S&P 500 +14%.
 
 **Why it fell.** Cause found in the data (deal/financing, earnings, management, company disclosure (8-K), rating cut). Largest down days in the last 90 bars and the evidence around each:
 - 2026-06-29: -6.5% (1.6x normal volume, SPY +1.6%):
@@ -1422,7 +1383,7 @@ Last 90 days: 2 upgrades, 0 downgrades, 10 target raises, 5 target cuts.
 
 **Read: signs of a bottom (more likely up than down)** (score +4.5). Signals: -1 price below its 50-day average; +1 analyst consensus buy (13 analysts); +1 mean price target +37% above the price; +0.5 estimate revisions mostly up (11 up / 0 down in 30 days); +1 current-year EPS estimate raised +1.2% in 30 days; +0.5 last quarter beat estimates (+8.5%); +0.5 revenue growing (+10% yoy); +0.5 positive free cash flow; +0.5 forward P/E 31 below trailing 36 (earnings expected to grow).
 
-**Where the stock is.** Last 511.65, -33% from the 52-week high (766.68 on 2025-11-25), +1% above the 52-week low (504.70 on 2026-09-11). 1m -9%, 3m -9%, 6m -12%, 1y -20%; vs 50-day -7%, vs 200-day -14%; RSI(14) 33. 52-week change -21% vs S&P 500 +14%.
+**Where the stock is.** Last 515.30, -33% from the 52-week high (766.68 on 2025-11-25), +2% above the 52-week low (504.70 on 2026-09-11). 1m -6%, 3m -6%, 6m -11%, 1y -21%; vs 50-day -6%, vs 200-day -14%; RSI(14) 28. 52-week change -21% vs S&P 500 +14%.
 
 **Why it fell.** Cause found in the data (market-wide). Largest down days in the last 90 bars and the evidence around each:
 - 2026-06-17: -4.7% (1.1x normal volume, SPY -1.2%). No cause found for this day (before the news feed starts on 2026-09-16; only 8-K filings, rating changes and the market were checked).
@@ -1454,9 +1415,9 @@ Last 90 days: 0 upgrades, 0 downgrades, 2 target raises, 2 target cuts.
 *In today's tables: falling wedge. Technology / Software - Application.*
 *Intuit Inc. provides financial management, payments and capital, compliance, and marketing products and services in the United States. The company operates in four segments: Global Business Solutions, Consumer, Credit Karma, and ProTax.*
 
-**Read: undecided (no clear base yet)** (score +1.5). Signals: -1 price below its 50-day average; +1 50-day average turning up; +1 higher low over the last 20 bars than the 20 before; +1 analyst consensus buy (31 analysts); +1 mean price target +34% above the price; -1 more downgrades than upgrades in 90 days (4 vs 0); -1 analysts cutting price targets (15 cuts vs 3 raises in 90 days); -0.5 estimate revisions mostly down (5 up / 24 down in 30 days); -1 current-year EPS estimate cut -12.1% in 30 days; +0.5 last quarter beat estimates (+12.3%); +0.5 revenue growing (+14% yoy); +0.5 positive free cash flow; +0.5 forward P/E 11 below trailing 18 (earnings expected to grow).
+**Read: undecided (no clear base yet)** (score +0.5). Signals: -1 price below its 50-day average; +1 50-day average turning up; +1 analyst consensus buy (31 analysts); +1 mean price target +34% above the price; -1 more downgrades than upgrades in 90 days (4 vs 0); -1 analysts cutting price targets (15 cuts vs 3 raises in 90 days); -0.5 estimate revisions mostly down (5 up / 24 down in 30 days); -1 current-year EPS estimate cut -12.1% in 30 days; +0.5 last quarter beat estimates (+12.3%); +0.5 revenue growing (+14% yoy); +0.5 positive free cash flow; +0.5 forward P/E 11 below trailing 18 (earnings expected to grow).
 
-**Where the stock is.** Last 303.19, -56% from the 52-week high (694.29 on 2025-09-22), +19% above the 52-week low (253.95 on 2026-06-25). 1m -16%, 3m +14%, 6m -33%, 1y -54%; vs 50-day -7%, vs 200-day -26%; RSI(14) 32. 52-week change -57% vs S&P 500 +14%.
+**Where the stock is.** Last 304.12, -56% from the 52-week high (694.29 on 2025-09-22), +20% above the 52-week low (253.95 on 2026-06-25). 1m -16%, 3m +19%, 6m -33%, 1y -54%; vs 50-day -6%, vs 200-day -26%; RSI(14) 26. 52-week change -57% vs S&P 500 +14%.
 
 **Why it fell.** Cause found in the data (earnings, restructuring, company disclosure (8-K)). Largest down days in the last 90 bars and the evidence around each:
 - 2026-05-21: -20.0% (9.4x normal volume, SPY +0.2%):
@@ -1492,7 +1453,7 @@ Last 90 days: 0 upgrades, 4 downgrades, 3 target raises, 15 target cuts.
 
 **Read: undecided (no clear base yet)** (score +2.5). Signals: -1 price below its 50-day average; +1 analyst consensus buy (14 analysts); +1 mean price target +38% above the price; -1 analysts cutting price targets (3 cuts vs 0 raises in 90 days); +0.5 estimate revisions mostly up (3 up / 0 down in 30 days); +0.5 last quarter beat estimates (+27.9%); +0.5 revenue growing (+8% yoy); +0.5 positive free cash flow; +0.5 forward P/E 18 below trailing 25 (earnings expected to grow).
 
-**Where the stock is.** Last 247.29, -34% from the 52-week high (373.85 on 2026-03-02), +1% above the 52-week low (245.54 on 2026-09-11). 1m -10%, 3m -16%, 6m -31%, 1y -11%; vs 50-day -10%, vs 200-day -20%; RSI(14) 30. 52-week change -13% vs S&P 500 +14%.
+**Where the stock is.** Last 246.93, -34% from the 52-week high (373.85 on 2026-03-02), +1% above the 52-week low (245.54 on 2026-09-11). 1m -8%, 3m -13%, 6m -29%, 1y -11%; vs 50-day -9%, vs 200-day -20%; RSI(14) 28. 52-week change -13% vs S&P 500 +14%.
 
 **Why it fell.** Cause found in the data (earnings, rating cut, management, company disclosure (8-K)). Largest down days in the last 90 bars and the evidence around each:
 - 2026-07-30: -8.6% (3.6x normal volume, SPY +1.7%):
@@ -1528,7 +1489,7 @@ Last 90 days: 0 upgrades, 0 downgrades, 0 target raises, 3 target cuts.
 
 **Read: undecided (no clear base yet)** (score +0). Signals: -1 price below its 50-day average; -1 new 52-week low within the last 5 bars; +1 analyst consensus buy (13 analysts); +1 mean price target +37% above the price; -1 more downgrades than upgrades in 90 days (1 vs 0); -1 analysts cutting price targets (4 cuts vs 0 raises in 90 days); +0.5 last quarter beat estimates (+0.3%); +0.5 revenue growing (+3% yoy); +0.5 positive free cash flow; +0.5 forward P/E 14 below trailing 16 (earnings expected to grow).
 
-**Where the stock is.** Last 359.23, -37% from the 52-week high (572.95 on 2026-06-30), +0% above the 52-week low (359.08 on 2026-09-17). 1m -14%, 3m -32%, 6m -24%, 1y -34%; vs 50-day -18%, vs 200-day -27%; RSI(14) 27. 52-week change -33% vs S&P 500 +14%.
+**Where the stock is.** Last 363.64, -37% from the 52-week high (572.95 on 2026-06-30), +1% above the 52-week low (359.08 on 2026-09-17). 1m -10%, 3m -32%, 6m -22%, 1y -32%; vs 50-day -16%, vs 200-day -26%; RSI(14) 29. 52-week change -33% vs S&P 500 +14%.
 
 **Why it fell.** Cause found in the data (earnings, rating cut, market-wide). Largest down days in the last 90 bars and the evidence around each:
 - 2026-07-29: -21.0% (4.5x normal volume, SPY -1.5%):
@@ -1565,7 +1526,7 @@ Last 90 days: 0 upgrades, 1 downgrades, 0 target raises, 4 target cuts.
 
 **Read: signs of a bottom (more likely up than down)** (score +6). Signals: -1 price below its 50-day average; +1 50-day average turning up; +1 analyst consensus buy (18 analysts); +1 mean price target +20% above the price; +1 more upgrades than downgrades in 90 days (2 vs 0); +1 analysts raising price targets (5 raises vs 1 cuts in 90 days); +0.5 estimate revisions mostly up (18 up / 1 down in 30 days); +0.5 last quarter beat estimates (+10.3%); +0.5 revenue growing (+10% yoy); +0.5 positive free cash flow; -0.5 high leverage (debt/equity 2.3); +0.5 forward P/E 16 below trailing 20 (earnings expected to grow).
 
-**Where the stock is.** Last 533.38, -20% from the 52-week high (668.17 on 2026-03-02), +24% above the 52-week low (431.38 on 2025-12-01). 1m -9%, 3m +5%, 6m -15%, 1y +16%; vs 50-day -4%, vs 200-day -4%; RSI(14) 34. 52-week change +11% vs S&P 500 +14%.
+**Where the stock is.** Last 535.40, -20% from the 52-week high (668.17 on 2026-03-02), +24% above the 52-week low (431.38 on 2025-12-01). 1m -6%, 3m +9%, 6m -14%, 1y +16%; vs 50-day -3%, vs 200-day -3%; RSI(14) 37. 52-week change +11% vs S&P 500 +14%.
 
 **Why it fell.** No cause found in the data: no headline naming the company with a stated reason within 2 days of the largest down days, no 8-K filing (earnings release, officer change, deal) on those days, no rating or target cut right after, and no market-wide sell-off. Largest down days in the last 90 bars:
 - 2026-06-18: -4.0% (3.8x normal volume, SPY +1.0%). No cause found for this day (before the news feed starts on 2026-09-18; only 8-K filings, rating changes and the market were checked).
@@ -1600,7 +1561,7 @@ Last 90 days: 2 upgrades, 0 downgrades, 5 target raises, 1 target cuts.
 
 **Read: undecided (no clear base yet)** (score +1.5). Signals: -1 price below its 50-day average; -1 new 52-week low within the last 5 bars; +1 analyst consensus buy (31 analysts); +1 mean price target +26% above the price; -1 analysts cutting price targets (17 cuts vs 2 raises in 90 days); +0.5 estimate revisions mostly up (15 up / 12 down in 30 days); +0.5 last quarter beat estimates (+1.8%); +0.5 revenue growing (+4% yoy); +0.5 positive free cash flow; +0.5 forward P/E 18 below trailing 20 (earnings expected to grow).
 
-**Where the stock is.** Last 248.24, -26% from the 52-week high (334.50 on 2026-02-27), +0% above the 52-week low (248.24 on 2026-09-18). 1m -7%, 3m -10%, 6m -19%, 1y -17%; vs 50-day -6%, vs 200-day -14%; RSI(14) 33. 52-week change -18% vs S&P 500 +14%.
+**Where the stock is.** Last 247.88, -26% from the 52-week high (334.50 on 2026-02-27), +0% above the 52-week low (247.88 on 2026-09-21). 1m -7%, 3m -8%, 6m -19%, 1y -16%; vs 50-day -6%, vs 200-day -14%; RSI(14) 20. 52-week change -18% vs S&P 500 +14%.
 
 **Why it fell.** No cause found in the data: no headline naming the company with a stated reason within 2 days of the largest down days, no 8-K filing (earnings release, officer change, deal) on those days, no rating or target cut right after, and no market-wide sell-off. Largest down days in the last 90 bars:
 - 2026-06-25: -3.4% (1.4x normal volume, SPY +0.1%). No cause found for this day (before the news feed starts on 2026-09-18; only 8-K filings, rating changes and the market were checked).
@@ -1628,41 +1589,6 @@ Last 90 days: 0 upgrades, 0 downgrades, 2 target raises, 17 target cuts.
 
 **Fundamentals.** Market cap $175.7B; P/E 20.2 trailing, 17.8 forward, PEG 2.14; EV/revenue 8.3, EV/EBITDA 15.4, P/B . Margins: gross +57%, operating +46%, net +32%; ROE . Free cash flow $6.3B (yield +3.6%); cash $822.0M, debt $54.6B, debt/equity , current ratio 1.08. Dividend yield +3.1%. Short interest +1.9% of float. Beta 0.41.
 
-## [TAP](https://www.tradingview.com/chart/?symbol=TAP) Molson Coors Beverage Company
-
-*In today's tables: falling wedge. Consumer Defensive / Beverages - Brewers.*
-*Molson Coors Beverage Company manufactures, markets, distributes, and sells beer and other malt beverage products in the Americas, Europe, the Middle East, Africa, and the Asia Pacific. It offers flavored malt beverages including hard seltzers, craft, spirits, and ready to drink beverages.*
-
-**Read: undecided (no clear base yet)** (score +1). Signals: -1 price below its 50-day average; +1 50-day average turning up; -1 new 52-week low within the last 5 bars; +1 mean price target +21% above the price; +0.5 estimate revisions mostly up (12 up / 7 down in 30 days); +0.5 last quarter beat estimates (+4.4%); -0.5 revenue shrinking (-3% yoy); +0.5 positive free cash flow.
-
-**Where the stock is.** Last 37.53, -29% from the 52-week high (52.58 on 2026-02-12), +0% above the 52-week low (37.53 on 2026-09-18). 1m -11%, 3m -4%, 6m -9%, 1y -16%; vs 50-day -8%, vs 200-day -12%; RSI(14) 26. 52-week change -17% vs S&P 500 +14%.
-
-**Why it fell.** No cause found in the data: no headline naming the company with a stated reason within 2 days of the largest down days, no 8-K filing (earnings release, officer change, deal) on those days, no rating or target cut right after, and no market-wide sell-off. Largest down days in the last 90 bars:
-- 2026-08-17: -4.7% (1.0x normal volume, SPY -0.5%). No cause found for this day (before the news feed starts on 2026-09-09; only 8-K filings, rating changes and the market were checked).
-- 2026-06-29: -4.2% (1.2x normal volume, SPY +1.6%). No cause found for this day (before the news feed starts on 2026-09-09; only 8-K filings, rating changes and the market were checked).
-- 2026-08-31: -4.1% (2.0x normal volume, SPY -0.3%). No cause found for this day (before the news feed starts on 2026-09-09; only 8-K filings, rating changes and the market were checked).
-
-Latest news:
-- 2026-09-20 Molson Coors Beverage (TAP) Stock Looks Below Fair Value Following A 34% Slide (Simply Wall St.): Molson Coors Beverage has seen its share price slide over the past few years, which puts fresh attention on a basic question for you as an investor. Is the current US$37.53 price tag still in line with what the company is generating through its sales, or has the share price moved
-- 2026-09-18 1 Small-Cap Stock to Target This Week and 2 We Find Risky (StockStory): Many small-cap stocks have limited Wall Street coverage, giving savvy investors the chance to act before everyone else catches on. But the flip side is that these businesses have increased downside risk because they lack the scale and staying power of their larger competitors.
-- 2026-09-18 BNP Paribas Adjusts PT on Molson Coors Beverage to $33 From $34, Keeps Underperform Rating (MT Newswires)
-- 2026-09-16 Three Stocks Are Joining the S&P 500. Will They Actually Improve VOO’s Returns? (24/7 Wall St.): Three new names are entering the S&P 500, swapping out brewers and homebuilders for fuel-cell technology and genomics, but whether that trade actually benefits VOO holders depends on a math problem most investors overlook.
-- 2026-09-16 MO Stock: Altria Returned Billions To Shareholders. What’s The Catch? (Trefis): A tobacco giant sent a torrent of cash back to its owners. Here’s what that money actually bought, and what has to go right for the checks to keep coming.
-- 2026-09-15 Goldman Sachs Adjusts PT on Molson Coors Beverage to $47 From $50, Keeps Buy Rating (MT Newswires)
-
-**What analysts say.** Consensus **hold** (21 analysts, mean rating 2.8 on a 1-5 scale); strong buy 2, buy 4, hold 11, sell 1, strong sell 3 (bullish share 29% now vs 29% three months ago). Mean target 45.24 (+21% from the price; range 33.00-61.00). 
-Last 90 days: 0 upgrades, 0 downgrades, 2 target raises, 4 target cuts.
-- 2026-08-10 JP Morgan: maintains Neutral, target 41 -> 42
-- 2026-08-07 UBS: maintains Neutral, target 40 -> 45
-- 2026-08-07 Needham: reiterates Buy, target 50
-- 2026-08-07 Piper Sandler: maintains Neutral, target 45 -> 44
-- 2026-07-16 UBS: maintains Neutral, target 46 -> 40
-- 2026-07-14 Citigroup: maintains Neutral, target 47 -> 42
-
-**Last report and estimates.** Quarter to 2026-06-30: EPS 1.58 vs 1.51 expected (+4.4%); beat in 3 of the last 4 quarters. Revenue -3% yoy, earnings -42% yoy (latest quarter). Next report 2026-11-03: EPS 1.47 expected (-12% yoy), revenue -1% yoy. Current-year EPS estimate -0.2% in 30 days, -0.2% in 90 days (12 up / 7 down revisions); growth expected -12% this year, +3% next. 
-
-**Fundamentals.** Market cap $7.0B; P/E  trailing, 7.7 forward, PEG 3.92; EV/revenue 1.2, EV/EBITDA 5.8, P/B 0.7. Margins: gross +37%, operating +11%, net -21%; ROE -19%. Free cash flow $935.1M (yield +13.4%); cash $2.1B, debt $7.9B, debt/equity 0.76, current ratio 0.88. Dividend yield +5.1%. Short interest +27.3% of float. Beta 0.42.
-
 ## [NEE](https://www.tradingview.com/chart/?symbol=NEE) NextEra Energy, Inc.
 
 *In today's tables: falling wedge. Utilities / Utilities - Regulated Electric.*
@@ -1670,7 +1596,7 @@ Last 90 days: 0 upgrades, 0 downgrades, 2 target raises, 4 target cuts.
 
 **Read: undecided (no clear base yet)** (score +1.5). Signals: -1 price below its 50-day average; +1 analyst consensus buy (18 analysts); +1 mean price target +22% above the price; +0.5 last quarter beat estimates (+3.8%); +0.5 revenue growing (+12% yoy); -0.5 negative free cash flow.
 
-**Where the stock is.** Last 80.47, -17% from the 52-week high (96.44 on 2026-04-30), +17% above the 52-week low (68.81 on 2025-09-18). 1m -6%, 3m -7%, 6m -12%, 1y +18%; vs 50-day -5%, vs 200-day -7%; RSI(14) 37. 52-week change +11% vs S&P 500 +14%.
+**Where the stock is.** Last 79.63, -17% from the 52-week high (96.44 on 2026-04-30), +15% above the 52-week low (69.09 on 2025-09-19). 1m -6%, 3m -7%, 6m -10%, 1y +16%; vs 50-day -6%, vs 200-day -8%; RSI(14) 38. 52-week change +11% vs S&P 500 +14%.
 
 **Why it fell.** Cause found in the data (deal/financing, company disclosure (8-K), management). Largest down days in the last 90 bars and the evidence around each:
 - 2026-05-18: -4.6% (5.2x normal volume, SPY -0.1%):
@@ -1706,9 +1632,9 @@ Last 90 days: 0 upgrades, 0 downgrades, 2 target raises, 4 target cuts.
 *In today's tables: falling wedge. Consumer Cyclical / Travel Services.*
 *Norwegian Cruise Line Holdings Ltd., together with its subsidiaries, operates as a cruise company in North America, Europe, the Asia-Pacific, and internationally.*
 
-**Read: undecided (no clear base yet)** (score -1). Signals: -1 price below its 50-day average; -1 new 52-week low within the last 5 bars; +1 analyst consensus buy (25 analysts); +1 mean price target +45% above the price; -1 more downgrades than upgrades in 90 days (2 vs 0); -0.5 estimate revisions mostly down (1 up / 21 down in 30 days); +0.5 last quarter beat estimates (+22.8%); +0.5 revenue growing (+5% yoy); -0.5 negative free cash flow; -0.5 high leverage (debt/equity 6.2); +0.5 forward P/E 8 below trailing 9 (earnings expected to grow).
+**Read: still falling (more likely down)** (score -2). Signals: -1 price below its 50-day average; -1 new 52-week low within the last 5 bars; +1 analyst consensus buy (25 analysts); +1 mean price target +45% above the price; -1 more downgrades than upgrades in 90 days (2 vs 0); -1 analysts cutting price targets (8 cuts vs 5 raises in 90 days); -0.5 estimate revisions mostly down (1 up / 21 down in 30 days); +0.5 last quarter beat estimates (+22.8%); +0.5 revenue growing (+5% yoy); -0.5 negative free cash flow; -0.5 high leverage (debt/equity 6.2); +0.5 forward P/E 8 below trailing 9 (earnings expected to grow).
 
-**Where the stock is.** Last 14.12, -45% from the 52-week high (25.57 on 2025-09-23), +0% above the 52-week low (14.12 on 2026-09-18). 1m -19%, 3m -31%, 6m -28%, 1y -44%; vs 50-day -21%, vs 200-day -28%; RSI(14) 17. 52-week change -44% vs S&P 500 +14%.
+**Where the stock is.** Last 14.24, -44% from the 52-week high (25.57 on 2025-09-23), +1% above the 52-week low (14.12 on 2026-09-18). 1m -15%, 3m -29%, 6m -25%, 1y -44%; vs 50-day -19%, vs 200-day -28%; RSI(14) 20. 52-week change -44% vs S&P 500 +14%.
 
 **Why it fell.** Cause found in the data (earnings, rating cut, market-wide). Largest down days in the last 90 bars and the evidence around each:
 - 2026-07-30: -9.8% (2.8x normal volume, SPY +1.7%):
@@ -1727,7 +1653,7 @@ Latest news:
 - 2026-09-15 Norwegian Falls 3% as Wells Fargo Trims Carnival Target on Caribbean Pricing Pressure; Carnival Slips, Royal Caribbean Dips (24/7 Wall St.): A Wells Fargo note about Carnival is hitting Norwegian Cruise Line the hardest, and the reason why reveals exactly which operator the market sees as most exposed to the Caribbean pricing storm now moving through the sector.
 
 **What analysts say.** Consensus **buy** (25 analysts, mean rating 2.3 on a 1-5 scale); strong buy 1, buy 9, hold 17, sell 0, strong sell 0 (bullish share 37% now vs 46% three months ago). Mean target 20.52 (+45% from the price; range 15.00-32.00). 
-Last 90 days: 0 upgrades, 2 downgrades, 6 target raises, 8 target cuts.
+Last 90 days: 0 upgrades, 2 downgrades, 5 target raises, 8 target cuts.
 - 2026-09-04 Wells Fargo: maintains Overweight, target 22 -> 20
 - 2026-08-18 UBS: maintains Neutral, target 17 -> 20
 - 2026-08-18 Mizuho: downgrades Outperform -> Neutral, target 22 -> 17
@@ -1746,7 +1672,7 @@ Last 90 days: 0 upgrades, 2 downgrades, 6 target raises, 8 target cuts.
 
 **Read: undecided (no clear base yet)** (score -1.5). Signals: -1 price below its 50-day average; -1 new 52-week low within the last 5 bars; +1 analyst consensus buy (16 analysts); +1 mean price target +82% above the price; -1 analysts cutting price targets (6 cuts vs 3 raises in 90 days); -0.5 estimate revisions mostly down (0 up / 7 down in 30 days); -1 last quarter missed estimates (-14.4%); +0.5 revenue growing (+11% yoy); +0.5 positive free cash flow; -0.5 high leverage (debt/equity 4.8); +0.5 forward P/E 9 below trailing 27 (earnings expected to grow).
 
-**Where the stock is.** Last 103.66, -43% from the 52-week high (182.82 on 2026-02-24), +0% above the 52-week low (103.66 on 2026-09-18). 1m -14%, 3m -23%, 6m -35%, 1y -36%; vs 50-day -15%, vs 200-day -28%; RSI(14) 36. 52-week change -39% vs S&P 500 +14%.
+**Where the stock is.** Last 103.28, -44% from the 52-week high (182.82 on 2026-02-24), +0% above the 52-week low (103.28 on 2026-09-21). 1m -10%, 3m -25%, 6m -29%, 1y -36%; vs 50-day -15%, vs 200-day -28%; RSI(14) 39. 52-week change -39% vs S&P 500 +14%.
 
 **Why it fell.** Cause found in the data (earnings, rating cut, market-wide). Largest down days in the last 90 bars and the evidence around each:
 - 2026-08-04: -15.5% (6.1x normal volume, SPY +1.8%):
@@ -1785,7 +1711,7 @@ Last 90 days: 0 upgrades, 0 downgrades, 3 target raises, 6 target cuts.
 
 **Read: undecided (no clear base yet)** (score -0.5). Signals: -1 price below its 50-day average; +1 analyst consensus buy (15 analysts); +1 mean price target +21% above the price; -1 analysts cutting price targets (6 cuts vs 3 raises in 90 days); -1 last quarter missed estimates (-4.0%); +0.5 revenue growing (+4% yoy); -0.5 negative free cash flow; +0.5 forward P/E 16 below trailing 20 (earnings expected to grow).
 
-**Where the stock is.** Last 33.34, -15% from the 52-week high (39.17 on 2026-04-09), +3% above the 52-week low (32.48 on 2025-12-10). 1m -5%, 3m -5%, 6m -10%, 1y -3%; vs 50-day -4%, vs 200-day -6%; RSI(14) 38. 52-week change -7% vs S&P 500 +14%.
+**Where the stock is.** Last 33.05, -16% from the 52-week high (39.17 on 2026-04-09), +2% above the 52-week low (32.48 on 2025-12-10). 1m -5%, 3m -6%, 6m -8%, 1y -4%; vs 50-day -5%, vs 200-day -7%; RSI(14) 38. 52-week change -7% vs S&P 500 +14%.
 
 **Why it fell.** Cause found in the data (deal/financing, company disclosure (8-K)). Largest down days in the last 90 bars and the evidence around each:
 - 2026-06-17: -2.9% (1.4x normal volume, SPY -1.2%). No cause found for this day (before the news feed starts on 2026-09-09; only 8-K filings, rating changes and the market were checked).
@@ -1821,7 +1747,7 @@ Last 90 days: 0 upgrades, 0 downgrades, 3 target raises, 6 target cuts.
 
 **Read: undecided (no clear base yet)** (score -0.5). Signals: -1 price below its 50-day average; -1 new 52-week low within the last 5 bars; +1 analyst consensus buy (18 analysts); +1 mean price target +22% above the price; -1 analysts cutting price targets (7 cuts vs 1 raises in 90 days); -0.5 estimate revisions mostly down (2 up / 5 down in 30 days); +0.5 last quarter beat estimates (+7.7%); -0.5 revenue shrinking (-9% yoy); +0.5 positive free cash flow; +0.5 forward P/E 15 below trailing 17 (earnings expected to grow).
 
-**Where the stock is.** Last 69.77, -18% from the 52-week high (84.74 on 2026-02-17), +0% above the 52-week low (69.77 on 2026-09-18). 1m -7%, 3m -12%, 6m -14%, 1y -10%; vs 50-day -7%, vs 200-day -11%; RSI(14) 28. 52-week change -15% vs S&P 500 +14%.
+**Where the stock is.** Last 69.31, -18% from the 52-week high (84.74 on 2026-02-17), +0% above the 52-week low (69.31 on 2026-09-21). 1m -6%, 3m -13%, 6m -11%, 1y -12%; vs 50-day -7%, vs 200-day -11%; RSI(14) 27. 52-week change -15% vs S&P 500 +14%.
 
 **Why it fell.** Cause found in the data (rating cut). Largest down days in the last 90 bars and the evidence around each:
 - 2026-08-21: -2.7% (0.9x normal volume, SPY +0.4%):
@@ -1850,41 +1776,43 @@ Last 90 days: 0 upgrades, 0 downgrades, 1 target raises, 7 target cuts.
 
 **Fundamentals.** Market cap $34.8B; P/E 17.4 trailing, 14.9 forward, PEG 3.30; EV/revenue 4.7, EV/EBITDA 13.3, P/B 2.0. Margins: gross +33%, operating +19%, net +16%; ROE +12%. Free cash flow $107.8M (yield +0.3%); cash $192.0M, debt $24.7B, debt/equity 1.42, current ratio 0.88. Dividend yield +3.8%. Short interest +2.4% of float. Beta 0.52.
 
-## [SO](https://www.tradingview.com/chart/?symbol=SO) The Southern Company
+## [SRE](https://www.tradingview.com/chart/?symbol=SRE) Sempra
 
-*In today's tables: falling wedge. Utilities / Utilities - Regulated Electric.*
-*The Southern Company, through its subsidiaries, engages in the sale of electricity. The company offers electric service to retail customers and wholesale customers; and energy-related products and services to natural gas choice markets.*
+*In today's tables: falling wedge. Utilities / Utilities - Diversified.*
+*Sempra engages in the regulated utilities business in the United States and Mexico. It operates through three segments: Sempra California, Sempra Texas Utilities, and Sempra Infrastructure.*
 
-**Read: undecided (no clear base yet)** (score -0.5). Signals: -1 price below its 50-day average; -1 more downgrades than upgrades in 90 days (1 vs 0); +0.5 estimate revisions mostly up (5 up / 1 down in 30 days); +0.5 last quarter beat estimates (+11.8%); +0.5 revenue growing (+0% yoy); -0.5 negative free cash flow; +0.5 forward P/E 17 below trailing 21 (earnings expected to grow).
+**Read: undecided (no clear base yet)** (score +0). Signals: -1 price below its 50-day average; +1 analyst consensus buy (17 analysts); +1 mean price target +25% above the price; -1 analysts cutting price targets (9 cuts vs 0 raises in 90 days); +0.5 last quarter beat estimates (+9.6%); -0.5 revenue shrinking (-0% yoy); -0.5 negative free cash flow; +0.5 forward P/E 15 below trailing 24 (earnings expected to grow).
 
-**Where the stock is.** Last 85.52, -12% from the 52-week high (97.49 on 2026-03-16), +4% above the 52-week low (82.06 on 2025-12-10). 1m -7%, 3m -7%, 6m -10%, 1y -4%; vs 50-day -6%, vs 200-day -6%; RSI(14) 29. 52-week change -7% vs S&P 500 +14%.
+**Where the stock is.** Last 81.20, -18% from the 52-week high (99.04 on 2026-04-09), +1% above the 52-week low (80.05 on 2025-09-22). 1m -7%, 3m -11%, 6m -11%, 1y +1%; vs 50-day -6%, vs 200-day -10%; RSI(14) 39. 52-week change -1% vs S&P 500 +14%.
 
-**Why it fell.** Cause found in the data (rating cut). Largest down days in the last 90 bars and the evidence around each:
-- 2026-06-01: -3.3% (1.7x normal volume, SPY +0.3%). No cause found for this day (before the news feed starts on 2026-09-12; only 8-K filings, rating changes and the market were checked).
-- 2026-08-21: -2.7% (1.3x normal volume, SPY +0.4%):
-  - rating/target cuts right after: Morgan Stanley target cut 92 -> 89
-- 2026-07-06: -2.0% (0.7x normal volume, SPY +0.9%). No cause found for this day (before the news feed starts on 2026-09-12; only 8-K filings, rating changes and the market were checked).
+**Why it fell.** Cause found in the data (company disclosure (8-K), rating cut). Largest down days in the last 90 bars and the evidence around each:
+- 2026-08-21: -5.1% (1.5x normal volume, SPY +0.4%):
+  - 8-K filed 2026-08-21: other events
+  - rating/target cuts right after: Morgan Stanley target cut 108 -> 104
+- 2026-08-31: -3.1% (2.5x normal volume, SPY -0.3%):
+  - rating/target cuts right after: Truist Securities target cut 100 -> 96; JP Morgan target cut 113 -> 102; Jefferies target cut 101 -> 97
+- 2026-06-08: -2.6% (1.1x normal volume, SPY +0.2%). No cause found for this day (before the news feed starts on 2026-09-03; only 8-K filings, rating changes and the market were checked).
 
 Latest news:
-- 2026-09-19 High-Yield Dividend Stocks Throw Off Serious Income. Where You Hold Them Matters (24/7 Wall St.): Where you park a high-yield dividend stock can quietly cost you thousands in taxes every single year, and REITs and MLPs carry the steepest penalty of all for investors sitting in the wrong account.
-- 2026-09-18 Morgan Stanley Adjusts PT on Southern Co. to $85 From $89, Keeps Underweight Rating (MT Newswires)
+- 2026-09-20 Sempra (SRE) Adds a 20-Year LNG Agreement. How Much Commercial Risk Does it Remove? (Insider Monkey): Sempra (NYSE:SRE) added a long-term customer commitment on September 14, when its infrastructure subsidiary announced a 20-year sales and purchase agreement with Petróleo Brasileiro S.A. – Petrobras (NYSE:PBR). The agreement covers approximately 0.8 million tonnes annually of liq
+- 2026-09-19 Sempra (SRE) Just Locked In Two Decades of LNG Demand (Insider Monkey): On September 14, Sempra Infrastructure, a subsidiary of Sempra (NYSE:SRE), signed a 20-year deal to sell roughly 0.8 million tonnes of liquefied natural gas a year to Petrobras, marking the first time a South American company has signed on as an LNG customer. The gas will flow fr
+- 2026-09-18 Morgan Stanley Adjusts Sempra Price Target to $100 From $104, Maintains Overweight Rating (MT Newswires)
+- 2026-09-16 Sempra (SRE) Stock May Be About Right After Fresh LNG Deal (Simply Wall St.): Sempra has delivered a solid 45.6% gain over the past 5 years, yet its recent share pullback and new long-term projects put fresh focus on what investors are really paying for its earnings today. With the stock around US$81.20 at the last close, the key issue is how that price li
 - 2026-09-16 Is PG&E Stock Cheap, Or Just Waiting On California? (Trefis): PG&E (PCG) has lost about 13% over the past twelve months while the S&P 500 gained 17%. The California utility now trades at 9.5 times earnings against an S&P 500 median of 22.9, the kind of gap value buyers hunt for. So what has the market marked down: the utility, or the state 
-- 2026-09-15 Co-op could face full-scale probe into Southern Co-op deal over competition fears: The Competition and Markets Authority said the deal between the mutuals, which was announced in April, could ‘substantially’ lessen competition.
-- 2026-09-15 Southern (SO) Stock Seems Fully Priced As New Solar Plans Expand (Simply Wall St.): Southern has seen its share price move around over the years, and with the stock now around recent levels, the key issue is whether that price still lines up with what the business is earning. Recent news around new solar projects and energy reliability contracts puts a fresh spo
-- 2026-09-15 XCF Global (NASDAQ:SAFX), DevvStream and Southern Energy Renewables Amend Business Combination Agreement, Increasing XCF Shareholder Ownership and Establishing Additional Capital Support; XCF Shareholder GL Also Investing $1.0 Million in XCF Through Warrants Exercisable at $2.50 Per Share (ACCESS Newswire): Amended terms increase expected XCF shareholder ownership in the combined company for existing XCF shareholders to approximately 69.57% and for former DevvStream shareholders to approximately 10.
+- 2026-09-15 Sempra Locks In Petrobras for 20-Year U.S. LNG Supply Deal (Oilprice.com): Petrobras has signed a 20-year agreement for LNG from Sempra’s expanding Port Arthur export facility in Texas.
 
-**What analysts say.** Consensus **hold** (19 analysts, mean rating 2.7 on a 1-5 scale); strong buy 1, buy 6, hold 13, sell 2, strong sell 1 (bullish share 30% now vs 29% three months ago). Mean target 99.76 (+17% from the price; range 79.00-114.00). 
-Last 90 days: 0 upgrades, 1 downgrades, 2 target raises, 4 target cuts.
-- 2026-09-18 Morgan Stanley: maintains Underweight, target 89 -> 85
-- 2026-08-21 Morgan Stanley: maintains Underweight, target 92 -> 89
-- 2026-08-13 Truist Securities: maintains Hold, target 100 -> 97
-- 2026-07-27 BMO Capital: maintains Outperform, target 102 -> 104
-- 2026-07-23 Keybanc: downgrades Sector Weight -> Underweight, target 79
-- 2026-07-22 BMO Capital: maintains Outperform, target 105 -> 102
+**What analysts say.** Consensus **buy** (17 analysts, mean rating 1.6 on a 1-5 scale); strong buy 3, buy 12, hold 4, sell 0, strong sell 0 (bullish share 79% now vs 74% three months ago). Mean target 101.59 (+25% from the price; range 84.00-118.00). 
+Last 90 days: 1 upgrades, 1 downgrades, 0 target raises, 9 target cuts.
+- 2026-09-18 Morgan Stanley: maintains Overweight, target 104 -> 100
+- 2026-09-03 Truist Securities: maintains Buy, target 100 -> 96
+- 2026-09-02 JP Morgan: maintains Overweight, target 113 -> 102
+- 2026-09-01 Jefferies: upgrades Hold -> Buy, target 101 -> 97
+- 2026-08-31 Mizuho: downgrades Outperform -> Neutral, target 104 -> 84
+- 2026-08-21 Morgan Stanley: maintains Overweight, target 108 -> 104
 
-**Last report and estimates.** Quarter to 2026-06-30: EPS 1.13 vs 1.01 expected (+11.8%); beat in 3 of the last 4 quarters. Revenue +0% yoy, earnings +30% yoy (latest quarter). Next report 2026-10-29: EPS 1.65 expected (+3% yoy), revenue +5% yoy. Current-year EPS estimate +0.1% in 30 days, +0.5% in 90 days (5 up / 1 down revisions); growth expected +7% this year, +7% next. 
+**Last report and estimates.** Quarter to 2026-06-30: EPS 1.16 vs 1.06 expected (+9.6%); beat in 3 of the last 4 quarters. Revenue -0% yoy, earnings +71% yoy (latest quarter). Next report 2026-11-04: EPS 1.07 expected (-4% yoy), revenue +2% yoy. Current-year EPS estimate +0.1% in 30 days, +0.0% in 90 days (3 up / 2 down revisions); growth expected +9% this year, +8% next. 
 
-**Fundamentals.** Market cap $98.4B; P/E 20.6 trailing, 17.4 forward, PEG 2.02; EV/revenue 5.8, EV/EBITDA 12.3, P/B 2.5. Margins: gross +48%, operating +30%, net +15%; ROE +11%. Free cash flow $-3.9B (yield -4.0%); cash $3.0B, debt $77.1B, debt/equity 1.82, current ratio 0.79. Dividend yield +3.5%. Short interest +3.1% of float. Beta 0.32.
+**Fundamentals.** Market cap $53.1B; P/E 23.5 trailing, 14.7 forward, PEG 0.67; EV/revenue 7.4, EV/EBITDA 17.1, P/B 1.6. Margins: gross +44%, operating +28%, net +17%; ROE +7%. Free cash flow $-27.7B (yield -52.1%); cash $48.0M, debt $36.7B, debt/equity 0.85, current ratio 1.64. Dividend yield +3.2%. Short interest +1.8% of float. Beta 0.56.
 
 ## [TMUS](https://www.tradingview.com/chart/?symbol=TMUS) T-Mobile US, Inc.
 
@@ -1893,7 +1821,7 @@ Last 90 days: 0 upgrades, 1 downgrades, 2 target raises, 4 target cuts.
 
 **Read: undecided (no clear base yet)** (score +1). Signals: -1 price below its 50-day average; -1 new 52-week low within the last 5 bars; +1 analyst consensus buy (24 analysts); +1 mean price target +45% above the price; -1 analysts cutting price targets (10 cuts vs 0 raises in 90 days); +0.5 estimate revisions mostly up (18 up / 3 down in 30 days); +0.5 last quarter beat estimates (+14.9%); +0.5 revenue growing (+8% yoy); +0.5 positive free cash flow; -0.5 high leverage (debt/equity 2.1); +0.5 forward P/E 12 below trailing 18 (earnings expected to grow).
 
-**Where the stock is.** Last 168.18, -28% from the 52-week high (234.54 on 2025-09-23), +1% above the 52-week low (166.45 on 2026-09-17). 1m -7%, 3m -7%, 6m -18%, 1y -28%; vs 50-day -7%, vs 200-day -12%; RSI(14) 41. 52-week change -29% vs S&P 500 +14%.
+**Where the stock is.** Last 165.27, -30% from the 52-week high (234.54 on 2025-09-23), +0% above the 52-week low (165.27 on 2026-09-21). 1m -8%, 3m -8%, 6m -20%, 1y -29%; vs 50-day -8%, vs 200-day -13%; RSI(14) 33. 52-week change -29% vs S&P 500 +14%.
 
 **Why it fell.** Cause found in the data (earnings, rating cut, news). Largest down days in the last 90 bars and the evidence around each:
 - 2026-07-23: -10.7% (2.1x normal volume, SPY -1.2%):
@@ -1926,38 +1854,42 @@ Last 90 days: 1 upgrades, 1 downgrades, 0 target raises, 10 target cuts.
 
 **Fundamentals.** Market cap $180.4B; P/E 17.6 trailing, 11.6 forward, PEG 0.59; EV/revenue 3.2, EV/EBITDA 8.7, P/B 3.2. Margins: gross +63%, operating +25%, net +11%; ROE +18%. Free cash flow $11.3B (yield +6.3%); cash $2.8B, debt $120.4B, debt/equity 2.14, current ratio 0.92. Dividend yield +2.4%. Short interest +3.6% of float. Beta 0.33.
 
-## [TXT](https://www.tradingview.com/chart/?symbol=TXT) Textron Inc.
+## [TPR](https://www.tradingview.com/chart/?symbol=TPR) Tapestry, Inc.
 
-*In today's tables: falling wedge. Industrials / Aerospace & Defense.*
-*Textron Inc. operates in the aircraft, defense, industrial, and finance businesses worldwide. It operates in six segments: Textron Aviation, Bell, Textron Systems, Industrial, Textron eAviation, and Finance.*
+*In today's tables: falling wedge. Consumer Cyclical / Luxury Goods.*
+*Tapestry, Inc. provides accessories and lifestyle brand products in North America, Greater China, rest of Asia, and internationally. The company operates in two segments, Coach and Kate Spade.*
 
-**Read: undecided (no clear base yet)** (score +2.5). Signals: -1 price below its 50-day average; +1 analyst consensus buy (15 analysts); +1 mean price target +28% above the price; -0.5 estimate revisions mostly down (2 up / 10 down in 30 days); +0.5 last quarter beat estimates (+4.8%); +0.5 revenue growing (+3% yoy); +0.5 positive free cash flow; +0.5 forward P/E 11 below trailing 15 (earnings expected to grow).
+**Read: signs of a bottom (more likely up than down)** (score +4). Signals: -1 price below its 50-day average; +1 analyst consensus buy (20 analysts); +1 mean price target +47% above the price; +0.5 estimate revisions mostly up (17 up / 2 down in 30 days); +1 current-year EPS estimate raised +1.6% in 30 days; +0.5 last quarter beat estimates (+3.4%); +0.5 revenue growing (+9% yoy); +0.5 positive free cash flow; -0.5 high leverage (debt/equity 5.7); +0.5 forward P/E 13 below trailing 16 (earnings expected to grow).
 
-**Where the stock is.** Last 79.69, -21% from the 52-week high (100.70 on 2026-02-20), +1% above the 52-week low (79.05 on 2026-09-04). 1m -8%, 3m -11%, 6m -10%, 1y -4%; vs 50-day -7%, vs 200-day -11%; RSI(14) 37. 52-week change -5% vs S&P 500 +14%.
+**Where the stock is.** Last 113.07, -31% from the 52-week high (164.16 on 2026-08-10), +16% above the 52-week low (97.55 on 2025-11-06). 1m -13%, 3m -24%, 6m -19%, 1y +1%; vs 50-day -16%, vs 200-day -18%; RSI(14) 26. 52-week change +1% vs S&P 500 +14%.
 
-**Why it fell.** Cause found in the data (earnings, market-wide). Largest down days in the last 90 bars and the evidence around each:
-- 2026-07-28: -6.4% (4.1x normal volume, SPY +0.2%):
-  - 8-K filed 2026-07-28: results of operations (earnings release) (quarter to 2026-06-30: EPS 1.62 vs 1.55 expected, +4.8%)
-- 2026-07-29: -4.8% (2.4x normal volume, SPY -1.5%):
-  - 8-K filed 2026-07-28: results of operations (earnings release) (quarter to 2026-06-30: EPS 1.62 vs 1.55 expected, +4.8%)
-  - market-wide day: SPY -1.5%
-- 2026-06-18: -3.5% (3.6x normal volume, SPY +1.0%). No cause found for this day (before the news feed starts on 2026-09-03; only 8-K filings, rating changes and the market were checked).
+**Why it fell.** Cause found in the data (earnings, rating cut). Largest down days in the last 90 bars and the evidence around each:
+- 2026-08-13: -16.5% (4.2x normal volume, SPY +0.7%):
+  - 8-K filed 2026-08-13: results of operations (earnings release) (quarter to 2026-06-30: EPS 1.32 vs 1.28 expected, +3.4%)
+  - rating/target cuts right after: Morgan Stanley target cut 164 -> 159; Wells Fargo target cut 165 -> 160; Evercore ISI Group target cut 175 -> 160
+- 2026-08-27: -5.4% (1.3x normal volume, SPY +0.7%). No cause found for this day (before the news feed starts on 2026-09-05; only 8-K filings, rating changes and the market were checked).
+- 2026-06-01: -4.6% (0.8x normal volume, SPY +0.3%). No cause found for this day (before the news feed starts on 2026-09-05; only 8-K filings, rating changes and the market were checked).
 
 Latest news:
-- 2026-09-21 Textron (TXT) Unveils a Cargo Plane Concept That Needs No Pilot (Insider Monkey): On September 14, Textron (NYSE:TXT) unit Textron Aviation and Merlin, an autonomous flight software company, introduced a cargo plane concept with nobody at the controls. Called the Cessna SkyCourier UX, it marries an FAA-certified twin-engine turboprop to Merlin’s autonomy softw
-- 2026-09-18 Joby Is Still Early. That’s Exactly Why the Stock Is So Interesting (24/7 Wall St.): Joby Aviation has lost more than half its value over the past year, yet our model puts fair value nearly double the current price. The question is whether the certification and commercial flight timeline holds long enough to close that gap.
-- 2026-09-16 Can GE Aerospace Continue Its Strong Capital Returns to Shareholders? (Zacks): GEs higher dividend, $20B buyback authorization and raised 2026 free cash flow outlook support its strong shareholder returns.
-- 2026-09-16 GE Trades Below 50-Day and 200-Day SMA: How to Play the Stock? (Zacks): GE Aerospace stock trades below key moving averages as strong engine demand and orders face cost pressures, debt concerns and a high valuation.
-- 2026-09-14 Textron Aviation and Merlin Introduce Cessna SkyCourier UX Concept Aircraft (Business Wire): NATIONAL HARBOR, Md., September 14, 2026--Textron Aviation and Merlin Introduce Cessna SkyCourier UX Concept Aircraft; Concept pairs FAA-certified Cessna SkyCourier with Merlin Pilot autonomy
-- 2026-09-11 Solid Demand in Commercial Aerospace Drives Howmet: Can It Sustain? (Zacks): HWM's commercial aerospace strength, rising engine spares demand and CAM acquisition support momentum as Boeing and Airbus production rates improve.
+- 2026-09-21 ANF or TPR: Which Is the Better Value Stock Right Now? (Zacks): ANF vs. TPR: Which Stock Is the Better Value Option?
+- 2026-09-17 Tapestry (TPR) Brings In App Shopping To Coach And Kate Spade (Simply Wall St.): Tapestry (NYSE:TPR) has enabled in-app shopping for Coach and Kate Spade through Google's Gemini app and Google Search. The rollout connects Tapestry's product catalog to Google's AI shopping tools, allowing users to browse and buy without visiting brand websites. Transactions us
+- 2026-09-16 Movado’s Turnaround Gains Momentum (MarketBeat): Movado Group's stock has surged on two straight earnings beats, a debt-free balance sheet, and a raised dividend, earning a Strong Buy consensus, though analysts note margin gains may not be structural.
+- 2026-09-16 Shoppers Can Now Buy Coach and Kate Spade Products in the Gemini App and Google Search, Including AI Mode (Business Wire): NEW YORK, September 16, 2026--Tapestry (NYSE: TPR), a house of iconic accessories and lifestyle brands, is bringing Coach and Kate Spade into Google's AI shopping ecosystem, making products purchasable directly from Google Search, including AI Mode, and the Gemini app.
+- 2026-09-16 Tapestry Expands Coach, Kate Spade Sales to Google Search, Gemini (MT Newswires)
+- 2026-09-12 Jim Cramer on Tapestry (TPR): “I Want to Be With the Company” (Insider Monkey): Tapestry, Inc. (NYSE:TPR) shares have fallen sharply since the company reported fiscal 2026 results, as Jim Cramer noted during the September 9 episode of Mad Money when he said: What the heck went wrong with the stock of Tapestry, the parent company of Coach and Kate Spade? When
 
-**What analysts say.** Consensus **buy** (15 analysts, mean rating 2.2 on a 1-5 scale); strong buy 1, buy 6, hold 9, sell 0, strong sell 0 (bullish share 44% now vs 35% three months ago). Mean target 102.07 (+28% from the price; range 92.00-115.00). 
-Last 90 days: 0 upgrades, 0 downgrades, 0 target raises, 1 target cuts.
-- 2026-07-13 TD Cowen: maintains Hold, target 115 -> 105
+**What analysts say.** Consensus **buy** (20 analysts, mean rating 1.8 on a 1-5 scale); strong buy 6, buy 11, hold 4, sell 0, strong sell 1 (bullish share 77% now vs 71% three months ago). Mean target 166.50 (+47% from the price; range 96.00-232.00). 
+Last 90 days: 0 upgrades, 0 downgrades, 6 target raises, 4 target cuts.
+- 2026-08-14 UBS: maintains Buy, target 230 -> 232
+- 2026-08-14 Morgan Stanley: maintains Overweight, target 164 -> 159
+- 2026-08-14 Bernstein: maintains Market Perform, target 180 -> 185
+- 2026-08-14 Wells Fargo: maintains Overweight, target 165 -> 160
+- 2026-08-14 Barclays: maintains Overweight, target 182 -> 185
+- 2026-08-14 Evercore ISI Group: maintains Outperform, target 175 -> 160
 
-**Last report and estimates.** Quarter to 2026-06-30: EPS 1.62 vs 1.55 expected (+4.8%); beat in 4 of the last 4 quarters. Revenue +3% yoy, earnings +5% yoy (latest quarter). Next report 2026-10-22 (estimated date): EPS 1.52 expected (-2% yoy), revenue +5% yoy. Current-year EPS estimate +0.1% in 30 days, -0.8% in 90 days (2 up / 10 down revisions); growth expected +6% this year, +12% next. 
+**Last report and estimates.** Quarter to 2026-06-30: EPS 1.32 vs 1.28 expected (+3.4%); beat in 4 of the last 4 quarters. Revenue +9% yoy, earnings  yoy (latest quarter). Next report 2026-11-05: EPS 1.56 expected (+13% yoy), revenue +9% yoy. Current-year EPS estimate +1.6% in 30 days, +2.7% in 90 days (17 up / 2 down revisions); growth expected +13% this year, +12% next. 
 
-**Fundamentals.** Market cap $13.7B; P/E 15.0 trailing, 11.0 forward, PEG 0.93; EV/revenue 1.1, EV/EBITDA 9.8, P/B 1.7. Margins: gross +18%, operating +9%, net +6%; ROE +12%. Free cash flow $452.8M (yield +3.3%); cash $1.4B, debt $4.2B, debt/equity 0.52, current ratio 1.86. Dividend yield +0.1%. Short interest +5.1% of float. Beta 0.90.
+**Fundamentals.** Market cap $22.5B; P/E 15.6 trailing, 12.7 forward, PEG 1.65; EV/revenue 3.2, EV/EBITDA 12.7, P/B 32.7. Margins: gross +77%, operating +20%, net +19%; ROE +197%. Free cash flow $1.4B (yield +6.2%); cash $1.2B, debt $4.0B, debt/equity 5.72, current ratio 1.75. Dividend yield +1.6%. Short interest +8.8% of float. Beta 1.43.
 
 ## [TDG](https://www.tradingview.com/chart/?symbol=TDG) TransDigm Group Incorporated
 
@@ -1966,7 +1898,7 @@ Last 90 days: 0 upgrades, 0 downgrades, 0 target raises, 1 target cuts.
 
 **Read: undecided (no clear base yet)** (score +1.5). Signals: -1 price below its 50-day average; -1 new 52-week low within the last 5 bars; +1 analyst consensus buy (19 analysts); +1 mean price target +39% above the price; -1 more downgrades than upgrades in 90 days (2 vs 0); +0.5 estimate revisions mostly up (19 up / 0 down in 30 days); +0.5 last quarter beat estimates (+5.5%); +0.5 revenue growing (+22% yoy); +0.5 positive free cash flow; +0.5 forward P/E 22 below trailing 33 (earnings expected to grow).
 
-**Where the stock is.** Last 1086.05, -25% from the 52-week high (1450.00 on 2026-01-16), +1% above the 52-week low (1076.01 on 2026-09-17). 1m -11%, 3m -18%, 6m -9%, 1y -15%; vs 50-day -10%, vs 200-day -14%; RSI(14) 20. 52-week change -16% vs S&P 500 +14%.
+**Where the stock is.** Last 1109.65, -23% from the 52-week high (1450.00 on 2026-01-16), +3% above the 52-week low (1076.01 on 2026-09-17). 1m -6%, 3m -14%, 6m -6%, 1y -14%; vs 50-day -8%, vs 200-day -12%; RSI(14) 30. 52-week change -16% vs S&P 500 +14%.
 
 **Why it fell.** Cause found in the data (company disclosure (8-K), rating cut, market-wide). Largest down days in the last 90 bars and the evidence around each:
 - 2026-07-13: -4.4% (1.5x normal volume, SPY -0.8%):
@@ -2004,7 +1936,7 @@ Last 90 days: 0 upgrades, 2 downgrades, 2 target raises, 3 target cuts.
 
 **Read: signs of a bottom (more likely up than down)** (score +6.5). Signals: -1 price below its 50-day average; +1 50-day average turning up; +1 analyst consensus buy (17 analysts); +1 mean price target +34% above the price; +1 more upgrades than downgrades in 90 days (1 vs 0); +1 analysts raising price targets (4 raises vs 1 cuts in 90 days); +0.5 estimate revisions mostly up (14 up / 3 down in 30 days); +0.5 last quarter beat estimates (+2.4%); +0.5 revenue growing (+4% yoy); +0.5 positive free cash flow; +0.5 forward P/E 20 below trailing 27 (earnings expected to grow).
 
-**Where the stock is.** Last 175.41, -30% from the 52-week high (249.01 on 2025-09-30), +12% above the 52-week low (156.00 on 2026-05-14). 1m -6%, 3m +1%, 6m -13%, 1y -29%; vs 50-day -7%, vs 200-day -8%; RSI(14) 37. 52-week change -28% vs S&P 500 +14%.
+**Where the stock is.** Last 172.02, -31% from the 52-week high (249.01 on 2025-09-30), +10% above the 52-week low (156.00 on 2026-05-14). 1m -8%, 3m +2%, 6m -14%, 1y -29%; vs 50-day -9%, vs 200-day -10%; RSI(14) 34. 52-week change -28% vs S&P 500 +14%.
 
 **Why it fell.** Cause found in the data (earnings, management, rating cut). Largest down days in the last 90 bars and the evidence around each:
 - 2026-07-30: -6.0% (1.3x normal volume, SPY +1.7%):
@@ -2035,41 +1967,6 @@ Last 90 days: 1 upgrades, 0 downgrades, 4 target raises, 1 target cuts.
 
 **Fundamentals.** Market cap $22.8B; P/E 26.9 trailing, 20.2 forward, PEG 1.49; EV/revenue 8.6, EV/EBITDA 17.7, P/B . Margins: gross +70%, operating +45%, net +28%; ROE . Free cash flow $1.1B (yield +4.6%); cash $552.2M, debt $4.6B, debt/equity , current ratio 1.00. Dividend yield +1.1%. Short interest +3.0% of float. Beta 0.66.
 
-## [WEC](https://www.tradingview.com/chart/?symbol=WEC) WEC Energy Group, Inc.
-
-*In today's tables: falling wedge. Utilities / Utilities - Regulated Electric.*
-*WEC Energy Group, Inc., through its subsidiaries, provides regulated natural gas and electricity, and renewable and nonregulated renewable energy services in the United States. The company operates through Wisconsin, Illinois, Other States, Electric Transmission, and Non-Utility Energy Infrastructure segments.*
-
-**Read: undecided (no clear base yet)** (score +1). Signals: -1 price below its 50-day average; +1 analyst consensus buy (17 analysts); +0.5 last quarter beat estimates (+12.3%); +0.5 revenue growing (+3% yoy); -0.5 negative free cash flow; +0.5 forward P/E 17 below trailing 20 (earnings expected to grow).
-
-**Where the stock is.** Last 103.17, -12% from the 52-week high (117.82 on 2026-06-26), +2% above the 52-week low (100.86 on 2025-12-11). 1m -6%, 3m -7%, 6m -9%, 1y -2%; vs 50-day -5%, vs 200-day -6%; RSI(14) 35. 52-week change -6% vs S&P 500 +14%.
-
-**Why it fell.** Cause found in the data (company disclosure (8-K)). Largest down days in the last 90 bars and the evidence around each:
-- 2026-08-21: -2.3% (1.4x normal volume, SPY +0.4%). No cause found for this day.
-- 2026-05-15: -2.2% (1.5x normal volume, SPY -1.2%). No cause found for this day (before the news feed starts on 2026-08-10; only 8-K filings, rating changes and the market were checked).
-- 2026-06-01: -2.2% (1.2x normal volume, SPY +0.3%):
-  - 8-K filed 2026-06-01: Reg FD disclosure
-
-Latest news:
-- 2026-09-16 DTE Is Sitting on an AI-Era Power Opportunity (24/7 Wall St.): Michigan's largest utility just signed hyperscale data center deals that could rewrite its earnings story, but a recent sell-off near 52-week lows is raising questions about whether the opportunity is real or already priced in.
-- 2026-09-15 PCG vs. WEC: Which Stock Is the Better Value Option? (Zacks): PCG vs. WEC: Which Stock Is the Better Value Option?
-- 2026-09-15 Is WEC Energy Stock Underperforming the Dow? (Barchart): Lagging behind the Dow over the past 12 months, WEC Energy continues to receive a moderately bullish outlook from Wall Street analysts.
-- 2026-09-11 AI Data Centers Need Enormous Amounts of Power: These 5 Dividend Stocks Provide It (24/7 Wall St.): Data centers are doubling their power demands almost overnight, and regulated utilities that lock in long-term supply contracts stand to collect that revenue for decades. Five names are positioned at the center of this shift, but each carries a different risk that could make or b
-- 2026-09-03 Two Utility Dividend Plays Are Quietly Beating XOM, CVX On Yield Amid Iran-Driven Oil Rally — Does Retail Know? (Stocktwits): Duke Energy and WEC Energy Group are among the top dividend stocks in the market, according to a recent report from Morningstar.
-- 2026-08-28 Why Is WEC Energy (WEC) Down 3.4% Since Last Earnings Report? (Zacks): WEC Energy (WEC) reported earnings 30 days ago. What's next for the stock? We take a look at earnings estimates for some clues.
-
-**What analysts say.** Consensus **buy** (17 analysts, mean rating 2.4 on a 1-5 scale); strong buy 2, buy 6, hold 10, sell 1, strong sell 0 (bullish share 42% now vs 40% three months ago). Mean target 121.62 (+18% from the price; range 108.50-140.00). 
-Last 90 days: 0 upgrades, 0 downgrades, 2 target raises, 3 target cuts.
-- 2026-08-13 Truist Securities: maintains Hold, target 122 -> 114
-- 2026-07-23 Keybanc: maintains Overweight, target 126 -> 117
-- 2026-07-22 BMO Capital: maintains Market Perform, target 120 -> 117
-- 2026-07-16 JP Morgan: maintains Neutral, target 120 -> 124
-- 2026-07-16 Truist Securities: maintains Hold, target 119 -> 122
-
-**Last report and estimates.** Quarter to 2026-06-30: EPS 0.91 vs 0.81 expected (+12.3%); beat in 3 of the last 4 quarters. Revenue +3% yoy, earnings +20% yoy (latest quarter). Next report 2026-10-29 (estimated date): EPS 0.93 expected (+13% yoy), revenue +8% yoy. Current-year EPS estimate +0.1% in 30 days, +0.1% in 90 days (1 up / 1 down revisions); growth expected +16% this year, +7% next. 
-
-**Fundamentals.** Market cap $33.6B; P/E 20.0 trailing, 17.2 forward, PEG 2.03; EV/revenue 5.6, EV/EBITDA 14.4, P/B . Margins: gross +42%, operating +22%, net +17%; ROE +12%. Free cash flow $-2.4B (yield -7.0%); cash $50.0M, debt $23.0B, debt/equity 1.58, current ratio 0.53. Dividend yield +3.7%. Short interest +5.3% of float. Beta 0.46.
-
 ## [XYL](https://www.tradingview.com/chart/?symbol=XYL) Xylem Inc.
 
 *In today's tables: falling wedge. Industrials / Specialty Industrial Machinery.*
@@ -2077,7 +1974,7 @@ Last 90 days: 0 upgrades, 0 downgrades, 2 target raises, 3 target cuts.
 
 **Read: signs of a bottom (more likely up than down)** (score +5.5). Signals: -1 price below its 50-day average; +1 analyst consensus buy (16 analysts); +1 mean price target +43% above the price; +1 more upgrades than downgrades in 90 days (1 vs 0); +1 analysts raising price targets (10 raises vs 1 cuts in 90 days); +0.5 estimate revisions mostly up (21 up / 0 down in 30 days); +0.5 last quarter beat estimates (+9.2%); +0.5 revenue growing (+2% yoy); +0.5 positive free cash flow; +0.5 forward P/E 17 below trailing 26 (earnings expected to grow).
 
-**Where the stock is.** Last 107.56, -29% from the 52-week high (150.84 on 2025-10-29), +2% above the 52-week low (105.52 on 2026-05-19). 1m -7%, 3m -3%, 6m -10%, 1y -23%; vs 50-day -7%, vs 200-day -12%; RSI(14) 34. 52-week change -25% vs S&P 500 +14%.
+**Where the stock is.** Last 107.24, -29% from the 52-week high (150.84 on 2025-10-29), +2% above the 52-week low (105.52 on 2026-05-19). 1m -5%, 3m -4%, 6m -10%, 1y -24%; vs 50-day -7%, vs 200-day -12%; RSI(14) 37. 52-week change -25% vs S&P 500 +14%.
 
 **Why it fell.** Cause found in the data (market-wide, management, company disclosure (8-K), earnings, guidance). Largest down days in the last 90 bars and the evidence around each:
 - 2026-07-30: -4.3% (1.3x normal volume, SPY +1.7%). No cause found for this day (before the news feed starts on 2026-08-18; only 8-K filings, rating changes and the market were checked).
@@ -2116,7 +2013,7 @@ Last 90 days: 1 upgrades, 0 downgrades, 10 target raises, 1 target cuts.
 
 **Read: undecided (no clear base yet)** (score +2). Signals: -1 price below its 50-day average; +1 analyst consensus buy (23 analysts); +1 mean price target +25% above the price; +1 more upgrades than downgrades in 90 days (1 vs 0); -0.5 estimate revisions mostly down (0 up / 14 down in 30 days); -1 current-year EPS estimate cut -3.7% in 30 days; +0.5 last quarter beat estimates (+3.7%); +0.5 revenue growing (+12% yoy); +0.5 positive free cash flow.
 
-**Where the stock is.** Last 137.99, -17% from the 52-week high (166.65 on 2026-07-07), +2% above the 52-week low (135.58 on 2025-10-31). 1m -5%, 3m -9%, 6m -11%, 1y -5%; vs 50-day -7%, vs 200-day -10%; RSI(14) 33. 52-week change -8% vs S&P 500 +14%.
+**Where the stock is.** Last 139.33, -16% from the 52-week high (166.65 on 2026-07-07), +3% above the 52-week low (135.58 on 2025-10-31). 1m -8%, 3m -7%, 6m -10%, 1y -2%; vs 50-day -6%, vs 200-day -9%; RSI(14) 30. 52-week change -8% vs S&P 500 +14%.
 
 **Why it fell.** Cause found in the data (rating cut). Largest down days in the last 90 bars and the evidence around each:
 - 2026-09-15: -3.8% (1.1x normal volume, SPY -0.5%):
@@ -2144,3 +2041,41 @@ Last 90 days: 1 upgrades, 0 downgrades, 3 target raises, 3 target cuts.
 **Last report and estimates.** Quarter to 2026-06-30: EPS 1.62 vs 1.56 expected (+3.7%); beat in 3 of the last 4 quarters. Revenue +12% yoy, earnings +132% yoy (latest quarter). Next report 2026-11-03: EPS 1.48 expected (-6% yoy), revenue +4% yoy. Current-year EPS estimate -3.7% in 30 days, -5.4% in 90 days (0 up / 14 down revisions); growth expected +6% this year, +9% next. 
 
 **Fundamentals.** Market cap $37.7B; P/E 17.4 trailing, 19.7 forward, PEG 1.72; EV/revenue 5.8, EV/EBITDA 16.4, P/B . Margins: gross +45%, operating +33%, net +25%; ROE . Free cash flow $833.2M (yield +2.2%); cash $683.0M, debt $13.4B, debt/equity , current ratio 0.59. Dividend yield +2.2%. Short interest +3.7% of float. Beta 0.55.
+
+## [ZTS](https://www.tradingview.com/chart/?symbol=ZTS) Zoetis Inc.
+
+*In today's tables: falling wedge. Healthcare / Drug Manufacturers - Specialty & Generic.*
+*Zoetis Inc. engages in the discovery, development, manufacture, and commercialization of medicines, vaccines, diagnostic products and services, biodevices, genetic tests, and precision animal health solutions for the animal health industry in the United States and internationally.*
+
+**Read: still falling (more likely down)** (score -3). Signals: -1 price below its 50-day average; -1 new 52-week low within the last 5 bars; +1 analyst consensus buy (15 analysts); +1 mean price target +35% above the price; -1 more downgrades than upgrades in 90 days (1 vs 0); -1 analysts cutting price targets (13 cuts vs 0 raises in 90 days); -0.5 estimate revisions mostly down (0 up / 15 down in 30 days); -1 current-year EPS estimate cut -9.8% in 30 days; +0.5 last quarter beat estimates (+0.9%); -0.5 revenue shrinking (-0% yoy); +0.5 positive free cash flow; -0.5 high leverage (debt/equity 2.9); +0.5 forward P/E 11 below trailing 12 (earnings expected to grow).
+
+**Where the stock is.** Last 71.33, -51% from the 52-week high (144.75 on 2025-10-27), +0% above the 52-week low (71.33 on 2026-09-21). 1m -5%, 3m -5%, 6m -38%, 1y -51%; vs 50-day -5%, vs 200-day -28%; RSI(14) 13. 52-week change -51% vs S&P 500 +14%.
+
+**Why it fell.** Cause found in the data (management, earnings, rating cut). Largest down days in the last 90 bars and the evidence around each:
+- 2026-08-07: -6.0% (2.4x normal volume, SPY +0.6%):
+  - 8-K filed 2026-08-06: officer or director change
+  - 8-K filed 2026-08-06: results of operations (earnings release) (quarter to 2026-06-30: EPS 1.87 vs 1.85 expected, +0.9%)
+  - rating/target cuts right after: Piper Sandler target cut 90 -> 80; UBS target cut 85 -> 80; JP Morgan target cut 130 -> 115
+- 2026-06-29: -3.7% (1.0x normal volume, SPY +1.6%). No cause found for this day (before the news feed starts on 2026-08-31; only 8-K filings, rating changes and the market were checked).
+- 2026-06-22: -3.6% (1.0x normal volume, SPY -0.3%). No cause found for this day (before the news feed starts on 2026-08-31; only 8-K filings, rating changes and the market were checked).
+
+Latest news:
+- 2026-09-21 1 Mid-Cap Stock with Exciting Potential and 2 We Turn Down (StockStory): Many investors pay attention to mid-cap stocks because they have established business models and expansive market opportunities. However, their paths to becoming $100 billion corporations are ripe with competition, ranging from giants with vast resources to agile upstarts eager t
+- 2026-09-18 Zoetis (ZTS) Stock Drops Despite Market Gains: Important Facts to Note (Zacks): Zoetis (ZTS) closed at $71.4 in the latest trading session, marking a -2.22% move from the prior day.
+- 2026-09-18 Zoetis (ZTS) Stock Fair Value Falls After Mixed Analyst Cuts And Softer Growth Views (Simply Wall St.): Zoetis is back in focus after analysts cut their fair value estimate from US$114.76 to US$96.00, a reduction of around 16% that resets expectations around what the stock might be worth. This shift lines up with more mixed analyst commentary, where many firms are trimming price ta
+- 2026-09-18 Zoetis Stands by Guidance as Pet-Care Weakness and Competition Pressure Sales (MarketBeat): Zoetis (NYSE:ZTS) executives said the company remains confident in its previously issued guidance despite pressure in the U.S. companion-animal market, citing a weaker pet-care environment and intensified competition in dermatology and parasiticides. Speaking at a Morgan Stanley 
+- 2026-09-11 Michael Burry Sells FLUT To Pile Into LULU Under $100 — Plus A New Bet On ZTS (Stocktwits): Michael Burry says Lululemon’s valuation has become increasingly attractive and sees Zoetis as “very cheap” despite the risk of further downside.
+- 2026-09-11 1 Oversold Stock Ready to Bounce Back and 2 Facing Challenges (StockStory): Rock-bottom prices don’t always mean rock-bottom businesses. The stocks we’re examining today have all touched their 52-week lows, creating a classic investor’s dilemma: bargain opportunity or value trap?
+
+**What analysts say.** Consensus **buy** (15 analysts, mean rating 2.3 on a 1-5 scale); strong buy 4, buy 5, hold 9, sell 0, strong sell 0 (bullish share 50% now vs 55% three months ago). Mean target 96.00 (+35% from the price; range 80.00-155.00). 
+Last 90 days: 0 upgrades, 1 downgrades, 0 target raises, 13 target cuts.
+- 2026-08-25 TD Cowen: maintains Buy, target 104 -> 94
+- 2026-08-20 Stifel: maintains Hold, target 85 -> 80
+- 2026-08-11 Citigroup: maintains Buy, target 112 -> 96
+- 2026-08-11 BNP Paribas: maintains Outperform, target 146 -> 110
+- 2026-08-10 Piper Sandler: maintains Neutral, target 90 -> 80
+- 2026-08-07 UBS: maintains Neutral, target 85 -> 80
+
+**Last report and estimates.** Quarter to 2026-06-30: EPS 1.87 vs 1.85 expected (+0.9%); beat in 3 of the last 4 quarters. Revenue -0% yoy, earnings +1% yoy (latest quarter). Next report 2026-11-03: EPS 1.51 expected (-11% yoy), revenue -4% yoy. Current-year EPS estimate -9.8% in 30 days, -10.1% in 90 days (0 up / 15 down revisions); growth expected -3% this year, +5% next. 
+
+**Fundamentals.** Market cap $29.5B; P/E 11.6 trailing, 10.9 forward, PEG 6.64; EV/revenue 3.9, EV/EBITDA 9.1, P/B . Margins: gross +72%, operating +41%, net +28%; ROE +65%. Free cash flow $2.0B (yield +6.8%); cash $1.7B, debt $9.3B, debt/equity 2.94, current ratio 3.08. Dividend yield +3.0%. Short interest +5.3% of float. Beta 0.73.
