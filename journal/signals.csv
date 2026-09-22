@@ -1,5 +1,5 @@
 logged,rule,symbol,signal_date,status,ref_price,entry_date,entry_price,hold_bars,note
-2026-09-03,falling_wedge_beaten_down,VST,2026-09-02,open,143.4600,2026-09-03,145.0000,20,"score 0.72, stop 130.64, level 137.09"
+2026-09-03,falling_wedge_beaten_down,VST,2026-09-02,open,143.4600,2026-09-03,144.7629,20,"score 0.72, stop 130.64, level 137.09"
 2026-09-05,newsday,LULU,2026-09-04,open,100.6100,2026-09-08,100.5800,60,"gap -19.4%, vol 8.7x, 6m -41%, vs MA200 -34%"
 2026-09-05,newsday,FICO,2026-09-04,open,932.2600,2026-09-08,920.5100,60,"gap -16.5%, vol 5.6x, 6m -37%, vs MA200 -29%"
 2026-09-05,growth_top10,SNDK,2026-09-04,open,1740.0000,2026-09-08,1769.4301,250,"score 0.94; revenue +251% yoy (3y CAGR +49%); op margin +42% (+72.5% vs last year), FCF margin +34%; ROE +33%; 12-1 momentum +1914% (above 200-day MA, +73%), 1y drawdown -2"
@@ -24,7 +24,7 @@ logged,rule,symbol,signal_date,status,ref_price,entry_date,entry_price,hold_bars
 2026-09-16,insider_buy_beaten_down,COO,2026-09-15,open,54.6100,2026-09-16,54.3700,120,"cluster, 4 buy(s) $1.33M @ 53.88, 6m -24%, vs MA200 -25%; Keel Paul A; Kurzius Lawrence Erik; Rosebrough Walter M Jr"
 2026-09-16,insider_buy_beaten_down,UBER,2026-09-10,open,70.9700,2026-09-11,72.9900,120,"1 buy(s) $10.01M @ 70.96, 6m -9%, vs MA200 -6%; KHOSROWSHAHI DARA"
 2026-09-17,growth_top10,ALL,2026-09-17,open,252.2100,2026-09-18,251.4100,250,"score 0.73; revenue +11% yoy (3y CAGR +10%); EPS +61% yoy; op margin n/a (n/a vs last year), FCF margin +18%; ROE +39%; 12-1 momentum +35% (above 200-day MA, +14%), 1y draw"
-2026-09-18,newsday,NFLX,2026-09-18,open,71.7900,2026-09-21,71.9400,60,"gap -5.4%, vol 4.3x, 6m -22%, vs MA200 -16%"
-2026-09-18,falling_wedge_beaten_down,LMT,2026-09-18,open,533.3800,2026-09-21,532.2950,20,"score 0.77, stop 515.54, level 531.15"
+2026-09-18,newsday,NFLX,2026-09-18,open,71.7900,2026-09-21,71.8200,60,"gap -5.4%, vol 4.3x, 6m -22%, vs MA200 -16%"
+2026-09-18,falling_wedge_beaten_down,LMT,2026-09-18,open,533.3800,2026-09-21,532.3000,20,"score 0.77, stop 515.54, level 531.15"
 2026-09-18,falling_wedge_beaten_down,TDG,2026-09-18,open,1086.0500,2026-09-21,1091.3000,20,"score 0.60, stop 1062.38, level 1083.72"
-2026-09-21,falling_wedge_beaten_down,IDXX,2026-09-21,open,515.3000,,,20,"score 0.71, stop 495.93, level 507.70"
+2026-09-21,falling_wedge_beaten_down,IDXX,2026-09-21,open,515.3000,2026-09-22,519.2900,20,"score 0.71, stop 495.93, level 507.70"
