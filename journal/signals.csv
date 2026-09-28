@@ -32,4 +32,5 @@ logged,rule,symbol,signal_date,status,ref_price,entry_date,entry_price,hold_bars
 2026-09-23,falling_wedge_beaten_down,XYL,2026-09-23,open,108.6400,2026-09-24,107.7000,20,"score 0.63, stop 102.23, level 108.29"
 2026-09-24,newsday,MGM,2026-09-24,open,33.6900,2026-09-25,33.9900,60,"gap -10.5%, vol 8.1x, 6m -9%, vs MA200 -16%"
 2026-09-24,falling_wedge_beaten_down,LII,2026-09-24,open,367.7800,2026-09-25,368.0900,20,"score 0.63, stop 336.40, level 358.43"
-2026-09-25,falling_wedge_beaten_down,NCLH,2026-09-25,open,14.6100,,,20,"score 0.67, stop 13.48, level 13.99"
+2026-09-25,falling_wedge_beaten_down,NCLH,2026-09-25,open,14.6100,2026-09-28,14.4500,20,"score 0.67, stop 13.48, level 13.99"
+2026-09-28,falling_wedge_beaten_down,NKE,2026-09-28,open,36.3900,,,20,"score 0.61, stop 34.96, level 36.22"
