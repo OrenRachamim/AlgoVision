@@ -41,7 +41,7 @@ def test_price_context_fields():
     df = random_walk(400, seed=3)
     ctx = B.price_context(df)
     assert ctx["last"] == float(df["Close"].iloc[-1]) and -1 <= ctx["drawdown"] <= 0 and ctx["off_low"] >= 0
-    assert 0 <= ctx["rsi14"] <= 100 and len(ctx["biggest_drops"]) == 3 and ctx["biggest_drops"][0][1] <= ctx["biggest_drops"][1][1]
+    assert 0 <= ctx["rsi14"] <= 100 and len(ctx["biggest_drops"]) == 5 and ctx["biggest_drops"][0][1] <= ctx["biggest_drops"][1][1]
 
 
 def test_verdict_moves_with_signals():
@@ -133,3 +133,23 @@ def test_decline_reason_uses_8k_filings():
     assert why["found"] and why["cause"] == "earnings"
     top = next(d for d in why["days"] if d["day"] == day)
     assert any("8-K filed" in e and "EPS 0.90 vs 1.00" in e and "-10.0%" in e for e in top["evidence"])
+
+
+def test_decline_reason_adds_earnings_reaction_days_outside_the_top_drops():
+    df = random_walk(400, seed=9).copy()
+    df["Volume"] = 1_000_000.0
+    # a -6% earnings reaction 200 bars ago (outside any 90-bar window) that is not one of the year's largest drops
+    pos = len(df) - 200
+    df.iloc[pos:, df.columns.get_loc("Close")] *= 0.94
+    for k in range(5):  # five bigger, unexplained drops later on
+        p = len(df) - 150 + 10 * k
+        df.iloc[p:, df.columns.get_loc("Close")] *= 0.90
+    ctx = B.price_context(df)
+    day = pd.Timestamp(df.index[pos]).strftime("%Y-%m-%d")
+    assert day not in [d for d, _ in ctx["biggest_drops"]]
+    prof = _profile()
+    filings = [{"date": day, "form": "8-K", "items": ["2.02"], "what": ["results of operations (earnings release)"]}]
+    why = B.decline_reason("TST", "Test Corp", ctx, [], B.analyst_view(prof), B.earnings_view(prof), filings=filings)
+    earn = [d for d in why["days"] if d["kind"] == "earnings"]
+    assert earn and earn[0]["day"] == day and why["found"] and "earnings" in why["cause"] and why["n_earnings_days"] == 1
+    assert why["high_date"] and why["drawdown"] < 0

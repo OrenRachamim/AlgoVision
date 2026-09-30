@@ -195,14 +195,21 @@ def wedge_section_he(m: PatternMatch, df: pd.DataFrame, geo: Dict, ctx: Dict, sp
 # ----------------------------------------------------------------------------
 def why_fell_he(why: Dict, news: List[Dict]) -> List[str]:
     md = ["### למה המניה ירדה", ""]
+    big = ""
+    if why.get("high_date"):
+        big = (f"מהשיא של 52 השבועות ({why['high_52w']:.2f} ב-{why['high_date']}) המניה ירדה {abs(why['drawdown']) * 100:.0f}%"
+               + (f"; {why['n_earnings_days']} ימי התגובה לדוחות שלהלן הורידו אותה יחד {abs(why['earnings_days_ret']) * 100:.1f}%. "
+                  if why.get("n_earnings_days") else ". "))
     if why["found"]:
-        md.append(f"סיבות שנמצאו בנתונים: **{_he_cause(why['cause'])}**. ימי הירידה הגדולים ב-90 הנרות האחרונים והראיות סביב כל אחד:")
+        md.append(big + f"סיבות שנמצאו בנתונים: **{_he_cause(why['cause'])}**. ימי הירידה הגדולים בשנה האחרונה, וכל יום תגובה לדוח שנסגר "
+                  "בירידה, עם הראיות סביב כל אחד:")
     else:
-        md.append("לא נמצאה סיבה בנתונים: אין כותרת שמזכירה את החברה עם סיבה מוצהרת בטווח יומיים מימי הירידה הגדולים, אין דיווח 8-K "
+        md.append(big + "לא נמצאה סיבה בנתונים: אין כותרת שמזכירה את החברה עם סיבה מוצהרת בטווח יומיים מימי הירידה הגדולים, אין דיווח 8-K "
                   "(פרסום תוצאות, שינוי בהנהלה, עסקה) באותם ימים, אין הורדת דירוג או יעד מיד אחרי, ואין יום ירידה כלל-שוקי. "
-                  "ימי הירידה הגדולים ב-90 הנרות האחרונים:")
+                  "ימי הירידה הגדולים בשנה האחרונה:")
     for d in why["days"]:
-        extra = ", ".join(x for x in ((f"נפח {d['volume_ratio']:.1f}x מהרגיל" if d.get("volume_ratio") else ""),
+        extra = ", ".join(x for x in (("יום תגובה לדוח" if d.get("kind") == "earnings" else ""),
+                                      (f"נפח {d['volume_ratio']:.1f}x מהרגיל" if d.get("volume_ratio") else ""),
                                       (f"SPY {_pct(d['spy'], 1)}" if d.get("spy") is not None else "")) if x)
         line = f"- {d['day']}: {_pct(d['ret'], 1)}" + (f" ({extra})" if extra else "")
         items: List[str] = []

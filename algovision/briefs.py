@@ -76,13 +76,14 @@ def price_context(df: pd.DataFrame) -> Dict:
     win = c.tail(252)
     hi_i, lo_i = win.idxmax(), win.idxmin()
     ret = c.pct_change()
-    drops = ret.tail(90).nsmallest(3)
+    drops = ret.tail(252).nsmallest(5)                 # the largest down days of the last year, not just the last quarter
     vol = df["Volume"].astype(float) if "Volume" in df.columns else pd.Series(np.nan, index=df.index)
-    vol_ratio = {}
-    for i in drops.index:
-        pos = df.index.get_loc(i)
-        base = vol.iloc[max(0, pos - 20):pos].median()
-        vol_ratio[pd.Timestamp(i).strftime("%Y-%m-%d")] = float(vol.iloc[pos] / base) if base and base == base else None
+    base_vol = vol.rolling(20).median().shift(1)
+    vr_all = (vol / base_vol).where(base_vol > 0)
+    # every day of the last year: (return, volume vs the 20-day median), so event days (earnings) can be looked up too
+    daily = {pd.Timestamp(i).strftime("%Y-%m-%d"): (float(r), (None if pd.isna(v) else float(v)))
+             for i, r, v in zip(ret.tail(252).index, ret.tail(252), vr_all.tail(252)) if r == r}
+    vol_ratio = {d: daily[d][1] for d in (pd.Timestamp(i).strftime("%Y-%m-%d") for i in drops.index) if d in daily}
     delta = c.diff().tail(15)
     up, down = delta.clip(lower=0).mean(), -delta.clip(upper=0).mean()
     rsi = 100 - 100 / (1 + up / down) if down > 0 else 100.0
@@ -98,7 +99,7 @@ def price_context(df: pd.DataFrame) -> Dict:
         "new_low_5d": bool(win.tail(5).min() <= float(win.min())),
         "higher_low": bool(low20 > low_prev) if low_prev == low_prev else None, "rsi14": float(rsi),
         "biggest_drops": [(pd.Timestamp(i).strftime("%Y-%m-%d"), float(v)) for i, v in drops.items()],
-        "drop_volume": vol_ratio,
+        "drop_volume": vol_ratio, "daily": daily,
     }
 
 
@@ -170,15 +171,34 @@ def _filings_near(filings: List[Dict], day: str, earn_hist: List[Dict]) -> Tuple
 
 def decline_reason(symbol: str, name: str, ctx: Dict, news: List[Dict], an: Dict, ea: Dict, bench: Optional[pd.DataFrame] = None,
                    filings: Optional[List[Dict]] = None, earn_hist: Optional[List[Dict]] = None) -> Dict:
-    """Evidence for why the stock fell on its largest down days: headlines that name the company and state a cause,
-    8-K filings on the day (earnings release, officer change, deal...), rating or target cuts right after, abnormal
-    volume, or a market-wide down day. Nothing is inferred beyond that."""
+    """Evidence for why the stock fell: on its largest down days of the last year and on its earnings-reaction days
+    (the session on or after every 8-K earnings release that closed down), headlines that name the company and state
+    a cause, 8-K filings on the day (earnings release, officer change, deal...), rating or target cuts right after,
+    abnormal volume, or a market-wide down day. Nothing is inferred beyond that."""
     toks = _company_tokens(symbol, name)
     bench_ret = bench["Close"].astype(float).pct_change() if bench is not None and len(bench) else None
     dated = [x["date"] for x in news if x.get("date")]
     oldest = min(dated) if dated else None
+    daily = ctx.get("daily") or {}
+    # the days to explain: the largest drops plus every earnings reaction that closed down (often the real story of a
+    # long decline, even when no single day makes the top list)
+    candidates = {day: ("drop", r) for day, r in ctx["biggest_drops"]}
+    dropv = dict(ctx.get("drop_volume") or {})
+    if daily:
+        sorted_days = sorted(daily)
+        for f in filings or []:
+            if not f.get("date") or "2.02" not in (f.get("items") or []):
+                continue
+            after = [d for d in sorted_days if d >= f["date"]][:2]      # the release day and the next session
+            if not after:
+                continue
+            day = min(after, key=lambda d: daily[d][0])
+            if daily[day][0] <= -0.01 and day not in candidates:
+                candidates[day] = ("earnings", daily[day][0])
+                dropv[day] = daily[day][1]
+    ordered = sorted(candidates.items(), key=lambda kv: kv[1][1])[:6]
     days, tags = [], []
-    for day, r in ctx["biggest_drops"]:
+    for day, (kind, r) in ordered:
         ev, day_tags = [], []
         scored = []
         for x in [x for x in news if x.get("date") and -1 <= (pd.Timestamp(x["date"]) - pd.Timestamp(day)).days <= 2]:
@@ -207,7 +227,7 @@ def decline_reason(symbol: str, name: str, ctx: Dict, news: List[Dict], an: Dict
             headlines.append({"date": x["date"], "title": x["title"], "publisher": x.get("publisher") or "",
                               "summary": _sentences(x["summary"], 200) if x.get("summary") else "", "causes": causes})
         d0 = pd.Timestamp(day)
-        cuts = [a for a in an.get("actions", [])
+        cuts = [a for a in an.get("actions_1y", an.get("actions", []))
                 if a.get("date") and -1 <= (pd.Timestamp(a["date"]) - d0).days <= 3
                 and (a.get("action") == "down" or a.get("target_action") == "Lowers")]
         if cuts:
@@ -222,11 +242,11 @@ def decline_reason(symbol: str, name: str, ctx: Dict, news: List[Dict], an: Dict
             if spy <= -0.015:
                 day_tags.append("market-wide")
                 ev.append(f"market-wide day: SPY {_pct(spy, 1)}")
-        vr = ctx.get("drop_volume", {}).get(day)
+        vr = dropv.get(day)
         volume = f"{vr:.1f}x normal volume" if vr else ""
         if vr and vr >= 2.5 and not day_tags:
             day_tags.append("company event (heavy volume, cause not found)")
-        days.append({"day": day, "ret": r, "volume": volume, "volume_ratio": vr, "spy": spy, "evidence": ev,
+        days.append({"day": day, "kind": kind, "ret": r, "volume": volume, "volume_ratio": vr, "spy": spy, "evidence": ev,
                      "tags": list(dict.fromkeys(day_tags)), "before_feed": bool(oldest and (pd.Timestamp(oldest) - d0).days > 2),
                      # the same evidence as data, for renderings in other languages
                      "filings": fitems, "headlines": headlines,
@@ -235,14 +255,17 @@ def decline_reason(symbol: str, name: str, ctx: Dict, news: List[Dict], an: Dict
         tags += day_tags
     found = any(d["evidence"] for d in days)
     tags = [t for t in dict.fromkeys(tags) if not t.startswith("company event")]
+    earn_ret = sum(d["ret"] for d in days if d["kind"] == "earnings" or "earnings" in d["tags"])
     return {"found": found, "days": days, "oldest_news": oldest, "cause": ", ".join(tags) if tags else ("heavy volume, cause not found" if any(
-        t.startswith("company event") for d in days for t in d["tags"]) else "not found")}
+        t.startswith("company event") for d in days for t in d["tags"]) else "not found"),
+            "drawdown": ctx.get("drawdown"), "high_date": ctx.get("high_date"), "high_52w": ctx.get("high_52w"),
+            "earnings_days_ret": earn_ret, "n_earnings_days": sum(1 for d in days if d["kind"] == "earnings" or "earnings" in d["tags"])}
 
 
 def analyst_view(profile: Dict) -> Dict:
     fd = profile.get("financialData") or {}
     trend = (profile.get("recommendationTrend") or {}).get("trend") or []
-    now = next((t for t in trend if t.get("period") == "0m"), {})
+    now_t = next((t for t in trend if t.get("period") == "0m"), {})
     ago = next((t for t in trend if t.get("period") == "-3m"), {})
 
     def bullish_share(t):
@@ -251,25 +274,27 @@ def analyst_view(profile: Dict) -> Dict:
 
     price = fd.get("currentPrice")
     target = fd.get("targetMeanPrice")
-    cutoff = dt.datetime.now(dt.timezone.utc) - dt.timedelta(days=90)
-    actions = []
+    now = dt.datetime.now(dt.timezone.utc)
+    cutoff, cutoff_1y = now - dt.timedelta(days=90), now - dt.timedelta(days=365)
+    actions_1y = []
     for h in (profile.get("upgradeDowngradeHistory") or {}).get("history") or []:
         when = h.get("epochGradeDate")
-        if not when or dt.datetime.fromtimestamp(int(when), tz=dt.timezone.utc) < cutoff:
+        if not when or dt.datetime.fromtimestamp(int(when), tz=dt.timezone.utc) < cutoff_1y:
             continue
-        actions.append({"date": _date(when), "firm": h.get("firm", ""), "action": h.get("action", ""),
-                        "from": h.get("fromGrade", ""), "to": h.get("toGrade", ""),
-                        "target_action": h.get("priceTargetAction", ""), "target": h.get("currentPriceTarget"),
-                        "prior_target": h.get("priorPriceTarget")})
-    actions.sort(key=lambda a: a["date"], reverse=True)
+        actions_1y.append({"date": _date(when), "firm": h.get("firm", ""), "action": h.get("action", ""),
+                           "from": h.get("fromGrade", ""), "to": h.get("toGrade", ""),
+                           "target_action": h.get("priceTargetAction", ""), "target": h.get("currentPriceTarget"),
+                           "prior_target": h.get("priorPriceTarget")})
+    actions_1y.sort(key=lambda a: a["date"], reverse=True)
+    actions = [a for a in actions_1y if dt.datetime.fromisoformat(a["date"]).replace(tzinfo=dt.timezone.utc) >= cutoff]
     key, mean = fd.get("recommendationKey"), fd.get("recommendationMean")
     if (not key or key == "none") and mean is not None:  # Yahoo sometimes ships the mean without the key
         key = "strong_buy" if mean < 1.5 else "buy" if mean < 2.5 else "hold" if mean < 3.5 else "sell" if mean < 4.5 else "strong_sell"
     elif key == "none":
         key = None
-    tot = sum(int(now.get(k) or 0) for k in ("strongBuy", "buy", "hold", "sell", "strongSell")) if now else 0
+    tot = sum(int(now_t.get(k) or 0) for k in ("strongBuy", "buy", "hold", "sell", "strongSell")) if now_t else 0
     if tot and mean is None:  # derive the 1-5 mean from the rating counts
-        mean = sum(w * int(now.get(k) or 0) for w, k in ((1, "strongBuy"), (2, "buy"), (3, "hold"), (4, "sell"), (5, "strongSell"))) / tot
+        mean = sum(w * int(now_t.get(k) or 0) for w, k in ((1, "strongBuy"), (2, "buy"), (3, "hold"), (4, "sell"), (5, "strongSell"))) / tot
         if key is None:
             key = "strong_buy" if mean < 1.5 else "buy" if mean < 2.5 else "hold" if mean < 3.5 else "sell" if mean < 4.5 else "strong_sell"
     n = fd.get("numberOfAnalystOpinions") or (tot or None)
@@ -277,8 +302,8 @@ def analyst_view(profile: Dict) -> Dict:
         "key": key, "mean": mean, "n": n,
         "target": target, "target_low": fd.get("targetLowPrice"), "target_high": fd.get("targetHighPrice"),
         "upside": (target / price - 1) if target and price else None,
-        "bullish_now": bullish_share(now), "bullish_3m": bullish_share(ago), "counts_now": now,
-        "actions": actions[:8],
+        "bullish_now": bullish_share(now_t), "bullish_3m": bullish_share(ago), "counts_now": now_t,
+        "actions": actions[:8], "actions_1y": actions_1y,
         "n_up": sum(a["action"] == "up" for a in actions), "n_down": sum(a["action"] == "down" for a in actions),
         "n_target_cuts": sum(a["target_action"] == "Lowers" for a in actions),
         "n_target_raises": sum(a["target_action"] == "Raises" for a in actions),
@@ -458,14 +483,19 @@ def brief_markdown(symbol: str, tables: List[str], ctx: Dict, an: Dict, ea: Dict
               f"vs 50-day {_pct(ctx['dist_ma50'])}, vs 200-day {_pct(ctx['dist_ma200'])}; RSI(14) {ctx['rsi14']:.0f}."
               + (f" 52-week change {_pct(fu['chg_52w'])} vs S&P 500 {_pct(fu['spx_52w'])}." if fu.get("chg_52w") is not None else ""))
     md.append("")
-    why = why_fell or {"found": False, "days": [], "cause": "not found"}
-    md.append("**Why it fell.** " + (
-        f"Cause found in the data ({why['cause']}). Largest down days in the last 90 bars and the evidence around each:" if why["found"]
+    why = why_fell or {"found": False, "days": [], "cause": "not found", "high_date": None}
+    big = (f"From the 52-week high ({why['high_52w']:.2f} on {why['high_date']}) the stock is {_pct(why['drawdown'])}"
+           + (f"; the {why['n_earnings_days']} earnings-reaction day(s) below took {abs(why['earnings_days_ret']) * 100:.1f}% off it. "
+              if why.get("n_earnings_days") else ". ") if why.get("high_date") else "")
+    md.append("**Why it fell.** " + big + (
+        f"Cause found in the data ({why['cause']}). Largest down days of the last year, plus every earnings reaction that closed down, "
+        "and the evidence around each:" if why["found"]
         else "No cause found in the data: no headline naming the company with a stated reason within 2 days of the largest down days, "
              "no 8-K filing (earnings release, officer change, deal) on those days, no rating or target cut right after, and no "
-             "market-wide sell-off. Largest down days in the last 90 bars:"))
+             "market-wide sell-off. Largest down days of the last year:"))
     for d in why["days"]:
-        extra = ", ".join(x for x in (d["volume"], f"SPY {_pct(d['spy'], 1)}" if d.get("spy") is not None else "") if x)
+        extra = ", ".join(x for x in (("earnings reaction" if d.get("kind") == "earnings" else ""), d["volume"],
+                                      f"SPY {_pct(d['spy'], 1)}" if d.get("spy") is not None else "") if x)
         line = f"- {d['day']}: {_pct(d['ret'], 1)}" + (f" ({extra})" if extra else "")
         if d["evidence"]:
             md.append(line + ":")
