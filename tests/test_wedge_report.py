@@ -39,7 +39,8 @@ def test_writer(tmp_path):
     day = pd.Timestamp(df.index[-10]).strftime("%Y-%m-%d")
     data = {"SYN": {"profile": _profile(), "news": [{"title": "Test Corp cuts guidance", "summary": "Weak demand.", "publisher": "Wire",
                                                       "date": day, "link": ""}], "filings": []}}
-    path = W.build_wedge_report(tmp_path, "2026-01-01", {"SYN": df}, {"SYN": m}, {"SYN": "Industrials"}, briefs_data=data)
+    path = W.build_wedge_report(tmp_path, "2026-01-01", {"SYN": df}, {"SYN": m}, {"SYN": "Industrials"}, briefs_data=data,
+                                cache_dir=tmp_path, offline=True)
     text = path.read_text(encoding="utf-8")
     assert (tmp_path / "wedge_latest.md").exists()
     assert "טבלה מסכמת" in text and "[פירוט](#wedge-syn)" in text and '<a id="wedge-syn"' in text

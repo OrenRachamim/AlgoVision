@@ -15,11 +15,12 @@ from typing import Dict, Iterable, List, Optional
 import numpy as np
 import pandas as pd
 
-from algovision.briefs import (_money, _num, _pct, analyst_view, decline_reason, earnings_view, fundamentals_view,
+from algovision.briefs import (_company_tokens, _money, _num, _pct, analyst_view, decline_reason, earnings_view, fetch_sources, fundamentals_view,
                                price_context, render_signals, verdict_signals)
 from algovision.core.geometry import volume_ratio
 from algovision.core.types import PatternMatch
 from algovision.links import tradingview_url
+from algovision.sentiment import LABEL_HE as SENT_HE, sentiment_markdown, sentiment_view
 
 # ----------------------------------------------------------------------------
 # Hebrew vocabulary
@@ -374,8 +375,11 @@ def build_wedge_report(out_dir: Path, today: str, frames: Dict[str, pd.DataFrame
         ctx = price_context(df)
         an, ea, fu = analyst_view(profile), earnings_view(profile), fundamentals_view(profile)
         label, score, fired = verdict_signals(ctx, an, ea, fu)
-        why = decline_reason(s, fu.get("name") or "", ctx, news, an, ea, bench, filings=data.get("filings") or [],
-                             earn_hist=(profile.get("earningsHistory") or {}).get("history") or [])
+        name = fu.get("name") or ""
+        src = fetch_sources(s, name, cache_dir, offline)
+        why = decline_reason(s, name, ctx, news, an, ea, bench, filings=data.get("filings") or [],
+                             earn_hist=(profile.get("earningsHistory") or {}).get("history") or [], extra_headlines=src["around"])
+        sent = sentiment_view(src["year"], why["window_headlines"], _company_tokens(s, name), profile, src["twits"], an, ea)
         geo = wedge_geometry(m, df)
         last = ctx["last"]
         rows.append({
@@ -385,7 +389,8 @@ def build_wedge_report(out_dir: Path, today: str, frames: Dict[str, pd.DataFrame
             "מהסטופ": _pct(m.stop / last - 1 if last else np.nan),
             "6 חודשים": _pct(m.metrics.get("context", {}).get("ret_126")), "מול ממוצע 200": _pct(m.metrics.get("context", {}).get("dist_ma200")),
             "ATR%": f"{m.metrics.get('context', {}).get('atr_pct', 0) * 100:.1f}%", "גובה הטריז": f"{geo['h0_pct'] * 100:.0f}%",
-            "למה ירדה": _he_cause(why["cause"]), "קריאה": LABEL_SHORT_HE[label], "ציון קריאה": f"{score:+g}",
+            "למה ירדה": _he_cause(why["cause"]), "חששות": ", ".join(t["he"] for t in sent["concerns"]["themes"][:2]) or "לא נמצאו",
+            "סנטימנט": SENT_HE[sent["label"]], "קריאה": LABEL_SHORT_HE[label], "ציון קריאה": f"{score:+g}",
             "סקטור": _he_sector(fu.get("sector") or sectors.get(s)),
         })
         sec = [f"<a id=\"{_anchor(s)}\" name=\"{_anchor(s)}\"></a>", f"## {s} - {fu.get('name') or s}", "",
@@ -393,9 +398,11 @@ def build_wedge_report(out_dir: Path, today: str, frames: Dict[str, pd.DataFrame
                f"*{_he_sector(fu.get('sector') or sectors.get(s))}" + (f" / {fu['industry']}" if fu.get("industry") else "") + ".*"
                + (f" *{fu['summary'].rstrip('.')}.*" if fu.get("summary") else ""), "",
                f"**סטטוס הטריז: {STATUS_HE.get(m.status, m.status)}** (ציון דטקטור {m.score:.2f}), "
-               f"**קריאה: {LABEL_SHORT_HE[label]}** (ציון {score:+g}), **למה ירדה: {_he_cause(why['cause'])}**.", ""]
+               f"**קריאה: {LABEL_SHORT_HE[label]}** (ציון {score:+g}), **למה ירדה: {_he_cause(why['cause'])}**, "
+               f"**סנטימנט: {SENT_HE[sent['label']]}**.", ""]
         sec += wedge_section_he(m, df, geo, ctx, spy_below)
         sec += why_fell_he(why, news)
+        sec += sentiment_markdown(sent, "he")
         sec += analysts_he(an)
         sec += report_he(ea)
         sec += fundamentals_he(fu)
@@ -418,6 +425,8 @@ def build_wedge_report(out_dir: Path, today: str, frames: Dict[str, pd.DataFrame
         "(ניתוח טכני של הטריז, למה המניה ירדה, אנליסטים, הדוח האחרון, נתוני יסוד וקריאה מבוססת כללים). \"מאושר\" = המחיר סגר מעל הקו העליון "
         "ב-5 הנרות האחרונים (זה האיתות); \"בהתהוות\" = עדיין בתוך הטריז, אין איתות עדיין. \"למה ירדה\" מציין רק ראיות שנמצאו בנתונים "
         "(כותרות שמזכירות את החברה סביב ימי הירידה הגדולים, דיווחי 8-K, הורדות דירוג, ימי שוק) או \"לא נמצא\"; שום דבר לא מומצא. "
+        "\"חששות\" = נושאי הכותרות השליליות על החברה בשנה האחרונה (Google News), ספורים, עם הכותרות עצמן בפירוט; \"סנטימנט\" = "
+        "קריאה שקופה על איתותים רשומים: אנליסטים, יעדי מחיר, עדכוני תחזיות, שורט, הקהל ב-StockTwits וטון הכותרות. "
         "הכותרות, שמות החברות ובתי ההשקעות מובאים כפי שפורסמו.", "",
         "<a id=\"summary\" name=\"summary\"></a>", "## טבלה מסכמת", "",
         pd.DataFrame(rows).to_markdown(index=False) if rows else "אין טריזים יורדים במניות מוכות היום.", "",

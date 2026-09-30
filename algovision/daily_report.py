@@ -130,7 +130,7 @@ def build_report(out_dir: Path, universe: str = "all", cache_dir: Optional[Path]
                 except Exception as exc:  # noqa: BLE001
                     md.append(f"wedge file unavailable: {exc}\n")
             from algovision.briefs import summary_table
-            md.append(f"Full briefs (price context, why it fell, analysts, last report, fundamentals) for {len(brows)} stocks in "
+            md.append(f"Full briefs (price context, why it fell, investor concerns and sentiment, analysts, last report, fundamentals) for {len(brows)} stocks in "
                       f"`{bpath.name}`. The *read* column is a rule-based score over listed signals (signs of a bottom / undecided / "
                       "still falling), not a forecast. *Why fell* names the evidence found around the largest down days "
                       "(headlines naming the company, rating cuts, market-wide days) or says \"not found\"; nothing is inferred.\n")

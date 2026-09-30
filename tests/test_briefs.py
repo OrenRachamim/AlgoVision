@@ -79,11 +79,18 @@ def test_markdown_and_writer(tmp_path, monkeypatch):
             return {s: data for s in symbols if s != "MISSING"}
 
     monkeypatch.setattr("algovision.data.briefs_data.BriefsProvider", FakeProvider)
+    # the extra sources are stubbed: Google News gives one negative headline in the window of the drop, StockTwits a bearish crowd
+    monkeypatch.setattr("algovision.data.newsfeed.google_news",
+                        lambda query, *a, **k: [{"date": day, "title": "Test Corp shares fall as tariffs hit demand", "publisher": "Wire",
+                                                 "summary": "", "link": "", "source": "google"}])
+    monkeypatch.setattr("algovision.data.newsfeed.stocktwits", lambda *a, **k: {"n": 30, "bullish": 3, "bearish": 12, "watchers": 100})
     frames = {"TST": df, "MISSING": df}
     path, rows = B.write_briefs(tmp_path, "2026-01-01", ["TST", "MISSING"], frames, {"TST": ["news-day"]}, cache_dir=tmp_path)
     text = path.read_text()
     assert (tmp_path / "briefs_latest.md").exists() and len(rows) == 1
     assert "## Summary" in text and "no data" in text and "[TST]" in text
+    assert "Investor concerns and sentiment" in text and "tariffs / trade" in text and "StockTwits crowd bearish" in text
+    assert rows[0]["concerns"] and rows[0]["sentiment"] in ("negative", "mixed", "positive") and "| concerns" in text
 
 
 def _drop_frame():

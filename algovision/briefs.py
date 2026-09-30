@@ -15,7 +15,7 @@ from __future__ import annotations
 import datetime as dt
 import re
 from pathlib import Path
-from typing import Dict, Iterable, List, Optional, Tuple
+from typing import Callable, Dict, Iterable, List, Optional, Tuple
 
 import numpy as np
 import pandas as pd
@@ -124,6 +124,13 @@ NOISE_TITLES = ("trending stock", "should you buy", "what to know beyond", "whic
                 "is a great choice", "stock is up today", "stock is down today", "buy the dip")
 
 
+# a Google headline with no summary must talk about the stock or the business itself to count as evidence
+_MARKET_RE = re.compile(r"\b(?:stock|stocks|shares|share price|investors|investor|earnings|analyst|analysts|wall street|nyse|nasdaq|"
+                        r"quarter|quarterly|results|revenue|sales|profit|profits|guidance|outlook|forecast|downgrade|downgrades|"
+                        r"upgrade|price target|market cap|valuation|sell-off|selloff|rout|plunge|plunges|tumble|tumbles|slump|slumps|"
+                        r"sink|sinks|slide|slides|dive|dives|crash|crashes|lowest|low since|52-week|worst day)\b", re.I)
+
+
 def _company_tokens(symbol: str, name: str) -> List[str]:
     stop = {"the", "inc", "inc.", "corp", "corp.", "corporation", "co", "co.", "company", "plc", "ltd", "holdings", "group", "&", "and", "of"}
     toks = [t.strip(",.") for t in (name or "").split()]
@@ -170,11 +177,16 @@ def _filings_near(filings: List[Dict], day: str, earn_hist: List[Dict]) -> Tuple
 
 
 def decline_reason(symbol: str, name: str, ctx: Dict, news: List[Dict], an: Dict, ea: Dict, bench: Optional[pd.DataFrame] = None,
-                   filings: Optional[List[Dict]] = None, earn_hist: Optional[List[Dict]] = None) -> Dict:
+                   filings: Optional[List[Dict]] = None, earn_hist: Optional[List[Dict]] = None,
+                   extra_headlines: Optional[Callable[[str], List[Dict]]] = None) -> Dict:
     """Evidence for why the stock fell: on its largest down days of the last year and on its earnings-reaction days
     (the session on or after every 8-K earnings release that closed down), headlines that name the company and state
     a cause, 8-K filings on the day (earnings release, officer change, deal...), rating or target cuts right after,
-    abnormal volume, or a market-wide down day. Nothing is inferred beyond that."""
+    abnormal volume, or a market-wide down day. Nothing is inferred beyond that.
+
+    ``extra_headlines(day)`` may return more headlines for the window around ``day`` (Google News); they are merged
+    with the Yahoo feed, which only covers the last few weeks. Every headline that names the company in any window is
+    also returned in ``window_headlines`` for the concerns analysis."""
     toks = _company_tokens(symbol, name)
     bench_ret = bench["Close"].astype(float).pct_change() if bench is not None and len(bench) else None
     dated = [x["date"] for x in news if x.get("date")]
@@ -198,13 +210,34 @@ def decline_reason(symbol: str, name: str, ctx: Dict, news: List[Dict], an: Dict
                 dropv[day] = daily[day][1]
     ordered = sorted(candidates.items(), key=lambda kv: kv[1][1])[:6]
     days, tags = [], []
+    window_headlines: List[Dict] = []
+    seen_window = set()
     for day, (kind, r) in ordered:
         ev, day_tags = [], []
         scored = []
-        for x in [x for x in news if x.get("date") and -1 <= (pd.Timestamp(x["date"]) - pd.Timestamp(day)).days <= 2]:
+        pool = [x for x in news if x.get("date") and -1 <= (pd.Timestamp(x["date"]) - pd.Timestamp(day)).days <= 2]
+        extra: List[Dict] = []
+        if extra_headlines is not None:
+            try:
+                extra = extra_headlines(day) or []
+            except Exception:  # noqa: BLE001  (best effort: the extra source must never sink the brief)
+                extra = []
+        titles = {(x.get("title") or "").strip().lower() for x in pool}
+        for x in extra:
+            t = (x.get("title") or "").strip().lower()
+            if t and t not in titles and x.get("date") and -1 <= (pd.Timestamp(x["date"]) - pd.Timestamp(day)).days <= 2:
+                pool.append(x)
+                titles.add(t)
+        for x in pool:
             title, summ = (x.get("title") or "").lower(), (x.get("summary") or "").lower()
             if not any(t.lower() in f"{title} {summ}" for t in toks) or any(n in title for n in NOISE_TITLES):
                 continue
+            if x.get("source") == "google" and not _MARKET_RE.search(title) and not any(
+                    rx.search(title) for k, rx in _CAUSE_RE.items() if k != "price move"):
+                continue                               # a consumer / product headline (a shoe "drop"), not one about the stock
+            if title not in seen_window:
+                seen_window.add(title)
+                window_headlines.append({"date": x["date"], "title": x["title"], "publisher": x.get("publisher") or "", "day": day})
             in_title = [k for k, rx in _CAUSE_RE.items() if rx.search(title)]
             in_summ = [k for k, rx in _CAUSE_RE.items() if rx.search(summ) and k not in in_title]
             causes = [k for k in in_title + in_summ if k != "price move"]
@@ -247,7 +280,7 @@ def decline_reason(symbol: str, name: str, ctx: Dict, news: List[Dict], an: Dict
         if vr and vr >= 2.5 and not day_tags:
             day_tags.append("company event (heavy volume, cause not found)")
         days.append({"day": day, "kind": kind, "ret": r, "volume": volume, "volume_ratio": vr, "spy": spy, "evidence": ev,
-                     "tags": list(dict.fromkeys(day_tags)), "before_feed": bool(oldest and (pd.Timestamp(oldest) - d0).days > 2),
+                     "tags": list(dict.fromkeys(day_tags)), "before_feed": bool(oldest and (pd.Timestamp(oldest) - d0).days > 2) and not extra,
                      # the same evidence as data, for renderings in other languages
                      "filings": fitems, "headlines": headlines,
                      "cuts": [{"firm": a.get("firm", ""), "kind": "downgrade" if a.get("action") == "down" else "target cut",
@@ -262,7 +295,26 @@ def decline_reason(symbol: str, name: str, ctx: Dict, news: List[Dict], an: Dict
     return {"found": found, "days": days, "oldest_news": oldest, "cause": ", ".join(tags) if tags else ("heavy volume, cause not found" if any(
         t.startswith("company event") for d in days for t in d["tags"]) else "not found"),
             "drawdown": ctx.get("drawdown"), "high_date": ctx.get("high_date"), "high_52w": ctx.get("high_52w"),
-            "earnings_days_ret": earn_ret, "n_earnings_days": len(earn_days)}
+            "earnings_days_ret": earn_ret, "n_earnings_days": len(earn_days), "window_headlines": window_headlines}
+
+
+def fetch_sources(symbol: str, name: str, cache_dir: Optional[Path] = None, offline: bool = False) -> Dict:
+    """The extra, key-free sources for one stock (all cached, all best effort): a year of Google News headlines, the
+    StockTwits stream summary, and a function giving the headlines around any past day."""
+    from algovision.data import newsfeed
+    from algovision.data.provider import _DEFAULT_CACHE
+
+    cd = Path(cache_dir) if cache_dir else _DEFAULT_CACHE
+    try:
+        year = newsfeed.headlines_year(symbol, name, cd, offline=offline)
+    except Exception:  # noqa: BLE001
+        year = []
+    try:
+        twits = newsfeed.stocktwits(symbol, cd, offline=offline)
+    except Exception:  # noqa: BLE001
+        twits = {}
+    return {"year": year, "twits": twits,
+            "around": lambda day: newsfeed.headlines_around(symbol, name, day, cache_dir=cd, offline=offline)}
 
 
 def analyst_view(profile: Dict) -> Dict:
@@ -471,7 +523,7 @@ def _news_near(news: List[Dict], day: str, window: int = 3) -> List[Dict]:
 # markdown
 # ----------------------------------------------------------------------------
 def brief_markdown(symbol: str, tables: List[str], ctx: Dict, an: Dict, ea: Dict, fu: Dict, news: List[Dict],
-                   label: str, score: float, why: List[str], why_fell: Optional[Dict] = None) -> str:
+                   label: str, score: float, why: List[str], why_fell: Optional[Dict] = None, sentiment: Optional[Dict] = None) -> str:
     md = [f"## {tv(symbol)} {fu.get('name') or ''}".rstrip(), ""]
     md.append(f"*In today's tables: {', '.join(tables) if tables else '-'}. {fu.get('sector') or ''} / {fu.get('industry') or ''}.*")
     if fu.get("summary"):
@@ -517,6 +569,9 @@ def brief_markdown(symbol: str, tables: List[str], ctx: Dict, an: Dict, ea: Dict
                 line += f": {x['summary'][:280]}"
             md.append(line)
     md.append("")
+    if sentiment:
+        from algovision.sentiment import sentiment_markdown
+        md += sentiment_markdown(sentiment, "en")
     cn = an.get("counts_now") or {}
     md.append("**What analysts say.** "
               + (f"Consensus **{str(an['key']).replace('_', ' ')}** ({an.get('n') or '?'} analysts"
@@ -569,19 +624,29 @@ def brief_markdown(symbol: str, tables: List[str], ctx: Dict, an: Dict, ea: Dict
 
 
 def build_brief(symbol: str, df: pd.DataFrame, data: Dict, tables: List[str], insider_buying: bool = False,
-                bench: Optional[pd.DataFrame] = None) -> Tuple[Dict, str]:
+                bench: Optional[pd.DataFrame] = None, sources: Optional[Dict] = None) -> Tuple[Dict, str]:
+    """``sources={"cache_dir": ..., "offline": ...}`` adds the extra sources (Google News, StockTwits) to the decline
+    analysis and appends the investor-concerns / sentiment block; ``None`` keeps the brief to the Yahoo + EDGAR data."""
     profile, news = data.get("profile") or {}, data.get("news") or []
     ctx = price_context(df)
     an, ea, fu = analyst_view(profile), earnings_view(profile), fundamentals_view(profile)
     label, score, why = verdict(ctx, an, ea, fu, insider_buying)
-    why_fell = decline_reason(symbol, fu.get("name") or "", ctx, news, an, ea, bench, filings=data.get("filings") or [],
-                              earn_hist=(profile.get("earningsHistory") or {}).get("history") or [])
+    name = fu.get("name") or ""
+    src = fetch_sources(symbol, name, sources.get("cache_dir"), bool(sources.get("offline"))) if sources is not None else None
+    why_fell = decline_reason(symbol, name, ctx, news, an, ea, bench, filings=data.get("filings") or [],
+                              earn_hist=(profile.get("earningsHistory") or {}).get("history") or [],
+                              extra_headlines=src["around"] if src else None)
+    sent = None
+    if src is not None:
+        from algovision.sentiment import sentiment_view
+        sent = sentiment_view(src["year"], why_fell["window_headlines"], _company_tokens(symbol, name), profile, src["twits"], an, ea)
     row = {"symbol": symbol, "tables": ", ".join(tables), "read": LABELS[label].split(" (")[0], "score": score, "why fell": why_fell["cause"],
+           "sentiment": sent["label"] if sent else "", "concerns": ", ".join(t["en"] for t in sent["concerns"]["themes"][:2]) if sent else "",
            "last": ctx["last"], "from 52w high": ctx["drawdown"], "vs MA50": ctx["dist_ma50"], "vs MA200": ctx["dist_ma200"],
            "consensus": (an.get("key") or "").replace("_", " "), "analysts": an.get("n"), "target upside": an.get("upside"),
            "up/down 90d": f"{an.get('n_up', 0)}/{an.get('n_down', 0)}", "EPS est 30d": ea.get("y0_rev_30d"),
            "last surprise": ea.get("surprise"), "next report": ea.get("next_date")}
-    return row, brief_markdown(symbol, tables, ctx, an, ea, fu, news, label, score, why, why_fell)
+    return row, brief_markdown(symbol, tables, ctx, an, ea, fu, news, label, score, why, why_fell, sent)
 
 
 def summary_table(rows: List[Dict]) -> str:
@@ -593,6 +658,7 @@ def summary_table(rows: List[Dict]) -> str:
     out = pd.DataFrame({
         "symbol": d["symbol"].map(tv), "in tables": d["tables"], "read": d["read"], "score": d["score"].map(lambda v: f"{v:+g}"),
         "why fell": d["why fell"] if "why fell" in d else "",
+        "concerns": d["concerns"] if "concerns" in d else "", "sentiment": d["sentiment"] if "sentiment" in d else "",
         "last": d["last"].map(lambda v: f"{v:.2f}"), "from 52w high": d["from 52w high"].map(_pct), "vs MA50": d["vs MA50"].map(_pct),
         "consensus": d["consensus"], "analysts": d["analysts"].map(lambda v: "" if v is None or pd.isna(v) else f"{int(v)}"),
         "target upside": d["target upside"].map(_pct), "up/down 90d": d["up/down 90d"],
@@ -620,7 +686,8 @@ def write_briefs(out_dir: Path, today: str, symbols: Iterable[str], frames: Dict
             parts.append(f"## {tv(s)}\n\nno data\n")
             continue
         try:
-            row, md = build_brief(s, frames[s], data[s], tables.get(s, []), insider_buying=s in insiders, bench=bench)
+            row, md = build_brief(s, frames[s], data[s], tables.get(s, []), insider_buying=s in insiders, bench=bench,
+                                  sources={"cache_dir": cache_dir, "offline": offline})
         except Exception as exc:  # one bad profile must not sink the whole file
             parts.append(f"## {tv(s)}\n\nbrief unavailable: {exc}\n")
             continue
@@ -631,8 +698,10 @@ def write_briefs(out_dir: Path, today: str, symbols: Iterable[str], frames: Dict
             "found in the data: headlines naming the company near the largest down days, rating cuts, market-wide days; otherwise "
             "\"not found\"), what analysts "
             "say, the last report and the estimates, the fundamentals, and a rule-based read (signs of a bottom / undecided / "
-            "still falling) whose signals are listed so it can be checked. Data: Yahoo Finance (analysts, estimates, "
-            "statistics, news). Systematic screens, not investment advice.\n",
+            "still falling) whose signals are listed so it can be checked, plus what worries investors (the themes of the negative "
+            "headlines of the last year, each with the headlines behind it) and a sentiment read over listed signals (analysts, "
+            "targets, estimate revisions, short interest, the StockTwits crowd, headline tone). Data: Yahoo Finance (analysts, "
+            "estimates, statistics, news), Google News headlines, StockTwits, SEC EDGAR. Systematic screens, not investment advice.\n",
             "## Summary\n", summary_table(rows)]
     text = "\n".join(head + parts)
     path = out_dir / f"briefs_{today}.md"
