@@ -246,6 +246,44 @@ def why_fell_he(why: Dict, news: List[Dict]) -> List[str]:
     return md
 
 
+def summary_he(m: PatternMatch, geo: Dict, ctx: Dict, why: Dict, sent: Dict, an: Dict, ea: Dict, label: str, score: float) -> List[str]:
+    """Five short lines at the top of a stock's section: the wedge and its levels, how beaten the stock is, why it fell,
+    what worries investors and the sentiment, what analysts expect and the rule-based read. Data only."""
+    last = ctx["last"]
+    if m.status == "confirmed" and m.breakout_date:
+        state = f"פרץ מעל הקו העליון ב-{m.breakout_date} (רמת הפריצה {m.level:.2f})"
+    else:
+        state = f"המחיר עדיין בתוך הטריז, הקו העליון עכשיו ב-{geo['upper_now']:.2f}" if geo.get("upper_now") == geo.get("upper_now") else "המחיר עדיין בתוך הטריז"
+    stop_pct = m.stop / last - 1 if last else float("nan")
+    md = ["**בקצרה:**",
+          f"- **הטריז:** {STATUS_HE.get(m.status, m.status)}, {geo['width']} נרות מ-{m.start_date}; {state}. מחיר אחרון {last:.2f}, "
+          f"סטופ {m.stop:.2f} ({_pct(stop_pct, 1)} מהמחיר), יעד {m.target:.2f}."]
+    cx = m.metrics.get("context", {})
+    md.append(f"- **כמה מוכה:** {abs(ctx['drawdown']) * 100:.0f}% מתחת לשיא של 52 השבועות ({ctx['high_date']}), "
+              f"6 חודשים {_pct(cx.get('ret_126'))}, {_pct(cx.get('dist_ma200'))} מול ממוצע 200, ATR {cx.get('atr_pct', 0) * 100:.1f}% ליום.")
+    # the strongest evidence: the first headline of the largest day that has one, else the largest day's filing
+    quote = ""
+    for d in why.get("days", []):
+        if d.get("headlines"):
+            h = d["headlines"][0]
+            quote = f" למשל {d['day']} ({_pct(d['ret'], 1)}): \"{h['title']}\"" + (f" ({h['publisher']})" if h.get("publisher") else "") + "."
+            break
+    md.append(f"- **למה ירדה:** {_he_cause(why['cause'])}." + quote if why.get("found") else
+              "- **למה ירדה:** לא נמצאה סיבה בנתונים (כותרות, דיווחי 8-K, הורדות דירוג, ימי שוק).")
+    themes = ", ".join(t["he"] for t in sent["concerns"]["themes"][:3])
+    neg = sum(1 for _, sg, _ in sent["signals"] if sg < 0)
+    pos = sum(1 for _, sg, _ in sent["signals"] if sg > 0)
+    md.append("- **חששות וסנטימנט:** " + (f"הכותרות השליליות עוסקות ב{themes}. " if themes else "לא נמצאו כותרות שליליות על החברה בשנה האחרונה. ")
+              + f"סנטימנט {SENT_HE[sent['label']]} ({neg} איתותים שליליים, {pos} חיוביים).")
+    an_txt = (f"קונצנזוס {_he_consensus(an.get('key'))} ({an.get('n') or '?'} אנליסטים), יעד ממוצע {_num(an.get('target'), 2)} "
+              f"({_pct(an.get('upside'))} מהמחיר)" if an.get("key") else "אין קונצנזוס אנליסטים")
+    md.append(f"- **אנליסטים וקריאה:** {an_txt}"
+              + (f"; הדוח הבא {ea['next_date']}" if ea.get("next_date") else "")
+              + f". קריאה מבוססת כללים: **{LABEL_SHORT_HE[label]}** (ציון {score:+g}).")
+    md.append("")
+    return md
+
+
 def analysts_he(an: Dict) -> List[str]:
     md = ["### מה אומרים האנליסטים", ""]
     cn = an.get("counts_now") or {}
@@ -396,10 +434,8 @@ def build_wedge_report(out_dir: Path, today: str, frames: Dict[str, pd.DataFrame
         sec = [f"<a id=\"{_anchor(s)}\" name=\"{_anchor(s)}\"></a>", f"## {s} - {fu.get('name') or s}", "",
                f"[גרף ב-TradingView]({tradingview_url(s)}) · [חזרה לטבלה](#summary)", "",
                f"*{_he_sector(fu.get('sector') or sectors.get(s))}" + (f" / {fu['industry']}" if fu.get("industry") else "") + ".*"
-               + (f" *{fu['summary'].rstrip('.')}.*" if fu.get("summary") else ""), "",
-               f"**סטטוס הטריז: {STATUS_HE.get(m.status, m.status)}** (ציון דטקטור {m.score:.2f}), "
-               f"**קריאה: {LABEL_SHORT_HE[label]}** (ציון {score:+g}), **למה ירדה: {_he_cause(why['cause'])}**, "
-               f"**סנטימנט: {SENT_HE[sent['label']]}**.", ""]
+               + (f" *{fu['summary'].rstrip('.')}.*" if fu.get("summary") else ""), ""]
+        sec += summary_he(m, geo, ctx, why, sent, an, ea, label, score)
         sec += wedge_section_he(m, df, geo, ctx, spy_below)
         sec += why_fell_he(why, news)
         sec += sentiment_markdown(sent, "he")
@@ -422,7 +458,7 @@ def build_wedge_report(out_dir: Path, today: str, frames: Dict[str, pd.DataFrame
         "**הכלל שהחזיק מעמד מחוץ למדגם.** כניסה בסגירת הפריצה או בפתיחה למחרת, סטופ בתחתית הטריז (או 2 ATR), ללא יעד רווח, יציאה אחרי ~20 נרות. "
         "לצפות ל-2-3%+ עודף לעסקה, לא ל-5%, ולירידה של 25-35% בתיק שווה-משקל של האיתותים האלה. פירוט: docs/research_falling_wedge.md.", "",
         "**איך לקרוא את הקובץ.** לחיצה על הסימול פותחת את הגרף ב-TradingView; לחיצה על \"פירוט\" מקפיצה להסבר המלא על המניה בתוך הקובץ "
-        "(ניתוח טכני של הטריז, למה המניה ירדה, אנליסטים, הדוח האחרון, נתוני יסוד וקריאה מבוססת כללים). \"מאושר\" = המחיר סגר מעל הקו העליון "
+        "(סיכום קצר בחמש שורות, ואז ניתוח טכני של הטריז, למה המניה ירדה, חששות וסנטימנט, אנליסטים, הדוח האחרון, נתוני יסוד וקריאה מבוססת כללים). \"מאושר\" = המחיר סגר מעל הקו העליון "
         "ב-5 הנרות האחרונים (זה האיתות); \"בהתהוות\" = עדיין בתוך הטריז, אין איתות עדיין. \"למה ירדה\" מציין רק ראיות שנמצאו בנתונים "
         "(כותרות שמזכירות את החברה סביב ימי הירידה הגדולים, דיווחי 8-K, הורדות דירוג, ימי שוק) או \"לא נמצא\"; שום דבר לא מומצא. "
         "\"חששות\" = נושאי הכותרות השליליות על החברה בשנה האחרונה (Google News), ספורים, עם הכותרות עצמן בפירוט; \"סנטימנט\" = "

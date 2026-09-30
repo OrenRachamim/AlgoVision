@@ -46,5 +46,6 @@ def test_writer(tmp_path):
     assert "טבלה מסכמת" in text and "[פירוט](#wedge-syn)" in text and '<a id="wedge-syn"' in text
     assert "[SYN](https://www.tradingview.com/chart/?symbol=SYN)" in text and "[חזרה לטבלה](#summary)" in text
     assert "מאושר" in text and "למה המניה ירדה" in text and "מה אומרים האנליסטים" in text and "קריאה מבוססת כללים" in text
+    assert "**בקצרה:**" in text and "- **הטריז:**" in text and "- **אנליסטים וקריאה:**" in text and "- **חששות וסנטימנט:**" in text
     assert "קונצנזוס אנליסטים קנייה" in text          # the signal text is rendered in Hebrew, including the consensus key
     assert "Test Corp cuts guidance" in text        # headlines stay as published
