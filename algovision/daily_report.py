@@ -19,7 +19,8 @@ from algovision.data.universe import get_universe, load_snapshot
 from algovision.links import tv
 
 
-# where the committed briefs file can be read (the journal directory is pushed after every run)
+# where the committed files can be read (the journal directory is pushed after every run)
+REPORT_URL = os.environ.get("ALGOVISION_REPORT_URL", "https://github.com/OrenRachamim/AlgoVision/blob/claude/stock-pattern-detection-b94x35/journal/report_{date}.md")
 BRIEFS_URL = os.environ.get("ALGOVISION_BRIEFS_URL", "https://github.com/OrenRachamim/AlgoVision/blob/claude/stock-pattern-detection-b94x35/journal/briefs_{date}.md")
 # the one-rule Hebrew file for the falling wedge (same directory, same push)
 WEDGE_URL = os.environ.get("ALGOVISION_WEDGE_URL", "https://github.com/OrenRachamim/AlgoVision/blob/claude/stock-pattern-detection-b94x35/journal/wedge_{date}.md")
@@ -156,7 +157,7 @@ def build_report(out_dir: Path, universe: str = "all", cache_dir: Optional[Path]
     text = "\n".join(md)
     briefs_url = BRIEFS_URL.format(date=today) if briefs_written else None
     wedge_url = WEDGE_URL.format(date=today) if wedge_written else None
-    write_whatsnew(out_dir, today, text, briefs_url, wedge_url)   # compares with the previous dated report before it is overwritten
+    write_whatsnew(out_dir, today, text, briefs_url, wedge_url, REPORT_URL.format(date=today))   # compares with the previous dated report before it is overwritten
     path = out_dir / f"report_{today}.md"
     path.write_text(text, encoding="utf-8")
     (out_dir / "report_latest.md").write_text(text, encoding="utf-8")
