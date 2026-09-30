@@ -255,11 +255,14 @@ def decline_reason(symbol: str, name: str, ctx: Dict, news: List[Dict], an: Dict
         tags += day_tags
     found = any(d["evidence"] for d in days)
     tags = [t for t in dict.fromkeys(tags) if not t.startswith("company event")]
-    earn_ret = sum(d["ret"] for d in days if d["kind"] == "earnings" or "earnings" in d["tags"])
+    # the part of the fall from the 52-week high that happened on earnings-release days (8-K item 2.02), compounded
+    high_date = ctx.get("high_date") or ""
+    earn_days = [d for d in days if d["day"] >= high_date and (d["kind"] == "earnings" or any("2.02" in f["codes"] for f in d["filings"]))]
+    earn_ret = float(np.prod([1 + d["ret"] for d in earn_days]) - 1) if earn_days else 0.0
     return {"found": found, "days": days, "oldest_news": oldest, "cause": ", ".join(tags) if tags else ("heavy volume, cause not found" if any(
         t.startswith("company event") for d in days for t in d["tags"]) else "not found"),
             "drawdown": ctx.get("drawdown"), "high_date": ctx.get("high_date"), "high_52w": ctx.get("high_52w"),
-            "earnings_days_ret": earn_ret, "n_earnings_days": sum(1 for d in days if d["kind"] == "earnings" or "earnings" in d["tags"])}
+            "earnings_days_ret": earn_ret, "n_earnings_days": len(earn_days)}
 
 
 def analyst_view(profile: Dict) -> Dict:
