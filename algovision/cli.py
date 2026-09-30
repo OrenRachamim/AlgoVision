@@ -272,6 +272,14 @@ def build_parser() -> argparse.ArgumentParser:
     dr.add_argument("--date", default=None)
     dr.add_argument("--no-briefs", action="store_true", help="skip the per-stock research briefs (no network needed then)")
 
+    wr = sub.add_parser("wedge-report", help="write the one-rule Hebrew file for the falling wedge (wedge_<date>.md) from cache")
+    wr.add_argument("--out", default="journal")
+    wr.add_argument("--universe", "-u", default="all", choices=UNIVERSES)
+    wr.add_argument("--cache-dir", default=None)
+    wr.add_argument("--workers", type=int, default=4)
+    wr.add_argument("--date", default=None)
+    wr.add_argument("--offline", action="store_true", help="use the cached brief data whatever its age (no network)")
+
     no = sub.add_parser("notify", help="send a report file to Telegram / e-mail (configured by environment variables, see algovision/notify.py)")
     no.add_argument("--file", default="journal/report_latest.md")
     no.add_argument("--subject", default=None)
@@ -373,6 +381,19 @@ def main(argv: Optional[List[str]] = None) -> int:
         for ch, st in deliver(Path(args.file), args.subject, telegram=not args.no_telegram, email=not args.no_email,
                               summary=Path(args.summary) if args.summary else None).items():
             print(f"{ch}: {st}")
+        return 0
+    if args.cmd == "wedge-report":
+        import datetime as _dt
+        from algovision.data.universe import load_snapshot
+        from algovision.wedge_report import build_wedge_report, wedge_matches
+        symbols = get_universe(args.universe)
+        cache = Path(args.cache_dir) if args.cache_dir else DataProvider.__init__.__defaults__[0]
+        provider = DataProvider(cache_dir=cache, offline=True, workers=args.workers)
+        frames = provider.get_many(symbols, "2y", "1d")
+        sectors = {x["symbol"]: x["sector"] for x in load_snapshot()["sp500"]}
+        p = build_wedge_report(Path(args.out), args.date or _dt.date.today().isoformat(), frames, wedge_matches(frames, symbols), sectors,
+                               cache_dir=cache, workers=args.workers, bench=provider.get_many(["SPY"], "2y", "1d").get("SPY"), offline=args.offline)
+        print(p)
         return 0
     if args.cmd == "daily-report":
         from algovision.daily_report import build_report

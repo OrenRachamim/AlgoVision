@@ -14,15 +14,15 @@ from typing import Dict, List, Optional
 import numpy as np
 import pandas as pd
 
-from algovision.core.types import DetectorConfig
 from algovision.data.provider import DataProvider, _DEFAULT_CACHE
 from algovision.data.universe import get_universe, load_snapshot
 from algovision.links import tv
-from algovision.scanner import Scanner
 
 
 # where the committed briefs file can be read (the journal directory is pushed after every run)
 BRIEFS_URL = os.environ.get("ALGOVISION_BRIEFS_URL", "https://github.com/OrenRachamim/AlgoVision/blob/claude/stock-pattern-detection-b94x35/journal/briefs_{date}.md")
+# the one-rule Hebrew file for the falling wedge (same directory, same push)
+WEDGE_URL = os.environ.get("ALGOVISION_WEDGE_URL", "https://github.com/OrenRachamim/AlgoVision/blob/claude/stock-pattern-detection-b94x35/journal/wedge_{date}.md")
 
 
 def _pct(v, d=0):
@@ -98,23 +98,23 @@ def build_report(out_dir: Path, universe: str = "all", cache_dir: Optional[Path]
         md.append(t.to_markdown(index=False) + "\n")
     else:
         md.append("none\n")
-    cfg = DetectorConfig(filter_max_ret_126=-0.08, filter_below_ma200=True, recent_bars=5)
-    sc = Scanner(DataProvider(cache_dir=None, offline=True), cfg, ["Falling Wedge"])
+    from algovision.wedge_report import wedge_matches
+    wedges = wedge_matches(frames, symbols)
     rows = []
-    for s in symbols:
-        df = frames.get(s)
-        if df is None or len(df) < 260:
-            continue
-        for m in sc.analyse_frame(s, df, mode="current"):
-            tag([s], "falling wedge")
-            rows.append({"symbol": tv(s), "status": m.status, "score": round(m.score, 2), "start": m.start_date, "end": m.end_date,
-                         "breakout": m.breakout_date or "", "level": round(m.level, 2), "stop": round(m.stop, 2),
-                         "last": round(m.last_close, 2), "6m": _pct(m.metrics["context"]["ret_126"]), "vs MA200": _pct(m.metrics["context"]["dist_ma200"])})
+    for s, m in wedges.items():
+        tag([s], "falling wedge")
+        rows.append({"symbol": tv(s), "status": m.status, "score": round(m.score, 2), "start": m.start_date, "end": m.end_date,
+                     "breakout": m.breakout_date or "", "level": round(m.level, 2), "stop": round(m.stop, 2),
+                     "last": round(m.last_close, 2), "6m": _pct(m.metrics["context"]["ret_126"]), "vs MA200": _pct(m.metrics["context"]["dist_ma200"])})
     md.append("### Falling Wedge in beaten-down stocks (confirmed = broke out within 5 bars; forming = still inside; hold ~20 bars; tested +3% vs random)\n")
     md.append((pd.DataFrame(rows).sort_values(["status", "score"], ascending=[True, False]).to_markdown(index=False) if rows else "none") + "\n")
+    if wedges:
+        md.append(f"One-rule file in Hebrew with the full technical analysis of every wedge, why the stock fell and the brief, "
+                  f"each table row linked to its section: `wedge_{today}.md` ({WEDGE_URL.format(date=today)}).\n")
     # 3. one research brief per name in the tables above
     md.append("## 3. Stock briefs (one per name in the tables above)\n")
     briefs_written = False
+    wedge_written = False
     if briefs and brief_tables:
         from algovision.briefs import write_briefs
         try:
@@ -122,6 +122,13 @@ def build_report(out_dir: Path, universe: str = "all", cache_dir: Optional[Path]
             bpath, brows = write_briefs(out_dir, today, list(brief_tables), frames, brief_tables,
                                         insider_symbols=[x for x, t in brief_tables.items() if any(l.startswith("insider") for l in t)],
                                         cache_dir=cache, workers=workers, bench=bench)
+            if wedges:
+                from algovision.wedge_report import build_wedge_report
+                try:  # the briefs data is cached by write_briefs, so this reads from cache
+                    build_wedge_report(out_dir, today, frames, wedges, sectors, cache_dir=cache, workers=workers, bench=bench)
+                    wedge_written = True
+                except Exception as exc:  # noqa: BLE001
+                    md.append(f"wedge file unavailable: {exc}\n")
             from algovision.briefs import summary_table
             md.append(f"Full briefs (price context, why it fell, analysts, last report, fundamentals) for {len(brows)} stocks in "
                       f"`{bpath.name}`. The *read* column is a rule-based score over listed signals (signs of a bottom / undecided / "
@@ -148,7 +155,8 @@ def build_report(out_dir: Path, universe: str = "all", cache_dir: Optional[Path]
 
     text = "\n".join(md)
     briefs_url = BRIEFS_URL.format(date=today) if briefs_written else None
-    write_whatsnew(out_dir, today, text, briefs_url)   # compares with the previous dated report before it is overwritten
+    wedge_url = WEDGE_URL.format(date=today) if wedge_written else None
+    write_whatsnew(out_dir, today, text, briefs_url, wedge_url)   # compares with the previous dated report before it is overwritten
     path = out_dir / f"report_{today}.md"
     path.write_text(text, encoding="utf-8")
     (out_dir / "report_latest.md").write_text(text, encoding="utf-8")

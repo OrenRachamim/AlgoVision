@@ -135,10 +135,12 @@ _8K_TAGS = {"2.02": "earnings", "5.02": "management", "2.05": "restructuring", "
             "1.03": "bankruptcy", "4.01": "auditor change", "7.01": "company disclosure (8-K)", "8.01": "company disclosure (8-K)"}
 
 
-def _filings_near(filings: List[Dict], day: str, earn_hist: List[Dict]) -> Tuple[List[str], List[str]]:
-    """8-K filings on the drop day or the evening before (release after the close -> drop next session)."""
+def _filings_near(filings: List[Dict], day: str, earn_hist: List[Dict]) -> Tuple[List[str], List[str], List[Dict]]:
+    """8-K filings on the drop day or the evening before (release after the close -> drop next session).
+
+    Returns the English evidence lines, the cause tags, and the same filings as data (for other renderings)."""
     d0 = pd.Timestamp(day)
-    ev, tags = [], []
+    ev, tags, items = [], [], []
     for f in filings or []:
         if not f.get("date"):
             continue
@@ -150,16 +152,20 @@ def _filings_near(filings: List[Dict], day: str, earn_hist: List[Dict]) -> Tuple
             continue
         tags += [_8K_TAGS[c] for c in codes]
         text = f"8-K filed {f['date']}: " + "; ".join(f.get("what") or codes)
+        item = {"date": f["date"], "codes": codes, "what": list(f.get("what") or codes), "eps": None}
         if "2.02" in codes:
             fdate = pd.Timestamp(f["date"])
             q = [h for h in earn_hist or [] if h.get("quarter") and h.get("epsActual") is not None
                  and 0 <= (fdate - pd.Timestamp(int(h["quarter"]), unit="s")).days <= 75]
             if q:
                 h = max(q, key=lambda h: h["quarter"])
+                item["eps"] = {"quarter": _date(h["quarter"]), "actual": h["epsActual"], "estimate": h.get("epsEstimate"),
+                               "surprise": h.get("surprisePercent")}
                 text += (f" (quarter to {_date(h['quarter'])}: EPS {_num(h['epsActual'], 2)} vs {_num(h.get('epsEstimate'), 2)} expected"
                          + (f", {_pct(h['surprisePercent'], 1)}" if h.get("surprisePercent") is not None else "") + ")")
         ev.append(text)
-    return ev, tags
+        items.append(item)
+    return ev, tags, items
 
 
 def decline_reason(symbol: str, name: str, ctx: Dict, news: List[Dict], an: Dict, ea: Dict, bench: Optional[pd.DataFrame] = None,
@@ -190,13 +196,16 @@ def decline_reason(symbol: str, name: str, ctx: Dict, news: List[Dict], an: Dict
                 continue
             scored.append((score, x, causes or ["news"]))
         scored.sort(key=lambda t: (-t[0], abs((pd.Timestamp(t[1]["date"]) - pd.Timestamp(day)).days)))
-        fev, ftags = _filings_near(filings or [], day, earn_hist or [])
+        fev, ftags, fitems = _filings_near(filings or [], day, earn_hist or [])
         ev += fev
         day_tags += ftags
+        headlines = []
         for _, x, causes in scored[:3]:
             day_tags += causes
             ev.append(f"{x['date']} {x['title']}" + (f" ({x['publisher']})" if x.get("publisher") else "")
                       + (f": {_sentences(x['summary'], 200)}" if x.get("summary") else ""))
+            headlines.append({"date": x["date"], "title": x["title"], "publisher": x.get("publisher") or "",
+                              "summary": _sentences(x["summary"], 200) if x.get("summary") else "", "causes": causes})
         d0 = pd.Timestamp(day)
         cuts = [a for a in an.get("actions", [])
                 if a.get("date") and -1 <= (pd.Timestamp(a["date"]) - d0).days <= 3
@@ -217,8 +226,12 @@ def decline_reason(symbol: str, name: str, ctx: Dict, news: List[Dict], an: Dict
         volume = f"{vr:.1f}x normal volume" if vr else ""
         if vr and vr >= 2.5 and not day_tags:
             day_tags.append("company event (heavy volume, cause not found)")
-        days.append({"day": day, "ret": r, "volume": volume, "spy": spy, "evidence": ev, "tags": list(dict.fromkeys(day_tags)),
-                     "before_feed": bool(oldest and (pd.Timestamp(oldest) - d0).days > 2)})
+        days.append({"day": day, "ret": r, "volume": volume, "volume_ratio": vr, "spy": spy, "evidence": ev,
+                     "tags": list(dict.fromkeys(day_tags)), "before_feed": bool(oldest and (pd.Timestamp(oldest) - d0).days > 2),
+                     # the same evidence as data, for renderings in other languages
+                     "filings": fitems, "headlines": headlines,
+                     "cuts": [{"firm": a.get("firm", ""), "kind": "downgrade" if a.get("action") == "down" else "target cut",
+                               "prior_target": a.get("prior_target"), "target": a.get("target")} for a in cuts[:3]]})
         tags += day_tags
     found = any(d["evidence"] for d in days)
     tags = [t for t in dict.fromkeys(tags) if not t.startswith("company event")]
@@ -329,55 +342,90 @@ def fundamentals_view(profile: Dict) -> Dict:
     }
 
 
-def verdict(ctx: Dict, an: Dict, ea: Dict, fu: Dict, insider_buying: bool = False) -> Tuple[str, float, List[str]]:
-    """Transparent score: each signal adds or subtracts, the list says which fired."""
-    score, why = 0.0, []
+# the signals of the rule-based read, by code; ``verdict_signals`` returns codes so the text can be rendered in any language
+SIGNAL_TEXT = {
+    "above_ma50": "price above its 50-day average", "below_ma50": "price below its 50-day average",
+    "ma50_up": "50-day average turning up", "higher_low": "higher low over the last 20 bars than the 20 before",
+    "new_low": "new 52-week low within the last 5 bars",
+    "consensus_buy": "analyst consensus {key} ({n} analysts)", "consensus_sell": "analyst consensus {key}",
+    "target_far": "mean price target {up} above the price", "target_near": "mean price target only {up} from the price",
+    "more_upgrades": "more upgrades than downgrades in 90 days ({n_up} vs {n_down})",
+    "more_downgrades": "more downgrades than upgrades in 90 days ({n_down} vs {n_up})",
+    "target_cuts": "analysts cutting price targets ({cuts} cuts vs {raises} raises in 90 days)",
+    "target_raises": "analysts raising price targets ({raises} raises vs {cuts} cuts in 90 days)",
+    "revisions_down": "estimate revisions mostly down ({up} up / {down} down in 30 days)",
+    "revisions_up": "estimate revisions mostly up ({up} up / {down} down in 30 days)",
+    "eps_raised": "current-year EPS estimate raised {r30} in 30 days", "eps_cut": "current-year EPS estimate cut {r30} in 30 days",
+    "beat": "last quarter beat estimates ({sp})", "miss": "last quarter missed estimates ({sp})",
+    "revenue_up": "revenue growing ({rg} yoy)", "revenue_down": "revenue shrinking ({rg} yoy)",
+    "fcf_positive": "positive free cash flow", "fcf_negative": "negative free cash flow",
+    "leverage": "high leverage (debt/equity {de})",
+    "forward_pe_lower": "forward P/E {fpe} below trailing {pe} (earnings expected to grow)",
+    "insiders": "insiders bought (in today's insider table)",
+}
 
-    def add(cond, pts, text):
+
+def verdict_signals(ctx: Dict, an: Dict, ea: Dict, fu: Dict, insider_buying: bool = False) -> Tuple[str, float, List[Tuple[str, float, Dict]]]:
+    """Transparent score: each signal adds or subtracts. Returns (label, score, [(code, points, format args)])."""
+    score, fired = 0.0, []
+
+    def add(cond, pts, code, **kw):
         nonlocal score
         if cond:
             score += pts
-            why.append(f"{'+' if pts > 0 else ''}{pts:g} {text}")
+            fired.append((code, pts, kw))
 
     d50 = ctx.get("dist_ma50")
-    add(d50 == d50 and d50 > 0, 1, "price above its 50-day average")
-    add(d50 == d50 and d50 <= 0, -1, "price below its 50-day average")
-    add(ctx.get("ma50_rising") is True, 1, "50-day average turning up")
-    add(ctx.get("higher_low") is True, 1, "higher low over the last 20 bars than the 20 before")
-    add(ctx.get("new_low_5d"), -1, "new 52-week low within the last 5 bars")
+    add(d50 == d50 and d50 > 0, 1, "above_ma50")
+    add(d50 == d50 and d50 <= 0, -1, "below_ma50")
+    add(ctx.get("ma50_rising") is True, 1, "ma50_up")
+    add(ctx.get("higher_low") is True, 1, "higher_low")
+    add(ctx.get("new_low_5d"), -1, "new_low")
     key = (an.get("key") or "").lower()
-    add(key in ("strong_buy", "buy"), 1, f"analyst consensus {key.replace('_', ' ')} ({an.get('n') or '?'} analysts)")
-    add(key in ("sell", "underperform", "strong_sell"), -1, f"analyst consensus {key.replace('_', ' ')}")
+    add(key in ("strong_buy", "buy"), 1, "consensus_buy", key=key.replace("_", " "), n=an.get("n") or "?")
+    add(key in ("sell", "underperform", "strong_sell"), -1, "consensus_sell", key=key.replace("_", " "))
     up = an.get("upside")
-    add(up is not None and up > 0.20, 1, f"mean price target {_pct(up)} above the price")
-    add(up is not None and up < 0.05, -1, f"mean price target only {_pct(up)} from the price")
-    add(an.get("n_up", 0) > an.get("n_down", 0), 1, f"more upgrades than downgrades in 90 days ({an.get('n_up')} vs {an.get('n_down')})")
-    add(an.get("n_down", 0) > an.get("n_up", 0), -1, f"more downgrades than upgrades in 90 days ({an.get('n_down')} vs {an.get('n_up')})")
+    add(up is not None and up > 0.20, 1, "target_far", up=_pct(up))
+    add(up is not None and up < 0.05, -1, "target_near", up=_pct(up))
+    n_up, n_down = an.get("n_up", 0), an.get("n_down", 0)
+    add(n_up > n_down, 1, "more_upgrades", n_up=n_up, n_down=n_down)
+    add(n_down > n_up, -1, "more_downgrades", n_up=n_up, n_down=n_down)
     cuts, raises = an.get("n_target_cuts", 0), an.get("n_target_raises", 0)
-    add(cuts >= raises + 3, -1, f"analysts cutting price targets ({cuts} cuts vs {raises} raises in 90 days)")
-    add(raises >= cuts + 3, 1, f"analysts raising price targets ({raises} raises vs {cuts} cuts in 90 days)")
+    add(cuts >= raises + 3, -1, "target_cuts", cuts=cuts, raises=raises)
+    add(raises >= cuts + 3, 1, "target_raises", cuts=cuts, raises=raises)
     ud = ea.get("y0_up_down_30d") or (0, 0)
-    add(ud[1] >= ud[0] + 3, -0.5, f"estimate revisions mostly down ({ud[0]} up / {ud[1]} down in 30 days)")
-    add(ud[0] >= ud[1] + 3, 0.5, f"estimate revisions mostly up ({ud[0]} up / {ud[1]} down in 30 days)")
+    add(ud[1] >= ud[0] + 3, -0.5, "revisions_down", up=ud[0], down=ud[1])
+    add(ud[0] >= ud[1] + 3, 0.5, "revisions_up", up=ud[0], down=ud[1])
     r30 = ea.get("y0_rev_30d")
-    add(r30 is not None and r30 > 0.01, 1, f"current-year EPS estimate raised {_pct(r30, 1)} in 30 days")
-    add(r30 is not None and r30 < -0.01, -1, f"current-year EPS estimate cut {_pct(r30, 1)} in 30 days")
+    add(r30 is not None and r30 > 0.01, 1, "eps_raised", r30=_pct(r30, 1))
+    add(r30 is not None and r30 < -0.01, -1, "eps_cut", r30=_pct(r30, 1))
     sp = ea.get("surprise")
-    add(sp is not None and sp > 0, 0.5, f"last quarter beat estimates ({_pct(sp, 1)})")
-    add(sp is not None and sp < 0, -1, f"last quarter missed estimates ({_pct(sp, 1)})")
+    add(sp is not None and sp > 0, 0.5, "beat", sp=_pct(sp, 1))
+    add(sp is not None and sp < 0, -1, "miss", sp=_pct(sp, 1))
     rg = ea.get("revenue_growth")
-    add(rg is not None and rg > 0, 0.5, f"revenue growing ({_pct(rg)} yoy)")
-    add(rg is not None and rg < 0, -0.5, f"revenue shrinking ({_pct(rg)} yoy)")
+    add(rg is not None and rg > 0, 0.5, "revenue_up", rg=_pct(rg))
+    add(rg is not None and rg < 0, -0.5, "revenue_down", rg=_pct(rg))
     fcf = fu.get("fcf")
-    add(fcf is not None and fcf > 0, 0.5, "positive free cash flow")
-    add(fcf is not None and fcf < 0, -0.5, "negative free cash flow")
+    add(fcf is not None and fcf > 0, 0.5, "fcf_positive")
+    add(fcf is not None and fcf < 0, -0.5, "fcf_negative")
     de = fu.get("debt_to_equity")
-    add(de is not None and de > 2, -0.5, f"high leverage (debt/equity {_num(de)})")
+    add(de is not None and de > 2, -0.5, "leverage", de=_num(de))
     pe, fpe = fu.get("pe"), fu.get("forward_pe")
-    add(bool(pe and fpe and fpe < pe), 0.5, f"forward P/E {_num(fpe, 0)} below trailing {_num(pe, 0)} (earnings expected to grow)")
-    add(insider_buying, 1, "insiders bought (in today's insider table)")
+    add(bool(pe and fpe and fpe < pe), 0.5, "forward_pe_lower", fpe=_num(fpe, 0), pe=_num(pe, 0))
+    add(insider_buying, 1, "insiders")
     label = "up" if score >= 3 else "down" if score <= -2 else "flat"
-    return label, score, why
+    return label, score, fired
+
+
+def render_signals(fired: List[Tuple[str, float, Dict]], texts: Dict[str, str] = SIGNAL_TEXT) -> List[str]:
+    """'+1 text' lines for the fired signals, in the language of ``texts``."""
+    return [f"{'+' if pts > 0 else ''}{pts:g} {texts[code].format(**kw)}" for code, pts, kw in fired]
+
+
+def verdict(ctx: Dict, an: Dict, ea: Dict, fu: Dict, insider_buying: bool = False) -> Tuple[str, float, List[str]]:
+    """Transparent score: each signal adds or subtracts, the list says which fired (English text)."""
+    label, score, fired = verdict_signals(ctx, an, ea, fu, insider_buying)
+    return label, score, render_signals(fired)
 
 
 def _news_near(news: List[Dict], day: str, window: int = 3) -> List[Dict]:
