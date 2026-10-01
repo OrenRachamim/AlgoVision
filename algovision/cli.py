@@ -197,6 +197,17 @@ def build_parser() -> argparse.ArgumentParser:
     dd.add_argument("--max-age", type=float, default=12.0)
     dd.add_argument("-v", "--verbose", action="store_true")
 
+    rg = sub.add_parser("research-groups", help="groups as one stock: does the peer group confirm a wedge signal, and is the basket itself a signal? (docs/research_groups.md)")
+    rg.add_argument("--universe", "-u", default="all", choices=UNIVERSES)
+    rg.add_argument("--limit", type=int, default=0)
+    rg.add_argument("--period", default="10y")
+    rg.add_argument("--split", default="2023-01-01")
+    rg.add_argument("--out", default="docs/research/groups")
+    rg.add_argument("--doc", default="docs/research_groups.md")
+    rg.add_argument("--workers", type=int, default=4)
+    rg.add_argument("--cache-dir", default=None)
+    rg.add_argument("--offline", action="store_true")
+
     fa = sub.add_parser("factors", help="classic anomalies on the universe: cross-sectional momentum, trend filter, short-term reversal")
     fa.add_argument("--universe", "-u", default="all", choices=UNIVERSES)
     fa.add_argument("--symbols", default=None)
@@ -381,6 +392,9 @@ def main(argv: Optional[List[str]] = None) -> int:
     if args.cmd == "deepdive":
         from algovision.research.cli import cmd_deepdive
         return cmd_deepdive(args)
+    if args.cmd == "research-groups":
+        from algovision.research.cli import cmd_groups
+        return cmd_groups(args)
     if args.cmd == "factors":
         from algovision.research.cli import cmd_factors
         return cmd_factors(args)

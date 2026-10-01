@@ -119,6 +119,41 @@ def cmd_deepdive(args) -> int:
     return 0
 
 
+def cmd_groups(args) -> int:
+    """Groups as one stock: confirmation of stock signals by the peer group, and basket-level signals."""
+    from algovision.research.deepdive import collect_pattern_events
+    from algovision.research.groups import confirmation_features, group_events, point_in_time_models, write_groups_report
+
+    symbols = get_universe(args.universe)
+    if args.limit:
+        symbols = symbols[: args.limit]
+    cache = Path(args.cache_dir) if args.cache_dir else DataProvider.__init__.__defaults__[0]
+    provider_kwargs = dict(cache_dir=cache, offline=args.offline, workers=1)
+    t0 = time.time()
+    frames = DataProvider(cache_dir=cache, offline=args.offline, workers=args.workers).get_many(list(symbols) + ["SPY"], args.period, "1d")
+    spy = frames.pop("SPY", None)
+    frames = {s: df for s, df in frames.items() if len(df) >= 300}
+    print(f"research-groups: {len(frames)} symbols with {args.period} history", file=sys.stderr)
+    cfg = DetectorConfig()
+    events, errors = collect_pattern_events(list(frames), {**provider_kwargs, "offline": True}, "Falling Wedge", cfg, args.period, "1d",
+                                            args.workers, progress=lambda i, n, ne: print(f"  stocks [{i}/{n}] events={ne}", file=sys.stderr))
+    if not len(events):
+        print("no stock events", file=sys.stderr)
+        return 1
+    years = sorted(set(int(y) for y in events["year"]))
+    years = [y for y in years if y >= min(pd.Timestamp(df.index[0]).year for df in frames.values()) + 3]
+    print(f"  {len(events)} stock wedge events; point-in-time groups for {years[0]}-{years[-1]}", file=sys.stderr)
+    models = point_in_time_models(frames, years)
+    grp_ev, wedge_index = group_events(frames, models, spy, cfg,
+                                       progress=lambda i, n, ne: print(f"  baskets [{i}/{n}] events={ne}", file=sys.stderr))
+    events = events[events["year"].isin(years)].reset_index(drop=True)
+    events = confirmation_features(events, frames, models, wedge_index,
+                                   progress=lambda i, n: print(f"  confirmation [{i}/{n}]", file=sys.stderr))
+    p = write_groups_report(Path(args.out), events, grp_ev, args.split, doc_path=Path(args.doc) if args.doc else None)
+    print(f"wrote {p} ({time.time() - t0:.0f}s, {len(errors)} symbol errors)", file=sys.stderr)
+    return 0
+
+
 def cmd_factors(args) -> int:
     from algovision.research.factors import write_factors_report
 
