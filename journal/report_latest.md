@@ -49,42 +49,44 @@ Rule tested 2016-2026: purchase >= $100k in a **beaten-down** stock (below 200-d
 
 ### Falling Wedge in beaten-down stocks (confirmed = broke out within 5 bars; forming = still inside; hold ~20 bars; tested +3% vs random)
 
-| symbol                                                 | status    |   score | start      | end        | breakout   |   level |   stop |   last | 6m   | vs MA200   |
-|:-------------------------------------------------------|:----------|--------:|:-----------|:-----------|:-----------|--------:|-------:|-------:|:-----|:-----------|
-| [NCLH](https://www.tradingview.com/chart/?symbol=NCLH) | confirmed |    0.67 | 2026-07-23 | 2026-09-25 | 2026-09-25 |   13.99 |  13.48 |  14.66 | -26% | -25%       |
-| [VRSK](https://www.tradingview.com/chart/?symbol=VRSK) | forming   |    0.84 | 2026-07-29 | 2026-09-30 |            |  172.58 | 164.02 | 167.85 | -11% | -11%       |
-| [AEP](https://www.tradingview.com/chart/?symbol=AEP)   | forming   |    0.8  | 2026-07-24 | 2026-09-30 |            |  120.48 | 116.12 | 118.64 | -8%  | -6%        |
-| [VMC](https://www.tradingview.com/chart/?symbol=VMC)   | forming   |    0.77 | 2026-06-25 | 2026-09-30 |            |  250.49 | 233.1  | 244.63 | -10% | -14%       |
-| [ODFL](https://www.tradingview.com/chart/?symbol=ODFL) | forming   |    0.76 | 2026-07-17 | 2026-09-30 |            |  176.57 | 166.96 | 173.84 | -11% | -13%       |
-| [XYL](https://www.tradingview.com/chart/?symbol=XYL)   | forming   |    0.76 | 2026-07-23 | 2026-09-30 |            |  105.31 |  99.99 | 101.27 | -15% | -16%       |
-| [HSY](https://www.tradingview.com/chart/?symbol=HSY)   | forming   |    0.74 | 2026-01-08 | 2026-09-30 |            |  174.9  | 160    | 157.61 | -23% | -17%       |
-| [APTV](https://www.tradingview.com/chart/?symbol=APTV) | forming   |    0.73 | 2026-08-06 | 2026-09-30 |            |   44.49 |  42.5  |  43.02 | -38% | -32%       |
-| [ED](https://www.tradingview.com/chart/?symbol=ED)     | forming   |    0.72 | 2026-07-28 | 2026-09-30 |            |  104.81 | 102.11 | 102.21 | -8%  | -4%        |
-| [LDOS](https://www.tradingview.com/chart/?symbol=LDOS) | forming   |    0.72 | 2026-08-26 | 2026-09-30 |            |  124.04 | 119.58 | 121.83 | -21% | -17%       |
-| [NI](https://www.tradingview.com/chart/?symbol=NI)     | forming   |    0.71 | 2026-06-02 | 2026-09-30 |            |   39.99 |  38.69 |  39    | -15% | -12%       |
-| [SO](https://www.tradingview.com/chart/?symbol=SO)     | forming   |    0.71 | 2026-07-21 | 2026-09-30 |            |   84.51 |  82.14 |  82.89 | -13% | -9%        |
-| [DOW](https://www.tradingview.com/chart/?symbol=DOW)   | forming   |    0.7  | 2026-08-20 | 2026-09-30 |            |   29.11 |  27.22 |  27.54 | -32% | -12%       |
-| [ALGN](https://www.tradingview.com/chart/?symbol=ALGN) | forming   |    0.69 | 2026-07-27 | 2026-09-30 |            |  146.12 | 142.52 | 145.35 | -15% | -15%       |
-| [CRH](https://www.tradingview.com/chart/?symbol=CRH)   | forming   |    0.69 | 2026-06-25 | 2026-09-30 |            |   87.39 |  82.2  |  82.8  | -21% | -23%       |
-| [DUK](https://www.tradingview.com/chart/?symbol=DUK)   | forming   |    0.69 | 2026-07-15 | 2026-09-30 |            |  113.99 | 112.26 | 114.01 | -11% | -7%        |
-| [TMUS](https://www.tradingview.com/chart/?symbol=TMUS) | forming   |    0.69 | 2026-01-21 | 2026-09-30 |            |  185.55 | 161.36 | 163.08 | -21% | -14%       |
-| [TPR](https://www.tradingview.com/chart/?symbol=TPR)   | forming   |    0.69 | 2026-07-24 | 2026-09-30 |            |  112.33 | 104.24 | 115.04 | -18% | -17%       |
-| [YUM](https://www.tradingview.com/chart/?symbol=YUM)   | forming   |    0.69 | 2026-06-01 | 2026-09-30 |            |  148.74 | 135.47 | 136.34 | -11% | -11%       |
-| [DECK](https://www.tradingview.com/chart/?symbol=DECK) | forming   |    0.68 | 2026-06-30 | 2026-09-30 |            |   79.75 |  75.46 |  78.14 | -22% | -23%       |
-| [CEG](https://www.tradingview.com/chart/?symbol=CEG)   | forming   |    0.67 | 2026-09-01 | 2026-09-30 |            |  267.74 | 245.58 | 254.02 | -9%  | -12%       |
-| [EQT](https://www.tradingview.com/chart/?symbol=EQT)   | forming   |    0.67 | 2026-08-25 | 2026-09-30 |            |   50.4  |  48.2  |  48.56 | -23% | -12%       |
-| [SRE](https://www.tradingview.com/chart/?symbol=SRE)   | forming   |    0.67 | 2026-06-17 | 2026-09-30 |            |   81.61 |  75.86 |  77.96 | -19% | -12%       |
-| [CNP](https://www.tradingview.com/chart/?symbol=CNP)   | forming   |    0.66 | 2026-07-28 | 2026-09-30 |            |   37.24 |  36.23 |  36.8  | -14% | -10%       |
-| [NRG](https://www.tradingview.com/chart/?symbol=NRG)   | forming   |    0.66 | 2026-07-24 | 2026-09-30 |            |  108.62 |  95.16 |  95.65 | -34% | -32%       |
-| [PPL](https://www.tradingview.com/chart/?symbol=PPL)   | forming   |    0.66 | 2026-02-04 | 2026-09-30 |            |   33.99 |  31.84 |  32.89 | -12% | -8%        |
-| [TSN](https://www.tradingview.com/chart/?symbol=TSN)   | forming   |    0.66 | 2026-07-28 | 2026-09-30 |            |   51.52 |  48.36 |  50.53 | -20% | -15%       |
-| [WEC](https://www.tradingview.com/chart/?symbol=WEC)   | forming   |    0.66 | 2026-07-24 | 2026-09-30 |            |  103.44 | 100.56 | 100.78 | -11% | -8%        |
-| [HRL](https://www.tradingview.com/chart/?symbol=HRL)   | forming   |    0.65 | 2026-08-19 | 2026-09-30 |            |   19.96 |  19.18 |  19.94 | -10% | -13%       |
-| [LHX](https://www.tradingview.com/chart/?symbol=LHX)   | forming   |    0.63 | 2026-07-21 | 2026-09-30 |            |  236.8  | 236.34 | 236.78 | -31% | -23%       |
-| [NKE](https://www.tradingview.com/chart/?symbol=NKE)   | forming   |    0.63 | 2026-08-17 | 2026-09-30 |            |   35.85 |  34.91 |  35.4  | -32% | -27%       |
-| [CMS](https://www.tradingview.com/chart/?symbol=CMS)   | forming   |    0.62 | 2026-07-28 | 2026-09-30 |            |   64.41 |  62.56 |  63.08 | -17% | -12%       |
-| [AOS](https://www.tradingview.com/chart/?symbol=AOS)   | forming   |    0.61 | 2026-08-24 | 2026-09-30 |            |   58.05 |  56.06 |  56.37 | -14% | -12%       |
-| [TAP](https://www.tradingview.com/chart/?symbol=TAP)   | forming   |    0.6  | 2026-08-17 | 2026-09-30 |            |   36.9  |  35.46 |  36.47 | -13% | -14%       |
+| symbol                                                 | status    |   score | start      | end        | breakout   |   level |   stop |   last | 6m   | vs MA200   | group                              |
+|:-------------------------------------------------------|:----------|--------:|:-----------|:-----------|:-----------|--------:|-------:|-------:|:-----|:-----------|:-----------------------------------|
+| [NCLH](https://www.tradingview.com/chart/?symbol=NCLH) | confirmed |    0.67 | 2026-07-23 | 2026-09-25 | 2026-09-25 |   13.99 |  13.48 |  14.66 | -26% | -25%       | not beaten (0%)                    |
+| [VRSK](https://www.tradingview.com/chart/?symbol=VRSK) | forming   |    0.84 | 2026-07-29 | 2026-09-30 |            |  172.58 | 164.02 | 167.85 | -11% | -11%       | not beaten (26%)                   |
+| [AEP](https://www.tradingview.com/chart/?symbol=AEP)   | forming   |    0.8  | 2026-07-24 | 2026-09-30 |            |  120.48 | 116.12 | 118.64 | -8%  | -6%        | beaten (79%)                       |
+| [VMC](https://www.tradingview.com/chart/?symbol=VMC)   | forming   |    0.77 | 2026-06-25 | 2026-09-30 |            |  250.49 | 233.1  | 244.63 | -10% | -14%       | beaten (100%)                      |
+| [ODFL](https://www.tradingview.com/chart/?symbol=ODFL) | forming   |    0.76 | 2026-07-17 | 2026-09-30 |            |  176.57 | 166.96 | 173.84 | -11% | -13%       | not beaten (20%)                   |
+| [XYL](https://www.tradingview.com/chart/?symbol=XYL)   | forming   |    0.76 | 2026-07-23 | 2026-09-30 |            |  105.31 |  99.99 | 101.27 | -15% | -16%       | not beaten (38%)                   |
+| [HSY](https://www.tradingview.com/chart/?symbol=HSY)   | forming   |    0.74 | 2026-01-08 | 2026-09-30 |            |  174.9  | 160    | 157.61 | -23% | -17%       | not beaten (37%)                   |
+| [APTV](https://www.tradingview.com/chart/?symbol=APTV) | forming   |    0.73 | 2026-08-06 | 2026-09-30 |            |   44.49 |  42.5  |  43.02 | -38% | -32%       | not beaten (38%)                   |
+| [ED](https://www.tradingview.com/chart/?symbol=ED)     | forming   |    0.72 | 2026-07-28 | 2026-09-30 |            |  104.81 | 102.11 | 102.21 | -8%  | -4%        | beaten (79%)                       |
+| [LDOS](https://www.tradingview.com/chart/?symbol=LDOS) | forming   |    0.72 | 2026-08-26 | 2026-09-30 |            |  124.04 | 119.58 | 121.83 | -21% | -17%       | not beaten (33%)                   |
+| [NI](https://www.tradingview.com/chart/?symbol=NI)     | forming   |    0.71 | 2026-06-02 | 2026-09-30 |            |   39.99 |  38.69 |  39    | -15% | -12%       | beaten (79%)                       |
+| [SO](https://www.tradingview.com/chart/?symbol=SO)     | forming   |    0.71 | 2026-07-21 | 2026-09-30 |            |   84.51 |  82.14 |  82.89 | -13% | -9%        | beaten (79%)                       |
+| [DOW](https://www.tradingview.com/chart/?symbol=DOW)   | forming   |    0.7  | 2026-08-20 | 2026-09-30 |            |   29.11 |  27.22 |  27.54 | -32% | -12%       | not beaten (20%)                   |
+| [ALGN](https://www.tradingview.com/chart/?symbol=ALGN) | forming   |    0.69 | 2026-07-27 | 2026-09-30 |            |  146.12 | 142.52 | 145.35 | -15% | -15%       | not beaten (24%)                   |
+| [CRH](https://www.tradingview.com/chart/?symbol=CRH)   | forming   |    0.69 | 2026-06-25 | 2026-09-30 |            |   87.39 |  82.2  |  82.8  | -21% | -23%       | beaten (100%)                      |
+| [DUK](https://www.tradingview.com/chart/?symbol=DUK)   | forming   |    0.69 | 2026-07-15 | 2026-09-30 |            |  113.99 | 112.26 | 114.01 | -11% | -7%        | beaten (79%)                       |
+| [TMUS](https://www.tradingview.com/chart/?symbol=TMUS) | forming   |    0.69 | 2026-01-21 | 2026-09-30 |            |  185.55 | 161.36 | 163.08 | -21% | -14%       | beaten (75%)                       |
+| [TPR](https://www.tradingview.com/chart/?symbol=TPR)   | forming   |    0.69 | 2026-07-24 | 2026-09-30 |            |  112.33 | 104.24 | 115.04 | -18% | -17%       | not beaten (30%) + wedge confirmed |
+| [YUM](https://www.tradingview.com/chart/?symbol=YUM)   | forming   |    0.69 | 2026-06-01 | 2026-09-30 |            |  148.74 | 135.47 | 136.34 | -11% | -11%       | not beaten (33%)                   |
+| [DECK](https://www.tradingview.com/chart/?symbol=DECK) | forming   |    0.68 | 2026-06-30 | 2026-09-30 |            |   79.75 |  75.46 |  78.14 | -22% | -23%       | not beaten (30%) + wedge confirmed |
+| [CEG](https://www.tradingview.com/chart/?symbol=CEG)   | forming   |    0.67 | 2026-09-01 | 2026-09-30 |            |  267.74 | 245.58 | 254.02 | -9%  | -12%       | not beaten (7%)                    |
+| [EQT](https://www.tradingview.com/chart/?symbol=EQT)   | forming   |    0.67 | 2026-08-25 | 2026-09-30 |            |   50.4  |  48.2  |  48.56 | -23% | -12%       | beaten (50%)                       |
+| [SRE](https://www.tradingview.com/chart/?symbol=SRE)   | forming   |    0.67 | 2026-06-17 | 2026-09-30 |            |   81.61 |  75.86 |  77.96 | -19% | -12%       | beaten (79%)                       |
+| [CNP](https://www.tradingview.com/chart/?symbol=CNP)   | forming   |    0.66 | 2026-07-28 | 2026-09-30 |            |   37.24 |  36.23 |  36.8  | -14% | -10%       | beaten (79%)                       |
+| [NRG](https://www.tradingview.com/chart/?symbol=NRG)   | forming   |    0.66 | 2026-07-24 | 2026-09-30 |            |  108.62 |  95.16 |  95.65 | -34% | -32%       | not beaten (7%)                    |
+| [PPL](https://www.tradingview.com/chart/?symbol=PPL)   | forming   |    0.66 | 2026-02-04 | 2026-09-30 |            |   33.99 |  31.84 |  32.89 | -12% | -8%        | beaten (79%)                       |
+| [TSN](https://www.tradingview.com/chart/?symbol=TSN)   | forming   |    0.66 | 2026-07-28 | 2026-09-30 |            |   51.52 |  48.36 |  50.53 | -20% | -15%       | not beaten (37%)                   |
+| [WEC](https://www.tradingview.com/chart/?symbol=WEC)   | forming   |    0.66 | 2026-07-24 | 2026-09-30 |            |  103.44 | 100.56 | 100.78 | -11% | -8%        | beaten (79%)                       |
+| [HRL](https://www.tradingview.com/chart/?symbol=HRL)   | forming   |    0.65 | 2026-08-19 | 2026-09-30 |            |   19.96 |  19.18 |  19.94 | -10% | -13%       | not beaten (37%)                   |
+| [LHX](https://www.tradingview.com/chart/?symbol=LHX)   | forming   |    0.63 | 2026-07-21 | 2026-09-30 |            |  236.8  | 236.34 | 236.78 | -31% | -23%       | beaten (50%)                       |
+| [NKE](https://www.tradingview.com/chart/?symbol=NKE)   | forming   |    0.63 | 2026-08-17 | 2026-09-30 |            |   35.85 |  34.91 |  35.4  | -32% | -27%       | not beaten (30%) + wedge confirmed |
+| [CMS](https://www.tradingview.com/chart/?symbol=CMS)   | forming   |    0.62 | 2026-07-28 | 2026-09-30 |            |   64.41 |  62.56 |  63.08 | -17% | -12%       | beaten (79%)                       |
+| [AOS](https://www.tradingview.com/chart/?symbol=AOS)   | forming   |    0.61 | 2026-08-24 | 2026-09-30 |            |   58.05 |  56.06 |  56.37 | -14% | -12%       | not beaten (0%) + wedge forming    |
+| [TAP](https://www.tradingview.com/chart/?symbol=TAP)   | forming   |    0.6  | 2026-08-17 | 2026-09-30 |            |   36.9  |  35.46 |  36.47 | -13% | -14%       | not beaten (37%)                   |
+
+*group*: the stock's peer group as one equal-weight basket, beaten down or not (in brackets the share of the other members that are beaten down), and "+ wedge" when the basket itself is in a falling wedge. Signals where most of the group was beaten down too earned +1.2% (train) / +1.9% (test) more over 20 bars, positive in all 6 years tested, not confirmed at 60 bars (docs/research_groups.md); moderate evidence, context not a filter.
 
 One-rule file in Hebrew with the full technical analysis of every wedge, why the stock fell and the brief, each table row linked to its section: `wedge_2026-09-30.md` (https://github.com/OrenRachamim/AlgoVision/blob/claude/stock-pattern-detection-b94x35/journal/wedge_2026-09-30.md).
 

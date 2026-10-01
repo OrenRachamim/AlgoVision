@@ -115,6 +115,7 @@ Headline tone over the year: 29 negative, 29 positive, 58 neutral; last 30 days 
 
 **Peers and group.** Closest by market-neutral correlation: STE (0.32), SYK (0.28), HRL (0.28), BDX (0.26), GEHC (0.25); group of 18 stocks (largest: ABT, SYK, MDT, ZTS), mean correlation to the group 0.205; beta 1.03 to the equal-weight market, residual volatility 30% a year.
 **Last 20 days:** stock -18.4%, peer group -6.3%, relative to the group (beta-adjusted) -12.6%. The group over 6 months: +3.3%. z=-1.6, within its normal range.
+The group as one basket: not beaten down (6 months +1.5%, -2.0% vs its 200-day MA); 24% of the other members are beaten down.
 
 **What analysts say.** Consensus **buy** (14 analysts, mean rating 2.5 on a 1-5 scale); strong buy 2, buy 3, hold 11, sell 0, strong sell 0 (bullish share 31% now vs 62% three months ago). Mean target 66.21 (+17% from the price; range 58.00-75.00). 
 Last 90 days: 0 upgrades, 4 downgrades, 2 target raises, 10 target cuts.
@@ -185,6 +186,7 @@ Headline tone over the year: 22 negative, 44 positive, 93 neutral; last 30 days 
 
 **Peers and group.** Closest by market-neutral correlation: MRSH (0.72), AJG (0.70), BRO (0.67), WTW (0.63), ACGL (0.47); group of 6 stocks (largest: MRSH, AJG, WTW, BRO), mean correlation to the group 0.636; beta 0.50 to the equal-weight market, residual volatility 24% a year.
 **Last 20 days:** stock -15.2%, peer group -13.1%, relative to the group (beta-adjusted) -4.5%. The group over 6 months: -2.6%. z=-0.9, within its normal range.
+The group as one basket: not beaten down (6 months -3.9%, -7.2% vs its 200-day MA); 20% of the other members are beaten down.
 
 **What analysts say.** Consensus **buy** (19 analysts, mean rating 2.1 on a 1-5 scale); strong buy 4, buy 9, hold 5, sell 1, strong sell 2 (bullish share 62% now vs 64% three months ago). Mean target 383.63 (+39% from the price; range 264.00-435.00). 
 Last 90 days: 0 upgrades, 1 downgrades, 16 target raises, 9 target cuts.
@@ -258,6 +260,7 @@ Headline tone over the year: 20 negative, 30 positive, 96 neutral; last 30 days 
 
 **Peers and group.** Closest by market-neutral correlation: KHC (0.40), GIS (0.38), PEP (0.38), MDLZ (0.37), CL (0.34); group of 20 stocks (largest: KO, PG, PEP, MDLZ), mean correlation to the group 0.299; beta 0.38 to the equal-weight market, residual volatility 24% a year.
 **Last 20 days:** stock -8.2%, peer group -8.2%, relative to the group (beta-adjusted) -3.3%. The group over 6 months: -2.3%. z=-0.5, within its normal range.
+The group as one basket: not beaten down (6 months -3.1%, -5.9% vs its 200-day MA); 37% of the other members are beaten down.
 
 **What analysts say.** Consensus **hold** (12 analysts, mean rating 2.5 on a 1-5 scale); strong buy 3, buy 2, hold 7, sell 0, strong sell 1 (bullish share 38% now vs 31% three months ago). Mean target 64.25 (+27% from the price; range 56.00-75.00). 
 Last 90 days: 1 upgrades, 0 downgrades, 0 target raises, 5 target cuts.
@@ -328,6 +331,7 @@ Headline tone over the year: 13 negative, 14 positive, 52 neutral; last 30 days 
 
 **Peers and group.** Closest by market-neutral correlation: GM (0.28), F (0.28), SWK (0.24), ON (0.23), HAS (0.22); group of 9 stocks (largest: F, GM, EL, GRMN), mean correlation to the group 0.166; beta 1.39 to the equal-weight market, residual volatility 36% a year.
 **Last 20 days:** stock -4.1%, peer group -7.2%, relative to the group (beta-adjusted) +4.0%. The group over 6 months: -2.7%. z=+0.8, within its normal range.
+The group as one basket: not beaten down (6 months -7.4%, -10.2% vs its 200-day MA); 38% of the other members are beaten down.
 
 **What analysts say.** Consensus **buy** (18 analysts, mean rating 1.6 on a 1-5 scale); strong buy 5, buy 11, hold 4, sell 0, strong sell 0 (bullish share 80% now vs 95% three months ago). Mean target 66.61 (+55% from the price; range 55.00-78.00). 
 Last 90 days: 0 upgrades, 2 downgrades, 2 target raises, 10 target cuts.
@@ -406,6 +410,7 @@ Headline tone over the year: 25 negative, 37 positive, 62 neutral; last 30 days 
 
 **Peers and group.** Closest by market-neutral correlation: DXCM (0.32), SYK (0.28), BSX (0.26), TRI (0.26), EW (0.24); group of 5 stocks (largest: ISRG, BSX, DXCM, EW), mean correlation to the group 0.266; beta 0.87 to the equal-weight market, residual volatility 40% a year.
 **Last 20 days:** stock -12.1%, peer group -2.1%, relative to the group (beta-adjusted) -10.3%. The group over 6 months: +0.7%. z=-0.6, within its normal range.
+The group as one basket: beaten down (6 months -8.8%, -10.0% vs its 200-day MA); 50% of the other members are beaten down.
 
 **What analysts say.** Consensus **buy** (22 analysts, mean rating 2.0 on a 1-5 scale); strong buy 4, buy 11, hold 10, sell 0, strong sell 0 (bullish share 60% now vs 88% three months ago). Mean target 171.91 (+32% from the price; range 144.00-275.00). 
 Last 90 days: 0 upgrades, 5 downgrades, 1 target raises, 15 target cuts.
@@ -481,6 +486,7 @@ Headline tone over the year: 50 negative, 27 positive, 106 neutral; last 30 days
 
 **Peers and group.** Closest by market-neutral correlation: SYK (0.39), ISRG (0.37), MDT (0.34), ABT (0.27), EW (0.27); group of 5 stocks (largest: ISRG, DXCM, EW, PODD), mean correlation to the group 0.275; beta 0.69 to the equal-weight market, residual volatility 31% a year.
 **Last 20 days:** stock -9.2%, peer group -2.8%, relative to the group (beta-adjusted) -7.5%. The group over 6 months: -1.1%. z=-0.3, within its normal range.
+The group as one basket: beaten down (6 months -8.8%, -10.0% vs its 200-day MA); 50% of the other members are beaten down.
 
 **What analysts say.** Consensus **buy** (29 analysts, mean rating 1.6 on a 1-5 scale); strong buy 8, buy 17, hold 6, sell 0, strong sell 0 (bullish share 81% now vs 87% three months ago). Mean target 61.00 (+40% from the price; range 44.00-94.00). 
 Last 90 days: 0 upgrades, 2 downgrades, 0 target raises, 19 target cuts.
@@ -558,6 +564,7 @@ Headline tone over the year: 41 negative, 68 positive, 115 neutral; last 30 days
 
 **Peers and group.** Closest by market-neutral correlation: DASH (0.29), ABNB (0.23), PLTR (0.22), EXPE (0.20), BR (0.20); group of 14 stocks (largest: META, AMZN, PLTR, APP), mean correlation to the group 0.15; beta 1.09 to the equal-weight market, residual volatility 34% a year.
 **Last 20 days:** stock -8.9%, peer group -3.1%, relative to the group (beta-adjusted) -7.1%. The group over 6 months: +7.4%. z=-1.1, within its normal range.
+The group as one basket: not beaten down (6 months +10.5%, -1.3% vs its 200-day MA); 15% of the other members are beaten down; the basket itself is in a falling wedge (confirmed, broke out 2026-09-22).
 
 **What analysts say.** Consensus **buy** (47 analysts, mean rating 1.6 on a 1-5 scale); strong buy 9, buy 33, hold 8, sell 1, strong sell 0 (bullish share 82% now vs 87% three months ago). Mean target 100.77 (+47% from the price; range 70.00-150.00). 
 Last 90 days: 0 upgrades, 0 downgrades, 1 target raises, 10 target cuts.
@@ -629,6 +636,7 @@ Headline tone over the year: 6 negative, 28 positive, 59 neutral; last 30 days 0
 
 **Peers and group.** Closest by market-neutral correlation: FOXA (0.98), NWS (0.39), NWSA (0.38), DIS (0.27), CTSH (0.23); group of 4 stocks (largest: FOXA, NWSA, NWS), mean correlation to the group 0.584; beta 0.83 to the equal-weight market, residual volatility 29% a year.
 **Last 20 days:** stock -4.2%, peer group -5.9%, relative to the group (beta-adjusted) +2.4%. The group over 6 months: +11.6%. z=+0.4, within its normal range.
+The group as one basket: not beaten down (6 months +11.4%, +4.1% vs its 200-day MA); 0% of the other members are beaten down.
 
 **What analysts say.** No consensus data; 
 Last 90 days: 1 upgrades, 1 downgrades, 1 target raises, 0 target cuts.
@@ -689,6 +697,7 @@ Headline tone over the year: 7 negative, 37 positive, 62 neutral; last 30 days 0
 
 **Peers and group.** Closest by market-neutral correlation: VTR (0.78), O (0.51), AEE (0.50), REG (0.50), LNT (0.48); group of 8 stocks (largest: CME, WM, CTAS, RSG), mean correlation to the group 0.387; beta 0.39 to the equal-weight market, residual volatility 22% a year.
 **Last 20 days:** stock -4.2%, peer group -8.4%, relative to the group (beta-adjusted) +2.2%. The group over 6 months: -7.0%. z=-0.1, within its normal range.
+The group as one basket: not beaten down (6 months -4.8%, -5.7% vs its 200-day MA); 43% of the other members are beaten down.
 
 **What analysts say.** Consensus **buy** (22 analysts, mean rating 1.6 on a 1-5 scale); strong buy 6, buy 12, hold 4, sell 0, strong sell 0 (bullish share 82% now vs 81% three months ago). Mean target 262.05 (+14% from the price; range 219.00-292.00). 
 
@@ -750,6 +759,7 @@ Headline tone over the year: 11 negative, 47 positive, 63 neutral; last 30 days 
 
 **Peers and group.** Closest by market-neutral correlation: CEG (0.77), NRG (0.72), VRT (0.56), GEV (0.55), FIX (0.54); group of 16 stocks (largest: NVDA, AVGO, ORCL, NBIS), mean correlation to the group 0.49; beta 1.71 to the equal-weight market, residual volatility 54% a year.
 **Last 20 days:** stock +0.4%, peer group +3.9%, relative to the group (beta-adjusted) -2.1%. The group over 6 months: +32.8%. z=+0.2, within its normal range.
+The group as one basket: not beaten down (6 months +27.6%, +8.4% vs its 200-day MA); 13% of the other members are beaten down.
 
 **What analysts say.** Consensus **strong buy** (19 analysts, mean rating 1.4 on a 1-5 scale); strong buy 4, buy 15, hold 0, sell 0, strong sell 1 (bullish share 95% now vs 95% three months ago). Mean target 217.58 (+57% from the price; range 106.00-305.00). 
 Last 90 days: 0 upgrades, 0 downgrades, 3 target raises, 3 target cuts.
@@ -812,6 +822,7 @@ Headline tone over the year: 9 negative, 30 positive, 81 neutral; last 30 days 0
 
 **Peers and group.** Closest by market-neutral correlation: CFG (0.77), PNC (0.76), KEY (0.76), FITB (0.75), HBAN (0.74); group of 9 stocks (largest: USB, HBAN, PNC, FITB), mean correlation to the group 0.738; beta 1.29 to the equal-weight market, residual volatility 19% a year.
 **Last 20 days:** stock -6.3%, peer group -6.1%, relative to the group (beta-adjusted) -0.5%. The group over 6 months: +6.4%. z=-0.1, within its normal range.
+The group as one basket: not beaten down (6 months +6.1%, -3.1% vs its 200-day MA); 0% of the other members are beaten down; the basket itself is in a falling wedge (forming).
 
 **What analysts say.** Consensus **hold** (18 analysts, mean rating 2.6 on a 1-5 scale); strong buy 2, buy 5, hold 11, sell 1, strong sell 2 (bullish share 33% now vs 48% three months ago). Mean target 54.90 (+19% from the price; range 45.00-61.00). 
 Last 90 days: 0 upgrades, 4 downgrades, 4 target raises, 6 target cuts.
@@ -882,6 +893,7 @@ Headline tone over the year: 49 negative, 43 positive, 99 neutral; last 30 days 
 
 **Peers and group.** Closest by market-neutral correlation: MCO (0.60), SPGI (0.60), NDAQ (0.48), VRSK (0.44), FDS (0.44); group of 5 stocks (largest: SPGI, ICE, MCO, NDAQ), mean correlation to the group 0.513; beta 0.79 to the equal-weight market, residual volatility 26% a year.
 **Last 20 days:** stock -4.3%, peer group -7.1%, relative to the group (beta-adjusted) +2.3%. The group over 6 months: +2.4%. z=+0.3, within its normal range.
+The group as one basket: not beaten down (6 months +2.6%, -2.5% vs its 200-day MA); 0% of the other members are beaten down.
 
 **What analysts say.** Consensus **strong buy** (17 analysts, mean rating 1.5 on a 1-5 scale); strong buy 4, buy 12, hold 1, sell 0, strong sell 1 (bullish share 89% now vs 88% three months ago). Mean target 691.76 (+28% from the price; range 570.00-760.00). 
 Last 90 days: 0 upgrades, 0 downgrades, 4 target raises, 4 target cuts.
@@ -954,6 +966,7 @@ Headline tone over the year: 44 negative, 41 positive, 108 neutral; last 30 days
 
 **Peers and group.** Closest by market-neutral correlation: NOW (0.74), WDAY (0.64), ADBE (0.62), ADSK (0.57), INTU (0.54); group of 10 stocks (largest: MSFT, NOW, ADBE, INTU), mean correlation to the group 0.541; beta 0.97 to the equal-weight market, residual volatility 37% a year.
 **Last 20 days:** stock -10.9%, peer group -10.2%, relative to the group (beta-adjusted) +1.2%. The group over 6 months: +15.9%. z=-0.2, within its normal range.
+The group as one basket: not beaten down (6 months +15.8%, +5.3% vs its 200-day MA); 22% of the other members are beaten down; the basket itself is in a falling wedge (forming).
 
 **What analysts say.** Consensus **buy** (53 analysts, mean rating 1.8 on a 1-5 scale); strong buy 6, buy 32, hold 15, sell 0, strong sell 2 (bullish share 69% now vs 76% three months ago). Mean target 281.08 (+22% from the price; range 160.00-475.00). 
 Last 90 days: 0 upgrades, 2 downgrades, 35 target raises, 2 target cuts.
@@ -1022,6 +1035,7 @@ Headline tone over the year: 3 negative, 27 positive, 62 neutral; last 30 days 0
 
 **Peers and group.** Closest by market-neutral correlation: SHW (0.45), PG (0.41), HD (0.40), CL (0.38), LOW (0.37); group of 7 stocks (largest: SHW, PPG, AMCR, IFF), mean correlation to the group 0.357; beta 0.77 to the equal-weight market, residual volatility 17% a year.
 **Last 20 days:** stock -1.8%, peer group -4.7%, relative to the group (beta-adjusted) +1.3%. The group over 6 months: +3.4%. z=+0.5, within its normal range.
+The group as one basket: not beaten down (6 months +4.0%, +0.0% vs its 200-day MA); 0% of the other members are beaten down.
 
 **What analysts say.** Consensus **buy** (21 analysts, mean rating 1.5 on a 1-5 scale); strong buy 5, buy 15, hold 4, sell 0, strong sell 0 (bullish share 83% now vs 70% three months ago). Mean target 324.95 (+18% from the price; range 295.00-360.00). 
 Last 90 days: 1 upgrades, 0 downgrades, 5 target raises, 0 target cuts.
@@ -1089,6 +1103,7 @@ Headline tone over the year: 13 negative, 32 positive, 62 neutral; last 30 days 
 
 **Peers and group.** Closest by market-neutral correlation: CCI (0.82), SBAC (0.75), VICI (0.51), EXR (0.50), PSA (0.49); group of 3 stocks (largest: CCI, SBAC), mean correlation to the group 0.789; beta 0.27 to the equal-weight market, residual volatility 26% a year.
 **Last 20 days:** stock -7.0%, peer group -13.0%, relative to the group (beta-adjusted) +3.2%. The group over 6 months: -10.8%. z=+0.8, within its normal range.
+The group as one basket: beaten down (6 months -8.0%, -13.1% vs its 200-day MA); 50% of the other members are beaten down.
 
 **What analysts say.** Consensus **buy** (23 analysts, mean rating 1.5 on a 1-5 scale); strong buy 7, buy 15, hold 3, sell 0, strong sell 0 (bullish share 88% now vs 80% three months ago). Mean target 215.74 (+32% from the price; range 188.00-260.00). 
 Last 90 days: 2 upgrades, 0 downgrades, 4 target raises, 1 target cuts.
@@ -1162,6 +1177,7 @@ Headline tone over the year: 28 negative, 14 positive, 64 neutral; last 30 days 
 
 **Peers and group.** Closest by market-neutral correlation: DOC (0.52), BXP (0.34), VICI (0.31), EXR (0.30), KIM (0.30); group of 14 stocks (largest: PLD, O, SPG, PSA), mean correlation to the group 0.287; beta 1.22 to the equal-weight market, residual volatility 36% a year.
 **Last 20 days:** stock -8.1%, peer group -7.8%, relative to the group (beta-adjusted) +5.7%. The group over 6 months: +1.3%. z=+0.8, within its normal range.
+The group as one basket: not beaten down (6 months +1.7%, -4.8% vs its 200-day MA); 23% of the other members are beaten down.
 
 **What analysts say.** Consensus **hold** (14 analysts, mean rating 3.0 on a 1-5 scale); strong buy 0, buy 2, hold 11, sell 1, strong sell 2 (bullish share 12% now vs 12% three months ago). Mean target 52.57 (+11% from the price; range 40.00-60.00). 
 Last 90 days: 0 upgrades, 1 downgrades, 5 target raises, 3 target cuts.
@@ -1225,6 +1241,7 @@ Headline tone over the year: 9 negative, 37 positive, 65 neutral; last 30 days 1
 
 **Peers and group.** Closest by market-neutral correlation: KO (0.50), PEP (0.49), MDLZ (0.44), KHC (0.41), MKC (0.41); group of 20 stocks (largest: KO, PG, PEP, MDLZ), mean correlation to the group 0.356; beta 0.40 to the equal-weight market, residual volatility 26% a year.
 **Last 20 days:** stock -4.2%, peer group -8.4%, relative to the group (beta-adjusted) +4.7%. The group over 6 months: -4.3%. z=+0.5, within its normal range.
+The group as one basket: not beaten down (6 months -3.1%, -5.9% vs its 200-day MA); 42% of the other members are beaten down.
 
 **What analysts say.** Consensus **buy** (17 analysts, mean rating 1.8 on a 1-5 scale); strong buy 5, buy 8, hold 5, sell 0, strong sell 0 (bullish share 72% now vs 61% three months ago). Mean target 36.21 (+19% from the price; range 29.00-42.00). 
 Last 90 days: 1 upgrades, 0 downgrades, 6 target raises, 0 target cuts.
@@ -1297,6 +1314,7 @@ Headline tone over the year: 25 negative, 45 positive, 90 neutral; last 30 days 
 
 **Peers and group.** Closest by market-neutral correlation: FANG (0.85), EOG (0.85), OXY (0.84), COP (0.83), APA (0.81); group of 16 stocks (largest: XOM, CVX, VLO, MPC), mean correlation to the group 0.665; beta 0.89 to the equal-weight market, residual volatility 36% a year.
 **Last 20 days:** stock -5.5%, peer group -6.3%, relative to the group (beta-adjusted) +1.8%. The group over 6 months: +2.8%. z=+0.6, within its normal range.
+The group as one basket: not beaten down (6 months +0.4%, +10.7% vs its 200-day MA); 27% of the other members are beaten down.
 
 **What analysts say.** Consensus **strong buy** (28 analysts, mean rating 1.3 on a 1-5 scale); strong buy 3, buy 23, hold 3, sell 0, strong sell 0 (bullish share 90% now vs 93% three months ago). Mean target 60.39 (+31% from the price; range 44.00-68.00). 
 Last 90 days: 0 upgrades, 0 downgrades, 5 target raises, 7 target cuts.
@@ -1370,6 +1388,7 @@ Headline tone over the year: 11 negative, 23 positive, 58 neutral; last 30 days 
 
 **Peers and group.** Closest by market-neutral correlation: L (0.72), TRV (0.67), CB (0.67), HIG (0.67), ACGL (0.64); group of 15 stocks (largest: BRK-B, TRV, CB, PGR), mean correlation to the group 0.58; beta 0.78 to the equal-weight market, residual volatility 20% a year.
 **Last 20 days:** stock -5.9%, peer group -4.7%, relative to the group (beta-adjusted) -1.1%. The group over 6 months: +6.2%. z=-0.4, within its normal range.
+The group as one basket: not beaten down (6 months +6.0%, +0.5% vs its 200-day MA); 7% of the other members are beaten down.
 
 **What analysts say.** Consensus **hold** (6 analysts, mean rating 2.8 on a 1-5 scale); strong buy 0, buy 2, hold 6, sell 0, strong sell 0. Mean target 191.67 (+20% from the price; range 177.00-200.00). 
 Last 90 days: 0 upgrades, 2 downgrades, 3 target raises, 2 target cuts.
@@ -1443,6 +1462,7 @@ Headline tone over the year: 25 negative, 29 positive, 87 neutral; last 30 days 
 
 **Peers and group.** Closest by market-neutral correlation: PM (0.51), DUK (0.45), SO (0.44), LNT (0.43), ED (0.42); group of 10 stocks (largest: MCD, PM, MNST, MSI), mean correlation to the group 0.255; beta 0.02 to the equal-weight market, residual volatility 23% a year.
 **Last 20 days:** stock -1.7%, peer group -7.4%, relative to the group (beta-adjusted) +3.8%. The group over 6 months: -0.9%. z=+0.4, within its normal range.
+The group as one basket: not beaten down (6 months -0.2%, -3.9% vs its 200-day MA); 44% of the other members are beaten down.
 
 **What analysts say.** Consensus **hold** (11 analysts, mean rating 2.9 on a 1-5 scale); strong buy 0, buy 4, hold 8, sell 1, strong sell 1 (bullish share 29% now vs 31% three months ago). Mean target 70.00 (+4% from the price; range 58.00-82.00). 
 Last 90 days: 0 upgrades, 0 downgrades, 1 target raises, 1 target cuts.
@@ -1512,6 +1532,7 @@ Headline tone over the year: 61 negative, 33 positive, 92 neutral; last 30 days 
 
 **Peers and group.** Closest by market-neutral correlation: EFX (0.38), ADSK (0.36), ADP (0.31), VRSK (0.30), INTU (0.30); group of 20 stocks (largest: IBM, ACN, ADP, CTSH), mean correlation to the group 0.256; beta 1.20 to the equal-weight market, residual volatility 52% a year.
 **Last 20 days:** stock -46.3%, peer group -11.5%, relative to the group (beta-adjusted) -38.4%. The group over 6 months: -0.4%. z=-3.6: unusually far below its peers (under -2); in the historical scan such stocks regained +0.65% vs peers over the next 20 days (t=2.3, weak evidence).
+The group as one basket: not beaten down (6 months -2.1%, -7.7% vs its 200-day MA); 26% of the other members are beaten down.
 
 **What analysts say.** Consensus **buy** (19 analysts, mean rating 2.1 on a 1-5 scale); strong buy 4, buy 8, hold 7, sell 2, strong sell 0 (bullish share 57% now vs 76% three months ago). Mean target 1,256.42 (+112% from the price; range 696.00-1,750.00). 
 Last 90 days: 0 upgrades, 2 downgrades, 1 target raises, 8 target cuts.
@@ -1580,6 +1601,7 @@ Headline tone over the year: 33 negative, 24 positive, 84 neutral; last 30 days 
 
 **Peers and group.** Closest by market-neutral correlation: WYNN (0.37), LVS (0.28), CDW (0.22), HST (0.22), HPQ (0.19); group of 3 stocks (largest: LVS, WYNN), mean correlation to the group 0.324; beta 1.51 to the equal-weight market, residual volatility 33% a year.
 **Last 20 days:** stock -23.8%, peer group -13.0%, relative to the group (beta-adjusted) -17.2%. The group over 6 months: -25.2%. z=-2.3: unusually far below its peers (under -2); in the historical scan such stocks regained +0.65% vs peers over the next 20 days (t=2.3, weak evidence).
+The group as one basket: beaten down (6 months -21.6%, -23.0% vs its 200-day MA); 100% of the other members are beaten down. In the study (docs/research_groups.md) wedge signals in stocks where most of the group was beaten down too earned +1.2% (train) / +1.9% (test) more over 20 bars, positive in all 6 years tested; it does not hold at 60 bars. Moderate evidence, context not a filter.
 
 **What analysts say.** Consensus **buy** (19 analysts, mean rating 2.4 on a 1-5 scale); strong buy 2, buy 8, hold 11, sell 2, strong sell 0 (bullish share 43% now vs 41% three months ago). Mean target 49.33 (+59% from the price; range 40.00-57.00). 
 Last 90 days: 1 upgrades, 0 downgrades, 7 target raises, 2 target cuts.
@@ -1650,6 +1672,7 @@ Headline tone over the year: 13 negative, 10 positive, 34 neutral; last 30 days 
 
 **Peers and group.** Closest by market-neutral correlation: ITW (0.49), MAS (0.48), ALLE (0.47), BLDR (0.44), PHM (0.43); group of 11 stocks (largest: DE, FAST, PCAR, GWW), mean correlation to the group 0.271; beta 0.94 to the equal-weight market, residual volatility 21% a year.
 **Last 20 days:** stock -3.6%, peer group -1.8%, relative to the group (beta-adjusted) -1.6%. The group over 6 months: +9.0%. z=+0.4, within its normal range.
+The group as one basket: not beaten down (6 months +7.2%, +2.3% vs its 200-day MA); 0% of the other members are beaten down; the basket itself is in a falling wedge (forming).
 
 **What analysts say.** Consensus **hold** (11 analysts, mean rating 2.5 on a 1-5 scale); strong buy 1, buy 4, hold 6, sell 1, strong sell 1 (bullish share 38% now vs 38% three months ago). Mean target 69.91 (+24% from the price; range 59.00-84.00). 
 Last 90 days: 0 upgrades, 0 downgrades, 1 target raises, 2 target cuts.
@@ -1712,6 +1735,7 @@ Headline tone over the year: 10 negative, 23 positive, 53 neutral; last 30 days 
 
 **Peers and group.** Closest by market-neutral correlation: BAX (0.41), IP (0.24), IDXX (0.22), DXCM (0.22), EXR (0.20); group of 18 stocks (largest: ABT, SYK, MDT, ZTS), mean correlation to the group 0.097; beta 1.64 to the equal-weight market, residual volatility 44% a year.
 **Last 20 days:** stock -6.2%, peer group -7.0%, relative to the group (beta-adjusted) +4.2%. The group over 6 months: +2.9%. z=+0.3, within its normal range.
+The group as one basket: not beaten down (6 months +1.5%, -2.0% vs its 200-day MA); 24% of the other members are beaten down.
 
 **What analysts say.** Consensus **buy** (14 analysts, mean rating 2.0 on a 1-5 scale); strong buy 3, buy 7, hold 5, sell 0, strong sell 1 (bullish share 62% now vs 69% three months ago). Mean target 206.36 (+42% from the price; range 170.00-235.00). 
 Last 90 days: 0 upgrades, 0 downgrades, 1 target raises, 0 target cuts.
@@ -1784,6 +1808,7 @@ Headline tone over the year: 11 negative, 32 positive, 64 neutral; last 30 days 
 
 **Peers and group.** Closest by market-neutral correlation: SO (0.75), DUK (0.75), WEC (0.73), LNT (0.72), EXC (0.72); group of 25 stocks (largest: NEE, SO, DUK, XEL), mean correlation to the group 0.634; beta 0.17 to the equal-weight market, residual volatility 19% a year.
 **Last 20 days:** stock -3.5%, peer group -6.3%, relative to the group (beta-adjusted) +3.1%. The group over 6 months: -11.2%. z=+0.9, within its normal range.
+The group as one basket: beaten down (6 months -11.0%, -7.9% vs its 200-day MA); 79% of the other members are beaten down. In the study (docs/research_groups.md) wedge signals in stocks where most of the group was beaten down too earned +1.2% (train) / +1.9% (test) more over 20 bars, positive in all 6 years tested; it does not hold at 60 bars. Moderate evidence, context not a filter.
 
 **What analysts say.** Consensus **buy** (20 analysts, mean rating 2.0 on a 1-5 scale); strong buy 3, buy 10, hold 10, sell 0, strong sell 0 (bullish share 57% now vs 54% three months ago). Mean target 142.97 (+21% from the price; range 128.00-173.00). 
 Last 90 days: 0 upgrades, 1 downgrades, 3 target raises, 7 target cuts.
@@ -1851,6 +1876,7 @@ Headline tone over the year: 10 negative, 19 positive, 69 neutral; last 30 days 
 
 **Peers and group.** Closest by market-neutral correlation: AEE (0.75), WEC (0.73), LNT (0.72), DTE (0.72), DUK (0.71); group of 25 stocks (largest: NEE, AEP, SO, DUK), mean correlation to the group 0.636; beta 0.26 to the equal-weight market, residual volatility 17% a year.
 **Last 20 days:** stock -6.8%, peer group -6.2%, relative to the group (beta-adjusted) -0.4%. The group over 6 months: -11.0%. z=-0.2, within its normal range.
+The group as one basket: beaten down (6 months -11.0%, -7.9% vs its 200-day MA); 79% of the other members are beaten down. In the study (docs/research_groups.md) wedge signals in stocks where most of the group was beaten down too earned +1.2% (train) / +1.9% (test) more over 20 bars, positive in all 6 years tested; it does not hold at 60 bars. Moderate evidence, context not a filter.
 
 **What analysts say.** Consensus **buy** (17 analysts, mean rating 2.2 on a 1-5 scale); strong buy 2, buy 7, hold 10, sell 0, strong sell 0 (bullish share 47% now vs 44% three months ago). Mean target 45.24 (+23% from the price; range 38.00-50.00). 
 Last 90 days: 0 upgrades, 0 downgrades, 2 target raises, 6 target cuts.
@@ -1917,6 +1943,7 @@ Headline tone over the year: 35 negative, 16 positive, 39 neutral; last 30 days 
 
 **Peers and group.** Closest by market-neutral correlation: DTE (0.85), WEC (0.83), LNT (0.81), AEE (0.81), DUK (0.81); group of 25 stocks (largest: NEE, AEP, SO, DUK), mean correlation to the group 0.694; beta 0.26 to the equal-weight market, residual volatility 17% a year.
 **Last 20 days:** stock -7.2%, peer group -6.2%, relative to the group (beta-adjusted) -0.9%. The group over 6 months: -10.8%. z=-0.1, within its normal range.
+The group as one basket: beaten down (6 months -11.0%, -7.9% vs its 200-day MA); 79% of the other members are beaten down. In the study (docs/research_groups.md) wedge signals in stocks where most of the group was beaten down too earned +1.2% (train) / +1.9% (test) more over 20 bars, positive in all 6 years tested; it does not hold at 60 bars. Moderate evidence, context not a filter.
 
 **What analysts say.** Consensus **buy** (12 analysts, mean rating 2.3 on a 1-5 scale); strong buy 3, buy 4, hold 8, sell 0, strong sell 0 (bullish share 47% now vs 50% three months ago). Mean target 78.67 (+25% from the price; range 68.00-87.00). 
 Last 90 days: 0 upgrades, 1 downgrades, 4 target raises, 7 target cuts.
@@ -1979,6 +2006,7 @@ Headline tone over the year: 9 negative, 5 positive, 42 neutral; last 30 days 2 
 
 **Peers and group.** Closest by market-neutral correlation: DUK (0.82), WEC (0.82), CMS (0.80), SO (0.79), DTE (0.75); group of 25 stocks (largest: NEE, AEP, SO, DUK), mean correlation to the group 0.662; beta 0.01 to the equal-weight market, residual volatility 18% a year.
 **Last 20 days:** stock -5.1%, peer group -6.3%, relative to the group (beta-adjusted) +0.8%. The group over 6 months: -11.2%. z=+0.1, within its normal range.
+The group as one basket: beaten down (6 months -11.0%, -7.9% vs its 200-day MA); 79% of the other members are beaten down. In the study (docs/research_groups.md) wedge signals in stocks where most of the group was beaten down too earned +1.2% (train) / +1.9% (test) more over 20 bars, positive in all 6 years tested; it does not hold at 60 bars. Moderate evidence, context not a filter.
 
 **What analysts say.** Consensus **hold** (16 analysts, mean rating 3.3 on a 1-5 scale); strong buy 0, buy 2, hold 9, sell 3, strong sell 4 (bullish share 11% now vs 11% three months ago). Mean target 110.03 (+8% from the price; range 94.00-130.00). 
 Last 90 days: 0 upgrades, 0 downgrades, 1 target raises, 5 target cuts.
@@ -2049,6 +2077,7 @@ Headline tone over the year: 16 negative, 39 positive, 84 neutral; last 30 days 
 
 **Peers and group.** Closest by market-neutral correlation: VST (0.77), NRG (0.61), VRT (0.49), PWR (0.46), GEV (0.46); group of 16 stocks (largest: NVDA, AVGO, ORCL, NBIS), mean correlation to the group 0.418; beta 1.41 to the equal-weight market, residual volatility 51% a year.
 **Last 20 days:** stock -9.4%, peer group +4.6%, relative to the group (beta-adjusted) -11.6%. The group over 6 months: +32.9%. z=-0.9, within its normal range.
+The group as one basket: not beaten down (6 months +27.6%, +8.4% vs its 200-day MA); 7% of the other members are beaten down.
 
 **What analysts say.** Consensus **buy** (20 analysts, mean rating 1.5 on a 1-5 scale); strong buy 6, buy 13, hold 3, sell 0, strong sell 0 (bullish share 86% now vs 87% three months ago). Mean target 347.28 (+37% from the price; range 290.00-441.00). 
 Last 90 days: 0 upgrades, 0 downgrades, 1 target raises, 6 target cuts.
@@ -2116,6 +2145,7 @@ Headline tone over the year: 17 negative, 30 positive, 68 neutral; last 30 days 
 
 **Peers and group.** Closest by market-neutral correlation: VMC (0.55), MLM (0.51), SW (0.27), PPG (0.27), BLDR (0.26); group of 3 stocks (largest: MLM, VMC), mean correlation to the group 0.527; beta 1.43 to the equal-weight market, residual volatility 23% a year.
 **Last 20 days:** stock -9.2%, peer group -5.4%, relative to the group (beta-adjusted) -4.6%. The group over 6 months: -14.0%. z=-1.0, within its normal range.
+The group as one basket: beaten down (6 months -16.1%, -18.4% vs its 200-day MA); 100% of the other members are beaten down. In the study (docs/research_groups.md) wedge signals in stocks where most of the group was beaten down too earned +1.2% (train) / +1.9% (test) more over 20 bars, positive in all 6 years tested; it does not hold at 60 bars. Moderate evidence, context not a filter.
 
 **What analysts say.** Consensus **strong buy** (24 analysts, mean rating 1.3 on a 1-5 scale); strong buy 5, buy 17, hold 1, sell 0, strong sell 0 (bullish share 96% now vs 90% three months ago). Mean target 133.17 (+61% from the price; range 105.00-165.00). 
 Last 90 days: 0 upgrades, 0 downgrades, 0 target raises, 5 target cuts.
@@ -2181,6 +2211,7 @@ Headline tone over the year: 24 negative, 44 positive, 41 neutral; last 30 days 
 
 **Peers and group.** Closest by market-neutral correlation: RL (0.33), ROST (0.33), TPR (0.26), NKE (0.22), LULU (0.21); group of 11 stocks (largest: NKE, TGT, LULU, TPR), mean correlation to the group 0.194; beta 1.59 to the equal-weight market, residual volatility 44% a year.
 **Last 20 days:** stock -7.6%, peer group -4.2%, relative to the group (beta-adjusted) -3.1%. The group over 6 months: +2.5%. z=+0.0, within its normal range.
+The group as one basket: not beaten down (6 months -0.5%, -4.4% vs its 200-day MA); 30% of the other members are beaten down; the basket itself is in a falling wedge (confirmed, broke out 2026-09-22).
 
 **What analysts say.** Consensus **buy** (22 analysts, mean rating 2.4 on a 1-5 scale); strong buy 5, buy 8, hold 11, sell 3, strong sell 0 (bullish share 48% now vs 42% three months ago). Mean target 120.41 (+54% from the price; range 70.00-184.00). 
 Last 90 days: 1 upgrades, 0 downgrades, 1 target raises, 6 target cuts.
@@ -2256,6 +2287,7 @@ Headline tone over the year: 75 negative, 71 positive, 133 neutral; last 30 days
 
 **Peers and group.** Closest by market-neutral correlation: LYB (0.88), OXY (0.51), DVN (0.48), APA (0.48), PSX (0.48); group of 16 stocks (largest: XOM, CVX, VLO, MPC), mean correlation to the group 0.451; beta 1.19 to the equal-weight market, residual volatility 41% a year.
 **Last 20 days:** stock -9.6%, peer group -6.1%, relative to the group (beta-adjusted) -2.6%. The group over 6 months: +4.5%. z=-0.1, within its normal range.
+The group as one basket: not beaten down (6 months +0.4%, +10.7% vs its 200-day MA); 20% of the other members are beaten down.
 
 **What analysts say.** Consensus **buy** (16 analysts, mean rating 2.5 on a 1-5 scale); strong buy 1, buy 5, hold 12, sell 0, strong sell 1 (bullish share 32% now vs 39% three months ago). Mean target 34.12 (+24% from the price; range 29.00-41.00). 
 Last 90 days: 0 upgrades, 1 downgrades, 1 target raises, 6 target cuts.
@@ -2329,6 +2361,7 @@ Headline tone over the year: 24 negative, 23 positive, 91 neutral; last 30 days 
 
 **Peers and group.** Closest by market-neutral correlation: SO (0.85), ED (0.82), WEC (0.81), CMS (0.81), LNT (0.78); group of 25 stocks (largest: NEE, AEP, SO, XEL), mean correlation to the group 0.697; beta 0.11 to the equal-weight market, residual volatility 17% a year.
 **Last 20 days:** stock -5.3%, peer group -6.3%, relative to the group (beta-adjusted) +0.7%. The group over 6 months: -11.1%. z=+0.7, within its normal range.
+The group as one basket: beaten down (6 months -11.0%, -7.9% vs its 200-day MA); 79% of the other members are beaten down. In the study (docs/research_groups.md) wedge signals in stocks where most of the group was beaten down too earned +1.2% (train) / +1.9% (test) more over 20 bars, positive in all 6 years tested; it does not hold at 60 bars. Moderate evidence, context not a filter.
 
 **What analysts say.** Consensus **buy** (18 analysts, mean rating 2.0 on a 1-5 scale); strong buy 3, buy 9, hold 10, sell 0, strong sell 0 (bullish share 55% now vs 43% three months ago). Mean target 136.94 (+20% from the price; range 127.00-147.00). 
 Last 90 days: 1 upgrades, 0 downgrades, 2 target raises, 6 target cuts.
@@ -2402,6 +2435,7 @@ Headline tone over the year: 12 negative, 38 positive, 81 neutral; last 30 days 
 
 **Peers and group.** Closest by market-neutral correlation: EXE (0.82), KMI (0.53), WMB (0.49), OKE (0.42), TRGP (0.42); group of 7 stocks (largest: WMB, KMI, OKE, TRGP), mean correlation to the group 0.494; beta 0.68 to the equal-weight market, residual volatility 34% a year.
 **Last 20 days:** stock -12.7%, peer group -10.4%, relative to the group (beta-adjusted) -3.4%. The group over 6 months: -10.3%. z=-0.4, within its normal range.
+The group as one basket: beaten down (6 months -12.0%, -4.8% vs its 200-day MA); 50% of the other members are beaten down.
 
 **What analysts say.** Consensus **strong buy** (26 analysts, mean rating 1.5 on a 1-5 scale); strong buy 4, buy 18, hold 4, sell 0, strong sell 0 (bullish share 85% now vs 76% three months ago). Mean target 67.50 (+39% from the price; range 52.00-81.00). 
 Last 90 days: 0 upgrades, 0 downgrades, 4 target raises, 6 target cuts.
@@ -2470,6 +2504,7 @@ Headline tone over the year: 13 negative, 39 positive, 74 neutral; last 30 days 
 
 **Peers and group.** Closest by market-neutral correlation: MDLZ (0.49), PEP (0.48), GIS (0.47), KHC (0.43), KO (0.43); group of 20 stocks (largest: KO, PG, PEP, MDLZ), mean correlation to the group 0.346; beta 0.30 to the equal-weight market, residual volatility 28% a year.
 **Last 20 days:** stock -10.4%, peer group -8.1%, relative to the group (beta-adjusted) -4.0%. The group over 6 months: -2.2%. z=-0.6, within its normal range.
+The group as one basket: not beaten down (6 months -3.1%, -5.9% vs its 200-day MA); 37% of the other members are beaten down.
 
 **What analysts say.** Consensus **buy** (21 analysts, mean rating 2.5 on a 1-5 scale); strong buy 2, buy 6, hold 14, sell 1, strong sell 0 (bullish share 35% now vs 35% three months ago). Mean target 204.10 (+29% from the price; range 170.00-250.00). 
 Last 90 days: 0 upgrades, 0 downgrades, 2 target raises, 9 target cuts.
@@ -2542,6 +2577,7 @@ Headline tone over the year: 21 negative, 27 positive, 68 neutral; last 30 days 
 
 **Peers and group.** Closest by market-neutral correlation: GIS (0.48), KHC (0.41), MDLZ (0.41), CL (0.40), PEP (0.38); group of 20 stocks (largest: KO, PG, PEP, MDLZ), mean correlation to the group 0.343; beta 0.36 to the equal-weight market, residual volatility 27% a year.
 **Last 20 days:** stock -9.3%, peer group -8.2%, relative to the group (beta-adjusted) -2.0%. The group over 6 months: -2.9%. z=-0.2, within its normal range.
+The group as one basket: not beaten down (6 months -3.1%, -5.9% vs its 200-day MA); 37% of the other members are beaten down.
 
 **What analysts say.** Consensus **hold** (8 analysts, mean rating 2.5 on a 1-5 scale); strong buy 2, buy 1, hold 7, sell 0, strong sell 0 (bullish share 30% now vs 20% three months ago). Mean target 26.12 (+31% from the price; range 23.00-30.00). 
 Last 90 days: 0 upgrades, 0 downgrades, 2 target raises, 1 target cuts.
@@ -2612,6 +2648,7 @@ Headline tone over the year: 22 negative, 40 positive, 84 neutral; last 30 days 
 
 **Peers and group.** Closest by market-neutral correlation: NOC (0.59), LMT (0.58), GD (0.56), RTX (0.49), LDOS (0.38); group of 5 stocks (largest: RTX, LMT, NOC, GD), mean correlation to the group 0.553; beta 0.57 to the equal-weight market, residual volatility 24% a year.
 **Last 20 days:** stock -9.7%, peer group -8.9%, relative to the group (beta-adjusted) -1.4%. The group over 6 months: -12.2%. z=+0.0, within its normal range.
+The group as one basket: beaten down (6 months -16.3%, -11.9% vs its 200-day MA); 50% of the other members are beaten down.
 
 **What analysts say.** Consensus **buy** (15 analysts, mean rating 1.9 on a 1-5 scale); strong buy 1, buy 11, hold 8, sell 0, strong sell 0 (bullish share 60% now vs 76% three months ago). Mean target 335.33 (+42% from the price; range 264.00-405.00). 
 Last 90 days: 0 upgrades, 0 downgrades, 0 target raises, 4 target cuts.
@@ -2690,6 +2727,7 @@ Headline tone over the year: 16 negative, 39 positive, 71 neutral; last 30 days 
 
 **Peers and group.** Closest by market-neutral correlation: GD (0.44), LHX (0.38), LMT (0.33), NOC (0.31), J (0.29); group of 7 stocks (largest: TTD, CDW, ZBRA, WST), mean correlation to the group 0.122; beta 0.73 to the equal-weight market, residual volatility 31% a year.
 **Last 20 days:** stock -12.2%, peer group -3.2%, relative to the group (beta-adjusted) -10.9%. The group over 6 months: +13.6%. z=-0.9, within its normal range.
+The group as one basket: not beaten down (6 months +5.2%, -1.2% vs its 200-day MA); 33% of the other members are beaten down.
 
 **What analysts say.** Consensus **buy** (15 analysts, mean rating 2.4 on a 1-5 scale); strong buy 3, buy 4, hold 10, sell 0, strong sell 0 (bullish share 41% now vs 41% three months ago). Mean target 157.73 (+29% from the price; range 132.00-225.00). 
 Last 90 days: 0 upgrades, 0 downgrades, 5 target raises, 6 target cuts.
@@ -2761,6 +2799,7 @@ Headline tone over the year: 25 negative, 18 positive, 54 neutral; last 30 days 
 
 **Peers and group.** Closest by market-neutral correlation: STZ (0.49), GIS (0.47), BF-B (0.47), KHC (0.44), PEP (0.43); group of 20 stocks (largest: KO, PG, PEP, MDLZ), mean correlation to the group 0.35; beta 0.49 to the equal-weight market, residual volatility 26% a year.
 **Last 20 days:** stock -8.3%, peer group -8.2%, relative to the group (beta-adjusted) +0.5%. The group over 6 months: -2.7%. z=+0.4, within its normal range.
+The group as one basket: not beaten down (6 months -3.1%, -5.9% vs its 200-day MA); 37% of the other members are beaten down.
 
 **What analysts say.** Consensus **hold** (21 analysts, mean rating 2.8 on a 1-5 scale); strong buy 2, buy 4, hold 11, sell 1, strong sell 3 (bullish share 29% now vs 29% three months ago). Mean target 45.24 (+24% from the price; range 33.00-61.00). 
 Last 90 days: 0 upgrades, 0 downgrades, 2 target raises, 4 target cuts.
@@ -2838,6 +2877,7 @@ Headline tone over the year: 64 negative, 28 positive, 108 neutral; last 30 days
 
 **Peers and group.** Closest by market-neutral correlation: TGT (0.29), BBY (0.28), LULU (0.27), NVR (0.24), LOW (0.23); group of 11 stocks (largest: TGT, LULU, TPR, DLTR), mean correlation to the group 0.191; beta 1.18 to the equal-weight market, residual volatility 33% a year.
 **Last 20 days:** stock -7.1%, peer group -4.3%, relative to the group (beta-adjusted) -4.1%. The group over 6 months: +3.5%. z=+0.2, within its normal range.
+The group as one basket: not beaten down (6 months -0.5%, -4.4% vs its 200-day MA); 30% of the other members are beaten down; the basket itself is in a falling wedge (confirmed, broke out 2026-09-22).
 
 **What analysts say.** Consensus **hold** (36 analysts, mean rating 2.8 on a 1-5 scale); strong buy 1, buy 9, hold 26, sell 3, strong sell 3 (bullish share 24% now vs 32% three months ago). Mean target 45.63 (+29% from the price; range 23.00-94.00). 
 Last 90 days: 0 upgrades, 4 downgrades, 0 target raises, 14 target cuts.
@@ -2901,6 +2941,7 @@ Headline tone over the year: 22 negative, 12 positive, 36 neutral; last 30 days 
 
 **Peers and group.** Closest by market-neutral correlation: AEE (0.72), CNP (0.70), LNT (0.68), EVRG (0.66), WEC (0.65); group of 25 stocks (largest: NEE, AEP, SO, DUK), mean correlation to the group 0.58; beta 0.49 to the equal-weight market, residual volatility 18% a year.
 **Last 20 days:** stock -4.8%, peer group -6.3%, relative to the group (beta-adjusted) +1.4%. The group over 6 months: -10.9%. z=+0.7, within its normal range.
+The group as one basket: beaten down (6 months -11.0%, -7.9% vs its 200-day MA); 79% of the other members are beaten down. In the study (docs/research_groups.md) wedge signals in stocks where most of the group was beaten down too earned +1.2% (train) / +1.9% (test) more over 20 bars, positive in all 6 years tested; it does not hold at 60 bars. Moderate evidence, context not a filter.
 
 **What analysts say.** Consensus **buy** (15 analysts, mean rating 1.6 on a 1-5 scale); strong buy 4, buy 9, hold 3, sell 0, strong sell 0 (bullish share 81% now vs 80% three months ago). Mean target 49.13 (+26% from the price; range 43.00-55.00). 
 Last 90 days: 0 upgrades, 0 downgrades, 1 target raises, 6 target cuts.
@@ -2979,6 +3020,7 @@ Headline tone over the year: 68 negative, 28 positive, 111 neutral; last 30 days
 
 **Peers and group.** Closest by market-neutral correlation: CCL (0.73), RCL (0.62), UAL (0.38), DAL (0.38), LUV (0.34); group of 6 stocks (largest: RCL, DAL, CCL, UAL), mean correlation to the group 0.489; beta 2.09 to the equal-weight market, residual volatility 42% a year.
 **Last 20 days:** stock -5.0%, peer group +6.5%, relative to the group (beta-adjusted) -11.2%. The group over 6 months: +10.4%. z=-0.9, within its normal range.
+The group as one basket: not beaten down (6 months +5.0%, -4.8% vs its 200-day MA); 0% of the other members are beaten down.
 
 **What analysts say.** Consensus **buy** (25 analysts, mean rating 2.3 on a 1-5 scale); strong buy 1, buy 9, hold 17, sell 0, strong sell 0 (bullish share 37% now vs 46% three months ago). Mean target 20.20 (+38% from the price; range 13.00-32.00). 
 Last 90 days: 0 upgrades, 2 downgrades, 4 target raises, 10 target cuts.
@@ -3055,6 +3097,7 @@ Headline tone over the year: 19 negative, 23 positive, 75 neutral; last 30 days 
 
 **Peers and group.** Closest by market-neutral correlation: VST (0.72), CEG (0.61), EME (0.47), FIX (0.45), PWR (0.45); group of 16 stocks (largest: NVDA, AVGO, ORCL, NBIS), mean correlation to the group 0.393; beta 1.53 to the equal-weight market, residual volatility 46% a year.
 **Last 20 days:** stock -12.7%, peer group +4.8%, relative to the group (beta-adjusted) -15.1%. The group over 6 months: +34.6%. z=-1.2, within its normal range.
+The group as one basket: not beaten down (6 months +27.6%, +8.4% vs its 200-day MA); 7% of the other members are beaten down.
 
 **What analysts say.** Consensus **buy** (16 analysts, mean rating 1.6 on a 1-5 scale); strong buy 3, buy 10, hold 3, sell 0, strong sell 0 (bullish share 81% now vs 82% three months ago). Mean target 188.56 (+97% from the price; range 104.00-270.00). 
 Last 90 days: 0 upgrades, 0 downgrades, 3 target raises, 6 target cuts.
@@ -3117,6 +3160,7 @@ Headline tone over the year: 10 negative, 19 positive, 65 neutral; last 30 days 
 
 **Peers and group.** Closest by market-neutral correlation: JBHT (0.58), FDX (0.38), CSX (0.37), EXPD (0.34), CHRW (0.32); group of 6 stocks (largest: FDX, UPS, JBHT, CHRW), mean correlation to the group 0.383; beta 1.51 to the equal-weight market, residual volatility 31% a year.
 **Last 20 days:** stock -6.9%, peer group -6.9%, relative to the group (beta-adjusted) +1.1%. The group over 6 months: +4.7%. z=+0.3, within its normal range.
+The group as one basket: not beaten down (6 months +2.7%, -4.6% vs its 200-day MA); 20% of the other members are beaten down.
 
 **What analysts say.** Consensus **buy** (22 analysts, mean rating 2.3 on a 1-5 scale); strong buy 1, buy 9, hold 12, sell 1, strong sell 1 (bullish share 42% now vs 33% three months ago). Mean target 230.91 (+33% from the price; range 156.00-280.00). 
 Last 90 days: 3 upgrades, 1 downgrades, 11 target raises, 1 target cuts.
@@ -3179,6 +3223,7 @@ Headline tone over the year: 12 negative, 31 positive, 46 neutral; last 30 days 
 
 **Peers and group.** Closest by market-neutral correlation: EXC (0.77), AEE (0.74), DUK (0.74), EVRG (0.73), CMS (0.72); group of 25 stocks (largest: NEE, AEP, SO, DUK), mean correlation to the group 0.644; beta 0.33 to the equal-weight market, residual volatility 17% a year.
 **Last 20 days:** stock -3.8%, peer group -6.3%, relative to the group (beta-adjusted) +2.3%. The group over 6 months: -11.0%. z=+1.1, within its normal range.
+The group as one basket: beaten down (6 months -11.0%, -7.9% vs its 200-day MA); 79% of the other members are beaten down. In the study (docs/research_groups.md) wedge signals in stocks where most of the group was beaten down too earned +1.2% (train) / +1.9% (test) more over 20 bars, positive in all 6 years tested; it does not hold at 60 bars. Moderate evidence, context not a filter.
 
 **What analysts say.** Consensus **buy** (16 analysts, mean rating 1.7 on a 1-5 scale); strong buy 4, buy 9, hold 4, sell 0, strong sell 0 (bullish share 76% now vs 75% three months ago). Mean target 40.12 (+22% from the price; range 35.00-45.00). 
 Last 90 days: 0 upgrades, 0 downgrades, 4 target raises, 6 target cuts.
@@ -3248,6 +3293,7 @@ Headline tone over the year: 8 negative, 16 positive, 42 neutral; last 30 days 3
 
 **Peers and group.** Closest by market-neutral correlation: LNT (0.45), AEE (0.45), NI (0.45), PEG (0.45), XEL (0.44); group of 25 stocks (largest: NEE, AEP, SO, DUK), mean correlation to the group 0.384; beta 0.71 to the equal-weight market, residual volatility 25% a year.
 **Last 20 days:** stock -6.7%, peer group -6.2%, relative to the group (beta-adjusted) -0.4%. The group over 6 months: -10.8%. z=-0.1, within its normal range.
+The group as one basket: beaten down (6 months -11.0%, -7.9% vs its 200-day MA); 79% of the other members are beaten down. In the study (docs/research_groups.md) wedge signals in stocks where most of the group was beaten down too earned +1.2% (train) / +1.9% (test) more over 20 bars, positive in all 6 years tested; it does not hold at 60 bars. Moderate evidence, context not a filter.
 
 **What analysts say.** Consensus **buy** (18 analysts, mean rating 1.6 on a 1-5 scale); strong buy 4, buy 12, hold 4, sell 0, strong sell 0 (bullish share 80% now vs 74% three months ago). Mean target 99.92 (+28% from the price; range 83.00-118.00). 
 Last 90 days: 1 upgrades, 1 downgrades, 0 target raises, 9 target cuts.
@@ -3320,6 +3366,7 @@ Headline tone over the year: 17 negative, 23 positive, 78 neutral; last 30 days 
 
 **Peers and group.** Closest by market-neutral correlation: DUK (0.85), CMS (0.80), WEC (0.79), ED (0.79), LNT (0.77); group of 25 stocks (largest: NEE, AEP, DUK, XEL), mean correlation to the group 0.683; beta 0.18 to the equal-weight market, residual volatility 17% a year.
 **Last 20 days:** stock -5.9%, peer group -6.2%, relative to the group (beta-adjusted) +0.1%. The group over 6 months: -11.0%. z=+0.4, within its normal range.
+The group as one basket: beaten down (6 months -11.0%, -7.9% vs its 200-day MA); 79% of the other members are beaten down. In the study (docs/research_groups.md) wedge signals in stocks where most of the group was beaten down too earned +1.2% (train) / +1.9% (test) more over 20 bars, positive in all 6 years tested; it does not hold at 60 bars. Moderate evidence, context not a filter.
 
 **What analysts say.** Consensus **hold** (19 analysts, mean rating 2.6 on a 1-5 scale); strong buy 1, buy 6, hold 14, sell 2, strong sell 0 (bullish share 30% now vs 29% three months ago). Mean target 98.66 (+19% from the price; range 79.00-112.00). 
 Last 90 days: 0 upgrades, 1 downgrades, 2 target raises, 5 target cuts.
@@ -3397,6 +3444,7 @@ Headline tone over the year: 30 negative, 45 positive, 86 neutral; last 30 days 
 
 **Peers and group.** Closest by market-neutral correlation: T (0.57), VZ (0.54), KR (0.37), PGR (0.34), CMCSA (0.34); group of 5 stocks (largest: T, VZ, CMCSA, CHTR), mean correlation to the group 0.408; beta 0.29 to the equal-weight market, residual volatility 29% a year.
 **Last 20 days:** stock -10.5%, peer group -14.1%, relative to the group (beta-adjusted) -2.2%. The group over 6 months: -22.6%. z=-0.1, within its normal range.
+The group as one basket: beaten down (6 months -22.3%, -13.4% vs its 200-day MA); 75% of the other members are beaten down. In the study (docs/research_groups.md) wedge signals in stocks where most of the group was beaten down too earned +1.2% (train) / +1.9% (test) more over 20 bars, positive in all 6 years tested; it does not hold at 60 bars. Moderate evidence, context not a filter.
 
 **What analysts say.** Consensus **buy** (25 analysts, mean rating 1.7 on a 1-5 scale); strong buy 9, buy 14, hold 5, sell 0, strong sell 0 (bullish share 82% now vs 86% three months ago). Mean target 243.52 (+49% from the price; range 169.00-300.00). 
 Last 90 days: 1 upgrades, 1 downgrades, 0 target raises, 12 target cuts.
@@ -3465,6 +3513,7 @@ Headline tone over the year: 10 negative, 43 positive, 73 neutral; last 30 days 
 
 **Peers and group.** Closest by market-neutral correlation: RL (0.49), DECK (0.26), ROST (0.18), WSM (0.18), CRH (0.17); group of 11 stocks (largest: NKE, TGT, LULU, DLTR), mean correlation to the group 0.157; beta 1.39 to the equal-weight market, residual volatility 38% a year.
 **Last 20 days:** stock -5.5%, peer group -4.5%, relative to the group (beta-adjusted) -1.6%. The group over 6 months: +2.1%. z=-0.3, within its normal range.
+The group as one basket: not beaten down (6 months -0.5%, -4.4% vs its 200-day MA); 30% of the other members are beaten down; the basket itself is in a falling wedge (confirmed, broke out 2026-09-22).
 
 **What analysts say.** Consensus **buy** (20 analysts, mean rating 2.0 on a 1-5 scale); strong buy 6, buy 11, hold 4, sell 0, strong sell 1 (bullish share 77% now vs 71% three months ago). Mean target 166.50 (+45% from the price; range 96.00-232.00). 
 Last 90 days: 0 upgrades, 0 downgrades, 6 target raises, 4 target cuts.
@@ -3533,6 +3582,7 @@ Headline tone over the year: 17 negative, 21 positive, 77 neutral; last 30 days 
 
 **Peers and group.** Closest by market-neutral correlation: ADP (0.63), TRI (0.59), FDS (0.58), BR (0.57), PAYX (0.54); group of 20 stocks (largest: IBM, ACN, ADP, CTSH), mean correlation to the group 0.43; beta 0.41 to the equal-weight market, residual volatility 29% a year.
 **Last 20 days:** stock -13.4%, peer group -13.2%, relative to the group (beta-adjusted) -2.0%. The group over 6 months: -2.1%. z=-0.1, within its normal range.
+The group as one basket: not beaten down (6 months -2.1%, -7.7% vs its 200-day MA); 26% of the other members are beaten down.
 
 **What analysts say.** Consensus **buy** (17 analysts, mean rating 2.1 on a 1-5 scale); strong buy 4, buy 7, hold 8, sell 0, strong sell 0 (bullish share 58% now vs 53% three months ago). Mean target 234.76 (+40% from the price; range 195.00-260.00). 
 Last 90 days: 1 upgrades, 0 downgrades, 4 target raises, 1 target cuts.
@@ -3602,6 +3652,7 @@ Headline tone over the year: 12 negative, 11 positive, 64 neutral; last 30 days 
 
 **Peers and group.** Closest by market-neutral correlation: MLM (0.83), CRH (0.55), SHW (0.35), PHM (0.30), HD (0.30); group of 3 stocks (largest: CRH, MLM), mean correlation to the group 0.691; beta 0.96 to the equal-weight market, residual volatility 22% a year.
 **Last 20 days:** stock -5.8%, peer group -7.1%, relative to the group (beta-adjusted) +0.3%. The group over 6 months: -19.4%. z=+0.0, within its normal range.
+The group as one basket: beaten down (6 months -16.1%, -18.4% vs its 200-day MA); 100% of the other members are beaten down. In the study (docs/research_groups.md) wedge signals in stocks where most of the group was beaten down too earned +1.2% (train) / +1.9% (test) more over 20 bars, positive in all 6 years tested; it does not hold at 60 bars. Moderate evidence, context not a filter.
 
 **What analysts say.** Consensus **buy** (23 analysts, mean rating 1.8 on a 1-5 scale); strong buy 2, buy 14, hold 7, sell 1, strong sell 0 (bullish share 67% now vs 65% three months ago). Mean target 321.78 (+32% from the price; range 238.00-365.00). 
 Last 90 days: 0 upgrades, 1 downgrades, 1 target raises, 4 target cuts.
@@ -3662,6 +3713,7 @@ Headline tone over the year: 9 negative, 22 positive, 62 neutral; last 30 days 7
 
 **Peers and group.** Closest by market-neutral correlation: AEE (0.85), CMS (0.83), LNT (0.82), ED (0.82), DUK (0.81); group of 25 stocks (largest: NEE, AEP, SO, DUK), mean correlation to the group 0.697; beta 0.28 to the equal-weight market, residual volatility 16% a year.
 **Last 20 days:** stock -5.1%, peer group -6.3%, relative to the group (beta-adjusted) +1.1%. The group over 6 months: -11.1%. z=+1.0, within its normal range.
+The group as one basket: beaten down (6 months -11.0%, -7.9% vs its 200-day MA); 79% of the other members are beaten down. In the study (docs/research_groups.md) wedge signals in stocks where most of the group was beaten down too earned +1.2% (train) / +1.9% (test) more over 20 bars, positive in all 6 years tested; it does not hold at 60 bars. Moderate evidence, context not a filter.
 
 **What analysts say.** Consensus **buy** (17 analysts, mean rating 2.4 on a 1-5 scale); strong buy 2, buy 6, hold 10, sell 1, strong sell 0 (bullish share 42% now vs 40% three months ago). Mean target 121.62 (+21% from the price; range 108.50-140.00). 
 Last 90 days: 0 upgrades, 0 downgrades, 2 target raises, 3 target cuts.
@@ -3736,6 +3788,7 @@ Headline tone over the year: 14 negative, 37 positive, 73 neutral; last 30 days 
 
 **Peers and group.** Closest by market-neutral correlation: IR (0.29), ITW (0.26), CHRW (0.25), ALLE (0.21), PNR (0.20); group of 9 stocks (largest: F, GM, EL, GRMN), mean correlation to the group 0.091; beta 1.01 to the equal-weight market, residual volatility 20% a year.
 **Last 20 days:** stock -5.3%, peer group -7.0%, relative to the group (beta-adjusted) -1.5%. The group over 6 months: -5.6%. z=+0.1, within its normal range.
+The group as one basket: not beaten down (6 months -7.4%, -10.2% vs its 200-day MA); 38% of the other members are beaten down.
 
 **What analysts say.** Consensus **buy** (16 analysts, mean rating 1.9 on a 1-5 scale); strong buy 4, buy 10, hold 7, sell 0, strong sell 0 (bullish share 67% now vs 65% three months ago). Mean target 153.88 (+52% from the price; range 129.00-180.00). 
 Last 90 days: 0 upgrades, 0 downgrades, 9 target raises, 1 target cuts.
@@ -3806,6 +3859,7 @@ Headline tone over the year: 26 negative, 39 positive, 96 neutral; last 30 days 
 
 **Peers and group.** Closest by market-neutral correlation: MCD (0.51), DPZ (0.37), KO (0.36), CCEP (0.34), AWK (0.33); group of 10 stocks (largest: MCD, PM, MO, MNST), mean correlation to the group 0.299; beta 0.49 to the equal-weight market, residual volatility 22% a year.
 **Last 20 days:** stock -9.9%, peer group -6.5%, relative to the group (beta-adjusted) -4.2%. The group over 6 months: +0.9%. z=-0.9, within its normal range.
+The group as one basket: not beaten down (6 months -0.2%, -3.9% vs its 200-day MA); 33% of the other members are beaten down.
 
 **What analysts say.** Consensus **buy** (22 analysts, mean rating 2.1 on a 1-5 scale); strong buy 3, buy 10, hold 13, sell 0, strong sell 0 (bullish share 50% now vs 42% three months ago). Mean target 173.02 (+27% from the price; range 147.00-200.00). 
 Last 90 days: 1 upgrades, 1 downgrades, 3 target raises, 4 target cuts.
