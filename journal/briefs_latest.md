@@ -1,65 +1,65 @@
 # AlgoVision stock briefs - 2026-09-30
 
-One brief per name in today's report tables (54 stocks): where the stock is, why it fell (only evidence found in the data: headlines naming the company near the largest down days, rating cuts, market-wide days; otherwise "not found"), what analysts say, the last report and the estimates, the fundamentals, and a rule-based read (signs of a bottom / undecided / still falling) whose signals are listed so it can be checked, plus what worries investors (the themes of the negative headlines of the last year, each with the headlines behind it) and a sentiment read over listed signals (analysts, targets, estimate revisions, short interest, the StockTwits crowd, headline tone). Data: Yahoo Finance (analysts, estimates, statistics, news), Google News headlines, StockTwits, SEC EDGAR. Systematic screens, not investment advice.
+One brief per name in today's report tables (54 stocks): where the stock is, why it fell (only evidence found in the data: headlines naming the company near the largest down days, rating cuts, market-wide days; otherwise "not found"), what analysts say, the last report and the estimates, the fundamentals, and a rule-based read (signs of a bottom / undecided / still falling) whose signals are listed so it can be checked, plus what worries investors (the themes of the negative headlines of the last year, each with the headlines behind it) and a sentiment read over listed signals (analysts, targets, estimate revisions, short interest, the StockTwits crowd, headline tone). Data: Yahoo Finance (analysts, estimates, statistics, news), Google News headlines, StockTwits, SEC EDGAR; peer groups and the 20-day divergence from the peer group are computed from prices (market-neutral correlation clustering). Systematic screens, not investment advice.
 
 ## Summary
 
-| symbol                                                 | in tables                                 | read              |   score | why fell                                                                                                                         | concerns                                               | sentiment   |   last | from 52w high   | vs MA50   | consensus   |   analysts | target upside   | up/down 90d   | EPS est 30d   | last surprise   | next report   |
-|:-------------------------------------------------------|:------------------------------------------|:------------------|--------:|:---------------------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------|:------------|-------:|:----------------|:----------|:------------|-----------:|:----------------|:--------------|:--------------|:----------------|:--------------|
-| [CRM](https://www.tradingview.com/chart/?symbol=CRM)   | insider buys (other)                      | signs of a bottom |     9.5 | rating cut, demand/competition, deal/financing, management, earnings, news                                                       | technology disruption / AI, management / turnaround    | mixed       | 229.57 | -13%            | +6%       | buy         |         53 | +22%            | 0/2           | +2.2%         | +80.4%          | 2026-12-02    |
-| [AMT](https://www.tradingview.com/chart/?symbol=AMT)   | insider buys (other)                      | signs of a bottom |     7.5 | earnings, guidance, demand/competition, rating cut, news                                                                         | guidance / outlook cut, technology disruption / AI     | positive    | 163.69 | -15%            | -5%       | buy         |         23 | +32%            | 2/0           | +5.8%         | +20.6%          | 2026-10-27    |
-| [KDP](https://www.tradingview.com/chart/?symbol=KDP)   | insider buys (other)                      | signs of a bottom |     7.5 | legal/regulatory, deal/financing, news, earnings                                                                                 | management / turnaround, competition / market share    | positive    |  30.34 | -9%             | -2%       | buy         |         17 | +19%            | 1/0           | +0.0%         | +6.2%           | 2026-10-26    |
-| [ECL](https://www.tradingview.com/chart/?symbol=ECL)   | insider buys (other)                      | signs of a bottom |     6.5 | earnings, rating cut, deal/financing, management                                                                                 | technology disruption / AI, management / turnaround    | positive    | 274.58 | -10%            | -1%       | buy         |         21 | +18%            | 1/0           | -0.0%         | +0.5%           | 2026-10-27    |
-| [DVN](https://www.tradingview.com/chart/?symbol=DVN)   | insider buys (other)                      | signs of a bottom |     5.5 | earnings, deal/financing, news, market-wide, rating cut, guidance                                                                | earnings miss, margins / costs                         | mixed       |  46.04 | -10%            | -1%       | strong buy  |         28 | +31%            | 0/0           | -1.7%         | +11.3%          | 2026-11-04    |
-| [VRSK](https://www.tradingview.com/chart/?symbol=VRSK) | falling wedge                             | signs of a bottom |     5.5 | earnings, news, rating cut, deal/financing, demand/competition                                                                   | technology disruption / AI, margins / costs            | positive    | 167.85 | -33%            | -9%       | buy         |         17 | +40%            | 1/0           | -0.0%         | +2.4%           | 2026-10-28    |
-| [ODFL](https://www.tradingview.com/chart/?symbol=ODFL) | falling wedge                             | signs of a bottom |     5   | demand/competition, legal/regulatory, market-wide, earnings                                                                      | margins / costs, competition / market share            | positive    | 173.84 | -30%            | -12%      | buy         |         22 | +33%            | 3/1           | +0.1%         | +9.7%           | 2026-10-28    |
-| [MGM](https://www.tradingview.com/chart/?symbol=MGM)   | news-day                                  | signs of a bottom |     4.5 | deal/financing, rating cut, demand/competition, earnings, legal/regulatory, market-wide, management                              | China / international markets, management / turnaround | negative    |  31.05 | -39%            | -25%      | buy         |         19 | +59%            | 1/0           | -0.7%         | +1.9%           | 2026-10-28    |
-| [LDOS](https://www.tradingview.com/chart/?symbol=LDOS) | falling wedge                             | signs of a bottom |     4.5 | demand/competition, deal/financing, earnings, company disclosure (8-K), guidance, rating cut, news                               | guidance / outlook cut, analyst downgrades             | mixed       | 121.83 | -38%            | -6%       | buy         |         15 | +29%            | 0/0           | +0.0%         | +12.1%          | 2026-11-03    |
-| [TPR](https://www.tradingview.com/chart/?symbol=TPR)   | falling wedge                             | signs of a bottom |     4   | earnings, guidance, demand/competition, management, rating cut, legal/regulatory                                                 | guidance / outlook cut, management / turnaround        | positive    | 115.04 | -30%            | -12%      | buy         |         20 | +45%            | 0/0           | +1.6%         | +3.4%           | 2026-11-05    |
-| [FOX](https://www.tradingview.com/chart/?symbol=FOX)   | insider buys (other)                      | signs of a bottom |     3.5 | deal/financing, company disclosure (8-K), legal/regulatory, market-wide, management, earnings, demand/competition                | legal / regulatory, competition / market share         | positive    |  56.3  | -16%            | -1%       |             |            |                 | 1/1           |               |                 | 2026-10-29    |
-| [WELL](https://www.tradingview.com/chart/?symbol=WELL) | insider buys (other)                      | signs of a bottom |     3.5 | company disclosure (8-K), earnings, guidance, rating cut                                                                         | competition / market share, guidance / outlook cut     | positive    | 230.24 | -8%             | -2%       | buy         |         22 | +14%            | 0/0           |               | -16.9%          | 2026-10-26    |
-| [DECK](https://www.tradingview.com/chart/?symbol=DECK) | falling wedge                             | signs of a bottom |     3.5 | earnings, guidance, legal/regulatory, rating cut, market-wide                                                                    | guidance / outlook cut, tariffs / trade                | positive    |  78.14 | -35%            | -12%      | buy         |         22 | +54%            | 1/0           | -0.2%         | +7.6%           | 2026-10-22    |
-| [XYL](https://www.tradingview.com/chart/?symbol=XYL)   | falling wedge                             | signs of a bottom |     3.5 | earnings, guidance, legal/regulatory, rating cut, deal/financing, news, market-wide, demand/competition                          | debt / financing, guidance / outlook cut               | positive    | 101.27 | -33%            | -10%      | buy         |         16 | +52%            | 0/0           | -0.0%         | +9.2%           | 2026-10-27    |
-| [MSCI](https://www.tradingview.com/chart/?symbol=MSCI) | insider buys (other)                      | undecided         |     2.5 | earnings, guidance, deal/financing, rating cut, demand/competition, legal/regulatory, news, company disclosure (8-K)             | guidance / outlook cut, analyst downgrades             | mixed       | 538.66 | -16%            | -4%       | strong buy  |         17 | +28%            | 0/0           | +0.3%         | -0.8%           | 2026-10-20    |
-| [ALGN](https://www.tradingview.com/chart/?symbol=ALGN) | falling wedge                             | undecided         |     2.5 | market-wide, earnings, guidance, rating cut, company disclosure (8-K)                                                            | guidance / outlook cut, legal / regulatory             | mixed       | 145.35 | -26%            | -10%      | buy         |         14 | +42%            | 0/0           | -0.0%         | +1.7%           | 2026-10-28    |
-| [CEG](https://www.tradingview.com/chart/?symbol=CEG)   | falling wedge                             | undecided         |     2.5 | company disclosure (8-K), rating cut, news, deal/financing, management, guidance, earnings, demand/competition                   | guidance / outlook cut, debt / financing               | mixed       | 254.02 | -37%            | -7%       | buy         |         20 | +37%            | 0/0           | +0.0%         | +11.7%          | 2026-11-09    |
-| [HSY](https://www.tradingview.com/chart/?symbol=HSY)   | falling wedge                             | undecided         |     2.5 | legal/regulatory, news, demand/competition, earnings, deal/financing, guidance, rating cut                                       | margins / costs, weak demand / consumer                | positive    | 157.61 | -32%            | -11%      | buy         |         21 | +29%            | 0/0           | -0.0%         | +33.1%          | 2026-11-05    |
-| [UBER](https://www.tradingview.com/chart/?symbol=UBER) | insider buys (other)                      | undecided         |     2   | deal/financing, market-wide, news, management, earnings, guidance, demand/competition, rating cut                                | guidance / outlook cut, earnings miss                  | mixed       |  68.51 | -32%            | -6%       | buy         |         47 | +47%            | 0/0           | -1.6%         | +40.2%          | 2026-11-03    |
-| [VST](https://www.tradingview.com/chart/?symbol=VST)   | insider buys (other)                      | undecided         |     2   | demand/competition, deal/financing, rating cut, news, company disclosure (8-K), management, earnings                             | technology disruption / AI, weak demand / consumer     | mixed       | 138.35 | -34%            | -4%       | strong buy  |         19 | +57%            | 0/0           | -0.1%         | -54.2%          | 2026-11-06    |
-| [DUK](https://www.tradingview.com/chart/?symbol=DUK)   | falling wedge                             | undecided         |     2   | legal/regulatory, guidance, demand/competition, company disclosure (8-K), rating cut, earnings, management                       | guidance / outlook cut, debt / financing               | mixed       | 114.01 | -13%            | -6%       | buy         |         18 | +20%            | 1/0           | -0.0%         | +9.6%           | 2026-11-05    |
-| [TMUS](https://www.tradingview.com/chart/?symbol=TMUS) | falling wedge                             | undecided         |     2   | earnings, management, guidance, rating cut, demand/competition, news, deal/financing, company disclosure (8-K)                   | guidance / outlook cut, competition / market share     | mixed       | 163.08 | -30%            | -8%       | buy         |         25 | +49%            | 1/1           | +0.0%         | +14.9%          | 2026-10-28    |
-| [AON](https://www.tradingview.com/chart/?symbol=AON)   | insider buys (beaten-down)                | undecided         |     1.5 | deal/financing, company disclosure (8-K), earnings, management, rating cut                                                       | management / turnaround, guidance / outlook cut        | mixed       | 276.77 | -27%            | -17%      | buy         |         19 | +39%            | 0/1           | -1.9%         | +0.3%           | 2026-10-30    |
-| [PODD](https://www.tradingview.com/chart/?symbol=PODD) | insider buys (beaten-down)                | undecided         |     1.5 | earnings, guidance, rating cut, company disclosure (8-K), legal/regulatory, management, market-wide                              | legal / regulatory, guidance / outlook cut             | mixed       | 130.47 | -62%            | -11%      | buy         |         22 | +32%            | 0/5           | -0.0%         | +14.3%          | 2026-11-05    |
-| [BSX](https://www.tradingview.com/chart/?symbol=BSX)   | insider buys (beaten-down)                | undecided         |     1.5 | earnings, guidance, demand/competition, rating cut, management, company disclosure (8-K), legal/regulatory                       | guidance / outlook cut, analyst downgrades             | negative    |  43.65 | -58%            | -7%       | buy         |         29 | +40%            | 0/2           | -1.0%         | +3.9%           | 2026-10-28    |
-| [LHX](https://www.tradingview.com/chart/?symbol=LHX)   | falling wedge                             | undecided         |     1.5 | earnings, guidance, demand/competition, rating cut, news, management, company disclosure (8-K), market-wide                      | management / turnaround, guidance / outlook cut        | mixed       | 236.78 | -37%            | -11%      | buy         |         15 | +42%            | 0/0           | +0.8%         | +27.9%          | 2026-10-29    |
-| [TSN](https://www.tradingview.com/chart/?symbol=TSN)   | insider buys (beaten-down), falling wedge | undecided         |     1   | company disclosure (8-K), earnings, guidance, rating cut, management, demand/competition                                         | management / turnaround, guidance / outlook cut        | negative    |  50.53 | -25%            | -8%       | hold        |         12 | +27%            | 1/0           | -6.2%         | +0.3%           | 2026-11-16    |
-| [TFC](https://www.tradingview.com/chart/?symbol=TFC)   | insider buys (other)                      | undecided         |     1   | management, company disclosure (8-K), market-wide, rating cut, earnings                                                          | management / turnaround, analyst downgrades            | mixed       |  46.3  | -14%            | -8%       | hold        |         18 | +19%            | 0/4           | -0.3%         | +13.8%          | 2026-10-16    |
-| [ARE](https://www.tradingview.com/chart/?symbol=ARE)   | insider buys (other)                      | undecided         |     1   | earnings, demand/competition, news, rating cut, company disclosure (8-K), guidance                                               | guidance / outlook cut, earnings miss                  | mixed       |  47.46 | -41%            | -7%       | hold        |         14 | +11%            | 0/1           | -0.3%         | +26.2%          | 2026-10-26    |
-| [WEC](https://www.tradingview.com/chart/?symbol=WEC)   | falling wedge                             | undecided         |     1   | rating cut, company disclosure (8-K), earnings, demand/competition, market-wide                                                  | guidance / outlook cut, management / turnaround        | positive    | 100.78 | -14%            | -6%       | buy         |         17 | +21%            | 0/0           | +0.0%         | +12.3%          | 2026-10-29    |
-| [YUM](https://www.tradingview.com/chart/?symbol=YUM)   | falling wedge                             | undecided         |     1   | deal/financing, market-wide, rating cut, guidance, legal/regulatory, earnings, demand/competition                                | legal / regulatory, China / international markets      | mixed       | 136.34 | -18%            | -7%       | buy         |         22 | +27%            | 1/1           | -3.6%         | +3.7%           | 2026-11-03    |
-| [APTV](https://www.tradingview.com/chart/?symbol=APTV) | insider buys (beaten-down), falling wedge | undecided         |     0.5 | earnings, guidance, demand/competition, rating cut, deal/financing, company disclosure (8-K), market-wide                        | guidance / outlook cut, analyst downgrades             | mixed       |  43.02 | -51%            | -11%      | buy         |         18 | +55%            | 0/2           | +0.0%         | +14.1%          | 2026-10-29    |
-| [AOS](https://www.tradingview.com/chart/?symbol=AOS)   | falling wedge                             | undecided         |     0.5 | earnings, rating cut, legal/regulatory, demand/competition, management, guidance, market-wide                                    | legal / regulatory, earnings miss                      | mixed       |  56.37 | -29%            | -6%       | hold        |         11 | +24%            | 0/0           | -0.1%         | +11.5%          | 2026-10-27    |
-| [DOW](https://www.tradingview.com/chart/?symbol=DOW)   | falling wedge                             | undecided         |     0.5 | news, management, legal/regulatory, earnings, market-wide, guidance, demand/competition, rating cut                              | guidance / outlook cut, margins / costs                | negative    |  27.54 | -33%            | -7%       | buy         |         16 | +24%            | 0/1           | -2.2%         | +12.6%          | 2026-10-22    |
-| [HRL](https://www.tradingview.com/chart/?symbol=HRL)   | falling wedge                             | undecided         |     0.5 | earnings, guidance, management, demand/competition, rating cut, news, deal/financing                                             | guidance / outlook cut, weak demand / consumer         | mixed       |  19.94 | -24%            | -13%      | hold        |          8 | +31%            | 0/0           | -0.4%         | +4.6%           |               |
-| [VMC](https://www.tradingview.com/chart/?symbol=VMC)   | falling wedge                             | undecided         |     0.5 | earnings, rating cut, demand/competition, news, deal/financing                                                                   | earnings miss, margins / costs                         | negative    | 244.63 | -26%            | -8%       | buy         |         23 | +32%            | 0/1           | -0.4%         | +4.9%           | 2026-10-29    |
-| [COO](https://www.tradingview.com/chart/?symbol=COO)   | insider buys (beaten-down)                | undecided         |     0   | earnings, company disclosure (8-K), guidance, demand/competition, rating cut                                                     | guidance / outlook cut, earnings miss                  | negative    |  56.53 | -33%            | -16%      | buy         |         14 | +17%            | 0/4           | -2.1%         | +2.7%           |               |
-| [MO](https://www.tradingview.com/chart/?symbol=MO)     | insider buys (other)                      | undecided         |     0   | earnings, guidance, demand/competition, company disclosure (8-K), rating cut, management, legal/regulatory                       | weak demand / consumer, earnings miss                  | mixed       |  67.34 | -9%             | -1%       | hold        |         11 | +4%             | 0/0           | +0.0%         | -1.2%           | 2026-10-29    |
-| [TAP](https://www.tradingview.com/chart/?symbol=TAP)   | falling wedge                             | undecided         |     0   | earnings, company disclosure (8-K), demand/competition, management, guidance, rating cut                                         | guidance / outlook cut, margins / costs                | negative    |  36.47 | -31%            | -9%       | hold        |         21 | +24%            | 0/0           | -0.7%         | +4.4%           | 2026-11-03    |
-| [FICO](https://www.tradingview.com/chart/?symbol=FICO) | news-day                                  | undecided         |    -0.5 | legal/regulatory, demand/competition, rating cut, earnings, news                                                                 | competition / market share, margins / costs            | negative    | 592.47 | -68%            | -44%      | buy         |         19 | +112%           | 0/2           | -0.2%         | +3.4%           | 2026-11-04    |
-| [CNP](https://www.tradingview.com/chart/?symbol=CNP)   | falling wedge                             | undecided         |    -0.5 | earnings, rating cut, company disclosure (8-K), management, demand/competition, guidance, market-wide                            | debt / financing, weak demand / consumer               | mixed       |  36.8  | -18%            | -8%       | buy         |         17 | +23%            | 0/0           | -0.1%         | +7.4%           | 2026-10-27    |
-| [ED](https://www.tradingview.com/chart/?symbol=ED)     | falling wedge                             | undecided         |    -0.5 | earnings                                                                                                                         | margins / costs, earnings miss                         | mixed       | 102.21 | -10%            | -5%       | hold        |         16 | +8%             | 0/0           | -0.0%         | +7.4%           | 2026-11-05    |
-| [CRH](https://www.tradingview.com/chart/?symbol=CRH)   | falling wedge                             | undecided         |    -0.5 | news, rating cut, earnings, deal/financing, market-wide, guidance                                                                | guidance / outlook cut, margins / costs                | mixed       |  82.8  | -36%            | -11%      | strong buy  |         24 | +61%            | 0/0           | -0.7%         | -4.2%           | 2026-10-29    |
-| [NI](https://www.tradingview.com/chart/?symbol=NI)     | falling wedge                             | undecided         |    -0.5 | earnings, rating cut, guidance, demand/competition, deal/financing                                                               | earnings miss, weak demand / consumer                  | mixed       |  39    | -20%            | -7%       | buy         |         15 | +26%            | 0/0           | -0.1%         | +1.5%           | 2026-10-28    |
-| [PPL](https://www.tradingview.com/chart/?symbol=PPL)   | falling wedge                             | undecided         |    -0.5 | earnings, legal/regulatory, company disclosure (8-K), rating cut                                                                 | guidance / outlook cut, legal / regulatory             | negative    |  32.89 | -16%            | -4%       | buy         |         16 | +22%            | 0/0           | +0.0%         | -4.0%           | 2026-11-04    |
-| [AEP](https://www.tradingview.com/chart/?symbol=AEP)   | falling wedge                             | undecided         |    -1   | guidance, earnings, rating cut, demand/competition, deal/financing, market-wide, company disclosure (8-K)                        | earnings miss, guidance / outlook cut                  | positive    | 118.64 | -14%            | -4%       | buy         |         20 | +21%            | 0/1           | +0.1%         | -8.2%           | 2026-10-28    |
-| [NCLH](https://www.tradingview.com/chart/?symbol=NCLH) | falling wedge                             | undecided         |    -1   | earnings, demand/competition, news, rating cut, guidance, management                                                             | guidance / outlook cut, management / turnaround        | negative    |  14.66 | -41%            | -13%      | buy         |         25 | +38%            | 0/2           | +0.1%         | +22.8%          | 2026-11-04    |
-| [SRE](https://www.tradingview.com/chart/?symbol=SRE)   | falling wedge                             | undecided         |    -1   | company disclosure (8-K), rating cut, earnings, market-wide, news, management                                                    | earnings miss, guidance / outlook cut                  | positive    |  77.96 | -21%            | -7%       | buy         |         18 | +28%            | 1/1           | +0.1%         | +9.6%           | 2026-11-04    |
-| [CINF](https://www.tradingview.com/chart/?symbol=CINF) | insider buys (other)                      | undecided         |    -1.5 | earnings, guidance, rating cut, demand/competition, management                                                                   | analyst downgrades, management / turnaround            | mixed       | 159.37 | -17%            | -7%       | hold        |          6 | +20%            | 0/2           | -1.6%         | -21.3%          | 2026-10-26    |
-| [EQT](https://www.tradingview.com/chart/?symbol=EQT)   | falling wedge                             | undecided         |    -1.5 | guidance, deal/financing, management, earnings, demand/competition, news, rating cut, market-wide                                | guidance / outlook cut, management / turnaround        | mixed       |  48.56 | -28%            | -8%       | strong buy  |         26 | +39%            | 0/0           | -2.7%         | -3.3%           | 2026-10-20    |
-| [NRG](https://www.tradingview.com/chart/?symbol=NRG)   | falling wedge                             | undecided         |    -1.5 | earnings, guidance, demand/competition, rating cut, news, company disclosure (8-K), deal/financing, market-wide, management      | earnings miss, management / turnaround                 | mixed       |  95.65 | -48%            | -18%      | buy         |         16 | +97%            | 0/0           | +0.3%         | -14.4%          | 2026-11-05    |
-| [SO](https://www.tradingview.com/chart/?symbol=SO)     | falling wedge                             | undecided         |    -1.5 | legal/regulatory, deal/financing, management, guidance, company disclosure (8-K), demand/competition, rating cut, news, earnings | guidance / outlook cut, legal / regulatory             | mixed       |  82.89 | -15%            | -7%       | hold        |         19 | +19%            | 0/1           | +0.0%         | +11.8%          | 2026-11-05    |
-| [CMS](https://www.tradingview.com/chart/?symbol=CMS)   | falling wedge                             | still falling     |    -2.5 | earnings, deal/financing, guidance, rating cut, demand/competition, management, company disclosure (8-K)                         | guidance / outlook cut, earnings miss                  | negative    |  63.08 | -20%            | -8%       | buy         |         12 | +25%            | 0/1           | -0.0%         | +3.1%           | 2026-10-29    |
-| [NKE](https://www.tradingview.com/chart/?symbol=NKE)   | falling wedge                             | still falling     |    -3.5 | earnings, guidance, demand/competition, rating cut, legal/regulatory, management, market-wide, company disclosure (8-K)          | management / turnaround, China / international markets | negative    |  35.4  | -51%            | -9%       | hold        |         36 | +29%            | 0/4           | -3.5%         | +466.1%         | 2026-10-01    |
+| symbol                                                 | in tables                                 | read              |   score | why fell                                                                                                                         | concerns                                               | sentiment   |   last | from 52w high   | vs MA50   | vs peers 20d    | consensus   |   analysts | target upside   | up/down 90d   | EPS est 30d   | last surprise   | next report   |
+|:-------------------------------------------------------|:------------------------------------------|:------------------|--------:|:---------------------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------|:------------|-------:|:----------------|:----------|:----------------|:------------|-----------:|:----------------|:--------------|:--------------|:----------------|:--------------|
+| [CRM](https://www.tradingview.com/chart/?symbol=CRM)   | insider buys (other)                      | signs of a bottom |     9.5 | demand/competition, news, management, rating cut, deal/financing, earnings                                                       | technology disruption / AI, management / turnaround    | mixed       | 229.57 | -13%            | +6%       | +1.2% (z -0.2)  | buy         |         53 | +22%            | 0/2           | +2.2%         | +80.4%          | 2026-12-02    |
+| [AMT](https://www.tradingview.com/chart/?symbol=AMT)   | insider buys (other)                      | signs of a bottom |     7.5 | earnings, guidance, demand/competition, rating cut, news                                                                         | guidance / outlook cut, technology disruption / AI     | positive    | 163.69 | -15%            | -5%       | +3.2% (z +0.8)  | buy         |         23 | +32%            | 2/0           | +5.8%         | +20.6%          | 2026-10-27    |
+| [KDP](https://www.tradingview.com/chart/?symbol=KDP)   | insider buys (other)                      | signs of a bottom |     7.5 | legal/regulatory, deal/financing, news, earnings, guidance                                                                       | guidance / outlook cut, management / turnaround        | positive    |  30.34 | -9%             | -2%       | +4.7% (z +0.5)  | buy         |         17 | +19%            | 1/0           | +0.0%         | +6.2%           | 2026-10-26    |
+| [ECL](https://www.tradingview.com/chart/?symbol=ECL)   | insider buys (other)                      | signs of a bottom |     6.5 | earnings, rating cut, deal/financing, management                                                                                 | technology disruption / AI, management / turnaround    | positive    | 274.58 | -10%            | -1%       | +1.3% (z +0.5)  | buy         |         21 | +18%            | 1/0           | -0.0%         | +0.5%           | 2026-10-27    |
+| [DVN](https://www.tradingview.com/chart/?symbol=DVN)   | insider buys (other)                      | signs of a bottom |     5.5 | earnings, deal/financing, news, market-wide, rating cut, guidance                                                                | earnings miss, margins / costs                         | mixed       |  46.04 | -10%            | -1%       | +1.8% (z +0.6)  | strong buy  |         28 | +31%            | 0/0           | -1.7%         | +11.3%          | 2026-11-04    |
+| [VRSK](https://www.tradingview.com/chart/?symbol=VRSK) | falling wedge                             | signs of a bottom |     5.5 | earnings, news, rating cut, deal/financing, demand/competition                                                                   | technology disruption / AI, margins / costs            | positive    | 167.85 | -33%            | -9%       | -2.0% (z -0.1)  | buy         |         17 | +40%            | 1/0           | -0.0%         | +2.4%           | 2026-10-28    |
+| [MGM](https://www.tradingview.com/chart/?symbol=MGM)   | news-day                                  | signs of a bottom |     5   | deal/financing, rating cut, demand/competition, earnings, legal/regulatory, market-wide, management                              | China / international markets, management / turnaround | negative    |  31.05 | -39%            | -25%      | -17.2% (z -2.3) | buy         |         19 | +59%            | 1/0           | -0.7%         | +1.9%           | 2026-10-28    |
+| [ODFL](https://www.tradingview.com/chart/?symbol=ODFL) | falling wedge                             | signs of a bottom |     5   | demand/competition, legal/regulatory, market-wide, earnings                                                                      | margins / costs, competition / market share            | positive    | 173.84 | -30%            | -12%      | +1.1% (z +0.3)  | buy         |         22 | +33%            | 3/1           | +0.1%         | +9.7%           | 2026-10-28    |
+| [LDOS](https://www.tradingview.com/chart/?symbol=LDOS) | falling wedge                             | signs of a bottom |     4.5 | demand/competition, deal/financing, earnings, company disclosure (8-K), guidance, rating cut, news                               | guidance / outlook cut, analyst downgrades             | mixed       | 121.83 | -38%            | -6%       | -10.9% (z -0.9) | buy         |         15 | +29%            | 0/0           | +0.0%         | +12.1%          | 2026-11-03    |
+| [TPR](https://www.tradingview.com/chart/?symbol=TPR)   | falling wedge                             | signs of a bottom |     4   | earnings, guidance, demand/competition, management, rating cut, legal/regulatory                                                 | guidance / outlook cut, management / turnaround        | positive    | 115.04 | -30%            | -12%      | -1.6% (z -0.3)  | buy         |         20 | +45%            | 0/0           | +1.6%         | +3.4%           | 2026-11-05    |
+| [FOX](https://www.tradingview.com/chart/?symbol=FOX)   | insider buys (other)                      | signs of a bottom |     3.5 | deal/financing, company disclosure (8-K), legal/regulatory, market-wide, management, earnings, demand/competition                | legal / regulatory, competition / market share         | positive    |  56.3  | -16%            | -1%       | +2.4% (z +0.4)  |             |            |                 | 1/1           |               |                 | 2026-10-29    |
+| [WELL](https://www.tradingview.com/chart/?symbol=WELL) | insider buys (other)                      | signs of a bottom |     3.5 | company disclosure (8-K), earnings, guidance, rating cut                                                                         | competition / market share, guidance / outlook cut     | positive    | 230.24 | -8%             | -2%       | +2.2% (z -0.1)  | buy         |         22 | +14%            | 0/0           |               | -16.9%          | 2026-10-26    |
+| [DECK](https://www.tradingview.com/chart/?symbol=DECK) | falling wedge                             | signs of a bottom |     3.5 | earnings, guidance, legal/regulatory, rating cut, market-wide                                                                    | guidance / outlook cut, tariffs / trade                | positive    |  78.14 | -35%            | -12%      | -3.1% (z +0.0)  | buy         |         22 | +54%            | 1/0           | -0.2%         | +7.6%           | 2026-10-22    |
+| [XYL](https://www.tradingview.com/chart/?symbol=XYL)   | falling wedge                             | signs of a bottom |     3.5 | earnings, guidance, legal/regulatory, rating cut, deal/financing, news, market-wide, demand/competition                          | debt / financing, guidance / outlook cut               | positive    | 101.27 | -33%            | -10%      | -1.5% (z +0.1)  | buy         |         16 | +52%            | 0/0           | -0.0%         | +9.2%           | 2026-10-27    |
+| [MSCI](https://www.tradingview.com/chart/?symbol=MSCI) | insider buys (other)                      | undecided         |     2.5 | earnings, guidance, deal/financing, rating cut, demand/competition, legal/regulatory, news, company disclosure (8-K)             | guidance / outlook cut, analyst downgrades             | mixed       | 538.66 | -16%            | -4%       | +2.3% (z +0.3)  | strong buy  |         17 | +28%            | 0/0           | +0.3%         | -0.8%           | 2026-10-20    |
+| [ALGN](https://www.tradingview.com/chart/?symbol=ALGN) | falling wedge                             | undecided         |     2.5 | market-wide, earnings, guidance, rating cut, company disclosure (8-K)                                                            | guidance / outlook cut, legal / regulatory             | mixed       | 145.35 | -26%            | -10%      | +4.2% (z +0.3)  | buy         |         14 | +42%            | 0/0           | -0.0%         | +1.7%           | 2026-10-28    |
+| [CEG](https://www.tradingview.com/chart/?symbol=CEG)   | falling wedge                             | undecided         |     2.5 | company disclosure (8-K), rating cut, news, deal/financing, management, guidance, earnings, demand/competition                   | guidance / outlook cut, debt / financing               | mixed       | 254.02 | -37%            | -7%       | -11.6% (z -0.9) | buy         |         20 | +37%            | 0/0           | +0.0%         | +11.7%          | 2026-11-09    |
+| [HSY](https://www.tradingview.com/chart/?symbol=HSY)   | falling wedge                             | undecided         |     2.5 | legal/regulatory, news, demand/competition, earnings, deal/financing, guidance, rating cut                                       | margins / costs, weak demand / consumer                | positive    | 157.61 | -32%            | -11%      | -4.0% (z -0.6)  | buy         |         21 | +29%            | 0/0           | -0.0%         | +33.1%          | 2026-11-05    |
+| [UBER](https://www.tradingview.com/chart/?symbol=UBER) | insider buys (other)                      | undecided         |     2   | deal/financing, market-wide, news, management, earnings, guidance, demand/competition, rating cut                                | guidance / outlook cut, weak demand / consumer         | mixed       |  68.51 | -32%            | -6%       | -7.1% (z -1.1)  | buy         |         47 | +47%            | 0/0           | -1.6%         | +40.2%          | 2026-11-03    |
+| [VST](https://www.tradingview.com/chart/?symbol=VST)   | insider buys (other)                      | undecided         |     2   | demand/competition, deal/financing, rating cut, news, company disclosure (8-K), management, earnings                             | technology disruption / AI, weak demand / consumer     | mixed       | 138.35 | -34%            | -4%       | -2.1% (z +0.2)  | strong buy  |         19 | +57%            | 0/0           | -0.1%         | -54.2%          | 2026-11-06    |
+| [DUK](https://www.tradingview.com/chart/?symbol=DUK)   | falling wedge                             | undecided         |     2   | legal/regulatory, guidance, demand/competition, company disclosure (8-K), rating cut, earnings, management                       | guidance / outlook cut, debt / financing               | mixed       | 114.01 | -13%            | -6%       | +0.7% (z +0.7)  | buy         |         18 | +20%            | 1/0           | -0.0%         | +9.6%           | 2026-11-05    |
+| [TMUS](https://www.tradingview.com/chart/?symbol=TMUS) | falling wedge                             | undecided         |     2   | earnings, management, guidance, rating cut, demand/competition, news, deal/financing, company disclosure (8-K)                   | competition / market share, guidance / outlook cut     | mixed       | 163.08 | -30%            | -8%       | -2.2% (z -0.1)  | buy         |         25 | +49%            | 1/1           | +0.0%         | +14.9%          | 2026-10-28    |
+| [AON](https://www.tradingview.com/chart/?symbol=AON)   | insider buys (beaten-down)                | undecided         |     1.5 | deal/financing, company disclosure (8-K), earnings, management, rating cut                                                       | management / turnaround, guidance / outlook cut        | mixed       | 276.77 | -27%            | -17%      | -4.5% (z -0.9)  | buy         |         19 | +39%            | 0/1           | -1.9%         | +0.3%           | 2026-10-30    |
+| [PODD](https://www.tradingview.com/chart/?symbol=PODD) | insider buys (beaten-down)                | undecided         |     1.5 | earnings, guidance, rating cut, company disclosure (8-K), legal/regulatory, management, market-wide                              | legal / regulatory, guidance / outlook cut             | mixed       | 130.47 | -62%            | -11%      | -10.3% (z -0.6) | buy         |         22 | +32%            | 0/5           | -0.0%         | +14.3%          | 2026-11-05    |
+| [BSX](https://www.tradingview.com/chart/?symbol=BSX)   | insider buys (beaten-down)                | undecided         |     1.5 | earnings, guidance, demand/competition, rating cut, management, company disclosure (8-K), legal/regulatory                       | guidance / outlook cut, analyst downgrades             | negative    |  43.65 | -58%            | -7%       | -7.5% (z -0.3)  | buy         |         29 | +40%            | 0/2           | -1.0%         | +3.9%           | 2026-10-28    |
+| [LHX](https://www.tradingview.com/chart/?symbol=LHX)   | falling wedge                             | undecided         |     1.5 | earnings, guidance, demand/competition, rating cut, news, management, company disclosure (8-K), market-wide                      | management / turnaround, guidance / outlook cut        | mixed       | 236.78 | -37%            | -11%      | -1.4% (z +0.0)  | buy         |         15 | +42%            | 0/0           | +0.8%         | +27.9%          | 2026-10-29    |
+| [TSN](https://www.tradingview.com/chart/?symbol=TSN)   | insider buys (beaten-down), falling wedge | undecided         |     1   | company disclosure (8-K), earnings, guidance, rating cut, management, demand/competition                                         | management / turnaround, guidance / outlook cut        | negative    |  50.53 | -25%            | -8%       | -3.3% (z -0.5)  | hold        |         12 | +27%            | 1/0           | -6.2%         | +0.3%           | 2026-11-16    |
+| [TFC](https://www.tradingview.com/chart/?symbol=TFC)   | insider buys (other)                      | undecided         |     1   | management, company disclosure (8-K), market-wide, rating cut, earnings                                                          | management / turnaround, analyst downgrades            | mixed       |  46.3  | -14%            | -8%       | -0.5% (z -0.1)  | hold        |         18 | +19%            | 0/4           | -0.3%         | +13.8%          | 2026-10-16    |
+| [ARE](https://www.tradingview.com/chart/?symbol=ARE)   | insider buys (other)                      | undecided         |     1   | earnings, demand/competition, news, rating cut, company disclosure (8-K), guidance                                               | guidance / outlook cut, earnings miss                  | mixed       |  47.46 | -41%            | -7%       | +5.7% (z +0.8)  | hold        |         14 | +11%            | 0/1           | -0.3%         | +26.2%          | 2026-10-26    |
+| [WEC](https://www.tradingview.com/chart/?symbol=WEC)   | falling wedge                             | undecided         |     1   | rating cut, company disclosure (8-K), earnings, demand/competition, market-wide                                                  | guidance / outlook cut, management / turnaround        | positive    | 100.78 | -14%            | -6%       | +1.1% (z +1.0)  | buy         |         17 | +21%            | 0/0           | +0.0%         | +12.3%          | 2026-10-29    |
+| [YUM](https://www.tradingview.com/chart/?symbol=YUM)   | falling wedge                             | undecided         |     1   | deal/financing, market-wide, rating cut, guidance, legal/regulatory, earnings, demand/competition                                | legal / regulatory, weak demand / consumer             | mixed       | 136.34 | -18%            | -7%       | -4.2% (z -0.9)  | buy         |         22 | +27%            | 1/1           | -3.6%         | +3.7%           | 2026-11-03    |
+| [APTV](https://www.tradingview.com/chart/?symbol=APTV) | insider buys (beaten-down), falling wedge | undecided         |     0.5 | earnings, guidance, demand/competition, rating cut, deal/financing, company disclosure (8-K), market-wide                        | guidance / outlook cut, analyst downgrades             | mixed       |  43.02 | -51%            | -11%      | +4.0% (z +0.8)  | buy         |         18 | +55%            | 0/2           | +0.0%         | +14.1%          | 2026-10-29    |
+| [AOS](https://www.tradingview.com/chart/?symbol=AOS)   | falling wedge                             | undecided         |     0.5 | earnings, rating cut, legal/regulatory, demand/competition, management, guidance, market-wide                                    | legal / regulatory, earnings miss                      | mixed       |  56.37 | -29%            | -6%       | -1.6% (z +0.4)  | hold        |         11 | +24%            | 0/0           | -0.1%         | +11.5%          | 2026-10-27    |
+| [DOW](https://www.tradingview.com/chart/?symbol=DOW)   | falling wedge                             | undecided         |     0.5 | news, management, legal/regulatory, earnings, market-wide, guidance, demand/competition, rating cut                              | guidance / outlook cut, margins / costs                | negative    |  27.54 | -33%            | -7%       | -2.6% (z -0.1)  | buy         |         16 | +24%            | 0/1           | -2.2%         | +12.6%          | 2026-10-22    |
+| [HRL](https://www.tradingview.com/chart/?symbol=HRL)   | falling wedge                             | undecided         |     0.5 | earnings, guidance, management, demand/competition, rating cut, news, deal/financing                                             | guidance / outlook cut, weak demand / consumer         | mixed       |  19.94 | -24%            | -13%      | -2.0% (z -0.2)  | hold        |          8 | +31%            | 0/0           | -0.4%         | +4.6%           |               |
+| [VMC](https://www.tradingview.com/chart/?symbol=VMC)   | falling wedge                             | undecided         |     0.5 | earnings, rating cut, demand/competition, news, deal/financing                                                                   | earnings miss, weak demand / consumer                  | negative    | 244.63 | -26%            | -8%       | +0.3% (z +0.0)  | buy         |         23 | +32%            | 0/1           | -0.4%         | +4.9%           | 2026-10-29    |
+| [COO](https://www.tradingview.com/chart/?symbol=COO)   | insider buys (beaten-down)                | undecided         |     0   | earnings, company disclosure (8-K), guidance, demand/competition, rating cut                                                     | guidance / outlook cut, earnings miss                  | negative    |  56.53 | -33%            | -16%      | -12.6% (z -1.6) | buy         |         14 | +17%            | 0/4           | -2.1%         | +2.7%           |               |
+| [MO](https://www.tradingview.com/chart/?symbol=MO)     | insider buys (other)                      | undecided         |     0   | earnings, guidance, demand/competition, company disclosure (8-K), rating cut, management, legal/regulatory                       | weak demand / consumer, earnings miss                  | mixed       |  67.34 | -9%             | -1%       | +3.8% (z +0.4)  | hold        |         11 | +4%             | 0/0           | +0.0%         | -1.2%           | 2026-10-29    |
+| [FICO](https://www.tradingview.com/chart/?symbol=FICO) | news-day                                  | undecided         |     0   | guidance, rating cut, legal/regulatory, demand/competition, earnings, news                                                       | margins / costs, competition / market share            | negative    | 592.47 | -68%            | -44%      | -38.4% (z -3.6) | buy         |         19 | +112%           | 0/2           | -0.2%         | +3.4%           | 2026-11-04    |
+| [TAP](https://www.tradingview.com/chart/?symbol=TAP)   | falling wedge                             | undecided         |     0   | earnings, company disclosure (8-K), demand/competition, management, guidance, rating cut                                         | guidance / outlook cut, margins / costs                | negative    |  36.47 | -31%            | -9%       | +0.5% (z +0.4)  | hold        |         21 | +24%            | 0/0           | -0.7%         | +4.4%           | 2026-11-03    |
+| [CNP](https://www.tradingview.com/chart/?symbol=CNP)   | falling wedge                             | undecided         |    -0.5 | earnings, rating cut, company disclosure (8-K), management, demand/competition, guidance, market-wide                            | debt / financing, weak demand / consumer               | mixed       |  36.8  | -18%            | -8%       | -0.4% (z -0.2)  | buy         |         17 | +23%            | 0/0           | -0.1%         | +7.4%           | 2026-10-27    |
+| [ED](https://www.tradingview.com/chart/?symbol=ED)     | falling wedge                             | undecided         |    -0.5 | earnings, demand/competition                                                                                                     | margins / costs, earnings miss                         | mixed       | 102.21 | -10%            | -5%       | +0.8% (z +0.1)  | hold        |         16 | +8%             | 0/0           | -0.0%         | +7.4%           | 2026-11-05    |
+| [CRH](https://www.tradingview.com/chart/?symbol=CRH)   | falling wedge                             | undecided         |    -0.5 | news, rating cut, earnings, deal/financing, market-wide, guidance                                                                | guidance / outlook cut, earnings miss                  | mixed       |  82.8  | -36%            | -11%      | -4.6% (z -1.0)  | strong buy  |         24 | +61%            | 0/0           | -0.7%         | -4.2%           | 2026-10-29    |
+| [NI](https://www.tradingview.com/chart/?symbol=NI)     | falling wedge                             | undecided         |    -0.5 | earnings, rating cut, guidance, demand/competition, deal/financing                                                               | earnings miss, weak demand / consumer                  | mixed       |  39    | -20%            | -7%       | +1.4% (z +0.7)  | buy         |         15 | +26%            | 0/0           | -0.1%         | +1.5%           | 2026-10-28    |
+| [PPL](https://www.tradingview.com/chart/?symbol=PPL)   | falling wedge                             | undecided         |    -0.5 | earnings, legal/regulatory, company disclosure (8-K), rating cut                                                                 | guidance / outlook cut, earnings miss                  | mixed       |  32.89 | -16%            | -4%       | +2.3% (z +1.1)  | buy         |         16 | +22%            | 0/0           | +0.0%         | -4.0%           | 2026-11-04    |
+| [AEP](https://www.tradingview.com/chart/?symbol=AEP)   | falling wedge                             | undecided         |    -1   | guidance, earnings, rating cut, demand/competition, deal/financing, market-wide, company disclosure (8-K)                        | earnings miss, guidance / outlook cut                  | positive    | 118.64 | -14%            | -4%       | +3.1% (z +0.9)  | buy         |         20 | +21%            | 0/1           | +0.1%         | -8.2%           | 2026-10-28    |
+| [NCLH](https://www.tradingview.com/chart/?symbol=NCLH) | falling wedge                             | undecided         |    -1   | earnings, demand/competition, news, rating cut, guidance, management                                                             | guidance / outlook cut, management / turnaround        | negative    |  14.66 | -41%            | -13%      | -11.2% (z -0.9) | buy         |         25 | +38%            | 0/2           | +0.1%         | +22.8%          | 2026-11-04    |
+| [SRE](https://www.tradingview.com/chart/?symbol=SRE)   | falling wedge                             | undecided         |    -1   | company disclosure (8-K), rating cut, earnings, market-wide, news, management                                                    | earnings miss, guidance / outlook cut                  | positive    |  77.96 | -21%            | -7%       | -0.4% (z -0.1)  | buy         |         18 | +28%            | 1/1           | +0.1%         | +9.6%           | 2026-11-04    |
+| [CINF](https://www.tradingview.com/chart/?symbol=CINF) | insider buys (other)                      | undecided         |    -1.5 | earnings, guidance, rating cut, demand/competition, management                                                                   | analyst downgrades, management / turnaround            | mixed       | 159.37 | -17%            | -7%       | -1.1% (z -0.4)  | hold        |          6 | +20%            | 0/2           | -1.6%         | -21.3%          | 2026-10-26    |
+| [EQT](https://www.tradingview.com/chart/?symbol=EQT)   | falling wedge                             | undecided         |    -1.5 | guidance, deal/financing, management, earnings, demand/competition, news, rating cut, market-wide                                | guidance / outlook cut, management / turnaround        | mixed       |  48.56 | -28%            | -8%       | -3.4% (z -0.4)  | strong buy  |         26 | +39%            | 0/0           | -2.7%         | -3.3%           | 2026-10-20    |
+| [NRG](https://www.tradingview.com/chart/?symbol=NRG)   | falling wedge                             | undecided         |    -1.5 | earnings, guidance, demand/competition, rating cut, news, company disclosure (8-K), deal/financing, market-wide, management      | earnings miss, margins / costs                         | mixed       |  95.65 | -48%            | -18%      | -15.1% (z -1.2) | buy         |         16 | +97%            | 0/0           | +0.3%         | -14.4%          | 2026-11-05    |
+| [SO](https://www.tradingview.com/chart/?symbol=SO)     | falling wedge                             | undecided         |    -1.5 | legal/regulatory, deal/financing, management, guidance, company disclosure (8-K), demand/competition, rating cut, news, earnings | guidance / outlook cut, legal / regulatory             | positive    |  82.89 | -15%            | -7%       | +0.1% (z +0.4)  | hold        |         19 | +19%            | 0/1           | +0.0%         | +11.8%          | 2026-11-05    |
+| [CMS](https://www.tradingview.com/chart/?symbol=CMS)   | falling wedge                             | still falling     |    -2.5 | earnings, deal/financing, guidance, rating cut, demand/competition, management, company disclosure (8-K)                         | guidance / outlook cut, earnings miss                  | negative    |  63.08 | -20%            | -8%       | -0.9% (z -0.1)  | buy         |         12 | +25%            | 0/1           | -0.0%         | +3.1%           | 2026-10-29    |
+| [NKE](https://www.tradingview.com/chart/?symbol=NKE)   | falling wedge                             | still falling     |    -3.5 | earnings, guidance, demand/competition, rating cut, legal/regulatory, management, market-wide, company disclosure (8-K)          | management / turnaround, China / international markets | negative    |  35.4  | -51%            | -9%       | -4.1% (z +0.2)  | hold        |         36 | +29%            | 0/4           | -3.5%         | +466.1%         | 2026-10-01    |
 
 ## [COO](https://www.tradingview.com/chart/?symbol=COO) The Cooper Companies, Inc.
 
@@ -112,6 +112,9 @@ Headline tone over the year: 29 negative, 29 positive, 58 neutral; last 30 days 
 
 **Positioning:** Short interest 6.0% of float (+31% vs the prior month, 3.0 days to cover), as of -2026-09-15; institutions hold 112%, insiders 0.6%; StockTwits (911 watchers): of the last 30 posts 6 bearish, 9 bullish.
 **Sentiment: negative** (signals: - fewer analysts bullish than three months ago (31% vs 62%); - price targets mostly cut in 90 days (10 cuts vs 2 raises); - EPS estimates revised down (0 up / 1 down in 30 days); - short interest rising (+31% in a month); + StockTwits crowd bullish (9 bullish vs 6 bearish of the last 30 posts); - headlines mostly negative in the last 30 days (25 negative vs 8 positive)).
+
+**Peers and group.** Closest by market-neutral correlation: STE (0.32), SYK (0.28), HRL (0.28), BDX (0.26), GEHC (0.25); group of 18 stocks (largest: ABT, SYK, MDT, ZTS), mean correlation to the group 0.205; beta 1.03 to the equal-weight market, residual volatility 30% a year.
+**Last 20 days:** stock -18.4%, peer group -6.3%, relative to the group (beta-adjusted) -12.6%. The group over 6 months: +3.3%. z=-1.6, within its normal range.
 
 **What analysts say.** Consensus **buy** (14 analysts, mean rating 2.5 on a 1-5 scale); strong buy 2, buy 3, hold 11, sell 0, strong sell 0 (bullish share 31% now vs 62% three months ago). Mean target 66.21 (+17% from the price; range 58.00-75.00). 
 Last 90 days: 0 upgrades, 4 downgrades, 2 target raises, 10 target cuts.
@@ -175,10 +178,13 @@ Latest news:
 - **guidance / outlook cut** (6): 2026-07-29 "Earnings call transcript: Aon tops Q2 2026 EPS forecast, shares slip" (Investing.com); 2026-08-01 "Rajab Butt drops bombshell warning for Aon Sheikh" (24 News HD)
 - **earnings miss** (5): 2026-07-29 "Aon Earnings Beat Expectations but Revenue Miss Sends Shares Lower" (Yahoo Finance); 2026-07-29 "Is Aon’s (AON) Persistent Buybacks and Modest Q2 Miss Reframing Its Capital Allocation Story?" (webull.com)
 - **competition / market share** (4): 2026-02-09 "Aon PLC stock underperforms Monday when compared to competitors" (MarketWatch); 2026-09-01 "Aon CEO: Acquisition of Rival USI to Create 'Premiere Middle-Market Platform' in U.S. - Pre-Announcement Alert" (dars.gov.et)
-Headline tone over the year: 22 negative, 44 positive, 93 neutral; last 30 days 13 negative vs 6 positive.
+Headline tone over the year: 22 negative, 44 positive, 93 neutral; last 30 days 7 negative vs 5 positive.
 
 **Positioning:** Short interest 1.8% of float (+10% vs the prior month, 2.5 days to cover), as of -2026-09-15; institutions hold 93%, insiders 1.0%; StockTwits (1079 watchers): of the last 30 posts 1 bearish, 1 bullish.
-**Sentiment: mixed** (signals: + price targets mostly raised in 90 days (16 raises vs 9 cuts); - EPS estimates revised down (1 up / 13 down in 30 days); - headlines mostly negative in the last 30 days (13 negative vs 6 positive)).
+**Sentiment: mixed** (signals: + price targets mostly raised in 90 days (16 raises vs 9 cuts); - EPS estimates revised down (1 up / 13 down in 30 days); - headlines mostly negative in the last 30 days (7 negative vs 5 positive)).
+
+**Peers and group.** Closest by market-neutral correlation: MRSH (0.72), AJG (0.70), BRO (0.67), WTW (0.63), ACGL (0.47); group of 6 stocks (largest: MRSH, AJG, WTW, BRO), mean correlation to the group 0.636; beta 0.50 to the equal-weight market, residual volatility 24% a year.
+**Last 20 days:** stock -15.2%, peer group -13.1%, relative to the group (beta-adjusted) -4.5%. The group over 6 months: -2.6%. z=-0.9, within its normal range.
 
 **What analysts say.** Consensus **buy** (19 analysts, mean rating 2.1 on a 1-5 scale); strong buy 4, buy 9, hold 5, sell 1, strong sell 2 (bullish share 62% now vs 64% three months ago). Mean target 383.63 (+39% from the price; range 264.00-435.00). 
 Last 90 days: 0 upgrades, 1 downgrades, 16 target raises, 9 target cuts.
@@ -240,15 +246,18 @@ Latest news:
 
 **Investor concerns and sentiment.**
 
-**What worries investors** (themes of the negative headlines of the last year, 147 headlines checked; headlines around the largest down days count double):
+**What worries investors** (themes of the negative headlines of the last year, 146 headlines checked; headlines around the largest down days count double):
 - **management / turnaround** (24): 2026-05-28 "Tyson Foods announces planned CEO change" (Talk Business & Politics); 2026-05-28 "Tyson Foods Announces Jeff Schomburger to Succeed Donnie King as President and CEO" (GlobeNewswire)
-- **guidance / outlook cut** (19): 2026-09-03 "Tyson Foods cuts profit outlook again as pressure from cattle shortage worsens" (Reuters); 2026-09-03 "Tyson Foods Cuts Revenue Guidance, Citing Cattle Pressure" (WSJ)
+- **guidance / outlook cut** (18): 2026-09-03 "Tyson Foods cuts profit outlook again as pressure from cattle shortage worsens" (Reuters); 2026-09-03 "Tyson Foods Cuts Revenue Guidance, Citing Cattle Pressure" (WSJ)
 - **margins / costs** (4): 2026-02-02 "Tyson Profits Top Estimates on Beef Pricing, Chicken Demand" (Bloomberg.com); 2026-09-03 "Tyson Foods cuts annual profit forecast again as beef pressure drains margins" (CNBC)
 - **product / delays** (3): 2026-09-03 "Tyson cuts FY26 sales growth as cattle shortage undermines beef segment (TSN:NYSE)" (Seeking Alpha)
-Headline tone over the year: 20 negative, 30 positive, 97 neutral; last 30 days 11 negative vs 6 positive.
+Headline tone over the year: 20 negative, 30 positive, 96 neutral; last 30 days 11 negative vs 7 positive.
 
-**Positioning:** Short interest 3.4% of float (+29% vs the prior month, 2.8 days to cover), as of -2026-09-15; institutions hold 94%, insiders 2.6%; StockTwits (7464 watchers): of the last 30 posts 0 bearish, 7 bullish.
-**Sentiment: negative** (signals: + more analysts bullish than three months ago (38% vs 31%); - price targets mostly cut in 90 days (5 cuts vs 0 raises); - EPS estimates revised down (3 up / 4 down in 30 days); - short interest rising (+29% in a month); + StockTwits crowd bullish (7 bullish vs 0 bearish of the last 30 posts); - headlines mostly negative in the last 30 days (11 negative vs 6 positive)).
+**Positioning:** Short interest 3.4% of float (+29% vs the prior month, 2.8 days to cover), as of -2026-09-15; institutions hold 94%, insiders 2.6%; StockTwits (7464 watchers): of the last 30 posts 0 bearish, 6 bullish.
+**Sentiment: negative** (signals: + more analysts bullish than three months ago (38% vs 31%); - price targets mostly cut in 90 days (5 cuts vs 0 raises); - EPS estimates revised down (3 up / 4 down in 30 days); - short interest rising (+29% in a month); + StockTwits crowd bullish (6 bullish vs 0 bearish of the last 30 posts); - headlines mostly negative in the last 30 days (11 negative vs 7 positive)).
+
+**Peers and group.** Closest by market-neutral correlation: KHC (0.40), GIS (0.38), PEP (0.38), MDLZ (0.37), CL (0.34); group of 20 stocks (largest: KO, PG, PEP, MDLZ), mean correlation to the group 0.299; beta 0.38 to the equal-weight market, residual volatility 24% a year.
+**Last 20 days:** stock -8.2%, peer group -8.2%, relative to the group (beta-adjusted) -3.3%. The group over 6 months: -2.3%. z=-0.5, within its normal range.
 
 **What analysts say.** Consensus **hold** (12 analysts, mean rating 2.5 on a 1-5 scale); strong buy 3, buy 2, hold 7, sell 0, strong sell 1 (bullish share 38% now vs 31% three months ago). Mean target 64.25 (+27% from the price; range 56.00-75.00). 
 Last 90 days: 1 upgrades, 0 downgrades, 0 target raises, 5 target cuts.
@@ -307,15 +316,18 @@ Latest news:
 
 **Investor concerns and sentiment.**
 
-**What worries investors** (themes of the negative headlines of the last year, 80 headlines checked; headlines around the largest down days count double):
+**What worries investors** (themes of the negative headlines of the last year, 79 headlines checked; headlines around the largest down days count double):
 - **guidance / outlook cut** (14): 2026-05-04 "Aptiv Trims Automotive USB Patent Claims In Delaware Suit" (Law360); 2026-08-04 "Aptiv Shares Decline as Weak Guidance Overshadows Second-Quarter Earnings Beat" (finance.yahoo.com)
 - **analyst downgrades** (3): 2026-08-05 "Aptiv PLC Stock 12‑Month Price Target Cut to $68.83, Implies 44% Upside" (TradingView); 2026-08-05 "Deutsche Bank Downgrades Aptiv to Hold From Buy, Adjusts Price Target to $56 From $75" (finance.yahoo.com)
 - **China / international markets** (2): 2026-08-04 "[Aptiv Q2 2026 Earnings Call] Aptiv Cuts Full-Year Outlook by $300M as China Slump and Luxury OEM Pullback Bite, Despite Q2 Revenue of $3.3B" (finance.biggo.com)
 - **margins / costs** (1): 2026-08-04 "Aptiv (APTV) Stock Reprices Sharp Cash Flow Cracks After Margin Strain" (simplywall.st)
-Headline tone over the year: 14 negative, 12 positive, 54 neutral; last 30 days 2 negative vs 0 positive.
+Headline tone over the year: 13 negative, 14 positive, 52 neutral; last 30 days 2 negative vs 1 positive.
 
-**Positioning:** Short interest 4.9% of float (-21% vs the prior month, 1.6 days to cover), as of -2026-09-15; institutions hold 106%, insiders 0.8%; StockTwits (2589 watchers): of the last 30 posts 5 bearish, 11 bullish.
-**Sentiment: mixed** (signals: - fewer analysts bullish than three months ago (80% vs 95%); - price targets mostly cut in 90 days (10 cuts vs 2 raises); - EPS estimates revised down (0 up / 17 down in 30 days); + short interest falling (-21% in a month); + StockTwits crowd bullish (11 bullish vs 5 bearish of the last 30 posts)).
+**Positioning:** Short interest 4.9% of float (-21% vs the prior month, 1.6 days to cover), as of -2026-09-15; institutions hold 106%, insiders 0.8%; StockTwits (2588 watchers): of the last 30 posts 4 bearish, 11 bullish.
+**Sentiment: mixed** (signals: - fewer analysts bullish than three months ago (80% vs 95%); - price targets mostly cut in 90 days (10 cuts vs 2 raises); - EPS estimates revised down (0 up / 17 down in 30 days); + short interest falling (-21% in a month); + StockTwits crowd bullish (11 bullish vs 4 bearish of the last 30 posts)).
+
+**Peers and group.** Closest by market-neutral correlation: GM (0.28), F (0.28), SWK (0.24), ON (0.23), HAS (0.22); group of 9 stocks (largest: F, GM, EL, GRMN), mean correlation to the group 0.166; beta 1.39 to the equal-weight market, residual volatility 36% a year.
+**Last 20 days:** stock -4.1%, peer group -7.2%, relative to the group (beta-adjusted) +4.0%. The group over 6 months: -2.7%. z=+0.8, within its normal range.
 
 **What analysts say.** Consensus **buy** (18 analysts, mean rating 1.6 on a 1-5 scale); strong buy 5, buy 11, hold 4, sell 0, strong sell 0 (bullish share 80% now vs 95% three months ago). Mean target 66.61 (+55% from the price; range 55.00-78.00). 
 Last 90 days: 0 upgrades, 2 downgrades, 2 target raises, 10 target cuts.
@@ -392,6 +404,9 @@ Headline tone over the year: 25 negative, 37 positive, 62 neutral; last 30 days 
 **Positioning:** Short interest 8.3% of float (+37% vs the prior month, 2.9 days to cover), as of -2026-09-15; institutions hold 107%, insiders 0.3%; StockTwits (2065 watchers): of the last 30 posts 0 bearish, 2 bullish.
 **Sentiment: mixed** (signals: - fewer analysts bullish than three months ago (60% vs 88%); - price targets mostly cut in 90 days (15 cuts vs 1 raises); + EPS estimates revised up (15 up / 7 down in 30 days); - short interest rising (+37% in a month); + headlines mostly positive in the last 30 days (3 positive vs 1 negative)).
 
+**Peers and group.** Closest by market-neutral correlation: DXCM (0.32), SYK (0.28), BSX (0.26), TRI (0.26), EW (0.24); group of 5 stocks (largest: ISRG, BSX, DXCM, EW), mean correlation to the group 0.266; beta 0.87 to the equal-weight market, residual volatility 40% a year.
+**Last 20 days:** stock -12.1%, peer group -2.1%, relative to the group (beta-adjusted) -10.3%. The group over 6 months: +0.7%. z=-0.6, within its normal range.
+
 **What analysts say.** Consensus **buy** (22 analysts, mean rating 2.0 on a 1-5 scale); strong buy 4, buy 11, hold 10, sell 0, strong sell 0 (bullish share 60% now vs 88% three months ago). Mean target 171.91 (+32% from the price; range 144.00-275.00). 
 Last 90 days: 0 upgrades, 5 downgrades, 1 target raises, 15 target cuts.
 - 2026-08-06 Canaccord Genuity: maintains Buy, target 249 -> 179
@@ -464,6 +479,9 @@ Headline tone over the year: 50 negative, 27 positive, 106 neutral; last 30 days
 **Positioning:** Short interest 3.2% of float (+68% vs the prior month, 2.3 days to cover), as of -2026-09-15; institutions hold 95%, insiders 0.3%; StockTwits (9097 watchers): of the last 30 posts 3 bearish, 7 bullish.
 **Sentiment: negative** (signals: - fewer analysts bullish than three months ago (81% vs 87%); - price targets mostly cut in 90 days (19 cuts vs 0 raises); - EPS estimates revised down (0 up / 25 down in 30 days); - short interest rising (+68% in a month); + StockTwits crowd bullish (7 bullish vs 3 bearish of the last 30 posts); - headlines mostly negative in the last 30 days (11 negative vs 4 positive)).
 
+**Peers and group.** Closest by market-neutral correlation: SYK (0.39), ISRG (0.37), MDT (0.34), ABT (0.27), EW (0.27); group of 5 stocks (largest: ISRG, DXCM, EW, PODD), mean correlation to the group 0.275; beta 0.69 to the equal-weight market, residual volatility 31% a year.
+**Last 20 days:** stock -9.2%, peer group -2.8%, relative to the group (beta-adjusted) -7.5%. The group over 6 months: -1.1%. z=-0.3, within its normal range.
+
 **What analysts say.** Consensus **buy** (29 analysts, mean rating 1.6 on a 1-5 scale); strong buy 8, buy 17, hold 6, sell 0, strong sell 0 (bullish share 81% now vs 87% three months ago). Mean target 61.00 (+40% from the price; range 44.00-94.00). 
 Last 90 days: 0 upgrades, 2 downgrades, 0 target raises, 19 target cuts.
 - 2026-09-24 Wells Fargo: maintains Equal-Weight, target 50 -> 48
@@ -528,15 +546,18 @@ Latest news:
 
 **Investor concerns and sentiment.**
 
-**What worries investors** (themes of the negative headlines of the last year, 147 headlines checked; headlines around the largest down days count double):
-- **guidance / outlook cut** (32): 2026-08-05 "Uber doubles down on robotaxi plans, shares fall on weak profit forecast" (Reuters); 2026-08-05 "Uber Q2 2026 earnings: guidance misses analyst estimates" (Yahoo Finance)
+**What worries investors** (themes of the negative headlines of the last year, 224 headlines checked; headlines around the largest down days count double):
+- **guidance / outlook cut** (33): 2026-08-05 "Uber doubles down on robotaxi plans, shares fall on weak profit forecast" (Reuters); 2026-08-05 "Uber Q2 2026 earnings: guidance misses analyst estimates" (Yahoo Finance)
+- **weak demand / consumer** (16): 2026-02-04 "Uber’s stock falls as record demand for rides fails to deliver the profit investors expected" (MarketWatch); 2026-08-05 "Uber's Shares Fall After Second-Quarter Revenue Miss, Weak Bookings Outlook" (Yahoo Finance)
 - **earnings miss** (16): 2026-02-04 "Uber Slides On Earnings Miss, Profit Guidance" (Investor's Business Daily); 2026-02-04 "Earnings call transcript: Uber’s Q4 2025 earnings miss EPS forecast, stock rises" (Investing.com)
-- **weak demand / consumer** (15): 2026-02-04 "Uber’s stock falls as record demand for rides fails to deliver the profit investors expected" (MarketWatch); 2026-08-05 "Uber's Shares Fall After Second-Quarter Revenue Miss, Weak Bookings Outlook" (Yahoo Finance)
-- **management / turnaround** (12): 2025-12-10 "Uber to pour $2bn into Japan over 5 years: CEO" (asia.nikkei.com); 2026-02-05 "Uber has appointed a new CFO—its third in three years" (Fortune)
-Headline tone over the year: 26 negative, 47 positive, 74 neutral; last 30 days 0 negative vs 0 positive.
+- **management / turnaround** (14): 2025-12-10 "Uber to pour $2bn into Japan over 5 years: CEO" (asia.nikkei.com); 2026-02-05 "Uber has appointed a new CFO—its third in three years" (Fortune)
+Headline tone over the year: 41 negative, 68 positive, 115 neutral; last 30 days 4 negative vs 4 positive.
 
 **Positioning:** Short interest 2.3% of float (-1% vs the prior month, 2.6 days to cover), as of -2026-09-15; institutions hold 85%, insiders 0.2%; StockTwits (131687 watchers): of the last 30 posts 3 bearish, 9 bullish.
 **Sentiment: mixed** (signals: - fewer analysts bullish than three months ago (82% vs 87%); - price targets mostly cut in 90 days (10 cuts vs 1 raises); + EPS estimates revised up (27 up / 2 down in 30 days); + StockTwits crowd bullish (9 bullish vs 3 bearish of the last 30 posts)).
+
+**Peers and group.** Closest by market-neutral correlation: DASH (0.29), ABNB (0.23), PLTR (0.22), EXPE (0.20), BR (0.20); group of 14 stocks (largest: META, AMZN, PLTR, APP), mean correlation to the group 0.15; beta 1.09 to the equal-weight market, residual volatility 34% a year.
+**Last 20 days:** stock -8.9%, peer group -3.1%, relative to the group (beta-adjusted) -7.1%. The group over 6 months: +7.4%. z=-1.1, within its normal range.
 
 **What analysts say.** Consensus **buy** (47 analysts, mean rating 1.6 on a 1-5 scale); strong buy 9, buy 33, hold 8, sell 1, strong sell 0 (bullish share 82% now vs 87% three months ago). Mean target 100.77 (+47% from the price; range 70.00-150.00). 
 Last 90 days: 0 upgrades, 0 downgrades, 1 target raises, 10 target cuts.
@@ -606,6 +627,9 @@ Headline tone over the year: 6 negative, 28 positive, 59 neutral; last 30 days 0
 **Positioning:** Short interest 7.8% of float (-4% vs the prior month, 10.1 days to cover), as of -2026-09-15; institutions hold 65%, insiders 39.9%; StockTwits (506 watchers): of the last 30 posts 2 bearish, 1 bullish.
 **Sentiment: positive** (signals: + price targets mostly raised in 90 days (1 raises vs 0 cuts); + headlines mostly positive in the last 30 days (4 positive vs 0 negative)).
 
+**Peers and group.** Closest by market-neutral correlation: FOXA (0.98), NWS (0.39), NWSA (0.38), DIS (0.27), CTSH (0.23); group of 4 stocks (largest: FOXA, NWSA, NWS), mean correlation to the group 0.584; beta 0.83 to the equal-weight market, residual volatility 29% a year.
+**Last 20 days:** stock -4.2%, peer group -5.9%, relative to the group (beta-adjusted) +2.4%. The group over 6 months: +11.6%. z=+0.4, within its normal range.
+
 **What analysts say.** No consensus data; 
 Last 90 days: 1 upgrades, 1 downgrades, 1 target raises, 0 target cuts.
 - 2026-08-14 JP Morgan: upgrades Neutral -> Overweight, target 70 -> 82
@@ -663,6 +687,9 @@ Headline tone over the year: 7 negative, 37 positive, 62 neutral; last 30 days 0
 **Positioning:** Short interest 2.8% of float (-1% vs the prior month, 7.2 days to cover), as of -2026-09-15; institutions hold 101%, insiders 0.1%; StockTwits (2718 watchers): of the last 30 posts 1 bearish, 4 bullish.
 **Sentiment: positive** (signals: + StockTwits crowd bullish (4 bullish vs 1 bearish of the last 30 posts); + headlines mostly positive in the last 30 days (6 positive vs 0 negative)).
 
+**Peers and group.** Closest by market-neutral correlation: VTR (0.78), O (0.51), AEE (0.50), REG (0.50), LNT (0.48); group of 8 stocks (largest: CME, WM, CTAS, RSG), mean correlation to the group 0.387; beta 0.39 to the equal-weight market, residual volatility 22% a year.
+**Last 20 days:** stock -4.2%, peer group -8.4%, relative to the group (beta-adjusted) +2.2%. The group over 6 months: -7.0%. z=-0.1, within its normal range.
+
 **What analysts say.** Consensus **buy** (22 analysts, mean rating 1.6 on a 1-5 scale); strong buy 6, buy 12, hold 4, sell 0, strong sell 0 (bullish share 82% now vs 81% three months ago). Mean target 262.05 (+14% from the price; range 219.00-292.00). 
 
 **Last report and estimates.** Quarter to 2026-06-30: EPS 0.54 vs 0.65 expected (-16.9%); beat in 2 of the last 4 quarters. Revenue +39% yoy, earnings +36% yoy (latest quarter). Next report 2026-10-26: EPS 0.62 expected (+14% yoy), revenue +39% yoy. 
@@ -694,7 +721,7 @@ Headline tone over the year: 7 negative, 37 positive, 62 neutral; last 30 days 0
   - 8-K filed 2025-12-17: other events
   - 2025-12-16 Vistra Corp Stock (VST) Opinions on CEO Stock Sale and AI Power Growth (Quiver Quantitative)
   - rating/target cuts right after: JP Morgan target cut 249 -> 233
-- 2026-01-16: -7.5% (2.7x normal volume, SPY -0.1%). No cause found for this day (before the news feed starts on 2026-09-29; only 8-K filings, rating changes and the market were checked).
+- 2026-01-16: -7.5% (2.7x normal volume, SPY -0.1%). No cause found for this day.
 - 2026-05-08: -4.0% (earnings reaction, 2.1x normal volume, SPY +0.8%):
   - 8-K filed 2026-05-07: results of operations (earnings release) (quarter to 2026-03-31: EPS 2.87 vs 1.87 expected, +53.3%)
   - 2026-05-08 Vistra Energy Earnings Call Signals Cash-Rich Growth (The Globe and Mail)
@@ -711,15 +738,18 @@ Latest news:
 
 **Investor concerns and sentiment.**
 
-**What worries investors** (themes of the negative headlines of the last year, 118 headlines checked; headlines around the largest down days count double):
+**What worries investors** (themes of the negative headlines of the last year, 121 headlines checked; headlines around the largest down days count double):
 - **technology disruption / AI** (8): 2026-08-06 "Vistra (VST) Is Seen As A Beneficiary Of Rising AI Power Demand" (Yahoo Finance); 2026-08-06 "Is Vistra’s Bigger Dividend and AI Power Demand Story Altering The Investment Case For Vistra (VST)?" (Yahoo Finance)
 - **weak demand / consumer** (7): 2026-01-06 "Vistra acquires Cogentrix Energy in $4.7bn deal to serve surging data center demand across US" (Data Center Dynamics); 2026-06-28 "Vistra Stock (VST) Opinions on AI Data Center Power Demand" (Quiver Quantitative)
 - **guidance / outlook cut** (3): 2026-01-06 "Moody’s changes Vistra’s outlook to stable from positive" (Investing.com); 2026-08-05 "Vistra Corp. expected to post earnings of $1.74 a share - Earnings Preview" (TradingView)
 - **competition / market share** (3): 2026-01-06 "S&P 500 Giant Vistra Follows Competitor Constellation Energy's Lead With $4 Billion Natural Gas Bet" (Investor's Business Daily); 2026-08-04 "Vistra Corp. stock underperforms Tuesday when compared to competitors" (MarketWatch)
-Headline tone over the year: 11 negative, 47 positive, 60 neutral; last 30 days 2 negative vs 2 positive.
+Headline tone over the year: 11 negative, 47 positive, 63 neutral; last 30 days 1 negative vs 2 positive.
 
 **Positioning:** Short interest 3.4% of float (+1% vs the prior month, 2.2 days to cover), as of -2026-09-15; institutions hold 92%, insiders 0.8%; StockTwits (16515 watchers): of the last 30 posts 1 bearish, 11 bullish.
 **Sentiment: mixed** (signals: - EPS estimates revised down (2 up / 4 down in 30 days); + StockTwits crowd bullish (11 bullish vs 1 bearish of the last 30 posts)).
+
+**Peers and group.** Closest by market-neutral correlation: CEG (0.77), NRG (0.72), VRT (0.56), GEV (0.55), FIX (0.54); group of 16 stocks (largest: NVDA, AVGO, ORCL, NBIS), mean correlation to the group 0.49; beta 1.71 to the equal-weight market, residual volatility 54% a year.
+**Last 20 days:** stock +0.4%, peer group +3.9%, relative to the group (beta-adjusted) -2.1%. The group over 6 months: +32.8%. z=+0.2, within its normal range.
 
 **What analysts say.** Consensus **strong buy** (19 analysts, mean rating 1.4 on a 1-5 scale); strong buy 4, buy 15, hold 0, sell 0, strong sell 1 (bullish share 95% now vs 95% three months ago). Mean target 217.58 (+57% from the price; range 106.00-305.00). 
 Last 90 days: 0 upgrades, 0 downgrades, 3 target raises, 3 target cuts.
@@ -753,7 +783,7 @@ Last 90 days: 0 upgrades, 0 downgrades, 3 target raises, 3 target cuts.
 - 2025-10-10: -4.4% (1.2x normal volume, SPY -2.7%):
   - market-wide day: SPY -2.7%
 - 2026-02-23: -4.3% (1.0x normal volume, SPY -1.0%). No cause found for this day.
-- 2026-02-27: -4.3% (1.2x normal volume, SPY -0.5%). No cause found for this day (before the news feed starts on 2026-09-28; only 8-K filings, rating changes and the market were checked).
+- 2026-02-27: -4.3% (1.2x normal volume, SPY -0.5%). No cause found for this day.
 - 2026-07-20: -2.9% (earnings reaction, 1.5x normal volume, SPY -0.2%):
   - 2026-07-20 JPMorgan downgrades Truist Financial stock rating on NII pressures (Investing.com)
   - 2026-07-20 Truist Q2 2026: Adequate Results, Inadequate Vision (NYSE:TFC) (Seeking Alpha)
@@ -770,15 +800,18 @@ Latest news:
 
 **Investor concerns and sentiment.**
 
-**What worries investors** (themes of the negative headlines of the last year, 119 headlines checked; headlines around the largest down days count double):
+**What worries investors** (themes of the negative headlines of the last year, 120 headlines checked; headlines around the largest down days count double):
 - **management / turnaround** (22): 2026-06-15 "Truist announces Michael P. Lyons as incoming CEO" (PR Newswire); 2026-06-15 "Truist Financial slides as investors digest surprise CEO transition announcement" (Quiver Quantitative)
 - **analyst downgrades** (5): 2026-07-20 "JPMorgan downgrades Truist Financial stock rating on NII pressures" (Investing.com); 2026-01-21 "Truist: Muted Growth Overshadows Buyback Plans (Downgrade) (NYSE:TFC)" (Seeking Alpha)
 - **guidance / outlook cut** (2): 2026-07-20 "These Analysts Revise Their Forecasts On Truist Financial Following Q2 Results" (Benzinga); 2026-07-15 "Truist Financial Gears Up For Q2 Print; Here Are The Recent Forecast Changes From Wall Street's Most Accu" (Benzinga)
 - **product / delays** (2): 2025-10-17 "Truist execs reassure investors on credit quality amid regional banking sector scrutiny" (The Business Journals); 2026-06-04 "Truist: Still Offering Investors A Decent Margin Of Safety" (Seeking Alpha)
-Headline tone over the year: 9 negative, 30 positive, 80 neutral; last 30 days 0 negative vs 5 positive.
+Headline tone over the year: 9 negative, 30 positive, 81 neutral; last 30 days 0 negative vs 5 positive.
 
 **Positioning:** Short interest 2.2% of float (+6% vs the prior month, 4.5 days to cover), as of -2026-09-15; institutions hold 78%, insiders 0.2%; StockTwits (2588 watchers): of the last 30 posts 1 bearish, 1 bullish.
 **Sentiment: mixed** (signals: - fewer analysts bullish than three months ago (33% vs 48%); - price targets mostly cut in 90 days (6 cuts vs 4 raises); + EPS estimates revised up (16 up / 0 down in 30 days); + headlines mostly positive in the last 30 days (5 positive vs 0 negative)).
+
+**Peers and group.** Closest by market-neutral correlation: CFG (0.77), PNC (0.76), KEY (0.76), FITB (0.75), HBAN (0.74); group of 9 stocks (largest: USB, HBAN, PNC, FITB), mean correlation to the group 0.738; beta 1.29 to the equal-weight market, residual volatility 19% a year.
+**Last 20 days:** stock -6.3%, peer group -6.1%, relative to the group (beta-adjusted) -0.5%. The group over 6 months: +6.4%. z=-0.1, within its normal range.
 
 **What analysts say.** Consensus **hold** (18 analysts, mean rating 2.6 on a 1-5 scale); strong buy 2, buy 5, hold 11, sell 1, strong sell 2 (bullish share 33% now vs 48% three months ago). Mean target 54.90 (+19% from the price; range 45.00-61.00). 
 Last 90 days: 0 upgrades, 4 downgrades, 4 target raises, 6 target cuts.
@@ -842,10 +875,13 @@ Latest news:
 - **analyst downgrades** (17): 2026-02-03 "Watch Indonesia FM Blasts Citi, Defends MSCI Downgrade" (Bloomberg.com); 2026-02-03 "From emerging to frontier market: Why MSCI’s potential downgrade hit Indonesia so hard" (The Business Times)
 - **earnings miss** (15): 2026-02-11 "Investors disappointed, Moody's and MSCI shares plummet" (IDNFinancials); 2026-07-21 "MSCI shares plunge after disappointing results and guidance" (marketscreener.com)
 - **margins / costs** (7): 2026-02-11 "BHEL's OFS, United Breweries' margin surge in Q3, US yields fall, MSCI Rejig and more" (LinkedIn); 2026-02-11 "11:11 | BHEL's OFS, United Breweries' margin surge in Q3, US yields fall, MSCI Rejig and more" (CNBC TV18)
-Headline tone over the year: 49 negative, 43 positive, 99 neutral; last 30 days 2 negative vs 1 positive.
+Headline tone over the year: 49 negative, 43 positive, 99 neutral; last 30 days 1 negative vs 1 positive.
 
 **Positioning:** Short interest 2.2% of float (+25% vs the prior month, 2.7 days to cover), as of -2026-09-15; institutions hold 96%, insiders 3.6%; StockTwits (2526 watchers): of the last 30 posts 1 bearish, 4 bullish.
 **Sentiment: mixed** (signals: - EPS estimates revised down (7 up / 8 down in 30 days); - short interest rising (+25% in a month); + StockTwits crowd bullish (4 bullish vs 1 bearish of the last 30 posts)).
+
+**Peers and group.** Closest by market-neutral correlation: MCO (0.60), SPGI (0.60), NDAQ (0.48), VRSK (0.44), FDS (0.44); group of 5 stocks (largest: SPGI, ICE, MCO, NDAQ), mean correlation to the group 0.513; beta 0.79 to the equal-weight market, residual volatility 26% a year.
+**Last 20 days:** stock -4.3%, peer group -7.1%, relative to the group (beta-adjusted) +2.3%. The group over 6 months: +2.4%. z=+0.3, within its normal range.
 
 **What analysts say.** Consensus **strong buy** (17 analysts, mean rating 1.5 on a 1-5 scale); strong buy 4, buy 12, hold 1, sell 0, strong sell 1 (bullish share 89% now vs 88% three months ago). Mean target 691.76 (+28% from the price; range 570.00-760.00). 
 Last 90 days: 0 upgrades, 0 downgrades, 4 target raises, 4 target cuts.
@@ -869,8 +905,11 @@ Last 90 days: 0 upgrades, 0 downgrades, 4 target raises, 4 target cuts.
 
 **Where the stock is.** Last 229.57, -13% from the 52-week high (264.42 on 2025-12-29), +53% above the 52-week low (149.86 on 2026-06-22). 1m -11%, 3m +41%, 6m +24%, 1y -6%; vs 50-day +6%, vs 200-day +15%; RSI(14) 39. 52-week change -4% vs S&P 500 +14%.
 
-**Why it fell.** From the 52-week high (264.42 on 2025-12-29) the stock is -13%. Cause found in the data (rating cut, demand/competition, deal/financing, management, earnings, news). Largest down days of the last year, plus every earnings reaction that closed down, and the evidence around each:
-- 2026-04-23: -8.7% (1.8x normal volume, SPY -0.4%). No cause found for this day (before the news feed starts on 2026-09-29; only 8-K filings, rating changes and the market were checked).
+**Why it fell.** From the 52-week high (264.42 on 2025-12-29) the stock is -13%. Cause found in the data (demand/competition, news, management, rating cut, deal/financing, earnings). Largest down days of the last year, plus every earnings reaction that closed down, and the evidence around each:
+- 2026-04-23: -8.7% (1.8x normal volume, SPY -0.4%):
+  - 2026-04-23 Salesforce, Inc. (CRM) PT Reduced as Piper Sandler Flags Rising AI Competition in Enterprise Software (Yahoo Finance)
+  - 2026-04-23 Salesforce (CRM) Shares Drop 9% Amid AI Concerns (GuruFocus)
+  - 2026-04-23 Salesforce (NYSE: CRM) CEO covers RSU tax bill with 22,560 shares (Stock Titan)
 - 2026-01-13: -7.1% (2.4x normal volume, SPY -0.2%):
   - 2026-01-14 Salesforce (CRM) Stock Drops Following Adobe Downgrade and Sector Weakness (Blockonomi)
   - 2026-01-15 Informatica lays off workers, including CEO, after Salesforce acquisition (The Business Journals)
@@ -903,15 +942,18 @@ Latest news:
 
 **Investor concerns and sentiment.**
 
-**What worries investors** (themes of the negative headlines of the last year, 160 headlines checked; headlines around the largest down days count double):
-- **technology disruption / AI** (17): 2026-01-13 "Salesforce and Adobe see their stocks slide as AI fears intensify" (MarketWatch); 2026-01-14 "AI Agents Trigger Software Stock Collapse: Salesforce and Adobe Face New Existential Threat" (StartupHub.ai)
-- **management / turnaround** (7): 2025-10-01 "Salesforce CEO Marc Benioff sells $546,547 worth of company stock, now owns…." (The Times of India); 2026-01-15 "Informatica lays off workers, including CEO, after Salesforce acquisition" (The Business Journals)
+**What worries investors** (themes of the negative headlines of the last year, 193 headlines checked; headlines around the largest down days count double):
+- **technology disruption / AI** (33): 2026-04-22 "AI Disruption Fears Pressured Salesforce (CRM) in Q1" (Yahoo Finance); 2026-04-23 "Salesforce, Inc. (CRM) PT Reduced as Piper Sandler Flags Rising AI Competition in Enterprise Software" (Yahoo Finance)
+- **management / turnaround** (12): 2026-01-15 "Informatica lays off workers, including CEO, after Salesforce acquisition" (The Business Journals); 2026-01-15 "Informatica to cut 35 Redwood City jobs including CEO months after Salesforce acquisition" (The Business Journals)
+- **guidance / outlook cut** (8): 2026-01-28 "Salesforce Inc. (NYSE: CRM) Price Prediction and Forecast 2026–2030 (February 2026)" (24/7 Wall St.); 2026-03-23 "Northland Lowers PT on Salesforce (CRM) Stock" (Yahoo Finance)
 - **analyst downgrades** (6): 2026-01-14 "Salesforce (CRM) Stock Drops Following Adobe Downgrade and Sector Weakness" (Blockonomi); 2026-07-10 "KeyBanc Downgrades Salesforce Stock As Consumers Indicate Limited Near-Term Upside" (TIKR.com)
-- **guidance / outlook cut** (6): 2026-01-28 "Salesforce Inc. (NYSE: CRM) Price Prediction and Forecast 2026–2030 (February 2026)" (24/7 Wall St.); 2026-03-23 "Northland Lowers PT on Salesforce (CRM) Stock" (Yahoo Finance)
-Headline tone over the year: 36 negative, 36 positive, 88 neutral; last 30 days 5 negative vs 1 positive.
+Headline tone over the year: 44 negative, 41 positive, 108 neutral; last 30 days 4 negative vs 1 positive.
 
 **Positioning:** Short interest 4.5% of float (+22% vs the prior month, 2.0 days to cover), as of -2026-09-15; institutions hold 87%, insiders 3.0%; StockTwits (71409 watchers): of the last 29 posts 0 bearish, 10 bullish.
-**Sentiment: mixed** (signals: - fewer analysts bullish than three months ago (69% vs 76%); + price targets mostly raised in 90 days (35 raises vs 2 cuts); + EPS estimates revised up (45 up / 0 down in 30 days); - short interest rising (+22% in a month); + StockTwits crowd bullish (10 bullish vs 0 bearish of the last 29 posts); - headlines mostly negative in the last 30 days (5 negative vs 1 positive)).
+**Sentiment: mixed** (signals: - fewer analysts bullish than three months ago (69% vs 76%); + price targets mostly raised in 90 days (35 raises vs 2 cuts); + EPS estimates revised up (45 up / 0 down in 30 days); - short interest rising (+22% in a month); + StockTwits crowd bullish (10 bullish vs 0 bearish of the last 29 posts); - headlines mostly negative in the last 30 days (4 negative vs 1 positive)).
+
+**Peers and group.** Closest by market-neutral correlation: NOW (0.74), WDAY (0.64), ADBE (0.62), ADSK (0.57), INTU (0.54); group of 10 stocks (largest: MSFT, NOW, ADBE, INTU), mean correlation to the group 0.541; beta 0.97 to the equal-weight market, residual volatility 37% a year.
+**Last 20 days:** stock -10.9%, peer group -10.2%, relative to the group (beta-adjusted) +1.2%. The group over 6 months: +15.9%. z=-0.2, within its normal range.
 
 **What analysts say.** Consensus **buy** (53 analysts, mean rating 1.8 on a 1-5 scale); strong buy 6, buy 32, hold 15, sell 0, strong sell 2 (bullish share 69% now vs 76% three months ago). Mean target 281.08 (+22% from the price; range 160.00-475.00). 
 Last 90 days: 0 upgrades, 2 downgrades, 35 target raises, 2 target cuts.
@@ -978,6 +1020,9 @@ Headline tone over the year: 3 negative, 27 positive, 62 neutral; last 30 days 0
 **Positioning:** Short interest 2.1% of float (+51% vs the prior month, 3.6 days to cover), as of -2026-09-15; institutions hold 94%, insiders 0.2%; StockTwits (2901 watchers): of the last 30 posts 0 bearish, 9 bullish.
 **Sentiment: positive** (signals: + more analysts bullish than three months ago (83% vs 70%); + price targets mostly raised in 90 days (5 raises vs 0 cuts); + EPS estimates revised up (13 up / 5 down in 30 days); - short interest rising (+51% in a month); + StockTwits crowd bullish (9 bullish vs 0 bearish of the last 30 posts); + headlines mostly positive in the last 30 days (4 positive vs 0 negative)).
 
+**Peers and group.** Closest by market-neutral correlation: SHW (0.45), PG (0.41), HD (0.40), CL (0.38), LOW (0.37); group of 7 stocks (largest: SHW, PPG, AMCR, IFF), mean correlation to the group 0.357; beta 0.77 to the equal-weight market, residual volatility 17% a year.
+**Last 20 days:** stock -1.8%, peer group -4.7%, relative to the group (beta-adjusted) +1.3%. The group over 6 months: +3.4%. z=+0.5, within its normal range.
+
 **What analysts say.** Consensus **buy** (21 analysts, mean rating 1.5 on a 1-5 scale); strong buy 5, buy 15, hold 4, sell 0, strong sell 0 (bullish share 83% now vs 70% three months ago). Mean target 324.95 (+18% from the price; range 295.00-360.00). 
 Last 90 days: 1 upgrades, 0 downgrades, 5 target raises, 0 target cuts.
 - 2026-07-30 Wells Fargo: maintains Equal-Weight, target 275 -> 295
@@ -1042,6 +1087,9 @@ Headline tone over the year: 13 negative, 32 positive, 62 neutral; last 30 days 
 **Positioning:** Short interest 1.5% of float (-13% vs the prior month, 3.0 days to cover), as of -2026-09-15; institutions hold 97%, insiders 0.1%; StockTwits (6892 watchers): of the last 30 posts 0 bearish, 8 bullish.
 **Sentiment: positive** (signals: + more analysts bullish than three months ago (88% vs 80%); + price targets mostly raised in 90 days (4 raises vs 1 cuts); + EPS estimates revised up (7 up / 0 down in 30 days); + short interest falling (-13% in a month); + StockTwits crowd bullish (8 bullish vs 0 bearish of the last 30 posts); + headlines mostly positive in the last 30 days (4 positive vs 1 negative)).
 
+**Peers and group.** Closest by market-neutral correlation: CCI (0.82), SBAC (0.75), VICI (0.51), EXR (0.50), PSA (0.49); group of 3 stocks (largest: CCI, SBAC), mean correlation to the group 0.789; beta 0.27 to the equal-weight market, residual volatility 26% a year.
+**Last 20 days:** stock -7.0%, peer group -13.0%, relative to the group (beta-adjusted) +3.2%. The group over 6 months: -10.8%. z=+0.8, within its normal range.
+
 **What analysts say.** Consensus **buy** (23 analysts, mean rating 1.5 on a 1-5 scale); strong buy 7, buy 15, hold 3, sell 0, strong sell 0 (bullish share 88% now vs 80% three months ago). Mean target 215.74 (+32% from the price; range 188.00-260.00). 
 Last 90 days: 2 upgrades, 0 downgrades, 4 target raises, 1 target cuts.
 - 2026-09-30 Barclays: maintains Overweight, target 198 -> 199
@@ -1102,15 +1150,18 @@ Latest news:
 
 **Investor concerns and sentiment.**
 
-**What worries investors** (themes of the negative headlines of the last year, 104 headlines checked; headlines around the largest down days count double):
+**What worries investors** (themes of the negative headlines of the last year, 106 headlines checked; headlines around the largest down days count double):
 - **guidance / outlook cut** (6): 2026-08-03 "Alexandria Real Estate Equities' Q2 earnings better-than-feared, Q3 guidance optimistic (ARE:NYSE)" (Seeking Alpha); 2026-08-04 "Alexandria Warns $183M Loss On Table In Legal Battle Against NYC" (Bisnow)
 - **earnings miss** (4): 2026-04-02 "Tesla shares drop over 4.5% as Q1 deliveries and production miss estimates" (Livemint); 2026-08-04 "Earnings call transcript: Alexandria Real Estate Equities posts Q2 2026 EPS miss" (Investing.com)
 - **competition / market share** (4): 2026-04-01 "Alexandria Real Estate Equities Inc. stock underperforms Wednesday when compared to competitors" (MarketWatch); 2026-04-27 "Alexandria Real Estate Equities Inc. stock underperforms Monday when compared to competitors" (MarketWatch)
 - **legal / regulatory** (2): 2025-12-01 "Alexandria Real Estate Equities hit with class action lawsuit" (The Real Deal); 2026-02-13 "Alexandria Balances Investor Lawsuit With Large Debt Refinancing Shift" (simplywall.st)
-Headline tone over the year: 27 negative, 13 positive, 64 neutral; last 30 days 14 negative vs 7 positive.
+Headline tone over the year: 28 negative, 14 positive, 64 neutral; last 30 days 13 negative vs 7 positive.
 
 **Positioning:** Short interest 5.5% of float (-1% vs the prior month, 3.5 days to cover), as of -2026-09-15; institutions hold 100%, insiders 1.4%; StockTwits (1458 watchers): of the last 30 posts 0 bearish, 23 bullish.
-**Sentiment: mixed** (signals: + price targets mostly raised in 90 days (5 raises vs 3 cuts); - EPS estimates revised down (0 up / 4 down in 30 days); + StockTwits crowd bullish (23 bullish vs 0 bearish of the last 30 posts); - headlines mostly negative in the last 30 days (14 negative vs 7 positive)).
+**Sentiment: mixed** (signals: + price targets mostly raised in 90 days (5 raises vs 3 cuts); - EPS estimates revised down (0 up / 4 down in 30 days); + StockTwits crowd bullish (23 bullish vs 0 bearish of the last 30 posts); - headlines mostly negative in the last 30 days (13 negative vs 7 positive)).
+
+**Peers and group.** Closest by market-neutral correlation: DOC (0.52), BXP (0.34), VICI (0.31), EXR (0.30), KIM (0.30); group of 14 stocks (largest: PLD, O, SPG, PSA), mean correlation to the group 0.287; beta 1.22 to the equal-weight market, residual volatility 36% a year.
+**Last 20 days:** stock -8.1%, peer group -7.8%, relative to the group (beta-adjusted) +5.7%. The group over 6 months: +1.3%. z=+0.8, within its normal range.
 
 **What analysts say.** Consensus **hold** (14 analysts, mean rating 3.0 on a 1-5 scale); strong buy 0, buy 2, hold 11, sell 1, strong sell 2 (bullish share 12% now vs 12% three months ago). Mean target 52.57 (+11% from the price; range 40.00-60.00). 
 Last 90 days: 0 upgrades, 1 downgrades, 5 target raises, 3 target cuts.
@@ -1134,7 +1185,7 @@ Last 90 days: 0 upgrades, 1 downgrades, 5 target raises, 3 target cuts.
 
 **Where the stock is.** Last 30.34, -9% from the 52-week high (33.26 on 2026-06-29), +24% above the 52-week low (24.52 on 2025-10-06). 1m -4%, 3m -8%, 6m +17%, 1y +22%; vs 50-day -2%, vs 200-day +5%; RSI(14) 39. 52-week change +21% vs S&P 500 +14%.
 
-**Why it fell.** From the 52-week high (33.26 on 2026-06-29) the stock is -9%. Cause found in the data (legal/regulatory, deal/financing, news, earnings). Largest down days of the last year, plus every earnings reaction that closed down, and the evidence around each:
+**Why it fell.** From the 52-week high (33.26 on 2026-06-29) the stock is -9%. Cause found in the data (legal/regulatory, deal/financing, news, earnings, guidance). Largest down days of the last year, plus every earnings reaction that closed down, and the evidence around each:
 - 2025-10-29: -5.9% (1.9x normal volume, SPY +0.0%):
   - 2025-10-29 Can Keurig Customers Get Paid After Class Action Lawsuit? (The Daily Dot)
   - 2025-10-30 Keurig Dr Pepper nets US$7B investment to complete JD Peet acquisition (Food Ingredients First)
@@ -1148,6 +1199,9 @@ Last 90 days: 0 upgrades, 1 downgrades, 5 target raises, 3 target cuts.
   - 2026-06-17 Keurig Dr Pepper revenue 2018-2025 (Statista)
 - 2026-02-25: -2.8% (earnings reaction, 1.6x normal volume, SPY +0.8%):
   - 8-K filed 2026-02-24: results of operations (earnings release) (quarter to 2025-12-31: EPS 0.60 vs 0.59 expected, +1.9%)
+  - 2026-02-24 Keurig Dr Pepper Reports Q4 and Full Year 2025 Results and Provides 2026 Outlook (PR Newswire)
+  - 2026-02-25 KDP wants to become a ‘global coffee champion’ with JDE Peet’s acquisition – but are they ready? (World Coffee Portal)
+  - 2026-02-24 Keurig Dr Pepper Announces Updated Financing Plan for $18.4 Billion Acquisition of JDE Peet’s (Paul, Weiss)
 
 Latest news:
 - 2026-09-29 PepsiCo vs. Keurig: Which Stock Stands Out in the Beverage Race? (Zacks): PEP and KDP bring distinct strengths to the beverage race, spanning global scale, energy growth, coffee and portfolio diversification
@@ -1159,15 +1213,18 @@ Latest news:
 
 **Investor concerns and sentiment.**
 
-**What worries investors** (themes of the negative headlines of the last year, 99 headlines checked; headlines around the largest down days count double):
+**What worries investors** (themes of the negative headlines of the last year, 111 headlines checked; headlines around the largest down days count double):
+- **guidance / outlook cut** (2): 2026-02-24 "Keurig Dr Pepper Reports Q4 and Full Year 2025 Results and Provides 2026 Outlook" (PR Newswire); 2026-06-24 "How Investors May Respond To Keurig Dr Pepper (KDP) Reaffirming 2026 Outlook Amid Split And Leadership Changes" (Yahoo Finance)
 - **management / turnaround** (2): 2026-04-01 "Keurig Dr Pepper Acquires JDE Peet's and Announces Rafael Oliveira as CEO of Future Global Coffee Co." (PR Newswire); 2026-06-24 "Keurig Dr Pepper (KDP) Reshapes Leadership As 2027 Split Plans Move Ahead" (Yahoo Finance)
 - **competition / market share** (2): 2026-07-06 "Keurig Dr Pepper Inc. stock underperforms Monday when compared to competitors" (MarketWatch); 2026-08-07 "Keurig Dr Pepper Inc. stock underperforms Friday when compared to competitors" (MarketWatch)
-- **guidance / outlook cut** (2): 2026-06-24 "How Investors May Respond To Keurig Dr Pepper (KDP) Reaffirming 2026 Outlook Amid Split And Leadership Changes" (Yahoo Finance); 2026-07-13 "Keurig Dr Pepper (KDP) Slips 1.33% as Shares Test Key Technical Levels - Stop Loss Guidance" (careplusvn.com)
 - **legal / regulatory** (1): 2025-10-29 "Can Keurig Customers Get Paid After Class Action Lawsuit?" (The Daily Dot)
-Headline tone over the year: 9 negative, 33 positive, 57 neutral; last 30 days 1 negative vs 2 positive.
+Headline tone over the year: 9 negative, 37 positive, 65 neutral; last 30 days 1 negative vs 2 positive.
 
 **Positioning:** Short interest 6.5% of float (+18% vs the prior month, 8.8 days to cover), as of -2026-09-15; institutions hold 109%, insiders 5.0%; StockTwits (3634 watchers): of the last 30 posts 0 bearish, 12 bullish.
 **Sentiment: positive** (signals: + more analysts bullish than three months ago (72% vs 61%); + price targets mostly raised in 90 days (6 raises vs 0 cuts); + EPS estimates revised up (7 up / 3 down in 30 days); - short interest rising (+18% in a month); + StockTwits crowd bullish (12 bullish vs 0 bearish of the last 30 posts)).
+
+**Peers and group.** Closest by market-neutral correlation: KO (0.50), PEP (0.49), MDLZ (0.44), KHC (0.41), MKC (0.41); group of 20 stocks (largest: KO, PG, PEP, MDLZ), mean correlation to the group 0.356; beta 0.40 to the equal-weight market, residual volatility 26% a year.
+**Last 20 days:** stock -4.2%, peer group -8.4%, relative to the group (beta-adjusted) +4.7%. The group over 6 months: -4.3%. z=+0.5, within its normal range.
 
 **What analysts say.** Consensus **buy** (17 analysts, mean rating 1.8 on a 1-5 scale); strong buy 5, buy 8, hold 5, sell 0, strong sell 0 (bullish share 72% now vs 61% three months ago). Mean target 36.21 (+19% from the price; range 29.00-42.00). 
 Last 90 days: 1 upgrades, 0 downgrades, 6 target raises, 0 target cuts.
@@ -1237,6 +1294,9 @@ Headline tone over the year: 25 negative, 45 positive, 90 neutral; last 30 days 
 
 **Positioning:** Short interest 3.0% of float (+30% vs the prior month, 2.9 days to cover), as of -2026-09-15; institutions hold 95%, insiders 0.8%; StockTwits (14453 watchers): of the last 30 posts 0 bearish, 9 bullish.
 **Sentiment: mixed** (signals: - price targets mostly cut in 90 days (7 cuts vs 5 raises); + EPS estimates revised up (13 up / 4 down in 30 days); - short interest rising (+30% in a month); + StockTwits crowd bullish (9 bullish vs 0 bearish of the last 30 posts); + headlines mostly positive in the last 30 days (9 positive vs 4 negative)).
+
+**Peers and group.** Closest by market-neutral correlation: FANG (0.85), EOG (0.85), OXY (0.84), COP (0.83), APA (0.81); group of 16 stocks (largest: XOM, CVX, VLO, MPC), mean correlation to the group 0.665; beta 0.89 to the equal-weight market, residual volatility 36% a year.
+**Last 20 days:** stock -5.5%, peer group -6.3%, relative to the group (beta-adjusted) +1.8%. The group over 6 months: +2.8%. z=+0.6, within its normal range.
 
 **What analysts say.** Consensus **strong buy** (28 analysts, mean rating 1.3 on a 1-5 scale); strong buy 3, buy 23, hold 3, sell 0, strong sell 0 (bullish share 90% now vs 93% three months ago). Mean target 60.39 (+31% from the price; range 44.00-68.00). 
 Last 90 days: 0 upgrades, 0 downgrades, 5 target raises, 7 target cuts.
@@ -1308,6 +1368,9 @@ Headline tone over the year: 11 negative, 23 positive, 58 neutral; last 30 days 
 **Positioning:** Short interest 2.9% of float (+8% vs the prior month, 8.3 days to cover), as of -2026-09-15; institutions hold 74%, insiders 1.7%; StockTwits (863 watchers): of the last 30 posts 0 bearish, 3 bullish.
 **Sentiment: mixed** (signals: + price targets mostly raised in 90 days (3 raises vs 2 cuts); - EPS estimates revised down (0 up / 8 down in 30 days); + headlines mostly positive in the last 30 days (3 positive vs 2 negative)).
 
+**Peers and group.** Closest by market-neutral correlation: L (0.72), TRV (0.67), CB (0.67), HIG (0.67), ACGL (0.64); group of 15 stocks (largest: BRK-B, TRV, CB, PGR), mean correlation to the group 0.58; beta 0.78 to the equal-weight market, residual volatility 20% a year.
+**Last 20 days:** stock -5.9%, peer group -4.7%, relative to the group (beta-adjusted) -1.1%. The group over 6 months: +6.2%. z=-0.4, within its normal range.
+
 **What analysts say.** Consensus **hold** (6 analysts, mean rating 2.8 on a 1-5 scale); strong buy 0, buy 2, hold 6, sell 0, strong sell 0. Mean target 191.67 (+20% from the price; range 177.00-200.00). 
 Last 90 days: 0 upgrades, 2 downgrades, 3 target raises, 2 target cuts.
 - 2026-08-05 Keefe, Bruyette & Woods: maintains Market Perform, target 201 -> 190
@@ -1349,6 +1412,9 @@ Last 90 days: 0 upgrades, 2 downgrades, 3 target raises, 2 target cuts.
   - 2026-01-29 Altria Stock Drops After Earnings. It’s Losing the Smokeless Tobacco Race. (Barron's)
   - rating/target cuts right after: Stifel target cut 72 -> 68
 - 2026-08-10: -4.1% (1.3x normal volume, SPY -0.0%):
+  - 2026-08-10 Barclays Maintains Altria(MO.US) With Sell Rating, Cuts Target Price to $58 (Moomoo)
+  - 2026-08-11 Barclays Adjusts Price Target on Altria Group to $58 From $64, Keeps Underweight Rating (Moomoo)
+  - 2026-08-11 Altria Group (MO) Reported Q2 Results And Buybacks, Is It Trading At A Discount? (Yahoo Finance)
   - rating/target cuts right after: Barclays target cut 64 -> 58
 - 2026-05-06: -3.6% (1.3x normal volume, SPY +1.4%):
   - 2026-05-06 The Top 5 Analyst Questions From Altria’s Q1 Earnings Call (stockstory.org)
@@ -1365,15 +1431,18 @@ Latest news:
 
 **Investor concerns and sentiment.**
 
-**What worries investors** (themes of the negative headlines of the last year, 136 headlines checked; headlines around the largest down days count double):
+**What worries investors** (themes of the negative headlines of the last year, 141 headlines checked; headlines around the largest down days count double):
 - **weak demand / consumer** (16): 2025-10-30 "Altria forecasts tepid annual profit on sluggish tobacco demand" (Reuters); 2026-01-29 "Altria Profit Falls as Cigarette Sales Decline" (WSJ)
 - **earnings miss** (15): 2026-07-30 "Altria misses quarterly profit estimates as premium cigarette demand weakens" (Reuters); 2026-07-30 "Altria Q2 Earnings Miss Estimates, Cigarette Volumes Down" (Zacks Investment Research)
 - **guidance / outlook cut** (11): 2025-10-30 "Altria Reports Q3 Results, Narrows 2025 Guidance" (Tobacco Reporter); 2026-07-30 "Altria narrows guidance as stock falls on earnings miss" (Investing.com)
 - **legal / regulatory** (5): 2026-05-06 "Altria, Juul Ask For Stay During Antitrust Class Cert. Appeal" (Law360); 2026-05-07 "Altria, Juul Seek Pause in Antitrust Case Pending Appeal" (Tobacco Reporter)
-Headline tone over the year: 24 negative, 28 positive, 84 neutral; last 30 days 1 negative vs 2 positive.
+Headline tone over the year: 25 negative, 29 positive, 87 neutral; last 30 days 1 negative vs 2 positive.
 
 **Positioning:** Short interest 2.3% of float (-4% vs the prior month, 4.5 days to cover), as of -2026-09-15; institutions hold 65%, insiders 0.1%; StockTwits (25080 watchers): of the last 30 posts 0 bearish, 7 bullish.
 **Sentiment: mixed** (signals: - EPS estimates revised down (3 up / 6 down in 30 days); + StockTwits crowd bullish (7 bullish vs 0 bearish of the last 30 posts)).
+
+**Peers and group.** Closest by market-neutral correlation: PM (0.51), DUK (0.45), SO (0.44), LNT (0.43), ED (0.42); group of 10 stocks (largest: MCD, PM, MNST, MSI), mean correlation to the group 0.255; beta 0.02 to the equal-weight market, residual volatility 23% a year.
+**Last 20 days:** stock -1.7%, peer group -7.4%, relative to the group (beta-adjusted) +3.8%. The group over 6 months: -0.9%. z=+0.4, within its normal range.
 
 **What analysts say.** Consensus **hold** (11 analysts, mean rating 2.9 on a 1-5 scale); strong buy 0, buy 4, hold 8, sell 1, strong sell 1 (bullish share 29% now vs 31% three months ago). Mean target 70.00 (+4% from the price; range 58.00-82.00). 
 Last 90 days: 0 upgrades, 0 downgrades, 1 target raises, 1 target cuts.
@@ -1389,18 +1458,21 @@ Last 90 days: 0 upgrades, 0 downgrades, 1 target raises, 1 target cuts.
 *In today's tables: news-day. Technology / Software - Application.*
 *Fair Isaac Corporation provides analytics software in the Americas, Europe, the Middle East, Africa, and the Asia Pacific. It operates through two segments, Scores and Software.*
 
-**Read: undecided (no clear base yet)** (score -0.5). Signals: -1 price below its 50-day average; -1 new 52-week low within the last 5 bars; +1 analyst consensus buy (19 analysts); +1 mean price target +112% above the price; -1 more downgrades than upgrades in 90 days (2 vs 0); -1 analysts cutting price targets (8 cuts vs 1 raises in 90 days); -0.5 estimate revisions mostly down (7 up / 12 down in 30 days); +0.5 last quarter beat estimates (+3.4%); +0.5 revenue growing (+26% yoy); +0.5 positive free cash flow; +0.5 forward P/E 11 below trailing 17 (earnings expected to grow).
+**Read: undecided (no clear base yet)** (score +0). Signals: -1 price below its 50-day average; -1 new 52-week low within the last 5 bars; +1 analyst consensus buy (19 analysts); +1 mean price target +112% above the price; -1 more downgrades than upgrades in 90 days (2 vs 0); -1 analysts cutting price targets (8 cuts vs 1 raises in 90 days); -0.5 estimate revisions mostly down (7 up / 12 down in 30 days); +0.5 last quarter beat estimates (+3.4%); +0.5 revenue growing (+26% yoy); +0.5 positive free cash flow; +0.5 forward P/E 11 below trailing 17 (earnings expected to grow); +0.5 unusually far below its peer group over 20 days (z -3.6; such stocks regained ~+0.65% vs peers in the next 20 days in the scan, weak evidence).
 
 **Where the stock is.** Last 592.47, -68% from the 52-week high (1879.55 on 2025-10-07), +0% above the 52-week low (592.47 on 2026-09-30). 1m -48%, 3m -51%, 6m -45%, 1y -61%; vs 50-day -44%, vs 200-day -52%; RSI(14) 11. 52-week change -59% vs S&P 500 +14%.
 
-**Why it fell.** From the 52-week high (1879.55 on 2025-10-07) the stock is -68%; the 1 earnings-reaction day(s) below took 17.0% off it. Cause found in the data (legal/regulatory, demand/competition, rating cut, earnings, news). Largest down days of the last year, plus every earnings reaction that closed down, and the evidence around each:
+**Why it fell.** From the 52-week high (1879.55 on 2025-10-07) the stock is -68%; the 1 earnings-reaction day(s) below took 17.0% off it. Cause found in the data (guidance, rating cut, legal/regulatory, demand/competition, earnings, news). Largest down days of the last year, plus every earnings reaction that closed down, and the evidence around each:
 - 2026-09-29: -26.5% (13.1x normal volume, SPY -0.2%):
-  - 2026-09-29 Fair Isaac shares plunge as housing regulator pushes for single pricing framework (TradingView)
+  - 2026-10-01 Bank of America Cut Its Fair Isaac Price Target in Half and the Stock Still Fell Below It (24/7 Wall St.)
+  - 2026-09-29 Fair Isaac shares plunge as housing regulator pushes for single pricing framework (marketscreener.com)
   - 2026-09-29 Watch Fair Isaac stock plunges on mortgage credit score competition from VantageScore - The Claman Countdown (FOX One)
-  - 2026-09-29 Fair Isaac shares plunge as housing regulators push for a unified pricing framework (Bitget)
   - rating/target cuts right after: B of A Securities downgrade 1,400 -> 700; BMO Capital target cut 1,550 -> 1,150; Barclays target cut 1,700 -> 935
 - 2026-07-30: -17.0% (4.4x normal volume, SPY +1.7%):
   - 8-K filed 2026-07-29: results of operations (earnings release) (quarter to 2026-06-30: EPS 12.18 vs 11.78 expected, +3.4%)
+  - 2026-07-31 Fair Isaac Stock Plunges 17% Following Mixed Quarterly Results and Delay in Key Program (TIKR.com)
+  - 2026-07-30 Fair Isaac (FICO) Stock Price Tumbles As Profit Strength Meets Valuation Doubts (Simply Wall Street)
+  - 2026-07-30 Fair Isaac Corp (FICO) Earnings: Revenue Forecast Boosted, Third Quarter EPS Surpasses Expectations Despite Missed Estimates (Smartkarma)
   - rating/target cuts right after: RBC Capital target cut 2,400 -> 1,525
 - 2026-09-04: -16.7% (5.8x normal volume, SPY -0.4%):
   - 2026-09-04 Fair Isaac Falls as Mortgage Credit-Score Competition Threatens Core Franchise (Quiver Quantitative)
@@ -1428,15 +1500,18 @@ Latest news:
 
 **Investor concerns and sentiment.**
 
-**What worries investors** (themes of the negative headlines of the last year, 181 headlines checked; headlines around the largest down days count double):
-- **competition / market share** (16): 2026-09-28 "Fair Isaac Corp. stock underperforms Monday when compared to competitors" (MarketWatch); 2026-09-29 "Fair Isaac stock plunges 20% after Fannie and Freddie open door to FICO credit score rival" (Yahoo Finance)
-- **margins / costs** (15): 2026-09-29 "Fair Isaac Shares Fall After FHFA Chief Says VantageScore Moving to FICO Classic Pricing Grid" (Yahoo Finance); 2026-09-29 "Mizuho reiterates Fair Isaac stock rating amid pricing changes" (Investing.com)
+**What worries investors** (themes of the negative headlines of the last year, 186 headlines checked; headlines around the largest down days count double):
+- **margins / costs** (16): 2026-09-29 "FICO stock drops 20%: Analysts break down the impact of FHFA’s single pricing grid" (Yahoo Finance); 2026-09-29 "Fair Isaac Shares Fall After FHFA Chief Says VantageScore Moving to FICO Classic Pricing Grid" (Yahoo Finance)
+- **competition / market share** (14): 2026-09-04 "Fair Isaac Falls as Mortgage Credit-Score Competition Threatens Core Franchise" (Quiver Quantitative); 2026-09-28 "Fair Isaac Corp. stock underperforms Monday when compared to competitors" (MarketWatch)
 - **legal / regulatory** (10): 2026-09-06 "One Regulator Just Ended Fair Isaac’s (FICO) Mortgage Monopoly. The Stock Fell 16% – Is It Justified?" (Yahoo Finance); 2026-09-29 "Rosen Law Firm Encourages Fair Isaac Corporation Investors to Inquire About Securities Class Action Investigation - FICO" (Business Wire)
-- **analyst downgrades** (6): 2026-09-29 "Autonomous Research Adjusts Price Target on Fair Isaac to $600 From $841, Keeps Underperform Rating" (marketscreener.com); 2026-09-30 "Fair Isaac's Dominance in Mortgage Credit Scoring Could be Challenged by New Grid Structure, BofA Says in Downgrade" (MT Newswires)
-Headline tone over the year: 62 negative, 29 positive, 90 neutral; last 30 days 43 negative vs 6 positive.
+- **guidance / outlook cut** (4): 2026-07-30 "Wolfe Research reiterates Fair Isaac stock rating on guidance raise" (Investing.com); 2026-07-30 "Fair Isaac Corp (FICO) Earnings: Revenue Forecast Boosted, Third Quarter EPS Surpasses Expectations Despite Missed Estimates" (Smartkarma)
+Headline tone over the year: 61 negative, 33 positive, 92 neutral; last 30 days 40 negative vs 7 positive.
 
 **Positioning:** Short interest 10.8% of float (+8% vs the prior month, 5.5 days to cover), as of -2026-09-15; institutions hold 102%, insiders 3.0%; StockTwits (3230 watchers): of the last 30 posts 4 bearish, 6 bullish.
-**Sentiment: negative** (signals: - fewer analysts bullish than three months ago (57% vs 76%); - price targets mostly cut in 90 days (8 cuts vs 1 raises); - EPS estimates revised down (7 up / 12 down in 30 days); - heavy short interest (11% of float); + StockTwits crowd bullish (6 bullish vs 4 bearish of the last 30 posts); - headlines mostly negative in the last 30 days (43 negative vs 6 positive)).
+**Sentiment: negative** (signals: - fewer analysts bullish than three months ago (57% vs 76%); - price targets mostly cut in 90 days (8 cuts vs 1 raises); - EPS estimates revised down (7 up / 12 down in 30 days); - heavy short interest (11% of float); + StockTwits crowd bullish (6 bullish vs 4 bearish of the last 30 posts); - headlines mostly negative in the last 30 days (40 negative vs 7 positive)).
+
+**Peers and group.** Closest by market-neutral correlation: EFX (0.38), ADSK (0.36), ADP (0.31), VRSK (0.30), INTU (0.30); group of 20 stocks (largest: IBM, ACN, ADP, CTSH), mean correlation to the group 0.256; beta 1.20 to the equal-weight market, residual volatility 52% a year.
+**Last 20 days:** stock -46.3%, peer group -11.5%, relative to the group (beta-adjusted) -38.4%. The group over 6 months: -0.4%. z=-3.6: unusually far below its peers (under -2); in the historical scan such stocks regained +0.65% vs peers over the next 20 days (t=2.3, weak evidence).
 
 **What analysts say.** Consensus **buy** (19 analysts, mean rating 2.1 on a 1-5 scale); strong buy 4, buy 8, hold 7, sell 2, strong sell 0 (bullish share 57% now vs 76% three months ago). Mean target 1,256.42 (+112% from the price; range 696.00-1,750.00). 
 Last 90 days: 0 upgrades, 2 downgrades, 1 target raises, 8 target cuts.
@@ -1456,7 +1531,7 @@ Last 90 days: 0 upgrades, 2 downgrades, 1 target raises, 8 target cuts.
 *In today's tables: news-day. Consumer Cyclical / Resorts & Casinos.*
 *MGM Resorts International, through its subsidiaries, operates as a gaming and entertainment company in the United States, China, and internationally. It operates through four segments: Las Vegas Strip Resorts, Regional Operations, MGM China, and MGM Digital.*
 
-**Read: signs of a bottom (more likely up than down)** (score +4.5). Signals: -1 price below its 50-day average; +1 analyst consensus buy (19 analysts); +1 mean price target +59% above the price; +1 more upgrades than downgrades in 90 days (1 vs 0); +1 analysts raising price targets (7 raises vs 2 cuts in 90 days); +0.5 last quarter beat estimates (+1.9%); +0.5 revenue growing (+1% yoy); +0.5 positive free cash flow; -0.5 high leverage (debt/equity 8.9); +0.5 forward P/E 15 below trailing 19 (earnings expected to grow).
+**Read: signs of a bottom (more likely up than down)** (score +5). Signals: -1 price below its 50-day average; +1 analyst consensus buy (19 analysts); +1 mean price target +59% above the price; +1 more upgrades than downgrades in 90 days (1 vs 0); +1 analysts raising price targets (7 raises vs 2 cuts in 90 days); +0.5 last quarter beat estimates (+1.9%); +0.5 revenue growing (+1% yoy); +0.5 positive free cash flow; -0.5 high leverage (debt/equity 8.9); +0.5 forward P/E 15 below trailing 19 (earnings expected to grow); +0.5 unusually far below its peer group over 20 days (z -2.3; such stocks regained ~+0.65% vs peers in the next 20 days in the scan, weak evidence).
 
 **Where the stock is.** Last 31.05, -39% from the 52-week high (50.69 on 2026-06-01), +1% above the 52-week low (30.72 on 2025-10-30). 1m -25%, 3m -35%, 6m -16%, 1y -15%; vs 50-day -25%, vs 200-day -22%; RSI(14) 10. 52-week change -9% vs S&P 500 +14%.
 
@@ -1493,15 +1568,18 @@ Latest news:
 
 **Investor concerns and sentiment.**
 
-**What worries investors** (themes of the negative headlines of the last year, 69 headlines checked; headlines around the largest down days count double):
-- **China / international markets** (15): 2026-09-24 "MGM Resorts International Sinks 10% as Barry Diller Withdraws $48.30-a-Share Buyout Offer; Caesars Entertainment Barely Moves" (Yahoo Finance); 2026-09-24 "MGM Resorts International Stock (MGM) Opinions on Diller Abandoned Takeover Bid" (Quiver Quantitative)
-- **management / turnaround** (7): 2025-10-01 "MGM CEO apologizes to employees for not communicating about Oct. 1 lawsuits | Shootings | Crime" (Las Vegas Review-Journal); 2025-10-28 "MGM CEO, wife to lead philanthropic effort for new Las Vegas children's hospital" (news3lv.com)
+**What worries investors** (themes of the negative headlines of the last year, 141 headlines checked; headlines around the largest down days count double):
+- **China / international markets** (22): 2026-09-24 "MGM Resorts International Sinks 10% as Barry Diller Withdraws $48.30-a-Share Buyout Offer; Caesars Entertainment Barely Moves" (Yahoo Finance); 2026-09-24 "MGM Resorts International Stock (MGM) Opinions on Diller Abandoned Takeover Bid" (Quiver Quantitative)
+- **management / turnaround** (8): 2025-10-01 "MGM CEO apologizes to employees for not communicating about Oct. 1 lawsuits | Shootings | Crime" (Las Vegas Review-Journal); 2025-10-28 "MGM CEO, wife to lead philanthropic effort for new Las Vegas children's hospital" (news3lv.com)
 - **analyst downgrades** (5): 2026-09-24 "Mizuho Securities Lowers Price Target on MGM Resorts International to $55 From $60, Maintains Outperform Rating" (Yahoo Finance); 2026-09-24 "MGM Resorts International (NYSE:MGM) Shares Gap Down Following Analyst Downgrade" (MarketBeat)
-- **margins / costs** (4): 2025-10-29 "MGM Resorts’ CEO Hornbuckle admits company erred with pricing this summer" (CDC Gaming); 2025-10-30 "MGM CEO admits pricing added to negative view of Las Vegas: 'Shame on us'" (news3lv.com)
-Headline tone over the year: 24 negative, 9 positive, 36 neutral; last 30 days 20 negative vs 7 positive.
+- **earnings miss** (5): 2025-10-29 "Casino operator MGM Resorts misses profit estimates on weak Las Vegas business" (Reuters); 2026-07-29 "MGM Resorts (MGM) Misses Q2 Earnings Estimates" (Yahoo Finance)
+Headline tone over the year: 33 negative, 24 positive, 84 neutral; last 30 days 23 negative vs 11 positive.
 
 **Positioning:** Short interest 16.0% of float (+10% vs the prior month, 9.8 days to cover), as of -2026-09-15; institutions hold 68%, insiders 27.9%; StockTwits (27654 watchers): of the last 30 posts 12 bearish, 7 bullish.
-**Sentiment: negative** (signals: + price targets mostly raised in 90 days (7 raises vs 2 cuts); + EPS estimates revised up (6 up / 5 down in 30 days); - short interest rising (+10% in a month); - heavy short interest (16% of float); - StockTwits crowd bearish (12 bearish vs 7 bullish of the last 30 posts); - headlines mostly negative in the last 30 days (20 negative vs 7 positive)).
+**Sentiment: negative** (signals: + price targets mostly raised in 90 days (7 raises vs 2 cuts); + EPS estimates revised up (6 up / 5 down in 30 days); - short interest rising (+10% in a month); - heavy short interest (16% of float); - StockTwits crowd bearish (12 bearish vs 7 bullish of the last 30 posts); - headlines mostly negative in the last 30 days (23 negative vs 11 positive)).
+
+**Peers and group.** Closest by market-neutral correlation: WYNN (0.37), LVS (0.28), CDW (0.22), HST (0.22), HPQ (0.19); group of 3 stocks (largest: LVS, WYNN), mean correlation to the group 0.324; beta 1.51 to the equal-weight market, residual volatility 33% a year.
+**Last 20 days:** stock -23.8%, peer group -13.0%, relative to the group (beta-adjusted) -17.2%. The group over 6 months: -25.2%. z=-2.3: unusually far below its peers (under -2); in the historical scan such stocks regained +0.65% vs peers over the next 20 days (t=2.3, weak evidence).
 
 **What analysts say.** Consensus **buy** (19 analysts, mean rating 2.4 on a 1-5 scale); strong buy 2, buy 8, hold 11, sell 2, strong sell 0 (bullish share 43% now vs 41% three months ago). Mean target 49.33 (+59% from the price; range 40.00-57.00). 
 Last 90 days: 1 upgrades, 0 downgrades, 7 target raises, 2 target cuts.
@@ -1565,10 +1643,13 @@ Latest news:
 - **earnings miss** (4): 2026-04-30 "A. O. Smith (NYSE:AOS) Misses Q1 CY2026 Revenue Estimates" (stockstory.org); 2026-04-30 "A. O. Smith Misses Earnings & Sales Estimates in Q1, Lowers 26' View" (Yahoo Finance)
 - **weak demand / consumer** (3): 2026-04-14 "Fort Smith Regional Airport traffic ticks higher in the first quarter" (talkbusiness.net); 2026-06-17 "Meeks, Smith, Himes Demand Briefing on U.S.-Iran Memorandum of Understanding" (House.gov)
 - **guidance / outlook cut** (3): 2026-06-10 "WH Smith raises fresh capital, warns on profit as Iran war hits travel spend" (Reuters); 2026-07-23 "Earnings Preview: A.O. Smith (AOS) Q2 Earnings Expected to Decline" (Yahoo Finance)
-Headline tone over the year: 13 negative, 10 positive, 34 neutral; last 30 days 3 negative vs 4 positive.
+Headline tone over the year: 13 negative, 10 positive, 34 neutral; last 30 days 2 negative vs 4 positive.
 
 **Positioning:** Short interest 11.1% of float (-1% vs the prior month, 8.2 days to cover), as of -2026-09-15; institutions hold 118%, insiders 0.5%; StockTwits (1302 watchers): of the last 30 posts 1 bearish, 17 bullish.
-**Sentiment: mixed** (signals: - price targets mostly cut in 90 days (2 cuts vs 1 raises); - EPS estimates revised down (0 up / 10 down in 30 days); - heavy short interest (11% of float); + StockTwits crowd bullish (17 bullish vs 1 bearish of the last 30 posts); + headlines mostly positive in the last 30 days (4 positive vs 3 negative)).
+**Sentiment: mixed** (signals: - price targets mostly cut in 90 days (2 cuts vs 1 raises); - EPS estimates revised down (0 up / 10 down in 30 days); - heavy short interest (11% of float); + StockTwits crowd bullish (17 bullish vs 1 bearish of the last 30 posts); + headlines mostly positive in the last 30 days (4 positive vs 2 negative)).
+
+**Peers and group.** Closest by market-neutral correlation: ITW (0.49), MAS (0.48), ALLE (0.47), BLDR (0.44), PHM (0.43); group of 11 stocks (largest: DE, FAST, PCAR, GWW), mean correlation to the group 0.271; beta 0.94 to the equal-weight market, residual volatility 21% a year.
+**Last 20 days:** stock -3.6%, peer group -1.8%, relative to the group (beta-adjusted) -1.6%. The group over 6 months: +9.0%. z=+0.4, within its normal range.
 
 **What analysts say.** Consensus **hold** (11 analysts, mean rating 2.5 on a 1-5 scale); strong buy 1, buy 4, hold 6, sell 1, strong sell 1 (bullish share 38% now vs 38% three months ago). Mean target 69.91 (+24% from the price; range 59.00-84.00). 
 Last 90 days: 0 upgrades, 0 downgrades, 1 target raises, 2 target cuts.
@@ -1619,15 +1700,18 @@ Latest news:
 
 **Investor concerns and sentiment.**
 
-**What worries investors** (themes of the negative headlines of the last year, 90 headlines checked; headlines around the largest down days count double):
+**What worries investors** (themes of the negative headlines of the last year, 86 headlines checked; headlines around the largest down days count double):
 - **guidance / outlook cut** (5): 2026-07-29 "Align Technology (NASDAQ:ALGN) Reports Q2 CY2026 In Line With Expectations But Quarterly Revenue Guidance Slightly Misses Expectations" (StockStory); 2026-08-17 "How the U.K. VAT Ruling Could Reshape Align's 2026 Earnings Outlook" (finance.yahoo.com)
 - **legal / regulatory** (4): 2026-07-30 "Invisalign Maker Strikes Settlement Deal With Activist Investor Elliott" (Bloomberg.com); 2026-05-22 "Align Technology (ALGN) FDA Approvals, PDUFA Dates & Drug Alerts 2026" (MarketBeat)
 - **earnings miss** (3): 2026-07-30 "ALGN Q2 2026 Earnings: Slight EPS Miss Triggers 3.7% Stock Decline - Earnings Turnaround" (dars.gov.et)
 - **management / turnaround** (2): 2026-07-31 "Align Technology (ALGN) Stock Slides As Scanner Reset Clouds Aligner Strength" (simplywall.st); 2026-08-31 "A 13-year board tenure ends as Align adds a heart-care CEO" (Stock Titan)
-Headline tone over the year: 11 negative, 26 positive, 53 neutral; last 30 days 1 negative vs 6 positive.
+Headline tone over the year: 10 negative, 23 positive, 53 neutral; last 30 days 1 negative vs 5 positive.
 
-**Positioning:** Short interest 6.3% of float (+14% vs the prior month, 4.6 days to cover), as of -2026-09-15; institutions hold 105%, insiders 6.1%; StockTwits (8538 watchers): of the last 30 posts 2 bearish, 5 bullish.
-**Sentiment: mixed** (signals: - fewer analysts bullish than three months ago (62% vs 69%); + price targets mostly raised in 90 days (1 raises vs 0 cuts); - EPS estimates revised down (3 up / 10 down in 30 days); - short interest rising (+14% in a month); + StockTwits crowd bullish (5 bullish vs 2 bearish of the last 30 posts); + headlines mostly positive in the last 30 days (6 positive vs 1 negative)).
+**Positioning:** Short interest 6.3% of float (+14% vs the prior month, 4.6 days to cover), as of -2026-09-15; institutions hold 105%, insiders 6.1%; StockTwits (8536 watchers): of the last 30 posts 2 bearish, 5 bullish.
+**Sentiment: mixed** (signals: - fewer analysts bullish than three months ago (62% vs 69%); + price targets mostly raised in 90 days (1 raises vs 0 cuts); - EPS estimates revised down (3 up / 10 down in 30 days); - short interest rising (+14% in a month); + StockTwits crowd bullish (5 bullish vs 2 bearish of the last 30 posts); + headlines mostly positive in the last 30 days (5 positive vs 1 negative)).
+
+**Peers and group.** Closest by market-neutral correlation: BAX (0.41), IP (0.24), IDXX (0.22), DXCM (0.22), EXR (0.20); group of 18 stocks (largest: ABT, SYK, MDT, ZTS), mean correlation to the group 0.097; beta 1.64 to the equal-weight market, residual volatility 44% a year.
+**Last 20 days:** stock -6.2%, peer group -7.0%, relative to the group (beta-adjusted) +4.2%. The group over 6 months: +2.9%. z=+0.3, within its normal range.
 
 **What analysts say.** Consensus **buy** (14 analysts, mean rating 2.0 on a 1-5 scale); strong buy 3, buy 7, hold 5, sell 0, strong sell 1 (bullish share 62% now vs 69% three months ago). Mean target 206.36 (+42% from the price; range 170.00-235.00). 
 Last 90 days: 0 upgrades, 0 downgrades, 1 target raises, 0 target cuts.
@@ -1669,8 +1753,13 @@ Last 90 days: 0 upgrades, 0 downgrades, 1 target raises, 0 target cuts.
   - market-wide day: SPY -1.5%
 - 2026-05-15: -2.7% (3.3x normal volume, SPY -1.2%):
   - 8-K filed 2026-05-14: material agreement; other events
+  - 2026-05-14 Hunton Advises on American Electric Power Company, Inc.’s $2.9B Forward Equity Offering (Hunton Andrews Kurth LLP)
+  - 2026-05-14 A Look At American Electric Power (AEP) Valuation After Recent Share Weakness And Mixed Returns (Yahoo Finance)
 - 2026-07-30: -1.3% (earnings reaction, 1.5x normal volume, SPY +1.7%):
   - 8-K filed 2026-07-30: results of operations (earnings release) (quarter to 2026-06-30: EPS 1.36 vs 1.48 expected, -8.2%)
+  - 2026-07-30 American Electric Power raises 2026 EPS guidance, driven by AI power demand and strong growth prospects (pluang.com)
+  - 2026-07-30 American Electric Power lifts forecast as AI fuels electricity demand (Reuters)
+  - 2026-07-30 American Electric Power (NASDAQ:AEP) Misses Q2 EPS Estimates but Raises Full-Year Guidance (ChartMill)
   - rating/target cuts right after: Mizuho target cut 141 -> 135
 
 Latest news:
@@ -1692,6 +1781,9 @@ Headline tone over the year: 11 negative, 32 positive, 64 neutral; last 30 days 
 
 **Positioning:** Short interest 4.7% of float (+10% vs the prior month, 7.9 days to cover), as of -2026-09-15; institutions hold 94%, insiders 0.0%; StockTwits (2951 watchers): of the last 30 posts 0 bearish, 7 bullish.
 **Sentiment: positive** (signals: - price targets mostly cut in 90 days (7 cuts vs 3 raises); + EPS estimates revised up (5 up / 1 down in 30 days); + StockTwits crowd bullish (7 bullish vs 0 bearish of the last 30 posts); + headlines mostly positive in the last 30 days (3 positive vs 1 negative)).
+
+**Peers and group.** Closest by market-neutral correlation: SO (0.75), DUK (0.75), WEC (0.73), LNT (0.72), EXC (0.72); group of 25 stocks (largest: NEE, SO, DUK, XEL), mean correlation to the group 0.634; beta 0.17 to the equal-weight market, residual volatility 19% a year.
+**Last 20 days:** stock -3.5%, peer group -6.3%, relative to the group (beta-adjusted) +3.1%. The group over 6 months: -11.2%. z=+0.9, within its normal range.
 
 **What analysts say.** Consensus **buy** (20 analysts, mean rating 2.0 on a 1-5 scale); strong buy 3, buy 10, hold 10, sell 0, strong sell 0 (bullish share 57% now vs 54% three months ago). Mean target 142.97 (+21% from the price; range 128.00-173.00). 
 Last 90 days: 0 upgrades, 1 downgrades, 3 target raises, 7 target cuts.
@@ -1757,6 +1849,9 @@ Headline tone over the year: 10 negative, 19 positive, 69 neutral; last 30 days 
 **Positioning:** Short interest 9.1% of float (+11% vs the prior month, 7.9 days to cover), as of -2026-09-15; institutions hold 107%, insiders 0.2%; StockTwits (1328 watchers): of the last 30 posts 0 bearish, 3 bullish.
 **Sentiment: mixed** (signals: - price targets mostly cut in 90 days (6 cuts vs 2 raises); + EPS estimates revised up (3 up / 1 down in 30 days); - short interest rising (+11% in a month); + headlines mostly positive in the last 30 days (5 positive vs 4 negative)).
 
+**Peers and group.** Closest by market-neutral correlation: AEE (0.75), WEC (0.73), LNT (0.72), DTE (0.72), DUK (0.71); group of 25 stocks (largest: NEE, AEP, SO, DUK), mean correlation to the group 0.636; beta 0.26 to the equal-weight market, residual volatility 17% a year.
+**Last 20 days:** stock -6.8%, peer group -6.2%, relative to the group (beta-adjusted) -0.4%. The group over 6 months: -11.0%. z=-0.2, within its normal range.
+
 **What analysts say.** Consensus **buy** (17 analysts, mean rating 2.2 on a 1-5 scale); strong buy 2, buy 7, hold 10, sell 0, strong sell 0 (bullish share 47% now vs 44% three months ago). Mean target 45.24 (+23% from the price; range 38.00-50.00). 
 Last 90 days: 0 upgrades, 0 downgrades, 2 target raises, 6 target cuts.
 - 2026-09-18 Morgan Stanley: maintains Equal-Weight, target 39 -> 38
@@ -1815,10 +1910,13 @@ Latest news:
 - **earnings miss** (4): 2026-04-30 "DTE Energy's Q1 Earnings Miss Estimates, Decrease Year Over Year" (Yahoo Finance); 2026-07-28 "CMS Energy Shares Decline After Second-Quarter Earnings Miss" (Yahoo Finance)
 - **management / turnaround** (2): 2026-06-03 "CMS Energy Names Sri Maddipati CFO, Promotes Chris Fultz to Lead Electric Supply Operations" (citybiz); 2026-06-04 "Jefferies downgrades CMS energy after surprise CFO exit, cuts target to hold woes" (Yahoo Finance)
 - **competition / market share** (2): 2026-09-18 "CMS Energy Corp. stock underperforms Friday when compared to competitors" (MarketWatch); 2026-09-23 "CMS Energy Corp. stock outperforms competitors despite losses on the day" (MarketWatch)
-Headline tone over the year: 35 negative, 16 positive, 39 neutral; last 30 days 25 negative vs 3 positive.
+Headline tone over the year: 35 negative, 16 positive, 39 neutral; last 30 days 23 negative vs 3 positive.
 
 **Positioning:** Short interest 0.0% of float (+32% vs the prior month), as of -2026-09-15; institutions hold 104%, insiders 0.5%; StockTwits (518 watchers): of the last 30 posts 0 bearish, 4 bullish.
-**Sentiment: negative** (signals: - fewer analysts bullish than three months ago (47% vs 50%); - price targets mostly cut in 90 days (7 cuts vs 4 raises); - EPS estimates revised down (0 up / 6 down in 30 days); - short interest rising (+32% in a month); - headlines mostly negative in the last 30 days (25 negative vs 3 positive)).
+**Sentiment: negative** (signals: - fewer analysts bullish than three months ago (47% vs 50%); - price targets mostly cut in 90 days (7 cuts vs 4 raises); - EPS estimates revised down (0 up / 6 down in 30 days); - short interest rising (+32% in a month); - headlines mostly negative in the last 30 days (23 negative vs 3 positive)).
+
+**Peers and group.** Closest by market-neutral correlation: DTE (0.85), WEC (0.83), LNT (0.81), AEE (0.81), DUK (0.81); group of 25 stocks (largest: NEE, AEP, SO, DUK), mean correlation to the group 0.694; beta 0.26 to the equal-weight market, residual volatility 17% a year.
+**Last 20 days:** stock -7.2%, peer group -6.2%, relative to the group (beta-adjusted) -0.9%. The group over 6 months: -10.8%. z=-0.1, within its normal range.
 
 **What analysts say.** Consensus **buy** (12 analysts, mean rating 2.3 on a 1-5 scale); strong buy 3, buy 4, hold 8, sell 0, strong sell 0 (bullish share 47% now vs 50% three months ago). Mean target 78.67 (+25% from the price; range 68.00-87.00). 
 Last 90 days: 0 upgrades, 1 downgrades, 4 target raises, 7 target cuts.
@@ -1842,11 +1940,16 @@ Last 90 days: 0 upgrades, 1 downgrades, 4 target raises, 7 target cuts.
 
 **Where the stock is.** Last 102.21, -10% from the 52-week high (113.57 on 2026-03-16), +10% above the 52-week low (93.02 on 2025-11-05). 1m -4%, 3m -7%, 6m -8%, 1y +6%; vs 50-day -5%, vs 200-day -4%; RSI(14) 26. 52-week change +5% vs S&P 500 +14%.
 
-**Why it fell.** From the 52-week high (113.57 on 2026-03-16) the stock is -10%. Cause found in the data (earnings). Largest down days of the last year, plus every earnings reaction that closed down, and the evidence around each:
+**Why it fell.** From the 52-week high (113.57 on 2026-03-16) the stock is -10%. Cause found in the data (earnings, demand/competition). Largest down days of the last year, plus every earnings reaction that closed down, and the evidence around each:
 - 2025-12-01: -2.5% (1.2x normal volume, SPY -0.5%). No cause found for this day (before the news feed starts on 2026-09-13; only 8-K filings, rating changes and the market were checked).
 - 2025-10-01: -2.3% (1.2x normal volume, SPY +0.3%). No cause found for this day.
-- 2026-07-30: -2.3% (1.3x normal volume, SPY +1.7%). No cause found for this day (before the news feed starts on 2026-09-13; only 8-K filings, rating changes and the market were checked).
-- 2026-05-06: -2.1% (1.4x normal volume, SPY +1.4%). No cause found for this day (before the news feed starts on 2026-09-13; only 8-K filings, rating changes and the market were checked).
+- 2026-07-30: -2.3% (1.3x normal volume, SPY +1.7%):
+  - 2026-07-30 Consolidated Edison (ED) Earnings Expected to Grow: What to Know Ahead of Next Week's Release (Yahoo Finance)
+  - 2026-07-29 ED Q1 2026 Earnings: EPS Misses Estimates by Nearly 7% as Utility Navigates Cost Pressures - Earnings Seasonality (dars.gov.et)
+- 2026-05-06: -2.1% (1.4x normal volume, SPY +1.4%):
+  - 2026-05-07 Consolidated Edison posts higher quarterly profit on robust power demand (Reuters)
+  - 2026-05-07 CONSOLIDATED EDISON ($ED) Releases Q1 2026 Earnings (Quiver Quantitative)
+  - 2026-05-05 Con Ed (ED) Q1 Earnings Preview: What You Should Know Beyond the Headline Estimates (Yahoo Finance)
 - 2026-03-20: -2.0% (1.7x normal volume, SPY -1.4%). No cause found for this day.
 - 2026-02-20: -1.9% (earnings reaction, 1.8x normal volume, SPY +0.7%):
   - 8-K filed 2026-02-19: results of operations (earnings release) (quarter to 2025-12-31: EPS 0.89 vs 0.86 expected, +3.4%)
@@ -1864,15 +1967,18 @@ Latest news:
 
 **Investor concerns and sentiment.**
 
-**What worries investors** (themes of the negative headlines of the last year, 53 headlines checked; headlines around the largest down days count double):
-- **margins / costs** (4): 2026-07-17 "Consolidated Edison Q1 2026 Earnings: EPS Misses Amid Rising Utility Costs - Peak Earnings Alert" (careplusvn.com); 2026-07-17 "Consolidated Edison (ED) Q1 2026 Earnings: EPS Miss Highlights Cost Headwinds Amid Stable Utility Operations" (dars.gov.et)
-- **earnings miss** (3): 2026-07-17 "Consolidated Edison Q1 2026 Earnings: EPS Misses Amid Rising Utility Costs - Guidance Downgrade Alert" (dars.gov.et)
-- **guidance / outlook cut** (2): 2026-04-30 "Consolidated Edison (ED) Earnings Expected to Grow: What to Know Ahead of Next Week's Release" (Yahoo Finance); 2026-08-31 "Consolidated Edison stock steadies after earnings and outlook" (AD HOC NEWS)
+**What worries investors** (themes of the negative headlines of the last year, 56 headlines checked; headlines around the largest down days count double):
+- **margins / costs** (6): 2026-07-29 "ED Q1 2026 Earnings: EPS Misses Estimates by Nearly 7% as Utility Navigates Cost Pressures - Earnings Seasonality" (dars.gov.et); 2026-07-17 "Consolidated Edison Q1 2026 Earnings: EPS Misses Amid Rising Utility Costs - Peak Earnings Alert" (careplusvn.com)
+- **earnings miss** (5): 2026-07-17 "Consolidated Edison (ED) Q1 2026 Earnings: EPS Miss Highlights Cost Headwinds Amid Stable Utility Operations" (dars.gov.et); 2026-07-17 "Consolidated Edison Q1 2026 Earnings: EPS Misses Amid Rising Utility Costs - Guidance Downgrade Alert" (dars.gov.et)
+- **guidance / outlook cut** (3): 2026-07-30 "Consolidated Edison (ED) Earnings Expected to Grow: What to Know Ahead of Next Week's Release" (Yahoo Finance); 2026-08-31 "Consolidated Edison stock steadies after earnings and outlook" (AD HOC NEWS)
 - **analyst downgrades** (2): 2026-06-27 "Argus Cuts Price Target on Consolidated Edison (ED). Here is Why" (Yahoo Finance)
-Headline tone over the year: 7 negative, 5 positive, 41 neutral; last 30 days 2 negative vs 2 positive.
+Headline tone over the year: 9 negative, 5 positive, 42 neutral; last 30 days 2 negative vs 2 positive.
 
 **Positioning:** Short interest 3.6% of float (+6% vs the prior month, 5.1 days to cover), as of -2026-09-15; institutions hold 79%, insiders 0.2%; StockTwits (2647 watchers): of the last 30 posts 0 bearish, 3 bullish.
 **Sentiment: mixed** (signals: - price targets mostly cut in 90 days (5 cuts vs 1 raises); + EPS estimates revised up (4 up / 1 down in 30 days)).
+
+**Peers and group.** Closest by market-neutral correlation: DUK (0.82), WEC (0.82), CMS (0.80), SO (0.79), DTE (0.75); group of 25 stocks (largest: NEE, AEP, SO, DUK), mean correlation to the group 0.662; beta 0.01 to the equal-weight market, residual volatility 18% a year.
+**Last 20 days:** stock -5.1%, peer group -6.3%, relative to the group (beta-adjusted) +0.8%. The group over 6 months: -11.2%. z=+0.1, within its normal range.
 
 **What analysts say.** Consensus **hold** (16 analysts, mean rating 3.3 on a 1-5 scale); strong buy 0, buy 2, hold 9, sell 3, strong sell 4 (bullish share 11% now vs 11% three months ago). Mean target 110.03 (+8% from the price; range 94.00-130.00). 
 Last 90 days: 0 upgrades, 0 downgrades, 1 target raises, 5 target cuts.
@@ -1914,7 +2020,7 @@ Last 90 days: 0 upgrades, 0 downgrades, 1 target raises, 5 target cuts.
   - 2026-09-14 Constellation Energy Stock (CEG) Opinions on Rhode Island Gas Plant Acquisition (Quiver Quantitative)
   - 2026-09-14 Jefferies Adjusts Price Target on Constellation Brands to $135 From $147, Keeps Hold Rating (Yahoo Finance)
   - 2026-09-15 Constellation Energy stock falls after Rhode Island plant deal as analysts trim targets (AD HOC NEWS)
-- 2025-12-12: -7.0% (1.8x normal volume, SPY -1.1%). No cause found for this day (before the news feed starts on 2026-09-29; only 8-K filings, rating changes and the market were checked).
+- 2025-12-12: -7.0% (1.8x normal volume, SPY -1.1%). No cause found for this day.
 - 2026-05-12: -2.0% (earnings reaction, 1.4x normal volume, SPY -0.2%):
   - 8-K filed 2026-05-11: results of operations (earnings release); Reg FD disclosure (quarter to 2026-03-31: EPS 2.74 vs 2.60 expected, +5.3%)
   - 2026-05-12 Constellation Energy Q1 2026 Earnings: Revenue Doubles on Calpine, EPS Guidance Affirmed (TIKR.com)
@@ -1931,15 +2037,18 @@ Latest news:
 
 **Investor concerns and sentiment.**
 
-**What worries investors** (themes of the negative headlines of the last year, 138 headlines checked; headlines around the largest down days count double):
+**What worries investors** (themes of the negative headlines of the last year, 139 headlines checked; headlines around the largest down days count double):
 - **guidance / outlook cut** (6): 2026-05-11 "Constellation Energy Beats Earnings Estimates. Its Outlook Pulls the Stock Lower." (Barron's); 2026-05-12 "Constellation Energy Q1 2026 Earnings: Revenue Doubles on Calpine, EPS Guidance Affirmed" (TIKR.com)
 - **debt / financing** (4): 2026-06-01 "Constellation Energy Corporation Announces Secondary Public Offering of Common Stock" (Business Wire); 2026-06-01 "Constellation Energy Share Offering And Buyback Raise Valuation Questions" (Yahoo Finance)
 - **margins / costs** (4): 2026-01-15 "The energy trade that excites VanEck's CEO — and it's not oil" (cnbc.com); 2026-05-13 "PPI Report April 2026: How Inflation Data Is Moving HIMS, CEG, and PLUG Stock Today" (TradingKey)
 - **technology disruption / AI** (2): 2026-05-14 "Constellation Energy’s $13 Billion Cash Flow Outlook Shows AI’s Power Trade Is Just Beginning" (barchart.com); 2026-05-18 "Constellation Energy Stock (CEG) Opinions on Analyst Adjustments Amid AI Power Demand | CEG Stock News" (Quiver Quantitative)
-Headline tone over the year: 16 negative, 38 positive, 84 neutral; last 30 days 1 negative vs 4 positive.
+Headline tone over the year: 16 negative, 39 positive, 84 neutral; last 30 days 1 negative vs 4 positive.
 
 **Positioning:** Short interest 3.7% of float (+25% vs the prior month, 4.6 days to cover), as of -2026-09-15; institutions hold 83%, insiders 0.3%; StockTwits (12055 watchers): of the last 30 posts 0 bearish, 14 bullish.
 **Sentiment: mixed** (signals: - price targets mostly cut in 90 days (6 cuts vs 1 raises); + EPS estimates revised up (14 up / 2 down in 30 days); - short interest rising (+25% in a month); + StockTwits crowd bullish (14 bullish vs 0 bearish of the last 30 posts); + headlines mostly positive in the last 30 days (4 positive vs 1 negative)).
+
+**Peers and group.** Closest by market-neutral correlation: VST (0.77), NRG (0.61), VRT (0.49), PWR (0.46), GEV (0.46); group of 16 stocks (largest: NVDA, AVGO, ORCL, NBIS), mean correlation to the group 0.418; beta 1.41 to the equal-weight market, residual volatility 51% a year.
+**Last 20 days:** stock -9.4%, peer group +4.6%, relative to the group (beta-adjusted) -11.6%. The group over 6 months: +32.9%. z=-0.9, within its normal range.
 
 **What analysts say.** Consensus **buy** (20 analysts, mean rating 1.5 on a 1-5 scale); strong buy 6, buy 13, hold 3, sell 0, strong sell 0 (bullish share 86% now vs 87% three months ago). Mean target 347.28 (+37% from the price; range 290.00-441.00). 
 Last 90 days: 0 upgrades, 0 downgrades, 1 target raises, 6 target cuts.
@@ -1997,13 +2106,16 @@ Latest news:
 
 **What worries investors** (themes of the negative headlines of the last year, 115 headlines checked; headlines around the largest down days count double):
 - **guidance / outlook cut** (4): 2026-05-04 "CRH falls 3.3% as investors digest Q1 loss and unchanged 2026 outlook | CRH Stock News" (Quiver Quantitative); 2026-07-30 "CRH Q2 Earnings, Revenue Rise; Fiscal 2026 EPS Outlook Maintained" (marketscreener.com)
+- **earnings miss** (3): 2026-03-13 "CRH and the Data Center Buildout: What Investors Miss" (Yahoo Finance); 2026-02-18 "CRH shares fall as earnings miss estimates despite record year" (Investing.com)
 - **margins / costs** (3): 2026-07-30 "CRH's second quarter revenues up on pricing and demand" (RTE.ie); 2026-08-01 "CRH (CRH) Stock Slides As Margin Strength Meets Deal Risk" (simplywall.st)
-- **earnings miss** (2): 2026-03-13 "CRH and the Data Center Buildout: What Investors Miss" (Yahoo Finance)
-- **analyst downgrades** (2): 2026-07-31 "Truist Cuts Price Target on CRH to $130 From $140, Keeps Buy Rating" (finance.yahoo.com); 2026-09-23 "CRH (NYSE:CRH) Reaches New 52-Week Low Following Analyst Downgrade" (MarketBeat)
-Headline tone over the year: 16 negative, 30 positive, 69 neutral; last 30 days 7 negative vs 4 positive.
+- **management / turnaround** (2): 2026-06-22 "CRH Adds Former CF Industries CEO to Its Board; Why Investors Are Paying Attention" (Yahoo Finance); 2026-06-30 "What Is CRH plc (CRH) Planning Following Leadership Changes?" (Yahoo Finance)
+Headline tone over the year: 17 negative, 30 positive, 68 neutral; last 30 days 6 negative vs 3 positive.
 
-**Positioning:** Short interest 2.0% of float (-7% vs the prior month, 2.7 days to cover), as of -2026-09-15; institutions hold 89%, insiders 0.1%; StockTwits (918 watchers): of the last 30 posts 0 bearish, 9 bullish.
-**Sentiment: mixed** (signals: + more analysts bullish than three months ago (96% vs 90%); - price targets mostly cut in 90 days (5 cuts vs 0 raises); - EPS estimates revised down (1 up / 3 down in 30 days); + StockTwits crowd bullish (9 bullish vs 0 bearish of the last 30 posts); - headlines mostly negative in the last 30 days (7 negative vs 4 positive)).
+**Positioning:** Short interest 2.0% of float (-7% vs the prior month, 2.7 days to cover), as of -2026-09-15; institutions hold 89%, insiders 0.1%; StockTwits (918 watchers): of the last 30 posts 0 bearish, 8 bullish.
+**Sentiment: mixed** (signals: + more analysts bullish than three months ago (96% vs 90%); - price targets mostly cut in 90 days (5 cuts vs 0 raises); - EPS estimates revised down (1 up / 3 down in 30 days); + StockTwits crowd bullish (8 bullish vs 0 bearish of the last 30 posts); - headlines mostly negative in the last 30 days (6 negative vs 3 positive)).
+
+**Peers and group.** Closest by market-neutral correlation: VMC (0.55), MLM (0.51), SW (0.27), PPG (0.27), BLDR (0.26); group of 3 stocks (largest: MLM, VMC), mean correlation to the group 0.527; beta 1.43 to the equal-weight market, residual volatility 23% a year.
+**Last 20 days:** stock -9.2%, peer group -5.4%, relative to the group (beta-adjusted) -4.6%. The group over 6 months: -14.0%. z=-1.0, within its normal range.
 
 **What analysts say.** Consensus **strong buy** (24 analysts, mean rating 1.3 on a 1-5 scale); strong buy 5, buy 17, hold 1, sell 0, strong sell 0 (bullish share 96% now vs 90% three months ago). Mean target 133.17 (+61% from the price; range 105.00-165.00). 
 Last 90 days: 0 upgrades, 0 downgrades, 0 target raises, 5 target cuts.
@@ -2057,15 +2169,18 @@ Latest news:
 
 **Investor concerns and sentiment.**
 
-**What worries investors** (themes of the negative headlines of the last year, 108 headlines checked; headlines around the largest down days count double):
-- **guidance / outlook cut** (20): 2025-10-23 "Deckers Expects More Cautious Shoppers Due to Tariffs, Higher Prices" (WSJ); 2025-10-24 "Deckers Outdoor Corporation Stock (DECK) Opinions on Q2 Earnings and Guidance" (Quiver Quantitative)
+**What worries investors** (themes of the negative headlines of the last year, 109 headlines checked; headlines around the largest down days count double):
+- **guidance / outlook cut** (19): 2025-10-23 "Deckers Expects More Cautious Shoppers Due to Tariffs, Higher Prices" (WSJ); 2025-10-24 "Deckers Outdoor Corporation Stock (DECK) Opinions on Q2 Earnings and Guidance" (Quiver Quantitative)
 - **tariffs / trade** (5): 2025-10-24 "Hoka-parent Deckers sinks on tariff woes, economic uncertainty" (Reuters); 2025-10-24 "Deckers Stock Slumps as Hoka Maker Warns of Consumer Pullback Because of Tariffs, Higher Prices" (Investopedia)
-- **weak demand / consumer** (4): 2026-05-23 "Consumer Sentiment Concerns Are No Sweat For Deckers Outdoor Stock (NYSE:DECK)" (Seeking Alpha); 2026-09-15 "Deckers Outdoor Stock: Is DECK Underperforming the Consumer Discretionary Sector?" (finance.yahoo.com)
-- **earnings miss** (2): 2025-10-24 "Hoka-Owner Deckers Drops as Sales Guidance Misses Expectations" (Bloomberg.com); 2026-07-23 "Deckers Outdoor Corp (NYSE:DECK): Mixed Earnings With EPS Beat, Revenue Miss And Tepid Guidance Weigh On Stock" (ChartMill)
-Headline tone over the year: 24 negative, 43 positive, 41 neutral; last 30 days 2 negative vs 8 positive.
+- **weak demand / consumer** (4): 2026-05-23 "Consumer Sentiment Concerns Are No Sweat For Deckers Outdoor Stock (NYSE:DECK)" (Seeking Alpha); 2026-09-15 "Deckers Outdoor Stock: Is DECK Underperforming the Consumer Discretionary Sector?" (Yahoo Finance)
+- **earnings miss** (2): 2025-10-24 "Hoka-Owner Deckers Drops as Sales Guidance Misses Expectations" (Bloomberg.com)
+Headline tone over the year: 24 negative, 44 positive, 41 neutral; last 30 days 2 negative vs 8 positive.
 
-**Positioning:** Short interest 7.8% of float (+20% vs the prior month, 3.2 days to cover), as of -2026-09-15; institutions hold 101%, insiders 0.7%; StockTwits (6819 watchers): of the last 30 posts 1 bearish, 15 bullish.
-**Sentiment: positive** (signals: + more analysts bullish than three months ago (48% vs 42%); - price targets mostly cut in 90 days (6 cuts vs 1 raises); + EPS estimates revised up (15 up / 1 down in 30 days); - short interest rising (+20% in a month); + StockTwits crowd bullish (15 bullish vs 1 bearish of the last 30 posts); + headlines mostly positive in the last 30 days (8 positive vs 2 negative)).
+**Positioning:** Short interest 7.8% of float (+20% vs the prior month, 3.2 days to cover), as of -2026-09-15; institutions hold 101%, insiders 0.7%; StockTwits (6819 watchers): of the last 30 posts 0 bearish, 19 bullish.
+**Sentiment: positive** (signals: + more analysts bullish than three months ago (48% vs 42%); - price targets mostly cut in 90 days (6 cuts vs 1 raises); + EPS estimates revised up (15 up / 1 down in 30 days); - short interest rising (+20% in a month); + StockTwits crowd bullish (19 bullish vs 0 bearish of the last 30 posts); + headlines mostly positive in the last 30 days (8 positive vs 2 negative)).
+
+**Peers and group.** Closest by market-neutral correlation: RL (0.33), ROST (0.33), TPR (0.26), NKE (0.22), LULU (0.21); group of 11 stocks (largest: NKE, TGT, LULU, TPR), mean correlation to the group 0.194; beta 1.59 to the equal-weight market, residual volatility 44% a year.
+**Last 20 days:** stock -7.6%, peer group -4.2%, relative to the group (beta-adjusted) -3.1%. The group over 6 months: +2.5%. z=+0.0, within its normal range.
 
 **What analysts say.** Consensus **buy** (22 analysts, mean rating 2.4 on a 1-5 scale); strong buy 5, buy 8, hold 11, sell 3, strong sell 0 (bullish share 48% now vs 42% three months ago). Mean target 120.41 (+54% from the price; range 70.00-184.00). 
 Last 90 days: 1 upgrades, 0 downgrades, 1 target raises, 6 target cuts.
@@ -2129,15 +2244,18 @@ Latest news:
 
 **Investor concerns and sentiment.**
 
-**What worries investors** (themes of the negative headlines of the last year, 280 headlines checked; headlines around the largest down days count double):
+**What worries investors** (themes of the negative headlines of the last year, 279 headlines checked; headlines around the largest down days count double):
 - **guidance / outlook cut** (38): 2025-10-09 "Wall Street Today: Dow, Nasdaq, S&P 500 trade lower as US Fed's Jerome Powell offers no new rate cut guidance" (Livemint); 2025-10-10 "Dow Jones Outlook: The DJIA Faces Strong Bearish Pressure Toward the End of the Week" (FOREX.com)
 - **margins / costs** (38): 2026-04-17 "Dow, LyondellBasell top S&P 500 losers as oil's plunge pressures chemical industry pricing, margins" (Seeking Alpha); 2026-04-17 "Dow Jones Futures Rise, Oil Prices Fall On Trump's Iran Comments; Netflix Dives" (Investor's Business Daily)
 - **geopolitics** (30): 2025-10-10 "US stock market crashes today as trade war fears return — Dow falls 480 points, S&P 500 drops 0.8%, Nasdaq" (The Economic Times); 2026-04-16 "The Dow Fell Into Correction Territory During the Iran Conflict. It Has Already Bounced Back. Here Is the Pattern Long-Term Investors Should Memorize." (The Motley Fool)
 - **technology disruption / AI** (24): 2025-11-18 "Dow closes down nearly 500 points as AI bubble fears hammer stocks" (abcnews.com); 2025-11-18 "Dow plunges nearly 500 points on fears of AI bubble, waning hope for Fed rate cut" (nypost.com)
-Headline tone over the year: 75 negative, 72 positive, 133 neutral; last 30 days 3 negative vs 2 positive.
+Headline tone over the year: 75 negative, 71 positive, 133 neutral; last 30 days 3 negative vs 1 positive.
 
-**Positioning:** Short interest 5.5% of float (-6% vs the prior month, 4.2 days to cover), as of -2026-09-15; institutions hold 80%, insiders 0.2%; StockTwits (9385 watchers): of the last 30 posts 1 bearish, 26 bullish.
-**Sentiment: negative** (signals: - fewer analysts bullish than three months ago (32% vs 39%); - price targets mostly cut in 90 days (6 cuts vs 1 raises); - EPS estimates revised down (0 up / 2 down in 30 days); + StockTwits crowd bullish (26 bullish vs 1 bearish of the last 30 posts); - headlines mostly negative in the last 30 days (3 negative vs 2 positive)).
+**Positioning:** Short interest 5.5% of float (-6% vs the prior month, 4.2 days to cover), as of -2026-09-15; institutions hold 80%, insiders 0.2%; StockTwits (9382 watchers): of the last 30 posts 1 bearish, 28 bullish.
+**Sentiment: negative** (signals: - fewer analysts bullish than three months ago (32% vs 39%); - price targets mostly cut in 90 days (6 cuts vs 1 raises); - EPS estimates revised down (0 up / 2 down in 30 days); + StockTwits crowd bullish (28 bullish vs 1 bearish of the last 30 posts); - headlines mostly negative in the last 30 days (3 negative vs 1 positive)).
+
+**Peers and group.** Closest by market-neutral correlation: LYB (0.88), OXY (0.51), DVN (0.48), APA (0.48), PSX (0.48); group of 16 stocks (largest: XOM, CVX, VLO, MPC), mean correlation to the group 0.451; beta 1.19 to the equal-weight market, residual volatility 41% a year.
+**Last 20 days:** stock -9.6%, peer group -6.1%, relative to the group (beta-adjusted) -2.6%. The group over 6 months: +4.5%. z=-0.1, within its normal range.
 
 **What analysts say.** Consensus **buy** (16 analysts, mean rating 2.5 on a 1-5 scale); strong buy 1, buy 5, hold 12, sell 0, strong sell 1 (bullish share 32% now vs 39% three months ago). Mean target 34.12 (+24% from the price; range 29.00-41.00). 
 Last 90 days: 0 upgrades, 1 downgrades, 1 target raises, 6 target cuts.
@@ -2202,12 +2320,15 @@ Latest news:
 **What worries investors** (themes of the negative headlines of the last year, 138 headlines checked; headlines around the largest down days count double):
 - **guidance / outlook cut** (13): 2025-12-01 "Scammers target residents with energy disconnection threats amid cold weather, BBB warns" (WCNC); 2026-05-31 "Duke Energy lowers rates for customers starting Monday" (Spectrum News 13)
 - **debt / financing** (11): 2026-08-10 "Duke Energy Seeks $1.75 Billion in Equity Units Offering" (Bloomberg.com); 2026-08-10 "Duke Energy dips 1.7% on $1.75B equity units offering" (Dealroom)
-- **legal / regulatory** (7): 2025-12-03 "Stein opposes Duke Energy rate hike, supports DOJ intervention" (WCTI); 2026-05-05 "Duke Energy Fuel Rider Lawsuit: Full Guide 2026" (LawFold.com)
-- **margins / costs** (6): 2026-07-08 "Energy brief—renewed fighting results in higher oil prices" (Oklahoma Energy Today); 2026-08-11 "Duke Energy announces pricing of equity units offering" (PR Newswire)
-Headline tone over the year: 23 negative, 26 positive, 89 neutral; last 30 days 3 negative vs 1 positive.
+- **margins / costs** (7): 2026-05-05 "Duke Energy Fuel Rider Lawsuit: Full Guide 2026" (LawFold.com); 2026-07-08 "Energy brief—renewed fighting results in higher oil prices" (Oklahoma Energy Today)
+- **legal / regulatory** (7): 2025-12-03 "Stein opposes Duke Energy rate hike, supports DOJ intervention" (WCTI); 2026-05-06 "Clean energy groups push back on North Carolina regulators' solar energy pause" (bpr.org)
+Headline tone over the year: 24 negative, 23 positive, 91 neutral; last 30 days 3 negative vs 1 positive.
 
-**Positioning:** Short interest 2.7% of float (+6% vs the prior month, 5.3 days to cover), as of -2026-09-15; institutions hold 71%, insiders 0.1%; StockTwits (6408 watchers): of the last 30 posts 0 bearish, 12 bullish.
+**Positioning:** Short interest 2.7% of float (+6% vs the prior month, 5.3 days to cover), as of -2026-09-15; institutions hold 71%, insiders 0.1%; StockTwits (6411 watchers): of the last 30 posts 0 bearish, 12 bullish.
 **Sentiment: mixed** (signals: + more analysts bullish than three months ago (55% vs 43%); - price targets mostly cut in 90 days (6 cuts vs 2 raises); + EPS estimates revised up (3 up / 2 down in 30 days); + StockTwits crowd bullish (12 bullish vs 0 bearish of the last 30 posts); - headlines mostly negative in the last 30 days (3 negative vs 1 positive)).
+
+**Peers and group.** Closest by market-neutral correlation: SO (0.85), ED (0.82), WEC (0.81), CMS (0.81), LNT (0.78); group of 25 stocks (largest: NEE, AEP, SO, XEL), mean correlation to the group 0.697; beta 0.11 to the equal-weight market, residual volatility 17% a year.
+**Last 20 days:** stock -5.3%, peer group -6.3%, relative to the group (beta-adjusted) +0.7%. The group over 6 months: -11.1%. z=+0.7, within its normal range.
 
 **What analysts say.** Consensus **buy** (18 analysts, mean rating 2.0 on a 1-5 scale); strong buy 3, buy 9, hold 10, sell 0, strong sell 0 (bullish share 55% now vs 43% three months ago). Mean target 136.94 (+20% from the price; range 127.00-147.00). 
 Last 90 days: 1 upgrades, 0 downgrades, 2 target raises, 6 target cuts.
@@ -2269,15 +2390,18 @@ Latest news:
 
 **Investor concerns and sentiment.**
 
-**What worries investors** (themes of the negative headlines of the last year, 133 headlines checked; headlines around the largest down days count double):
-- **guidance / outlook cut** (10): 2026-01-09 "EQT Corp stock edges higher as LNG deal and Q2 2026 figures support outlook" (AD HOC NEWS); 2026-02-02 "EQT Stock Outlook: A Path to 57% Returns" (TIKR.com)
+**What worries investors** (themes of the negative headlines of the last year, 131 headlines checked; headlines around the largest down days count double):
+- **guidance / outlook cut** (9): 2026-01-09 "EQT Corp stock edges higher as LNG deal and Q2 2026 figures support outlook" (AD HOC NEWS); 2026-02-02 "EQT Stock Outlook: A Path to 57% Returns" (TIKR.com)
 - **management / turnaround** (4): 2025-10-21 "EQT CEO Plans to Invest $250 Billion in US Over Next Five Years" (Bloomberg.com); 2026-02-03 "EQT-backed GeBBS Healthcare names former Hexaware exec as CEO" (VCCircle)
-- **weak demand / consumer** (4): 2026-02-04 "EQT explores potential €1.5bn Thinkproject exit amid SaaS demand" (Private Equity Insights); 2026-07-21 "EQT Raises Production Outlook and Lowers Capital Spending Forecast" (finance.yahoo.com)
+- **weak demand / consumer** (3): 2026-02-04 "EQT explores potential €1.5bn Thinkproject exit amid SaaS demand" (Private Equity Insights); 2026-07-28 "How EQT Is Positioning for Data Center, Power & Global LNG Demand" (TradingView)
 - **competition / market share** (3): 2026-03-30 "EQT Corp. stock underperforms Monday when compared to competitors" (MarketWatch); 2026-09-16 "EQT Corp. stock outperforms competitors despite losses on the day" (MarketWatch)
-Headline tone over the year: 12 negative, 36 positive, 85 neutral; last 30 days 8 negative vs 13 positive.
+Headline tone over the year: 12 negative, 38 positive, 81 neutral; last 30 days 8 negative vs 14 positive.
 
-**Positioning:** Short interest 4.1% of float (+17% vs the prior month, 3.5 days to cover), as of -2026-09-15; institutions hold 96%, insiders 0.9%; StockTwits (4975 watchers): of the last 30 posts 3 bearish, 8 bullish.
-**Sentiment: mixed** (signals: + more analysts bullish than three months ago (85% vs 76%); - price targets mostly cut in 90 days (6 cuts vs 4 raises); - EPS estimates revised down (3 up / 7 down in 30 days); - short interest rising (+17% in a month); + StockTwits crowd bullish (8 bullish vs 3 bearish of the last 30 posts); + headlines mostly positive in the last 30 days (13 positive vs 8 negative)).
+**Positioning:** Short interest 4.1% of float (+17% vs the prior month, 3.5 days to cover), as of -2026-09-15; institutions hold 96%, insiders 0.9%; StockTwits (4976 watchers): of the last 30 posts 3 bearish, 7 bullish.
+**Sentiment: mixed** (signals: + more analysts bullish than three months ago (85% vs 76%); - price targets mostly cut in 90 days (6 cuts vs 4 raises); - EPS estimates revised down (3 up / 7 down in 30 days); - short interest rising (+17% in a month); + StockTwits crowd bullish (7 bullish vs 3 bearish of the last 30 posts); + headlines mostly positive in the last 30 days (14 positive vs 8 negative)).
+
+**Peers and group.** Closest by market-neutral correlation: EXE (0.82), KMI (0.53), WMB (0.49), OKE (0.42), TRGP (0.42); group of 7 stocks (largest: WMB, KMI, OKE, TRGP), mean correlation to the group 0.494; beta 0.68 to the equal-weight market, residual volatility 34% a year.
+**Last 20 days:** stock -12.7%, peer group -10.4%, relative to the group (beta-adjusted) -3.4%. The group over 6 months: -10.3%. z=-0.4, within its normal range.
 
 **What analysts say.** Consensus **strong buy** (26 analysts, mean rating 1.5 on a 1-5 scale); strong buy 4, buy 18, hold 4, sell 0, strong sell 0 (bullish share 85% now vs 76% three months ago). Mean target 67.50 (+39% from the price; range 52.00-81.00). 
 Last 90 days: 0 upgrades, 0 downgrades, 4 target raises, 6 target cuts.
@@ -2334,15 +2458,18 @@ Latest news:
 
 **Investor concerns and sentiment.**
 
-**What worries investors** (themes of the negative headlines of the last year, 127 headlines checked; headlines around the largest down days count double):
+**What worries investors** (themes of the negative headlines of the last year, 126 headlines checked; headlines around the largest down days count double):
 - **margins / costs** (7): 2026-06-01 "HSY Q1 2026 Earnings: EPS Surges Past Expectations Amid Cost Discipline - Dividend Cut Risk" (dars.gov.et); 2026-07-30 "Hershey profitability rebounds as higher prices pressure confectionery demand" (Food Ingredients First)
 - **weak demand / consumer** (4): 2026-07-29 "Hershey (HSY) Heads Into Q2 Earnings Following Softer Demand And A Split Valuation View" (finance.yahoo.com); 2026-07-29 "Analysts Offer Insights on Consumer Goods Companies: Altria Group (MO) and The Hershey Company (HSY)" (The Globe and Mail)
 - **competition / market share** (3): 2026-06-17 "Hershey to host qualifiers for July 4 Nathan’s Famous hot dog eating competition" (ABC27); 2026-06-19 "Nathan's Famous Hot Dog Competition Qualifier - Hersheypark, Hershey PA" (Major League Eating)
 - **legal / regulatory** (2): 2026-04-12 "Capitals recall goaltender Clay Stevenson, send Mitch Gibson back to Hershey" (RMNB); 2026-06-10 "Hershey Medical Center doctors want a federal judge to toss an ex-resident’s lawsuit, here’s why" (pennlive.com)
-Headline tone over the year: 13 negative, 43 positive, 71 neutral; last 30 days 2 negative vs 6 positive.
+Headline tone over the year: 13 negative, 39 positive, 74 neutral; last 30 days 2 negative vs 6 positive.
 
-**Positioning:** Short interest 7.4% of float (-11% vs the prior month, 7.6 days to cover), as of -2026-09-15; institutions hold 91%, insiders 0.3%; StockTwits (4832 watchers): of the last 30 posts 1 bearish, 9 bullish.
-**Sentiment: positive** (signals: - price targets mostly cut in 90 days (9 cuts vs 2 raises); + EPS estimates revised up (18 up / 2 down in 30 days); + short interest falling (-11% in a month); + StockTwits crowd bullish (9 bullish vs 1 bearish of the last 30 posts); + headlines mostly positive in the last 30 days (6 positive vs 2 negative)).
+**Positioning:** Short interest 7.4% of float (-11% vs the prior month, 7.6 days to cover), as of -2026-09-15; institutions hold 91%, insiders 0.3%; StockTwits (4837 watchers): of the last 30 posts 1 bearish, 7 bullish.
+**Sentiment: positive** (signals: - price targets mostly cut in 90 days (9 cuts vs 2 raises); + EPS estimates revised up (18 up / 2 down in 30 days); + short interest falling (-11% in a month); + StockTwits crowd bullish (7 bullish vs 1 bearish of the last 30 posts); + headlines mostly positive in the last 30 days (6 positive vs 2 negative)).
+
+**Peers and group.** Closest by market-neutral correlation: MDLZ (0.49), PEP (0.48), GIS (0.47), KHC (0.43), KO (0.43); group of 20 stocks (largest: KO, PG, PEP, MDLZ), mean correlation to the group 0.346; beta 0.30 to the equal-weight market, residual volatility 28% a year.
+**Last 20 days:** stock -10.4%, peer group -8.1%, relative to the group (beta-adjusted) -4.0%. The group over 6 months: -2.2%. z=-0.6, within its normal range.
 
 **What analysts say.** Consensus **buy** (21 analysts, mean rating 2.5 on a 1-5 scale); strong buy 2, buy 6, hold 14, sell 1, strong sell 0 (bullish share 35% now vs 35% three months ago). Mean target 204.10 (+29% from the price; range 170.00-250.00). 
 Last 90 days: 0 upgrades, 0 downgrades, 2 target raises, 9 target cuts.
@@ -2386,7 +2513,7 @@ Last 90 days: 0 upgrades, 0 downgrades, 2 target raises, 9 target cuts.
 - 2026-05-04: -3.1% (1.0x normal volume, SPY -0.4%):
   - 2026-05-04 Hormel Foods Corporation Announces Second Quarter Earnings Call (Hormel Foods)
   - 2026-05-04 Sigma Foods acquires smoked meats producer (Food Business News)
-- 2026-03-02: -3.0% (0.7x normal volume, SPY +0.1%). No cause found for this day (before the news feed starts on 2026-09-29; only 8-K filings, rating changes and the market were checked).
+- 2026-03-02: -3.0% (0.7x normal volume, SPY +0.1%). No cause found for this day.
 - 2026-02-26: -1.9% (earnings reaction, 1.6x normal volume, SPY -0.6%):
   - 8-K filed 2026-02-26: results of operations (earnings release) (quarter to 2026-01-31: EPS 0.34 vs 0.32 expected, +6.1%)
   - 2026-02-26 Hormel misses quarterly sales estimates on weak retail demand (Reuters)
@@ -2412,6 +2539,9 @@ Headline tone over the year: 21 negative, 27 positive, 68 neutral; last 30 days 
 
 **Positioning:** Short interest 7.1% of float (+22% vs the prior month, 3.7 days to cover), as of -2026-09-15; institutions hold 91%, insiders 0.5%; StockTwits (3666 watchers): of the last 30 posts 0 bearish, 25 bullish.
 **Sentiment: mixed** (signals: + more analysts bullish than three months ago (30% vs 20%); + price targets mostly raised in 90 days (2 raises vs 1 cuts); - EPS estimates revised down (1 up / 6 down in 30 days); - short interest rising (+22% in a month); + StockTwits crowd bullish (25 bullish vs 0 bearish of the last 30 posts)).
+
+**Peers and group.** Closest by market-neutral correlation: GIS (0.48), KHC (0.41), MDLZ (0.41), CL (0.40), PEP (0.38); group of 20 stocks (largest: KO, PG, PEP, MDLZ), mean correlation to the group 0.343; beta 0.36 to the equal-weight market, residual volatility 27% a year.
+**Last 20 days:** stock -9.3%, peer group -8.2%, relative to the group (beta-adjusted) -2.0%. The group over 6 months: -2.9%. z=-0.2, within its normal range.
 
 **What analysts say.** Consensus **hold** (8 analysts, mean rating 2.5 on a 1-5 scale); strong buy 2, buy 1, hold 7, sell 0, strong sell 0 (bullish share 30% now vs 20% three months ago). Mean target 26.12 (+31% from the price; range 23.00-30.00). 
 Last 90 days: 0 upgrades, 0 downgrades, 2 target raises, 1 target cuts.
@@ -2470,15 +2600,18 @@ Latest news:
 
 **Investor concerns and sentiment.**
 
-**What worries investors** (themes of the negative headlines of the last year, 144 headlines checked; headlines around the largest down days count double):
+**What worries investors** (themes of the negative headlines of the last year, 146 headlines checked; headlines around the largest down days count double):
 - **management / turnaround** (32): 2026-08-17 "L3Harris ousts CEO Kubasik over conduct breach, names insider Mehta as replacement" (Reuters); 2026-08-17 "L3Harris names space sector leader Sam Mehta CEO after Kubasik steps down" (SpaceNews)
 - **guidance / outlook cut** (6): 2026-04-26 "L3Harris highlights AERIS X surveillance aircraft as allies seek new airborne early warning capabilities" (Defence Industry Europe); 2026-08-17 "L3Harris Technologies affirms FY26 sales guidance of $23.2B-$23.7B" (scanx.trade)
 - **legal / regulatory** (6): 2026-08-17 "L3Harris CEO steps down after conduct investigation" (13wham.com); 2026-08-17 "L3Harris chairman and CEO steps down following conduct investigation" (WHEC.com)
 - **earnings miss** (4): 2026-01-29 "L3Harris quarterly revenue misses estimates on government shutdown pressures" (Yahoo! Finance Canada); 2026-07-30 "L3Harris Technologies Slides as Investors Focus on Revenue Miss and Segment Margin Pressure" (Quiver Quantitative)
-Headline tone over the year: 21 negative, 41 positive, 82 neutral; last 30 days 2 negative vs 6 positive.
+Headline tone over the year: 22 negative, 40 positive, 84 neutral; last 30 days 2 negative vs 6 positive.
 
-**Positioning:** Short interest 2.8% of float (+28% vs the prior month, 2.6 days to cover), as of -2026-09-15; institutions hold 89%, insiders 0.5%; StockTwits (4514 watchers): of the last 30 posts 0 bearish, 8 bullish.
-**Sentiment: mixed** (signals: - fewer analysts bullish than three months ago (60% vs 76%); - price targets mostly cut in 90 days (4 cuts vs 0 raises); + EPS estimates revised up (3 up / 0 down in 30 days); - short interest rising (+28% in a month); + StockTwits crowd bullish (8 bullish vs 0 bearish of the last 30 posts); + headlines mostly positive in the last 30 days (6 positive vs 2 negative)).
+**Positioning:** Short interest 2.8% of float (+28% vs the prior month, 2.6 days to cover), as of -2026-09-15; institutions hold 89%, insiders 0.5%; StockTwits (4513 watchers): of the last 30 posts 0 bearish, 5 bullish.
+**Sentiment: mixed** (signals: - fewer analysts bullish than three months ago (60% vs 76%); - price targets mostly cut in 90 days (4 cuts vs 0 raises); + EPS estimates revised up (3 up / 0 down in 30 days); - short interest rising (+28% in a month); + StockTwits crowd bullish (5 bullish vs 0 bearish of the last 30 posts); + headlines mostly positive in the last 30 days (6 positive vs 2 negative)).
+
+**Peers and group.** Closest by market-neutral correlation: NOC (0.59), LMT (0.58), GD (0.56), RTX (0.49), LDOS (0.38); group of 5 stocks (largest: RTX, LMT, NOC, GD), mean correlation to the group 0.553; beta 0.57 to the equal-weight market, residual volatility 24% a year.
+**Last 20 days:** stock -9.7%, peer group -8.9%, relative to the group (beta-adjusted) -1.4%. The group over 6 months: -12.2%. z=+0.0, within its normal range.
 
 **What analysts say.** Consensus **buy** (15 analysts, mean rating 1.9 on a 1-5 scale); strong buy 1, buy 11, hold 8, sell 0, strong sell 0 (bullish share 60% now vs 76% three months ago). Mean target 335.33 (+42% from the price; range 264.00-405.00). 
 Last 90 days: 0 upgrades, 0 downgrades, 0 target raises, 4 target cuts.
@@ -2545,15 +2678,18 @@ Latest news:
 
 **Investor concerns and sentiment.**
 
-**What worries investors** (themes of the negative headlines of the last year, 128 headlines checked; headlines around the largest down days count double):
+**What worries investors** (themes of the negative headlines of the last year, 126 headlines checked; headlines around the largest down days count double):
 - **guidance / outlook cut** (8): 2026-02-17 "Leidos Stock Slides As Government Shutdown, Weak Outlook Overshadow Record Profits" (Benzinga); 2026-05-05 "Leidos falls 7.8% as investors parse Q1 margin pressure and acquisition-driven guidance raise | LDOS Stock News" (Quiver Quantitative)
 - **analyst downgrades** (5): 2026-06-16 "Jefferies Downgrades Leidos Holdings (LDOS) Stock to Hold" (finance.yahoo.com); 2026-06-17 "Leidos Holdings (LDOS) Stock Could Be 40.7% Undervalued After Defense Program Downgrade" (finance.yahoo.com)
 - **competition / market share** (3): 2026-02-11 "Leidos Holdings Inc. stock underperforms Wednesday when compared to competitors" (MarketWatch); 2026-05-05 "Leidos Holdings Inc. stock underperforms Tuesday when compared to competitors" (MarketWatch)
 - **margins / costs** (3): 2026-08-04 "Acquisition, Joint Venture Costs Send Net Income Down At Leidos In Second Quarter" (Defense Daily)
-Headline tone over the year: 14 negative, 42 positive, 72 neutral; last 30 days 2 negative vs 1 positive.
+Headline tone over the year: 16 negative, 39 positive, 71 neutral; last 30 days 3 negative vs 1 positive.
 
-**Positioning:** Short interest 4.8% of float (+25% vs the prior month, 4.6 days to cover), as of -2026-09-15; institutions hold 85%, insiders 0.6%; StockTwits (3016 watchers): of the last 30 posts 0 bearish, 15 bullish.
-**Sentiment: mixed** (signals: - price targets mostly cut in 90 days (6 cuts vs 5 raises); + EPS estimates revised up (8 up / 4 down in 30 days); - short interest rising (+25% in a month); + StockTwits crowd bullish (15 bullish vs 0 bearish of the last 30 posts)).
+**Positioning:** Short interest 4.8% of float (+25% vs the prior month, 4.6 days to cover), as of -2026-09-15; institutions hold 85%, insiders 0.6%; StockTwits (3019 watchers): of the last 30 posts 0 bearish, 14 bullish.
+**Sentiment: mixed** (signals: - price targets mostly cut in 90 days (6 cuts vs 5 raises); + EPS estimates revised up (8 up / 4 down in 30 days); - short interest rising (+25% in a month); + StockTwits crowd bullish (14 bullish vs 0 bearish of the last 30 posts); - headlines mostly negative in the last 30 days (3 negative vs 1 positive)).
+
+**Peers and group.** Closest by market-neutral correlation: GD (0.44), LHX (0.38), LMT (0.33), NOC (0.31), J (0.29); group of 7 stocks (largest: TTD, CDW, ZBRA, WST), mean correlation to the group 0.122; beta 0.73 to the equal-weight market, residual volatility 31% a year.
+**Last 20 days:** stock -12.2%, peer group -3.2%, relative to the group (beta-adjusted) -10.9%. The group over 6 months: +13.6%. z=-0.9, within its normal range.
 
 **What analysts say.** Consensus **buy** (15 analysts, mean rating 2.4 on a 1-5 scale); strong buy 3, buy 4, hold 10, sell 0, strong sell 0 (bullish share 41% now vs 41% three months ago). Mean target 157.73 (+29% from the price; range 132.00-225.00). 
 Last 90 days: 0 upgrades, 0 downgrades, 5 target raises, 6 target cuts.
@@ -2613,15 +2749,18 @@ Latest news:
 
 **Investor concerns and sentiment.**
 
-**What worries investors** (themes of the negative headlines of the last year, 98 headlines checked; headlines around the largest down days count double):
-- **guidance / outlook cut** (10): 2026-02-18 "Molson Coors forecasts sharp drop in 2026 profit as aluminum costs bite" (Reuters); 2026-02-19 "United Airlines rewards program, Coors-maker's weak outlook" (finance.yahoo.com)
-- **margins / costs** (8): 2026-04-30 "TAP Q1 Deep Dive: Brand Investment, Cost Management, and Innovation Shape Outlook" (StockStory); 2026-06-11 "What's Driving Molson Coors' Profitability Amid Volume Pressure?" (finance.yahoo.com)
+**What worries investors** (themes of the negative headlines of the last year, 97 headlines checked; headlines around the largest down days count double):
+- **guidance / outlook cut** (11): 2026-02-18 "Molson Coors forecasts sharp drop in 2026 profit as aluminum costs bite" (Reuters); 2026-02-19 "United Airlines rewards program, Coors-maker's weak outlook" (finance.yahoo.com)
+- **margins / costs** (8): 2026-04-30 "TAP Q1 Deep Dive: Brand Investment, Cost Management, and Innovation Shape Outlook" (StockStory); 2026-06-11 "What's Driving Molson Coors' Profitability Amid Volume Pressure?" (Yahoo Finance)
 - **weak demand / consumer** (6): 2026-02-18 "Molson Coors Profit, Sales Fall as Beer Demand Remains Soft" (WSJ); 2026-02-19 "Molson Coors new CEO doubles down on championing role of beer in consumers' lives to stem sales slides" (The Business Journals)
-- **analyst downgrades** (4): 2026-02-25 "Bank of America downgrades Molson Coors on sales risk" (Investing.com); 2026-03-25 "Molson Coors Could Drop Another 3% as Barclays Slashes Target to $40 With Underweight Rating" (24/7 Wall St.)
-Headline tone over the year: 23 negative, 20 positive, 55 neutral; last 30 days 5 negative vs 1 positive.
+- **analyst downgrades** (6): 2026-02-25 "Bank of America downgrades Molson Coors on sales risk" (Investing.com); 2026-03-25 "Molson Coors Could Drop Another 3% as Barclays Slashes Target to $40 With Underweight Rating" (24/7 Wall St.)
+Headline tone over the year: 25 negative, 18 positive, 54 neutral; last 30 days 4 negative vs 0 positive.
 
 **Positioning:** Short interest 27.7% of float (+11% vs the prior month, 10.6 days to cover), as of -2026-09-15; institutions hold 110%, insiders 12.8%; StockTwits (4777 watchers): of the last 30 posts 0 bearish, 12 bullish.
-**Sentiment: negative** (signals: - price targets mostly cut in 90 days (4 cuts vs 2 raises); + EPS estimates revised up (12 up / 7 down in 30 days); - short interest rising (+11% in a month); - heavy short interest (28% of float); + StockTwits crowd bullish (12 bullish vs 0 bearish of the last 30 posts); - headlines mostly negative in the last 30 days (5 negative vs 1 positive)).
+**Sentiment: negative** (signals: - price targets mostly cut in 90 days (4 cuts vs 2 raises); + EPS estimates revised up (12 up / 7 down in 30 days); - short interest rising (+11% in a month); - heavy short interest (28% of float); + StockTwits crowd bullish (12 bullish vs 0 bearish of the last 30 posts); - headlines mostly negative in the last 30 days (4 negative vs 0 positive)).
+
+**Peers and group.** Closest by market-neutral correlation: STZ (0.49), GIS (0.47), BF-B (0.47), KHC (0.44), PEP (0.43); group of 20 stocks (largest: KO, PG, PEP, MDLZ), mean correlation to the group 0.35; beta 0.49 to the equal-weight market, residual volatility 26% a year.
+**Last 20 days:** stock -8.3%, peer group -8.2%, relative to the group (beta-adjusted) +0.5%. The group over 6 months: -2.7%. z=+0.4, within its normal range.
 
 **What analysts say.** Consensus **hold** (21 analysts, mean rating 2.8 on a 1-5 scale); strong buy 2, buy 4, hold 11, sell 1, strong sell 3 (bullish share 29% now vs 29% three months ago). Mean target 45.24 (+24% from the price; range 33.00-61.00). 
 Last 90 days: 0 upgrades, 0 downgrades, 2 target raises, 4 target cuts.
@@ -2687,15 +2826,18 @@ Latest news:
 
 **Investor concerns and sentiment.**
 
-**What worries investors** (themes of the negative headlines of the last year, 196 headlines checked; headlines around the largest down days count double):
-- **management / turnaround** (69): 2026-04-01 "Nike forecasts surprise sales drop as China weakness hurts turnaround efforts" (Reuters); 2026-04-01 "As Converse Continues to Struggle, Nike CEO Elliott Hill Shrugs Off Sale Speculation" (WWD)
-- **China / international markets** (39): 2025-12-19 "Nike Earnings: China Weakness and Tariffs Overshadow Progress" (Morningstar); 2026-03-31 "Nike shares fall 9% on weak outlook, expected 20% sales decline in China" (CNBC)
-- **guidance / outlook cut** (22): 2026-04-01 "Nike stock tumbles more than 13%, hits 11-year low as weakness in China, high oil prices weigh on outlook" (finance.yahoo.com); 2026-04-01 "Nike Stock Sinks to Lowest Level Since 2014 as Weak Sales Outlook Spooks Investors" (Investopedia)
-- **tariffs / trade** (13): 2025-12-18 "Nike shares drop 10% as China sales plunge, tariffs hit profits" (CNBC); 2025-12-18 "Nike fails to contain margin bleed amid tariffs, turnaround, as shares fall" (Reuters)
-Headline tone over the year: 66 negative, 25 positive, 105 neutral; last 30 days 15 negative vs 4 positive.
+**What worries investors** (themes of the negative headlines of the last year, 200 headlines checked; headlines around the largest down days count double):
+- **management / turnaround** (66): 2026-04-01 "Nike forecasts surprise sales drop as China weakness hurts turnaround efforts" (Reuters); 2026-04-01 "As Converse Continues to Struggle, Nike CEO Elliott Hill Shrugs Off Sale Speculation" (WWD)
+- **China / international markets** (36): 2025-12-19 "Nike Earnings: China Weakness and Tariffs Overshadow Progress" (Morningstar); 2026-03-31 "Nike shares fall 9% on weak outlook, expected 20% sales decline in China" (CNBC)
+- **guidance / outlook cut** (20): 2026-04-01 "Nike stock tumbles more than 13%, hits 11-year low as weakness in China, high oil prices weigh on outlook" (finance.yahoo.com); 2026-04-01 "Nike Stock Sinks to Lowest Level Since 2014 as Weak Sales Outlook Spooks Investors" (Investopedia)
+- **tariffs / trade** (12): 2025-12-18 "Nike shares drop 10% as China sales plunge, tariffs hit profits" (CNBC); 2025-12-18 "Nike fails to contain margin bleed amid tariffs, turnaround, as shares fall" (Reuters)
+Headline tone over the year: 64 negative, 28 positive, 108 neutral; last 30 days 13 negative vs 5 positive.
 
-**Positioning:** Short interest 9.0% of float (+25% vs the prior month, 2.9 days to cover), as of -2026-09-15; institutions hold 83%, insiders 2.0%; StockTwits (140643 watchers): of the last 30 posts 15 bearish, 3 bullish.
-**Sentiment: negative** (signals: - fewer analysts bullish than three months ago (24% vs 32%); - price targets mostly cut in 90 days (14 cuts vs 0 raises); - EPS estimates revised down (1 up / 5 down in 30 days); - short interest rising (+25% in a month); - StockTwits crowd bearish (15 bearish vs 3 bullish of the last 30 posts); - headlines mostly negative in the last 30 days (15 negative vs 4 positive)).
+**Positioning:** Short interest 9.0% of float (+25% vs the prior month, 2.9 days to cover), as of -2026-09-15; institutions hold 83%, insiders 2.0%; StockTwits (140875 watchers): of the last 30 posts 9 bearish, 8 bullish.
+**Sentiment: negative** (signals: - fewer analysts bullish than three months ago (24% vs 32%); - price targets mostly cut in 90 days (14 cuts vs 0 raises); - EPS estimates revised down (1 up / 5 down in 30 days); - short interest rising (+25% in a month); - StockTwits crowd bearish (9 bearish vs 8 bullish of the last 30 posts); - headlines mostly negative in the last 30 days (13 negative vs 5 positive)).
+
+**Peers and group.** Closest by market-neutral correlation: TGT (0.29), BBY (0.28), LULU (0.27), NVR (0.24), LOW (0.23); group of 11 stocks (largest: TGT, LULU, TPR, DLTR), mean correlation to the group 0.191; beta 1.18 to the equal-weight market, residual volatility 33% a year.
+**Last 20 days:** stock -7.1%, peer group -4.3%, relative to the group (beta-adjusted) -4.1%. The group over 6 months: +3.5%. z=+0.2, within its normal range.
 
 **What analysts say.** Consensus **hold** (36 analysts, mean rating 2.8 on a 1-5 scale); strong buy 1, buy 9, hold 26, sell 3, strong sell 3 (bullish share 24% now vs 32% three months ago). Mean target 45.63 (+29% from the price; range 23.00-94.00). 
 Last 90 days: 0 upgrades, 4 downgrades, 0 target raises, 14 target cuts.
@@ -2747,15 +2889,18 @@ Latest news:
 
 **Investor concerns and sentiment.**
 
-**What worries investors** (themes of the negative headlines of the last year, 72 headlines checked; headlines around the largest down days count double):
+**What worries investors** (themes of the negative headlines of the last year, 70 headlines checked; headlines around the largest down days count double):
 - **earnings miss** (12): 2026-07-19 "NiSource Q1 2026 Earnings: EPS Misses Estimates, Stock Edges Lower - Analyst Consensus Shift" (dars.gov.et); 2026-07-21 "NiSource Q1 2026 Earnings: EPS Misses Estimates Amid Challenging Quarter - Profit Growth Outlook" (dars.gov.et)
 - **weak demand / consumer** (2): 2025-10-29 "Utility NiSource ramps up spending to tap rising data center demand" (Reuters); 2026-07-04 "NiSource: A Premier Play On Data Center Electricity Demand (NYSE:NI)" (Seeking Alpha)
+- **guidance / outlook cut** (2): 2026-09-11 "NiSource Inc. stock holds steady as FY 2026 EPS guidance stays intact" (AD HOC NEWS); 2026-09-24 "NiSource Inc (NI) Stock Forecasts" (Yahoo Finance)
 - **legal / regulatory** (1): 2026-08-21 "Residents seek class-action lawsuit against NIPSCO over power outages in NW Indiana" (NBC 5 Chicago)
-- **guidance / outlook cut** (1): 2026-09-11 "NiSource Inc. stock holds steady as FY 2026 EPS guidance stays intact" (AD HOC NEWS)
-Headline tone over the year: 22 negative, 12 positive, 38 neutral; last 30 days 4 negative vs 4 positive.
+Headline tone over the year: 22 negative, 12 positive, 36 neutral; last 30 days 2 negative vs 4 positive.
 
 **Positioning:** Short interest 3.9% of float (+10% vs the prior month, 2.9 days to cover), as of -2026-09-15; institutions hold 98%, insiders 0.3%; StockTwits (956 watchers): of the last 30 posts 0 bearish, 12 bullish.
-**Sentiment: mixed** (signals: - price targets mostly cut in 90 days (6 cuts vs 1 raises); - EPS estimates revised down (1 up / 4 down in 30 days); + StockTwits crowd bullish (12 bullish vs 0 bearish of the last 30 posts)).
+**Sentiment: mixed** (signals: - price targets mostly cut in 90 days (6 cuts vs 1 raises); - EPS estimates revised down (1 up / 4 down in 30 days); + StockTwits crowd bullish (12 bullish vs 0 bearish of the last 30 posts); + headlines mostly positive in the last 30 days (4 positive vs 2 negative)).
+
+**Peers and group.** Closest by market-neutral correlation: AEE (0.72), CNP (0.70), LNT (0.68), EVRG (0.66), WEC (0.65); group of 25 stocks (largest: NEE, AEP, SO, DUK), mean correlation to the group 0.58; beta 0.49 to the equal-weight market, residual volatility 18% a year.
+**Last 20 days:** stock -4.8%, peer group -6.3%, relative to the group (beta-adjusted) +1.4%. The group over 6 months: -10.9%. z=+0.7, within its normal range.
 
 **What analysts say.** Consensus **buy** (15 analysts, mean rating 1.6 on a 1-5 scale); strong buy 4, buy 9, hold 3, sell 0, strong sell 0 (bullish share 81% now vs 80% three months ago). Mean target 49.13 (+26% from the price; range 43.00-55.00). 
 Last 90 days: 0 upgrades, 0 downgrades, 1 target raises, 6 target cuts.
@@ -2822,15 +2967,18 @@ Latest news:
 
 **Investor concerns and sentiment.**
 
-**What worries investors** (themes of the negative headlines of the last year, 208 headlines checked; headlines around the largest down days count double):
+**What worries investors** (themes of the negative headlines of the last year, 207 headlines checked; headlines around the largest down days count double):
 - **guidance / outlook cut** (74): 2025-11-04 "Norwegian Cruise Forecasts Quarterly Profit Below Estimates on Economic Slowdown, Rising Costs" (gCaptain); 2025-11-06 "CDC Investigates Norwegian Cruise Line After "Hot Tub Disease" Warning Sent To Current And Former Passengers" (TheTravel)
 - **management / turnaround** (30): 2025-11-04 "CEO Sommer on Norwegian Cruise Line Holdings strategy" (Seatrade Cruise News); 2026-03-02 "Norwegian's new CEO addresses the cruise company's shortcomings" (Travel Weekly)
 - **margins / costs** (22): 2026-03-02 "Norwegian Cruise warns fuel‑cost hit from global tensions unclear; sees muted 2026 profit" (Reuters); 2026-03-03 "Norwegian Cruise Line Stock Falls Again. How Earnings, Oil, Elliott Created a Perfect Storm." (barrons.com)
 - **weak demand / consumer** (17): 2026-03-02 "Norwegian Cruise Line forecasts weak annual profit on subdued demand" (Baird Maritime); 2026-07-30 "Norwegian Cruise Faces Soft Demand While Waiting for Turnaround to Take Hold -- Update" (Moomoo)
-Headline tone over the year: 70 negative, 28 positive, 110 neutral; last 30 days 0 negative vs 2 positive.
+Headline tone over the year: 68 negative, 28 positive, 111 neutral; last 30 days 0 negative vs 2 positive.
 
-**Positioning:** Short interest 23.4% of float (+31% vs the prior month, 6.2 days to cover), as of -2026-09-15; institutions hold 104%, insiders 0.9%; StockTwits (39673 watchers): of the last 30 posts 1 bearish, 12 bullish.
-**Sentiment: negative** (signals: - fewer analysts bullish than three months ago (37% vs 46%); - price targets mostly cut in 90 days (10 cuts vs 4 raises); - EPS estimates revised down (1 up / 21 down in 30 days); - short interest rising (+31% in a month); - heavy short interest (23% of float); + StockTwits crowd bullish (12 bullish vs 1 bearish of the last 30 posts)).
+**Positioning:** Short interest 23.4% of float (+31% vs the prior month, 6.2 days to cover), as of -2026-09-15; institutions hold 104%, insiders 0.9%; StockTwits (39666 watchers): of the last 30 posts 1 bearish, 11 bullish.
+**Sentiment: negative** (signals: - fewer analysts bullish than three months ago (37% vs 46%); - price targets mostly cut in 90 days (10 cuts vs 4 raises); - EPS estimates revised down (1 up / 21 down in 30 days); - short interest rising (+31% in a month); - heavy short interest (23% of float); + StockTwits crowd bullish (11 bullish vs 1 bearish of the last 30 posts)).
+
+**Peers and group.** Closest by market-neutral correlation: CCL (0.73), RCL (0.62), UAL (0.38), DAL (0.38), LUV (0.34); group of 6 stocks (largest: RCL, DAL, CCL, UAL), mean correlation to the group 0.489; beta 2.09 to the equal-weight market, residual volatility 42% a year.
+**Last 20 days:** stock -5.0%, peer group +6.5%, relative to the group (beta-adjusted) -11.2%. The group over 6 months: +10.4%. z=-0.9, within its normal range.
 
 **What analysts say.** Consensus **buy** (25 analysts, mean rating 2.3 on a 1-5 scale); strong buy 1, buy 9, hold 17, sell 0, strong sell 0 (bullish share 37% now vs 46% three months ago). Mean target 20.20 (+38% from the price; range 13.00-32.00). 
 Last 90 days: 0 upgrades, 2 downgrades, 4 target raises, 10 target cuts.
@@ -2897,13 +3045,16 @@ Latest news:
 
 **What worries investors** (themes of the negative headlines of the last year, 117 headlines checked; headlines around the largest down days count double):
 - **earnings miss** (15): 2026-05-06 "NRG Energy misses quarterly profit estimates on mild Texas weather, higher costs" (Reuters); 2026-05-06 "NRG Energy (NRG) Q1 Earnings Miss Estimates" (finance.yahoo.com)
-- **management / turnaround** (7): 2026-01-07 "NRG Energy Names Robert Gaudette to Succeed Lawrence Coben as President, CEO" (WSJ); 2026-01-07 "NRG Energy appoints Robert Gaudette as CEO from April end" (Reuters)
 - **margins / costs** (6): 2026-08-04 "NRG Energy misses quarterly profit estimates as interest costs rise" (Reuters); 2026-08-04 "Oil Prices and Energy Stocks Sink on Expectations of a Deal to Open the Strait of Hormuz" (Investopedia)
 - **debt / financing** (6): 2026-03-04 "White & Case advises NRG Energy, Inc. on US$2.3452 billion secondary common stock offering" (White & Case LLP); 2026-03-04 "NRG Energy (NRG) Stock (-7.7%): $2.35B Secondary Offering Prices at Discount" (Trefis)
-Headline tone over the year: 20 negative, 24 positive, 73 neutral; last 30 days 2 negative vs 4 positive.
+- **management / turnaround** (6): 2026-01-07 "NRG Energy Names Robert Gaudette to Succeed Lawrence Coben as President, CEO" (WSJ); 2026-01-07 "NRG Energy appoints Robert Gaudette as CEO from April end" (Reuters)
+Headline tone over the year: 19 negative, 23 positive, 75 neutral; last 30 days 2 negative vs 3 positive.
 
-**Positioning:** Short interest 3.7% of float (-5% vs the prior month, 2.2 days to cover), as of -2026-09-15; institutions hold 96%, insiders 4.5%; StockTwits (5488 watchers): of the last 30 posts 2 bearish, 11 bullish.
-**Sentiment: mixed** (signals: - price targets mostly cut in 90 days (6 cuts vs 3 raises); - EPS estimates revised down (0 up / 7 down in 30 days); + StockTwits crowd bullish (11 bullish vs 2 bearish of the last 30 posts); + headlines mostly positive in the last 30 days (4 positive vs 2 negative)).
+**Positioning:** Short interest 3.7% of float (-5% vs the prior month, 2.2 days to cover), as of -2026-09-15; institutions hold 96%, insiders 4.5%; StockTwits (5490 watchers): of the last 30 posts 1 bearish, 6 bullish.
+**Sentiment: mixed** (signals: - price targets mostly cut in 90 days (6 cuts vs 3 raises); - EPS estimates revised down (0 up / 7 down in 30 days); + StockTwits crowd bullish (6 bullish vs 1 bearish of the last 30 posts); + headlines mostly positive in the last 30 days (3 positive vs 2 negative)).
+
+**Peers and group.** Closest by market-neutral correlation: VST (0.72), CEG (0.61), EME (0.47), FIX (0.45), PWR (0.45); group of 16 stocks (largest: NVDA, AVGO, ORCL, NBIS), mean correlation to the group 0.393; beta 1.53 to the equal-weight market, residual volatility 46% a year.
+**Last 20 days:** stock -12.7%, peer group +4.8%, relative to the group (beta-adjusted) -15.1%. The group over 6 months: +34.6%. z=-1.2, within its normal range.
 
 **What analysts say.** Consensus **buy** (16 analysts, mean rating 1.6 on a 1-5 scale); strong buy 3, buy 10, hold 3, sell 0, strong sell 0 (bullish share 81% now vs 82% three months ago). Mean target 188.56 (+97% from the price; range 104.00-270.00). 
 Last 90 days: 0 upgrades, 0 downgrades, 3 target raises, 6 target cuts.
@@ -2964,6 +3115,9 @@ Headline tone over the year: 10 negative, 19 positive, 65 neutral; last 30 days 
 **Positioning:** Short interest 4.9% of float (+14% vs the prior month, 5.2 days to cover), as of -2026-09-15; institutions hold 81%, insiders 8.2%; StockTwits (1833 watchers): of the last 30 posts 5 bearish, 7 bullish.
 **Sentiment: positive** (signals: + more analysts bullish than three months ago (42% vs 33%); + price targets mostly raised in 90 days (11 raises vs 1 cuts); + EPS estimates revised up (2 up / 1 down in 30 days); - short interest rising (+14% in a month); + StockTwits crowd bullish (7 bullish vs 5 bearish of the last 30 posts); + headlines mostly positive in the last 30 days (3 positive vs 1 negative)).
 
+**Peers and group.** Closest by market-neutral correlation: JBHT (0.58), FDX (0.38), CSX (0.37), EXPD (0.34), CHRW (0.32); group of 6 stocks (largest: FDX, UPS, JBHT, CHRW), mean correlation to the group 0.383; beta 1.51 to the equal-weight market, residual volatility 31% a year.
+**Last 20 days:** stock -6.9%, peer group -6.9%, relative to the group (beta-adjusted) +1.1%. The group over 6 months: +4.7%. z=+0.3, within its normal range.
+
 **What analysts say.** Consensus **buy** (22 analysts, mean rating 2.3 on a 1-5 scale); strong buy 1, buy 9, hold 12, sell 1, strong sell 1 (bullish share 42% now vs 33% three months ago). Mean target 230.91 (+33% from the price; range 156.00-280.00). 
 Last 90 days: 3 upgrades, 1 downgrades, 11 target raises, 1 target cuts.
 - 2026-09-10 Bernstein: initiates Market Perform, target 200
@@ -3013,15 +3167,18 @@ Latest news:
 
 **Investor concerns and sentiment.**
 
-**What worries investors** (themes of the negative headlines of the last year, 90 headlines checked; headlines around the largest down days count double):
-- **guidance / outlook cut** (3): 2026-04-09 "PPL Stock Lags Industry in 6 Months: Opportunity or Warning Sign?" (finance.yahoo.com); 2026-07-31 "PPL (PPL) Earnings Expected to Grow: What to Know Ahead of Next Week's Release" (finance.yahoo.com)
+**What worries investors** (themes of the negative headlines of the last year, 89 headlines checked; headlines around the largest down days count double):
+- **guidance / outlook cut** (4): 2026-04-09 "PPL Stock Lags Industry in 6 Months: Opportunity or Warning Sign?" (Yahoo Finance); 2026-07-31 "PPL (PPL) Earnings Expected to Grow: What to Know Ahead of Next Week's Release" (Yahoo Finance)
+- **earnings miss** (3): 2026-08-07 "Earnings call transcript: PPL Q2 2026 misses estimates but keeps full-year outlook" (Investing.com); 2026-08-08 "PPL’s Earnings Miss and Reaffirmed 2026 Guidance Might Change The Case For Investing In PPL (PPL)" (Yahoo Finance)
 - **legal / regulatory** (2): 2026-06-16 "DOJ sues New York, PPL for alleged CDPAP 'fraud scheme'" (Buffalo Toronto Public Media); 2026-06-16 "DOJ Sues PPL, New York DOH Over Alleged CDPAP Fraud Scheme" (Home Health Care News)
-- **earnings miss** (2): 2026-08-07 "Earnings call transcript: PPL Q2 2026 misses estimates but keeps full-year outlook" (Investing.com); 2026-08-14 "PPL Q2 2026 Earnings: EPS Misses Consensus by Nearly 5%, Stock Edges Higher - CEO Earnings Statement" (careplusvn.com)
-- **competition / market share** (2): 2026-06-08 "PPL Corp. stock outperforms competitors despite losses on the day" (MarketWatch); 2026-09-25 "Top PPL (PPL) Competitors 2026" (MarketBeat)
-Headline tone over the year: 14 negative, 25 positive, 51 neutral; last 30 days 6 negative vs 5 positive.
+- **competition / market share** (1): 2026-09-23 "PPL Corp. stock outperforms competitors despite losses on the day" (MarketWatch)
+Headline tone over the year: 12 negative, 31 positive, 46 neutral; last 30 days 5 negative vs 6 positive.
 
-**Positioning:** Short interest 5.4% of float (-3% vs the prior month, 4.7 days to cover), as of -2026-09-15; institutions hold 92%, insiders 0.2%; StockTwits (2179 watchers): of the last 29 posts 0 bearish, 3 bullish.
-**Sentiment: negative** (signals: - price targets mostly cut in 90 days (6 cuts vs 4 raises); - EPS estimates revised down (1 up / 2 down in 30 days); - headlines mostly negative in the last 30 days (6 negative vs 5 positive)).
+**Positioning:** Short interest 5.4% of float (-3% vs the prior month, 4.7 days to cover), as of -2026-09-15; institutions hold 92%, insiders 0.2%; StockTwits (2180 watchers): of the last 29 posts 0 bearish, 3 bullish.
+**Sentiment: mixed** (signals: - price targets mostly cut in 90 days (6 cuts vs 4 raises); - EPS estimates revised down (1 up / 2 down in 30 days); + headlines mostly positive in the last 30 days (6 positive vs 5 negative)).
+
+**Peers and group.** Closest by market-neutral correlation: EXC (0.77), AEE (0.74), DUK (0.74), EVRG (0.73), CMS (0.72); group of 25 stocks (largest: NEE, AEP, SO, DUK), mean correlation to the group 0.644; beta 0.33 to the equal-weight market, residual volatility 17% a year.
+**Last 20 days:** stock -3.8%, peer group -6.3%, relative to the group (beta-adjusted) +2.3%. The group over 6 months: -11.0%. z=+1.1, within its normal range.
 
 **What analysts say.** Consensus **buy** (16 analysts, mean rating 1.7 on a 1-5 scale); strong buy 4, buy 9, hold 4, sell 0, strong sell 0 (bullish share 76% now vs 75% three months ago). Mean target 40.12 (+22% from the price; range 35.00-45.00). 
 Last 90 days: 0 upgrades, 0 downgrades, 4 target raises, 6 target cuts.
@@ -3079,15 +3236,18 @@ Latest news:
 
 **Investor concerns and sentiment.**
 
-**What worries investors** (themes of the negative headlines of the last year, 67 headlines checked; headlines around the largest down days count double):
+**What worries investors** (themes of the negative headlines of the last year, 66 headlines checked; headlines around the largest down days count double):
 - **earnings miss** (3): 2026-05-07 "Sempra narrowly misses profit estimates on lower sales" (Reuters); 2026-07-18 "SRE Q1 2026 Earnings: EPS Misses Estimates by 1.37%, Shares Edge Lower - GAAP Earnings Report" (dars.gov.et)
-- **guidance / outlook cut** (3): 2026-07-30 "Sempra (SRE) Earnings Expected to Grow: What to Know Ahead of Next Week's Release" (finance.yahoo.com); 2026-09-12 "The Manufacturers Life Insurance Company Trims Stake in Sempra Energy $SRE" (MarketBeat)
+- **guidance / outlook cut** (3): 2026-07-30 "Sempra (SRE) Earnings Expected to Grow: What to Know Ahead of Next Week's Release" (Yahoo Finance); 2026-09-12 "The Manufacturers Life Insurance Company Trims Stake in Sempra Energy $SRE" (MarketBeat)
 - **margins / costs** (2): 2026-08-20 "DBA (SREA) Quarterly Figures: EPS Exceeds Its Estimate; After Results: Shares Move Lower 0.17% for the Current Session - Gross Profit Margin" (dars.gov.et)
-- **China / international markets** (1): 2026-08-31 "Here Are Monday’s Top Wall Street Analyst Research Calls: AGCO Corporation, Deere & Co., Edison International, Lumentum Holdings, PG&E, Sempra Energy, STAG Industrial, Ticketplus, and More" (24/7 Wall St.)
-Headline tone over the year: 9 negative, 18 positive, 40 neutral; last 30 days 4 negative vs 10 positive.
+- **management / turnaround** (2): 2026-05-07 "‘A great start’ to 2026, Sempra CEO says, but critics complain about his pay" (San Diego Union-Tribune); 2026-06-08 "Sempra Infrastructure taps former LyondellBasell head Patel as next CEO (SRE:NYSE)" (Seeking Alpha)
+Headline tone over the year: 8 negative, 16 positive, 42 neutral; last 30 days 3 negative vs 8 positive.
 
-**Positioning:** Short interest 1.9% of float (-2% vs the prior month, 2.8 days to cover), as of -2026-09-15; institutions hold 94%, insiders 0.1%; StockTwits (1402 watchers): of the last 30 posts 1 bearish, 5 bullish.
-**Sentiment: positive** (signals: + more analysts bullish than three months ago (80% vs 74%); - price targets mostly cut in 90 days (9 cuts vs 0 raises); + EPS estimates revised up (3 up / 2 down in 30 days); + StockTwits crowd bullish (5 bullish vs 1 bearish of the last 30 posts); + headlines mostly positive in the last 30 days (10 positive vs 4 negative)).
+**Positioning:** Short interest 1.9% of float (-2% vs the prior month, 2.8 days to cover), as of -2026-09-15; institutions hold 94%, insiders 0.1%; StockTwits (1403 watchers): of the last 30 posts 1 bearish, 5 bullish.
+**Sentiment: positive** (signals: + more analysts bullish than three months ago (80% vs 74%); - price targets mostly cut in 90 days (9 cuts vs 0 raises); + EPS estimates revised up (3 up / 2 down in 30 days); + StockTwits crowd bullish (5 bullish vs 1 bearish of the last 30 posts); + headlines mostly positive in the last 30 days (8 positive vs 3 negative)).
+
+**Peers and group.** Closest by market-neutral correlation: LNT (0.45), AEE (0.45), NI (0.45), PEG (0.45), XEL (0.44); group of 25 stocks (largest: NEE, AEP, SO, DUK), mean correlation to the group 0.384; beta 0.71 to the equal-weight market, residual volatility 25% a year.
+**Last 20 days:** stock -6.7%, peer group -6.2%, relative to the group (beta-adjusted) -0.4%. The group over 6 months: -10.8%. z=-0.1, within its normal range.
 
 **What analysts say.** Consensus **buy** (18 analysts, mean rating 1.6 on a 1-5 scale); strong buy 4, buy 12, hold 4, sell 0, strong sell 0 (bullish share 80% now vs 74% three months ago). Mean target 99.92 (+28% from the price; range 83.00-118.00). 
 Last 90 days: 1 upgrades, 1 downgrades, 0 target raises, 9 target cuts.
@@ -3148,15 +3308,18 @@ Latest news:
 
 **Investor concerns and sentiment.**
 
-**What worries investors** (themes of the negative headlines of the last year, 115 headlines checked; headlines around the largest down days count double):
+**What worries investors** (themes of the negative headlines of the last year, 118 headlines checked; headlines around the largest down days count double):
 - **guidance / outlook cut** (10): 2026-02-18 "Southern Poverty Law Center warns Fayette about sanctions over garbage bills" (Alabama Reflector); 2026-03-19 "Southern Europe Credit Review & Outlook: Converging Risk, Diverging Resilience" (Moody's)
 - **legal / regulatory** (5): 2026-05-05 "DOJ Clarifies Remarks on Southern Poverty Law Center Charges (1)" (Bloomberg Law News); 2026-05-08 "Southern Poverty Law Center pleads not guilty to DOJ charges" (Alabama Reflector)
 - **management / turnaround** (4): 2026-02-16 "Children’s Museum of Southern Minnesota names one of its founders as new CEO" (mprnews.org); 2026-05-06 "Southern Company Chairman, President and CEO Chris Womack Regarding the Passing of Ted Turner" (PR Newswire)
-- **analyst downgrades** (3): 2025-11-15 "The Southern Company (SO) Downgraded by Goldman Sachs" (finance.yahoo.com); 2026-02-18 "Southern Company: Steady Growth, But Priced Right, 3.2% Yield (Downgrade) (NYSE:SO)" (Seeking Alpha)
-Headline tone over the year: 18 negative, 18 positive, 79 neutral; last 30 days 3 negative vs 1 positive.
+- **analyst downgrades** (2): 2025-11-15 "The Southern Company (SO) Downgraded by Goldman Sachs" (Yahoo Finance); 2026-06-24 "Barclays Lowers Price Target on The Southern Company (SO)" (Yahoo Finance)
+Headline tone over the year: 17 negative, 23 positive, 78 neutral; last 30 days 1 negative vs 1 positive.
 
-**Positioning:** Short interest 2.5% of float (-11% vs the prior month, 5.1 days to cover), as of -2026-09-15; institutions hold 74%, insiders 0.1%; StockTwits (4697 watchers): of the last 30 posts 2 bearish, 10 bullish.
-**Sentiment: mixed** (signals: - price targets mostly cut in 90 days (5 cuts vs 2 raises); + EPS estimates revised up (5 up / 1 down in 30 days); + short interest falling (-11% in a month); + StockTwits crowd bullish (10 bullish vs 2 bearish of the last 30 posts); - headlines mostly negative in the last 30 days (3 negative vs 1 positive)).
+**Positioning:** Short interest 2.5% of float (-11% vs the prior month, 5.1 days to cover), as of -2026-09-15; institutions hold 74%, insiders 0.1%; StockTwits (4698 watchers): of the last 30 posts 2 bearish, 10 bullish.
+**Sentiment: positive** (signals: - price targets mostly cut in 90 days (5 cuts vs 2 raises); + EPS estimates revised up (5 up / 1 down in 30 days); + short interest falling (-11% in a month); + StockTwits crowd bullish (10 bullish vs 2 bearish of the last 30 posts)).
+
+**Peers and group.** Closest by market-neutral correlation: DUK (0.85), CMS (0.80), WEC (0.79), ED (0.79), LNT (0.77); group of 25 stocks (largest: NEE, AEP, DUK, XEL), mean correlation to the group 0.683; beta 0.18 to the equal-weight market, residual volatility 17% a year.
+**Last 20 days:** stock -5.9%, peer group -6.2%, relative to the group (beta-adjusted) +0.1%. The group over 6 months: -11.0%. z=+0.4, within its normal range.
 
 **What analysts say.** Consensus **hold** (19 analysts, mean rating 2.6 on a 1-5 scale); strong buy 1, buy 6, hold 14, sell 2, strong sell 0 (bullish share 30% now vs 29% three months ago). Mean target 98.66 (+19% from the price; range 79.00-112.00). 
 Last 90 days: 0 upgrades, 1 downgrades, 2 target raises, 5 target cuts.
@@ -3222,15 +3385,18 @@ Latest news:
 
 **Investor concerns and sentiment.**
 
-**What worries investors** (themes of the negative headlines of the last year, 158 headlines checked; headlines around the largest down days count double):
+**What worries investors** (themes of the negative headlines of the last year, 161 headlines checked; headlines around the largest down days count double):
+- **competition / market share** (10): 2026-09-16 "T-Mobile US Inc. stock outperforms competitors despite losses on the day" (MarketWatch); 2026-09-17 "Renewed Industry Competition Sparks T-Mobile US’s (TMUS) Sell-Off" (finance.yahoo.com)
 - **guidance / outlook cut** (9): 2026-07-23 "T-Mobile shares decline despite earnings beat and higher cash flow forecast (NASDAQ:TMUS)" (finance.yahoo.com); 2026-07-23 "T-Mobile shares slide on Q2 revenue miss; free cash flow outlook raised" (finance.yahoo.com)
-- **competition / market share** (9): 2026-09-16 "T-Mobile US Inc. stock outperforms competitors despite losses on the day" (MarketWatch); 2026-09-17 "Renewed Industry Competition Sparks T-Mobile US’s (TMUS) Sell-Off" (finance.yahoo.com)
-- **management / turnaround** (7): 2025-10-24 "T-Mobile's incoming CEO: AT&T is taking potshots because it's 'under pressure'" (finance.yahoo.com); 2026-01-12 "Lumos leadership lift sees CEO depart new T-Mobile era" (SDxCentral)
+- **management / turnaround** (8): 2025-10-24 "T-Mobile's incoming CEO: AT&T is taking potshots because it's 'under pressure'" (finance.yahoo.com); 2026-01-12 "Lumos leadership lift sees CEO depart new T-Mobile era" (SDxCentral)
 - **margins / costs** (5): 2026-07-23 "Crude Oil Rises Sharply; T-Mobile Shares Fall Following Q2 Results" (Benzinga); 2026-07-25 "T-Mobile US (TMUS) Stock Faces Margin Pressure As 11.5% Net Margin Tests Bullish Narratives" (simplywall.st)
-Headline tone over the year: 30 negative, 44 positive, 84 neutral; last 30 days 13 negative vs 6 positive.
+Headline tone over the year: 30 negative, 45 positive, 86 neutral; last 30 days 12 negative vs 6 positive.
 
 **Positioning:** Short interest 3.8% of float (+7% vs the prior month, 4.5 days to cover), as of -2026-09-15; institutions hold 43%, insiders 55.6%; StockTwits (19392 watchers): of the last 30 posts 1 bearish, 10 bullish.
-**Sentiment: mixed** (signals: - fewer analysts bullish than three months ago (82% vs 86%); - price targets mostly cut in 90 days (12 cuts vs 0 raises); + EPS estimates revised up (18 up / 3 down in 30 days); + StockTwits crowd bullish (10 bullish vs 1 bearish of the last 30 posts); - headlines mostly negative in the last 30 days (13 negative vs 6 positive)).
+**Sentiment: mixed** (signals: - fewer analysts bullish than three months ago (82% vs 86%); - price targets mostly cut in 90 days (12 cuts vs 0 raises); + EPS estimates revised up (18 up / 3 down in 30 days); + StockTwits crowd bullish (10 bullish vs 1 bearish of the last 30 posts); - headlines mostly negative in the last 30 days (12 negative vs 6 positive)).
+
+**Peers and group.** Closest by market-neutral correlation: T (0.57), VZ (0.54), KR (0.37), PGR (0.34), CMCSA (0.34); group of 5 stocks (largest: T, VZ, CMCSA, CHTR), mean correlation to the group 0.408; beta 0.29 to the equal-weight market, residual volatility 29% a year.
+**Last 20 days:** stock -10.5%, peer group -14.1%, relative to the group (beta-adjusted) -2.2%. The group over 6 months: -22.6%. z=-0.1, within its normal range.
 
 **What analysts say.** Consensus **buy** (25 analysts, mean rating 1.7 on a 1-5 scale); strong buy 9, buy 14, hold 5, sell 0, strong sell 0 (bullish share 82% now vs 86% three months ago). Mean target 243.52 (+49% from the price; range 169.00-300.00). 
 Last 90 days: 1 upgrades, 1 downgrades, 0 target raises, 12 target cuts.
@@ -3287,15 +3453,18 @@ Latest news:
 
 **Investor concerns and sentiment.**
 
-**What worries investors** (themes of the negative headlines of the last year, 127 headlines checked; headlines around the largest down days count double):
-- **guidance / outlook cut** (8): 2025-11-06 "Coach parent Tapestry's holiday forecast overshadows blowout quarter" (Reuters); 2025-11-06 "Tapestry sees Q1 revenue increase to $1.7 billion, lifts outlook" (FashionNetwork France)
+**What worries investors** (themes of the negative headlines of the last year, 126 headlines checked; headlines around the largest down days count double):
+- **guidance / outlook cut** (10): 2025-11-06 "Coach parent Tapestry's holiday forecast overshadows blowout quarter" (Reuters); 2025-11-06 "Tapestry sees Q1 revenue increase to $1.7 billion, lifts outlook" (FashionNetwork France)
 - **management / turnaround** (4): 2025-11-06 "Tapestry CEO: Kate Spade brand reset is underway, Coach brand still outperforming" (CNBC); 2026-03-05 "Tapestry CEO on how Kate Spade, Coach is resonating with Gen-Z consumers" (CNBC)
-- **China / international markets** (2): 2026-05-07 "Tapestry Revenues Rise 19% in Q3, Boosted By Coach and China" (Vogue); 2026-08-12 "Tapestry faces earnings test as Coach international in focus" (Investing.com)
 - **macro / market** (2): 2026-08-14 "Is Tapestry stock a buy after its 21% selloff? What investors need to know By Investing.com" (Investing.com UK); 2026-08-16 "Tapestry: The Selloff Misprices Coach’s Next Phase (NYSE:TPR)" (Seeking Alpha)
-Headline tone over the year: 9 negative, 38 positive, 80 neutral; last 30 days 1 negative vs 4 positive.
+- **China / international markets** (2): 2026-05-07 "Tapestry Revenues Rise 19% in Q3, Boosted By Coach and China" (Vogue); 2026-08-12 "Tapestry faces earnings test as Coach international in focus" (Investing.com)
+Headline tone over the year: 10 negative, 43 positive, 73 neutral; last 30 days 0 negative vs 4 positive.
 
 **Positioning:** Short interest 9.4% of float (+3% vs the prior month, 4.6 days to cover), as of -2026-09-15; institutions hold 103%, insiders 0.4%; StockTwits (4819 watchers): of the last 30 posts 2 bearish, 11 bullish.
-**Sentiment: positive** (signals: + more analysts bullish than three months ago (77% vs 71%); + price targets mostly raised in 90 days (6 raises vs 4 cuts); + EPS estimates revised up (17 up / 2 down in 30 days); + StockTwits crowd bullish (11 bullish vs 2 bearish of the last 30 posts); + headlines mostly positive in the last 30 days (4 positive vs 1 negative)).
+**Sentiment: positive** (signals: + more analysts bullish than three months ago (77% vs 71%); + price targets mostly raised in 90 days (6 raises vs 4 cuts); + EPS estimates revised up (17 up / 2 down in 30 days); + StockTwits crowd bullish (11 bullish vs 2 bearish of the last 30 posts); + headlines mostly positive in the last 30 days (4 positive vs 0 negative)).
+
+**Peers and group.** Closest by market-neutral correlation: RL (0.49), DECK (0.26), ROST (0.18), WSM (0.18), CRH (0.17); group of 11 stocks (largest: NKE, TGT, LULU, DLTR), mean correlation to the group 0.157; beta 1.39 to the equal-weight market, residual volatility 38% a year.
+**Last 20 days:** stock -5.5%, peer group -4.5%, relative to the group (beta-adjusted) -1.6%. The group over 6 months: +2.1%. z=-0.3, within its normal range.
 
 **What analysts say.** Consensus **buy** (20 analysts, mean rating 2.0 on a 1-5 scale); strong buy 6, buy 11, hold 4, sell 0, strong sell 1 (bullish share 77% now vs 71% three months ago). Mean target 166.50 (+45% from the price; range 96.00-232.00). 
 Last 90 days: 0 upgrades, 0 downgrades, 6 target raises, 4 target cuts.
@@ -3352,15 +3521,18 @@ Latest news:
 
 **Investor concerns and sentiment.**
 
-**What worries investors** (themes of the negative headlines of the last year, 112 headlines checked; headlines around the largest down days count double):
-- **technology disruption / AI** (4): 2026-04-03 "What Verisk Analytics (VRSK)'s Written-Consent Fight Amid AI Push and Cost Concerns Means For Shareholders" (finance.yahoo.com); 2026-04-28 "How The Verisk Analytics (VRSK) Investment Story Is Shifting With AI And Slower Growth Concerns" (finance.yahoo.com)
+**What worries investors** (themes of the negative headlines of the last year, 115 headlines checked; headlines around the largest down days count double):
+- **technology disruption / AI** (4): 2026-04-03 "What Verisk Analytics (VRSK)'s Written-Consent Fight Amid AI Push and Cost Concerns Means For Shareholders" (Yahoo Finance); 2026-04-28 "How The Verisk Analytics (VRSK) Investment Story Is Shifting With AI And Slower Growth Concerns" (Yahoo Finance)
 - **margins / costs** (3): 2026-07-31 "Verisk Analytics (VRSK) Stock Drops As Margin Pressure Clouds Steady Growth" (simplywall.st)
-- **management / turnaround** (2): 2026-06-21 "Verisk Analytics (VRSK) Stock After 43% Slide Is The Valuation Reset Enough" (finance.yahoo.com); 2026-08-07 "Verisk Analytics CEO Lee Shavel Sells 2,500 Shares for $550,000" (The Motley Fool)
+- **management / turnaround** (2): 2026-07-15 "Verisk Analytics CFO Elizabeth Mann sells $76,844 in stock" (Investing.com); 2026-08-04 "Verisk (VRSK) CIO Change Hands CTO Interim Role After Nick Daffan Steps Down" (Simply Wall Street)
 - **product / delays** (1): 2026-08-11 "Investors Can Find Comfort In Verisk Analytics' (NASDAQ:VRSK) Earnings Quality" (simplywall.st)
-Headline tone over the year: 17 negative, 22 positive, 73 neutral; last 30 days 3 negative vs 3 positive.
+Headline tone over the year: 17 negative, 21 positive, 77 neutral; last 30 days 2 negative vs 3 positive.
 
-**Positioning:** Short interest 4.1% of float (+40% vs the prior month, 4.2 days to cover), as of -2026-09-15; institutions hold 101%, insiders 0.3%; StockTwits (904 watchers): of the last 30 posts 0 bearish, 8 bullish.
-**Sentiment: positive** (signals: + more analysts bullish than three months ago (58% vs 53%); + price targets mostly raised in 90 days (4 raises vs 1 cuts); + EPS estimates revised up (14 up / 3 down in 30 days); - short interest rising (+40% in a month); + StockTwits crowd bullish (8 bullish vs 0 bearish of the last 30 posts)).
+**Positioning:** Short interest 4.1% of float (+40% vs the prior month, 4.2 days to cover), as of -2026-09-15; institutions hold 101%, insiders 0.3%; StockTwits (905 watchers): of the last 30 posts 0 bearish, 8 bullish.
+**Sentiment: positive** (signals: + more analysts bullish than three months ago (58% vs 53%); + price targets mostly raised in 90 days (4 raises vs 1 cuts); + EPS estimates revised up (14 up / 3 down in 30 days); - short interest rising (+40% in a month); + StockTwits crowd bullish (8 bullish vs 0 bearish of the last 30 posts); + headlines mostly positive in the last 30 days (3 positive vs 2 negative)).
+
+**Peers and group.** Closest by market-neutral correlation: ADP (0.63), TRI (0.59), FDS (0.58), BR (0.57), PAYX (0.54); group of 20 stocks (largest: IBM, ACN, ADP, CTSH), mean correlation to the group 0.43; beta 0.41 to the equal-weight market, residual volatility 29% a year.
+**Last 20 days:** stock -13.4%, peer group -13.2%, relative to the group (beta-adjusted) -2.0%. The group over 6 months: -2.1%. z=-0.1, within its normal range.
 
 **What analysts say.** Consensus **buy** (17 analysts, mean rating 2.1 on a 1-5 scale); strong buy 4, buy 7, hold 8, sell 0, strong sell 0 (bullish share 58% now vs 53% three months ago). Mean target 234.76 (+40% from the price; range 195.00-260.00). 
 Last 90 days: 1 upgrades, 0 downgrades, 4 target raises, 1 target cuts.
@@ -3418,15 +3590,18 @@ Latest news:
 
 **Investor concerns and sentiment.**
 
-**What worries investors** (themes of the negative headlines of the last year, 84 headlines checked; headlines around the largest down days count double):
+**What worries investors** (themes of the negative headlines of the last year, 87 headlines checked; headlines around the largest down days count double):
 - **earnings miss** (4): 2026-02-17 "Vulcan Materials (NYSE:VMC) Misses Q4 CY2025 Revenue Estimates, Stock Drops" (stockstory.org); 2026-03-08 "Vulcan Materials Faces Earnings Miss As Demand Concerns Lift Bearish Bets" (simplywall.st)
+- **weak demand / consumer** (2): 2026-04-29 "VMC Q1 2026 Deep Dive: Data Center Demand and Public Infrastructure Drive Outperformance" (StockStory)
 - **margins / costs** (2): 2026-02-17 "Aggregate shipments, pricing up in Q4 at Vulcan Materials" (Pit & Quarry); 2026-07-29 "Vulcan Materials tops estimates as pricing offsets weather, energy costs (VMC:NYSE)" (Seeking Alpha)
-- **weak demand / consumer** (2): 
 - **macro / market** (2): 2026-09-16 "Vulcan Materials: Sell-Off Creates Renewed Opportunity (NYSE:VMC)" (Seeking Alpha); 2026-09-29 "Vulcan Materials Sinks As Downgrade Triggers Selloff" (TipRanks)
-Headline tone over the year: 11 negative, 13 positive, 60 neutral; last 30 days 3 negative vs 2 positive.
+Headline tone over the year: 12 negative, 11 positive, 64 neutral; last 30 days 4 negative vs 2 positive.
 
 **Positioning:** Short interest 4.9% of float (-13% vs the prior month, 5.9 days to cover), as of -2026-09-15; institutions hold 101%, insiders 0.2%; StockTwits (1988 watchers): of the last 30 posts 0 bearish, 3 bullish.
-**Sentiment: negative** (signals: - price targets mostly cut in 90 days (4 cuts vs 1 raises); - EPS estimates revised down (4 up / 9 down in 30 days); + short interest falling (-13% in a month); - headlines mostly negative in the last 30 days (3 negative vs 2 positive)).
+**Sentiment: negative** (signals: - price targets mostly cut in 90 days (4 cuts vs 1 raises); - EPS estimates revised down (4 up / 9 down in 30 days); + short interest falling (-13% in a month); - headlines mostly negative in the last 30 days (4 negative vs 2 positive)).
+
+**Peers and group.** Closest by market-neutral correlation: MLM (0.83), CRH (0.55), SHW (0.35), PHM (0.30), HD (0.30); group of 3 stocks (largest: CRH, MLM), mean correlation to the group 0.691; beta 0.96 to the equal-weight market, residual volatility 22% a year.
+**Last 20 days:** stock -5.8%, peer group -7.1%, relative to the group (beta-adjusted) +0.3%. The group over 6 months: -19.4%. z=+0.0, within its normal range.
 
 **What analysts say.** Consensus **buy** (23 analysts, mean rating 1.8 on a 1-5 scale); strong buy 2, buy 14, hold 7, sell 1, strong sell 0 (bullish share 67% now vs 65% three months ago). Mean target 321.78 (+32% from the price; range 238.00-365.00). 
 Last 90 days: 0 upgrades, 1 downgrades, 1 target raises, 4 target cuts.
@@ -3477,13 +3652,16 @@ Latest news:
 
 **What worries investors** (themes of the negative headlines of the last year, 93 headlines checked; headlines around the largest down days count double):
 - **guidance / outlook cut** (6): 2026-07-29 "WEC Energy Reaffirms 2026 Outlook as Second-Quarter Profit Rises" (Crude Oil Prices Today | OilPrice.com); 2026-07-29 "WEC Energy Group reports Q2 net income $299.2M; reaffirming 2026 EPS guidance $5.51–$5.61" (TradingView)
-- **management / turnaround** (4): 2026-07-29 "WEC Energy Group CEO hints at plans for more data centers as public opposition grows" (BizTimes - Milwaukee Business News); 2026-07-30 "WEC Energy Group CEO confident Oracle will meet collateral requirements for data center power" (WisPolitics)
+- **management / turnaround** (3): 2026-07-29 "WEC Energy Group CEO hints at plans for more data centers as public opposition grows" (BizTimes - Milwaukee Business News); 2026-07-30 "WEC Energy Group CEO confident Oracle will meet collateral requirements for data center power" (WisPolitics)
 - **weak demand / consumer** (3): 2026-07-29 "WEC Energy posts higher profit as data center demand grows" (TradingView); 2026-07-29 "WEC Energy posts higher profit as commercial power demand grows" (BNN Bloomberg)
-- **competition / market share** (2): 2026-09-15 "WEC Energy Group Inc. stock underperforms Tuesday when compared to competitors" (MarketWatch); 2026-09-18 "WEC Energy Group Inc. stock underperforms Friday when compared to competitors" (MarketWatch)
-Headline tone over the year: 6 negative, 21 positive, 66 neutral; last 30 days 5 negative vs 7 positive.
+- **competition / market share** (2): 2026-09-18 "WEC Energy Group Inc. stock underperforms Friday when compared to competitors" (MarketWatch); 2026-09-23 "WEC Energy Group Inc. stock outperforms competitors despite losses on the day" (MarketWatch)
+Headline tone over the year: 9 negative, 22 positive, 62 neutral; last 30 days 7 negative vs 9 positive.
 
-**Positioning:** Short interest 4.8% of float (-27% vs the prior month, 6.2 days to cover), as of -2026-09-15; institutions hold 88%, insiders 0.2%; StockTwits (809 watchers): of the last 30 posts 0 bearish, 15 bullish.
-**Sentiment: positive** (signals: - price targets mostly cut in 90 days (3 cuts vs 2 raises); + short interest falling (-27% in a month); + StockTwits crowd bullish (15 bullish vs 0 bearish of the last 30 posts); + headlines mostly positive in the last 30 days (7 positive vs 5 negative)).
+**Positioning:** Short interest 4.8% of float (-27% vs the prior month, 6.2 days to cover), as of -2026-09-15; institutions hold 88%, insiders 0.2%; StockTwits (809 watchers): of the last 30 posts 0 bearish, 16 bullish.
+**Sentiment: positive** (signals: - price targets mostly cut in 90 days (3 cuts vs 2 raises); + short interest falling (-27% in a month); + StockTwits crowd bullish (16 bullish vs 0 bearish of the last 30 posts); + headlines mostly positive in the last 30 days (9 positive vs 7 negative)).
+
+**Peers and group.** Closest by market-neutral correlation: AEE (0.85), CMS (0.83), LNT (0.82), ED (0.82), DUK (0.81); group of 25 stocks (largest: NEE, AEP, SO, DUK), mean correlation to the group 0.697; beta 0.28 to the equal-weight market, residual volatility 16% a year.
+**Last 20 days:** stock -5.1%, peer group -6.3%, relative to the group (beta-adjusted) +1.1%. The group over 6 months: -11.1%. z=+1.0, within its normal range.
 
 **What analysts say.** Consensus **buy** (17 analysts, mean rating 2.4 on a 1-5 scale); strong buy 2, buy 6, hold 10, sell 1, strong sell 0 (bullish share 42% now vs 40% three months ago). Mean target 121.62 (+21% from the price; range 108.50-140.00). 
 Last 90 days: 0 upgrades, 0 downgrades, 2 target raises, 3 target cuts.
@@ -3546,15 +3724,18 @@ Latest news:
 
 **Investor concerns and sentiment.**
 
-**What worries investors** (themes of the negative headlines of the last year, 125 headlines checked; headlines around the largest down days count double):
+**What worries investors** (themes of the negative headlines of the last year, 124 headlines checked; headlines around the largest down days count double):
 - **debt / financing** (4): 2026-09-24 "Xylem Falls as Investors Weigh Acquisition Financing and New Debt" (Quiver Quantitative); 2026-09-24 "Xylem Plunges To New Low As Debt Fears Mount" (TipRanks)
 - **guidance / outlook cut** (3): 2026-07-28 "Xylem Q2 Adjusted Earnings, Revenue Increase; 2026 Adjusted EPS Guidance Lifted" (marketscreener.com); 2025-11-27 "Xylem Stock Forecast: Where Analysts See the Stock Going by 2027" (TIKR.com)
 - **weak demand / consumer** (2): 2026-04-28 "Xylem Stock Pops Then Drops After Earnings Beat. The Water Tech Company’s Orders Are Key." (barrons.com); 2026-07-28 "Xylem Stock Rises as AI Infrastructure Lifts Water Demand" (TradingView)
-- **technology disruption / AI** (2): 2026-06-19 "Why Xylem (XYL) Fits the AI Water Strain Theme Through Reuse and Industrial Water Management" (finance.yahoo.com)
-Headline tone over the year: 14 negative, 37 positive, 74 neutral; last 30 days 8 negative vs 8 positive.
+- **technology disruption / AI** (2): 2026-06-19 "Why Xylem (XYL) Fits the AI Water Strain Theme Through Reuse and Industrial Water Management" (Yahoo Finance)
+Headline tone over the year: 14 negative, 37 positive, 73 neutral; last 30 days 7 negative vs 9 positive.
 
-**Positioning:** Short interest 6.0% of float (+39% vs the prior month, 4.8 days to cover), as of -2026-09-15; institutions hold 98%, insiders 0.3%; StockTwits (2085 watchers): of the last 30 posts 0 bearish, 11 bullish.
-**Sentiment: positive** (signals: + price targets mostly raised in 90 days (9 raises vs 1 cuts); + EPS estimates revised up (21 up / 0 down in 30 days); - short interest rising (+39% in a month); + StockTwits crowd bullish (11 bullish vs 0 bearish of the last 30 posts)).
+**Positioning:** Short interest 6.0% of float (+39% vs the prior month, 4.8 days to cover), as of -2026-09-15; institutions hold 98%, insiders 0.3%; StockTwits (2086 watchers): of the last 30 posts 0 bearish, 11 bullish.
+**Sentiment: positive** (signals: + price targets mostly raised in 90 days (9 raises vs 1 cuts); + EPS estimates revised up (21 up / 0 down in 30 days); - short interest rising (+39% in a month); + StockTwits crowd bullish (11 bullish vs 0 bearish of the last 30 posts); + headlines mostly positive in the last 30 days (9 positive vs 7 negative)).
+
+**Peers and group.** Closest by market-neutral correlation: IR (0.29), ITW (0.26), CHRW (0.25), ALLE (0.21), PNR (0.20); group of 9 stocks (largest: F, GM, EL, GRMN), mean correlation to the group 0.091; beta 1.01 to the equal-weight market, residual volatility 20% a year.
+**Last 20 days:** stock -5.3%, peer group -7.0%, relative to the group (beta-adjusted) -1.5%. The group over 6 months: -5.6%. z=+0.1, within its normal range.
 
 **What analysts say.** Consensus **buy** (16 analysts, mean rating 1.9 on a 1-5 scale); strong buy 4, buy 10, hold 7, sell 0, strong sell 0 (bullish share 67% now vs 65% three months ago). Mean target 153.88 (+52% from the price; range 129.00-180.00). 
 Last 90 days: 0 upgrades, 0 downgrades, 9 target raises, 1 target cuts.
@@ -3613,15 +3794,18 @@ Latest news:
 
 **Investor concerns and sentiment.**
 
-**What worries investors** (themes of the negative headlines of the last year, 166 headlines checked; headlines around the largest down days count double):
+**What worries investors** (themes of the negative headlines of the last year, 161 headlines checked; headlines around the largest down days count double):
 - **legal / regulatory** (8): 2026-07-14 "Yum shares tumble after report of Taco Bell cyclospora probe" (Honolulu Star-Advertiser); 2026-07-14 "Stock Market Today: Nasdaq Leads The Day; Yum Brands Falls On Report Of Taco Bell Investigation" (Investor's Business Daily)
+- **weak demand / consumer** (6): 2026-08-01 "Yum Brands posts strong Q2 but Taco Bell sales fall after Cyclospora outbreak | Ukraine news" (Межа. Новини України.); 2026-07-20 "YUM, CMG, SG Stocks Slide — Taco Bell Traffic Reportedly Takes A Hit After Parasite Outbreak, Dragging Restaurant Peers Lower" (Yahoo Finance)
 - **China / international markets** (6): 2026-07-31 "Yum China nears acquisition of Pizza Hut brand in mainland China after 36 years as licensee" (QSR Media Asia); 2026-08-10 "Yum China completes Mainland China Pizza Hut acquisition" (Pizza Marketplace)
-- **weak demand / consumer** (6): 2026-08-01 "Yum Brands posts strong Q2 but Taco Bell sales fall after Cyclospora outbreak | Ukraine news" (Межа. Новини України.); 2026-07-20 "YUM, CMG, SG Stocks Slide — Taco Bell Traffic Reportedly Takes A Hit After Parasite Outbreak, Dragging Restaurant Peers Lower" (finance.yahoo.com)
 - **management / turnaround** (6): 2026-07-30 "Cyclospora outbreak has hurt Taco Bell but sales are already improving, Yum Brands CEO says" (CNBC); 2026-07-30 "Yum Brands CEO addresses Taco Bell sales hit amid cyclospora outbreak" (PRWeek)
-Headline tone over the year: 31 negative, 38 positive, 97 neutral; last 30 days 8 negative vs 8 positive.
+Headline tone over the year: 26 negative, 39 positive, 96 neutral; last 30 days 6 negative vs 9 positive.
 
-**Positioning:** Short interest 4.1% of float (+14% vs the prior month, 4.3 days to cover), as of -2026-09-15; institutions hold 91%, insiders 0.2%; StockTwits (6338 watchers): of the last 30 posts 3 bearish, 10 bullish.
-**Sentiment: mixed** (signals: + more analysts bullish than three months ago (50% vs 42%); - price targets mostly cut in 90 days (4 cuts vs 3 raises); - EPS estimates revised down (0 up / 14 down in 30 days); - short interest rising (+14% in a month); + StockTwits crowd bullish (10 bullish vs 3 bearish of the last 30 posts)).
+**Positioning:** Short interest 4.1% of float (+14% vs the prior month, 4.3 days to cover), as of -2026-09-15; institutions hold 91%, insiders 0.2%; StockTwits (6340 watchers): of the last 30 posts 3 bearish, 6 bullish.
+**Sentiment: mixed** (signals: + more analysts bullish than three months ago (50% vs 42%); - price targets mostly cut in 90 days (4 cuts vs 3 raises); - EPS estimates revised down (0 up / 14 down in 30 days); - short interest rising (+14% in a month); + StockTwits crowd bullish (6 bullish vs 3 bearish of the last 30 posts); + headlines mostly positive in the last 30 days (9 positive vs 6 negative)).
+
+**Peers and group.** Closest by market-neutral correlation: MCD (0.51), DPZ (0.37), KO (0.36), CCEP (0.34), AWK (0.33); group of 10 stocks (largest: MCD, PM, MO, MNST), mean correlation to the group 0.299; beta 0.49 to the equal-weight market, residual volatility 22% a year.
+**Last 20 days:** stock -9.9%, peer group -6.5%, relative to the group (beta-adjusted) -4.2%. The group over 6 months: +0.9%. z=-0.9, within its normal range.
 
 **What analysts say.** Consensus **buy** (22 analysts, mean rating 2.1 on a 1-5 scale); strong buy 3, buy 10, hold 13, sell 0, strong sell 0 (bullish share 50% now vs 42% three months ago). Mean target 173.02 (+27% from the price; range 147.00-200.00). 
 Last 90 days: 1 upgrades, 1 downgrades, 3 target raises, 4 target cuts.
