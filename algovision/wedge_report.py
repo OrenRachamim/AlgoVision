@@ -284,7 +284,10 @@ def summary_he(m: PatternMatch, geo: Dict, ctx: Dict, why: Dict, sent: Dict, an:
         z = peers.get("z")
         md.append(f"- **מול העמיתים:** ב-20 יום המניה {_pct(peers['ret20'], 1)} מול {_pct(peers['group_ret20'], 1)} של קבוצת ההשוואה "
                   f"({peers['n_group']} מניות, למשל {', '.join(peers.get('top', [])[:3])}); יחסית לקבוצה {_pct(peers['rel20'], 1)}"
-                  + (f", z={z:+.1f}" + (" (חריג כלפי מטה)" if z <= -2 else " (חריג כלפי מעלה)" if z >= 2 else "") if z is not None else "") + ".")
+                  + (f", z={z:+.1f}" + (" (חריג כלפי מטה)" if z <= -2 else " (חריג כלפי מעלה)" if z >= 2 else "") if z is not None else "")
+                  + ((" הקבוצה כסל **מוכה**" if peers["g_beaten"] else " הקבוצה כסל לא מוכה") if peers.get("g_beaten") is not None else "")
+                  + (f" ({peers['share_beaten'] * 100:.0f}% מהחברות האחרות מוכות)" if peers.get("share_beaten") == peers.get("share_beaten") else "")
+                  + (f"; הסל בטריז יורד {'מאושר' if peers['g_wedge'] == 'confirmed' else 'בהתהוות'}" if peers.get("g_wedge") else "") + ".")
     md.append(f"- **אנליסטים וקריאה:** {an_txt}"
               + (f"; הדוח הבא {ea['next_date']}" if ea.get("next_date") else "")
               + f". קריאה מבוססת כללים: **{LABEL_SHORT_HE[label]}** (ציון {score:+g}).")
@@ -443,7 +446,10 @@ def build_wedge_report(out_dir: Path, today: str, frames: Dict[str, pd.DataFrame
             "מהסטופ": _pct(m.stop / last - 1 if last else np.nan),
             "6 חודשים": _pct(m.metrics.get("context", {}).get("ret_126")), "מול ממוצע 200": _pct(m.metrics.get("context", {}).get("dist_ma200")),
             "ATR%": f"{m.metrics.get('context', {}).get('atr_pct', 0) * 100:.1f}%", "גובה הטריז": f"{geo['h0_pct'] * 100:.0f}%",
-            "מול עמיתים 20 יום": peers_short(pr), "למה ירדה": _he_cause(why["cause"]), "חששות": ", ".join(t["he"] for t in sent["concerns"]["themes"][:2]) or "לא נמצאו",
+            "מול עמיתים 20 יום": peers_short(pr),
+            "הקבוצה": ("" if not pr or pr.get("g_beaten") is None else ("מוכה" if pr["g_beaten"] else "לא מוכה")
+                       + (f" ({pr['share_beaten'] * 100:.0f}%)" if pr.get("share_beaten") == pr.get("share_beaten") else "")
+                       + (" + טריז" if pr.get("g_wedge") else "")), "למה ירדה": _he_cause(why["cause"]), "חששות": ", ".join(t["he"] for t in sent["concerns"]["themes"][:2]) or "לא נמצאו",
             "סנטימנט": SENT_HE[sent["label"]], "קריאה": LABEL_SHORT_HE[label], "ציון קריאה": f"{score:+g}",
             "סקטור": _he_sector(fu.get("sector") or sectors.get(s)),
         })
@@ -482,7 +488,9 @@ def build_wedge_report(out_dir: Path, today: str, frames: Dict[str, pd.DataFrame
         "\"חששות\" = נושאי הכותרות השליליות על החברה בשנה האחרונה (Google News), ספורים, עם הכותרות עצמן בפירוט; \"סנטימנט\" = "
         "קריאה שקופה על איתותים רשומים: אנליסטים, יעדי מחיר, עדכוני תחזיות, שורט, הקהל ב-StockTwits וטון הכותרות. "
         "\"מול עמיתים 20 יום\" = תשואת המניה ב-20 יום יחסית לקבוצת ההשוואה שלה (מניות עם המתאם הניטרלי-לשוק הגבוה ביותר אליה, "
-        "מחושב מהמחירים), ו-z מול השנה האחרונה שלה; מתחת ל-2- = ירידה חריגה מול העמיתים. "
+        "מחושב מהמחירים), ו-z מול השנה האחרונה שלה; מתחת ל-2- = ירידה חריגה מול העמיתים. \"הקבוצה\" = האם קבוצת ההשוואה כסל אחד "
+        "מוכה גם היא (ובסוגריים כמה מהחברות האחרות מוכות), ו\"+ טריז\" אם הסל עצמו בטריז יורד; במחקר, איתותים שרוב הקבוצה שלהם "
+        "הייתה מוכה הניבו +1.2% (אימון) / +1.9% (מבחן) יותר ב-20 נרות (docs/research_groups.md), הקשר ולא מסנן. "
         "הכותרות, שמות החברות ובתי ההשקעות מובאים כפי שפורסמו.", "",
         "<a id=\"summary\" name=\"summary\"></a>", "## טבלה מסכמת", "",
         pd.DataFrame(rows).to_markdown(index=False) if rows else "אין טריזים יורדים במניות מוכות היום.", "",

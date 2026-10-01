@@ -101,14 +101,41 @@ def build_report(out_dir: Path, universe: str = "all", cache_dir: Optional[Path]
         md.append("none\n")
     from algovision.wedge_report import wedge_matches
     wedges = wedge_matches(frames, symbols)
+    # peer groups (cached a week) and today's divergence / group state for every listed name
+    peers: Dict[str, Dict] = {}
+    try:
+        from algovision.peers import load_peers
+        from algovision.research.groups import group_context_today
+        listed = list(dict.fromkeys(list(brief_tables) + list(nd["symbol"]) + list(wedges)))
+        peers = load_peers(frames, cache, symbols=listed)
+        import json as _json
+        model = _json.loads((cache / "peers.json").read_text())
+        for s, g in group_context_today(frames, model, listed).items():
+            peers.setdefault(s, {}).update(g)
+    except Exception as exc:  # noqa: BLE001
+        md.append(f"peer context unavailable: {exc}\n")
+
+    def group_cell(s):
+        p = peers.get(s) or {}
+        if p.get("g_beaten") is None:
+            return ""
+        return (("beaten" if p["g_beaten"] else "not beaten") + (f" ({p['share_beaten'] * 100:.0f}%)" if p.get("share_beaten") == p.get("share_beaten") else "")
+                + (f" + wedge {p['g_wedge']}" if p.get("g_wedge") else ""))
+
     rows = []
     for s, m in wedges.items():
         tag([s], "falling wedge")
         rows.append({"symbol": tv(s), "status": m.status, "score": round(m.score, 2), "start": m.start_date, "end": m.end_date,
                      "breakout": m.breakout_date or "", "level": round(m.level, 2), "stop": round(m.stop, 2),
-                     "last": round(m.last_close, 2), "6m": _pct(m.metrics["context"]["ret_126"]), "vs MA200": _pct(m.metrics["context"]["dist_ma200"])})
+                     "last": round(m.last_close, 2), "6m": _pct(m.metrics["context"]["ret_126"]), "vs MA200": _pct(m.metrics["context"]["dist_ma200"]),
+                     "group": group_cell(s)})
     md.append("### Falling Wedge in beaten-down stocks (confirmed = broke out within 5 bars; forming = still inside; hold ~20 bars; tested +3% vs random)\n")
     md.append((pd.DataFrame(rows).sort_values(["status", "score"], ascending=[True, False]).to_markdown(index=False) if rows else "none") + "\n")
+    if rows:
+        md.append("*group*: the stock's peer group as one equal-weight basket, beaten down or not (in brackets the share of the other members "
+                  "that are beaten down), and \"+ wedge\" when the basket itself is in a falling wedge. Signals where most of the group was beaten "
+                  "down too earned +1.2% (train) / +1.9% (test) more over 20 bars, positive in all 6 years tested, not confirmed at 60 bars "
+                  "(docs/research_groups.md); moderate evidence, context not a filter.\n")
     if wedges:
         md.append(f"One-rule file in Hebrew with the full technical analysis of every wedge, why the stock fell and the brief, "
                   f"each table row linked to its section: `wedge_{today}.md` ({WEDGE_URL.format(date=today)}).\n")
@@ -118,14 +145,8 @@ def build_report(out_dir: Path, universe: str = "all", cache_dir: Optional[Path]
     wedge_written = False
     if briefs and brief_tables:
         from algovision.briefs import write_briefs
-        from algovision.peers import load_peers
         try:
             bench = provider.get_many(["SPY"], "2y", "1d").get("SPY")
-            try:   # peer groups from the whole universe (cached a week), today's divergence for the listed names
-                peers = load_peers(frames, cache, symbols=list(brief_tables))
-            except Exception as exc:  # noqa: BLE001
-                peers = {}
-                md.append(f"peer context unavailable: {exc}\n")
             bpath, brows = write_briefs(out_dir, today, list(brief_tables), frames, brief_tables,
                                         insider_symbols=[x for x, t in brief_tables.items() if any(l.startswith("insider") for l in t)],
                                         cache_dir=cache, workers=workers, bench=bench, peers=peers)

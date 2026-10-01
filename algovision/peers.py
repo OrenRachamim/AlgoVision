@@ -198,6 +198,21 @@ def peers_markdown(p: Dict, lang: str = "en") -> List[str]:
         if p.get("group_ret126") is not None:
             line += (f" הקבוצה ב-6 חודשים: {_pct(p['group_ret126'])}." if he else f" The group over 6 months: {_pct(p['group_ret126'])}.")
         md.append(line + zt)
+    if p.get("g_beaten") is not None:
+        g = (("הקבוצה כסל: " if he else "The group as one basket: ")
+             + ((f"מוכה (6 חודשים {_pct(p.get('g_ret_126'))}, {_pct(p.get('g_dist_ma200'))} מול ממוצע 200)" if he
+                 else f"beaten down (6 months {_pct(p.get('g_ret_126'))}, {_pct(p.get('g_dist_ma200'))} vs its 200-day MA)") if p["g_beaten"]
+                else (f"לא מוכה (6 חודשים {_pct(p.get('g_ret_126'))}, {_pct(p.get('g_dist_ma200'))} מול ממוצע 200)" if he
+                      else f"not beaten down (6 months {_pct(p.get('g_ret_126'))}, {_pct(p.get('g_dist_ma200'))} vs its 200-day MA)")))
+        if p.get("share_beaten") == p.get("share_beaten"):
+            g += (f"; {p['share_beaten'] * 100:.0f}% מהחברות האחרות בקבוצה מוכות" if he else f"; {p['share_beaten'] * 100:.0f}% of the other members are beaten down")
+        if p.get("g_wedge"):
+            g += ((f"; הסל עצמו בטריז יורד ({'מאושר, פרץ ב-' + p['g_breakout'] if p['g_wedge'] == 'confirmed' else 'בהתהוות'})" if he
+                   else f"; the basket itself is in a falling wedge ({'confirmed, broke out ' + p['g_breakout'] if p['g_wedge'] == 'confirmed' else 'forming'})"))
+        g += ((". במחקר (docs/research_groups.md) איתותי טריז במניות שרוב חברות הקבוצה שלהן היו מוכות גם הן הניבו +1.2% (אימון) / +1.9% (מבחן) יותר ב-20 נרות, חיובי בכל 6 השנים שנבדקו; ב-60 נרות זה לא מחזיק. ראיה בינונית, הקשר ולא מסנן." if he
+               else ". In the study (docs/research_groups.md) wedge signals in stocks where most of the group was beaten down too earned +1.2% (train) / +1.9% (test) more over 20 bars, positive in all 6 years tested; it does not hold at 60 bars. Moderate evidence, context not a filter.")
+              if (p.get("share_beaten") == p.get("share_beaten") and p["share_beaten"] > 0.5) else ".")
+        md.append(g)
     md.append("")
     return md
 

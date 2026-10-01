@@ -311,6 +311,20 @@ scan (`research/peers/`, 1,827 liquid US stocks, 2023-2026) such stocks regained
 over the next 20 days (t = 2.3), while stocks stretched above their peers showed nothing. Weak evidence, used as
 context rather than as a rule.
 
+### Groups as one stock (`research-groups` command)
+
+`algovision/research/groups.py` aggregates every peer group into an equal-weight, daily-rebalanced OHLCV basket
+and runs the same falling-wedge screen on the baskets, with groups built point-in-time (the three years before each
+signal's year). `python -m algovision research-groups` writes [docs/research_groups.md](docs/research_groups.md):
+does a stock's wedge signal do better when its group is in the same state, and is the basket itself a signal?
+Result (2016-2026, train/test split 2023): wedge signals in stocks where **most of the group's other members were
+beaten down too** earned +1.2% (train) / +1.9% (test) more over 20 bars, positive in all 6 years with enough signals;
+a wedge breakout of the basket itself within 10 bars added +2.3% / +1.9% (smaller samples); neither holds at 60 bars.
+The basket itself being beaten down (+0.4% / +1.9%), another member signalling, or the stock sitting above its group
+did not hold up. So the group state is shown as context (the *group* column of the wedge table, the peers block of
+every brief, the summary line of the Hebrew wedge file), not used as a filter. The basket as an instrument is not
+supported out of sample (24 test signals, excess +0.7% with a wide interval).
+
 ## Delivery (`notify` command)
 
 ```bash

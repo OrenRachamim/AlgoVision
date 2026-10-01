@@ -267,6 +267,8 @@ def confirmation_features(events: pd.DataFrame, frames: Dict[str, pd.DataFrame],
 # tables
 # ----------------------------------------------------------------------------
 def _stats(g: pd.DataFrame, h: int = 20, ret_col: str = "ret", x_col: str = "xrand") -> Dict:
+    if f"{ret_col}_{h}" not in g:
+        return {"n": 0, "ret": np.nan, "hit": np.nan, "excess": np.nan, "lo": np.nan, "hi": np.nan}
     r = g[f"{ret_col}_{h}"].to_numpy(dtype=float)
     x = g[f"{x_col}_{h}"].to_numpy(dtype=float) if f"{x_col}_{h}" in g else np.full(len(r), np.nan)
     ok = np.isfinite(r)
@@ -291,6 +293,42 @@ def condition_table(ev: pd.DataFrame, split: str, conditions: Dict[str, pd.Serie
                 st = _stats(ev[mask & sel], h)
                 rows.append({"condition": name, "period": period, "state": state, **st})
     return pd.DataFrame(rows)
+
+
+def findings_table(ev: pd.DataFrame, split: str, conditions: Dict[str, pd.Series], h: int = 20, h2: int = 60) -> pd.DataFrame:
+    """Per condition: the excess of *yes* minus *no* in train and test at ``h`` and ``h2`` bars, and in how many years
+    the ``h``-bar difference was positive. Consistent = positive in both periods at ``h`` with at least +0.5%."""
+    d = pd.to_datetime(ev["signal_date"])
+    rows = []
+    for name, cond in conditions.items():
+        cond = cond.fillna(False).astype(bool)
+        r = {"condition": name}
+        for period, mask in (("train", d < split), ("test", d >= split)):
+            for hh in (h, h2):
+                a, b = _stats(ev[mask & cond], hh), _stats(ev[mask & ~cond], hh)
+                r[f"{period}_diff_{hh}"] = a["excess"] - b["excess"] if a["n"] and b["n"] else np.nan
+                r[f"{period}_n_yes_{hh}"] = a["n"]
+        pos = tot = 0
+        for y, g in ev.groupby(d.dt.year):
+            a, b = _stats(g[cond.loc[g.index]], h), _stats(g[~cond.loc[g.index]], h)
+            if a["n"] >= 5 and b["n"] >= 5:
+                tot += 1
+                pos += (a["excess"] - b["excess"]) > 0
+        r["years_positive"] = f"{pos}/{tot}"
+        r["consistent"] = bool(np.isfinite(r[f"train_diff_{h}"]) and np.isfinite(r[f"test_diff_{h}"])
+                               and r[f"train_diff_{h}"] >= 0.005 and r[f"test_diff_{h}"] >= 0.005)
+        rows.append(r)
+    return pd.DataFrame(rows)
+
+
+def _fmt_findings(t: pd.DataFrame, h: int, h2: int) -> str:
+    lines = [f"| condition | yes - no, train ({h} bars) | yes - no, test ({h} bars) | yes - no, train ({h2} bars) | yes - no, test ({h2} bars) | years positive ({h} bars) | consistent |",
+             "|---|---|---|---|---|---|---|"]
+    f = lambda v: "" if not np.isfinite(v) else f"{v * 100:+.2f}%"
+    for r in t.itertuples():
+        lines.append(f"| {r.condition} | {f(getattr(r, f'train_diff_{h}'))} (n={getattr(r, f'train_n_yes_{h}')}) | {f(getattr(r, f'test_diff_{h}'))} (n={getattr(r, f'test_n_yes_{h}')}) | "
+                     f"{f(getattr(r, f'train_diff_{h2}'))} | {f(getattr(r, f'test_diff_{h2}'))} | {r.years_positive} | {'**yes**' if r.consistent else 'no'} |")
+    return "\n".join(lines)
 
 
 def _fmt(t: pd.DataFrame, h: int) -> str:
@@ -330,10 +368,18 @@ def write_groups_report(out_dir: Path, stock_ev: pd.DataFrame, grp_ev: pd.DataFr
     b = beaten[beaten["n_members"] >= MIN_MEMBERS]
     conds = {"group beaten down": b["g_beaten"], "group wedge breakout": b["g_wedge_breakout"], "group in a wedge": b["g_in_wedge"],
              "most members beaten down": b["share_beaten"] > 0.5, "another member signalled": b["co_signals"] >= 1,
-             "stock below its group (z < -1)": b["z_vs_group"] < -1, "stock above its group (z > +1)": b["z_vs_group"] > 1}
+             "stock below its group (z < -1)": b["z_vs_group"] < -1, "stock above its group (z > +1)": b["z_vs_group"] > 1,
+             "group beaten down AND group wedge breakout": b["g_beaten"] & b["g_wedge_breakout"],
+             "group beaten down OR most members beaten down": b["g_beaten"] | (b["share_beaten"] > 0.5)}
     t1 = condition_table(b, split, conds, h)
     t1.to_csv(out / "confirmation.csv", index=False)
     md += [_fmt(t1, h), ""]
+    fnd = findings_table(b, split, conds, h, 60)
+    fnd.to_csv(out / "findings.csv", index=False)
+    md += ["### Is any condition consistent?", "",
+           "The difference between the *yes* and the *no* rows (excess over random), train and test, at 20 and at 60 bars, "
+           "and the number of years (with 5+ signals on each side) in which the 20-bar difference was positive. "
+           "\"Consistent\" = at least +0.5% in both periods at 20 bars.", "", _fmt_findings(fnd, h, 60), ""]
     # the same for all wedge breakouts (not only beaten-down), as a robustness check
     a = stock_ev[stock_ev["n_members"] >= MIN_MEMBERS]
     conds_all = {"group beaten down": a["g_beaten"], "group wedge breakout": a["g_wedge_breakout"],
@@ -382,8 +428,41 @@ def write_groups_report(out_dir: Path, stock_ev: pd.DataFrame, grp_ev: pd.DataFr
 
 
 # ----------------------------------------------------------------------------
-# live: groups meeting the screen today
+# live: the state of each stock's group today, and groups meeting the screen
 # ----------------------------------------------------------------------------
+def group_context_today(frames: Dict[str, pd.DataFrame], model: Dict, symbols: Sequence[str],
+                        cfg: Optional[DetectorConfig] = None) -> Dict[str, Dict]:
+    """For every listed symbol: is its peer group, as a basket, beaten down; what share of the other members are; and
+    is the basket in / just out of a falling wedge. Context for the reports (tested in docs/research_groups.md)."""
+    cfg = cfg or DetectorConfig(recent_bars=NEAR)
+    want = set(symbols)
+    out: Dict[str, Dict] = {}
+    for gid, members in model.get("groups", {}).items():
+        hit = [s for s in members if s in want]
+        if not hit or len(members) < MIN_MEMBERS:
+            continue
+        b = basket_frame(frames, members)
+        if b is None or len(b) < 260:
+            continue
+        cx = context_at(b, len(b) - 1)
+        beaten_members = {m: context_at(frames[m], len(frames[m]) - 1)["beaten"] for m in members if m in frames and len(frames[m]) >= 200}
+        w = group_wedges(b, cfg)
+        last = b.index[-1]
+        status, bo = "", ""
+        for m in w["matches"]:
+            if m.status in ("forming", "confirmed") and len(b) - 1 - m.end_idx <= NEAR:
+                status = m.status
+                bo = str(b.index[m.breakout_idx].date()) if m.breakout_idx is not None else ""
+                break
+        recent_bo = any((last - d).days <= NEAR * 1.5 for d in w["breakouts"])
+        for s in hit:
+            others = [m for m in beaten_members if m != s]
+            out[s] = {"g_beaten": cx["beaten"], "g_ret_126": cx["ret_126"], "g_dist_ma200": cx["dist_ma200"],
+                      "share_beaten": float(np.mean([beaten_members[m] for m in others])) if others else np.nan,
+                      "g_wedge": status, "g_breakout": bo, "g_wedge_breakout": bool(recent_bo), "n_group": len(members)}
+    return out
+
+
 def group_signals_today(frames: Dict[str, pd.DataFrame], model: Dict, cfg: Optional[DetectorConfig] = None,
                         recent: int = 5) -> List[Dict]:
     """Groups whose basket is beaten down and in / just out of a falling wedge at the last bar."""

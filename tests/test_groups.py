@@ -57,3 +57,24 @@ def test_group_signals_today_runs():
     model = {"groups": {"1": list(frames)[:5], "2": list(frames)[5:]}}
     out = G.group_signals_today(frames, model, DetectorConfig(filter_max_ret_126=None, filter_below_ma200=False))
     assert isinstance(out, list) and all(set(r) >= {"group", "status", "members", "share_beaten"} for r in out)
+
+
+def test_findings_and_group_context_today():
+    rng = np.random.default_rng(1)
+    n = 300
+    yes = rng.random(n) < 0.5
+    ev = pd.DataFrame({"signal_date": pd.bdate_range("2020-01-02", periods=n).strftime("%Y-%m-%d"),
+                       "ret_20": rng.normal(0.01, 0.03, n) + 0.02 * yes, "xrand_20": rng.normal(0.0, 0.03, n) + 0.02 * yes,
+                       "ret_60": rng.normal(0.02, 0.05, n), "xrand_60": rng.normal(0.0, 0.05, n), "flag": yes})
+    t = G.findings_table(ev, "2020-08-01", {"flag": ev["flag"]})
+    r = t.iloc[0]
+    assert r["train_diff_20"] > 0.005 and r["test_diff_20"] > 0.005 and bool(r["consistent"]) and "/" in r["years_positive"]
+    frames = _frames(n_groups=2, per_group=5, n=700, seed=5)
+    model = {"groups": {"1": list(frames)[:5], "2": list(frames)[5:]}}
+    ctx = G.group_context_today(frames, model, ["G0S4", "G1S0"])
+    assert set(ctx) == {"G0S4", "G1S0"} and set(ctx["G0S4"]) >= {"g_beaten", "share_beaten", "g_wedge", "n_group", "g_ret_126"}
+    assert ctx["G0S4"]["n_group"] == 5 and 0 <= ctx["G0S4"]["share_beaten"] <= 1
+    from algovision.peers import peers_markdown
+    en = "\n".join(peers_markdown({"peers": [], "ret20": -0.1, "group_ret20": -0.02, "rel20": -0.08, "z": -1.0, "n_group": 5, "top": ["A"],
+                                   "g_beaten": True, "g_ret_126": -0.2, "g_dist_ma200": -0.1, "share_beaten": 0.75, "g_wedge": "forming"}, "en"))
+    assert "The group as one basket: beaten down" in en and "75% of the other members" in en and "falling wedge (forming)" in en
