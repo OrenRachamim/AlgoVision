@@ -118,15 +118,21 @@ def build_report(out_dir: Path, universe: str = "all", cache_dir: Optional[Path]
     wedge_written = False
     if briefs and brief_tables:
         from algovision.briefs import write_briefs
+        from algovision.peers import load_peers
         try:
             bench = provider.get_many(["SPY"], "2y", "1d").get("SPY")
+            try:   # peer groups from the whole universe (cached a week), today's divergence for the listed names
+                peers = load_peers(frames, cache, symbols=list(brief_tables))
+            except Exception as exc:  # noqa: BLE001
+                peers = {}
+                md.append(f"peer context unavailable: {exc}\n")
             bpath, brows = write_briefs(out_dir, today, list(brief_tables), frames, brief_tables,
                                         insider_symbols=[x for x, t in brief_tables.items() if any(l.startswith("insider") for l in t)],
-                                        cache_dir=cache, workers=workers, bench=bench)
+                                        cache_dir=cache, workers=workers, bench=bench, peers=peers)
             if wedges:
                 from algovision.wedge_report import build_wedge_report
                 try:  # the briefs data is cached by write_briefs, so this reads from cache
-                    build_wedge_report(out_dir, today, frames, wedges, sectors, cache_dir=cache, workers=workers, bench=bench)
+                    build_wedge_report(out_dir, today, frames, wedges, sectors, cache_dir=cache, workers=workers, bench=bench, peers=peers)
                     wedge_written = True
                 except Exception as exc:  # noqa: BLE001
                     md.append(f"wedge file unavailable: {exc}\n")
@@ -134,7 +140,9 @@ def build_report(out_dir: Path, universe: str = "all", cache_dir: Optional[Path]
             md.append(f"Full briefs (price context, why it fell, investor concerns and sentiment, analysts, last report, fundamentals) for {len(brows)} stocks in "
                       f"`{bpath.name}`. The *read* column is a rule-based score over listed signals (signs of a bottom / undecided / "
                       "still falling), not a forecast. *Why fell* names the evidence found around the largest down days "
-                      "(headlines naming the company, rating cuts, market-wide days) or says \"not found\"; nothing is inferred.\n")
+                      "(headlines naming the company, rating cuts, market-wide days) or says \"not found\"; nothing is inferred. *Vs peers 20d* is "
+                      "the stock's 20-day return relative to its peer group (the stocks most correlated with it after removing the market, "
+                      "from prices) and its z-score against the last year; below -2 means an unusual drop versus peers.\n")
             md.append(summary_table(brows))
             briefs_written = True
         except Exception as exc:  # noqa: BLE001

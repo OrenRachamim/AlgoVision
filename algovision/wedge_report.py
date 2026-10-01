@@ -20,6 +20,7 @@ from algovision.briefs import (_company_tokens, _money, _num, _pct, analyst_view
 from algovision.core.geometry import volume_ratio
 from algovision.core.types import PatternMatch
 from algovision.links import tradingview_url
+from algovision.peers import load_peers, peers_markdown, peers_short
 from algovision.sentiment import LABEL_HE as SENT_HE, sentiment_markdown, sentiment_view
 
 # ----------------------------------------------------------------------------
@@ -69,6 +70,7 @@ SIGNAL_HE = {
     "leverage": "מינוף גבוה (חוב/הון {de})",
     "forward_pe_lower": "מכפיל רווח עתידי {fpe} נמוך מהמכפיל הנוכחי {pe} (צפי לצמיחת רווחים)",
     "insiders": "אינסיידרים קנו (מופיעה בטבלת האינסיידרים של היום)",
+    "peer_oversold": "רחוקה באופן חריג מתחת לקבוצת העמיתים ב-20 יום (z {z}; בסריקה מניות כאלה החזירו ~+0.65% מול העמיתים ב-20 הימים הבאים, ראיה חלשה)",
 }
 
 
@@ -246,7 +248,8 @@ def why_fell_he(why: Dict, news: List[Dict]) -> List[str]:
     return md
 
 
-def summary_he(m: PatternMatch, geo: Dict, ctx: Dict, why: Dict, sent: Dict, an: Dict, ea: Dict, label: str, score: float) -> List[str]:
+def summary_he(m: PatternMatch, geo: Dict, ctx: Dict, why: Dict, sent: Dict, an: Dict, ea: Dict, label: str, score: float,
+               peers: Optional[Dict] = None) -> List[str]:
     """Five short lines at the top of a stock's section: the wedge and its levels, how beaten the stock is, why it fell,
     what worries investors and the sentiment, what analysts expect and the rule-based read. Data only."""
     last = ctx["last"]
@@ -277,6 +280,11 @@ def summary_he(m: PatternMatch, geo: Dict, ctx: Dict, why: Dict, sent: Dict, an:
               + f"סנטימנט {SENT_HE[sent['label']]} ({neg} איתותים שליליים, {pos} חיוביים).")
     an_txt = (f"קונצנזוס {_he_consensus(an.get('key'))} ({an.get('n') or '?'} אנליסטים), יעד ממוצע {_num(an.get('target'), 2)} "
               f"({_pct(an.get('upside'))} מהמחיר)" if an.get("key") else "אין קונצנזוס אנליסטים")
+    if peers and peers.get("ret20") is not None and peers.get("group_ret20") is not None:
+        z = peers.get("z")
+        md.append(f"- **מול העמיתים:** ב-20 יום המניה {_pct(peers['ret20'], 1)} מול {_pct(peers['group_ret20'], 1)} של קבוצת ההשוואה "
+                  f"({peers['n_group']} מניות, למשל {', '.join(peers.get('top', [])[:3])}); יחסית לקבוצה {_pct(peers['rel20'], 1)}"
+                  + (f", z={z:+.1f}" + (" (חריג כלפי מטה)" if z <= -2 else " (חריג כלפי מעלה)" if z >= 2 else "") if z is not None else "") + ".")
     md.append(f"- **אנליסטים וקריאה:** {an_txt}"
               + (f"; הדוח הבא {ea['next_date']}" if ea.get("next_date") else "")
               + f". קריאה מבוססת כללים: **{LABEL_SHORT_HE[label]}** (ציון {score:+g}).")
@@ -391,12 +399,19 @@ def _open_positions_he(journal_dir: Path) -> List[str]:
 
 def build_wedge_report(out_dir: Path, today: str, frames: Dict[str, pd.DataFrame], matches: Dict[str, PatternMatch],
                        sectors: Optional[Dict[str, str]] = None, cache_dir: Optional[Path] = None, workers: int = 4,
-                       bench: Optional[pd.DataFrame] = None, offline: bool = False, briefs_data: Optional[Dict[str, Dict]] = None) -> Path:
-    """Write ``wedge_<today>.md`` / ``wedge_latest.md`` for the given falling-wedge matches (one per symbol)."""
+                       bench: Optional[pd.DataFrame] = None, offline: bool = False, briefs_data: Optional[Dict[str, Dict]] = None,
+                       peers: Optional[Dict[str, Dict]] = None) -> Path:
+    """Write ``wedge_<today>.md`` / ``wedge_latest.md`` for the given falling-wedge matches (one per symbol).
+    ``peers`` is the per-symbol peer context (:func:`algovision.peers.load_peers`); computed from ``frames`` when None."""
     out_dir = Path(out_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
     sectors = sectors or {}
     symbols = [s for s in matches if s in frames]
+    if peers is None:
+        try:
+            peers = load_peers(frames, cache_dir, symbols=symbols)
+        except Exception:  # noqa: BLE001
+            peers = {}
     if briefs_data is None:
         from algovision.data.briefs_data import BriefsProvider
         from algovision.data.provider import _DEFAULT_CACHE
@@ -412,7 +427,8 @@ def build_wedge_report(out_dir: Path, today: str, frames: Dict[str, pd.DataFrame
         profile, news = data.get("profile") or {}, data.get("news") or []
         ctx = price_context(df)
         an, ea, fu = analyst_view(profile), earnings_view(profile), fundamentals_view(profile)
-        label, score, fired = verdict_signals(ctx, an, ea, fu)
+        pr = peers.get(s) if peers else None
+        label, score, fired = verdict_signals(ctx, an, ea, fu, peers=pr)
         name = fu.get("name") or ""
         src = fetch_sources(s, name, cache_dir, offline)
         why = decline_reason(s, name, ctx, news, an, ea, bench, filings=data.get("filings") or [],
@@ -427,7 +443,7 @@ def build_wedge_report(out_dir: Path, today: str, frames: Dict[str, pd.DataFrame
             "מהסטופ": _pct(m.stop / last - 1 if last else np.nan),
             "6 חודשים": _pct(m.metrics.get("context", {}).get("ret_126")), "מול ממוצע 200": _pct(m.metrics.get("context", {}).get("dist_ma200")),
             "ATR%": f"{m.metrics.get('context', {}).get('atr_pct', 0) * 100:.1f}%", "גובה הטריז": f"{geo['h0_pct'] * 100:.0f}%",
-            "למה ירדה": _he_cause(why["cause"]), "חששות": ", ".join(t["he"] for t in sent["concerns"]["themes"][:2]) or "לא נמצאו",
+            "מול עמיתים 20 יום": peers_short(pr), "למה ירדה": _he_cause(why["cause"]), "חששות": ", ".join(t["he"] for t in sent["concerns"]["themes"][:2]) or "לא נמצאו",
             "סנטימנט": SENT_HE[sent["label"]], "קריאה": LABEL_SHORT_HE[label], "ציון קריאה": f"{score:+g}",
             "סקטור": _he_sector(fu.get("sector") or sectors.get(s)),
         })
@@ -435,10 +451,12 @@ def build_wedge_report(out_dir: Path, today: str, frames: Dict[str, pd.DataFrame
                f"[גרף ב-TradingView]({tradingview_url(s)}) · [חזרה לטבלה](#summary)", "",
                f"*{_he_sector(fu.get('sector') or sectors.get(s))}" + (f" / {fu['industry']}" if fu.get("industry") else "") + ".*"
                + (f" *{fu['summary'].rstrip('.')}.*" if fu.get("summary") else ""), ""]
-        sec += summary_he(m, geo, ctx, why, sent, an, ea, label, score)
+        sec += summary_he(m, geo, ctx, why, sent, an, ea, label, score, pr)
         sec += wedge_section_he(m, df, geo, ctx, spy_below)
         sec += why_fell_he(why, news)
         sec += sentiment_markdown(sent, "he")
+        if pr:
+            sec += peers_markdown(pr, "he")
         sec += analysts_he(an)
         sec += report_he(ea)
         sec += fundamentals_he(fu)
@@ -463,6 +481,8 @@ def build_wedge_report(out_dir: Path, today: str, frames: Dict[str, pd.DataFrame
         "(כותרות שמזכירות את החברה סביב ימי הירידה הגדולים, דיווחי 8-K, הורדות דירוג, ימי שוק) או \"לא נמצא\"; שום דבר לא מומצא. "
         "\"חששות\" = נושאי הכותרות השליליות על החברה בשנה האחרונה (Google News), ספורים, עם הכותרות עצמן בפירוט; \"סנטימנט\" = "
         "קריאה שקופה על איתותים רשומים: אנליסטים, יעדי מחיר, עדכוני תחזיות, שורט, הקהל ב-StockTwits וטון הכותרות. "
+        "\"מול עמיתים 20 יום\" = תשואת המניה ב-20 יום יחסית לקבוצת ההשוואה שלה (מניות עם המתאם הניטרלי-לשוק הגבוה ביותר אליה, "
+        "מחושב מהמחירים), ו-z מול השנה האחרונה שלה; מתחת ל-2- = ירידה חריגה מול העמיתים. "
         "הכותרות, שמות החברות ובתי ההשקעות מובאים כפי שפורסמו.", "",
         "<a id=\"summary\" name=\"summary\"></a>", "## טבלה מסכמת", "",
         pd.DataFrame(rows).to_markdown(index=False) if rows else "אין טריזים יורדים במניות מוכות היום.", "",

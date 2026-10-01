@@ -21,6 +21,7 @@ import numpy as np
 import pandas as pd
 
 from algovision.links import tv
+from algovision.peers import peers_short
 
 LABELS = {"up": "signs of a bottom (more likely up than down)", "flat": "undecided (no clear base yet)",
           "down": "still falling (more likely down)"}
@@ -442,10 +443,12 @@ SIGNAL_TEXT = {
     "leverage": "high leverage (debt/equity {de})",
     "forward_pe_lower": "forward P/E {fpe} below trailing {pe} (earnings expected to grow)",
     "insiders": "insiders bought (in today's insider table)",
+    "peer_oversold": "unusually far below its peer group over 20 days (z {z}; such stocks regained ~+0.65% vs peers in the next 20 days in the scan, weak evidence)",
 }
 
 
-def verdict_signals(ctx: Dict, an: Dict, ea: Dict, fu: Dict, insider_buying: bool = False) -> Tuple[str, float, List[Tuple[str, float, Dict]]]:
+def verdict_signals(ctx: Dict, an: Dict, ea: Dict, fu: Dict, insider_buying: bool = False,
+                    peers: Optional[Dict] = None) -> Tuple[str, float, List[Tuple[str, float, Dict]]]:
     """Transparent score: each signal adds or subtracts. Returns (label, score, [(code, points, format args)])."""
     score, fired = 0.0, []
 
@@ -493,6 +496,8 @@ def verdict_signals(ctx: Dict, an: Dict, ea: Dict, fu: Dict, insider_buying: boo
     pe, fpe = fu.get("pe"), fu.get("forward_pe")
     add(bool(pe and fpe and fpe < pe), 0.5, "forward_pe_lower", fpe=_num(fpe, 0), pe=_num(pe, 0))
     add(insider_buying, 1, "insiders")
+    z = (peers or {}).get("z")
+    add(z is not None and z <= -2, 0.5, "peer_oversold", z=f"{z:+.1f}" if z is not None else "")
     label = "up" if score >= 3 else "down" if score <= -2 else "flat"
     return label, score, fired
 
@@ -502,9 +507,9 @@ def render_signals(fired: List[Tuple[str, float, Dict]], texts: Dict[str, str] =
     return [f"{'+' if pts > 0 else ''}{pts:g} {texts[code].format(**kw)}" for code, pts, kw in fired]
 
 
-def verdict(ctx: Dict, an: Dict, ea: Dict, fu: Dict, insider_buying: bool = False) -> Tuple[str, float, List[str]]:
+def verdict(ctx: Dict, an: Dict, ea: Dict, fu: Dict, insider_buying: bool = False, peers: Optional[Dict] = None) -> Tuple[str, float, List[str]]:
     """Transparent score: each signal adds or subtracts, the list says which fired (English text)."""
-    label, score, fired = verdict_signals(ctx, an, ea, fu, insider_buying)
+    label, score, fired = verdict_signals(ctx, an, ea, fu, insider_buying, peers)
     return label, score, render_signals(fired)
 
 
@@ -523,7 +528,8 @@ def _news_near(news: List[Dict], day: str, window: int = 3) -> List[Dict]:
 # markdown
 # ----------------------------------------------------------------------------
 def brief_markdown(symbol: str, tables: List[str], ctx: Dict, an: Dict, ea: Dict, fu: Dict, news: List[Dict],
-                   label: str, score: float, why: List[str], why_fell: Optional[Dict] = None, sentiment: Optional[Dict] = None) -> str:
+                   label: str, score: float, why: List[str], why_fell: Optional[Dict] = None, sentiment: Optional[Dict] = None,
+                   peers: Optional[Dict] = None) -> str:
     md = [f"## {tv(symbol)} {fu.get('name') or ''}".rstrip(), ""]
     md.append(f"*In today's tables: {', '.join(tables) if tables else '-'}. {fu.get('sector') or ''} / {fu.get('industry') or ''}.*")
     if fu.get("summary"):
@@ -572,6 +578,9 @@ def brief_markdown(symbol: str, tables: List[str], ctx: Dict, an: Dict, ea: Dict
     if sentiment:
         from algovision.sentiment import sentiment_markdown
         md += sentiment_markdown(sentiment, "en")
+    if peers:
+        from algovision.peers import peers_markdown
+        md += peers_markdown(peers, "en")
     cn = an.get("counts_now") or {}
     md.append("**What analysts say.** "
               + (f"Consensus **{str(an['key']).replace('_', ' ')}** ({an.get('n') or '?'} analysts"
@@ -624,13 +633,13 @@ def brief_markdown(symbol: str, tables: List[str], ctx: Dict, an: Dict, ea: Dict
 
 
 def build_brief(symbol: str, df: pd.DataFrame, data: Dict, tables: List[str], insider_buying: bool = False,
-                bench: Optional[pd.DataFrame] = None, sources: Optional[Dict] = None) -> Tuple[Dict, str]:
+                bench: Optional[pd.DataFrame] = None, sources: Optional[Dict] = None, peers: Optional[Dict] = None) -> Tuple[Dict, str]:
     """``sources={"cache_dir": ..., "offline": ...}`` adds the extra sources (Google News, StockTwits) to the decline
     analysis and appends the investor-concerns / sentiment block; ``None`` keeps the brief to the Yahoo + EDGAR data."""
     profile, news = data.get("profile") or {}, data.get("news") or []
     ctx = price_context(df)
     an, ea, fu = analyst_view(profile), earnings_view(profile), fundamentals_view(profile)
-    label, score, why = verdict(ctx, an, ea, fu, insider_buying)
+    label, score, why = verdict(ctx, an, ea, fu, insider_buying, peers)
     name = fu.get("name") or ""
     src = fetch_sources(symbol, name, sources.get("cache_dir"), bool(sources.get("offline"))) if sources is not None else None
     why_fell = decline_reason(symbol, name, ctx, news, an, ea, bench, filings=data.get("filings") or [],
@@ -642,11 +651,12 @@ def build_brief(symbol: str, df: pd.DataFrame, data: Dict, tables: List[str], in
         sent = sentiment_view(src["year"], why_fell["window_headlines"], _company_tokens(symbol, name), profile, src["twits"], an, ea)
     row = {"symbol": symbol, "tables": ", ".join(tables), "read": LABELS[label].split(" (")[0], "score": score, "why fell": why_fell["cause"],
            "sentiment": sent["label"] if sent else "", "concerns": ", ".join(t["en"] for t in sent["concerns"]["themes"][:2]) if sent else "",
+           "vs peers 20d": peers_short(peers),
            "last": ctx["last"], "from 52w high": ctx["drawdown"], "vs MA50": ctx["dist_ma50"], "vs MA200": ctx["dist_ma200"],
            "consensus": (an.get("key") or "").replace("_", " "), "analysts": an.get("n"), "target upside": an.get("upside"),
            "up/down 90d": f"{an.get('n_up', 0)}/{an.get('n_down', 0)}", "EPS est 30d": ea.get("y0_rev_30d"),
            "last surprise": ea.get("surprise"), "next report": ea.get("next_date")}
-    return row, brief_markdown(symbol, tables, ctx, an, ea, fu, news, label, score, why, why_fell, sent)
+    return row, brief_markdown(symbol, tables, ctx, an, ea, fu, news, label, score, why, why_fell, sent, peers)
 
 
 def summary_table(rows: List[Dict]) -> str:
@@ -660,6 +670,7 @@ def summary_table(rows: List[Dict]) -> str:
         "why fell": d["why fell"] if "why fell" in d else "",
         "concerns": d["concerns"] if "concerns" in d else "", "sentiment": d["sentiment"] if "sentiment" in d else "",
         "last": d["last"].map(lambda v: f"{v:.2f}"), "from 52w high": d["from 52w high"].map(_pct), "vs MA50": d["vs MA50"].map(_pct),
+        "vs peers 20d": d["vs peers 20d"] if "vs peers 20d" in d else "",
         "consensus": d["consensus"], "analysts": d["analysts"].map(lambda v: "" if v is None or pd.isna(v) else f"{int(v)}"),
         "target upside": d["target upside"].map(_pct), "up/down 90d": d["up/down 90d"],
         "EPS est 30d": d["EPS est 30d"].map(lambda v: _pct(v, 1)), "last surprise": d["last surprise"].map(lambda v: _pct(v, 1)),
@@ -670,8 +681,9 @@ def summary_table(rows: List[Dict]) -> str:
 
 def write_briefs(out_dir: Path, today: str, symbols: Iterable[str], frames: Dict[str, pd.DataFrame], tables: Dict[str, List[str]],
                  insider_symbols: Iterable[str] = (), cache_dir: Optional[Path] = None, workers: int = 4, offline: bool = False,
-                 progress=None, bench: Optional[pd.DataFrame] = None) -> Tuple[Path, List[Dict]]:
-    """Write ``briefs_<today>.md`` / ``briefs_latest.md`` for every symbol and return the summary rows."""
+                 progress=None, bench: Optional[pd.DataFrame] = None, peers: Optional[Dict[str, Dict]] = None) -> Tuple[Path, List[Dict]]:
+    """Write ``briefs_<today>.md`` / ``briefs_latest.md`` for every symbol and return the summary rows.
+    ``peers`` is the per-symbol peer context from :func:`algovision.peers.load_peers` (optional)."""
     from algovision.data.briefs_data import BriefsProvider
     from algovision.data.provider import _DEFAULT_CACHE
 
@@ -687,7 +699,7 @@ def write_briefs(out_dir: Path, today: str, symbols: Iterable[str], frames: Dict
             continue
         try:
             row, md = build_brief(s, frames[s], data[s], tables.get(s, []), insider_buying=s in insiders, bench=bench,
-                                  sources={"cache_dir": cache_dir, "offline": offline})
+                                  sources={"cache_dir": cache_dir, "offline": offline}, peers=(peers or {}).get(s))
         except Exception as exc:  # one bad profile must not sink the whole file
             parts.append(f"## {tv(s)}\n\nbrief unavailable: {exc}\n")
             continue
@@ -701,7 +713,8 @@ def write_briefs(out_dir: Path, today: str, symbols: Iterable[str], frames: Dict
             "still falling) whose signals are listed so it can be checked, plus what worries investors (the themes of the negative "
             "headlines of the last year, each with the headlines behind it) and a sentiment read over listed signals (analysts, "
             "targets, estimate revisions, short interest, the StockTwits crowd, headline tone). Data: Yahoo Finance (analysts, "
-            "estimates, statistics, news), Google News headlines, StockTwits, SEC EDGAR. Systematic screens, not investment advice.\n",
+            "estimates, statistics, news), Google News headlines, StockTwits, SEC EDGAR; peer groups and the 20-day divergence from "
+            "the peer group are computed from prices (market-neutral correlation clustering). Systematic screens, not investment advice.\n",
             "## Summary\n", summary_table(rows)]
     text = "\n".join(head + parts)
     path = out_dir / f"briefs_{today}.md"

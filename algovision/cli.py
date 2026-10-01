@@ -280,6 +280,14 @@ def build_parser() -> argparse.ArgumentParser:
     wr.add_argument("--date", default=None)
     wr.add_argument("--offline", action="store_true", help="use the cached brief data whatever its age (no network)")
 
+    pe = sub.add_parser("peers", help="peer group and 20-day divergence from it for the given symbols (from cached prices)")
+    pe.add_argument("symbols", nargs="+")
+    pe.add_argument("--universe", "-u", default="all", choices=UNIVERSES)
+    pe.add_argument("--cache-dir", default=None)
+    pe.add_argument("--workers", type=int, default=4)
+    pe.add_argument("--refresh", action="store_true", help="rebuild the groups even if the weekly cache is fresh")
+    pe.add_argument("--he", action="store_true", help="Hebrew")
+
     no = sub.add_parser("notify", help="send a report file to Telegram / e-mail (configured by environment variables, see algovision/notify.py)")
     no.add_argument("--file", default="journal/report_latest.md")
     no.add_argument("--subject", default=None)
@@ -394,6 +402,17 @@ def main(argv: Optional[List[str]] = None) -> int:
         p = build_wedge_report(Path(args.out), args.date or _dt.date.today().isoformat(), frames, wedge_matches(frames, symbols), sectors,
                                cache_dir=cache, workers=args.workers, bench=provider.get_many(["SPY"], "2y", "1d").get("SPY"), offline=args.offline)
         print(p)
+        return 0
+    if args.cmd == "peers":
+        from algovision.peers import load_peers, peers_markdown
+        symbols = get_universe(args.universe)
+        cache = Path(args.cache_dir) if args.cache_dir else DataProvider.__init__.__defaults__[0]
+        frames = DataProvider(cache_dir=cache, offline=True, workers=args.workers).get_many(symbols, "2y", "1d")
+        want = [x.upper() for x in args.symbols]
+        ctx = load_peers(frames, cache, symbols=want, refresh=args.refresh)
+        for x in want:
+            print(f"## {x}")
+            print("\n".join(peers_markdown(ctx[x], "he" if args.he else "en")) if x in ctx else "no peer data (not in the cached universe)")
         return 0
     if args.cmd == "daily-report":
         from algovision.daily_report import build_report

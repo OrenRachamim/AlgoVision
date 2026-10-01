@@ -294,6 +294,23 @@ two key-free extras (`algovision/data/newsfeed.py`): Google News RSS search (a y
 window around every large down day; Google offers the feed for personal, non-commercial feed readers) and the
 StockTwits public symbol stream (the last 30 posts' bullish / bearish tags). `--no-briefs` skips it.
 
+## Peer groups (`peers` command)
+
+```bash
+python -m algovision peers NKE AEP FICO        # --he for Hebrew, --refresh to rebuild the groups
+```
+
+`algovision/peers.py` clusters the universe by market-neutral correlation (daily log returns minus beta times the
+equal-weight market, Ward clustering of the correlation distance, about one group per eight stocks) and, for every
+stock, lists its five closest peers, its group, the mean correlation to the group, beta and residual volatility,
+plus the 20-day divergence from the group: the stock's return minus beta times the rest of the group, as a z-score
+against its own last year. The grouping is cached for a week (`peers.json` in the cache directory); the divergence
+is recomputed on every run. Every brief and every section of the Hebrew wedge file carries this block, the summary
+tables a *vs peers 20d* column, and the rule-based read gains +0.5 when z <= -2: in the original full-universe
+scan (`research/peers/`, 1,827 liquid US stocks, 2023-2026) such stocks regained +0.65% relative to their peers
+over the next 20 days (t = 2.3), while stocks stretched above their peers showed nothing. Weak evidence, used as
+context rather than as a rule.
+
 ## Delivery (`notify` command)
 
 ```bash
@@ -338,7 +355,10 @@ algovision/
   patterns/  one module per pattern family + registry (detect_all)
   research/  event study: events, stats, walk-forward validation, report
   scanner.py universe scanning, current/history modes, forward outcomes
+  peers.py   peer groups by market-neutral correlation, divergence from the group
+  briefs.py, sentiment.py, wedge_report.py, daily_report.py, journal.py, whatsnew.py
   plotting.py, report.py, cli.py
+research/peers/  the original full-universe peer scan (reference for peers.py)
 tests/       pytest suite (synthetic textbook patterns, scanner, provider, CLI)
 ```
 
