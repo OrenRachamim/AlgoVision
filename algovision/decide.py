@@ -180,6 +180,7 @@ def write_decisions(out_dir: Path, today: str, decisions: Dict[str, Dict]) -> Pa
     out_dir = Path(out_dir)
     p = out_dir / "decisions.csv"
     new = pd.DataFrame(list(decisions.values()))
+    new["date"] = today
     if p.exists():
         old = pd.read_csv(p)
         old = old[old["date"].astype(str) != today]
@@ -318,3 +319,63 @@ def decisions_table(decisions: Dict[str, Dict], tv=None) -> str:
 def summary_json(decisions: Dict[str, Dict]) -> str:
     return json.dumps({s: {k: v for k, v in d.items() if k in ("action", "p_buy", "cause_type", "evidence", "corporate_action")}
                        for s, d in decisions.items()}, ensure_ascii=False)
+
+
+def load_decisions(out_dir: Path, today: str) -> Dict[str, Dict]:
+    """Today's rows of ``decisions.csv`` as {symbol: row} (empty when the file or the day is missing)."""
+    p = Path(out_dir) / "decisions.csv"
+    if not p.exists():
+        return {}
+    t = pd.read_csv(p)
+    t = t[t["date"].astype(str) == today]
+    out = {}
+    for r in t.to_dict("records"):
+        out[str(r["symbol"])] = {k: (None if isinstance(v, float) and v != v else v) for k, v in r.items()}
+    return out
+
+
+def top_picks(decisions: Dict[str, Dict], threshold: float = BUY_THRESHOLD) -> List[Dict]:
+    """The stocks the model rates 'buy' with P(buy) >= threshold, most confident first."""
+    picks = [d for d in decisions.values() if d.get("action") == "buy" and (d.get("p_buy") or 0) >= threshold]
+    return sorted(picks, key=lambda d: -(d.get("p_buy") or 0))
+
+
+def top_picks_he(decisions: Dict[str, Dict], anchors: Dict[str, str], tv_url, briefs_url: Optional[str] = None,
+                 peers: Optional[Dict[str, Dict]] = None, threshold: float = BUY_THRESHOLD) -> List[str]:
+    """Hebrew section: the stocks Jev prioritised (P(buy) >= threshold), with links to their details."""
+    from algovision.peers import peers_short
+
+    md = ["<a id=\"ai-picks\" name=\"ai-picks\"></a>", "## המניות שתועדפו גבוה על ידי Jev", "",
+          f"כל המניות שבטבלאות הדוח היום (טריז, יום חדשות, אינסיידרים) שמודל ההחלטה סימן \"קנייה\" בהסתברות {threshold:.2f} ומעלה, "
+          "מהבטוחה ביותר למטה. המודל קרא רק את התקציר של כל מניה; אין לו נימוק, וההחלטות נמדדות ביומן ככלל jev_pick. "
+          "\"פירוט\" מקפיץ לסעיף המניה בקובץ הזה (לטריזים) או לתקציר באנגלית ב-GitHub (לשאר).", ""]
+    picks = top_picks(decisions, threshold)
+    if not picks:
+        md += [f"אין היום מניות עם הסתברות קנייה של {threshold:.2f} ומעלה.", ""]
+        return md
+    rows = []
+    for d in picks:
+        s = d["symbol"]
+        if s in anchors:
+            detail = f"[פירוט](#{anchors[s]})"
+        elif briefs_url:
+            detail = f"[תקציר]({briefs_url})"
+        else:
+            detail = ""
+        tables = str(d.get("tables") or "").replace("falling wedge", "טריז יורד").replace("news-day", "יום חדשות") \
+            .replace("insider buys (beaten-down)", "אינסיידרים (מוכות)").replace("insider buys (other)", "אינסיידרים (אחרות)")
+        read = {"signs of a bottom": "סימני תחתית", "undecided": "לא מוכרע", "still falling": "עדיין יורדת"}.get(d.get("read") or "", d.get("read") or "")
+        sev = d.get("severity")
+        rows.append({
+            "סימול": f"[{s}]({tv_url(s)})", "פירוט": detail, "בטבלאות": tables,
+            "P(קנייה)": _f(d.get("p_buy")), "P(מעקב)": _f(d.get("p_watch")), "P(דילוג)": _f(d.get("p_skip")),
+            "סוג הירידה": LABEL_HE.get(d.get("cause_type"), d.get("cause_type") or ""),
+            "הראיות מול התבנית": LABEL_HE.get(d.get("evidence"), d.get("evidence") or ""),
+            "אירוע ב-4 שבועות": _f(d.get("event_ahead")),
+            "חומרה 0-3": (f"{_f(sev, 1)} ({SEVERITY_HE[min(3, max(0, int(round(sev))))]})" if sev is not None else ""),
+            "פעולה תאגידית?": ("⚠ " + _f(d.get("corporate_action"))) if (d.get("corporate_action") or 0) >= 0.5 else _f(d.get("corporate_action")),
+            "קריאה מבוססת כללים": read + (f" ({float(d['score']):+g})" if d.get("score") is not None else ""),
+            "מול עמיתים 20 יום": peers_short((peers or {}).get(s)),
+        })
+    md += [pd.DataFrame(rows).to_markdown(index=False), ""]
+    return md

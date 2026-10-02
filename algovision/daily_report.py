@@ -152,7 +152,10 @@ def build_report(out_dir: Path, universe: str = "all", cache_dir: Optional[Path]
             bpath, brows = write_briefs(out_dir, today, list(brief_tables), frames, brief_tables,
                                         insider_symbols=[x for x, t in brief_tables.items() if any(l.startswith("insider") for l in t)],
                                         cache_dir=cache, workers=workers, bench=bench, peers=peers, decisions=use_ai)
-            decisions = {r["symbol"]: r["_decision"] for r in brows if r.get("_decision")}
+            decisions = {}
+            for r in brows:
+                if r.get("_decision"):
+                    decisions[r["symbol"]] = {**r["_decision"], "tables": r.get("tables"), "read": r.get("read"), "score": r.get("score")}
             picks: List[str] = []
             if decisions:
                 try:
@@ -164,7 +167,7 @@ def build_report(out_dir: Path, universe: str = "all", cache_dir: Optional[Path]
                 from algovision.wedge_report import build_wedge_report
                 try:  # the briefs data is cached by write_briefs, so this reads from cache
                     build_wedge_report(out_dir, today, frames, wedges, sectors, cache_dir=cache, workers=workers, bench=bench, peers=peers,
-                                       decisions=decisions)
+                                       decisions=decisions, briefs_url=BRIEFS_URL.format(date=today))
                     wedge_written = True
                 except Exception as exc:  # noqa: BLE001
                     md.append(f"wedge file unavailable: {exc}\n")
@@ -186,6 +189,9 @@ def build_report(out_dir: Path, universe: str = "all", cache_dir: Optional[Path]
                           "journal as the rule `jev_pick` (hold 20 bars) and marked to market like every other rule; until that forward "
                           "test has 20+ closed trades the column is context, not a recommendation. The *AI* column of the summary table "
                           "carries the same action; `!` marks a likely corporate action or data problem.\n")
+                top = decide.top_picks(decisions)
+                md.append("**High-priority picks (P(buy) >= 0.6):** " + (", ".join(f"{tv(d['symbol'])} {d['p_buy']:.2f}" for d in top) if top else "none")
+                          + ". The Hebrew wedge file has the same list as its own section with links to each stock's details.\n")
                 md.append(decide.decisions_table(decisions, tv))
                 md.append(("Logged in the journal as jev_pick today: " + ", ".join(tv(s) for s in picks) if picks
                            else "No new jev_pick logged today (no 'buy' with P >= 0.6 without an open position).") + "\n")

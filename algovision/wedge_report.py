@@ -20,7 +20,7 @@ from algovision.briefs import (_company_tokens, _money, _num, _pct, analyst_view
 from algovision.core.geometry import volume_ratio
 from algovision.core.types import PatternMatch
 from algovision.links import tradingview_url
-from algovision.decide import decision_cell, decision_markdown
+from algovision.decide import decision_cell, decision_markdown, load_decisions, top_picks_he
 from algovision.peers import load_peers, peers_markdown, peers_short
 from algovision.sentiment import LABEL_HE as SENT_HE, sentiment_markdown, sentiment_view
 
@@ -411,7 +411,8 @@ def _open_positions_he(journal_dir: Path) -> List[str]:
 def build_wedge_report(out_dir: Path, today: str, frames: Dict[str, pd.DataFrame], matches: Dict[str, PatternMatch],
                        sectors: Optional[Dict[str, str]] = None, cache_dir: Optional[Path] = None, workers: int = 4,
                        bench: Optional[pd.DataFrame] = None, offline: bool = False, briefs_data: Optional[Dict[str, Dict]] = None,
-                       peers: Optional[Dict[str, Dict]] = None, decisions: Optional[Dict[str, Dict]] = None) -> Path:
+                       peers: Optional[Dict[str, Dict]] = None, decisions: Optional[Dict[str, Dict]] = None,
+                       briefs_url: Optional[str] = None) -> Path:
     """Write ``wedge_<today>.md`` / ``wedge_latest.md`` for the given falling-wedge matches (one per symbol).
     ``peers`` is the per-symbol peer context (:func:`algovision.peers.load_peers`); computed from ``frames`` when None."""
     out_dir = Path(out_dir)
@@ -423,6 +424,11 @@ def build_wedge_report(out_dir: Path, today: str, frames: Dict[str, pd.DataFrame
             peers = load_peers(frames, cache_dir, symbols=symbols)
         except Exception:  # noqa: BLE001
             peers = {}
+    if decisions is None:
+        try:
+            decisions = load_decisions(out_dir, today)      # the daily report wrote them; the CLI rebuild reuses them
+        except Exception:  # noqa: BLE001
+            decisions = {}
     if briefs_data is None:
         from algovision.data.briefs_data import BriefsProvider
         from algovision.data.provider import _DEFAULT_CACHE
@@ -500,7 +506,8 @@ def build_wedge_report(out_dir: Path, today: str, frames: Dict[str, pd.DataFrame
         "\"חששות\" = נושאי הכותרות השליליות על החברה בשנה האחרונה (Google News), ספורים, עם הכותרות עצמן בפירוט; \"סנטימנט\" = "
         "קריאה שקופה על איתותים רשומים: אנליסטים, יעדי מחיר, עדכוני תחזיות, שורט, הקהל ב-StockTwits וטון הכותרות. "
         "\"AI\" = החלטת מודל ההחלטה Jev (TypeSafe, דרך OpenRouter) שקרא את התקציר של המניה בלבד: קנייה/מעקב/דילוג עם ההסתברות, "
-        "⚠ כשהוא חושד בפעולה תאגידית או בעיית נתונים; בלי נימוק, ונמדד ביומן ככלל jev_pick. "
+        "⚠ כשהוא חושד בפעולה תאגידית או בעיית נתונים; בלי נימוק, ונמדד ביומן ככלל jev_pick. המניות שתועדפו גבוה (קנייה בהסתברות 0.6+) "
+        "מרוכזות בסעיף משלהן מיד אחרי הטבלה. "
         "\"מול עמיתים 20 יום\" = תשואת המניה ב-20 יום יחסית לקבוצת ההשוואה שלה (מניות עם המתאם הניטרלי-לשוק הגבוה ביותר אליה, "
         "מחושב מהמחירים), ו-z מול השנה האחרונה שלה; מתחת ל-2- = ירידה חריגה מול העמיתים. \"הקבוצה\" = האם קבוצת ההשוואה כסל אחד "
         "מוכה גם היא (ובסוגריים כמה מהחברות האחרות מוכות), ו\"+ טריז\" אם הסל עצמו בטריז יורד; במחקר, איתותים שרוב הקבוצה שלהם "
@@ -509,6 +516,8 @@ def build_wedge_report(out_dir: Path, today: str, frames: Dict[str, pd.DataFrame
         "<a id=\"summary\" name=\"summary\"></a>", "## טבלה מסכמת", "",
         pd.DataFrame(rows).to_markdown(index=False) if rows else "אין טריזים יורדים במניות מוכות היום.", "",
     ]
+    if decisions:
+        head += top_picks_he(decisions, {s: _anchor(s) for s in symbols}, tradingview_url, briefs_url, peers)
     tail = _open_positions_he(out_dir)
     tail += ["---", "סינון שיטתי ומבחן קדימה, לא ייעוץ השקעות. הטיית שרידות חלה על כל הבדיקות לאחור (חברי המדד של היום)."]
     text = "\n".join(head + sections + tail) + "\n"

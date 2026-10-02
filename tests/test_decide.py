@@ -111,3 +111,22 @@ def test_split_briefs_and_decide_file(tmp_path, monkeypatch):
     monkeypatch.setattr("requests.post", _fake_post(calls))
     out = D.decide_file(f, symbols=["aaa"])
     assert set(out) == {"AAA"} and out["AAA"]["date"] == "2026-02-02" and calls[0]["body"]["state"].startswith("## [AAA]")
+
+
+def test_top_picks_and_hebrew_section(tmp_path):
+    base = {"action": "buy", "p_buy": 0.7, "p_watch": 0.2, "p_skip": 0.1, "cause_type": "transitory", "evidence": "supports",
+            "event_ahead": 0.8, "severity": 1.0, "corporate_action": 0.05, "tables": "falling wedge", "read": "signs of a bottom", "score": 4.5}
+    dec = {"AAA": {**base, "symbol": "AAA", "p_buy": 0.9}, "BBB": {**base, "symbol": "BBB", "tables": "news-day", "corporate_action": 0.9},
+           "CCC": {**base, "symbol": "CCC", "action": "watch", "p_buy": 0.3}, "DDD": {**base, "symbol": "DDD", "p_buy": 0.5}}
+    picks = D.top_picks(dec)
+    assert [d["symbol"] for d in picks] == ["AAA", "BBB"]
+    md = "\n".join(D.top_picks_he(dec, {"AAA": "wedge-aaa"}, lambda s: f"https://tv/{s}", "https://gh/briefs.md"))
+    assert md.startswith('<a id="ai-picks"') and "## המניות שתועדפו גבוה על ידי Jev" in md
+    assert "[פירוט](#wedge-aaa)" in md and "[תקציר](https://gh/briefs.md)" in md and "⚠ 0.90" in md and "יום חדשות" in md and "סימני תחתית (+4.5)" in md
+    assert "CCC" not in md and "DDD" not in md
+    assert "אין היום מניות" in "\n".join(D.top_picks_he({"CCC": dec["CCC"]}, {}, lambda s: s))
+    # decisions.csv round trip feeds the section when the wedge file is rebuilt from the CLI
+    D.write_decisions(tmp_path, "2026-01-05", dec)
+    back = D.load_decisions(tmp_path, "2026-01-05")
+    assert set(back) == set(dec) and back["AAA"]["tables"] == "falling wedge" and back["AAA"]["p_buy"] == 0.9
+    assert D.load_decisions(tmp_path, "2026-01-06") == {}
