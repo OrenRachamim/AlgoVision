@@ -25,6 +25,7 @@ RULES = {
     "newsday": {"hold": 60, "expect": "+6-7% vs random, hit ~62% (docs/research_anomalies.md)"},
     "falling_wedge_beaten_down": {"hold": 20, "expect": "+3% vs random, hit ~60% (docs/research_falling_wedge.md)"},
     "insider_buy_beaten_down": {"hold": 120, "expect": "+10% vs random at 60 bars, +15% at 120, hit ~68% (docs/research_insiders.md)"},
+    "jev_pick": {"hold": 20, "expect": "untested: the Jev decision model's 'buy' (P >= 0.6) on a listed stock, logged by daily-report (algovision/decide.py)"},
 }
 # rules that were logged in the past but are no longer tracked or reported (rows stay in signals.csv)
 RETIRED_RULES = {"growth_top10"}

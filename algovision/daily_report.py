@@ -147,13 +147,24 @@ def build_report(out_dir: Path, universe: str = "all", cache_dir: Optional[Path]
         from algovision.briefs import write_briefs
         try:
             bench = provider.get_many(["SPY"], "2y", "1d").get("SPY")
+            from algovision import decide
+            use_ai = decide.available()
             bpath, brows = write_briefs(out_dir, today, list(brief_tables), frames, brief_tables,
                                         insider_symbols=[x for x, t in brief_tables.items() if any(l.startswith("insider") for l in t)],
-                                        cache_dir=cache, workers=workers, bench=bench, peers=peers)
+                                        cache_dir=cache, workers=workers, bench=bench, peers=peers, decisions=use_ai)
+            decisions = {r["symbol"]: r["_decision"] for r in brows if r.get("_decision")}
+            picks: List[str] = []
+            if decisions:
+                try:
+                    decide.write_decisions(out_dir, today, decisions)
+                    picks = decide.log_picks(out_dir, today, decisions, frames)
+                except Exception as exc:  # noqa: BLE001
+                    md.append(f"decision log unavailable: {exc}\n")
             if wedges:
                 from algovision.wedge_report import build_wedge_report
                 try:  # the briefs data is cached by write_briefs, so this reads from cache
-                    build_wedge_report(out_dir, today, frames, wedges, sectors, cache_dir=cache, workers=workers, bench=bench, peers=peers)
+                    build_wedge_report(out_dir, today, frames, wedges, sectors, cache_dir=cache, workers=workers, bench=bench, peers=peers,
+                                       decisions=decisions)
                     wedge_written = True
                 except Exception as exc:  # noqa: BLE001
                     md.append(f"wedge file unavailable: {exc}\n")
@@ -165,6 +176,21 @@ def build_report(out_dir: Path, universe: str = "all", cache_dir: Optional[Path]
                       "the stock's 20-day return relative to its peer group (the stocks most correlated with it after removing the market, "
                       "from prices) and its z-score against the last year; below -2 means an unusual drop versus peers.\n")
             md.append(summary_table(brows))
+            md.append("### AI decisions (Jev)\n")
+            if decisions:
+                md.append("A typed decision model (TypeSafe Jev 1.13 through OpenRouter) read each brief above, and only the brief, and "
+                          "answered fixed questions with calibrated probabilities: the action for a one-month hold (buy / watch / skip), the "
+                          "kind of decline, whether the drop is a corporate action or data artefact rather than a real decline, whether a "
+                          "known event is due within four weeks, whether the evidence supports or contradicts the setup, and how bad the "
+                          "news is for the business (0-3). It gives no rationale. Its 'buy' calls with P(buy) >= 0.6 are logged in the "
+                          "journal as the rule `jev_pick` (hold 20 bars) and marked to market like every other rule; until that forward "
+                          "test has 20+ closed trades the column is context, not a recommendation. The *AI* column of the summary table "
+                          "carries the same action; `!` marks a likely corporate action or data problem.\n")
+                md.append(decide.decisions_table(decisions, tv))
+                md.append(("Logged in the journal as jev_pick today: " + ", ".join(tv(s) for s in picks) if picks
+                           else "No new jev_pick logged today (no 'buy' with P >= 0.6 without an open position).") + "\n")
+            else:
+                md.append("skipped (no OpenRouter API key, or the model was unreachable)\n")
             briefs_written = True
         except Exception as exc:  # noqa: BLE001
             md.append(f"briefs unavailable: {exc}\n")

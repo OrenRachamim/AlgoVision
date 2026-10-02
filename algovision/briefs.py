@@ -669,6 +669,7 @@ def summary_table(rows: List[Dict]) -> str:
         "symbol": d["symbol"].map(tv), "in tables": d["tables"], "read": d["read"], "score": d["score"].map(lambda v: f"{v:+g}"),
         "why fell": d["why fell"] if "why fell" in d else "",
         "concerns": d["concerns"] if "concerns" in d else "", "sentiment": d["sentiment"] if "sentiment" in d else "",
+        **({"AI": d["AI"].fillna("")} if "AI" in d else {}),
         "last": d["last"].map(lambda v: f"{v:.2f}"), "from 52w high": d["from 52w high"].map(_pct), "vs MA50": d["vs MA50"].map(_pct),
         "vs peers 20d": d["vs peers 20d"] if "vs peers 20d" in d else "",
         "consensus": d["consensus"], "analysts": d["analysts"].map(lambda v: "" if v is None or pd.isna(v) else f"{int(v)}"),
@@ -681,9 +682,12 @@ def summary_table(rows: List[Dict]) -> str:
 
 def write_briefs(out_dir: Path, today: str, symbols: Iterable[str], frames: Dict[str, pd.DataFrame], tables: Dict[str, List[str]],
                  insider_symbols: Iterable[str] = (), cache_dir: Optional[Path] = None, workers: int = 4, offline: bool = False,
-                 progress=None, bench: Optional[pd.DataFrame] = None, peers: Optional[Dict[str, Dict]] = None) -> Tuple[Path, List[Dict]]:
+                 progress=None, bench: Optional[pd.DataFrame] = None, peers: Optional[Dict[str, Dict]] = None,
+                 decisions: bool = False) -> Tuple[Path, List[Dict]]:
     """Write ``briefs_<today>.md`` / ``briefs_latest.md`` for every symbol and return the summary rows.
-    ``peers`` is the per-symbol peer context from :func:`algovision.peers.load_peers` (optional)."""
+    ``peers`` is the per-symbol peer context from :func:`algovision.peers.load_peers` (optional). With ``decisions``
+    every brief is also judged by the Jev decision model (:mod:`algovision.decide`); the block is appended to the brief,
+    the row gets an ``AI`` cell and a ``_decision`` dict."""
     from algovision.data.briefs_data import BriefsProvider
     from algovision.data.provider import _DEFAULT_CACHE
 
@@ -703,6 +707,19 @@ def write_briefs(out_dir: Path, today: str, symbols: Iterable[str], frames: Dict
         except Exception as exc:  # one bad profile must not sink the whole file
             parts.append(f"## {tv(s)}\n\nbrief unavailable: {exc}\n")
             continue
+        if decisions:
+            try:
+                from algovision.decide import ask, decision_cell, decision_markdown, flatten
+                res = ask(md)
+                d = flatten(res.get("answers") or {})
+                usage = res.get("usage") or {}
+                d.update({"symbol": s, "date": today, "model": res.get("model"), "input_tokens": usage.get("input_tokens"), "cost": usage.get("cost")})
+                row["_decision"] = d
+                row["AI"] = decision_cell(d)
+                md = md.rstrip("\n") + "\n\n" + "\n".join(decision_markdown(d, "en"))
+            except Exception as exc:  # noqa: BLE001  (no decision for this stock; the brief stands)
+                row["AI"] = ""
+                md = md.rstrip("\n") + f"\n\n*AI decision unavailable: {exc}*\n"
         rows.append(row)
         parts.append(md)
     head = [f"# AlgoVision stock briefs - {today}\n",

@@ -325,6 +325,28 @@ did not hold up. So the group state is shown as context (the *group* column of t
 every brief, the summary line of the Hebrew wedge file), not used as a filter. The basket as an instrument is not
 supported out of sample (24 test signals, excess +0.7% with a wide interval).
 
+## AI decisions (`decide` command, Jev)
+
+```bash
+python -m algovision decide                 # every brief in journal/briefs_latest.md
+python -m algovision decide NKE DECK --he   # a few symbols, Hebrew labels
+```
+
+`algovision/decide.py` sends each stock's brief (and only the brief) to **Jev 1.13**, TypeSafe's typed decision
+model, through OpenRouter (`POST /api/alpha/decisions`, model `typesafe/jev-1.13`; the native
+`api.typesafe.ai/v1/systemone` takes the same body). Jev writes no text: it answers a fixed set of typed questions in
+one pass with calibrated probabilities: the action for a one-month hold (buy / watch / skip), the kind of decline
+(transitory / structural / sector-wide / corporate action / unknown), whether the drop is a corporate action or a
+data artefact rather than a real decline, whether a known event is due within four weeks, whether the evidence
+supports or contradicts the setup, and the severity of the news (0-3). About 0.6 s and $0.00002 per stock.
+
+The daily report runs it automatically when an API key is present (`OPENROUTER_API_KEY`, or a file
+`~/.algovision/openrouter.key`): the decision block is appended to every brief and to every section of the Hebrew
+wedge file, the summary tables get an *AI* column (`!` / `⚠` = likely corporate action or data problem), section 3
+of the report lists all decisions, `journal/decisions.csv` keeps every answer, and 'buy' calls with P(buy) >= 0.6 are
+logged in the journal as the rule `jev_pick` (hold 20 bars) so the model is forward-tested like every other rule.
+Until that test has 20+ closed trades the column is context, not a recommendation. Without a key the step is skipped.
+
 ## Delivery (`notify` command)
 
 ```bash
@@ -370,6 +392,7 @@ algovision/
   research/  event study: events, stats, walk-forward validation, report
   scanner.py universe scanning, current/history modes, forward outcomes
   peers.py   peer groups by market-neutral correlation, divergence from the group
+  decide.py  typed decisions on every brief from the Jev model (OpenRouter), forward-tested as jev_pick
   briefs.py, sentiment.py, wedge_report.py, daily_report.py, journal.py, whatsnew.py
   plotting.py, report.py, cli.py
 research/peers/  the original full-universe peer scan (reference for peers.py)

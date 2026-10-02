@@ -20,6 +20,7 @@ from algovision.briefs import (_company_tokens, _money, _num, _pct, analyst_view
 from algovision.core.geometry import volume_ratio
 from algovision.core.types import PatternMatch
 from algovision.links import tradingview_url
+from algovision.decide import decision_cell, decision_markdown
 from algovision.peers import load_peers, peers_markdown, peers_short
 from algovision.sentiment import LABEL_HE as SENT_HE, sentiment_markdown, sentiment_view
 
@@ -249,7 +250,7 @@ def why_fell_he(why: Dict, news: List[Dict]) -> List[str]:
 
 
 def summary_he(m: PatternMatch, geo: Dict, ctx: Dict, why: Dict, sent: Dict, an: Dict, ea: Dict, label: str, score: float,
-               peers: Optional[Dict] = None) -> List[str]:
+               peers: Optional[Dict] = None, decision: Optional[Dict] = None) -> List[str]:
     """Five short lines at the top of a stock's section: the wedge and its levels, how beaten the stock is, why it fell,
     what worries investors and the sentiment, what analysts expect and the rule-based read. Data only."""
     last = ctx["last"]
@@ -288,6 +289,13 @@ def summary_he(m: PatternMatch, geo: Dict, ctx: Dict, why: Dict, sent: Dict, an:
                   + ((" הקבוצה כסל **מוכה**" if peers["g_beaten"] else " הקבוצה כסל לא מוכה") if peers.get("g_beaten") is not None else "")
                   + (f" ({peers['share_beaten'] * 100:.0f}% מהחברות האחרות מוכות)" if peers.get("share_beaten") == peers.get("share_beaten") else "")
                   + (f"; הסל בטריז יורד {'מאושר' if peers['g_wedge'] == 'confirmed' else 'בהתהוות'}" if peers.get("g_wedge") else "") + ".")
+    if decision and decision.get("action"):
+        from algovision.decide import LABEL_HE as DEC_HE
+        md.append(f"- **AI (Jev):** {DEC_HE.get(decision['action'], decision['action'])} (קנייה {decision.get('p_buy', 0):.2f}, "
+                  f"מעקב {decision.get('p_watch', 0):.2f}, דילוג {decision.get('p_skip', 0):.2f}); סוג הירידה {DEC_HE.get(decision.get('cause_type'), decision.get('cause_type'))}, "
+                  f"הראיות {DEC_HE.get(decision.get('evidence'), decision.get('evidence'))} את התבנית"
+                  + (f"; **הסתברות {decision['corporate_action']:.2f} שזו פעולה תאגידית/בעיית נתונים**" if (decision.get("corporate_action") or 0) >= 0.5 else "")
+                  + ". מודל החלטה ללא נימוק, נמדד ביומן ככלל jev_pick.")
     md.append(f"- **אנליסטים וקריאה:** {an_txt}"
               + (f"; הדוח הבא {ea['next_date']}" if ea.get("next_date") else "")
               + f". קריאה מבוססת כללים: **{LABEL_SHORT_HE[label]}** (ציון {score:+g}).")
@@ -403,7 +411,7 @@ def _open_positions_he(journal_dir: Path) -> List[str]:
 def build_wedge_report(out_dir: Path, today: str, frames: Dict[str, pd.DataFrame], matches: Dict[str, PatternMatch],
                        sectors: Optional[Dict[str, str]] = None, cache_dir: Optional[Path] = None, workers: int = 4,
                        bench: Optional[pd.DataFrame] = None, offline: bool = False, briefs_data: Optional[Dict[str, Dict]] = None,
-                       peers: Optional[Dict[str, Dict]] = None) -> Path:
+                       peers: Optional[Dict[str, Dict]] = None, decisions: Optional[Dict[str, Dict]] = None) -> Path:
     """Write ``wedge_<today>.md`` / ``wedge_latest.md`` for the given falling-wedge matches (one per symbol).
     ``peers`` is the per-symbol peer context (:func:`algovision.peers.load_peers`); computed from ``frames`` when None."""
     out_dir = Path(out_dir)
@@ -431,6 +439,7 @@ def build_wedge_report(out_dir: Path, today: str, frames: Dict[str, pd.DataFrame
         ctx = price_context(df)
         an, ea, fu = analyst_view(profile), earnings_view(profile), fundamentals_view(profile)
         pr = peers.get(s) if peers else None
+        dec = decisions.get(s) if decisions else None
         label, score, fired = verdict_signals(ctx, an, ea, fu, peers=pr)
         name = fu.get("name") or ""
         src = fetch_sources(s, name, cache_dir, offline)
@@ -447,6 +456,7 @@ def build_wedge_report(out_dir: Path, today: str, frames: Dict[str, pd.DataFrame
             "6 חודשים": _pct(m.metrics.get("context", {}).get("ret_126")), "מול ממוצע 200": _pct(m.metrics.get("context", {}).get("dist_ma200")),
             "ATR%": f"{m.metrics.get('context', {}).get('atr_pct', 0) * 100:.1f}%", "גובה הטריז": f"{geo['h0_pct'] * 100:.0f}%",
             "מול עמיתים 20 יום": peers_short(pr),
+            "AI": decision_cell(dec, "he"),
             "הקבוצה": ("" if not pr or pr.get("g_beaten") is None else ("מוכה" if pr["g_beaten"] else "לא מוכה")
                        + (f" ({pr['share_beaten'] * 100:.0f}%)" if pr.get("share_beaten") == pr.get("share_beaten") else "")
                        + (" + טריז" if pr.get("g_wedge") else "")), "למה ירדה": _he_cause(why["cause"]), "חששות": ", ".join(t["he"] for t in sent["concerns"]["themes"][:2]) or "לא נמצאו",
@@ -457,12 +467,14 @@ def build_wedge_report(out_dir: Path, today: str, frames: Dict[str, pd.DataFrame
                f"[גרף ב-TradingView]({tradingview_url(s)}) · [חזרה לטבלה](#summary)", "",
                f"*{_he_sector(fu.get('sector') or sectors.get(s))}" + (f" / {fu['industry']}" if fu.get("industry") else "") + ".*"
                + (f" *{fu['summary'].rstrip('.')}.*" if fu.get("summary") else ""), ""]
-        sec += summary_he(m, geo, ctx, why, sent, an, ea, label, score, pr)
+        sec += summary_he(m, geo, ctx, why, sent, an, ea, label, score, pr, dec)
         sec += wedge_section_he(m, df, geo, ctx, spy_below)
         sec += why_fell_he(why, news)
         sec += sentiment_markdown(sent, "he")
         if pr:
             sec += peers_markdown(pr, "he")
+        if dec:
+            sec += decision_markdown(dec, "he")
         sec += analysts_he(an)
         sec += report_he(ea)
         sec += fundamentals_he(fu)
@@ -487,6 +499,8 @@ def build_wedge_report(out_dir: Path, today: str, frames: Dict[str, pd.DataFrame
         "(כותרות שמזכירות את החברה סביב ימי הירידה הגדולים, דיווחי 8-K, הורדות דירוג, ימי שוק) או \"לא נמצא\"; שום דבר לא מומצא. "
         "\"חששות\" = נושאי הכותרות השליליות על החברה בשנה האחרונה (Google News), ספורים, עם הכותרות עצמן בפירוט; \"סנטימנט\" = "
         "קריאה שקופה על איתותים רשומים: אנליסטים, יעדי מחיר, עדכוני תחזיות, שורט, הקהל ב-StockTwits וטון הכותרות. "
+        "\"AI\" = החלטת מודל ההחלטה Jev (TypeSafe, דרך OpenRouter) שקרא את התקציר של המניה בלבד: קנייה/מעקב/דילוג עם ההסתברות, "
+        "⚠ כשהוא חושד בפעולה תאגידית או בעיית נתונים; בלי נימוק, ונמדד ביומן ככלל jev_pick. "
         "\"מול עמיתים 20 יום\" = תשואת המניה ב-20 יום יחסית לקבוצת ההשוואה שלה (מניות עם המתאם הניטרלי-לשוק הגבוה ביותר אליה, "
         "מחושב מהמחירים), ו-z מול השנה האחרונה שלה; מתחת ל-2- = ירידה חריגה מול העמיתים. \"הקבוצה\" = האם קבוצת ההשוואה כסל אחד "
         "מוכה גם היא (ובסוגריים כמה מהחברות האחרות מוכות), ו\"+ טריז\" אם הסל עצמו בטריז יורד; במחקר, איתותים שרוב הקבוצה שלהם "

@@ -299,6 +299,12 @@ def build_parser() -> argparse.ArgumentParser:
     pe.add_argument("--refresh", action="store_true", help="rebuild the groups even if the weekly cache is fresh")
     pe.add_argument("--he", action="store_true", help="Hebrew")
 
+    de = sub.add_parser("decide", help="ask the Jev decision model (OpenRouter) about the briefs in a briefs file; prints the table")
+    de.add_argument("symbols", nargs="*")
+    de.add_argument("--file", default="journal/briefs_latest.md")
+    de.add_argument("--he", action="store_true", help="Hebrew labels")
+    de.add_argument("--json", action="store_true", help="print the compact JSON instead of the table")
+
     no = sub.add_parser("notify", help="send a report file to Telegram / e-mail (configured by environment variables, see algovision/notify.py)")
     no.add_argument("--file", default="journal/report_latest.md")
     no.add_argument("--subject", default=None)
@@ -416,6 +422,20 @@ def main(argv: Optional[List[str]] = None) -> int:
         p = build_wedge_report(Path(args.out), args.date or _dt.date.today().isoformat(), frames, wedge_matches(frames, symbols), sectors,
                                cache_dir=cache, workers=args.workers, bench=provider.get_many(["SPY"], "2y", "1d").get("SPY"), offline=args.offline)
         print(p)
+        return 0
+    if args.cmd == "decide":
+        from algovision import decide
+        if not decide.available():
+            print("no OpenRouter API key: set OPENROUTER_API_KEY or write it to ~/.algovision/openrouter.key", file=sys.stderr)
+            return 1
+        out = decide.decide_file(Path(args.file), symbols=args.symbols or None,
+                                 progress=lambda i, n: print(f"  [{i}/{n}]", file=sys.stderr))
+        if args.json:
+            print(decide.summary_json(out))
+        else:
+            print(decide.decisions_table(out))
+            cost = sum(d.get("cost") or 0 for d in out.values())
+            print(f"{len(out)} decisions, ${cost:.4f}", file=sys.stderr)
         return 0
     if args.cmd == "peers":
         from algovision.peers import load_peers, peers_markdown
