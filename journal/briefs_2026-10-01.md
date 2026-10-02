@@ -1,57 +1,58 @@
 # AlgoVision stock briefs - 2026-10-01
 
-One brief per name in today's report tables (46 stocks): where the stock is, why it fell (only evidence found in the data: headlines naming the company near the largest down days, rating cuts, market-wide days; otherwise "not found"), what analysts say, the last report and the estimates, the fundamentals, and a rule-based read (signs of a bottom / undecided / still falling) whose signals are listed so it can be checked, plus what worries investors (the themes of the negative headlines of the last year, each with the headlines behind it) and a sentiment read over listed signals (analysts, targets, estimate revisions, short interest, the StockTwits crowd, headline tone). Data: Yahoo Finance (analysts, estimates, statistics, news), Google News headlines, StockTwits, SEC EDGAR; peer groups and the 20-day divergence from the peer group are computed from prices (market-neutral correlation clustering). Systematic screens, not investment advice.
+One brief per name in today's report tables (47 stocks): where the stock is, why it fell (only evidence found in the data: headlines naming the company near the largest down days, rating cuts, market-wide days; otherwise "not found"), what analysts say, the last report and the estimates, the fundamentals, and a rule-based read (signs of a bottom / undecided / still falling) whose signals are listed so it can be checked, plus what worries investors (the themes of the negative headlines of the last year, each with the headlines behind it) and a sentiment read over listed signals (analysts, targets, estimate revisions, short interest, the StockTwits crowd, headline tone). Data: Yahoo Finance (analysts, estimates, statistics, news), Google News headlines, StockTwits, SEC EDGAR; peer groups and the 20-day divergence from the peer group are computed from prices (market-neutral correlation clustering). Systematic screens, not investment advice.
 
 ## Summary
 
-| symbol                                                 | in tables                                 | read              |   score | why fell                                                                                                                         | concerns                                               | sentiment   |   last | from 52w high   | vs MA50   | vs peers 20d    | consensus   |   analysts | target upside   | up/down 90d   | EPS est 30d   | last surprise   | next report   |
-|:-------------------------------------------------------|:------------------------------------------|:------------------|--------:|:---------------------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------|:------------|-------:|:----------------|:----------|:----------------|:------------|-----------:|:----------------|:--------------|:--------------|:----------------|:--------------|
-| [CRM](https://www.tradingview.com/chart/?symbol=CRM)   | insider buys (other)                      | signs of a bottom |     8.5 | demand/competition, news, management, rating cut, deal/financing, earnings                                                       | technology disruption / AI, management / turnaround    | mixed       | 236.69 | -10%            | +8%       | +2.5% (z +0.0)  | buy         |         53 | +19%            | 0/2           | +2.2%         | +80.4%          | 2026-12-02    |
-| [AMT](https://www.tradingview.com/chart/?symbol=AMT)   | insider buys (other)                      | signs of a bottom |     7.5 | earnings, guidance, demand/competition, rating cut, news                                                                         | guidance / outlook cut, management / turnaround        | positive    | 161.06 | -15%            | -6%       | +4.5% (z +1.1)  | buy         |         23 | +34%            | 2/0           | +5.8%         | +20.6%          | 2026-10-27    |
-| [KDP](https://www.tradingview.com/chart/?symbol=KDP)   | insider buys (other)                      | signs of a bottom |     7.5 | legal/regulatory, deal/financing, news, earnings, guidance                                                                       | competition / market share, legal / regulatory         | positive    |  30.69 | -8%             | -1%       | +5.2% (z +0.6)  | buy         |         17 | +18%            | 1/0           | +0.0%         | +6.2%           | 2026-11-03    |
-| [DVN](https://www.tradingview.com/chart/?symbol=DVN)   | insider buys (other)                      | signs of a bottom |     7.5 | earnings, deal/financing, news, market-wide, rating cut, management                                                              | earnings miss, margins / costs                         | mixed       |  47.16 | -8%             | +1%       | +3.2% (z +0.9)  | strong buy  |         28 | +28%            | 0/0           | -1.7%         | +11.3%          | 2026-11-04    |
-| [ECL](https://www.tradingview.com/chart/?symbol=ECL)   | insider buys (other)                      | signs of a bottom |     6.5 | earnings, rating cut, deal/financing, management                                                                                 | technology disruption / AI, management / turnaround    | positive    | 271.26 | -11%            | -2%       | +0.9% (z +0.4)  | buy         |         21 | +20%            | 1/0           | -0.0%         | +0.5%           | 2026-10-27    |
-| [LDOS](https://www.tradingview.com/chart/?symbol=LDOS) | falling wedge                             | signs of a bottom |     4.5 | demand/competition, deal/financing, earnings, company disclosure (8-K), guidance, rating cut, news                               | guidance / outlook cut, analyst downgrades             | mixed       | 121.97 | -38%            | -6%       | -7.2% (z -0.5)  | buy         |         15 | +29%            | 0/0           | +0.0%         | +12.1%          | 2026-11-03    |
-| [TPR](https://www.tradingview.com/chart/?symbol=TPR)   | falling wedge                             | signs of a bottom |     4   | earnings, guidance, demand/competition, management, rating cut, legal/regulatory                                                 | guidance / outlook cut, management / turnaround        | positive    | 119.24 | -27%            | -9%       | +1.4% (z +0.1)  | buy         |         20 | +40%            | 0/0           | +1.6%         | +3.4%           | 2026-11-05    |
-| [DECK](https://www.tradingview.com/chart/?symbol=DECK) | falling wedge                             | signs of a bottom |     3.5 | earnings, guidance, legal/regulatory, rating cut, market-wide                                                                    | guidance / outlook cut, tariffs / trade                | mixed       |  79.57 | -34%            | -10%      | -0.1% (z +0.3)  | buy         |         22 | +51%            | 1/0           | -0.2%         | +7.6%           | 2026-10-22    |
-| [XYL](https://www.tradingview.com/chart/?symbol=XYL)   | falling wedge                             | signs of a bottom |     3.5 | earnings, guidance, legal/regulatory, rating cut, deal/financing, news, market-wide, demand/competition                          | debt / financing, guidance / outlook cut               | positive    | 100.88 | -33%            | -10%      | -2.2% (z -0.0)  | buy         |         16 | +52%            | 0/0           | +0.0%         | +9.2%           | 2026-10-27    |
-| [ERIE](https://www.tradingview.com/chart/?symbol=ERIE) | falling wedge                             | signs of a bottom |     3   | news, earnings, company disclosure (8-K), management, guidance                                                                   | competition / market share, management / turnaround    | positive    | 222.11 | -32%            | -9%       | -3.6% (z -0.4)  | buy         |          1 |                 | 0/0           | +0.3%         | +2.9%           | 2026-10-29    |
-| [FOX](https://www.tradingview.com/chart/?symbol=FOX)   | insider buys (other)                      | undecided         |     2.5 | deal/financing, company disclosure (8-K), legal/regulatory, market-wide, management, earnings, demand/competition                | legal / regulatory, competition / market share         | positive    |  54.92 | -18%            | -4%       | -0.3% (z -0.1)  |             |            |                 | 1/1           |               |                 | 2026-10-29    |
-| [WELL](https://www.tradingview.com/chart/?symbol=WELL) | insider buys (other)                      | undecided         |     2.5 | company disclosure (8-K), earnings, guidance, rating cut                                                                         | guidance / outlook cut, competition / market share     | positive    | 226.94 | -10%            | -4%       | +0.4% (z -0.5)  | buy         |         22 | +15%            | 0/0           |               | -16.9%          | 2026-10-26    |
-| [MSCI](https://www.tradingview.com/chart/?symbol=MSCI) | insider buys (other)                      | undecided         |     2.5 | earnings, guidance, deal/financing, rating cut, demand/competition, legal/regulatory, news, company disclosure (8-K)             | guidance / outlook cut, analyst downgrades             | mixed       | 545.39 | -15%            | -3%       | +3.5% (z +0.6)  | strong buy  |         17 | +27%            | 0/0           | -0.1%         | -0.8%           | 2026-10-20    |
-| [CTVA](https://www.tradingview.com/chart/?symbol=CTVA) | news-day                                  | undecided         |     2.5 | company disclosure (8-K), earnings, deal/financing, legal/regulatory, guidance, rating cut, news, demand/competition             | legal / regulatory, guidance / outlook cut             | mixed       |  12.57 | -86%            | -84%      | -6.1% (z -1.1)  | buy         |         20 | +637%           | 0/0           | -0.1%         | +2.9%           | 2026-11-03    |
-| [ALGN](https://www.tradingview.com/chart/?symbol=ALGN) | falling wedge                             | undecided         |     2.5 | market-wide, earnings, guidance, rating cut, company disclosure (8-K)                                                            | guidance / outlook cut, legal / regulatory             | mixed       | 145.35 | -26%            | -10%      | +2.8% (z +0.1)  | buy         |         14 | +42%            | 0/0           | -0.0%         | +1.7%           | 2026-10-28    |
-| [LNT](https://www.tradingview.com/chart/?symbol=LNT)   | falling wedge                             | undecided         |     2.5 | deal/financing, guidance, demand/competition, earnings, market-wide                                                              | earnings miss, guidance / outlook cut                  | mixed       |  63.71 | -18%            | -7%       | -0.1% (z -0.1)  | buy         |         12 | +21%            | 0/0           | +0.1%         | +12.2%          | 2026-11-05    |
-| [HSY](https://www.tradingview.com/chart/?symbol=HSY)   | falling wedge                             | undecided         |     2.5 | legal/regulatory, news, demand/competition, earnings, deal/financing, guidance, rating cut                                       | margins / costs, weak demand / consumer                | positive    | 159.3  | -32%            | -9%       | -2.5% (z -0.3)  | buy         |         21 | +28%            | 0/0           | -0.0%         | +33.1%          | 2026-11-05    |
-| [VST](https://www.tradingview.com/chart/?symbol=VST)   | insider buys (beaten-down)                | undecided         |     2   | demand/competition, deal/financing, rating cut, news, company disclosure (8-K), management, earnings                             | technology disruption / AI, weak demand / consumer     | mixed       | 139.75 | -33%            | -3%       | -5.1% (z -0.2)  | strong buy  |         19 | +52%            | 0/0           | -0.1%         | -54.2%          | 2026-11-06    |
-| [UBER](https://www.tradingview.com/chart/?symbol=UBER) | insider buys (other)                      | undecided         |     2   | deal/financing, market-wide, news, management, earnings, guidance, demand/competition, rating cut                                | guidance / outlook cut, weak demand / consumer         | mixed       |  67.88 | -32%            | -7%       | -8.3% (z -1.3)  | buy         |         47 | +48%            | 0/0           | -1.6%         | +40.2%          | 2026-11-03    |
-| [AON](https://www.tradingview.com/chart/?symbol=AON)   | insider buys (beaten-down)                | undecided         |     1.5 | deal/financing, company disclosure (8-K), earnings, management, rating cut                                                       | management / turnaround, guidance / outlook cut        | mixed       | 275.95 | -27%            | -17%      | -6.7% (z -1.3)  | buy         |         19 | +39%            | 0/1           | -1.8%         | +0.3%           | 2026-10-30    |
-| [PODD](https://www.tradingview.com/chart/?symbol=PODD) | insider buys (beaten-down)                | undecided         |     1.5 | earnings, guidance, rating cut, company disclosure (8-K), legal/regulatory, management, market-wide                              | legal / regulatory, guidance / outlook cut             | mixed       | 130.79 | -62%            | -10%      | -9.1% (z -0.4)  | buy         |         22 | +31%            | 0/5           | +0.0%         | +14.3%          | 2026-11-04    |
-| [BSX](https://www.tradingview.com/chart/?symbol=BSX)   | insider buys (beaten-down)                | undecided         |     1.5 | earnings, guidance, demand/competition, rating cut, management, company disclosure (8-K), legal/regulatory                       | guidance / outlook cut, analyst downgrades             | negative    |  43.23 | -59%            | -8%       | -8.6% (z -0.4)  | buy         |         29 | +41%            | 0/2           | -1.2%         | +3.9%           | 2026-10-28    |
-| [TSN](https://www.tradingview.com/chart/?symbol=TSN)   | insider buys (beaten-down), falling wedge | undecided         |     1   | company disclosure (8-K), earnings, guidance, rating cut, management, demand/competition                                         | management / turnaround, guidance / outlook cut        | negative    |  50.47 | -25%            | -8%       | -3.9% (z -0.6)  | hold        |         12 | +27%            | 1/0           | -6.2%         | +0.3%           | 2026-11-16    |
-| [ARE](https://www.tradingview.com/chart/?symbol=ARE)   | insider buys (other)                      | undecided         |     1   | earnings, demand/competition, news, rating cut, company disclosure (8-K), guidance                                               | guidance / outlook cut, earnings miss                  | mixed       |  47.03 | -41%            | -6%       | +4.3% (z +0.7)  | hold        |         14 | +12%            | 0/1           | -0.3%         | +26.2%          | 2026-10-26    |
-| [DUK](https://www.tradingview.com/chart/?symbol=DUK)   | falling wedge                             | undecided         |     1   | legal/regulatory, guidance, demand/competition, company disclosure (8-K), rating cut, earnings, management                       | guidance / outlook cut, debt / financing               | mixed       | 113.74 | -13%            | -6%       | -0.2% (z +0.0)  | buy         |         18 | +20%            | 1/0           | -0.0%         | +9.6%           | 2026-11-05    |
-| [TMUS](https://www.tradingview.com/chart/?symbol=TMUS) | falling wedge                             | undecided         |     1   | earnings, management, guidance, rating cut, demand/competition, news, deal/financing, company disclosure (8-K)                   | competition / market share, guidance / outlook cut     | mixed       | 161.73 | -29%            | -8%       | -4.4% (z -0.6)  | buy         |         25 | +51%            | 1/1           | +0.0%         | +14.9%          | 2026-10-28    |
-| [YUM](https://www.tradingview.com/chart/?symbol=YUM)   | falling wedge                             | undecided         |     1   | deal/financing, market-wide, rating cut, guidance, legal/regulatory, earnings, demand/competition                                | legal / regulatory, weak demand / consumer             | mixed       | 136.69 | -18%            | -7%       | -3.3% (z -0.7)  | buy         |         22 | +27%            | 1/1           | -3.6%         | +3.7%           | 2026-11-03    |
-| [APTV](https://www.tradingview.com/chart/?symbol=APTV) | insider buys (beaten-down), falling wedge | undecided         |     0.5 | earnings, guidance, demand/competition, rating cut, deal/financing, company disclosure (8-K), market-wide                        | guidance / outlook cut, analyst downgrades             | mixed       |  43.97 | -50%            | -8%       | +5.2% (z +1.0)  | buy         |         18 | +51%            | 0/2           | +0.0%         | +14.1%          | 2026-10-29    |
-| [PPL](https://www.tradingview.com/chart/?symbol=PPL)   | falling wedge                             | undecided         |     0.5 | earnings, legal/regulatory, company disclosure (8-K), rating cut                                                                 | guidance / outlook cut, earnings miss                  | mixed       |  32.76 | -16%            | -5%       | +1.1% (z +0.7)  | buy         |         16 | +22%            | 0/0           | +0.0%         | -4.0%           | 2026-11-04    |
-| [VMC](https://www.tradingview.com/chart/?symbol=VMC)   | falling wedge                             | undecided         |     0.5 | earnings, rating cut, demand/competition, news, deal/financing                                                                   | earnings miss, weak demand / consumer                  | negative    | 243.98 | -26%            | -8%       | +0.7% (z +0.1)  | buy         |         23 | +31%            | 0/1           | -0.4%         | +4.9%           | 2026-10-29    |
-| [COO](https://www.tradingview.com/chart/?symbol=COO)   | insider buys (beaten-down)                | undecided         |     0   | earnings, company disclosure (8-K), guidance, demand/competition, rating cut                                                     | guidance / outlook cut, earnings miss                  | negative    |  57.41 | -32%            | -15%      | -10.8% (z -1.3) | buy         |         14 | +15%            | 0/4           | -2.1%         | +2.7%           |               |
-| [MO](https://www.tradingview.com/chart/?symbol=MO)     | insider buys (other)                      | undecided         |     0   | earnings, guidance, demand/competition, company disclosure (8-K), rating cut, management, legal/regulatory                       | weak demand / consumer, earnings miss                  | mixed       |  66.95 | -9%             | -1%       | +3.2% (z +0.3)  | hold        |         11 | +5%             | 0/0           | +0.0%         | -1.2%           | 2026-10-29    |
-| [FICO](https://www.tradingview.com/chart/?symbol=FICO) | news-day                                  | undecided         |     0   | guidance, rating cut, legal/regulatory, demand/competition, earnings, news, management                                           | margins / costs, competition / market share            | negative    | 661.75 | -65%            | -36%      | -33.4% (z -2.9) | buy         |         19 | +90%            | 0/2           | -0.2%         | +3.4%           | 2026-11-04    |
-| [WEC](https://www.tradingview.com/chart/?symbol=WEC)   | falling wedge                             | undecided         |     0   | rating cut, company disclosure (8-K), earnings, demand/competition, market-wide                                                  | guidance / outlook cut, management / turnaround        | positive    | 101.73 | -14%            | -5%       | +2.0% (z +1.7)  | buy         |         17 | +18%            | 0/0           | +0.0%         | +12.3%          | 2026-10-29    |
-| [CNP](https://www.tradingview.com/chart/?symbol=CNP)   | falling wedge                             | undecided         |    -0.5 | earnings, rating cut, company disclosure (8-K), management, demand/competition, guidance, market-wide                            | debt / financing, weak demand / consumer               | mixed       |  37.21 | -17%            | -6%       | +0.1% (z +0.1)  | buy         |         17 | +21%            | 0/0           | -0.1%         | +7.4%           | 2026-10-27    |
-| [NI](https://www.tradingview.com/chart/?symbol=NI)     | falling wedge                             | undecided         |    -0.5 | earnings, rating cut, guidance, demand/competition, deal/financing                                                               | earnings miss, weak demand / consumer                  | mixed       |  39.5  | -19%            | -5%       | +1.7% (z +0.8)  | buy         |         15 | +24%            | 0/0           | -0.1%         | +1.5%           | 2026-10-28    |
-| [TFC](https://www.tradingview.com/chart/?symbol=TFC)   | insider buys (other)                      | undecided         |    -1   | management, company disclosure (8-K), market-wide, rating cut, earnings                                                          | management / turnaround, analyst downgrades            | positive    |  46.28 | -15%            | -8%       | -0.9% (z -0.2)  | hold        |         18 | +18%            | 0/4           | -1.4%         | +13.8%          | 2026-10-16    |
-| [NCLH](https://www.tradingview.com/chart/?symbol=NCLH) | falling wedge                             | undecided         |    -1   | earnings, demand/competition, news, rating cut, guidance, management                                                             | guidance / outlook cut, management / turnaround        | negative    |  14.64 | -41%            | -13%      | -11.2% (z -0.9) | buy         |         25 | +38%            | 0/2           | +0.1%         | +22.8%          | 2026-11-04    |
-| [SRE](https://www.tradingview.com/chart/?symbol=SRE)   | falling wedge                             | undecided         |    -1   | company disclosure (8-K), rating cut, earnings, market-wide, news, management                                                    | earnings miss, guidance / outlook cut                  | positive    |  78.05 | -21%            | -7%       | -0.3% (z -0.0)  | buy         |         18 | +28%            | 1/1           | +0.1%         | +9.6%           | 2026-11-04    |
-| [CINF](https://www.tradingview.com/chart/?symbol=CINF) | insider buys (other)                      | undecided         |    -1.5 | earnings, guidance, rating cut, demand/competition, management                                                                   | analyst downgrades, management / turnaround            | mixed       | 162.15 | -15%            | -5%       | -0.9% (z -0.3)  | hold        |          6 | +18%            | 0/2           | +0.7%         | -21.3%          | 2026-10-26    |
-| [CRH](https://www.tradingview.com/chart/?symbol=CRH)   | falling wedge                             | undecided         |    -1.5 | news, rating cut, earnings, deal/financing, market-wide, guidance                                                                | guidance / outlook cut, earnings miss                  | mixed       |  81.7  | -37%            | -12%      | -5.6% (z -1.2)  | strong buy  |         24 | +61%            | 0/0           | -1.7%         | -4.2%           | 2026-10-29    |
-| [EQT](https://www.tradingview.com/chart/?symbol=EQT)   | falling wedge                             | undecided         |    -1.5 | guidance, deal/financing, management, earnings, demand/competition, news, rating cut, market-wide                                | guidance / outlook cut, management / turnaround        | mixed       |  50.09 | -26%            | -5%       | -3.4% (z -0.4)  | strong buy  |         26 | +35%            | 0/0           | -2.6%         | -3.3%           | 2026-10-20    |
-| [NRG](https://www.tradingview.com/chart/?symbol=NRG)   | falling wedge                             | undecided         |    -1.5 | earnings, guidance, demand/competition, rating cut, news, company disclosure (8-K), deal/financing, market-wide, management      | earnings miss, margins / costs                         | mixed       |  96.93 | -47%            | -16%      | -15.3% (z -1.2) | buy         |         16 | +91%            | 0/0           | +0.3%         | -14.4%          | 2026-11-05    |
-| [SO](https://www.tradingview.com/chart/?symbol=SO)     | falling wedge                             | undecided         |    -1.5 | legal/regulatory, deal/financing, management, guidance, company disclosure (8-K), demand/competition, rating cut, news, earnings | guidance / outlook cut, legal / regulatory             | positive    |  83.47 | -14%            | -7%       | +0.1% (z +0.3)  | hold        |         19 | +18%            | 0/1           | +0.0%         | +11.8%          | 2026-11-05    |
-| [CMS](https://www.tradingview.com/chart/?symbol=CMS)   | falling wedge                             | still falling     |    -2.5 | earnings, deal/financing, guidance, rating cut, demand/competition, management, company disclosure (8-K)                         | guidance / outlook cut, earnings miss                  | negative    |  63.64 | -19%            | -7%       | -0.7% (z +0.0)  | buy         |         12 | +22%            | 0/1           | -0.0%         | +3.1%           | 2026-10-29    |
-| [NKE](https://www.tradingview.com/chart/?symbol=NKE)   | falling wedge                             | still falling     |    -3.5 | earnings, guidance, demand/competition, rating cut, legal/regulatory, management, market-wide, company disclosure (8-K)          | management / turnaround, China / international markets | negative    |  35.15 | -51%            | -10%      | -5.1% (z +0.1)  | hold        |         36 | +30%            | 0/4           | -3.5%         | +466.1%         | 2026-10-01    |
+| symbol                                                 | in tables                                 | read              |   score | why fell                                                                                                                          | concerns                                               | sentiment   | AI           |   last | from 52w high   | vs MA50   | vs peers 20d    | consensus   |   analysts | target upside   | up/down 90d   | EPS est 30d   | last surprise   | next report   |
+|:-------------------------------------------------------|:------------------------------------------|:------------------|--------:|:----------------------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------|:------------|:-------------|-------:|:----------------|:----------|:----------------|:------------|-----------:|:----------------|:--------------|:--------------|:----------------|:--------------|
+| [CRM](https://www.tradingview.com/chart/?symbol=CRM)   | insider buys (other)                      | signs of a bottom |     8.5 | demand/competition, news, management, rating cut, deal/financing, earnings                                                        | technology disruption / AI, management / turnaround    | mixed       | buy 0.73     | 236.69 | -10%            | +8%       | +2.5% (z +0.0)  | buy         |         53 | +19%            | 0/2           | +2.2%         | +80.4%          | 2026-12-02    |
+| [AMT](https://www.tradingview.com/chart/?symbol=AMT)   | insider buys (other)                      | signs of a bottom |     7.5 | earnings, guidance, demand/competition, rating cut, news                                                                          | guidance / outlook cut, management / turnaround        | positive    | buy 0.88     | 161.06 | -15%            | -6%       | +4.5% (z +1.1)  | buy         |         23 | +34%            | 2/0           | +5.8%         | +20.6%          | 2026-10-27    |
+| [KDP](https://www.tradingview.com/chart/?symbol=KDP)   | insider buys (other)                      | signs of a bottom |     7.5 | legal/regulatory, deal/financing, news, earnings, guidance                                                                        | competition / market share, legal / regulatory         | positive    | buy 0.80     |  30.69 | -8%             | -1%       | +5.2% (z +0.6)  | buy         |         17 | +18%            | 1/0           | +0.0%         | +6.2%           | 2026-11-03    |
+| [DVN](https://www.tradingview.com/chart/?symbol=DVN)   | insider buys (other)                      | signs of a bottom |     7.5 | earnings, deal/financing, news, market-wide, rating cut, management                                                               | earnings miss, margins / costs                         | mixed       | buy 0.48     |  47.16 | -8%             | +1%       | +3.2% (z +0.9)  | strong buy  |         28 | +28%            | 0/0           | -1.7%         | +11.3%          | 2026-11-04    |
+| [ECL](https://www.tradingview.com/chart/?symbol=ECL)   | insider buys (other)                      | signs of a bottom |     6.5 | earnings, rating cut, deal/financing, management                                                                                  | technology disruption / AI, management / turnaround    | positive    | buy 0.77     | 271.26 | -11%            | -2%       | +0.9% (z +0.4)  | buy         |         21 | +20%            | 1/0           | -0.0%         | +0.5%           | 2026-10-27    |
+| [LDOS](https://www.tradingview.com/chart/?symbol=LDOS) | falling wedge                             | signs of a bottom |     4.5 | demand/competition, deal/financing, earnings, company disclosure (8-K), guidance, rating cut, news                                | guidance / outlook cut, analyst downgrades             | mixed       | buy 0.61     | 121.97 | -38%            | -6%       | -7.2% (z -0.5)  | buy         |         15 | +29%            | 0/0           | +0.0%         | +12.1%          | 2026-11-03    |
+| [ORCL](https://www.tradingview.com/chart/?symbol=ORCL) | insider buys (other)                      | signs of a bottom |     4   | earnings, company disclosure (8-K), legal/regulatory, demand/competition, rating cut, news, market-wide, guidance, deal/financing | technology disruption / AI, weak demand / consumer     | positive    | buy 0.57     | 138.07 | -55%            | -4%       | -8.2% (z -0.1)  | buy         |         41 | +72%            | 0/0           | +1.0%         | +10.4%          | 2026-12-10    |
+| [TPR](https://www.tradingview.com/chart/?symbol=TPR)   | falling wedge                             | signs of a bottom |     4   | earnings, guidance, demand/competition, management, rating cut, legal/regulatory                                                  | guidance / outlook cut, management / turnaround        | positive    | buy 0.87     | 119.24 | -27%            | -9%       | +1.4% (z +0.1)  | buy         |         20 | +40%            | 0/0           | +1.6%         | +3.4%           | 2026-11-05    |
+| [DECK](https://www.tradingview.com/chart/?symbol=DECK) | falling wedge                             | signs of a bottom |     3.5 | earnings, guidance, legal/regulatory, rating cut, market-wide                                                                     | guidance / outlook cut, tariffs / trade                | mixed       | buy 0.69     |  79.57 | -34%            | -10%      | -0.1% (z +0.3)  | buy         |         22 | +51%            | 1/0           | -0.2%         | +7.6%           | 2026-10-22    |
+| [XYL](https://www.tradingview.com/chart/?symbol=XYL)   | falling wedge                             | signs of a bottom |     3.5 | earnings, guidance, legal/regulatory, rating cut, deal/financing, news, market-wide, demand/competition                           | debt / financing, guidance / outlook cut               | positive    | buy 0.80     | 100.88 | -33%            | -10%      | -2.2% (z -0.0)  | buy         |         16 | +52%            | 0/0           | +0.0%         | +9.2%           | 2026-10-27    |
+| [ERIE](https://www.tradingview.com/chart/?symbol=ERIE) | falling wedge                             | signs of a bottom |     3   | news, earnings, company disclosure (8-K), management, guidance                                                                    | competition / market share, management / turnaround    | positive    | buy 0.74     | 222.11 | -32%            | -9%       | -3.6% (z -0.4)  | buy         |          1 |                 | 0/0           | +0.3%         | +2.9%           | 2026-10-29    |
+| [FOX](https://www.tradingview.com/chart/?symbol=FOX)   | insider buys (other)                      | undecided         |     2.5 | deal/financing, company disclosure (8-K), legal/regulatory, market-wide, management, earnings, demand/competition                 | legal / regulatory, competition / market share         | positive    | watch 0.79   |  54.92 | -18%            | -4%       | -0.3% (z -0.1)  |             |            |                 | 1/1           |               |                 | 2026-10-29    |
+| [WELL](https://www.tradingview.com/chart/?symbol=WELL) | insider buys (other)                      | undecided         |     2.5 | company disclosure (8-K), earnings, guidance, rating cut                                                                          | guidance / outlook cut, competition / market share     | positive    | watch 0.78   | 226.94 | -10%            | -4%       | +0.4% (z -0.5)  | buy         |         22 | +15%            | 0/0           |               | -16.9%          | 2026-10-26    |
+| [MSCI](https://www.tradingview.com/chart/?symbol=MSCI) | insider buys (other)                      | undecided         |     2.5 | earnings, guidance, deal/financing, rating cut, demand/competition, legal/regulatory, news, company disclosure (8-K)              | guidance / outlook cut, analyst downgrades             | mixed       | watch 0.76   | 545.39 | -15%            | -3%       | +3.5% (z +0.6)  | strong buy  |         17 | +27%            | 0/0           | -0.1%         | -0.8%           | 2026-10-20    |
+| [CTVA](https://www.tradingview.com/chart/?symbol=CTVA) | news-day                                  | undecided         |     2.5 | company disclosure (8-K), earnings, deal/financing, rating cut, guidance, news, demand/competition                                | legal / regulatory, guidance / outlook cut             | mixed       | watch 0.55 ! |  12.57 | -86%            | -84%      | -6.1% (z -1.1)  | buy         |         20 | +637%           | 0/0           | -0.1%         | +2.9%           | 2026-11-03    |
+| [ALGN](https://www.tradingview.com/chart/?symbol=ALGN) | falling wedge                             | undecided         |     2.5 | market-wide, earnings, guidance, rating cut, company disclosure (8-K)                                                             | guidance / outlook cut, legal / regulatory             | mixed       | watch 0.90   | 145.35 | -26%            | -10%      | +2.8% (z +0.1)  | buy         |         14 | +42%            | 0/0           | -0.0%         | +1.7%           | 2026-10-28    |
+| [LNT](https://www.tradingview.com/chart/?symbol=LNT)   | falling wedge                             | undecided         |     2.5 | deal/financing, guidance, demand/competition, earnings, market-wide                                                               | earnings miss, guidance / outlook cut                  | mixed       | watch 0.55   |  63.71 | -18%            | -7%       | -0.1% (z -0.1)  | buy         |         12 | +21%            | 0/0           | +0.1%         | +12.2%          | 2026-11-05    |
+| [HSY](https://www.tradingview.com/chart/?symbol=HSY)   | falling wedge                             | undecided         |     2.5 | legal/regulatory, news, demand/competition, earnings, deal/financing, guidance, rating cut                                        | margins / costs, weak demand / consumer                | positive    | watch 0.52   | 159.3  | -32%            | -9%       | -2.5% (z -0.3)  | buy         |         21 | +28%            | 0/0           | -0.0%         | +33.1%          | 2026-11-05    |
+| [VST](https://www.tradingview.com/chart/?symbol=VST)   | insider buys (beaten-down)                | undecided         |     2   | demand/competition, deal/financing, rating cut, news, company disclosure (8-K), management, earnings                              | technology disruption / AI, weak demand / consumer     | mixed       | watch 0.81   | 139.75 | -33%            | -3%       | -5.1% (z -0.2)  | strong buy  |         19 | +52%            | 0/0           | -0.1%         | -54.2%          | 2026-11-06    |
+| [UBER](https://www.tradingview.com/chart/?symbol=UBER) | insider buys (other)                      | undecided         |     2   | deal/financing, market-wide, news, management, earnings, guidance, demand/competition, rating cut                                 | guidance / outlook cut, weak demand / consumer         | mixed       | watch 0.77   |  67.88 | -32%            | -7%       | -8.3% (z -1.3)  | buy         |         47 | +48%            | 0/0           | -1.6%         | +40.2%          | 2026-11-03    |
+| [AON](https://www.tradingview.com/chart/?symbol=AON)   | insider buys (beaten-down)                | undecided         |     1.5 | deal/financing, company disclosure (8-K), earnings, management, rating cut                                                        | management / turnaround, guidance / outlook cut        | mixed       | watch 0.75   | 275.95 | -27%            | -17%      | -6.7% (z -1.3)  | buy         |         19 | +39%            | 0/1           | -1.8%         | +0.3%           | 2026-10-30    |
+| [PODD](https://www.tradingview.com/chart/?symbol=PODD) | insider buys (beaten-down)                | undecided         |     1.5 | earnings, guidance, rating cut, company disclosure (8-K), legal/regulatory, management, market-wide                               | legal / regulatory, guidance / outlook cut             | mixed       | watch 0.85   | 130.79 | -62%            | -10%      | -9.1% (z -0.4)  | buy         |         22 | +31%            | 0/5           | +0.0%         | +14.3%          | 2026-11-04    |
+| [BSX](https://www.tradingview.com/chart/?symbol=BSX)   | insider buys (beaten-down)                | undecided         |     1.5 | earnings, guidance, demand/competition, rating cut, management, company disclosure (8-K), legal/regulatory                        | guidance / outlook cut, analyst downgrades             | negative    | watch 0.77   |  43.23 | -59%            | -8%       | -8.6% (z -0.4)  | buy         |         29 | +41%            | 0/2           | -1.2%         | +3.9%           | 2026-10-28    |
+| [TSN](https://www.tradingview.com/chart/?symbol=TSN)   | insider buys (beaten-down), falling wedge | undecided         |     1   | company disclosure (8-K), earnings, guidance, rating cut, management, demand/competition                                          | management / turnaround, guidance / outlook cut        | negative    | watch 0.76   |  50.47 | -25%            | -8%       | -3.9% (z -0.6)  | hold        |         12 | +27%            | 1/0           | -6.2%         | +0.3%           | 2026-11-16    |
+| [ARE](https://www.tradingview.com/chart/?symbol=ARE)   | insider buys (other)                      | undecided         |     1   | earnings, demand/competition, news, rating cut, company disclosure (8-K), guidance                                                | guidance / outlook cut, earnings miss                  | mixed       | watch 0.76   |  47.03 | -41%            | -6%       | +4.3% (z +0.7)  | hold        |         14 | +12%            | 0/1           | -0.3%         | +26.2%          | 2026-10-26    |
+| [DUK](https://www.tradingview.com/chart/?symbol=DUK)   | falling wedge                             | undecided         |     1   | legal/regulatory, guidance, demand/competition, company disclosure (8-K), rating cut, earnings, management                        | guidance / outlook cut, debt / financing               | mixed       | watch 0.55   | 113.74 | -13%            | -6%       | -0.2% (z +0.0)  | buy         |         18 | +20%            | 1/0           | -0.0%         | +9.6%           | 2026-11-05    |
+| [TMUS](https://www.tradingview.com/chart/?symbol=TMUS) | falling wedge                             | undecided         |     1   | earnings, management, guidance, rating cut, demand/competition, news, deal/financing, company disclosure (8-K)                    | competition / market share, guidance / outlook cut     | mixed       | watch 0.66   | 161.73 | -29%            | -8%       | -4.4% (z -0.6)  | buy         |         25 | +51%            | 1/1           | +0.0%         | +14.9%          | 2026-10-28    |
+| [YUM](https://www.tradingview.com/chart/?symbol=YUM)   | falling wedge                             | undecided         |     1   | deal/financing, market-wide, rating cut, guidance, legal/regulatory, earnings, demand/competition                                 | legal / regulatory, weak demand / consumer             | mixed       | watch 0.86   | 136.69 | -18%            | -7%       | -3.3% (z -0.7)  | buy         |         22 | +27%            | 1/1           | -3.6%         | +3.7%           | 2026-11-03    |
+| [PPL](https://www.tradingview.com/chart/?symbol=PPL)   | falling wedge                             | undecided         |     0.5 | earnings, legal/regulatory, company disclosure (8-K), rating cut                                                                  | guidance / outlook cut, earnings miss                  | mixed       | watch 0.55   |  32.76 | -16%            | -5%       | +1.1% (z +0.7)  | buy         |         16 | +22%            | 0/0           | +0.0%         | -4.0%           | 2026-11-04    |
+| [VMC](https://www.tradingview.com/chart/?symbol=VMC)   | falling wedge                             | undecided         |     0.5 | earnings, rating cut, demand/competition, news, deal/financing                                                                    | earnings miss, weak demand / consumer                  | negative    | watch 0.68   | 243.98 | -26%            | -8%       | +0.7% (z +0.1)  | buy         |         23 | +31%            | 0/1           | -0.4%         | +4.9%           | 2026-10-29    |
+| [COO](https://www.tradingview.com/chart/?symbol=COO)   | insider buys (beaten-down)                | undecided         |     0   | earnings, company disclosure (8-K), guidance, demand/competition, rating cut                                                      | guidance / outlook cut, earnings miss                  | negative    | watch 0.79   |  57.41 | -32%            | -15%      | -10.8% (z -1.3) | buy         |         14 | +15%            | 0/4           | -2.1%         | +2.7%           |               |
+| [MO](https://www.tradingview.com/chart/?symbol=MO)     | insider buys (other)                      | undecided         |     0   | earnings, guidance, demand/competition, company disclosure (8-K), rating cut, management, legal/regulatory                        | weak demand / consumer, earnings miss                  | mixed       | watch 0.79   |  66.95 | -9%             | -1%       | +3.2% (z +0.3)  | hold        |         11 | +5%             | 0/0           | +0.0%         | -1.2%           | 2026-10-29    |
+| [FICO](https://www.tradingview.com/chart/?symbol=FICO) | news-day                                  | undecided         |     0   | guidance, rating cut, legal/regulatory, demand/competition, earnings, news, management                                            | margins / costs, competition / market share            | negative    | watch 0.59   | 661.75 | -65%            | -36%      | -33.4% (z -2.9) | buy         |         19 | +90%            | 0/2           | -0.2%         | +3.4%           | 2026-11-04    |
+| [WEC](https://www.tradingview.com/chart/?symbol=WEC)   | falling wedge                             | undecided         |     0   | rating cut, company disclosure (8-K), earnings, demand/competition, market-wide                                                   | guidance / outlook cut, management / turnaround        | positive    | watch 0.54   | 101.73 | -14%            | -5%       | +2.0% (z +1.7)  | buy         |         17 | +18%            | 0/0           | +0.0%         | +12.3%          | 2026-10-29    |
+| [APTV](https://www.tradingview.com/chart/?symbol=APTV) | falling wedge                             | undecided         |    -0.5 | earnings, guidance, demand/competition, rating cut, deal/financing, company disclosure (8-K), market-wide                         | guidance / outlook cut, analyst downgrades             | mixed       | watch 0.77   |  43.97 | -50%            | -8%       | +5.2% (z +1.0)  | buy         |         18 | +51%            | 0/2           | +0.0%         | +14.1%          | 2026-10-29    |
+| [CNP](https://www.tradingview.com/chart/?symbol=CNP)   | falling wedge                             | undecided         |    -0.5 | earnings, rating cut, company disclosure (8-K), management, demand/competition, guidance, market-wide                             | debt / financing, weak demand / consumer               | mixed       | watch 0.63   |  37.21 | -17%            | -6%       | +0.1% (z +0.1)  | buy         |         17 | +21%            | 0/0           | -0.1%         | +7.4%           | 2026-10-27    |
+| [NI](https://www.tradingview.com/chart/?symbol=NI)     | falling wedge                             | undecided         |    -0.5 | earnings, rating cut, guidance, demand/competition, deal/financing                                                                | earnings miss, weak demand / consumer                  | mixed       | watch 0.57   |  39.5  | -19%            | -5%       | +1.7% (z +0.8)  | buy         |         15 | +24%            | 0/0           | -0.1%         | +1.5%           | 2026-10-28    |
+| [TFC](https://www.tradingview.com/chart/?symbol=TFC)   | insider buys (other)                      | undecided         |    -1   | management, company disclosure (8-K), market-wide, rating cut, earnings                                                           | management / turnaround, analyst downgrades            | positive    | watch 0.66   |  46.28 | -15%            | -8%       | -0.9% (z -0.2)  | hold        |         18 | +18%            | 0/4           | -1.4%         | +13.8%          | 2026-10-16    |
+| [NCLH](https://www.tradingview.com/chart/?symbol=NCLH) | falling wedge                             | undecided         |    -1   | earnings, demand/competition, news, rating cut, guidance, management                                                              | guidance / outlook cut, management / turnaround        | negative    | watch 0.58   |  14.64 | -41%            | -13%      | -11.2% (z -0.9) | buy         |         25 | +38%            | 0/2           | +0.1%         | +22.8%          | 2026-11-04    |
+| [SRE](https://www.tradingview.com/chart/?symbol=SRE)   | falling wedge                             | undecided         |    -1   | company disclosure (8-K), rating cut, earnings, market-wide, news, management                                                     | earnings miss, guidance / outlook cut                  | positive    | watch 0.54   |  78.05 | -21%            | -7%       | -0.3% (z -0.0)  | buy         |         18 | +28%            | 1/1           | +0.1%         | +9.6%           | 2026-11-04    |
+| [CINF](https://www.tradingview.com/chart/?symbol=CINF) | insider buys (other)                      | undecided         |    -1.5 | earnings, guidance, rating cut, demand/competition, management                                                                    | analyst downgrades, management / turnaround            | mixed       | watch 0.66   | 162.15 | -15%            | -5%       | -0.9% (z -0.3)  | hold        |          6 | +18%            | 0/2           | +0.7%         | -21.3%          | 2026-10-26    |
+| [CRH](https://www.tradingview.com/chart/?symbol=CRH)   | falling wedge                             | undecided         |    -1.5 | news, rating cut, earnings, deal/financing, market-wide, guidance                                                                 | guidance / outlook cut, earnings miss                  | mixed       | watch 0.61   |  81.7  | -37%            | -12%      | -5.6% (z -1.2)  | strong buy  |         24 | +61%            | 0/0           | -1.7%         | -4.2%           | 2026-10-29    |
+| [EQT](https://www.tradingview.com/chart/?symbol=EQT)   | falling wedge                             | undecided         |    -1.5 | guidance, deal/financing, management, earnings, demand/competition, news, rating cut, market-wide                                 | guidance / outlook cut, management / turnaround        | mixed       | watch 0.82   |  50.09 | -26%            | -5%       | -3.4% (z -0.4)  | strong buy  |         26 | +35%            | 0/0           | -2.6%         | -3.3%           | 2026-10-20    |
+| [NRG](https://www.tradingview.com/chart/?symbol=NRG)   | falling wedge                             | undecided         |    -1.5 | earnings, guidance, demand/competition, rating cut, news, company disclosure (8-K), deal/financing, market-wide, management       | earnings miss, margins / costs                         | mixed       | watch 0.74   |  96.93 | -47%            | -16%      | -15.3% (z -1.2) | buy         |         16 | +91%            | 0/0           | +0.3%         | -14.4%          | 2026-11-05    |
+| [SO](https://www.tradingview.com/chart/?symbol=SO)     | falling wedge                             | undecided         |    -1.5 | legal/regulatory, deal/financing, management, guidance, company disclosure (8-K), demand/competition, rating cut, news, earnings  | guidance / outlook cut, legal / regulatory             | positive    | watch 0.51   |  83.47 | -14%            | -7%       | +0.1% (z +0.3)  | hold        |         19 | +18%            | 0/1           | +0.0%         | +11.8%          | 2026-11-05    |
+| [CMS](https://www.tradingview.com/chart/?symbol=CMS)   | falling wedge                             | still falling     |    -2.5 | earnings, deal/financing, guidance, rating cut, demand/competition, management, company disclosure (8-K)                          | guidance / outlook cut, earnings miss                  | negative    | skip 0.39    |  63.64 | -19%            | -7%       | -0.7% (z +0.0)  | buy         |         12 | +22%            | 0/1           | -0.0%         | +3.1%           | 2026-10-29    |
+| [NKE](https://www.tradingview.com/chart/?symbol=NKE)   | falling wedge                             | still falling     |    -3.5 | earnings, guidance, demand/competition, rating cut, legal/regulatory, management, market-wide, company disclosure (8-K)           | management / turnaround, China / international markets | negative    | skip 0.78    |  35.15 | -51%            | -10%      | -5.1% (z +0.1)  | hold        |         36 | +30%            | 0/4           | -3.5%         | +466.1%         |               |
 
 ## [COO](https://www.tradingview.com/chart/?symbol=COO) The Cooper Companies, Inc.
 
@@ -122,6 +123,10 @@ Last 90 days: 0 upgrades, 4 downgrades, 2 target raises, 10 target cuts.
 
 **Fundamentals.** Market cap $10.9B; P/E 19.7 trailing, 12.2 forward, PEG 0.53; EV/revenue 3.2, EV/EBITDA 14.6, P/B 1.3. Margins: gross +66%, operating +21%, net +13%; ROE +7%. Free cash flow $542.6M (yield +5.0%); cash $154.7M, debt $2.8B, debt/equity 0.34, current ratio 1.22. Short interest +6.0% of float. Beta 0.82.
 
+**AI decision (Jev).** **Action: watch** (buy 0.01, watch 0.79, skip 0.20); kind of decline: transitory (confidence 0.95); P(corporate action / data artefact, not a real decline): 0.03; P(known event within 4 weeks): 0.24; evidence vs the setup: contradicts (confidence 0.88); severity of the news for the business: 1.5 (serious damage).
+
+*A typed decision model (TypeSafe Jev via OpenRouter) that read only this brief and answered fixed questions with calibrated probabilities; it gives no rationale. Its action is forward-tested in the journal as its own rule (jev_pick) and does not replace the tested rules.*
+
 ## [AON](https://www.tradingview.com/chart/?symbol=AON) Aon plc
 
 *In today's tables: insider buys (beaten-down). Financial Services / Insurance Brokers.*
@@ -171,10 +176,10 @@ Latest news:
 - **guidance / outlook cut** (6): 2026-07-29 "Earnings call transcript: Aon tops Q2 2026 EPS forecast, shares slip" (Investing.com); 2026-08-01 "Rajab Butt drops bombshell warning for Aon Sheikh" (24 News HD)
 - **earnings miss** (6): 2026-07-29 "Aon Earnings Beat Expectations but Revenue Miss Sends Shares Lower" (Yahoo Finance); 2026-07-29 "Is Aon’s (AON) Persistent Buybacks and Modest Q2 Miss Reframing Its Capital Allocation Story?" (webull.com)
 - **competition / market share** (4): 2026-02-09 "Aon PLC stock underperforms Monday when compared to competitors" (MarketWatch); 2026-09-01 "Aon CEO: Acquisition of Rival USI to Create 'Premiere Middle-Market Platform' in U.S. - Pre-Announcement Alert" (dars.gov.et)
-Headline tone over the year: 23 negative, 41 positive, 98 neutral; last 30 days 7 negative vs 5 positive.
+Headline tone over the year: 23 negative, 41 positive, 98 neutral; last 30 days 5 negative vs 2 positive.
 
 **Positioning:** Short interest 1.8% of float (+10% vs the prior month, 2.5 days to cover), as of -2026-09-15; institutions hold 93%, insiders 1.0%; StockTwits (1079 watchers): of the last 30 posts 1 bearish, 1 bullish.
-**Sentiment: mixed** (signals: + price targets mostly raised in 90 days (16 raises vs 10 cuts); - EPS estimates revised down (1 up / 13 down in 30 days); - headlines mostly negative in the last 30 days (7 negative vs 5 positive)).
+**Sentiment: mixed** (signals: + price targets mostly raised in 90 days (16 raises vs 10 cuts); - EPS estimates revised down (1 up / 13 down in 30 days); - headlines mostly negative in the last 30 days (5 negative vs 2 positive)).
 
 **Peers and group.** Closest by market-neutral correlation: MRSH (0.72), AJG (0.70), BRO (0.67), WTW (0.63), ACGL (0.47); group of 6 stocks (largest: MRSH, AJG, WTW, BRO), mean correlation to the group 0.636; beta 0.50 to the equal-weight market, residual volatility 24% a year.
 **Last 20 days:** stock -16.6%, peer group -12.5%, relative to the group (beta-adjusted) -6.7%. The group over 6 months: -0.3%. z=-1.3, within its normal range.
@@ -192,6 +197,10 @@ Last 90 days: 0 upgrades, 1 downgrades, 16 target raises, 10 target cuts.
 **Last report and estimates.** Quarter to 2026-06-30: EPS 3.81 vs 3.80 expected (+0.3%); beat in 4 of the last 4 quarters. Revenue +2% yoy, earnings -3% yoy (latest quarter). Next report 2026-10-30 (estimated date): EPS 3.34 expected (+9% yoy), revenue +2% yoy. Current-year EPS estimate -1.8% in 30 days, -2.3% in 90 days (1 up / 13 down revisions); growth expected +9% this year, +9% next. 
 
 **Fundamentals.** Market cap $58.5B; P/E 15.2 trailing, 13.6 forward, PEG 2.16; EV/revenue 4.2, EV/EBITDA 12.4, P/B 6.1. Margins: gross +48%, operating +23%, net +22%; ROE +45%. Free cash flow $3.2B (yield +5.5%); cash $1.1B, debt $15.9B, debt/equity 1.63, current ratio 1.03. Dividend yield +1.2%. Short interest +1.8% of float. Beta 0.66.
+
+**AI decision (Jev).** **Action: watch** (buy 0.14, watch 0.75, skip 0.11); kind of decline: transitory (confidence 0.69); P(corporate action / data artefact, not a real decline): 0.04; P(known event within 4 weeks): 0.81; evidence vs the setup: neutral (confidence 0.32); severity of the news for the business: 1.0 (modest damage).
+
+*A typed decision model (TypeSafe Jev via OpenRouter) that read only this brief and answered fixed questions with calibrated probabilities; it gives no rationale. Its action is forward-tested in the journal as its own rule (jev_pick) and does not replace the tested rules.*
 
 ## [VST](https://www.tradingview.com/chart/?symbol=VST) Vistra Corp.
 
@@ -261,6 +270,10 @@ Last 90 days: 0 upgrades, 0 downgrades, 3 target raises, 3 target cuts.
 **Last report and estimates.** Quarter to 2026-06-30: EPS 0.76 vs 1.66 expected (-54.2%); beat in 1 of the last 4 quarters. Revenue -6% yoy, earnings -6% yoy (latest quarter). Next report 2026-11-06: EPS 2.59 expected (+48% yoy), revenue +53% yoy. Current-year EPS estimate -0.1% in 30 days, -2.5% in 90 days (2 up / 4 down revisions); growth expected +339% this year, +8% next. 
 
 **Fundamentals.** Market cap $46.9B; P/E 23.5 trailing, 13.5 forward, PEG 0.35; EV/revenue 3.6, EV/EBITDA 10.4, P/B 15.6. Margins: gross +38%, operating +14%, net +12%; ROE +43%. Free cash flow $37.1M (yield +0.1%); cash $435.0M, debt $20.5B, debt/equity 3.73, current ratio 0.97. Dividend yield +0.7%. Short interest +3.4% of float. Beta 1.41.
+
+**AI decision (Jev).** **Action: watch** (buy 0.09, watch 0.81, skip 0.10); kind of decline: structural (confidence 0.54); P(corporate action / data artefact, not a real decline): 0.06; P(known event within 4 weeks): 0.91; evidence vs the setup: neutral (confidence 0.58); severity of the news for the business: 1.2 (modest damage).
+
+*A typed decision model (TypeSafe Jev via OpenRouter) that read only this brief and answered fixed questions with calibrated probabilities; it gives no rationale. Its action is forward-tested in the journal as its own rule (jev_pick) and does not replace the tested rules.*
 
 ## [TSN](https://www.tradingview.com/chart/?symbol=TSN) Tyson Foods, Inc.
 
@@ -335,77 +348,9 @@ Last 90 days: 1 upgrades, 0 downgrades, 0 target raises, 5 target cuts.
 
 **Fundamentals.** Market cap $17.8B; P/E 31.2 trailing, 12.2 forward, PEG 1.04; EV/revenue 0.5, EV/EBITDA 9.1, P/B 1.0. Margins: gross +7%, operating +3%, net +1%; ROE +3%. Free cash flow $1.2B (yield +6.7%); cash $740.0M, debt $8.0B, debt/equity 0.44, current ratio 1.43. Dividend yield +4.0%. Short interest +3.4% of float. Beta 0.37.
 
-## [APTV](https://www.tradingview.com/chart/?symbol=APTV) Aptiv PLC
+**AI decision (Jev).** **Action: watch** (buy 0.03, watch 0.76, skip 0.21); kind of decline: transitory (confidence 0.40); P(corporate action / data artefact, not a real decline): 0.02; P(known event within 4 weeks): 0.62; evidence vs the setup: contradicts (confidence 0.90); severity of the news for the business: 1.8 (serious damage).
 
-*In today's tables: insider buys (beaten-down), falling wedge. Consumer Cyclical / Auto Parts.*
-*Aptiv PLC, an industrial technology company, provides hardware and software solutions to support automotive and other industries in North America, Europe, the Middle East, Africa, the Asia Pacific, and South America.*
-
-**Read: undecided (no clear base yet)** (score +0.5). Signals: -1 price below its 50-day average; -1 new 52-week low within the last 5 bars; +1 analyst consensus buy (18 analysts); +1 mean price target +51% above the price; -1 more downgrades than upgrades in 90 days (2 vs 0); -1 analysts cutting price targets (10 cuts vs 2 raises in 90 days); -0.5 estimate revisions mostly down (0 up / 17 down in 30 days); +0.5 last quarter beat estimates (+14.1%); +0.5 revenue growing (+2% yoy); +0.5 positive free cash flow; +0.5 forward P/E 7 below trailing 20 (earnings expected to grow); +1 insiders bought (in today's insider table).
-
-**Where the stock is.** Last 43.97, -50% from the 52-week high (88.67 on 2026-01-09), +2% above the 52-week low (43.02 on 2026-09-30). 1m -2%, 3m -25%, 6m -29%, 1y -49%; vs 50-day -8%, vs 200-day -31%; RSI(14) 41. 52-week change -51% vs S&P 500 +14%.
-
-**Why it fell.** From the 52-week high (88.67 on 2026-01-09) the stock is -50%; the 2 earnings-reaction day(s) below took 23.2% off it. Cause found in the data (earnings, guidance, demand/competition, rating cut, deal/financing, company disclosure (8-K), market-wide). Largest down days of the last year, plus every earnings reaction that closed down, and the evidence around each:
-- 2026-08-04: -16.6% (7.7x normal volume, SPY +1.8%):
-  - 8-K filed 2026-08-04: results of operations (earnings release) (quarter to 2026-06-30: EPS 1.63 vs 1.43 expected, +14.1%)
-  - 2026-08-04 Aptiv shares fall 4% on weak guidance despite Q2 earnings beat (Investing.com Nigeria)
-  - 2026-08-04 Aptiv Shares Decline as Weak Guidance Overshadows Second-Quarter Earnings Beat (finance.yahoo.com)
-  - 2026-08-04 Aptiv slides as reduced full-year outlook overshadows second-quarter profit growth (Quiver Quantitative)
-  - rating/target cuts right after: UBS target cut 80 -> 62; TD Cowen target cut 90 -> 77; Goldman Sachs target cut 82 -> 71
-- 2026-04-01: -10.6% (2.0x normal volume, SPY +0.8%):
-  - 8-K filed 2026-04-01: material agreement; acquisition or disposal completed
-  - 2026-04-01 Aptiv Enters Separation and Distribution Agreement With Versigent to Complete Spin-Off (TradingView)
-  - 2026-03-31 Aptiv and Versigent to Release First Quarter 2026 Financial Results on May 5 (Business Wire)
-  - rating/target cuts right after: UBS target cut 97 -> 80; TD Cowen target cut 108 -> 93; RBC Capital target cut 104 -> 81
-- 2026-05-05: -7.9% (4.0x normal volume, SPY +0.8%):
-  - 8-K filed 2026-05-05: results of operations (earnings release); other events (quarter to 2026-03-31: EPS 1.71 vs 1.58 expected, +7.9%)
-  - 2026-05-04 Aptiv Q1 results: sales hit $5.1B, Versigent spin-off finalized (grafa.com)
-  - 2026-05-05 Aptiv PLC Q1 2026 Earnings Call Summary (finance.yahoo.com)
-  - 2026-05-05 APTIV ($APTV) Releases Q1 2026 Earnings (Quiver Quantitative)
-  - rating/target cuts right after: Barclays target cut 77 -> 73
-- 2026-01-14: -6.0% (2.2x normal volume, SPY -0.5%). No cause found for this day.
-- 2026-06-05: -5.9% (1.3x normal volume, SPY -2.6%):
-  - 2026-06-04 APTIV PLC (APTV) Up 35.3% Since Last Earnings Report: Can It Continue? (Yahoo Finance)
-  - market-wide day: SPY -2.6%
-- 2025-10-30: -4.3% (earnings reaction, 1.7x normal volume, SPY -1.1%):
-  - 8-K filed 2025-10-30: results of operations (earnings release) (quarter to 2025-09-30: EPS 2.17 vs 1.83 expected, +18.8%)
-  - rating/target cuts right after: Wells Fargo target cut 106 -> 100
-
-Latest news:
-- 2026-10-01 Aptiv PLC (APTV) Surpasses Market Returns: Some Facts Worth Knowing (Zacks): Aptiv PLC (APTV) closed at $43.97 in the latest trading session, marking a +2.21% move from the prior day.
-- 2026-10-01 EV Charging Cable Market to Reach $5.63 Billion by 2033 at 15.8% CAGR as High-Power DC Charging Drives Demand for Liquid-Cooled Cables (GlobeNewswire): A new Research and Markets report profiles 24 companies, including TE Connectivity, LEONI, Aptiv, Yazaki and Prysmian Group. It finds AC charging cables lead the market today, while large-diameter and liquid-cooled high-power cables grow fastest.Dublin, Oct. 01, 2026 (GLOBE NEWSW
-- 2026-10-01 EV Connector Market Forecasts Growth from $3.67B (2026) to $8.84B by 2033, Profiling TE Connectivity, Aptiv, Yazaki & Hirose Electric (GlobeNewswire): The global EV connector market is projected to grow from USD 3.67 billion in 2026 to USD 8.84 billion by 2033, at a 13.4% CAGR. Growth is driven by high-voltage EV platforms, fast charging, software-defined vehicles, and rising demand for high-current, liquid-cooled, sealed, and 
-- 2026-09-30 Aptiv (APTV) Leaves The FTSE All World Index, Is It Still 35% Undervalued? (Simply Wall St.): Aptiv (APTV) has come under pressure after being removed from the FTSE All-World Index in US dollars, a shift that coincides with weak earnings expectations and cautious analyst sentiment around the stock. The recent FTSE All-World exit comes on top of a weak run for Aptiv, with 
-- 2026-09-29 Should You Trim Or Add To Your Aurora Innovation Position Now? (Trefis): Aurora Innovation's shares (AUR) are worth about $10.3 billion. The driverless-truck company booked $2 million of revenue in the second quarter of 2026. Investors are paying for a self-driving truck fleet that is mostly still being built. Most of the trucks Aurora plans for year-
-- 2026-09-28 Aptiv PLC (APTV) Registers a Bigger Fall Than the Market: Important Facts to Note (Zacks): The latest trading day saw Aptiv PLC (APTV) settling at $43.64, representing a -2.57% change from its previous close.
-
-**Investor concerns and sentiment.**
-
-**What worries investors** (themes of the negative headlines of the last year, 79 headlines checked; headlines around the largest down days count double):
-- **guidance / outlook cut** (14): 2026-05-04 "Aptiv Trims Automotive USB Patent Claims In Delaware Suit" (Law360); 2026-08-04 "Aptiv Shares Decline as Weak Guidance Overshadows Second-Quarter Earnings Beat" (finance.yahoo.com)
-- **analyst downgrades** (3): 2026-08-05 "Aptiv PLC Stock 12‑Month Price Target Cut to $68.83, Implies 44% Upside" (TradingView); 2026-08-05 "Deutsche Bank Downgrades Aptiv to Hold From Buy, Adjusts Price Target to $56 From $75" (finance.yahoo.com)
-- **China / international markets** (2): 2026-08-04 "[Aptiv Q2 2026 Earnings Call] Aptiv Cuts Full-Year Outlook by $300M as China Slump and Luxury OEM Pullback Bite, Despite Q2 Revenue of $3.3B" (finance.biggo.com)
-- **margins / costs** (1): 2026-08-04 "Aptiv (APTV) Stock Reprices Sharp Cash Flow Cracks After Margin Strain" (simplywall.st)
-Headline tone over the year: 13 negative, 14 positive, 52 neutral; last 30 days 2 negative vs 1 positive.
-
-**Positioning:** Short interest 4.9% of float (-21% vs the prior month, 1.6 days to cover), as of -2026-09-15; institutions hold 105%, insiders 0.8%; StockTwits (2588 watchers): of the last 30 posts 4 bearish, 11 bullish.
-**Sentiment: mixed** (signals: - price targets mostly cut in 90 days (10 cuts vs 2 raises); - EPS estimates revised down (0 up / 17 down in 30 days); + short interest falling (-21% in a month); + StockTwits crowd bullish (11 bullish vs 4 bearish of the last 30 posts)).
-
-**Peers and group.** Closest by market-neutral correlation: GM (0.28), F (0.28), SWK (0.24), ON (0.23), HAS (0.22); group of 9 stocks (largest: F, GM, XYL, EL), mean correlation to the group 0.166; beta 1.39 to the equal-weight market, residual volatility 36% a year.
-**Last 20 days:** stock -2.4%, peer group -6.7%, relative to the group (beta-adjusted) +5.2%. The group over 6 months: -2.6%. z=+1.0, within its normal range.
-The group as one basket: not beaten down (6 months -5.9%, -9.4% vs its 200-day MA); 38% of the other members are beaten down.
-
-**What analysts say.** Consensus **buy** (18 analysts, mean rating 1.6 on a 1-5 scale); strong buy 5, buy 11, hold 4, sell 0, strong sell 0. Mean target 66.61 (+51% from the price; range 55.00-78.00). 
-Last 90 days: 0 upgrades, 2 downgrades, 2 target raises, 10 target cuts.
-- 2026-09-15 JP Morgan: downgrades Overweight -> Neutral, target 65 -> 56
-- 2026-09-09 StoneX: initiates Buy, target 75
-- 2026-08-10 Evercore ISI Group: maintains Outperform, target 80 -> 70
-- 2026-08-10 Barclays: maintains Overweight, target 73 -> 65
-- 2026-08-05 UBS: maintains Buy, target 80 -> 62
-- 2026-08-05 TD Cowen: maintains Buy, target 90 -> 77
-
-**Last report and estimates.** Quarter to 2026-06-30: EPS 1.63 vs 1.43 expected (+14.1%); beat in 4 of the last 4 quarters. Revenue +2% yoy, earnings -35% yoy (latest quarter). Next report 2026-10-29 (estimated date): EPS 1.33 expected (-39% yoy), revenue -39% yoy. Current-year EPS estimate +0.0% in 30 days, -6.9% in 90 days (0 up / 17 down revisions); growth expected -27% this year, +14% next. 
-
-**Fundamentals.** Market cap $9.1B; P/E 19.9 trailing, 6.7 forward, PEG 0.95; EV/revenue 0.7, EV/EBITDA 4.3, P/B 1.0. Margins: gross +19%, operating +13%, net +1%; ROE +5%. Free cash flow $1.6B (yield +17.7%); cash $761.0M, debt $5.7B, debt/equity 0.65, current ratio 2.02. Short interest +4.9% of float. Beta 1.33.
+*A typed decision model (TypeSafe Jev via OpenRouter) that read only this brief and answered fixed questions with calibrated probabilities; it gives no rationale. Its action is forward-tested in the journal as its own rule (jev_pick) and does not replace the tested rules.*
 
 ## [PODD](https://www.tradingview.com/chart/?symbol=PODD) Insulet Corporation
 
@@ -486,6 +431,10 @@ Last 90 days: 0 upgrades, 5 downgrades, 1 target raises, 15 target cuts.
 
 **Fundamentals.** Market cap $9.1B; P/E 24.6 trailing, 17.0 forward, PEG 1.03; EV/revenue 3.1, EV/EBITDA 15.4, P/B 6.4. Margins: gross +71%, operating +16%, net +12%; ROE +26%. Free cash flow $236.9M (yield +2.6%); cash $534.9M, debt $948.4M, debt/equity 0.67, current ratio 2.48. Short interest +8.3% of float. Beta 1.08.
 
+**AI decision (Jev).** **Action: watch** (buy 0.02, watch 0.85, skip 0.13); kind of decline: transitory (confidence 0.49); P(corporate action / data artefact, not a real decline): 0.02; P(known event within 4 weeks): 0.57; evidence vs the setup: neutral (confidence 0.39); severity of the news for the business: 1.9 (serious damage).
+
+*A typed decision model (TypeSafe Jev via OpenRouter) that read only this brief and answered fixed questions with calibrated probabilities; it gives no rationale. Its action is forward-tested in the journal as its own rule (jev_pick) and does not replace the tested rules.*
+
 ## [BSX](https://www.tradingview.com/chart/?symbol=BSX) Boston Scientific Corporation
 
 *In today's tables: insider buys (beaten-down). Healthcare / Medical Devices.*
@@ -561,6 +510,10 @@ Last 90 days: 0 upgrades, 2 downgrades, 0 target raises, 19 target cuts.
 **Last report and estimates.** Quarter to 2026-06-30: EPS 0.86 vs 0.83 expected (+3.9%); beat in 4 of the last 4 quarters. Revenue +8% yoy, earnings +15% yoy (latest quarter). Next report 2026-10-28: EPS 0.76 expected (+1% yoy), revenue +1% yoy. Current-year EPS estimate -1.2% in 30 days, -2.9% in 90 days (0 up / 25 down revisions); growth expected +7% this year, +4% next. 
 
 **Fundamentals.** Market cap $62.7B; P/E 17.5 trailing, 12.7 forward, PEG 0.61; EV/revenue 3.6, EV/EBITDA 13.1, P/B 2.5. Margins: gross +69%, operating +23%, net +17%; ROE +15%. Free cash flow $2.5B (yield +3.9%); cash $539.0M, debt $12.6B, debt/equity 0.50, current ratio 1.24. Short interest +3.2% of float. Beta 0.57.
+
+**AI decision (Jev).** **Action: watch** (buy 0.02, watch 0.77, skip 0.21); kind of decline: transitory (confidence 0.51); P(corporate action / data artefact, not a real decline): 0.02; P(known event within 4 weeks): 0.95; evidence vs the setup: contradicts (confidence 0.93); severity of the news for the business: 1.8 (serious damage).
+
+*A typed decision model (TypeSafe Jev via OpenRouter) that read only this brief and answered fixed questions with calibrated probabilities; it gives no rationale. Its action is forward-tested in the journal as its own rule (jev_pick) and does not replace the tested rules.*
 
 ## [UBER](https://www.tradingview.com/chart/?symbol=UBER) Uber Technologies, Inc.
 
@@ -640,6 +593,10 @@ Last 90 days: 0 upgrades, 0 downgrades, 1 target raises, 10 target cuts.
 
 **Fundamentals.** Market cap $138.6B; P/E 14.9 trailing, 15.3 forward, PEG 5.84; EV/revenue 2.7, EV/EBITDA 19.9, P/B 5.1. Margins: gross +41%, operating +13%, net +17%; ROE +37%. Free cash flow $7.2B (yield +5.2%); cash $5.4B, debt $14.7B, debt/equity 0.52, current ratio 0.84. Short interest +2.3% of float. Beta 1.16.
 
+**AI decision (Jev).** **Action: watch** (buy 0.11, watch 0.77, skip 0.12); kind of decline: transitory (confidence 0.89); P(corporate action / data artefact, not a real decline): 0.02; P(known event within 4 weeks): 0.79; evidence vs the setup: neutral (confidence 0.49); severity of the news for the business: 1.4 (modest damage).
+
+*A typed decision model (TypeSafe Jev via OpenRouter) that read only this brief and answered fixed questions with calibrated probabilities; it gives no rationale. Its action is forward-tested in the journal as its own rule (jev_pick) and does not replace the tested rules.*
+
 ## [FOX](https://www.tradingview.com/chart/?symbol=FOX) Fox Corporation
 
 *In today's tables: insider buys (other). Communication Services / Entertainment.*
@@ -708,6 +665,96 @@ Last 90 days: 1 upgrades, 1 downgrades, 1 target raises, 0 target cuts.
 
 **Fundamentals.** Market cap $23.2B; P/E 14.3 trailing, 9.6 forward, PEG ; EV/revenue 1.6, EV/EBITDA 6.9, P/B 2.0. Margins: gross +37%, operating +25%, net +10%; ROE +14%. Free cash flow $555.4M (yield +2.4%); cash $4.2B, debt $7.6B, debt/equity 0.64, current ratio 3.17. Dividend yield +1.0%. Short interest +7.8% of float. Beta 0.56.
 
+**AI decision (Jev).** **Action: watch** (buy 0.06, watch 0.79, skip 0.15); kind of decline: transitory (confidence 0.63); P(corporate action / data artefact, not a real decline): 0.05; P(known event within 4 weeks): 0.16; evidence vs the setup: supports (confidence 0.57); severity of the news for the business: 0.9 (modest damage).
+
+*A typed decision model (TypeSafe Jev via OpenRouter) that read only this brief and answered fixed questions with calibrated probabilities; it gives no rationale. Its action is forward-tested in the journal as its own rule (jev_pick) and does not replace the tested rules.*
+
+## [ORCL](https://www.tradingview.com/chart/?symbol=ORCL) Oracle Corporation
+
+*In today's tables: insider buys (other). Technology / Software - Infrastructure.*
+*Oracle Corporation offers products and services that build, run and support enterprise information technology frameworks worldwide.*
+
+**Read: signs of a bottom (more likely up than down)** (score +4). Signals: -1 price below its 50-day average; +1 50-day average turning up; +1 analyst consensus buy (41 analysts); +1 mean price target +72% above the price; -1 analysts cutting price targets (8 cuts vs 3 raises in 90 days); +0.5 estimate revisions mostly up (4 up / 0 down in 30 days); +1 current-year EPS estimate raised +1.0% in 30 days; +0.5 last quarter beat estimates (+10.4%); +0.5 revenue growing (+30% yoy); -0.5 negative free cash flow; -0.5 high leverage (debt/equity 2.5); +0.5 forward P/E 13 below trailing 22 (earnings expected to grow); +1 insiders bought (in today's insider table).
+
+**Where the stock is.** Last 138.07, -55% from the 52-week high (310.01 on 2025-10-16), +20% above the 52-week low (114.99 on 2026-07-24). 1m -2%, 3m -1%, 6m -4%, 1y -50%; vs 50-day -4%, vs 200-day -15%; RSI(14) 35. 52-week change -52% vs S&P 500 +14%.
+
+**Why it fell.** From the 52-week high (310.01 on 2025-10-16) the stock is -55%; the 3 earnings-reaction day(s) below took 22.8% off it. Cause found in the data (earnings, company disclosure (8-K), legal/regulatory, demand/competition, rating cut, news, market-wide, guidance, deal/financing). Largest down days of the last year, plus every earnings reaction that closed down, and the evidence around each:
+- 2025-12-11: -10.8% (4.2x normal volume, SPY +0.2%):
+  - 8-K filed 2025-12-10: results of operations (earnings release); other events (quarter to 2025-11-30: EPS 2.26 vs 1.64 expected, +38.0%)
+  - 2025-12-11 Securities Fraud Investigation Into Oracle Corporation (ORCL) Announced – Investors Who Lost Money Urged to Contact Glancy Prongay & Murray LLP, a Leading Securities Fraud Law Firm (Business Wire)
+  - 2025-12-11 Oracle's Post-Earnings Plunge Is Dragging These Tech Stocks Down With It (Investopedia)
+  - 2025-12-11 Oracle’s Larry Ellison Loses $31 Billion, Falls To No. 3 Richest (Forbes)
+  - rating/target cuts right after: Goldman Sachs target cut 320 -> 220; UBS target cut 380 -> 325; Citigroup target cut 375 -> 370
+- 2026-06-05: -9.6% (1.5x normal volume, SPY -2.6%):
+  - 2026-06-05 Oracle Q4 Earnings Preview: Expect AI Demand to Push ORCL Stock Even Higher (barchart.com)
+  - 2026-06-05 Why Oracle (ORCL) Shares Are Sliding Today (Yahoo Finance)
+  - 2026-06-05 Oracle (ORCL) Is Up 16.0% After AI Data Center Capex Becomes Focus Ahead of Earnings (Yahoo Finance)
+  - market-wide day: SPY -2.6%
+- 2026-06-11: -8.5% (3.3x normal volume, SPY +1.7%):
+  - 8-K filed 2026-06-10: results of operations (earnings release); other events (quarter to 2026-05-31: EPS 2.11 vs 1.96 expected, +7.5%)
+  - 2026-06-11 Oracle Delivers Blowout Quarter, but One AI Warning Sends Shares Tumbling (Yahoo Finance)
+  - 2026-06-11 Oracle shares fall as company reports fourth quarter earnings (Austin American-Statesman)
+  - 2026-06-11 Oracle’s 20% Plunge Proves What Micron Knew All Along: AI Demand Is About to Collapse (Yahoo Finance)
+  - rating/target cuts right after: Wedbush target cut 275 -> 240; Scotiabank target cut 290 -> 241
+- 2026-02-05: -6.9% (1.7x normal volume, SPY -1.2%):
+  - 8-K filed 2026-02-05: material agreement; item 3.03; bylaw change
+  - 8-K filed 2026-02-04: material agreement; other events
+  - 2026-02-05 Oracle launches $20 billion at-the-market stock offering and completes $25 billion debt issuance (Investing.com)
+  - 2026-02-05 Oracle nabs $88.1m cloud contract from US Air Force (Data Center Dynamics)
+  - 2026-02-05 Oracle’s stock suffers worst eight-day stretch in over two decades. Here’s why. (MarketWatch)
+  - rating/target cuts right after: Citizens target cut 342 -> 285
+- 2025-10-17: -6.9% (1.5x normal volume, SPY +0.6%):
+  - 2025-10-17 Oracle: Another OCI Revenue Outlook Raise Shows Ability to Capture AI Momentum (Morningstar)
+  - 2025-10-17 Oracle Stock Falls Over 2% Despite Strong Long-Term Outlook (TIKR.com)
+  - 2025-10-17 Oracle Projects $166 bn in Cloud Infrastructure Revenue by Fiscal 2030, Driven by AI and Enterprise Demand (InfotechLead)
+- 2026-09-10: -5.4% (earnings reaction, 2.6x normal volume, SPY -0.6%):
+  - 8-K filed 2026-09-10: results of operations (earnings release); other events (quarter to 2026-08-31: EPS 1.92 vs 1.74 expected, +10.4%)
+  - 2026-09-10 Oracle Fiscal Q1 Adjusted Earnings, Revenue Rise; Q2 Guidance Set (Yahoo Finance)
+  - 2026-09-11 Oracle posts 30% revenue growth fueled by AI cloud demand as debts hits $125 billion (CNBC)
+  - 2026-09-11 Oracle Q1 Earnings Call Centers on AI Capacity and Raised Outlook (Yahoo Finance)
+  - rating/target cuts right after: Stifel target cut 220 -> 200; RBC Capital target cut 190 -> 165; BMO Capital target cut 220 -> 195
+
+Latest news:
+- 2026-10-02 Bloom Energy CEO Shrugs Off Oracle Force Majeure Worries, Says Bloom Boxes Are 'Fungible' (Stocktwits): In an interview with Bloomberg TV, CEO KR Sridhar explained that unlike large power plants, Bloom boxes are “fungible,” so a project delay would not be a concern.
+- 2026-10-02 Oracle data center deal could lower We Energies electric bills (Milwaukee Journal Sentinel): Oracle said its plan to purchase nuclear power could save We Energies customers $300 million in fuel costs between 2027 and 2033.
+- 2026-10-02 GE Vernova (GEV) vs. Quanta Services (PWR): Which AI Power Stock Has More Room to Run? (Insider Monkey): The AI boom is creating a problem that has little to do with chips. Data centers need enormous amounts of electricity, but generating, transmitting, and connecting that power can take years. That is turning power infrastructure into one of the most important parts of the AI inves
+- 2026-10-02 The New Math of AI: Are Those Trillion-Dollar Numbers for Real? (Barrons.com): Anthropic’s IPO is “completely ludicrous” and “the triumph of Wall Street fees over critical thinking,” says tech investor Roger McNamee.
+- 2026-10-02 Oracle Stocks Edges Higher as DOCOMO Cuts Database Licenses 43% (GuruFocus.com)
+- 2026-10-01 Oracle Has the Biggest Upside of Any Megacap Right Now: 54% (24/7 Wall St.): Oracle's cloud business is growing faster than it has in years, yet the stock has been cut nearly in half. Our model finds a jarring disconnect between what the business is doing and what the market is pricing in.
+
+**Investor concerns and sentiment.**
+
+**What worries investors** (themes of the negative headlines of the last year, 331 headlines checked; headlines around the largest down days count double):
+- **technology disruption / AI** (74): 2025-12-11 "Oracle Shares Tumble on AI Spending Worries" (WSJ); 2025-12-11 "Oracle shares slide as earnings fail to ease AI bubble fears" (BBC)
+- **weak demand / consumer** (32): 2025-12-10 "Oracle investors have questions about its spending" (Business Insider); 2025-12-11 "Oracle forecasts miss Wall Street targets while spending rises, shares slide 10%" (Reuters)
+- **guidance / outlook cut** (18): 2025-10-17 "Oracle Stock Falls Over 2% Despite Strong Long-Term Outlook" (TIKR.com); 2025-12-12 "Oracle slumps as gloomy forecasts, soaring spending fan AI bubble worries" (Reuters)
+- **debt / financing** (8): 2025-12-10 "Oracle Earnings May Not Be Enough to Assuage Debt, AI Deal Fears" (Bloomberg.com); 2025-12-13 "Oracle’s collapsing stock shows the AI boom is running into two hard limits: physics and debt markets" (Fortune)
+Headline tone over the year: 82 negative, 86 positive, 163 neutral; last 30 days 17 negative vs 26 positive.
+
+**Positioning:** Short interest 2.7% of float (+6% vs the prior month, 1.8 days to cover), as of -2026-09-15; institutions hold 43%, insiders 38.4%; StockTwits (72049 watchers): of the last 30 posts 3 bearish, 5 bullish.
+**Sentiment: positive** (signals: - price targets mostly cut in 90 days (8 cuts vs 3 raises); + EPS estimates revised up (4 up / 0 down in 30 days); + StockTwits crowd bullish (5 bullish vs 3 bearish of the last 30 posts); + headlines mostly positive in the last 30 days (26 positive vs 17 negative)).
+
+**Peers and group.** Closest by market-neutral correlation: CRWV (0.43), AVGO (0.41), NVDA (0.40), NBIS (0.39), VRT (0.36); group of 16 stocks (largest: NVDA, AVGO, NBIS, GEV), mean correlation to the group 0.327; beta 1.32 to the equal-weight market, residual volatility 52% a year.
+**Last 20 days:** stock -5.3%, peer group +4.7%, relative to the group (beta-adjusted) -8.2%. The group over 6 months: +32.9%. z=-0.1, within its normal range.
+The group as one basket: not beaten down (6 months +27.5%, +9.5% vs its 200-day MA); 13% of the other members are beaten down.
+
+**What analysts say.** Consensus **buy** (41 analysts, mean rating 1.6 on a 1-5 scale); strong buy 8, buy 27, hold 7, sell 1, strong sell 0 (bullish share 81% now vs 84% three months ago). Mean target 237.97 (+72% from the price; range 110.00-400.00). 
+Last 90 days: 0 upgrades, 0 downgrades, 3 target raises, 8 target cuts.
+- 2026-09-14 Freedom Broker: maintains Buy, target 210 -> 205
+- 2026-09-14 Argus Research: reiterates Buy, target 225
+- 2026-09-11 Stifel: maintains Buy, target 220 -> 200
+- 2026-09-11 TD Cowen: reiterates Buy, target 240
+- 2026-09-11 UBS: maintains Buy, target 245 -> 250
+- 2026-09-11 DA Davidson: maintains Buy, target 225
+
+**Last report and estimates.** Quarter to 2026-08-31: EPS 1.92 vs 1.74 expected (+10.4%); beat in 4 of the last 4 quarters. Revenue +30% yoy, earnings +55% yoy (latest quarter). Next report 2026-12-10 (estimated date): EPS 1.74 expected (+18% yoy), revenue +28% yoy. Current-year EPS estimate +1.0% in 30 days, +1.3% in 90 days (4 up / 0 down revisions); growth expected +7% this year, +35% next. 
+
+**Fundamentals.** Market cap $418.6B; P/E 21.5 trailing, 12.6 forward, PEG 0.77; EV/revenue 7.7, EV/EBITDA 16.1, P/B 6.8. Margins: gross +64%, operating +36%, net +26%; ROE +41%. Free cash flow $-45.9B (yield -11.0%); cash $37.1B, debt $169.1B, debt/equity 2.52, current ratio 1.17. Dividend yield +1.5%. Short interest +2.7% of float. Beta 1.73.
+
+**AI decision (Jev).** **Action: buy** (buy 0.57, watch 0.35, skip 0.08); kind of decline: transitory (confidence 0.39); P(corporate action / data artefact, not a real decline): 0.03; P(known event within 4 weeks): 0.45; evidence vs the setup: supports (confidence 0.43); severity of the news for the business: 0.9 (modest damage).
+
+*A typed decision model (TypeSafe Jev via OpenRouter) that read only this brief and answered fixed questions with calibrated probabilities; it gives no rationale. Its action is forward-tested in the journal as its own rule (jev_pick) and does not replace the tested rules.*
+
 ## [WELL](https://www.tradingview.com/chart/?symbol=WELL) Welltower Inc.
 
 *In today's tables: insider buys (other). Real Estate / REIT - Healthcare Facilities.*
@@ -761,6 +808,10 @@ The group as one basket: not beaten down (6 months -5.4%, -5.8% vs its 200-day M
 **Last report and estimates.** Quarter to 2026-06-30: EPS 0.54 vs 0.65 expected (-16.9%); beat in 2 of the last 4 quarters. Revenue +39% yoy, earnings +36% yoy (latest quarter). Next report 2026-10-26: EPS 0.62 expected (+14% yoy), revenue +39% yoy. 
 
 **Fundamentals.** Market cap $163.5B; P/E 102.2 trailing, 71.4 forward, PEG 3.66; EV/revenue 14.5, EV/EBITDA 55.4, P/B 3.5. Margins: gross +40%, operating +17%, net +12%; ROE +4%. Free cash flow $2.8B (yield +1.7%); cash $2.0B, debt $19.7B, debt/equity 0.41, current ratio 1.32. Dividend yield +1.5%. Short interest +2.8% of float. Beta 0.76.
+
+**AI decision (Jev).** **Action: watch** (buy 0.17, watch 0.78, skip 0.05); kind of decline: transitory (confidence 0.70); P(corporate action / data artefact, not a real decline): 0.07; P(known event within 4 weeks): 0.41; evidence vs the setup: supports (confidence 0.73); severity of the news for the business: 0.8 (modest damage).
+
+*A typed decision model (TypeSafe Jev via OpenRouter) that read only this brief and answered fixed questions with calibrated probabilities; it gives no rationale. Its action is forward-tested in the journal as its own rule (jev_pick) and does not replace the tested rules.*
 
 ## [TFC](https://www.tradingview.com/chart/?symbol=TFC) Truist Financial Corporation
 
@@ -824,6 +875,10 @@ Last 90 days: 0 upgrades, 4 downgrades, 4 target raises, 7 target cuts.
 **Last report and estimates.** Quarter to 2026-06-30: EPS 1.23 vs 1.08 expected (+13.8%); beat in 3 of the last 4 quarters. Revenue +8% yoy, earnings +37% yoy (latest quarter). Next report 2026-10-16: EPS 1.13 expected (+8% yoy), revenue +2% yoy. Current-year EPS estimate -1.4% in 30 days, +0.7% in 90 days (16 up / 0 down revisions); growth expected +19% this year, +10% next. 
 
 **Fundamentals.** Market cap $56.5B; P/E 10.6 trailing, 9.3 forward, PEG 1.05; EV/revenue 4.5, EV/EBITDA , P/B 1.0. Margins: gross +0%, operating +40%, net +31%; ROE +9%. Free cash flow  (yield ); cash $50.5B, debt $73.3B, debt/equity , current ratio . Dividend yield +4.5%. Short interest +2.2% of float. Beta 0.86.
+
+**AI decision (Jev).** **Action: watch** (buy 0.17, watch 0.66, skip 0.17); kind of decline: transitory (confidence 0.77); P(corporate action / data artefact, not a real decline): 0.03; P(known event within 4 weeks): 0.95; evidence vs the setup: neutral (confidence 0.52); severity of the news for the business: 0.9 (modest damage).
+
+*A typed decision model (TypeSafe Jev via OpenRouter) that read only this brief and answered fixed questions with calibrated probabilities; it gives no rationale. Its action is forward-tested in the journal as its own rule (jev_pick) and does not replace the tested rules.*
 
 ## [MSCI](https://www.tradingview.com/chart/?symbol=MSCI) MSCI Inc.
 
@@ -896,6 +951,10 @@ Last 90 days: 0 upgrades, 0 downgrades, 4 target raises, 4 target cuts.
 
 **Fundamentals.** Market cap $39.6B; P/E 29.9 trailing, 24.3 forward, PEG 1.83; EV/revenue 13.6, EV/EBITDA 23.1, P/B . Margins: gross +83%, operating +56%, net +41%; ROE . Free cash flow $1.2B (yield +3.0%); cash $352.7M, debt $6.5B, debt/equity , current ratio 0.89. Dividend yield +1.5%. Short interest +2.2% of float. Beta 1.22.
 
+**AI decision (Jev).** **Action: watch** (buy 0.06, watch 0.76, skip 0.18); kind of decline: transitory (confidence 0.99); P(corporate action / data artefact, not a real decline): 0.03; P(known event within 4 weeks): 0.94; evidence vs the setup: neutral (confidence 0.54); severity of the news for the business: 0.9 (modest damage).
+
+*A typed decision model (TypeSafe Jev via OpenRouter) that read only this brief and answered fixed questions with calibrated probabilities; it gives no rationale. Its action is forward-tested in the journal as its own rule (jev_pick) and does not replace the tested rules.*
+
 ## [CRM](https://www.tradingview.com/chart/?symbol=CRM) Salesforce, Inc.
 
 *In today's tables: insider buys (other). Technology / Software - Application.*
@@ -964,6 +1023,10 @@ Last 90 days: 0 upgrades, 2 downgrades, 35 target raises, 2 target cuts.
 **Last report and estimates.** Quarter to 2026-07-31: EPS 5.90 vs 3.27 expected (+80.4%); beat in 4 of the last 4 quarters. Revenue +11% yoy, earnings +119% yoy (latest quarter). Next report 2026-12-02 (estimated date): EPS 3.45 expected (+6% yoy), revenue +12% yoy. Current-year EPS estimate +2.2% in 30 days, +18.6% in 90 days (45 up / 0 down revisions); growth expected +34% this year, -4% next. 
 
 **Fundamentals.** Market cap $194.8B; P/E 21.3 trailing, 14.8 forward, PEG 0.75; EV/revenue 5.0, EV/EBITDA 17.0, P/B 5.1. Margins: gross +77%, operating +21%, net +22%; ROE +19%. Free cash flow $17.7B (yield +9.1%); cash $11.4B, debt $42.4B, debt/equity 1.10, current ratio 0.84. Dividend yield +0.8%. Short interest +4.5% of float. Beta 1.20.
+
+**AI decision (Jev).** **Action: buy** (buy 0.73, watch 0.19, skip 0.08); kind of decline: transitory (confidence 0.40); P(corporate action / data artefact, not a real decline): 0.02; P(known event within 4 weeks): 0.60; evidence vs the setup: supports (confidence 0.64); severity of the news for the business: 0.9 (modest damage).
+
+*A typed decision model (TypeSafe Jev via OpenRouter) that read only this brief and answered fixed questions with calibrated probabilities; it gives no rationale. Its action is forward-tested in the journal as its own rule (jev_pick) and does not replace the tested rules.*
 
 ## [ECL](https://www.tradingview.com/chart/?symbol=ECL) Ecolab Inc.
 
@@ -1034,6 +1097,10 @@ Last 90 days: 1 upgrades, 0 downgrades, 5 target raises, 0 target cuts.
 
 **Fundamentals.** Market cap $76.0B; P/E 36.5 trailing, 28.8 forward, PEG 2.47; EV/revenue 5.1, EV/EBITDA 20.7, P/B 7.6. Margins: gross +44%, operating +19%, net +13%; ROE +22%. Free cash flow $1.5B (yield +1.9%); cash $5.1B, debt $13.9B, debt/equity 1.38, current ratio 1.84. Dividend yield +1.1%. Short interest +2.1% of float. Beta 0.89.
 
+**AI decision (Jev).** **Action: buy** (buy 0.77, watch 0.15, skip 0.08); kind of decline: transitory (confidence 0.95); P(corporate action / data artefact, not a real decline): 0.03; P(known event within 4 weeks): 0.76; evidence vs the setup: supports (confidence 0.98); severity of the news for the business: 0.5 (no real damage).
+
+*A typed decision model (TypeSafe Jev via OpenRouter) that read only this brief and answered fixed questions with calibrated probabilities; it gives no rationale. Its action is forward-tested in the journal as its own rule (jev_pick) and does not replace the tested rules.*
+
 ## [AMT](https://www.tradingview.com/chart/?symbol=AMT) American Tower Corporation
 
 *In today's tables: insider buys (other). Real Estate / REIT - Specialty.*
@@ -1103,6 +1170,10 @@ Last 90 days: 2 upgrades, 0 downgrades, 4 target raises, 1 target cuts.
 **Last report and estimates.** Quarter to 2026-06-30: EPS 1.87 vs 1.55 expected (+20.6%); beat in 4 of the last 4 quarters. Revenue +5% yoy, earnings +138% yoy (latest quarter). Next report 2026-10-27: EPS 1.64 expected (-10% yoy), revenue +1% yoy. Current-year EPS estimate +5.8% in 30 days, +5.9% in 90 days (7 up / 0 down revisions); growth expected +29% this year, +0% next. 
 
 **Fundamentals.** Market cap $75.0B; P/E 22.2 trailing, 23.0 forward, PEG 1.55; EV/revenue 11.4, EV/EBITDA 17.7, P/B 20.2. Margins: gross +74%, operating +45%, net +31%; ROE +34%. Free cash flow $2.9B (yield +3.9%); cash $1.8B, debt $45.0B, debt/equity 4.39, current ratio 0.35. Dividend yield +4.4%. Short interest +1.5% of float. Beta 0.90.
+
+**AI decision (Jev).** **Action: buy** (buy 0.88, watch 0.10, skip 0.02); kind of decline: transitory (confidence 0.36); P(corporate action / data artefact, not a real decline): 0.03; P(known event within 4 weeks): 0.87; evidence vs the setup: supports (confidence 0.99); severity of the news for the business: 1.0 (modest damage).
+
+*A typed decision model (TypeSafe Jev via OpenRouter) that read only this brief and answered fixed questions with calibrated probabilities; it gives no rationale. Its action is forward-tested in the journal as its own rule (jev_pick) and does not replace the tested rules.*
 
 ## [ARE](https://www.tradingview.com/chart/?symbol=ARE) Alexandria Real Estate Equities, Inc.
 
@@ -1178,6 +1249,10 @@ Last 90 days: 0 upgrades, 1 downgrades, 5 target raises, 3 target cuts.
 
 **Fundamentals.** Market cap $8.1B; P/E  trailing, -58.1 forward, PEG 3.24; EV/revenue 8.6, EV/EBITDA 13.8, P/B 0.5. Margins: gross +68%, operating +17%, net -36%; ROE -4%. Free cash flow $1.3B (yield +16.6%); cash $470.4M, debt $13.2B, debt/equity 0.69, current ratio 2.35. Dividend yield +6.1%. Short interest +5.5% of float. Beta 1.17.
 
+**AI decision (Jev).** **Action: watch** (buy 0.05, watch 0.76, skip 0.19); kind of decline: structural (confidence 0.78); P(corporate action / data artefact, not a real decline): 0.03; P(known event within 4 weeks): 0.93; evidence vs the setup: contradicts (confidence 0.53); severity of the news for the business: 1.7 (serious damage).
+
+*A typed decision model (TypeSafe Jev via OpenRouter) that read only this brief and answered fixed questions with calibrated probabilities; it gives no rationale. Its action is forward-tested in the journal as its own rule (jev_pick) and does not replace the tested rules.*
+
 ## [KDP](https://www.tradingview.com/chart/?symbol=KDP) Keurig Dr Pepper Inc.
 
 *In today's tables: insider buys (other). Consumer Defensive / Beverages - Non-Alcoholic.*
@@ -1220,7 +1295,7 @@ Latest news:
 - **legal / regulatory** (1): 2025-10-29 "Can Keurig Customers Get Paid After Class Action Lawsuit?" (The Daily Dot)
 - **guidance / outlook cut** (1): 2026-02-24 "Keurig Dr Pepper Reports Q4 and Full Year 2025 Results and Provides 2026 Outlook" (PR Newswire)
 - **management / turnaround** (1): 2026-04-01 "Keurig Dr Pepper Acquires JDE Peet's and Announces Rafael Oliveira as CEO of Future Global Coffee Co." (PR Newswire); 2026-09-10 "Keurig Dr Pepper is Cashing Out of Chobani, is the $925 Million Exit a Smart Reset?" (Yahoo Finance)
-Headline tone over the year: 8 negative, 35 positive, 69 neutral; last 30 days 1 negative vs 2 positive.
+Headline tone over the year: 8 negative, 35 positive, 69 neutral; last 30 days 0 negative vs 2 positive.
 
 **Positioning:** Short interest 6.5% of float (+18% vs the prior month, 8.8 days to cover), as of -2026-09-15; institutions hold 110%, insiders 4.7%; StockTwits (3636 watchers): of the last 30 posts 0 bearish, 13 bullish.
 **Sentiment: positive** (signals: + price targets mostly raised in 90 days (6 raises vs 0 cuts); + EPS estimates revised up (7 up / 3 down in 30 days); - short interest rising (+18% in a month); + StockTwits crowd bullish (13 bullish vs 0 bearish of the last 30 posts)).
@@ -1241,6 +1316,10 @@ Last 90 days: 1 upgrades, 0 downgrades, 6 target raises, 0 target cuts.
 **Last report and estimates.** Quarter to 2026-06-30: EPS 0.57 vs 0.54 expected (+6.2%); beat in 4 of the last 4 quarters. Revenue +76% yoy, earnings -90% yoy (latest quarter). Next report 2026-11-03: EPS 0.62 expected (+15% yoy), revenue +70% yoy. Current-year EPS estimate +0.0% in 30 days, +0.3% in 90 days (7 up / 3 down revisions); growth expected +12% this year, +11% next. 
 
 **Fundamentals.** Market cap $41.8B; P/E 31.0 trailing, 12.1 forward, PEG 0.96; EV/revenue 4.1, EV/EBITDA 17.0, P/B 1.7. Margins: gross +51%, operating +13%, net +7%; ROE +5%. Free cash flow $4.6B (yield +11.0%); cash $1.5B, debt $33.5B, debt/equity 1.00, current ratio 0.48. Dividend yield +3.0%. Short interest +6.5% of float. Beta 0.41.
+
+**AI decision (Jev).** **Action: buy** (buy 0.80, watch 0.15, skip 0.05); kind of decline: transitory (confidence 0.68); P(corporate action / data artefact, not a real decline): 0.13; P(known event within 4 weeks): 0.92; evidence vs the setup: supports (confidence 0.98); severity of the news for the business: 0.8 (modest damage).
+
+*A typed decision model (TypeSafe Jev via OpenRouter) that read only this brief and answered fixed questions with calibrated probabilities; it gives no rationale. Its action is forward-tested in the journal as its own rule (jev_pick) and does not replace the tested rules.*
 
 ## [DVN](https://www.tradingview.com/chart/?symbol=DVN) Devon Energy Corporation
 
@@ -1311,6 +1390,10 @@ Last 90 days: 0 upgrades, 0 downgrades, 5 target raises, 7 target cuts.
 **Last report and estimates.** Quarter to 2026-06-30: EPS 1.57 vs 1.41 expected (+11.3%); beat in 2 of the last 4 quarters. Revenue +64% yoy, earnings +44% yoy (latest quarter). Next report 2026-11-04: EPS 1.23 expected (+19% yoy), revenue +60% yoy. Current-year EPS estimate -1.7% in 30 days, -1.5% in 90 days (13 up / 4 down revisions); growth expected +38% this year, -8% next. 
 
 **Fundamentals.** Market cap $51.9B; P/E 10.3 trailing, 8.8 forward, PEG 2.92; EV/revenue 3.3, EV/EBITDA 7.0, P/B 1.3. Margins: gross +50%, operating +41%, net +17%; ROE +12%. Free cash flow $782.6M (yield +1.5%); cash $950.0M, debt $11.9B, debt/equity 0.28, current ratio 0.72. Dividend yield +2.8%. Short interest +3.0% of float. Beta 0.43.
+
+**AI decision (Jev).** **Action: buy** (buy 0.48, watch 0.21, skip 0.31); kind of decline: transitory (confidence 0.95); P(corporate action / data artefact, not a real decline): 0.03; P(known event within 4 weeks): 0.90; evidence vs the setup: neutral (confidence 0.17); severity of the news for the business: 0.8 (modest damage).
+
+*A typed decision model (TypeSafe Jev via OpenRouter) that read only this brief and answered fixed questions with calibrated probabilities; it gives no rationale. Its action is forward-tested in the journal as its own rule (jev_pick) and does not replace the tested rules.*
 
 ## [CINF](https://www.tradingview.com/chart/?symbol=CINF) Cincinnati Financial Corporation
 
@@ -1385,6 +1468,10 @@ Last 90 days: 0 upgrades, 2 downgrades, 3 target raises, 2 target cuts.
 
 **Fundamentals.** Market cap $24.9B; P/E 7.7 trailing, 17.9 forward, PEG 2.19; EV/revenue 1.7, EV/EBITDA 5.4, P/B 1.5. Margins: gross +31%, operating +37%, net +24%; ROE +21%. Free cash flow $3.0B (yield +12.0%); cash $1.9B, debt $876.0M, debt/equity 0.05, current ratio 1.15. Dividend yield +2.4%. Short interest +2.9% of float. Beta 0.55.
 
+**AI decision (Jev).** **Action: watch** (buy 0.04, watch 0.66, skip 0.30); kind of decline: transitory (confidence 0.95); P(corporate action / data artefact, not a real decline): 0.03; P(known event within 4 weeks): 0.88; evidence vs the setup: neutral (confidence 0.30); severity of the news for the business: 1.1 (modest damage).
+
+*A typed decision model (TypeSafe Jev via OpenRouter) that read only this brief and answered fixed questions with calibrated probabilities; it gives no rationale. Its action is forward-tested in the journal as its own rule (jev_pick) and does not replace the tested rules.*
+
 ## [MO](https://www.tradingview.com/chart/?symbol=MO) Altria Group, Inc.
 
 *In today's tables: insider buys (other). Consumer Defensive / Tobacco.*
@@ -1456,6 +1543,10 @@ Last 90 days: 0 upgrades, 0 downgrades, 1 target raises, 1 target cuts.
 
 **Fundamentals.** Market cap $111.8B; P/E 14.1 trailing, 11.4 forward, PEG 2.63; EV/revenue 6.6, EV/EBITDA 8.5, P/B . Margins: gross +87%, operating +76%, net +39%; ROE . Free cash flow $9.0B (yield +8.1%); cash $2.4B, debt $24.6B, debt/equity , current ratio 0.52. Dividend yield +6.6%. Short interest +2.3% of float. Beta 0.49.
 
+**AI decision (Jev).** **Action: watch** (buy 0.03, watch 0.79, skip 0.18); kind of decline: transitory (confidence 0.45); P(corporate action / data artefact, not a real decline): 0.02; P(known event within 4 weeks): 0.90; evidence vs the setup: contradicts (confidence 0.32); severity of the news for the business: 1.2 (modest damage).
+
+*A typed decision model (TypeSafe Jev via OpenRouter) that read only this brief and answered fixed questions with calibrated probabilities; it gives no rationale. Its action is forward-tested in the journal as its own rule (jev_pick) and does not replace the tested rules.*
+
 ## [CTVA](https://www.tradingview.com/chart/?symbol=CTVA) Corteva, Inc.
 
 *In today's tables: news-day. Basic Materials / Agricultural Inputs.*
@@ -1465,14 +1556,14 @@ Last 90 days: 0 upgrades, 0 downgrades, 1 target raises, 1 target cuts.
 
 **Where the stock is.** Last 12.57, -86% from the 52-week high (90.32 on 2026-07-29), +0% above the 52-week low (12.57 on 2026-10-01). 1m -86%, 3m -85%, 6m -85%, 1y -81%; vs 50-day -84%, vs 200-day -84%; RSI(14) 4. 52-week change +22% vs S&P 500 +14%.
 
-**Why it fell.** From the 52-week high (90.32 on 2026-07-29) the stock is -86%; the 1 earnings-reaction day(s) below took 11.9% off it. Cause found in the data (company disclosure (8-K), earnings, deal/financing, legal/regulatory, guidance, rating cut, news, demand/competition). Largest down days of the last year, plus every earnings reaction that closed down, and the evidence around each:
+**Why it fell.** From the 52-week high (90.32 on 2026-07-29) the stock is -86%; the 1 earnings-reaction day(s) below took 11.9% off it. Cause found in the data (company disclosure (8-K), earnings, deal/financing, rating cut, guidance, news, demand/competition). Largest down days of the last year, plus every earnings reaction that closed down, and the evidence around each:
 - 2026-10-01: -83.8% (20.7x normal volume, SPY +0.2%):
   - 8-K filed 2026-10-01: other events
   - 8-K filed 2026-10-01: other events
   - 8-K filed 2026-10-01: other events
   - 8-K filed 2026-09-30: other events
   - 2026-10-01 Corteva Announces Expiration and Final Results of Private Exchange Offers and Consent Solicitations for EIDP's 2.300% Senior Notes Due 2030, 5.125% Senior Notes Due 2032 and 4.800% Senior Notes Due 2033: Corteva, Inc.
-  - 2026-10-01 US states filed fraud lawsuit over Corteva's Vylor spinoff (marketscreener.com)
+  - 2026-10-01 Corteva: No Longer Worth Owning Post-Spinoff (Rating Downgrade) (NYSE:CTVA) (Seeking Alpha)
   - 2026-10-01 Corteva Falls as Vylor Spin-Off Resets Share Price (Quiver Quantitative)
 - 2026-07-31: -11.9% (3.6x normal volume, SPY +0.7%):
   - 8-K filed 2026-07-30: results of operations (earnings release) (quarter to 2026-06-30: EPS 2.30 vs 2.23 expected, +2.9%)
@@ -1505,15 +1596,15 @@ Latest news:
 
 **Investor concerns and sentiment.**
 
-**What worries investors** (themes of the negative headlines of the last year, 151 headlines checked; headlines around the largest down days count double):
-- **legal / regulatory** (16): 2026-09-30 "Illinois, FTC reach $35 million settlement with pesticide firm Corteva" (whig.com); 2026-10-01 "US states filed fraud lawsuit over Corteva's Vylor spinoff" (marketscreener.com)
+**What worries investors** (themes of the negative headlines of the last year, 154 headlines checked; headlines around the largest down days count double):
+- **legal / regulatory** (16): 2026-09-30 "Illinois, FTC reach $35 million settlement with pesticide firm Corteva" (whig.com); 2026-10-01 "Corteva (CTVA) Drops As PFAS Settlement Hits Materials Stocks" (timothysykes.com)
 - **guidance / outlook cut** (12): 2026-05-06 "Corteva Agriscience Warns Farmers on Herbicide Resistance: “Change It or Choose It”" (Farmers Review Africa); 2026-07-30 "Corteva raises full-year profit forecast, shares fall after revenue miss" (Reuters)
 - **analyst downgrades** (4): 2025-10-02 "Moody’s downgrades Corteva to Baa1 ahead of seed business spin-off" (Investing.com); 2026-10-01 "Corteva: No Longer Worth Owning Post-Spinoff (Rating Downgrade) (NYSE:CTVA)" (Seeking Alpha)
 - **earnings miss** (3): 2026-02-25 "A Look At Corteva (CTVA) Valuation After Earnings Miss And Planned Business Separation" (Yahoo Finance)
-Headline tone over the year: 20 negative, 30 positive, 101 neutral; last 30 days 13 negative vs 2 positive.
+Headline tone over the year: 20 negative, 31 positive, 103 neutral; last 30 days 13 negative vs 3 positive.
 
 **Positioning:** Short interest 3.5% of float (+43% vs the prior month, 4.3 days to cover), as of -2026-09-15; institutions hold 92%, insiders 0.1%; StockTwits (2172 watchers): of the last 30 posts 2 bearish, 11 bullish.
-**Sentiment: mixed** (signals: + price targets mostly raised in 90 days (10 raises vs 2 cuts); + EPS estimates revised up (11 up / 5 down in 30 days); - short interest rising (+43% in a month); + StockTwits crowd bullish (11 bullish vs 2 bearish of the last 30 posts); - headlines mostly negative in the last 30 days (13 negative vs 2 positive)).
+**Sentiment: mixed** (signals: + price targets mostly raised in 90 days (10 raises vs 2 cuts); + EPS estimates revised up (11 up / 5 down in 30 days); - short interest rising (+43% in a month); + StockTwits crowd bullish (11 bullish vs 2 bearish of the last 30 posts); - headlines mostly negative in the last 30 days (13 negative vs 3 positive)).
 
 **Peers and group.** Closest by market-neutral correlation: CF (0.40), MOS (0.36), LIN (0.34), XOM (0.29), ADM (0.29); group of 7 stocks (largest: LIN, APD, CF, ADM), mean correlation to the group 0.299; beta 0.72 to the equal-weight market, residual volatility 24% a year.
 **Last 20 days:** stock -86.0%, peer group -11.4%, relative to the group (beta-adjusted) -6.1%. The group over 6 months: -6.8%. z=-1.1, within its normal range.
@@ -1531,6 +1622,10 @@ Last 90 days: 0 upgrades, 0 downgrades, 10 target raises, 2 target cuts.
 **Last report and estimates.** Quarter to 2026-06-30: EPS 2.30 vs 2.23 expected (+2.9%); beat in 3 of the last 4 quarters. Revenue -1% yoy, earnings -10% yoy (latest quarter). Next report 2026-11-03 (estimated date): EPS -0.38 expected (-67% yoy), revenue +1% yoy. Current-year EPS estimate -0.1% in 30 days, +0.5% in 90 days (11 up / 5 down revisions); growth expected +13% this year, +30% next. 
 
 **Fundamentals.** Market cap $8.4B; P/E 7.6 trailing, 3.0 forward, PEG 1.01; EV/revenue 3.1, EV/EBITDA 12.8, P/B 0.3. Margins: gross +50%, operating +30%, net +6%; ROE +4%. Free cash flow $2.4B (yield +28.8%); cash $2.4B, debt $4.9B, debt/equity 0.19, current ratio 1.52. Dividend yield +0.9%. Short interest +3.5% of float. Beta 0.58.
+
+**AI decision (Jev).** **Action: watch** (buy 0.06, watch 0.55, skip 0.39); kind of decline: corporate action (confidence 1.00); P(corporate action / data artefact, not a real decline): 0.89; P(known event within 4 weeks): 0.87; evidence vs the setup: neutral (confidence 0.24); severity of the news for the business: 1.2 (modest damage).
+
+*A typed decision model (TypeSafe Jev via OpenRouter) that read only this brief and answered fixed questions with calibrated probabilities; it gives no rationale. Its action is forward-tested in the journal as its own rule (jev_pick) and does not replace the tested rules.*
 
 ## [FICO](https://www.tradingview.com/chart/?symbol=FICO) Fair Isaac Corporation
 
@@ -1583,15 +1678,15 @@ Latest news:
 
 **Investor concerns and sentiment.**
 
-**What worries investors** (themes of the negative headlines of the last year, 188 headlines checked; headlines around the largest down days count double):
-- **margins / costs** (18): 2026-09-29 "FICO stock drops 20%: Analysts break down the impact of FHFA’s single pricing grid" (Yahoo Finance); 2026-09-29 "Fair Isaac Shares Fall After FHFA Chief Says VantageScore Moving to FICO Classic Pricing Grid" (Yahoo Finance)
+**What worries investors** (themes of the negative headlines of the last year, 194 headlines checked; headlines around the largest down days count double):
+- **margins / costs** (14): 2026-09-29 "FICO stock drops 20%: Analysts break down the impact of FHFA’s single pricing grid" (Yahoo Finance); 2026-09-29 "Fair Isaac Shares Fall After FHFA Chief Says VantageScore Moving to FICO Classic Pricing Grid" (Yahoo Finance)
 - **competition / market share** (14): 2026-09-04 "Fair Isaac Falls as Mortgage Credit-Score Competition Threatens Core Franchise" (Quiver Quantitative); 2026-09-28 "Fair Isaac Corp. stock underperforms Monday when compared to competitors" (MarketWatch)
-- **legal / regulatory** (9): 2026-09-06 "One Regulator Just Ended Fair Isaac’s (FICO) Mortgage Monopoly. The Stock Fell 16% – Is It Justified?" (Yahoo Finance); 2026-09-29 "Rosen Law Firm Encourages Fair Isaac Corporation Investors to Inquire About Securities Class Action Investigation - FICO" (Business Wire)
-- **analyst downgrades** (5): 2026-09-30 "Fair Isaac's Dominance in Mortgage Credit Scoring Could be Challenged by New Grid Structure, BofA Says in Downgrade" (MT Newswires); 2026-09-30 "BofA Securities Downgrades Fair Isaac to Neutral From Buy, Adjusts Price Target to $700 From $1,400" (marketscreener.com)
-Headline tone over the year: 64 negative, 31 positive, 93 neutral; last 30 days 41 negative vs 8 positive.
+- **analyst downgrades** (8): 2026-09-30 "Fair Isaac's Dominance in Mortgage Credit Scoring Could be Challenged by New Grid Structure, BofA Says in Downgrade" (MT Newswires); 2026-09-30 "BofA Securities Downgrades Fair Isaac to Neutral From Buy, Adjusts Price Target to $700 From $1,400" (marketscreener.com)
+- **legal / regulatory** (7): 2026-09-06 "One Regulator Just Ended Fair Isaac’s (FICO) Mortgage Monopoly. The Stock Fell 16% – Is It Justified?" (Yahoo Finance); 2026-09-29 "Rosen Law Firm Encourages Fair Isaac Corporation Investors to Inquire About Securities Class Action Investigation - FICO" (Business Wire)
+Headline tone over the year: 64 negative, 33 positive, 97 neutral; last 30 days 41 negative vs 10 positive.
 
 **Positioning:** Short interest 10.8% of float (+8% vs the prior month, 5.5 days to cover), as of -2026-09-15; institutions hold 102%, insiders 3.0%; StockTwits (3322 watchers): of the last 30 posts 4 bearish, 6 bullish.
-**Sentiment: negative** (signals: - fewer analysts bullish than three months ago (57% vs 76%); - price targets mostly cut in 90 days (8 cuts vs 1 raises); - EPS estimates revised down (7 up / 12 down in 30 days); - heavy short interest (11% of float); + StockTwits crowd bullish (6 bullish vs 4 bearish of the last 30 posts); - headlines mostly negative in the last 30 days (41 negative vs 8 positive)).
+**Sentiment: negative** (signals: - fewer analysts bullish than three months ago (57% vs 76%); - price targets mostly cut in 90 days (8 cuts vs 1 raises); - EPS estimates revised down (7 up / 12 down in 30 days); - heavy short interest (11% of float); + StockTwits crowd bullish (6 bullish vs 4 bearish of the last 30 posts); - headlines mostly negative in the last 30 days (41 negative vs 10 positive)).
 
 **Peers and group.** Closest by market-neutral correlation: EFX (0.38), ADSK (0.36), ADP (0.31), VRSK (0.30), INTU (0.30); group of 20 stocks (largest: IBM, ACN, ADP, CTSH), mean correlation to the group 0.256; beta 1.20 to the equal-weight market, residual volatility 52% a year.
 **Last 20 days:** stock -39.8%, peer group -8.3%, relative to the group (beta-adjusted) -33.4%. The group over 6 months: +3.4%. z=-2.9: unusually far below its peers (under -2); in the historical scan such stocks regained +0.65% vs peers over the next 20 days (t=2.3, weak evidence).
@@ -1609,6 +1704,10 @@ Last 90 days: 0 upgrades, 2 downgrades, 1 target raises, 8 target cuts.
 **Last report and estimates.** Quarter to 2026-06-30: EPS 12.18 vs 11.78 expected (+3.4%); beat in 4 of the last 4 quarters. Revenue +26% yoy, earnings +41% yoy (latest quarter). Next report 2026-11-04 (estimated date): EPS 11.03 expected (+42% yoy), revenue +28% yoy. Current-year EPS estimate -0.2% in 30 days, -0.2% in 90 days (7 up / 12 down revisions); growth expected +44% this year, +21% next. 
 
 **Fundamentals.** Market cap $14.3B; P/E 19.2 trailing, 12.7 forward, PEG 0.49; EV/revenue 7.6, EV/EBITDA 14.4, P/B . Margins: gross +85%, operating +54%, net +34%; ROE . Free cash flow $774.4M (yield +5.4%); cash $248.4M, debt $5.6B, debt/equity , current ratio 1.18. Short interest +10.8% of float. Beta 1.32.
+
+**AI decision (Jev).** **Action: watch** (buy 0.13, watch 0.59, skip 0.28); kind of decline: structural (confidence 0.98); P(corporate action / data artefact, not a real decline): 0.02; P(known event within 4 weeks): 0.90; evidence vs the setup: contradicts (confidence 0.92); severity of the news for the business: 2.0 (serious damage).
+
+*A typed decision model (TypeSafe Jev via OpenRouter) that read only this brief and answered fixed questions with calibrated probabilities; it gives no rationale. Its action is forward-tested in the journal as its own rule (jev_pick) and does not replace the tested rules.*
 
 ## [ALGN](https://www.tradingview.com/chart/?symbol=ALGN) Align Technology, Inc.
 
@@ -1672,6 +1771,10 @@ Last 90 days: 0 upgrades, 0 downgrades, 1 target raises, 0 target cuts.
 
 **Fundamentals.** Market cap $10.3B; P/E 25.2 trailing, 11.6 forward, PEG 0.61; EV/revenue 2.3, EV/EBITDA 10.1, P/B 2.4. Margins: gross +71%, operating +18%, net +10%; ROE +10%. Free cash flow $594.1M (yield +5.8%); cash $1.1B, debt $120.8M, debt/equity 0.03, current ratio 1.40. Short interest +6.3% of float. Beta 1.64.
 
+**AI decision (Jev).** **Action: watch** (buy 0.05, watch 0.90, skip 0.05); kind of decline: transitory (confidence 0.66); P(corporate action / data artefact, not a real decline): 0.03; P(known event within 4 weeks): 0.95; evidence vs the setup: neutral (confidence 0.68); severity of the news for the business: 1.0 (modest damage).
+
+*A typed decision model (TypeSafe Jev via OpenRouter) that read only this brief and answered fixed questions with calibrated probabilities; it gives no rationale. Its action is forward-tested in the journal as its own rule (jev_pick) and does not replace the tested rules.*
+
 ## [LNT](https://www.tradingview.com/chart/?symbol=LNT) Alliant Energy Corporation
 
 *In today's tables: falling wedge. Utilities / Utilities - Regulated Electric.*
@@ -1731,6 +1834,86 @@ Last 90 days: 0 upgrades, 0 downgrades, 1 target raises, 3 target cuts.
 **Last report and estimates.** Quarter to 2026-06-30: EPS 0.65 vs 0.58 expected (+12.2%); beat in 3 of the last 4 quarters. Revenue +1% yoy, earnings -4% yoy (latest quarter). Next report 2026-11-05 (estimated date): EPS 1.22 expected (+9% yoy), revenue +7% yoy. Current-year EPS estimate +0.1% in 30 days, +0.2% in 90 days (3 up / 0 down revisions); growth expected +6% this year, +8% next. 
 
 **Fundamentals.** Market cap $16.5B; P/E 20.2 trailing, 17.3 forward, PEG 1.95; EV/revenue 6.4, EV/EBITDA 15.6, P/B 2.2. Margins: gross +45%, operating +19%, net +18%; ROE +11%. Free cash flow $-1.1B (yield -6.9%); cash $25.0M, debt $12.1B, debt/equity 1.61, current ratio 0.47. Dividend yield +3.4%. Short interest +11.2% of float. Beta 0.53.
+
+**AI decision (Jev).** **Action: watch** (buy 0.42, watch 0.55, skip 0.03); kind of decline: sector-wide (confidence 0.74); P(corporate action / data artefact, not a real decline): 0.05; P(known event within 4 weeks): 0.48; evidence vs the setup: neutral (confidence 0.68); severity of the news for the business: 0.9 (modest damage).
+
+*A typed decision model (TypeSafe Jev via OpenRouter) that read only this brief and answered fixed questions with calibrated probabilities; it gives no rationale. Its action is forward-tested in the journal as its own rule (jev_pick) and does not replace the tested rules.*
+
+## [APTV](https://www.tradingview.com/chart/?symbol=APTV) Aptiv PLC
+
+*In today's tables: falling wedge. Consumer Cyclical / Auto Parts.*
+*Aptiv PLC, an industrial technology company, provides hardware and software solutions to support automotive and other industries in North America, Europe, the Middle East, Africa, the Asia Pacific, and South America.*
+
+**Read: undecided (no clear base yet)** (score -0.5). Signals: -1 price below its 50-day average; -1 new 52-week low within the last 5 bars; +1 analyst consensus buy (18 analysts); +1 mean price target +51% above the price; -1 more downgrades than upgrades in 90 days (2 vs 0); -1 analysts cutting price targets (10 cuts vs 2 raises in 90 days); -0.5 estimate revisions mostly down (0 up / 17 down in 30 days); +0.5 last quarter beat estimates (+14.1%); +0.5 revenue growing (+2% yoy); +0.5 positive free cash flow; +0.5 forward P/E 7 below trailing 20 (earnings expected to grow).
+
+**Where the stock is.** Last 43.97, -50% from the 52-week high (88.67 on 2026-01-09), +2% above the 52-week low (43.02 on 2026-09-30). 1m -2%, 3m -25%, 6m -29%, 1y -49%; vs 50-day -8%, vs 200-day -31%; RSI(14) 41. 52-week change -51% vs S&P 500 +14%.
+
+**Why it fell.** From the 52-week high (88.67 on 2026-01-09) the stock is -50%; the 2 earnings-reaction day(s) below took 23.2% off it. Cause found in the data (earnings, guidance, demand/competition, rating cut, deal/financing, company disclosure (8-K), market-wide). Largest down days of the last year, plus every earnings reaction that closed down, and the evidence around each:
+- 2026-08-04: -16.6% (7.7x normal volume, SPY +1.8%):
+  - 8-K filed 2026-08-04: results of operations (earnings release) (quarter to 2026-06-30: EPS 1.63 vs 1.43 expected, +14.1%)
+  - 2026-08-04 Aptiv shares fall 4% on weak guidance despite Q2 earnings beat (Investing.com Nigeria)
+  - 2026-08-04 Aptiv Shares Decline as Weak Guidance Overshadows Second-Quarter Earnings Beat (finance.yahoo.com)
+  - 2026-08-04 Aptiv slides as reduced full-year outlook overshadows second-quarter profit growth (Quiver Quantitative)
+  - rating/target cuts right after: UBS target cut 80 -> 62; TD Cowen target cut 90 -> 77; Goldman Sachs target cut 82 -> 71
+- 2026-04-01: -10.6% (2.0x normal volume, SPY +0.8%):
+  - 8-K filed 2026-04-01: material agreement; acquisition or disposal completed
+  - 2026-04-01 Aptiv Enters Separation and Distribution Agreement With Versigent to Complete Spin-Off (TradingView)
+  - 2026-03-31 Aptiv and Versigent to Release First Quarter 2026 Financial Results on May 5 (Business Wire)
+  - rating/target cuts right after: UBS target cut 97 -> 80; TD Cowen target cut 108 -> 93; RBC Capital target cut 104 -> 81
+- 2026-05-05: -7.9% (4.0x normal volume, SPY +0.8%):
+  - 8-K filed 2026-05-05: results of operations (earnings release); other events (quarter to 2026-03-31: EPS 1.71 vs 1.58 expected, +7.9%)
+  - 2026-05-04 Aptiv Q1 results: sales hit $5.1B, Versigent spin-off finalized (grafa.com)
+  - 2026-05-05 Aptiv PLC Q1 2026 Earnings Call Summary (finance.yahoo.com)
+  - 2026-05-05 APTIV ($APTV) Releases Q1 2026 Earnings (Quiver Quantitative)
+  - rating/target cuts right after: Barclays target cut 77 -> 73
+- 2026-01-14: -6.0% (2.2x normal volume, SPY -0.5%). No cause found for this day.
+- 2026-06-05: -5.9% (1.3x normal volume, SPY -2.6%):
+  - 2026-06-04 APTIV PLC (APTV) Up 35.3% Since Last Earnings Report: Can It Continue? (Yahoo Finance)
+  - market-wide day: SPY -2.6%
+- 2025-10-30: -4.3% (earnings reaction, 1.7x normal volume, SPY -1.1%):
+  - 8-K filed 2025-10-30: results of operations (earnings release) (quarter to 2025-09-30: EPS 2.17 vs 1.83 expected, +18.8%)
+  - rating/target cuts right after: Wells Fargo target cut 106 -> 100
+
+Latest news:
+- 2026-10-01 Aptiv PLC (APTV) Surpasses Market Returns: Some Facts Worth Knowing (Zacks): Aptiv PLC (APTV) closed at $43.97 in the latest trading session, marking a +2.21% move from the prior day.
+- 2026-10-01 EV Charging Cable Market to Reach $5.63 Billion by 2033 at 15.8% CAGR as High-Power DC Charging Drives Demand for Liquid-Cooled Cables (GlobeNewswire): A new Research and Markets report profiles 24 companies, including TE Connectivity, LEONI, Aptiv, Yazaki and Prysmian Group. It finds AC charging cables lead the market today, while large-diameter and liquid-cooled high-power cables grow fastest.Dublin, Oct. 01, 2026 (GLOBE NEWSW
+- 2026-10-01 EV Connector Market Forecasts Growth from $3.67B (2026) to $8.84B by 2033, Profiling TE Connectivity, Aptiv, Yazaki & Hirose Electric (GlobeNewswire): The global EV connector market is projected to grow from USD 3.67 billion in 2026 to USD 8.84 billion by 2033, at a 13.4% CAGR. Growth is driven by high-voltage EV platforms, fast charging, software-defined vehicles, and rising demand for high-current, liquid-cooled, sealed, and 
+- 2026-09-30 Aptiv (APTV) Leaves The FTSE All World Index, Is It Still 35% Undervalued? (Simply Wall St.): Aptiv (APTV) has come under pressure after being removed from the FTSE All-World Index in US dollars, a shift that coincides with weak earnings expectations and cautious analyst sentiment around the stock. The recent FTSE All-World exit comes on top of a weak run for Aptiv, with 
+- 2026-09-29 Should You Trim Or Add To Your Aurora Innovation Position Now? (Trefis): Aurora Innovation's shares (AUR) are worth about $10.3 billion. The driverless-truck company booked $2 million of revenue in the second quarter of 2026. Investors are paying for a self-driving truck fleet that is mostly still being built. Most of the trucks Aurora plans for year-
+- 2026-09-28 Aptiv PLC (APTV) Registers a Bigger Fall Than the Market: Important Facts to Note (Zacks): The latest trading day saw Aptiv PLC (APTV) settling at $43.64, representing a -2.57% change from its previous close.
+
+**Investor concerns and sentiment.**
+
+**What worries investors** (themes of the negative headlines of the last year, 79 headlines checked; headlines around the largest down days count double):
+- **guidance / outlook cut** (14): 2026-05-04 "Aptiv Trims Automotive USB Patent Claims In Delaware Suit" (Law360); 2026-08-04 "Aptiv Shares Decline as Weak Guidance Overshadows Second-Quarter Earnings Beat" (finance.yahoo.com)
+- **analyst downgrades** (3): 2026-08-05 "Aptiv PLC Stock 12‑Month Price Target Cut to $68.83, Implies 44% Upside" (TradingView); 2026-08-05 "Deutsche Bank Downgrades Aptiv to Hold From Buy, Adjusts Price Target to $56 From $75" (finance.yahoo.com)
+- **China / international markets** (2): 2026-08-04 "[Aptiv Q2 2026 Earnings Call] Aptiv Cuts Full-Year Outlook by $300M as China Slump and Luxury OEM Pullback Bite, Despite Q2 Revenue of $3.3B" (finance.biggo.com)
+- **margins / costs** (1): 2026-08-04 "Aptiv (APTV) Stock Reprices Sharp Cash Flow Cracks After Margin Strain" (simplywall.st)
+Headline tone over the year: 13 negative, 14 positive, 52 neutral; last 30 days 2 negative vs 1 positive.
+
+**Positioning:** Short interest 4.9% of float (-21% vs the prior month, 1.6 days to cover), as of -2026-09-15; institutions hold 105%, insiders 0.8%; StockTwits (2588 watchers): of the last 30 posts 4 bearish, 11 bullish.
+**Sentiment: mixed** (signals: - price targets mostly cut in 90 days (10 cuts vs 2 raises); - EPS estimates revised down (0 up / 17 down in 30 days); + short interest falling (-21% in a month); + StockTwits crowd bullish (11 bullish vs 4 bearish of the last 30 posts)).
+
+**Peers and group.** Closest by market-neutral correlation: GM (0.28), F (0.28), SWK (0.24), ON (0.23), HAS (0.22); group of 9 stocks (largest: F, GM, XYL, EL), mean correlation to the group 0.166; beta 1.39 to the equal-weight market, residual volatility 36% a year.
+**Last 20 days:** stock -2.4%, peer group -6.7%, relative to the group (beta-adjusted) +5.2%. The group over 6 months: -2.6%. z=+1.0, within its normal range.
+The group as one basket: not beaten down (6 months -5.9%, -9.4% vs its 200-day MA); 38% of the other members are beaten down.
+
+**What analysts say.** Consensus **buy** (18 analysts, mean rating 1.6 on a 1-5 scale); strong buy 5, buy 11, hold 4, sell 0, strong sell 0. Mean target 66.61 (+51% from the price; range 55.00-78.00). 
+Last 90 days: 0 upgrades, 2 downgrades, 2 target raises, 10 target cuts.
+- 2026-09-15 JP Morgan: downgrades Overweight -> Neutral, target 65 -> 56
+- 2026-09-09 StoneX: initiates Buy, target 75
+- 2026-08-10 Evercore ISI Group: maintains Outperform, target 80 -> 70
+- 2026-08-10 Barclays: maintains Overweight, target 73 -> 65
+- 2026-08-05 UBS: maintains Buy, target 80 -> 62
+- 2026-08-05 TD Cowen: maintains Buy, target 90 -> 77
+
+**Last report and estimates.** Quarter to 2026-06-30: EPS 1.63 vs 1.43 expected (+14.1%); beat in 4 of the last 4 quarters. Revenue +2% yoy, earnings -35% yoy (latest quarter). Next report 2026-10-29 (estimated date): EPS 1.33 expected (-39% yoy), revenue -39% yoy. Current-year EPS estimate +0.0% in 30 days, -6.9% in 90 days (0 up / 17 down revisions); growth expected -27% this year, +14% next. 
+
+**Fundamentals.** Market cap $9.1B; P/E 19.9 trailing, 6.7 forward, PEG 0.95; EV/revenue 0.7, EV/EBITDA 4.3, P/B 1.0. Margins: gross +19%, operating +13%, net +1%; ROE +5%. Free cash flow $1.6B (yield +17.7%); cash $761.0M, debt $5.7B, debt/equity 0.65, current ratio 2.02. Short interest +4.9% of float. Beta 1.33.
+
+**AI decision (Jev).** **Action: watch** (buy 0.03, watch 0.77, skip 0.20); kind of decline: transitory (confidence 0.43); P(corporate action / data artefact, not a real decline): 0.17; P(known event within 4 weeks): 0.86; evidence vs the setup: contradicts (confidence 0.86); severity of the news for the business: 1.8 (serious damage).
+
+*A typed decision model (TypeSafe Jev via OpenRouter) that read only this brief and answered fixed questions with calibrated probabilities; it gives no rationale. Its action is forward-tested in the journal as its own rule (jev_pick) and does not replace the tested rules.*
 
 ## [CNP](https://www.tradingview.com/chart/?symbol=CNP) CenterPoint Energy, Inc.
 
@@ -1800,6 +1983,10 @@ Last 90 days: 0 upgrades, 0 downgrades, 2 target raises, 6 target cuts.
 
 **Fundamentals.** Market cap $24.5B; P/E 22.1 trailing, 17.8 forward, PEG 1.86; EV/revenue 5.0, EV/EBITDA 12.6, P/B 2.1. Margins: gross +47%, operating +24%, net +12%; ROE +10%. Free cash flow $-5.2B (yield -21.2%); cash $453.0M, debt $24.6B, debt/equity 2.10, current ratio 1.12. Dividend yield +2.6%. Short interest +9.1% of float. Beta 0.45.
 
+**AI decision (Jev).** **Action: watch** (buy 0.34, watch 0.63, skip 0.03); kind of decline: sector-wide (confidence 0.72); P(corporate action / data artefact, not a real decline): 0.06; P(known event within 4 weeks): 0.95; evidence vs the setup: neutral (confidence 0.81); severity of the news for the business: 0.6 (modest damage).
+
+*A typed decision model (TypeSafe Jev via OpenRouter) that read only this brief and answered fixed questions with calibrated probabilities; it gives no rationale. Its action is forward-tested in the journal as its own rule (jev_pick) and does not replace the tested rules.*
+
 ## [CMS](https://www.tradingview.com/chart/?symbol=CMS) CMS Energy Corporation
 
 *In today's tables: falling wedge. Utilities / Utilities - Regulated Electric.*
@@ -1867,6 +2054,10 @@ Last 90 days: 0 upgrades, 1 downgrades, 4 target raises, 7 target cuts.
 
 **Fundamentals.** Market cap $20.0B; P/E 19.2 trailing, 15.3 forward, PEG 2.27; EV/revenue 4.5, EV/EBITDA 13.2, P/B 2.1. Margins: gross +40%, operating +17%, net +12%; ROE +9%. Free cash flow $-2.2B (yield -11.0%); cash $241.0M, debt $19.3B, debt/equity 1.86, current ratio 0.94. Dividend yield +3.6%. Short interest +0.0% of float. Beta 0.33.
 
+**AI decision (Jev).** **Action: skip** (buy 0.25, watch 0.36, skip 0.39); kind of decline: structural (confidence 0.22); P(corporate action / data artefact, not a real decline): 0.04; P(known event within 4 weeks): 0.72; evidence vs the setup: contradicts (confidence 0.98); severity of the news for the business: 1.2 (modest damage).
+
+*A typed decision model (TypeSafe Jev via OpenRouter) that read only this brief and answered fixed questions with calibrated probabilities; it gives no rationale. Its action is forward-tested in the journal as its own rule (jev_pick) and does not replace the tested rules.*
+
 ## [CRH](https://www.tradingview.com/chart/?symbol=CRH) CRH plc
 
 *In today's tables: falling wedge. Basic Materials / Building Materials.*
@@ -1913,10 +2104,10 @@ Latest news:
 - **earnings miss** (3): 2026-03-13 "CRH and the Data Center Buildout: What Investors Miss" (Yahoo Finance); 2026-02-18 "CRH shares fall as earnings miss estimates despite record year" (Investing.com)
 - **margins / costs** (3): 2026-07-30 "CRH's second quarter revenues up on pricing and demand" (RTE.ie); 2026-08-01 "CRH (CRH) Stock Slides As Margin Strength Meets Deal Risk" (simplywall.st)
 - **management / turnaround** (2): 2026-06-22 "CRH Adds Former CF Industries CEO to Its Board; Why Investors Are Paying Attention" (Yahoo Finance); 2026-06-30 "What Is CRH plc (CRH) Planning Following Leadership Changes?" (Yahoo Finance)
-Headline tone over the year: 17 negative, 30 positive, 68 neutral; last 30 days 6 negative vs 3 positive.
+Headline tone over the year: 17 negative, 30 positive, 68 neutral; last 30 days 5 negative vs 3 positive.
 
 **Positioning:** Short interest 2.0% of float (-7% vs the prior month, 2.7 days to cover), as of -2026-09-15; institutions hold 89%, insiders 0.1%; StockTwits (918 watchers): of the last 30 posts 0 bearish, 8 bullish.
-**Sentiment: mixed** (signals: + more analysts bullish than three months ago (96% vs 90%); - price targets mostly cut in 90 days (5 cuts vs 0 raises); - EPS estimates revised down (1 up / 3 down in 30 days); + StockTwits crowd bullish (8 bullish vs 0 bearish of the last 30 posts); - headlines mostly negative in the last 30 days (6 negative vs 3 positive)).
+**Sentiment: mixed** (signals: + more analysts bullish than three months ago (96% vs 90%); - price targets mostly cut in 90 days (5 cuts vs 0 raises); - EPS estimates revised down (1 up / 3 down in 30 days); + StockTwits crowd bullish (8 bullish vs 0 bearish of the last 30 posts); - headlines mostly negative in the last 30 days (5 negative vs 3 positive)).
 
 **Peers and group.** Closest by market-neutral correlation: VMC (0.55), MLM (0.51), SW (0.27), PPG (0.27), BLDR (0.26); group of 3 stocks (largest: MLM, VMC), mean correlation to the group 0.527; beta 1.43 to the equal-weight market, residual volatility 23% a year.
 **Last 20 days:** stock -11.8%, peer group -7.4%, relative to the group (beta-adjusted) -5.6%. The group over 6 months: -16.2%. z=-1.2, within its normal range.
@@ -1934,6 +2125,10 @@ Last 90 days: 0 upgrades, 0 downgrades, 0 target raises, 5 target cuts.
 **Last report and estimates.** Quarter to 2026-06-30: EPS 1.93 vs 2.02 expected (-4.2%); beat in 2 of the last 4 quarters. Revenue +6% yoy, earnings +14% yoy (latest quarter). Next report 2026-10-29: EPS 2.20 expected (-2% yoy), revenue +5% yoy. Current-year EPS estimate -1.7% in 30 days, -3.5% in 90 days (1 up / 3 down revisions); growth expected +2% this year, +13% next. 
 
 **Fundamentals.** Market cap $54.4B; P/E 14.4 trailing, 12.6 forward, PEG 1.49; EV/revenue 1.9, EV/EBITDA 9.4, P/B 2.3. Margins: gross +36%, operating +19%, net +10%; ROE +16%. Free cash flow $2.0B (yield +3.7%); cash $3.0B, debt $19.8B, debt/equity 0.78, current ratio 1.58. Dividend yield +1.9%. Short interest +2.0% of float. Beta 1.20.
+
+**AI decision (Jev).** **Action: watch** (buy 0.34, watch 0.61, skip 0.05); kind of decline: sector-wide (confidence 0.83); P(corporate action / data artefact, not a real decline): 0.03; P(known event within 4 weeks): 0.82; evidence vs the setup: contradicts (confidence 0.51); severity of the news for the business: 0.9 (modest damage).
+
+*A typed decision model (TypeSafe Jev via OpenRouter) that read only this brief and answered fixed questions with calibrated probabilities; it gives no rationale. Its action is forward-tested in the journal as its own rule (jev_pick) and does not replace the tested rules.*
 
 ## [DECK](https://www.tradingview.com/chart/?symbol=DECK) Deckers Outdoor Corporation
 
@@ -1978,10 +2173,10 @@ Latest news:
 - **tariffs / trade** (5): 2025-10-24 "Hoka-parent Deckers sinks on tariff woes, economic uncertainty" (Reuters); 2025-10-24 "Deckers Stock Slumps as Hoka Maker Warns of Consumer Pullback Because of Tariffs, Higher Prices" (Investopedia)
 - **weak demand / consumer** (4): 2026-05-23 "Consumer Sentiment Concerns Are No Sweat For Deckers Outdoor Stock (NYSE:DECK)" (Seeking Alpha); 2026-09-15 "Deckers Outdoor Stock: Is DECK Underperforming the Consumer Discretionary Sector?" (Yahoo Finance)
 - **earnings miss** (2): 2025-10-24 "Hoka-Owner Deckers Drops as Sales Guidance Misses Expectations" (Bloomberg.com)
-Headline tone over the year: 24 negative, 44 positive, 41 neutral; last 30 days 2 negative vs 8 positive.
+Headline tone over the year: 24 negative, 44 positive, 41 neutral; last 30 days 1 negative vs 8 positive.
 
 **Positioning:** Short interest 7.8% of float (+20% vs the prior month, 3.2 days to cover), as of -2026-09-15; institutions hold 102%, insiders 0.7%; StockTwits (6819 watchers): of the last 30 posts 0 bearish, 19 bullish.
-**Sentiment: mixed** (signals: - price targets mostly cut in 90 days (6 cuts vs 1 raises); + EPS estimates revised up (15 up / 1 down in 30 days); - short interest rising (+20% in a month); + StockTwits crowd bullish (19 bullish vs 0 bearish of the last 30 posts); + headlines mostly positive in the last 30 days (8 positive vs 2 negative)).
+**Sentiment: mixed** (signals: - price targets mostly cut in 90 days (6 cuts vs 1 raises); + EPS estimates revised up (15 up / 1 down in 30 days); - short interest rising (+20% in a month); + StockTwits crowd bullish (19 bullish vs 0 bearish of the last 30 posts); + headlines mostly positive in the last 30 days (8 positive vs 1 negative)).
 
 **Peers and group.** Closest by market-neutral correlation: RL (0.33), ROST (0.33), TPR (0.26), NKE (0.22), LULU (0.21); group of 11 stocks (largest: NKE, TGT, LULU, TPR), mean correlation to the group 0.194; beta 1.59 to the equal-weight market, residual volatility 44% a year.
 **Last 20 days:** stock -5.0%, peer group -4.5%, relative to the group (beta-adjusted) -0.1%. The group over 6 months: +3.7%. z=+0.3, within its normal range.
@@ -1999,6 +2194,10 @@ Last 90 days: 1 upgrades, 0 downgrades, 1 target raises, 6 target cuts.
 **Last report and estimates.** Quarter to 2026-06-30: EPS 0.94 vs 0.87 expected (+7.6%); beat in 4 of the last 4 quarters. Revenue +6% yoy, earnings +1% yoy (latest quarter). Next report 2026-10-22 (estimated date): EPS 1.79 expected (-2% yoy), revenue +5% yoy. Current-year EPS estimate -0.2% in 30 days, +0.3% in 90 days (15 up / 1 down revisions); growth expected +7% this year, +11% next. 
 
 **Fundamentals.** Market cap $10.8B; P/E 11.3 trailing, 9.6 forward, PEG 0.96; EV/revenue 1.7, EV/EBITDA 7.2, P/B 4.7. Margins: gross +58%, operating +15%, net +18%; ROE +43%. Free cash flow $871.4M (yield +8.0%); cash $1.6B, debt $472.3M, debt/equity 0.21, current ratio 2.75. Short interest +7.8% of float. Beta 1.15.
+
+**AI decision (Jev).** **Action: buy** (buy 0.69, watch 0.28, skip 0.03); kind of decline: transitory (confidence 0.95); P(corporate action / data artefact, not a real decline): 0.02; P(known event within 4 weeks): 0.93; evidence vs the setup: supports (confidence 0.25); severity of the news for the business: 1.0 (modest damage).
+
+*A typed decision model (TypeSafe Jev via OpenRouter) that read only this brief and answered fixed questions with calibrated probabilities; it gives no rationale. Its action is forward-tested in the journal as its own rule (jev_pick) and does not replace the tested rules.*
 
 ## [DUK](https://www.tradingview.com/chart/?symbol=DUK) Duke Energy Corporation
 
@@ -2074,6 +2273,10 @@ Last 90 days: 1 upgrades, 0 downgrades, 2 target raises, 6 target cuts.
 
 **Fundamentals.** Market cap $88.7B; P/E 17.1 trailing, 15.9 forward, PEG 2.12; EV/revenue 5.6, EV/EBITDA 11.0, P/B 1.6. Margins: gross +52%, operating +28%, net +16%; ROE +10%. Free cash flow $-4.5B (yield -5.0%); cash $673.0M, debt $92.2B, debt/equity 1.62, current ratio 0.66. Dividend yield +3.8%. Short interest +2.7% of float. Beta 0.36.
 
+**AI decision (Jev).** **Action: watch** (buy 0.42, watch 0.55, skip 0.03); kind of decline: sector-wide (confidence 0.87); P(corporate action / data artefact, not a real decline): 0.03; P(known event within 4 weeks): 0.80; evidence vs the setup: neutral (confidence 0.59); severity of the news for the business: 1.0 (modest damage).
+
+*A typed decision model (TypeSafe Jev via OpenRouter) that read only this brief and answered fixed questions with calibrated probabilities; it gives no rationale. Its action is forward-tested in the journal as its own rule (jev_pick) and does not replace the tested rules.*
+
 ## [EQT](https://www.tradingview.com/chart/?symbol=EQT) EQT Corporation
 
 *In today's tables: falling wedge. Energy / Oil & Gas E&P.*
@@ -2148,6 +2351,10 @@ Last 90 days: 0 upgrades, 0 downgrades, 4 target raises, 6 target cuts.
 
 **Fundamentals.** Market cap $31.3B; P/E 11.6 trailing, 13.3 forward, PEG 1.42; EV/revenue 4.3, EV/EBITDA 5.7, P/B 1.2. Margins: gross +81%, operating +23%, net +29%; ROE +11%. Free cash flow $2.5B (yield +7.9%); cash $112.9M, debt $5.7B, debt/equity 0.20, current ratio 0.67. Dividend yield +1.4%. Short interest +4.1% of float. Beta 0.58.
 
+**AI decision (Jev).** **Action: watch** (buy 0.03, watch 0.82, skip 0.15); kind of decline: transitory (confidence 0.37); P(corporate action / data artefact, not a real decline): 0.04; P(known event within 4 weeks): 0.97; evidence vs the setup: contradicts (confidence 0.36); severity of the news for the business: 1.2 (modest damage).
+
+*A typed decision model (TypeSafe Jev via OpenRouter) that read only this brief and answered fixed questions with calibrated probabilities; it gives no rationale. Its action is forward-tested in the journal as its own rule (jev_pick) and does not replace the tested rules.*
+
 ## [ERIE](https://www.tradingview.com/chart/?symbol=ERIE) Erie Indemnity Company
 
 *In today's tables: falling wedge. Financial Services / Insurance Brokers.*
@@ -2206,6 +2413,10 @@ The group as one basket: not beaten down (6 months -2.0%, -6.2% vs its 200-day M
 
 **Fundamentals.** Market cap $11.6B; P/E 20.2 trailing, 15.9 forward, PEG 2.67; EV/revenue 2.7, EV/EBITDA 13.4, P/B 4.7. Margins: gross +18%, operating +19%, net +14%; ROE +25%. Free cash flow $481.2M (yield +4.1%); cash $305.0M, debt $63.2M, debt/equity 0.03, current ratio 1.25. Dividend yield +2.7%. Short interest +9.5% of float. Beta 0.30.
 
+**AI decision (Jev).** **Action: buy** (buy 0.74, watch 0.22, skip 0.04); kind of decline: transitory (confidence 0.46); P(corporate action / data artefact, not a real decline): 0.04; P(known event within 4 weeks): 0.55; evidence vs the setup: supports (confidence 0.99); severity of the news for the business: 0.9 (modest damage).
+
+*A typed decision model (TypeSafe Jev via OpenRouter) that read only this brief and answered fixed questions with calibrated probabilities; it gives no rationale. Its action is forward-tested in the journal as its own rule (jev_pick) and does not replace the tested rules.*
+
 ## [HSY](https://www.tradingview.com/chart/?symbol=HSY) The Hershey Company
 
 *In today's tables: falling wedge. Consumer Defensive / Confectioners.*
@@ -2253,10 +2464,10 @@ Latest news:
 - **weak demand / consumer** (4): 2026-07-29 "Hershey (HSY) Heads Into Q2 Earnings Following Softer Demand And A Split Valuation View" (finance.yahoo.com); 2026-07-29 "Analysts Offer Insights on Consumer Goods Companies: Altria Group (MO) and The Hershey Company (HSY)" (The Globe and Mail)
 - **competition / market share** (3): 2026-06-17 "Hershey to host qualifiers for July 4 Nathan’s Famous hot dog eating competition" (ABC27); 2026-06-19 "Nathan's Famous Hot Dog Competition Qualifier - Hersheypark, Hershey PA" (Major League Eating)
 - **legal / regulatory** (2): 2026-04-12 "Capitals recall goaltender Clay Stevenson, send Mitch Gibson back to Hershey" (RMNB); 2026-06-10 "Hershey Medical Center doctors want a federal judge to toss an ex-resident’s lawsuit, here’s why" (pennlive.com)
-Headline tone over the year: 13 negative, 39 positive, 74 neutral; last 30 days 2 negative vs 6 positive.
+Headline tone over the year: 13 negative, 39 positive, 74 neutral; last 30 days 2 negative vs 5 positive.
 
 **Positioning:** Short interest 7.4% of float (-11% vs the prior month, 7.6 days to cover), as of -2026-09-15; institutions hold 91%, insiders 0.3%; StockTwits (4837 watchers): of the last 30 posts 1 bearish, 7 bullish.
-**Sentiment: positive** (signals: - price targets mostly cut in 90 days (9 cuts vs 2 raises); + EPS estimates revised up (18 up / 2 down in 30 days); + short interest falling (-11% in a month); + StockTwits crowd bullish (7 bullish vs 1 bearish of the last 30 posts); + headlines mostly positive in the last 30 days (6 positive vs 2 negative)).
+**Sentiment: positive** (signals: - price targets mostly cut in 90 days (9 cuts vs 2 raises); + EPS estimates revised up (18 up / 2 down in 30 days); + short interest falling (-11% in a month); + StockTwits crowd bullish (7 bullish vs 1 bearish of the last 30 posts); + headlines mostly positive in the last 30 days (5 positive vs 2 negative)).
 
 **Peers and group.** Closest by market-neutral correlation: MDLZ (0.49), PEP (0.48), GIS (0.47), KHC (0.43), KO (0.43); group of 20 stocks (largest: KO, PG, PEP, MDLZ), mean correlation to the group 0.346; beta 0.30 to the equal-weight market, residual volatility 28% a year.
 **Last 20 days:** stock -10.2%, peer group -9.6%, relative to the group (beta-adjusted) -2.5%. The group over 6 months: -2.5%. z=-0.3, within its normal range.
@@ -2274,6 +2485,10 @@ Last 90 days: 0 upgrades, 0 downgrades, 2 target raises, 9 target cuts.
 **Last report and estimates.** Quarter to 2026-06-30: EPS 1.90 vs 1.43 expected (+33.1%); beat in 4 of the last 4 quarters. Revenue +7% yoy, earnings +631% yoy (latest quarter). Next report 2026-11-05: EPS 2.12 expected (+63% yoy), revenue +2% yoy. Current-year EPS estimate -0.0% in 30 days, +0.7% in 90 days (18 up / 2 down revisions); growth expected +35% this year, +16% next. 
 
 **Fundamentals.** Market cap $32.0B; P/E 21.8 trailing, 16.2 forward, PEG 0.79; EV/revenue 3.0, EV/EBITDA 13.5, P/B 7.0. Margins: gross +38%, operating +23%, net +12%; ROE +33%. Free cash flow $1.7B (yield +5.4%); cash $791.2M, debt $5.9B, debt/equity 1.30, current ratio 1.18. Dividend yield +3.7%. Short interest +7.4% of float. Beta 0.10.
+
+**AI decision (Jev).** **Action: watch** (buy 0.40, watch 0.52, skip 0.08); kind of decline: transitory (confidence 0.52); P(corporate action / data artefact, not a real decline): 0.10; P(known event within 4 weeks): 0.91; evidence vs the setup: neutral (confidence 0.42); severity of the news for the business: 0.7 (modest damage).
+
+*A typed decision model (TypeSafe Jev via OpenRouter) that read only this brief and answered fixed questions with calibrated probabilities; it gives no rationale. Its action is forward-tested in the journal as its own rule (jev_pick) and does not replace the tested rules.*
 
 ## [LDOS](https://www.tradingview.com/chart/?symbol=LDOS) Leidos Holdings, Inc.
 
@@ -2355,6 +2570,10 @@ Last 90 days: 0 upgrades, 0 downgrades, 5 target raises, 6 target cuts.
 
 **Fundamentals.** Market cap $15.3B; P/E 11.4 trailing, 9.6 forward, PEG 2.46; EV/revenue 1.2, EV/EBITDA 8.9, P/B 2.9. Margins: gross +18%, operating +12%, net +8%; ROE +28%. Free cash flow $1.1B (yield +7.5%); cash $748.0M, debt $6.6B, debt/equity 1.23, current ratio 1.63. Dividend yield +1.4%. Short interest +4.8% of float. Beta 0.57.
 
+**AI decision (Jev).** **Action: buy** (buy 0.61, watch 0.35, skip 0.04); kind of decline: transitory (confidence 0.79); P(corporate action / data artefact, not a real decline): 0.03; P(known event within 4 weeks): 0.95; evidence vs the setup: supports (confidence 0.23); severity of the news for the business: 1.0 (modest damage).
+
+*A typed decision model (TypeSafe Jev via OpenRouter) that read only this brief and answered fixed questions with calibrated probabilities; it gives no rationale. Its action is forward-tested in the journal as its own rule (jev_pick) and does not replace the tested rules.*
+
 ## [NKE](https://www.tradingview.com/chart/?symbol=NKE) NIKE, Inc.
 
 *In today's tables: falling wedge. Consumer Cyclical / Footwear & Accessories.*
@@ -2429,9 +2648,13 @@ Last 90 days: 0 upgrades, 4 downgrades, 0 target raises, 14 target cuts.
 - 2026-09-25 B of A Securities: downgrades Neutral -> Underperform, target 47 -> 30
 - 2026-09-23 Oppenheimer: maintains Outperform, target 60 -> 52
 
-**Last report and estimates.** Quarter to 2026-05-31: EPS 0.72 vs 0.13 expected (+466.1%); beat in 4 of the last 4 quarters. Revenue -1% yoy, earnings +428% yoy (latest quarter). Next report 2026-10-01: EPS 0.44 expected (-11% yoy), revenue -3% yoy. Current-year EPS estimate -3.5% in 30 days, -4.0% in 90 days (1 up / 5 down revisions); growth expected -21% this year, +26% next. 
+**Last report and estimates.** Quarter to 2026-05-31: EPS 0.72 vs 0.13 expected (+466.1%); beat in 4 of the last 4 quarters. Revenue -1% yoy, earnings +428% yoy (latest quarter). Next report (date not yet announced): EPS 0.44 expected (-11% yoy), revenue -3% yoy. Current-year EPS estimate -3.5% in 30 days, -4.0% in 90 days (1 up / 5 down revisions); growth expected -21% this year, +26% next. 
 
 **Fundamentals.** Market cap $52.1B; P/E 16.7 trailing, 16.4 forward, PEG 1.42; EV/revenue 1.2, EV/EBITDA 11.0, P/B 3.5. Margins: gross +43%, operating +13%, net +7%; ROE +22%. Free cash flow $1.9B (yield +3.6%); cash $9.0B, debt $11.0B, debt/equity 0.74, current ratio 1.96. Dividend yield +4.6%. Short interest +9.0% of float. Beta 1.11.
+
+**AI decision (Jev).** **Action: skip** (buy 0.02, watch 0.20, skip 0.78); kind of decline: structural (confidence 0.94); P(corporate action / data artefact, not a real decline): 0.02; P(known event within 4 weeks): 0.31; evidence vs the setup: contradicts (confidence 1.00); severity of the news for the business: 2.0 (serious damage).
+
+*A typed decision model (TypeSafe Jev via OpenRouter) that read only this brief and answered fixed questions with calibrated probabilities; it gives no rationale. Its action is forward-tested in the journal as its own rule (jev_pick) and does not replace the tested rules.*
 
 ## [NI](https://www.tradingview.com/chart/?symbol=NI) NiSource Inc.
 
@@ -2496,6 +2719,10 @@ Last 90 days: 0 upgrades, 0 downgrades, 1 target raises, 6 target cuts.
 **Last report and estimates.** Quarter to 2026-06-30: EPS 0.16 vs 0.16 expected (+1.5%); beat in 3 of the last 4 quarters. Revenue +5% yoy, earnings -58% yoy (latest quarter). Next report 2026-10-28 (estimated date): EPS 0.22 expected (+13% yoy), revenue +10% yoy. Current-year EPS estimate -0.1% in 30 days, -0.3% in 90 days (1 up / 4 down revisions); growth expected +8% this year, +10% next. 
 
 **Fundamentals.** Market cap $18.9B; P/E 21.0 trailing, 17.5 forward, PEG 2.01; EV/revenue 5.6, EV/EBITDA 12.7, P/B 2.0. Margins: gross +51%, operating +17%, net +13%; ROE +9%. Free cash flow $-1.8B (yield -9.4%); cash $70.0M, debt $17.4B, debt/equity 1.47, current ratio 0.50. Dividend yield +3.1%. Short interest +3.9% of float. Beta 0.54.
+
+**AI decision (Jev).** **Action: watch** (buy 0.40, watch 0.57, skip 0.03); kind of decline: sector-wide (confidence 0.41); P(corporate action / data artefact, not a real decline): 0.03; P(known event within 4 weeks): 0.77; evidence vs the setup: neutral (confidence 0.27); severity of the news for the business: 1.2 (modest damage).
+
+*A typed decision model (TypeSafe Jev via OpenRouter) that read only this brief and answered fixed questions with calibrated probabilities; it gives no rationale. Its action is forward-tested in the journal as its own rule (jev_pick) and does not replace the tested rules.*
 
 ## [NCLH](https://www.tradingview.com/chart/?symbol=NCLH) Norwegian Cruise Line Holdings Ltd.
 
@@ -2576,6 +2803,10 @@ Last 90 days: 0 upgrades, 2 downgrades, 4 target raises, 10 target cuts.
 
 **Fundamentals.** Market cap $6.7B; P/E 8.9 trailing, 8.8 forward, PEG 1.24; EV/revenue 2.2, EV/EBITDA 8.7, P/B 2.6. Margins: gross +42%, operating +14%, net +7%; ROE +37%. Free cash flow $-1.7B (yield -25.0%); cash $218.1M, debt $16.0B, debt/equity 6.21, current ratio 0.20. Short interest +23.4% of float. Beta 1.88.
 
+**AI decision (Jev).** **Action: watch** (buy 0.01, watch 0.58, skip 0.41); kind of decline: structural (confidence 0.77); P(corporate action / data artefact, not a real decline): 0.02; P(known event within 4 weeks): 0.83; evidence vs the setup: contradicts (confidence 0.85); severity of the news for the business: 1.8 (serious damage).
+
+*A typed decision model (TypeSafe Jev via OpenRouter) that read only this brief and answered fixed questions with calibrated probabilities; it gives no rationale. Its action is forward-tested in the journal as its own rule (jev_pick) and does not replace the tested rules.*
+
 ## [NRG](https://www.tradingview.com/chart/?symbol=NRG) NRG Energy, Inc.
 
 *In today's tables: falling wedge. Utilities / Utilities - Independent Power Producers.*
@@ -2653,6 +2884,10 @@ Last 90 days: 0 upgrades, 0 downgrades, 3 target raises, 6 target cuts.
 
 **Fundamentals.** Market cap $20.4B; P/E 25.2 trailing, 8.7 forward, PEG 0.37; EV/revenue 1.3, EV/EBITDA 13.6, P/B 4.8. Margins: gross +19%, operating +13%, net +3%; ROE +24%. Free cash flow $772.4M (yield +3.8%); cash $162.0M, debt $23.5B, debt/equity 4.83, current ratio 0.97. Dividend yield +2.0%. Short interest +3.7% of float. Beta 1.17.
 
+**AI decision (Jev).** **Action: watch** (buy 0.03, watch 0.74, skip 0.23); kind of decline: structural (confidence 0.74); P(corporate action / data artefact, not a real decline): 0.04; P(known event within 4 weeks): 0.83; evidence vs the setup: contradicts (confidence 0.58); severity of the news for the business: 1.4 (modest damage).
+
+*A typed decision model (TypeSafe Jev via OpenRouter) that read only this brief and answered fixed questions with calibrated probabilities; it gives no rationale. Its action is forward-tested in the journal as its own rule (jev_pick) and does not replace the tested rules.*
+
 ## [PPL](https://www.tradingview.com/chart/?symbol=PPL) PPL Corporation
 
 *In today's tables: falling wedge. Utilities / Utilities - Regulated Electric.*
@@ -2716,6 +2951,10 @@ Last 90 days: 0 upgrades, 0 downgrades, 4 target raises, 6 target cuts.
 
 **Fundamentals.** Market cap $24.7B; P/E 19.4 trailing, 15.5 forward, PEG 1.20; EV/revenue 4.8, EV/EBITDA 11.9, P/B 1.6. Margins: gross +44%, operating +24%, net +13%; ROE +9%. Free cash flow $-1.9B (yield -7.9%); cash $332.0M, debt $20.4B, debt/equity 1.35, current ratio 0.91. Dividend yield +3.5%. Short interest +5.4% of float. Beta 0.58.
 
+**AI decision (Jev).** **Action: watch** (buy 0.43, watch 0.55, skip 0.02); kind of decline: sector-wide (confidence 0.48); P(corporate action / data artefact, not a real decline): 0.03; P(known event within 4 weeks): 0.60; evidence vs the setup: neutral (confidence 0.75); severity of the news for the business: 1.1 (modest damage).
+
+*A typed decision model (TypeSafe Jev via OpenRouter) that read only this brief and answered fixed questions with calibrated probabilities; it gives no rationale. Its action is forward-tested in the journal as its own rule (jev_pick) and does not replace the tested rules.*
+
 ## [SRE](https://www.tradingview.com/chart/?symbol=SRE) Sempra
 
 *In today's tables: falling wedge. Utilities / Utilities - Diversified.*
@@ -2764,10 +3003,10 @@ Latest news:
 - **guidance / outlook cut** (3): 2026-07-30 "Sempra (SRE) Earnings Expected to Grow: What to Know Ahead of Next Week's Release" (Yahoo Finance); 2026-09-12 "The Manufacturers Life Insurance Company Trims Stake in Sempra Energy $SRE" (MarketBeat)
 - **margins / costs** (2): 2026-08-20 "DBA (SREA) Quarterly Figures: EPS Exceeds Its Estimate; After Results: Shares Move Lower 0.17% for the Current Session - Gross Profit Margin" (dars.gov.et)
 - **management / turnaround** (2): 2026-05-07 "‘A great start’ to 2026, Sempra CEO says, but critics complain about his pay" (San Diego Union-Tribune); 2026-06-08 "Sempra Infrastructure taps former LyondellBasell head Patel as next CEO (SRE:NYSE)" (Seeking Alpha)
-Headline tone over the year: 8 negative, 16 positive, 42 neutral; last 30 days 3 negative vs 8 positive.
+Headline tone over the year: 8 negative, 16 positive, 42 neutral; last 30 days 3 negative vs 5 positive.
 
 **Positioning:** Short interest 1.9% of float (-2% vs the prior month, 2.8 days to cover), as of -2026-09-15; institutions hold 94%, insiders 0.1%; StockTwits (1403 watchers): of the last 30 posts 1 bearish, 5 bullish.
-**Sentiment: positive** (signals: - price targets mostly cut in 90 days (9 cuts vs 0 raises); + EPS estimates revised up (3 up / 2 down in 30 days); + StockTwits crowd bullish (5 bullish vs 1 bearish of the last 30 posts); + headlines mostly positive in the last 30 days (8 positive vs 3 negative)).
+**Sentiment: positive** (signals: - price targets mostly cut in 90 days (9 cuts vs 0 raises); + EPS estimates revised up (3 up / 2 down in 30 days); + StockTwits crowd bullish (5 bullish vs 1 bearish of the last 30 posts); + headlines mostly positive in the last 30 days (5 positive vs 3 negative)).
 
 **Peers and group.** Closest by market-neutral correlation: LNT (0.45), AEE (0.45), NI (0.45), PEG (0.45), XEL (0.44); group of 25 stocks (largest: NEE, AEP, SO, DUK), mean correlation to the group 0.384; beta 0.71 to the equal-weight market, residual volatility 25% a year.
 **Last 20 days:** stock -6.1%, peer group -5.7%, relative to the group (beta-adjusted) -0.3%. The group over 6 months: -10.7%. z=-0.0, within its normal range.
@@ -2785,6 +3024,10 @@ Last 90 days: 1 upgrades, 1 downgrades, 0 target raises, 9 target cuts.
 **Last report and estimates.** Quarter to 2026-06-30: EPS 1.16 vs 1.06 expected (+9.6%); beat in 3 of the last 4 quarters. Revenue -0% yoy, earnings +71% yoy (latest quarter). Next report 2026-11-04: EPS 1.07 expected (-4% yoy), revenue +2% yoy. Current-year EPS estimate +0.1% in 30 days, -0.0% in 90 days (3 up / 2 down revisions); growth expected +9% this year, +8% next. 
 
 **Fundamentals.** Market cap $51.0B; P/E 22.6 trailing, 14.1 forward, PEG 0.68; EV/revenue 7.3, EV/EBITDA 16.7, P/B 1.6. Margins: gross +44%, operating +28%, net +17%; ROE +7%. Free cash flow $-27.7B (yield -54.2%); cash $48.0M, debt $36.7B, debt/equity 0.85, current ratio 1.64. Dividend yield +3.4%. Short interest +1.9% of float. Beta 0.56.
+
+**AI decision (Jev).** **Action: watch** (buy 0.42, watch 0.54, skip 0.04); kind of decline: sector-wide (confidence 0.52); P(corporate action / data artefact, not a real decline): 0.03; P(known event within 4 weeks): 0.70; evidence vs the setup: neutral (confidence 0.59); severity of the news for the business: 1.1 (modest damage).
+
+*A typed decision model (TypeSafe Jev via OpenRouter) that read only this brief and answered fixed questions with calibrated probabilities; it gives no rationale. Its action is forward-tested in the journal as its own rule (jev_pick) and does not replace the tested rules.*
 
 ## [SO](https://www.tradingview.com/chart/?symbol=SO) The Southern Company
 
@@ -2858,6 +3101,10 @@ Last 90 days: 0 upgrades, 1 downgrades, 2 target raises, 5 target cuts.
 **Last report and estimates.** Quarter to 2026-06-30: EPS 1.13 vs 1.01 expected (+11.8%); beat in 3 of the last 4 quarters. Revenue +0% yoy, earnings +30% yoy (latest quarter). Next report 2026-11-05: EPS 1.65 expected (+3% yoy), revenue +5% yoy. Current-year EPS estimate +0.0% in 30 days, +0.5% in 90 days (5 up / 1 down revisions); growth expected +7% this year, +7% next. 
 
 **Fundamentals.** Market cap $96.0B; P/E 20.1 trailing, 17.0 forward, PEG 1.96; EV/revenue 5.7, EV/EBITDA 12.1, P/B 2.4. Margins: gross +48%, operating +30%, net +15%; ROE +11%. Free cash flow $-3.9B (yield -4.1%); cash $3.0B, debt $77.1B, debt/equity 1.82, current ratio 0.79. Dividend yield +3.7%. Short interest +2.5% of float. Beta 0.32.
+
+**AI decision (Jev).** **Action: watch** (buy 0.45, watch 0.51, skip 0.04); kind of decline: sector-wide (confidence 0.90); P(corporate action / data artefact, not a real decline): 0.04; P(known event within 4 weeks): 0.87; evidence vs the setup: neutral (confidence 0.65); severity of the news for the business: 0.4 (no real damage).
+
+*A typed decision model (TypeSafe Jev via OpenRouter) that read only this brief and answered fixed questions with calibrated probabilities; it gives no rationale. Its action is forward-tested in the journal as its own rule (jev_pick) and does not replace the tested rules.*
 
 ## [TMUS](https://www.tradingview.com/chart/?symbol=TMUS) T-Mobile US, Inc.
 
@@ -2937,6 +3184,10 @@ Last 90 days: 1 upgrades, 1 downgrades, 0 target raises, 12 target cuts.
 
 **Fundamentals.** Market cap $173.5B; P/E 16.9 trailing, 11.2 forward, PEG 0.58; EV/revenue 3.2, EV/EBITDA 8.5, P/B 3.1. Margins: gross +63%, operating +25%, net +11%; ROE +18%. Free cash flow $11.3B (yield +6.5%); cash $2.8B, debt $120.4B, debt/equity 2.14, current ratio 0.92. Dividend yield +2.9%. Short interest +3.8% of float. Beta 0.33.
 
+**AI decision (Jev).** **Action: watch** (buy 0.31, watch 0.66, skip 0.03); kind of decline: structural (confidence 0.38); P(corporate action / data artefact, not a real decline): 0.03; P(known event within 4 weeks): 0.96; evidence vs the setup: neutral (confidence 0.77); severity of the news for the business: 1.0 (modest damage).
+
+*A typed decision model (TypeSafe Jev via OpenRouter) that read only this brief and answered fixed questions with calibrated probabilities; it gives no rationale. Its action is forward-tested in the journal as its own rule (jev_pick) and does not replace the tested rules.*
+
 ## [TPR](https://www.tradingview.com/chart/?symbol=TPR) Tapestry, Inc.
 
 *In today's tables: falling wedge. Consumer Cyclical / Luxury Goods.*
@@ -3006,6 +3257,10 @@ Last 90 days: 0 upgrades, 0 downgrades, 6 target raises, 4 target cuts.
 
 **Fundamentals.** Market cap $23.8B; P/E 16.4 trailing, 13.4 forward, PEG 1.65; EV/revenue 3.2, EV/EBITDA 12.7, P/B 34.5. Margins: gross +77%, operating +20%, net +19%; ROE +197%. Free cash flow $1.4B (yield +5.9%); cash $1.2B, debt $4.0B, debt/equity 5.72, current ratio 1.75. Dividend yield +1.6%. Short interest +9.4% of float. Beta 1.43.
 
+**AI decision (Jev).** **Action: buy** (buy 0.87, watch 0.09, skip 0.04); kind of decline: transitory (confidence 0.87); P(corporate action / data artefact, not a real decline): 0.02; P(known event within 4 weeks): 0.70; evidence vs the setup: supports (confidence 0.99); severity of the news for the business: 0.7 (modest damage).
+
+*A typed decision model (TypeSafe Jev via OpenRouter) that read only this brief and answered fixed questions with calibrated probabilities; it gives no rationale. Its action is forward-tested in the journal as its own rule (jev_pick) and does not replace the tested rules.*
+
 ## [VMC](https://www.tradingview.com/chart/?symbol=VMC) Vulcan Materials Company
 
 *In today's tables: falling wedge. Basic Materials / Building Materials.*
@@ -3055,10 +3310,10 @@ Latest news:
 - **weak demand / consumer** (2): 2026-04-29 "VMC Q1 2026 Deep Dive: Data Center Demand and Public Infrastructure Drive Outperformance" (StockStory)
 - **margins / costs** (2): 2026-02-17 "Aggregate shipments, pricing up in Q4 at Vulcan Materials" (Pit & Quarry); 2026-07-29 "Vulcan Materials tops estimates as pricing offsets weather, energy costs (VMC:NYSE)" (Seeking Alpha)
 - **macro / market** (2): 2026-09-16 "Vulcan Materials: Sell-Off Creates Renewed Opportunity (NYSE:VMC)" (Seeking Alpha); 2026-09-29 "Vulcan Materials Sinks As Downgrade Triggers Selloff" (TipRanks)
-Headline tone over the year: 12 negative, 11 positive, 64 neutral; last 30 days 4 negative vs 2 positive.
+Headline tone over the year: 12 negative, 11 positive, 64 neutral; last 30 days 3 negative vs 2 positive.
 
 **Positioning:** Short interest 4.9% of float (-13% vs the prior month, 5.9 days to cover), as of -2026-09-15; institutions hold 101%, insiders 0.2%; StockTwits (1988 watchers): of the last 30 posts 0 bearish, 3 bullish.
-**Sentiment: negative** (signals: - price targets mostly cut in 90 days (4 cuts vs 1 raises); - EPS estimates revised down (4 up / 9 down in 30 days); + short interest falling (-13% in a month); - headlines mostly negative in the last 30 days (4 negative vs 2 positive)).
+**Sentiment: negative** (signals: - price targets mostly cut in 90 days (4 cuts vs 1 raises); - EPS estimates revised down (4 up / 9 down in 30 days); + short interest falling (-13% in a month); - headlines mostly negative in the last 30 days (3 negative vs 2 positive)).
 
 **Peers and group.** Closest by market-neutral correlation: MLM (0.83), CRH (0.55), SHW (0.35), PHM (0.30), HD (0.30); group of 3 stocks (largest: CRH, MLM), mean correlation to the group 0.691; beta 0.96 to the equal-weight market, residual volatility 22% a year.
 **Last 20 days:** stock -7.6%, peer group -9.6%, relative to the group (beta-adjusted) +0.7%. The group over 6 months: -21.1%. z=+0.1, within its normal range.
@@ -3076,6 +3331,10 @@ Last 90 days: 0 upgrades, 1 downgrades, 1 target raises, 4 target cuts.
 **Last report and estimates.** Quarter to 2026-06-30: EPS 2.59 vs 2.47 expected (+4.9%); beat in 3 of the last 4 quarters. Revenue +2% yoy, earnings +3% yoy (latest quarter). Next report 2026-10-29: EPS 3.02 expected (+6% yoy), revenue -1% yoy. Current-year EPS estimate -0.4% in 30 days, -1.3% in 90 days (4 up / 9 down revisions); growth expected +14% this year, +16% next. 
 
 **Fundamentals.** Market cap $31.6B; P/E 28.8 trailing, 23.0 forward, PEG 1.65; EV/revenue 4.5, EV/EBITDA 15.6, P/B 3.7. Margins: gross +28%, operating +22%, net +14%; ROE +13%. Free cash flow $843.6M (yield +2.7%); cash $194.2M, debt $4.9B, debt/equity 0.58, current ratio 1.76. Dividend yield +0.9%. Short interest +4.9% of float. Beta 1.05.
+
+**AI decision (Jev).** **Action: watch** (buy 0.28, watch 0.68, skip 0.04); kind of decline: sector-wide (confidence 0.49); P(corporate action / data artefact, not a real decline): 0.03; P(known event within 4 weeks): 0.89; evidence vs the setup: contradicts (confidence 0.54); severity of the news for the business: 1.0 (modest damage).
+
+*A typed decision model (TypeSafe Jev via OpenRouter) that read only this brief and answered fixed questions with calibrated probabilities; it gives no rationale. Its action is forward-tested in the journal as its own rule (jev_pick) and does not replace the tested rules.*
 
 ## [WEC](https://www.tradingview.com/chart/?symbol=WEC) WEC Energy Group, Inc.
 
@@ -3136,6 +3395,10 @@ Last 90 days: 0 upgrades, 0 downgrades, 2 target raises, 3 target cuts.
 **Last report and estimates.** Quarter to 2026-06-30: EPS 0.91 vs 0.81 expected (+12.3%); beat in 3 of the last 4 quarters. Revenue +3% yoy, earnings +20% yoy (latest quarter). Next report 2026-10-29: EPS 0.93 expected (+13% yoy), revenue +8% yoy. Current-year EPS estimate +0.0% in 30 days, +0.1% in 90 days (1 up / 1 down revisions); growth expected +16% this year, +7% next. 
 
 **Fundamentals.** Market cap $33.1B; P/E 19.8 trailing, 17.0 forward, PEG 1.98; EV/revenue 5.5, EV/EBITDA 14.2, P/B . Margins: gross +42%, operating +22%, net +17%; ROE +12%. Free cash flow $-2.4B (yield -7.1%); cash $50.0M, debt $23.0B, debt/equity 1.58, current ratio 0.53. Dividend yield +3.8%. Short interest +4.8% of float. Beta 0.46.
+
+**AI decision (Jev).** **Action: watch** (buy 0.44, watch 0.54, skip 0.02); kind of decline: sector-wide (confidence 0.70); P(corporate action / data artefact, not a real decline): 0.04; P(known event within 4 weeks): 0.59; evidence vs the setup: neutral (confidence 0.50); severity of the news for the business: 0.4 (no real damage).
+
+*A typed decision model (TypeSafe Jev via OpenRouter) that read only this brief and answered fixed questions with calibrated probabilities; it gives no rationale. Its action is forward-tested in the journal as its own rule (jev_pick) and does not replace the tested rules.*
 
 ## [XYL](https://www.tradingview.com/chart/?symbol=XYL) Xylem Inc.
 
@@ -3213,6 +3476,10 @@ Last 90 days: 0 upgrades, 0 downgrades, 9 target raises, 1 target cuts.
 
 **Fundamentals.** Market cap $23.6B; P/E 24.0 trailing, 16.2 forward, PEG 1.23; EV/revenue 2.8, EV/EBITDA 12.9, P/B 2.1. Margins: gross +39%, operating +17%, net +11%; ROE +9%. Free cash flow $1.2B (yield +5.0%); cash $1.3B, debt $3.1B, debt/equity 0.29, current ratio 1.61. Dividend yield +1.7%. Short interest +6.0% of float. Beta 1.00.
 
+**AI decision (Jev).** **Action: buy** (buy 0.80, watch 0.19, skip 0.01); kind of decline: transitory (confidence 0.79); P(corporate action / data artefact, not a real decline): 0.03; P(known event within 4 weeks): 0.97; evidence vs the setup: supports (confidence 1.00); severity of the news for the business: 0.8 (modest damage).
+
+*A typed decision model (TypeSafe Jev via OpenRouter) that read only this brief and answered fixed questions with calibrated probabilities; it gives no rationale. Its action is forward-tested in the journal as its own rule (jev_pick) and does not replace the tested rules.*
+
 ## [YUM](https://www.tradingview.com/chart/?symbol=YUM) Yum! Brands, Inc.
 
 *In today's tables: falling wedge. Consumer Cyclical / Restaurants.*
@@ -3283,3 +3550,7 @@ Last 90 days: 1 upgrades, 1 downgrades, 3 target raises, 4 target cuts.
 **Last report and estimates.** Quarter to 2026-06-30: EPS 1.62 vs 1.56 expected (+3.7%); beat in 3 of the last 4 quarters. Revenue +12% yoy, earnings +132% yoy (latest quarter). Next report 2026-11-03: EPS 1.48 expected (-6% yoy), revenue +4% yoy. Current-year EPS estimate -3.6% in 30 days, -5.4% in 90 days (0 up / 14 down revisions); growth expected +6% this year, +9% next. 
 
 **Fundamentals.** Market cap $37.3B; P/E 17.4 trailing, 19.6 forward, PEG 1.72; EV/revenue 5.7, EV/EBITDA 16.3, P/B . Margins: gross +45%, operating +33%, net +25%; ROE . Free cash flow $833.2M (yield +2.2%); cash $683.0M, debt $13.4B, debt/equity , current ratio 0.59. Dividend yield +2.2%. Short interest +4.1% of float. Beta 0.55.
+
+**AI decision (Jev).** **Action: watch** (buy 0.03, watch 0.86, skip 0.11); kind of decline: transitory (confidence 0.79); P(corporate action / data artefact, not a real decline): 0.03; P(known event within 4 weeks): 0.74; evidence vs the setup: contradicts (confidence 0.37); severity of the news for the business: 1.2 (modest damage).
+
+*A typed decision model (TypeSafe Jev via OpenRouter) that read only this brief and answered fixed questions with calibrated probabilities; it gives no rationale. Its action is forward-tested in the journal as its own rule (jev_pick) and does not replace the tested rules.*
