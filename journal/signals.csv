@@ -47,3 +47,4 @@ logged,rule,symbol,signal_date,status,ref_price,entry_date,entry_price,hold_bars
 2026-10-01,jev_pick,LDOS,2026-10-01,open,121.9700,,,20,"P(buy) 0.61, cause transitory, evidence supports, severity 1.04"
 2026-10-01,jev_pick,TPR,2026-10-01,open,119.2400,,,20,"P(buy) 0.87, cause transitory, evidence supports, severity 0.68"
 2026-10-01,jev_pick,XYL,2026-10-01,open,100.8800,,,20,"P(buy) 0.80, cause transitory, evidence supports, severity 0.8"
+2026-10-01,jev_pick,ORCL,2026-10-01,open,138.0700,,,20,"P(buy) 0.60, cause transitory, evidence supports, severity 0.93"
