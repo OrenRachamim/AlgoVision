@@ -22,6 +22,7 @@ SECTIONS: List[Tuple[str, str]] = [
     ("Insider buys, other stocks", "### Other stocks with insider purchases"),
     ("News-day", "### News-day rule"),
     ("Falling wedge, beaten-down", "### Falling Wedge in beaten-down stocks"),
+    ("Early rally, beaten-down", "### Early rally in beaten-down stocks"),
 ]
 
 
@@ -118,7 +119,7 @@ def build_whatsnew(out_dir: Path, today: str, report_text: Optional[str] = None,
         md.append("- none")
     md.append("")
     short = {"Insider buys, beaten-down (tested setup)": "insider buys (beaten-down)", "Insider buys, other stocks": "insider buys (other)",
-             "News-day": "news-day", "Falling wedge, beaten-down": "falling wedge"}
+             "News-day": "news-day", "Falling wedge, beaten-down": "falling wedge", "Early rally, beaten-down": "early rally"}
     counts = ", ".join(f"{short.get(label, label)} {len(v)}" for label, v in cur.items())
     md.append(f"Tables now: {counts}. Full report attached. Not investment advice.")
     if report_url:

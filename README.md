@@ -325,6 +325,27 @@ did not hold up. So the group state is shown as context (the *group* column of t
 every brief, the summary line of the Hebrew wedge file), not used as a filter. The basket as an instrument is not
 supported out of sample (24 test signals, excess +0.7% with a wide interval).
 
+## Early rally in beaten-down stocks (`research-rally` command)
+
+```bash
+python -m algovision research-rally --offline      # 518 symbols, 10 years, about a minute from cache
+```
+
+Is the *start* of an up-move a tradeable short-hold entry? `algovision/research/rally.py` tests six point-in-time
+definitions on every stock (close back above the 50-day MA after a stint below it, 20/50-day MA cross, first close
+above the 60-bar high in a stock still 10 % under its 52-week high, a Dow turn of higher low then higher high, a +8 %
+thrust in 10 bars off the 60-bar low, RSI(14) back above 50 after < 35), entry at the next open, 10 bps cost, against
+the SPY and against random entries in the same stock, train before 2023 and test after. Result
+([docs/research_rally.md](docs/research_rally.md), 50,829 events): in stocks that are **not** beaten down the turn rules
+add little or nothing (base breakouts fail outright); in **beaten-down** stocks (below the 200-day MA, 6-month return
+< -8 %) all five turn rules pass the pre-registered bar in both periods. The deployable rule is their union, one entry
+per stock per 30 days: over 20 bars +2.7 % (train) / +2.2 % (test) net, hit 61 % / 58 %, +4.0 % / +3.5 % over random
+entries in the same stocks (t 19 / 13), positive in all 10 years, but only +0.6 % / 0.0 % over the SPY at 20 bars and
++0.8 % / -0.4 % at 60: the rule times the stock's own turn rather than beating the index. Only the deepest declines beat
+the SPY (6-month return < -30 %: +6.1 % / +4.5 % net at 20 bars, +2.5 % / +2.1 % over the SPY); two rules within a week
+helps a little, volume does not matter. The daily report shows the live table (*Early rally in beaten-down stocks*, rules fired in the last
+3 bars, a brief for every name) and the journal logs day-0 rows as `early_rally_beaten_down`, hold 20 bars.
+
 ## AI decisions (`decide` command, Jev)
 
 ```bash

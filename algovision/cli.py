@@ -208,6 +208,17 @@ def build_parser() -> argparse.ArgumentParser:
     rg.add_argument("--cache-dir", default=None)
     rg.add_argument("--offline", action="store_true")
 
+    rr = sub.add_parser("research-rally", help="early-rally study: is the start of an up-move (MA cross, base breakout, higher high, thrust, RSI turn) a tradeable short-hold entry? (docs/research_rally.md)")
+    rr.add_argument("--universe", "-u", default="all", choices=UNIVERSES)
+    rr.add_argument("--limit", type=int, default=0)
+    rr.add_argument("--period", default="10y")
+    rr.add_argument("--split", default="2023-01-01")
+    rr.add_argument("--out", default="docs/research/rally")
+    rr.add_argument("--doc", default="docs/research_rally.md")
+    rr.add_argument("--workers", type=int, default=4)
+    rr.add_argument("--cache-dir", default=None)
+    rr.add_argument("--offline", action="store_true")
+
     fa = sub.add_parser("factors", help="classic anomalies on the universe: cross-sectional momentum, trend filter, short-term reversal")
     fa.add_argument("--universe", "-u", default="all", choices=UNIVERSES)
     fa.add_argument("--symbols", default=None)
@@ -401,6 +412,9 @@ def main(argv: Optional[List[str]] = None) -> int:
     if args.cmd == "research-groups":
         from algovision.research.cli import cmd_groups
         return cmd_groups(args)
+    if args.cmd == "research-rally":
+        from algovision.research.cli import cmd_rally
+        return cmd_rally(args)
     if args.cmd == "factors":
         from algovision.research.cli import cmd_factors
         return cmd_factors(args)

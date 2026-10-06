@@ -101,12 +101,14 @@ def build_report(out_dir: Path, universe: str = "all", cache_dir: Optional[Path]
         md.append("none\n")
     from algovision.wedge_report import wedge_matches
     wedges = wedge_matches(frames, symbols)
+    from algovision.research.rally import early_rally_signals
+    rally = early_rally_signals(frames, [s for s in symbols if s in frames], max_age=3)
     # peer groups (cached a week) and today's divergence / group state for every listed name
     peers: Dict[str, Dict] = {}
     try:
         from algovision.peers import load_peers
         from algovision.research.groups import group_context_today
-        listed = list(dict.fromkeys(list(brief_tables) + list(nd["symbol"]) + list(wedges)))
+        listed = list(dict.fromkeys(list(brief_tables) + list(nd["symbol"]) + list(wedges) + list(rally["symbol"])))
         peers = load_peers(frames, cache, symbols=listed)
         import json as _json
         model = _json.loads((cache / "peers.json").read_text())
@@ -139,6 +141,32 @@ def build_report(out_dir: Path, universe: str = "all", cache_dir: Optional[Path]
     if wedges:
         md.append(f"One-rule file in Hebrew with the full technical analysis of every wedge, why the stock fell and the brief, "
                   f"each table row linked to its section: `wedge_{today}.md` ({WEDGE_URL.format(date=today)}).\n")
+    md.append("### Early rally in beaten-down stocks (a turn rule fired in the last 3 bars; hold ~20 bars; tested +2-3% net, "
+              "hit ~58-61%, +3.5-4% vs random entry, about 0 vs SPY at 20 bars)\n")
+    if len(rally):
+        tag(rally["symbol"], "early rally")
+        t = rally[["symbol", "rules", "n_rules", "signal_date", "bars_ago", "day_ret", "ret_10", "ret_6m", "from_52w_high", "dist_ma50",
+                   "dist_ma200", "volume_ratio", "last"]].copy()
+        for c in ("day_ret", "ret_10", "ret_6m", "from_52w_high", "dist_ma50", "dist_ma200"):
+            t[c] = t[c].map(lambda v: _pct(v, 1))
+        t["volume_ratio"] = t["volume_ratio"].map(lambda v: "" if pd.isna(v) else f"{v:.1f}x")
+        t["group"] = t["symbol"].map(group_cell)
+        t["sector"] = t["symbol"].map(lambda s: sectors.get(s, ""))
+        t["symbol"] = t["symbol"].map(tv)
+        t = t.rename(columns={"n_rules": "rules fired", "day_ret": "signal day", "ret_10": "10d", "ret_6m": "6m", "from_52w_high": "from 52w high",
+                              "dist_ma50": "vs MA50", "dist_ma200": "vs MA200", "volume_ratio": "volume"})
+        md.append(t.to_markdown(index=False) + "\n")
+        md.append("*rules*: `ma50_cross` = close back above the 50-day MA after >= 15 of 20 bars below it; `golden_20_50` = 20-day MA crosses "
+                  "above the 50-day; `higher_high` = first close above the swing high after a higher low (Dow turn); `thrust` = +8% in 10 bars "
+                  "from the 60-bar low after a flat or negative 6 months; `rsi_turn` = RSI(14) back above 50 after < 35. Tested 2016-2026 on "
+                  "beaten-down stocks only (below the 200-day MA, 6-month return < -8%), one entry per stock per 30 days, entry at the next open, "
+                  "10 bps cost: 20 bars +2.7% (train) / +2.2% (test), hit 61% / 58%, +4.0% / +3.5% over random entries in the same stocks "
+                  "(t 19 / 13), positive in all 10 years, but only +0.6% / 0.0% over the SPY at 20 bars and +0.8% / -0.4% at 60 (the rule times "
+                  "the stock's own turn, it does not beat the index). Only the deepest declines beat the SPY (6m < -30%: +6.1% / +4.5% net at 20 bars, "
+                  "+2.5% / +2.1% over the SPY); two or more rules within a week helps a little. The journal logs the day-0 rows as "
+                  "`early_rally_beaten_down` (docs/research_rally.md).\n")
+    else:
+        md.append("none\n")
     # 3. one research brief per name in the tables above
     md.append("## 3. Stock briefs (one per name in the tables above)\n")
     briefs_written = False

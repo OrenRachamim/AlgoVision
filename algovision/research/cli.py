@@ -154,6 +154,29 @@ def cmd_groups(args) -> int:
     return 0
 
 
+def cmd_rally(args) -> int:
+    """Early-rally study: six point-in-time 'the rally has just started' rules, event study vs SPY and local random."""
+    from algovision.research.factors import load_panel
+    from algovision.research.rally import rally_events, write_rally_report
+
+    symbols = get_universe(args.universe)
+    if args.limit:
+        symbols = symbols[: args.limit]
+    cache = Path(args.cache_dir) if args.cache_dir else DataProvider.__init__.__defaults__[0]
+    t0 = time.time()
+    frames = DataProvider(cache_dir=cache, offline=args.offline, workers=args.workers).get_many(list(symbols) + ["SPY"], args.period, "1d")
+    spy = frames.pop("SPY")
+    panel = load_panel([s for s in symbols if s in frames], lambda s: frames[s])
+    print(f"research-rally: panel {panel['Close'].shape}", file=sys.stderr)
+    ev = rally_events(panel, spy["Close"], progress=lambda i, n, ne: print(f"  [{i}/{n}] events={ne}", file=sys.stderr) if i % 50 == 0 or i == n else None)
+    if not len(ev):
+        print("no events", file=sys.stderr)
+        return 1
+    p = write_rally_report(Path(args.out), ev, args.split, doc_path=Path(args.doc) if args.doc else None)
+    print(f"wrote {p} ({len(ev)} events, {time.time() - t0:.0f}s)", file=sys.stderr)
+    return 0
+
+
 def cmd_factors(args) -> int:
     from algovision.research.factors import write_factors_report
 

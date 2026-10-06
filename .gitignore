@@ -12,3 +12,4 @@ out/
 !journal/*.csv
 .venv/
 .DS_Store
+docs/research/rally/rally_events.csv

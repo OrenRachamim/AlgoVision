@@ -26,6 +26,7 @@ RULES = {
     "falling_wedge_beaten_down": {"hold": 20, "expect": "+3% vs random, hit ~60% (docs/research_falling_wedge.md)"},
     "insider_buy_beaten_down": {"hold": 120, "expect": "+10% vs random at 60 bars, +15% at 120, hit ~68% (docs/research_insiders.md)"},
     "jev_pick": {"hold": 20, "expect": "untested: the Jev decision model's 'buy' (P >= 0.6) on a listed stock, logged by daily-report (algovision/decide.py)"},
+    "early_rally_beaten_down": {"hold": 20, "expect": "+2-3% net, hit ~58-61%, +3.5-4% vs random entry in the same stock, ~0 vs SPY at 20 bars (docs/research_rally.md)"},
 }
 # rules that were logged in the past but are no longer tracked or reported (rows stay in signals.csv)
 RETIRED_RULES = {"growth_top10"}
@@ -79,6 +80,19 @@ def collect_signals(frames: Dict[str, pd.DataFrame], symbols: List[str], today: 
                          "ref_price": f"{m.breakout_price:.4f}", "entry_date": "", "entry_price": "",
                          "hold_bars": RULES["falling_wedge_beaten_down"]["hold"],
                          "note": f"score {m.score:.2f}, stop {m.stop:.2f}, level {m.level:.2f}"})
+    return rows
+
+
+def collect_rally(frames: Dict[str, pd.DataFrame], symbols: List[str], today: str) -> List[Dict]:
+    """Beaten-down stocks where a turn rule fired on the last bar (docs/research_rally.md); one row per stock."""
+    from algovision.research.rally import early_rally_signals
+    rows: List[Dict] = []
+    sig = early_rally_signals(frames, [s for s in symbols if s in frames], max_age=1)
+    for r in sig.itertuples():
+        rows.append({"logged": today, "rule": "early_rally_beaten_down", "symbol": r.symbol, "signal_date": r.signal_date, "status": "open",
+                     "ref_price": f"{r.close:.4f}", "entry_date": "", "entry_price": "",
+                     "hold_bars": RULES["early_rally_beaten_down"]["hold"],
+                     "note": f"{r.rules}; day {r.day_ret * 100:+.1f}%, 10d {r.ret_10 * 100:+.1f}%, 6m {r.ret_6m * 100:+.0f}%, vs MA200 {r.dist_ma200 * 100:+.0f}%"})
     return rows
 
 
@@ -156,6 +170,9 @@ def run(out_dir: Path, universe: str = "all", period: str = "2y", cache_dir: Opt
         print(f"insider scan skipped: {exc}")
     open_ins = set(journal[(journal["rule"] == "insider_buy_beaten_down") & (journal["status"] != "closed")]["symbol"])
     new_rows += [r for r in ins_rows if r["symbol"] not in open_ins]
+    # one early-rally position per stock at a time (the tested rule is "first turn rule to fire, one entry per 30 days")
+    open_rally = set(journal[(journal["rule"] == "early_rally_beaten_down") & (journal["status"] != "closed")]["symbol"])
+    new_rows += [r for r in collect_rally(frames, symbols, today) if r["symbol"] not in open_rally]
     existing = set(zip(journal["rule"], journal["symbol"], journal["signal_date"]))
     added = [r for r in new_rows if (r["rule"], r["symbol"], r["signal_date"]) not in existing]
     if added:
