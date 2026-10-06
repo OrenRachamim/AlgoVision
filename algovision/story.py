@@ -297,7 +297,7 @@ def collect_events(symbol: str, name: str, ldf: pd.DataFrame, data: Dict, facts:
     n_fetch = 0
     for day, _ in big.items():
         ds = day.strftime("%Y-%m-%d")
-        if ds in taken_days or any(abs((pd.Timestamp(t) - day).days) <= 1 for t in taken_days):
+        if ds in taken_days:          # the session after a release can be a second big day of its own (continued selling)
             continue
         if n_fetch >= max_big:
             break
