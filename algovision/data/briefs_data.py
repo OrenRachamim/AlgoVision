@@ -171,7 +171,7 @@ def sec_cik(symbol: str, cache_dir: Optional[Path] = _DEFAULT_CACHE, max_age_day
     return {v: k for k, v in cik_map().items()}.get(symbol)
 
 
-def edgar_8k(symbol: str, timeout: int = 30, limit: int = 40, cache_dir: Optional[Path] = _DEFAULT_CACHE) -> List[Dict]:
+def edgar_8k(symbol: str, timeout: int = 30, limit: int = 120, cache_dir: Optional[Path] = _DEFAULT_CACHE) -> List[Dict]:
     """Recent 8-K filings for ``symbol`` from EDGAR submissions: date, items and their meaning. [] when unknown."""
     import requests
 

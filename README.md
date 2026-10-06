@@ -346,6 +346,25 @@ the SPY (6-month return < -30 %: +6.1 % / +4.5 % net at 20 bars, +2.5 % / +2.1 %
 helps a little, volume does not matter. The daily report shows the live table (*Early rally in beaten-down stocks*, rules fired in the last
 3 bars, a brief for every name) and the journal logs day-0 rows as `early_rally_beaten_down`, hold 20 bars.
 
+## The story along the time axis (`story` command)
+
+```bash
+python -m algovision story TJX NKE --he      # five chapters per stock, Hebrew; --json for the data
+```
+
+`algovision/story.py` tells each stock's last five years as five chapters (five to two years back, two to one, one
+year to six months, six months to one, the last month), each at its own resolution: the closes are cut into legs
+(zig-zag swings larger than the chapter's threshold, 20 % down to 3 %), and every leg is told with what the data
+recorded inside it, in date order: earnings releases (8-K item 2.02) with the reaction, EPS vs the estimate (last
+four quarters) and the quarter's revenue and EPS against the year before (SEC XBRL company facts, ten years, the
+fourth quarter derived from the annual figure), material 8-K events (agreement, acquisition, officer change,
+restructuring, impairment) with the reaction, the largest single days of the stretch with the headline that named
+the company that day (Google News, any past date) or "no headline found", the leg's volume against normal, the
+S&P 500 over the same leg and, in the last year, analyst upgrades and downgrades. The five-year chapter opens with
+the annual arc of revenue and EPS. Nothing is inferred: a leg with no event is told as a move with no recorded cause.
+The story leads every brief (English) and every section of the Hebrew wedge file; the data that follows it is
+unchanged.
+
 ## AI decisions (`decide` command, Jev)
 
 ```bash

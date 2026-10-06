@@ -474,6 +474,11 @@ def build_wedge_report(out_dir: Path, today: str, frames: Dict[str, pd.DataFrame
                f"*{_he_sector(fu.get('sector') or sectors.get(s))}" + (f" / {fu['industry']}" if fu.get("industry") else "") + ".*"
                + (f" *{fu['summary'].rstrip('.')}.*" if fu.get("summary") else ""), ""]
         sec += summary_he(m, geo, ctx, why, sent, an, ea, label, score, pr, dec)
+        try:   # the time-axis story in Hebrew; never sinks the file
+            from algovision.story import build_story, story_markdown
+            sec += story_markdown(build_story(s, df, data, bench, cache_dir, offline, headlines_around=src["around"]), "he")
+        except Exception as exc:  # noqa: BLE001
+            sec += [f"*הסיפור לאורך ציר הזמן אינו זמין: {exc}*", ""]
         sec += wedge_section_he(m, df, geo, ctx, spy_below)
         sec += why_fell_he(why, news)
         sec += sentiment_markdown(sent, "he")

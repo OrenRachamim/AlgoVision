@@ -13,6 +13,7 @@ signals, not a forecast; the signals are printed with it so the reader can disag
 from __future__ import annotations
 
 import datetime as dt
+import logging
 import re
 from pathlib import Path
 from typing import Callable, Dict, Iterable, List, Optional, Tuple
@@ -21,6 +22,8 @@ import numpy as np
 import pandas as pd
 
 from algovision.links import tv
+
+log = logging.getLogger(__name__)
 from algovision.peers import peers_short
 
 LABELS = {"up": "signs of a bottom (more likely up than down)", "flat": "undecided (no clear base yet)",
@@ -529,7 +532,7 @@ def _news_near(news: List[Dict], day: str, window: int = 3) -> List[Dict]:
 # ----------------------------------------------------------------------------
 def brief_markdown(symbol: str, tables: List[str], ctx: Dict, an: Dict, ea: Dict, fu: Dict, news: List[Dict],
                    label: str, score: float, why: List[str], why_fell: Optional[Dict] = None, sentiment: Optional[Dict] = None,
-                   peers: Optional[Dict] = None) -> str:
+                   peers: Optional[Dict] = None, story: Optional[Dict] = None) -> str:
     md = [f"## {tv(symbol)} {fu.get('name') or ''}".rstrip(), ""]
     md.append(f"*In today's tables: {', '.join(tables) if tables else '-'}. {fu.get('sector') or ''} / {fu.get('industry') or ''}.*")
     if fu.get("summary"):
@@ -537,6 +540,9 @@ def brief_markdown(symbol: str, tables: List[str], ctx: Dict, an: Dict, ea: Dict
     md.append("")
     md.append(f"**Read: {LABELS[label]}** (score {score:+g}). Signals: " + ("; ".join(why) if why else "none") + ".")
     md.append("")
+    if story:
+        from algovision.story import story_markdown
+        md += story_markdown(story, "en")
     md.append("**Where the stock is.** "
               f"Last {ctx['last']:.2f}, {_pct(ctx['drawdown'])} from the 52-week high ({ctx['high_52w']:.2f} on {ctx['high_date']}), "
               f"{_pct(ctx['off_low'])} above the 52-week low ({ctx['low_52w']:.2f} on {ctx['low_date']}). "
@@ -646,9 +652,15 @@ def build_brief(symbol: str, df: pd.DataFrame, data: Dict, tables: List[str], in
                               earn_hist=(profile.get("earningsHistory") or {}).get("history") or [],
                               extra_headlines=src["around"] if src else None)
     sent = None
+    story = None
     if src is not None:
         from algovision.sentiment import sentiment_view
         sent = sentiment_view(src["year"], why_fell["window_headlines"], _company_tokens(symbol, name), profile, src["twits"], an, ea)
+        try:   # the time-axis story (ten years of prices, XBRL facts, 8-Ks, headlines around the big days); never sinks the brief
+            from algovision.story import build_story
+            story = build_story(symbol, df, data, bench, sources.get("cache_dir"), bool(sources.get("offline")), headlines_around=src["around"])
+        except Exception as exc:  # noqa: BLE001
+            log.warning("%s: story unavailable (%s)", symbol, exc)
     row = {"symbol": symbol, "tables": ", ".join(tables), "read": LABELS[label].split(" (")[0], "score": score, "why fell": why_fell["cause"],
            "sentiment": sent["label"] if sent else "", "concerns": ", ".join(t["en"] for t in sent["concerns"]["themes"][:2]) if sent else "",
            "vs peers 20d": peers_short(peers),
@@ -656,7 +668,8 @@ def build_brief(symbol: str, df: pd.DataFrame, data: Dict, tables: List[str], in
            "consensus": (an.get("key") or "").replace("_", " "), "analysts": an.get("n"), "target upside": an.get("upside"),
            "up/down 90d": f"{an.get('n_up', 0)}/{an.get('n_down', 0)}", "EPS est 30d": ea.get("y0_rev_30d"),
            "last surprise": ea.get("surprise"), "next report": ea.get("next_date")}
-    return row, brief_markdown(symbol, tables, ctx, an, ea, fu, news, label, score, why, why_fell, sent, peers)
+    row["_story"] = story
+    return row, brief_markdown(symbol, tables, ctx, an, ea, fu, news, label, score, why, why_fell, sent, peers, story)
 
 
 def summary_table(rows: List[Dict]) -> str:

@@ -316,6 +316,13 @@ def build_parser() -> argparse.ArgumentParser:
     de.add_argument("--he", action="store_true", help="Hebrew labels")
     de.add_argument("--json", action="store_true", help="print the compact JSON instead of the table")
 
+    st = sub.add_parser("story", help="the stock's story along the time axis (5y / 2y / 1y / 6m / 1m chapters from the chart, earnings, 8-Ks, headlines)")
+    st.add_argument("symbols", nargs="+")
+    st.add_argument("--he", action="store_true", help="Hebrew")
+    st.add_argument("--json", action="store_true", help="print the story data instead of the text")
+    st.add_argument("--cache-dir", default=None)
+    st.add_argument("--offline", action="store_true")
+
     no = sub.add_parser("notify", help="send a report file to Telegram / e-mail (configured by environment variables, see algovision/notify.py)")
     no.add_argument("--file", default="journal/report_latest.md")
     no.add_argument("--subject", default=None)
@@ -415,6 +422,30 @@ def main(argv: Optional[List[str]] = None) -> int:
     if args.cmd == "research-rally":
         from algovision.research.cli import cmd_rally
         return cmd_rally(args)
+    if args.cmd == "story":
+        import json as _json
+
+        from algovision.briefs import fetch_sources
+        from algovision.data.briefs_data import BriefsProvider
+        from algovision.data.provider import _DEFAULT_CACHE
+        from algovision.story import build_story, story_markdown
+
+        cache = Path(args.cache_dir) if args.cache_dir else _DEFAULT_CACHE
+        provider = DataProvider(cache_dir=cache, offline=args.offline)
+        bench = provider.get("SPY", "2y", "1d")
+        bp = BriefsProvider(cache_dir=cache, offline=args.offline)
+        for s in args.symbols:
+            s = s.upper()
+            df = provider.get(s, "2y", "1d")
+            data = bp.get(s)
+            name = ((data.get("profile") or {}).get("price") or {}).get("longName") or ""
+            src = fetch_sources(s, name, cache, args.offline)
+            st_ = build_story(s, df, data, bench, cache, args.offline, headlines_around=src["around"])
+            if args.json:
+                print(_json.dumps(st_, ensure_ascii=False, indent=1, default=str))
+            else:
+                print(f"# {s} {name}\n" + "\n".join(story_markdown(st_, "he" if args.he else "en")))
+        return 0
     if args.cmd == "factors":
         from algovision.research.cli import cmd_factors
         return cmd_factors(args)
