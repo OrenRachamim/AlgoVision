@@ -14,6 +14,7 @@ New signals logged in the journal today (11):
 - early_rally_beaten_down: [ETR](https://www.tradingview.com/chart/?symbol=ETR) 2026-10-06 @ 103.25, hold 20 bars. rsi_turn; day +2.4%, 10d +2.1%, 6m -8%, vs MA200 -2%
 
 Entered the report tables:
+- Insider buys, other stocks: [HRL](https://www.tradingview.com/chart/?symbol=HRL)
 - Falling wedge, beaten-down: [ALB](https://www.tradingview.com/chart/?symbol=ALB), [LHX](https://www.tradingview.com/chart/?symbol=LHX), [GIS](https://www.tradingview.com/chart/?symbol=GIS), [LII](https://www.tradingview.com/chart/?symbol=LII)
 - Early rally, beaten-down: [NCLH](https://www.tradingview.com/chart/?symbol=NCLH), [NI](https://www.tradingview.com/chart/?symbol=NI), [EQT](https://www.tradingview.com/chart/?symbol=EQT), [DTE](https://www.tradingview.com/chart/?symbol=DTE), [PPL](https://www.tradingview.com/chart/?symbol=PPL), [CNP](https://www.tradingview.com/chart/?symbol=CNP), [PEG](https://www.tradingview.com/chart/?symbol=PEG), [ETR](https://www.tradingview.com/chart/?symbol=ETR)
 
@@ -21,7 +22,8 @@ Left the report tables:
 - Falling wedge, beaten-down: AEP, ED, NI, CNP, EXE, ORLY
 - Early rally, beaten-down: CIEN, HON, COO, CHRW
 
-Tables now: insider buys (beaten-down) 5, insider buys (other) 15, news-day 4, falling wedge 27, early rally 12. Full report attached. Not investment advice.
+Tables now: insider buys (beaten-down) 5, insider buys (other) 16, news-day 4, falling wedge 27, early rally 12. Full report attached. Not investment advice.
+Everything in one Hebrew file (all tables, the time-axis story, the wedge analyses, a brief per stock, Jev, the journal): https://github.com/OrenRachamim/AlgoVision/blob/claude/stock-pattern-detection-b94x35/journal/daily_2026-10-06.md
 Today's report on GitHub: https://github.com/OrenRachamim/AlgoVision/blob/claude/stock-pattern-detection-b94x35/journal/report_2026-10-06.md
 One research brief per listed stock (price context, what moved it, analysts, last report, fundamentals, rule-based read): https://github.com/OrenRachamim/AlgoVision/blob/claude/stock-pattern-detection-b94x35/journal/briefs_2026-10-06.md
 Falling wedge only, in Hebrew (technical analysis of each wedge, why it fell, brief; table rows link to the details): https://github.com/OrenRachamim/AlgoVision/blob/claude/stock-pattern-detection-b94x35/journal/wedge_2026-10-06.md
