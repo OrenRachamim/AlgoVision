@@ -197,7 +197,9 @@ def wedge_section_he(m: PatternMatch, df: pd.DataFrame, geo: Dict, ctx: Dict, sp
 # ----------------------------------------------------------------------------
 # why it fell, analysts, report, fundamentals, read: Hebrew renderings of the brief building blocks
 # ----------------------------------------------------------------------------
-def why_fell_he(why: Dict, news: List[Dict]) -> List[str]:
+def why_fell_he(why: Dict, news: List[Dict], n_news: int = 3, summaries: bool = False) -> List[str]:
+    """``n_news`` latest headlines are listed after the evidence; with ``summaries`` each carries its one-paragraph summary
+    (the English brief shows six with summaries; the one-rule wedge file three without)."""
     md = ["### למה המניה ירדה", ""]
     big = ""
     if why.get("high_date"):
@@ -241,10 +243,16 @@ def why_fell_he(why: Dict, news: List[Dict]) -> List[str]:
             md.append(line + f". לא נמצאה סיבה ליום זה (לפני תחילת פיד החדשות ב-{why['oldest_news']}; נבדקו רק דיווחי 8-K, שינויי דירוג והשוק).")
         else:
             md.append(line + ". לא נמצאה סיבה ליום זה.")
-    if news:
+    if news and summaries:
+        md.append("")
+        md.append("חדשות אחרונות (הכותרות והתקצירים כפי שפורסמו):")
+        for x in news[:n_news]:
+            md.append(f"- {x['date']} \"{x['title']}\"" + (f" ({x['publisher']})" if x.get("publisher") else "")
+                      + (f": {x['summary'][:280]}" if x.get("summary") else ""))
+    elif news:
         md.append("")
         md.append("חדשות אחרונות (הכותרות כפי שפורסמו): " + "; ".join(
-            f"{x['date']} \"{x['title']}\"" + (f" ({x['publisher']})" if x.get("publisher") else "") for x in news[:3]) + ".")
+            f"{x['date']} \"{x['title']}\"" + (f" ({x['publisher']})" if x.get("publisher") else "") for x in news[:n_news]) + ".")
     md.append("")
     return md
 

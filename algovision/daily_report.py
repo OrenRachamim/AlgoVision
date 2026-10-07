@@ -24,6 +24,8 @@ REPORT_URL = os.environ.get("ALGOVISION_REPORT_URL", "https://github.com/OrenRac
 BRIEFS_URL = os.environ.get("ALGOVISION_BRIEFS_URL", "https://github.com/OrenRachamim/AlgoVision/blob/claude/stock-pattern-detection-b94x35/journal/briefs_{date}.md")
 # the one-rule Hebrew file for the falling wedge (same directory, same push)
 WEDGE_URL = os.environ.get("ALGOVISION_WEDGE_URL", "https://github.com/OrenRachamim/AlgoVision/blob/claude/stock-pattern-detection-b94x35/journal/wedge_{date}.md")
+# everything in one Hebrew file (same directory, same push): the one the Telegram job sends
+DAILY_URL = os.environ.get("ALGOVISION_DAILY_URL", "https://github.com/OrenRachamim/AlgoVision/blob/claude/stock-pattern-detection-b94x35/journal/daily_{date}.md")
 
 
 def _pct(v, d=0):
@@ -171,6 +173,10 @@ def build_report(out_dir: Path, universe: str = "all", cache_dir: Optional[Path]
     md.append("## 3. Stock briefs (one per name in the tables above)\n")
     briefs_written = False
     wedge_written = False
+    brows: List[Dict] = []
+    decisions: Dict[str, Dict] = {}
+    picks: List[str] = []
+    bench = None
     if briefs and brief_tables:
         from algovision.briefs import write_briefs
         try:
@@ -246,8 +252,18 @@ def build_report(out_dir: Path, universe: str = "all", cache_dir: Optional[Path]
     text = "\n".join(md)
     briefs_url = BRIEFS_URL.format(date=today) if briefs_written else None
     wedge_url = WEDGE_URL.format(date=today) if wedge_written else None
-    write_whatsnew(out_dir, today, text, briefs_url, wedge_url, REPORT_URL.format(date=today))   # compares with the previous dated report before it is overwritten
+    daily_url = DAILY_URL.format(date=today) if briefs_written else None
+    write_whatsnew(out_dir, today, text, briefs_url, wedge_url, REPORT_URL.format(date=today), daily_url)   # compares with the previous dated report before it is overwritten
     path = out_dir / f"report_{today}.md"
     path.write_text(text, encoding="utf-8")
     (out_dir / "report_latest.md").write_text(text, encoding="utf-8")
+    if briefs_written:
+        # everything in one Hebrew file: the tables, the summary and Jev, a full section per stock, the journal
+        from algovision.daily_he import build_daily_he
+        try:
+            note_he = (out_dir / "new_he_latest.md").read_text(encoding="utf-8")
+            build_daily_he(out_dir, today, last_bar, len(frames), len(symbols), insider_days, sig, tx, nd, wedges, rally, brows, frames, peers,
+                           decisions, picks, sectors, bench, note_he)
+        except Exception as exc:  # noqa: BLE001
+            print(f"hebrew daily file unavailable: {exc}")
     return path

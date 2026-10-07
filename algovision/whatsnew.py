@@ -85,57 +85,101 @@ def journal_new_signals(out_dir: Path) -> List[str]:
     return out
 
 
+LABEL_HE = {"Insider buys, beaten-down (tested setup)": "קניות אינסיידרים, מניות מוכות (התבנית שנבדקה)", "Insider buys, other stocks": "קניות אינסיידרים, מניות אחרות",
+            "News-day": "יום חדשות", "Falling wedge, beaten-down": "טריז יורד, מניות מוכות", "Early rally, beaten-down": "ראלי מוקדם, מניות מוכות"}
+SHORT_EN = {"Insider buys, beaten-down (tested setup)": "insider buys (beaten-down)", "Insider buys, other stocks": "insider buys (other)",
+            "News-day": "news-day", "Falling wedge, beaten-down": "falling wedge", "Early rally, beaten-down": "early rally"}
+SHORT_HE = {"Insider buys, beaten-down (tested setup)": "אינסיידרים (מוכות)", "Insider buys, other stocks": "אינסיידרים (אחרות)",
+            "News-day": "יום חדשות", "Falling wedge, beaten-down": "טריז יורד", "Early rally, beaten-down": "ראלי מוקדם"}
+RULE_HE = {"newsday": "יום חדשות", "falling_wedge_beaten_down": "טריז יורד במניה מוכה", "insider_buy_beaten_down": "קניית אינסיידר במניה מוכה",
+           "jev_pick": "בחירת Jev", "early_rally_beaten_down": "ראלי מוקדם במניה מוכה"}
+# the journal notes are short English key-value strings; these are their Hebrew readings
+_NOTE_HE = [("hold ", "החזקה "), (" bars", " נרות"), ("gap ", "פער "), ("vol ", "מחזור פי "), ("6m ", "6 חודשים "), ("vs MA200 ", "מול ממוצע 200 "),
+            ("score ", "ציון "), ("stop ", "סטופ "), ("level ", "רמה "), ("day ", "יום "), ("10d ", "10 ימים "), ("P(buy) ", "P(קנייה) ")]
+
+
+def _note_he(line: str) -> str:
+    out = line
+    for en, he in _NOTE_HE:
+        out = out.replace(en, he)
+    for en, he in RULE_HE.items():
+        out = out.replace(f"- {en}:", f"- {he}:")
+    return out
+
+
 def build_whatsnew(out_dir: Path, today: str, report_text: Optional[str] = None, briefs_url: Optional[str] = None,
-                   wedge_url: Optional[str] = None, report_url: Optional[str] = None) -> str:
+                   wedge_url: Optional[str] = None, report_url: Optional[str] = None, lang: str = "en",
+                   daily_url: Optional[str] = None) -> str:
+    """The note in English (``lang="en"``) or Hebrew (``"he"``); the Hebrew one names the single Hebrew daily file."""
     out_dir = Path(out_dir)
+    he = lang == "he"
     text = report_text if report_text is not None else (out_dir / "report_latest.md").read_text(encoding="utf-8")
     cur = section_tickers(text)
     prev_path = previous_report(out_dir, today)
     prev = section_tickers(prev_path.read_text(encoding="utf-8")) if prev_path else {k: [] for k in cur}
     prev_date = report_date(prev_path.read_text(encoding="utf-8")) if prev_path else None
-    md: List[str] = [f"# AlgoVision {today}: what is new" + (f" since {prev_date}" if prev_date else "") + "\n"]
+    if he:
+        md: List[str] = [f"# AlgoVision {today}: מה חדש" + (f" מאז {prev_date}" if prev_date else "") + "\n"]
+    else:
+        md = [f"# AlgoVision {today}: what is new" + (f" since {prev_date}" if prev_date else "") + "\n"]
     sig = journal_new_signals(out_dir)
-    md.append(f"New signals logged in the journal today ({len(sig)}):")
-    md.extend(sig or ["- none"])
+    md.append(f"סיגנלים חדשים שנרשמו ביומן היום ({len(sig)}):" if he else f"New signals logged in the journal today ({len(sig)}):")
+    md.extend(([_note_he(s) for s in sig] if he else sig) or (["- אין"] if he else ["- none"]))
     md.append("")
-    md.append("Entered the report tables:")
+    md.append("נכנסו לטבלאות הדוח:" if he else "Entered the report tables:")
     any_add = False
     for label, _ in SECTIONS:
         added = [s for s in cur.get(label, []) if s not in prev.get(label, [])]
         if added:
             any_add = True
-            md.append(f"- {label}: " + ", ".join(tv(s) for s in added))
+            md.append(f"- {LABEL_HE[label] if he else label}: " + ", ".join(tv(s) for s in added))
     if not any_add:
-        md.append("- none")
+        md.append("- אין" if he else "- none")
     md.append("")
-    md.append("Left the report tables:")
+    md.append("יצאו מטבלאות הדוח:" if he else "Left the report tables:")
     any_rm = False
     for label, _ in SECTIONS:
         removed = [s for s in prev.get(label, []) if s not in cur.get(label, [])]
         if removed:
             any_rm = True
-            md.append(f"- {label}: " + ", ".join(removed))
+            md.append(f"- {LABEL_HE[label] if he else label}: " + ", ".join(removed))
     if not any_rm:
-        md.append("- none")
+        md.append("- אין" if he else "- none")
     md.append("")
-    short = {"Insider buys, beaten-down (tested setup)": "insider buys (beaten-down)", "Insider buys, other stocks": "insider buys (other)",
-             "News-day": "news-day", "Falling wedge, beaten-down": "falling wedge", "Early rally, beaten-down": "early rally"}
+    short = SHORT_HE if he else SHORT_EN
     counts = ", ".join(f"{short.get(label, label)} {len(v)}" for label, v in cur.items())
-    md.append(f"Tables now: {counts}. Full report attached. Not investment advice.")
-    if report_url:
-        md.append(f"Today's report on GitHub: {report_url}")
-    if briefs_url:
-        md.append(f"One research brief per listed stock (price context, what moved it, analysts, last report, fundamentals, rule-based read): {briefs_url}")
-    if wedge_url:
-        md.append(f"Falling wedge only, in Hebrew (technical analysis of each wedge, why it fell, brief; table rows link to the details): {wedge_url}")
+    if he:
+        md.append(f"הטבלאות כעת: {counts}. הקובץ המלא בעברית מצורף. לא ייעוץ השקעות.")
+        if daily_url:
+            md.append(f"הקובץ היומי המלא בעברית (כל הטבלאות, סיפור ציר הזמן, ניתוח הטריזים, תקציר לכל מניה, החלטות Jev ויומן המעקב): {daily_url}")
+        if report_url:
+            md.append(f"הדוח באנגלית: {report_url}")
+        if briefs_url:
+            md.append(f"התקצירים באנגלית: {briefs_url}")
+        if wedge_url:
+            md.append(f"קובץ הטריז היורד: {wedge_url}")
+    else:
+        md.append(f"Tables now: {counts}. Full report attached. Not investment advice.")
+        if daily_url:
+            md.append(f"Everything in one Hebrew file (all tables, the time-axis story, the wedge analyses, a brief per stock, Jev, the journal): {daily_url}")
+        if report_url:
+            md.append(f"Today's report on GitHub: {report_url}")
+        if briefs_url:
+            md.append(f"One research brief per listed stock (price context, what moved it, analysts, last report, fundamentals, rule-based read): {briefs_url}")
+        if wedge_url:
+            md.append(f"Falling wedge only, in Hebrew (technical analysis of each wedge, why it fell, brief; table rows link to the details): {wedge_url}")
     return "\n".join(md) + "\n"
 
 
 def write_whatsnew(out_dir: Path, today: str, report_text: Optional[str] = None, briefs_url: Optional[str] = None,
-                   wedge_url: Optional[str] = None, report_url: Optional[str] = None) -> Path:
+                   wedge_url: Optional[str] = None, report_url: Optional[str] = None, daily_url: Optional[str] = None) -> Path:
+    """Writes the English note (``new_<date>.md`` / ``new_latest.md``) and the Hebrew one (``new_he_<date>.md`` / ``new_he_latest.md``)."""
     out_dir = Path(out_dir)
-    text = build_whatsnew(out_dir, today, report_text, briefs_url, wedge_url, report_url)
+    text = build_whatsnew(out_dir, today, report_text, briefs_url, wedge_url, report_url, "en", daily_url)
     (out_dir / f"new_{today}.md").write_text(text, encoding="utf-8")
     p = out_dir / "new_latest.md"
     p.write_text(text, encoding="utf-8")
+    text_he = build_whatsnew(out_dir, today, report_text, briefs_url, wedge_url, report_url, "he", daily_url)
+    (out_dir / f"new_he_{today}.md").write_text(text_he, encoding="utf-8")
+    (out_dir / "new_he_latest.md").write_text(text_he, encoding="utf-8")
     return p

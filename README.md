@@ -365,6 +365,19 @@ the annual arc of revenue and EPS. Nothing is inferred: a leg with no event is t
 The story leads every brief (English) and every section of the Hebrew wedge file; the data that follows it is
 unchanged.
 
+## Everything in one Hebrew file (`daily_<date>.md`)
+
+The daily report also writes `journal/daily_<date>.md` / `daily_latest.md` (`algovision/daily_he.py`): one Hebrew
+file that carries what the three files above carry separately, in order: the "what is new" note, the report tables
+(insiders, news-day, the falling wedge with the wedge file's extra columns, early rally), the briefs summary table,
+the Jev section and the stocks it prioritised, then one full section per listed stock (the five-line summary, the
+time-axis story, the wedge's technical analysis for wedge stocks, where the stock is, why it fell with the latest
+news, concerns and sentiment, peers and group, the AI decision, analysts, the last report and estimates, fundamentals,
+the rule-based read), and the forward-test journal with every open position. Every table row links to the stock's
+section. The Hebrew "what is new" note is `new_he_<date>.md`. The Telegram job sends the Hebrew note as the message
+and this one file as the document; the English report, briefs and wedge files stay on GitHub (and are sent instead
+only when the Hebrew file is missing for the day).
+
 ## AI decisions (`decide` command, Jev)
 
 ```bash

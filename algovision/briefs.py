@@ -645,7 +645,8 @@ def build_brief(symbol: str, df: pd.DataFrame, data: Dict, tables: List[str], in
     profile, news = data.get("profile") or {}, data.get("news") or []
     ctx = price_context(df)
     an, ea, fu = analyst_view(profile), earnings_view(profile), fundamentals_view(profile)
-    label, score, why = verdict(ctx, an, ea, fu, insider_buying, peers)
+    label, score, fired = verdict_signals(ctx, an, ea, fu, insider_buying, peers)
+    why = render_signals(fired)
     name = fu.get("name") or ""
     src = fetch_sources(symbol, name, sources.get("cache_dir"), bool(sources.get("offline"))) if sources is not None else None
     why_fell = decline_reason(symbol, name, ctx, news, an, ea, bench, filings=data.get("filings") or [],
@@ -669,6 +670,9 @@ def build_brief(symbol: str, df: pd.DataFrame, data: Dict, tables: List[str], in
            "up/down 90d": f"{an.get('n_up', 0)}/{an.get('n_down', 0)}", "EPS est 30d": ea.get("y0_rev_30d"),
            "last surprise": ea.get("surprise"), "next report": ea.get("next_date")}
     row["_story"] = story
+    # everything the brief was rendered from, so the same stock can be rendered again in another language (the Hebrew daily file)
+    row["_data"] = {"ctx": ctx, "an": an, "ea": ea, "fu": fu, "why": why_fell, "sent": sent, "news": news, "label": label, "score": score,
+                    "fired": fired, "name": name, "tables": list(tables), "peers": peers}
     return row, brief_markdown(symbol, tables, ctx, an, ea, fu, news, label, score, why, why_fell, sent, peers, story)
 
 
