@@ -34,7 +34,7 @@ def test_regime_stats_and_markdown_warning():
     assert st["basket_20"] < 0 and st["warning"] is True
     en = "\n".join(R.regime_markdown(st, "en"))
     he = "\n".join(R.regime_markdown(st, "he"))
-    assert "against the wind" in en and "Breadth" in en
-    assert "נגד הרוח" in he and "רוחב" in he
+    assert "Basket falling" in en and "Breadth" in en
+    assert "הסל יורד" in he and "רוחב" in he
     st["warning"] = False
-    assert "against the wind" not in "\n".join(R.regime_markdown(st, "en"))
+    assert "Basket falling" not in "\n".join(R.regime_markdown(st, "en"))

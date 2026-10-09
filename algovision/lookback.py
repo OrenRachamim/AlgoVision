@@ -127,7 +127,8 @@ def events(out_dir: Path) -> pd.DataFrame:
     cnt = R.groupby(["section", "symbol"]).size().rename("n_days").reset_index()
     first = first.merge(cnt, on=["section", "symbol"])
     first["flags"] = first.apply(lambda r: " ".join(_flags_from_row(r.to_dict())), axis=1)
-    first["n_flags"] = first["flags"].str.split().str.len().fillna(0).astype(int)
+    # the warning flags only (Z, S, T); D is a plus in the ten-year backtests and gets its own split
+    first["n_flags"] = first["flags"].str.split().map(lambda f: sum(1 for x in (f or []) if x in ("Z", "S", "T"))).astype(int)
     first["market_wide"] = first.get("why fell", pd.Series("", index=first.index)).fillna("").str.contains("market-wide")
     return first
 
@@ -207,10 +208,10 @@ def scorecard(F: pd.DataFrame, min_n: int = 4) -> List[Dict]:
         add("table", SECTION_EN[sec], SECTION_HE[sec], F[F["section"] == sec])
     B = F[F["section"] == "briefs"]
     add("briefs", "all briefs", "כל התקצירים", B)
-    for nf, en, he in ((0, "no flag", "בלי דגלים"), (1, "one flag", "דגל אחד"), (2, "two or more flags", "שני דגלים ומעלה")):
+    for nf, en, he in ((0, "no warning flag", "בלי דגלי אזהרה"), (1, "one warning flag", "דגל אזהרה אחד"), (2, "two or more warning flags", "שני דגלי אזהרה ומעלה")):
         g = B[B["n_flags"] == nf] if nf < 2 else B[B["n_flags"] >= 2]
         add("flags", en, he, g)
-    for code, en, he in (("Z", "Z: z vs peers below -1", "Z: z מול עמיתים מתחת ל-1-"), ("D", "D: more than 40% below the 52-week high", "D: יותר מ-40% מתחת לשיא 52 השבועות"),
+    for code, en, he in (("Z", "Z: z vs peers below -1", "Z: z מול עמיתים מתחת ל-1-"), ("D", "D: more than 40% below the 52-week high (a plus over ten years)", "D: יותר מ-40% מתחת לשיא 52 השבועות (פלוס על עשר שנים)"),
                          ("S", "S: negative sentiment", "S: סנטימנט שלילי"), ("T", "T: target upside above 50%", "T: אפסייד ליעד מעל 50%")):
         has = B["flags"].str.split().map(lambda f: code in (f or []))
         add("flag", en + " (yes)", he + " (כן)", B[has])
@@ -251,15 +252,15 @@ def lookback_markdown(rows: List[Dict], F: pd.DataFrame, lang: str = "en") -> Li
     head = ("## 4. מה עבד עד עכשיו (כל שם שהדוחות הציגו)" if he else "## 4. What has worked so far (every name the reports listed)")
     intro = ((f"כל זוג (טבלה, מניה) נמדד מיום ההופעה הראשון שלו בדוחות ({first} עד {last}, {n_rep} דוחות): כניסה בפתיחה של היום הבא, תשואה אחרי "
               f"5, 10 ו-20 נרות ועד הסגירה האחרונה, מול SPY ומול סל המניות המוכות של אותו יום (ההשוואה ההוגנת לכלל שקונה רק מניות מוכות: \"מול הסל\" "
-              f"חיובי פירושו שהפילטר בחר טוב מממוצע המניות המוכות). הדגלים: Z = z מול עמיתים מתחת ל-1-, D = יותר מ-40% מתחת לשיא 52 השבועות, "
-              f"S = סנטימנט שלילי, T = אפסייד ליעד מעל 50%. מאזן של הדוחות עצמם, לא בדיקה לאחור: שבועות ספורים, משטר אחד, חלונות חופפים; "
-              f"n קטן בחתכים. \"פגיעה\" = חלק השמות עם תשואה חיובית.") if he else
+              f"חיובי פירושו שהפילטר בחר טוב מממוצע המניות המוכות). הדגלים: Z = z מול עמיתים מתחת ל-1-, S = סנטימנט שלילי, T = אפסייד ליעד מעל 50% "
+              f"(אזהרות), D = יותר מ-40% מתחת לשיא 52 השבועות (פלוס בבדיקות עשר השנים, docs/research_filters.md). מאזן של הדוחות עצמם, לא בדיקה "
+              f"לאחור: שבועות ספורים, משטר אחד, חלונות חופפים; n קטן בחתכים. \"פגיעה\" = חלק השמות עם תשואה חיובית.") if he else
              (f"Every (table, symbol) pair measured from its first appearance in the dated reports ({first} to {last}, {n_rep} reports): entry at the "
               f"next open, return after 5, 10 and 20 bars and to the latest close, against SPY and against the beaten-down basket of the same day "
               f"(the fair benchmark for a rule that only buys beaten-down stocks: a positive 'vs basket' means the filter picked better than the "
-              f"average beaten-down stock). Flags: Z = z vs peers below -1, D = more than 40% below the 52-week high, S = negative sentiment, "
-              f"T = target upside above 50%. A ledger of the reports themselves, not a backtest: a few weeks, one regime, overlapping windows; "
-              f"small n in the cuts. 'Hit' = share of names with a positive return."))
+              f"average beaten-down stock). Flags: Z = z vs peers below -1, S = negative sentiment, T = target upside above 50% (warnings), "
+              f"D = more than 40% below the 52-week high (a plus in the ten-year backtests, docs/research_filters.md). A ledger of the reports "
+              f"themselves, not a backtest: a few weeks, one regime, overlapping windows; small n in the cuts. 'Hit' = share of names with a positive return."))
     cols_he = ["קבוצה", "n", "10 נרות", "פגיעה 10", "מול הסל 10", "n20", "20 נרות", "פגיעה 20", "מול SPY 20", "מול הסל 20", "עד היום", "פגיעה", "מול SPY", "מול הסל"]
     cols_en = ["group", "n", "10 bars", "hit 10", "vs basket 10", "n20", "20 bars", "hit 20", "vs SPY 20", "vs basket 20", "to date", "hit", "vs SPY", "vs basket"]
     lines = ["| " + " | ".join(cols_he if he else cols_en) + " |", "|" + "|".join([":--"] + ["--:"] * 13) + "|"]

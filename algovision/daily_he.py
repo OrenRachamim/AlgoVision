@@ -151,7 +151,7 @@ def wedge_table_he(wedges: Dict, frames: Dict[str, pd.DataFrame], data: Dict[str
         if not wedges:
             return md + ["אין פריצות מאושרות היום.", ""]
     rows = []
-    order = sorted(wedges, key=lambda s: -wedges[s].score)
+    order = sorted(wedges, key=lambda s: wedges[s].metrics.get("context", {}).get("ret_126", 0))      # deepest decline first
     for s in order:
         m, df = wedges[s], frames[s]
         d = data.get(s) or {}
@@ -177,6 +177,8 @@ def wedge_table_he(wedges: Dict, frames: Dict[str, pd.DataFrame], data: Dict[str
                      "בחמשת השבועות הראשונים של מבחן הקדימה הטריזים בהתהוות ירדו כ-6% ב-20 נרות (פגיעה 11%), המאושרים לא; מניה בתוך טריז יורד היא "
                      "מניה שעדיין יורדת. היומן רושם טריז רק ביום הפריצה שלו.", ""]
     md += [pd.DataFrame(rows).to_markdown(index=False), "",
+           "הירידה העמוקה ביותר קודם: בבדיקות עשר השנים ירידה של יותר מ-40% משיא 52 השבועות הוסיפה +5-6% מעל כניסות אקראיות ב-20 נרות, וציון הדטקטור "
+           "לא ניבא דבר (השליש הגבוה היה הגרוע ביותר בשני חצאי העשור), ולכן הציון מוצג אבל לא קובע את הסדר (docs/research_filters.md).", "",
            "*הקבוצה*: קבוצת העמיתים של המניה כסל אחד במשקל שווה, מוכה או לא (בסוגריים חלקן של שאר החברות שמוכות), ו-\"+ טריז\" כאשר הסל "
            "עצמו בטריז יורד. איתותים שבהם רוב הקבוצה הייתה מוכה גם כן הרוויחו +1.2% (אימון) / +1.9% (מבחן) יותר על פני 20 נרות, חיובי בכל 6 "
            "השנים שנבדקו, לא אושר ב-60 נרות (docs/research_groups.md); ראיות בינוניות, הקשר ולא מסנן.", "",

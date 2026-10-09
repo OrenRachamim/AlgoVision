@@ -13,3 +13,4 @@ out/
 .venv/
 .DS_Store
 docs/research/rally/rally_events.csv
+docs/research/filters/wedge_events.csv

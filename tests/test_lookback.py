@@ -35,7 +35,7 @@ def test_events_forward_and_scorecard(tmp_path):
     first = ev[(ev.section == "newsday") & (ev.symbol == "AAA")].iloc[0]
     assert first["date"] == "2026-06-01" and first["n_days"] == 3
     bbb = ev[(ev.section == "briefs") & (ev.symbol == "BBB")].iloc[0]
-    assert set(bbb["flags"].split()) == {"Z", "D", "S", "T"} and bbb["n_flags"] == 4
+    assert set(bbb["flags"].split()) == {"Z", "D", "S", "T"} and bbb["n_flags"] == 3      # D is a plus, not a warning
     aaa = ev[(ev.section == "briefs") & (ev.symbol == "AAA")].iloc[0]
     assert aaa["n_flags"] == 0 and bool(aaa["market_wide"])
     frames = {"AAA": _frame(seed=1), "BBB": _frame(drift=-0.003, seed=2), **{f"X{i}": _frame(drift=-0.003, seed=10 + i) for i in range(4)}}
@@ -54,15 +54,15 @@ def test_events_forward_and_scorecard(tmp_path):
 
 
 def test_checklist():
-    rows = [{"symbol": "AAA", "tables": "news-day", "read": "signs of a bottom", "score": 4.0, "why fell": "earnings, market-wide", "flags": [], "sentiment": "positive"},
+    rows = [{"symbol": "AAA", "tables": "news-day", "read": "signs of a bottom", "score": 4.0, "why fell": "earnings, market-wide", "flags": ["D"], "sentiment": "positive"},
             {"symbol": "BBB", "tables": "falling wedge", "read": "undecided", "score": 1.0, "why fell": "earnings", "flags": ["Z"], "sentiment": "negative"},
             {"symbol": "CCC", "tables": ["falling wedge (forming)"], "read": "signs of a bottom", "score": 5.0, "why fell": "market-wide", "flags": [], "sentiment": "mixed"},
             {"symbol": "DDD", "tables": "early rally", "read": "undecided", "score": 0.5, "why fell": "guidance", "flags": [], "sentiment": "mixed"}]
     ck = checklist_rows(rows)
-    assert [d["symbol"] for d in ck] == ["AAA", "DDD"]           # BBB has a flag, CCC is only on the watch list
-    assert ck[0]["passes"] == 4 and ck[1]["passes"] == 2
+    assert [d["symbol"] for d in ck] == ["AAA", "DDD"]           # BBB has a warning flag, CCC is only on the watch list; D is a plus
+    assert ck[0]["passes"] == 5 and ck[0]["deep"] and ck[1]["passes"] == 2
     en = "\n".join(checklist_markdown(rows, "en", True))
-    assert "Checklist" in en and "Regime against" in en and "4/4" in en
+    assert "Checklist" in en and "Basket falling" in en and "5/5" in en and "deep decline (D)" in en
     he = "\n".join(checklist_markdown(rows, "he", False, anchor=lambda s: "s-" + s.lower()))
-    assert "רשימת הבדיקות" in he and "[פירוט](#s-aaa)" in he and "המשטר נגד" not in he
+    assert "רשימת הבדיקות" in he and "[פירוט](#s-aaa)" in he and "הסל יורד" not in he
     assert "No name passes" in "\n".join(checklist_markdown([], "en"))

@@ -677,14 +677,25 @@ def build_brief(symbol: str, df: pd.DataFrame, data: Dict, tables: List[str], in
     return row, brief_markdown(symbol, tables, ctx, an, ea, fu, news, label, score, why, why_fell, sent, peers, story)
 
 
-# warning flags, from the five-week look-back of the reports (docs/research_filters.md keeps the backtests): each one marked
-# the names that kept falling. Context, not a filter, until the backtest says otherwise.
+# the marks of the summary tables. Z, S and T are warning flags from the five-week look-back of the reports (each marked the
+# names that kept falling; none has a ten-year backtest that confirms it, Z's sector proxy was noise). D is the opposite:
+# a decline deeper than 40% from the 52-week high was the strongest positive condition in the ten-year backtests of all
+# three rules (+4-6% excess over random entries, docs/research_filters.md), although in the five weeks those names fell
+# further. The checklist counts Z/S/T as warnings and D as a plus.
+WARNING_FLAGS = ("Z", "S", "T")
 FLAGS = {
-    "Z": {"en": "z vs peers below -1 (an unusual drop against the peer group; such names fell a further 5-7 points in 5-10 bars)",
-          "he": "z מול עמיתים מתחת ל-1- (ירידה חריגה מול קבוצת העמיתים; שמות כאלה ירדו עוד 5-7 נקודות ב-5-10 נרות)"},
-    "D": {"en": "more than 40% below the 52-week high (the deepest declines kept falling)", "he": "יותר מ-40% מתחת לשיא 52 השבועות (הירידות העמוקות ביותר המשיכו)"},
-    "S": {"en": "negative sentiment read", "he": "קריאת סנטימנט שלילית"},
-    "T": {"en": "analysts' target more than 50% above the price (targets not yet cut)", "he": "יעד האנליסטים יותר מ-50% מעל המחיר (יעדים שטרם הורדו)"},
+    "Z": {"en": "warning: z vs peers below -1 (an unusual drop against the peer group; such names fell a further 5-7 points in 5-10 bars in the "
+                "first five weeks; the sector proxy over ten years was noise)",
+          "he": "אזהרה: z מול עמיתים מתחת ל-1- (ירידה חריגה מול קבוצת העמיתים; בחמשת השבועות הראשונים שמות כאלה ירדו עוד 5-7 נקודות; "
+                "תחליף הסקטור על עשר שנים היה רעש)"},
+    "S": {"en": "warning: negative sentiment read (five weeks only, not backtestable)", "he": "אזהרה: קריאת סנטימנט שלילית (חמישה שבועות בלבד, לא ניתן לבדיקה לאחור)"},
+    "T": {"en": "warning: analysts' target more than 50% above the price, targets not yet cut (five weeks only)",
+          "he": "אזהרה: יעד האנליסטים יותר מ-50% מעל המחיר, יעדים שטרם הורדו (חמישה שבועות בלבד)"},
+    "D": {"en": "plus: more than 40% below the 52-week high. In the ten-year backtests the strongest positive condition of all three rules "
+                "(+4-6% excess over random entries at 20 bars, positive in nearly every year, docs/research_filters.md); in the five weeks "
+                "those names fell further",
+          "he": "פלוס: יותר מ-40% מתחת לשיא 52 השבועות. בבדיקות עשר השנים התנאי החיובי החזק ביותר בשלושת הכללים (+4-6% מעל כניסות אקראיות "
+                "ב-20 נרות, חיובי כמעט בכל שנה, docs/research_filters.md); בחמשת השבועות השמות האלה ירדו עוד"},
 }
 
 
@@ -705,14 +716,15 @@ def flags_for(ctx: Dict, an: Dict, sent: Optional[Dict], peers: Optional[Dict]) 
 def flags_cell(flags) -> str:
     f = list(flags or [])
     s = " ".join(f)
-    return f"**{s}**" if len(f) >= 2 else s
+    return f"**{s}**" if sum(1 for x in f if x in WARNING_FLAGS) >= 2 else s
 
 
 def flags_legend(lang: str = "en") -> str:
     he = lang == "he"
     items = "; ".join(f"**{k}** = {v['he' if he else 'en']}" for k, v in FLAGS.items())
-    return (("*דגלים* (מהמאזן של חמשת השבועות הראשונים, הקשר ולא מסנן עד שהבדיקה לאחור תאשר; שני דגלים ומעלה מודגשים): " + items + ".") if he
-            else ("*Flags* (from the look-back of the first five weeks; context, not a filter, until the backtest confirms; two or more are bold): " + items + "."))
+    return (("*דגלים* (Z, S, T אזהרות מהמאזן של חמשת השבועות הראשונים, הקשר ולא מסנן; D פלוס שאושר בבדיקה לאחור של עשר שנים; שתי אזהרות ומעלה מודגשות): " + items + ".") if he
+            else ("*Flags* (Z, S, T are warnings from the look-back of the first five weeks, context not a filter; D is a plus confirmed by the ten-year "
+                  "backtests; two or more warnings are bold): " + items + "."))
 
 
 def summary_table(rows: List[Dict]) -> str:

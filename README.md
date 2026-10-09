@@ -283,10 +283,10 @@ the day's insider purchases in beaten-down stocks (the other purchases in one co
 **confirmed** wedge signals and the early-rally rows, each with a *days listed* column (how many of the last 30
 reports carried the name: in the first five weeks the stale listings did worst); the **watch list** of wedges still
 forming (not a signal); the **checklist** (`algovision/checklist.py`: up to ten names in a tested signal table with no
-flag, with pass/fail columns for the read and a market-driven decline, not a composite score); the summary table
-with the **flags** (Z = z vs peers below -1, D = more than 40% below the 52-week high, S = negative sentiment, T =
-target upside above 50%: the four marks that identified the names that kept falling in the look-back; context, not a
-filter, until `docs/research_filters.md` says otherwise); the model decisions as a forward test (buys logged as
+warning flag, with pass/fail columns for a deep decline, a market-driven decline and the read, not a composite score);
+the summary table with the **flags** (Z = z vs peers below -1, S = negative sentiment, T = target upside above 50%:
+warnings from the five-week look-back, context not a filter; D = more than 40% below the 52-week high: a plus, the
+strongest positive condition in the ten-year backtests of `docs/research_filters.md`); the model decisions as a forward test (buys logged as
 `jev_pick`, skips as `jev_skip`); the **look-back ledger** (below); and the journal with an expectation-vs-realised
 table and the beaten-down basket next to SPY as the benchmark. A scheduled routine runs both after every US close and
 commits the result to `journal/`.
@@ -452,6 +452,24 @@ per-name rows, so the learning accumulates on its own. A ledger, not a backtest:
 windows. The first five weeks (2026-09-05 to 2026-10-08) said: every table lost about as much as the average
 beaten-down stock; the flags, the "market-wide" cause and a fresh listing separated the better names from the worse;
 forming wedges were not a signal.
+
+## Filters from the forward test, backtested (`research-filters` command)
+
+```bash
+python -m algovision research-filters            # 10 years, train < 2023 / test >= 2023, docs/research_filters.md
+```
+
+`algovision/research/filters.py` takes the candidates the five-week look-back suggested and tests each on the three
+rules with ten-year event tables (beaten-down wedge breakout, news-day long, early rally), with the same protocol as
+the other studies: next-open entry, 10 bps cost, excess over random entries in the same stock within half a year,
+yes-vs-no in both periods, at least 30 events on each side, a verdict only when both periods agree by 0.5% or more.
+Results ([docs/research_filters.md](docs/research_filters.md)): a decline of more than 40% from the 52-week high
+**helps** in all three rules (+4-6% excess at 20 bars, positive in nearly every year), so flag D is a plus, not a
+warning, whatever the five weeks said; a market-driven decline (the sector explains at least half of the 60-bar fall)
+helps the wedge and rally rules; a regime gate on the beaten-down basket or on SPY vs its 50-day MA **hurts** or is
+noise (the rules earn more over random entries when the basket is falling), so the regime line stays a description;
+the peers-z proxy, gap size, the detector score (the highest tercile did worst in both periods) and a late entry after
+the gap day are noise. Only verdicts marked consistent change what the report does.
 
 ## Forward test (`journal` command)
 

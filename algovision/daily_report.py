@@ -175,8 +175,11 @@ def build_report(out_dir: Path, universe: str = "all", cache_dir: Optional[Path]
     tag(confirmed, "falling wedge")
     md.append("### Falling Wedge in beaten-down stocks (confirmed = closed above the upper line within the last 5 bars; hold ~20 bars; "
               "tested +3% vs random). Wedges still forming are on the watch list at the end of this section, not here.\n")
-    md.append((pd.DataFrame(rows).sort_values("score", ascending=False).drop(columns=["status"]).to_markdown(index=False) if rows else "none") + "\n")
+    md.append((pd.DataFrame(rows).sort_values("6m").drop(columns=["status"]).to_markdown(index=False) if rows else "none") + "\n")
     if rows:
+        md.append("Deepest decline first: in the ten-year backtests a decline of more than 40% from the 52-week high added +5-6% excess over random "
+                  "entries at 20 bars, and the detector *score* predicted nothing (the highest tercile did worst in both halves of the decade), so the "
+                  "score is shown but not used for the order (docs/research_filters.md).\n")
         md.append("*group*: the stock's peer group as one equal-weight basket, beaten down or not (in brackets the share of the other members "
                   "that are beaten down), and \"+ wedge\" when the basket itself is in a falling wedge. Signals where most of the group was beaten "
                   "down too earned +1.2% (train) / +1.9% (test) more over 20 bars, positive in all 6 years tested, not confirmed at 60 bars "
@@ -216,7 +219,7 @@ def build_report(out_dir: Path, universe: str = "all", cache_dir: Optional[Path]
     md.append("### Watch list: falling wedges still forming (not a signal; the signal is the close above the upper line)\n")
     if forming:
         wrows = [wedge_row(s, m, "watch") for s, m in forming.items()]
-        md.append(pd.DataFrame(wrows).sort_values("score", ascending=False).drop(columns=["status", "breakout", "bars since breakout"]).to_markdown(index=False) + "\n")
+        md.append(pd.DataFrame(wrows).sort_values("6m").drop(columns=["status", "breakout", "bars since breakout"]).to_markdown(index=False) + "\n")
         md.append("In the first five weeks of the forward test the forming wedges lost about 6% over 20 bars (hit 11%), the confirmed ones did not; "
                   "a stock inside a falling wedge is a stock still falling. The journal logs a wedge only on its breakout day.\n")
     else:

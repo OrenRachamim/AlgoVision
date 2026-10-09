@@ -109,19 +109,21 @@ def regime_markdown(st: Dict, lang: str = "en") -> List[str]:
                 f"(הפרש {_pct(st.get('basket_vs_spy_20'))}). רוחב: {st['share_above_ma50'] * 100:.0f}% מהיקום מעל ממוצע 50 "
                 f"(לפני 20 נרות {st['share_above_ma50_20_ago'] * 100:.0f}%), {st['share_beaten'] * 100:.0f}% מוכות "
                 f"(לפני 20 נרות {st['share_beaten_20_ago'] * 100:.0f}%). SPY מול ממוצע 50 {_pct(st.get('spy_vs_ma50'))}, מול ממוצע 200 {_pct(st.get('spy_vs_ma200'))}.")
-        warn = (f"**אזהרה: הכללים נגד הרוח.** סל המניות המוכות ירד {_pct(st.get('basket_20'))} ב-20 הנרות האחרונים. כל הכללים בדוח קונים מניות "
-                "מוכות; כשהסל עצמו יורד, גם הבחירות הטובות שבהן ירדו (ספטמבר 2026: כל הטבלאות הפסידו, בערך כמו ממוצע המניות המוכות). "
-                "תיאור של המצב, לא תחזית; שער משטר ייכנס לכללים רק אחרי בדיקה לאחור (docs/research_filters.md).")
+        warn = (f"**הסל יורד.** סל המניות המוכות ירד {_pct(st.get('basket_20'))} ב-20 הנרות האחרונים. כל הכללים בדוח קונים מניות מוכות; כשהסל עצמו "
+                "יורד, התשואות המוחלטות שלהם יורדות איתו (ספטמבר 2026: כל הטבלאות הפסידו, בערך כמו ממוצע המניות המוכות). בבדיקות עשר השנים "
+                "(docs/research_filters.md) שער משטר לא עזר: הכללים הרוויחו יותר מעל כניסות אקראיות דווקא כשהסל ירד ו-SPY היה מתחת לממוצע 50. "
+                "לכן זו שורת תיאור, לא שער: לצפות לתשואות מוחלטות נמוכות יותר, לא לדלג על האיתותים.")
     else:
         line = (f"**Regime.** The beaten-down basket (equal weight, the {st.get('n_beaten_20_ago', 0)} stocks that were beaten down 20 bars ago): "
                 f"{_pct(st.get('basket_20'))} over 20 bars, {_pct(st.get('basket_10'))} over 10, vs SPY {_pct(st.get('spy_20'))} over 20 "
                 f"(difference {_pct(st.get('basket_vs_spy_20'))}). Breadth: {st['share_above_ma50'] * 100:.0f}% of the universe above the 50-day MA "
                 f"({st['share_above_ma50_20_ago'] * 100:.0f}% 20 bars ago), {st['share_beaten'] * 100:.0f}% beaten down "
                 f"({st['share_beaten_20_ago'] * 100:.0f}% 20 bars ago). SPY vs its 50-day MA {_pct(st.get('spy_vs_ma50'))}, vs its 200-day MA {_pct(st.get('spy_vs_ma200'))}.")
-        warn = (f"**Warning: the rules are against the wind.** The beaten-down basket lost {_pct(st.get('basket_20'))} over the last 20 bars. Every rule "
-                "in this report buys beaten-down stocks; when the basket itself is falling, even its better picks fell with it (September 2026: every "
-                "table lost, about as much as the average beaten-down stock). A description of the state, not a forecast; a regime gate enters the "
-                "rules only after a backtest (docs/research_filters.md).")
+        warn = (f"**Basket falling.** The beaten-down basket lost {_pct(st.get('basket_20'))} over the last 20 bars. Every rule in this report buys "
+                "beaten-down stocks; when the basket itself is falling, their absolute returns fall with it (September 2026: every table lost, about as "
+                "much as the average beaten-down stock). In the ten-year backtests (docs/research_filters.md) a regime gate did not help: the rules "
+                "earned more over random entries precisely when the basket was falling and SPY was below its 50-day MA. So this is a description, "
+                "not a gate: expect lower absolute returns, do not skip the signals.")
     md = [line, ""]
     if st.get("warning"):
         md += [warn, ""]
