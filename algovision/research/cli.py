@@ -177,6 +177,69 @@ def cmd_rally(args) -> int:
     return 0
 
 
+def cmd_filters(args) -> int:
+    """Backtest the filters the forward test suggested, on the wedge, news-day and early-rally events (docs/research_filters.md)."""
+    from algovision.data.universe import load_snapshot
+    from algovision.research.anomalies import news_gap_events
+    from algovision.research.factors import load_panel
+    from algovision.research.filters import attach_conditions, newsday_late_entry, panel_context, write_filters_report
+    from algovision.research.rally import combined_events, rally_events
+
+    symbols = get_universe(args.universe)
+    if args.limit:
+        symbols = symbols[: args.limit]
+    cache = Path(args.cache_dir) if args.cache_dir else DataProvider.__init__.__defaults__[0]
+    provider_kwargs = dict(cache_dir=cache, offline=args.offline, workers=args.workers)
+    t0 = time.time()
+    frames = DataProvider(**provider_kwargs).get_many(list(symbols) + ["SPY"], args.period, "1d")
+    spy = frames.pop("SPY")
+    sectors = {x["symbol"]: x["sector"] for x in load_snapshot()["sp500"]}
+    panel = load_panel([s for s in symbols if s in frames], lambda s: frames[s])
+    print(f"research-filters: panel {panel['Close'].shape} ({time.time() - t0:.0f}s)", file=sys.stderr)
+    ctx = panel_context(panel, spy["Close"], sectors)
+    families = {}
+    # 1. beaten-down falling-wedge breakouts
+    cfg = DetectorConfig(filter_max_ret_126=-0.08, filter_below_ma200=True)
+    ev, _, errors = run_hindsight(symbols, {**provider_kwargs, "offline": True}, cfg, args.period, "1d", "SPY", args.workers,
+                                  progress=lambda i, n, ne, el: print(f"  wedge hindsight [{i}/{n}] events={ne} {el:.0f}s", file=sys.stderr))
+    if len(ev):
+        ev = ev[(ev["pattern"] == "Falling Wedge") & (ev["dir"] == 1)].reset_index(drop=True)
+        offline = DataProvider(**{**provider_kwargs, "offline": True})
+        ev = add_local_baseline(ev, lambda s: offline.get(s, args.period, "1d"))
+        ev = ev.rename(columns={"signal_date": "date"})
+        ev = attach_conditions(ev, ctx, "date")
+        ev["score_tercile"] = pd.qcut(ev["score"], 3, labels=["low score", "mid score", "high score"], duplicates="drop")
+        Path(args.out).mkdir(parents=True, exist_ok=True)
+        ev.drop(columns=[c for c in ev.columns if c.startswith("rand_") or c.startswith("loc_")]).to_csv(Path(args.out) / "wedge_events.csv", index=False)
+        families["Beaten-down falling-wedge breakout (hold 20 bars)"] = {"events": ev, "ret_col": "ret", "x_col": "xloc", "date_col": "date",
+                                                                       "buckets": {"Wedge score (terciles)": "score_tercile"}, "slug": "wedge"}
+    print(f"  wedge events: {len(ev)} ({len(errors)} symbol errors, {time.time() - t0:.0f}s)", file=sys.stderr)
+    # 2. news-day, long after any big gap in a beaten-down stock
+    nd = news_gap_events(panel, spy["Close"], entry="next_open")
+    nd = nd[nd["below_ma200"] & (nd["ret_126"] < -0.08)].reset_index(drop=True)
+    for h in (1, 5, 10, 20, 40, 60):
+        nd[f"long_{h}"] = nd["dir"] * nd[f"ret_{h}"]
+        nd[f"lxloc_{h}"] = nd["dir"] * nd[f"xloc_{h}"]
+    nd = attach_conditions(nd, ctx, "date")
+    nd["gap_size"] = pd.cut(nd["gap"].abs(), [0, 0.07, 0.12, 1.0], labels=["4-7%", "7-12%", ">12%"])
+    nd["gap_dir"] = np.where(nd["dir"] > 0, "gap up", "gap down")
+    late = newsday_late_entry(panel, spy["Close"], nd)
+    families["News-day in a beaten-down stock, long (hold 60 bars)"] = {"events": nd, "ret_col": "long", "x_col": "lxloc", "date_col": "date",
+                                                                       "buckets": {"Gap size": "gap_size", "Gap direction": "gap_dir"}, "late": late, "slug": "newsday"}
+    print(f"  news-day events: {len(nd)} ({time.time() - t0:.0f}s)", file=sys.stderr)
+    # 3. early rally: the first turn rule in a beaten-down stock
+    rv = rally_events(panel, spy["Close"], progress=lambda i, n, ne: print(f"  rally [{i}/{n}] events={ne}", file=sys.stderr) if i % 100 == 0 or i == n else None)
+    cmb = combined_events(rv) if len(rv) else rv
+    if len(cmb):
+        cmb = attach_conditions(cmb, ctx, "date")
+        families["Early rally in a beaten-down stock (hold 20 bars)"] = {"events": cmb, "ret_col": "ret", "x_col": "xloc", "date_col": "date",
+                                                                        "buckets": {"Depth of the decline (6-month return)": "depth", "Rules fired within a week": "n_rules"}, "slug": "rally"}
+    print(f"  rally events: {len(cmb)} ({time.time() - t0:.0f}s)", file=sys.stderr)
+    p = write_filters_report(Path(args.out), args.split, families, doc_path=Path(args.doc) if args.doc else None)
+    print(f"wrote {p} ({time.time() - t0:.0f}s)", file=sys.stderr)
+    return 0
+
+
 def cmd_factors(args) -> int:
     from algovision.research.factors import write_factors_report
 

@@ -121,7 +121,7 @@ def test_top_picks_and_hebrew_section(tmp_path):
     picks = D.top_picks(dec)
     assert [d["symbol"] for d in picks] == ["AAA", "BBB"]
     md = "\n".join(D.top_picks_he(dec, {"AAA": "wedge-aaa"}, lambda s: f"https://tv/{s}", "https://gh/briefs.md"))
-    assert md.startswith('<a id="ai-picks"') and "## המניות שתועדפו גבוה על ידי Jev" in md
+    assert md.startswith('<a id="ai-picks"') and '## המניות שהמודל סימן "קנייה"' in md
     assert "[פירוט](#wedge-aaa)" in md and "[תקציר](https://gh/briefs.md)" in md and "⚠ 0.90" in md and "יום חדשות" in md and "סימני תחתית (+4.5)" in md
     assert "CCC" not in md and "DDD" not in md
     assert "אין היום מניות" in "\n".join(D.top_picks_he({"CCC": dec["CCC"]}, {}, lambda s: s))

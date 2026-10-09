@@ -61,16 +61,26 @@ def test_build_daily_he_carries_every_part(tmp_path):
                         "entry_date": ["2026-10-06"], "entry_price": [50.5], "hold_bars": [60], "note": ["gap -6%"], "bars_elapsed": [1], "last_price": [51.0],
                         "ret": [0.0099], "done": [False], "spy_ret": [0.002]})
     mtm.to_csv(tmp_path / "mark_to_market.csv", index=False)
+    rows[0]["flags"] = []
+    rows[1]["flags"] = ["Z", "S"]
+    regime = {"n_beaten_20_ago": 3, "basket_20": -0.05, "basket_10": -0.02, "spy_20": 0.01, "basket_vs_spy_20": -0.06, "share_above_ma50": 0.4,
+              "share_above_ma50_20_ago": 0.5, "share_beaten": 0.2, "share_beaten_20_ago": 0.15, "spy_vs_ma50": 0.01, "spy_vs_ma200": 0.05, "warning": True}
+    days = {"News-day": {"AAA": 2}, "Early rally, beaten-down": {}}
     path = D.build_daily_he(tmp_path, "2026-10-06", "2026-10-06", 2, 2, 45, sig, pd.DataFrame({"x": range(7)}), nd, {}, rally, rows, frames, {}, decisions, ["AAA"],
-                            {"AAA": "Industrials", "BBB": "Utilities"}, None, "# AlgoVision 2026-10-06: מה חדש\n- בדיקה\n")
+                            {"AAA": "Industrials", "BBB": "Utilities"}, None, "# AlgoVision 2026-10-06: מה חדש\n- בדיקה\n", regime=regime, days=days,
+                            lookback=None, skips=["BBB"])
     text = path.read_text(encoding="utf-8")
     assert (tmp_path / "daily_latest.md").exists()
-    for piece in ("## 0. מה חדש", "## 1. קניות אינסיידרים", "### כלל יום החדשות", "### טריז יורד", "### ראלי מוקדם", "## 3. תקציר לכל מניה", "### החלטות AI (Jev)",
-                  "## המניות שתועדפו גבוה על ידי Jev", "## 4. פירוט לכל מניה", "## AAA - AAA Corp", "## BBB - BBB Corp", "**בקצרה:**", "**איפה המניה.**",
+    for piece in ("**משטר השוק.**", "נגד הרוח", "## 0. מה חדש", "## 1. קניות אינסיידרים", "### מניות אחרות עם רכישות אינסיידרים", "שורה אחת בלבד",
+                  "### כלל יום החדשות", "ימים ברשימה", "### טריז יורד", "### ראלי מוקדם", "### רשימת מעקב", "## 3. רשימת הבדיקות", "### רשימת הבדיקות",
+                  "### טבלת התקציר", "דגלים", "**Z S**", "### החלטות המודל (Jev), מבחן קדימה", "נרשמו כ-jev_skip", "## המניות שהמודל סימן",
+                  "## 4. פירוט לכל מניה", "## AAA - AAA Corp", "## BBB - BBB Corp", "**בקצרה:**", "**איפה המניה.**",
                   "### למה המניה ירדה", "חדשות אחרונות (הכותרות והתקצירים", "### חששות המשקיעים וסנטימנט", "### החלטת AI (Jev)", "### מה אומרים האנליסטים",
-                  "### הדוח האחרון והתחזיות", "### נתוני יסוד", "### קריאה מבוססת כללים", "## 5. מבחן קדימה (היומן)", "### פוזיציות פתוחות", "[פירוט](#s-aaa)",
-                  "RSI חוזר מעל 50", "נרשמו היום ביומן כ-jev_pick"):
+                  "### הדוח האחרון והתחזיות", "### נתוני יסוד", "### קריאה מבוססת כללים", "## 5. מה עבד עד עכשיו", "## 6. מבחן קדימה (היומן)",
+                  "ציפייה מול מציאות", "### פוזיציות פתוחות", "[פירוט](#s-aaa)", "RSI חוזר מעל 50", "נרשמו היום ביומן כ-jev_pick"):
         assert piece in text, piece
+    import re
+    assert re.search(r"\|\s*3\s*\|", text.split("### כלל יום החדשות")[1].split("### טריז")[0])     # AAA listed on 2 earlier days + today
     assert "Test Corp cuts guidance" in text and "A summary." in text          # the evidence and the news summaries travel with the file
     assert text.index("## AAA - AAA Corp") < text.index("## BBB - BBB Corp")    # signs of a bottom first, like the summary table
 

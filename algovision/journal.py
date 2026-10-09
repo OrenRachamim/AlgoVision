@@ -26,7 +26,17 @@ RULES = {
     "falling_wedge_beaten_down": {"hold": 20, "expect": "+3% vs random, hit ~60% (docs/research_falling_wedge.md)"},
     "insider_buy_beaten_down": {"hold": 120, "expect": "+10% vs random at 60 bars, +15% at 120, hit ~68% (docs/research_insiders.md)"},
     "jev_pick": {"hold": 20, "expect": "untested: the Jev decision model's 'buy' (P >= 0.6) on a listed stock, logged by daily-report (algovision/decide.py)"},
+    "jev_skip": {"hold": 20, "expect": "untested: the model's 'skip' (P(skip) >= 0.5); the call is right when the stock falls, so a NEGATIVE return is the success case"},
     "early_rally_beaten_down": {"hold": 20, "expect": "+2-3% net, hit ~58-61%, +3.5-4% vs random entry in the same stock, ~0 vs SPY at 20 bars (docs/research_rally.md)"},
+}
+# the research expectation in a few words, for the expectation-vs-realised table
+EXPECT_SHORT = {
+    "newsday": {"en": "+6-7% vs random at 60 bars, hit ~62%", "he": "+6-7% מול אקראי ב-60 נרות, פגיעה ~62%"},
+    "falling_wedge_beaten_down": {"en": "+3% vs random at 20 bars, hit ~60%", "he": "+3% מול אקראי ב-20 נרות, פגיעה ~60%"},
+    "insider_buy_beaten_down": {"en": "+10% vs random at 60 bars, +15% at 120, hit ~68%", "he": "+10% מול אקראי ב-60 נרות, +15% ב-120, פגיעה ~68%"},
+    "jev_pick": {"en": "untested (forward test only)", "he": "לא נבדק (מבחן קדימה בלבד)"},
+    "jev_skip": {"en": "untested; a fall is the success case", "he": "לא נבדק; ירידה היא ההצלחה"},
+    "early_rally_beaten_down": {"en": "+2-3% net at 20 bars, hit ~58-61%, ~0 vs SPY", "he": "+2-3% נטו ב-20 נרות, פגיעה ~58-61%, ~0 מול SPY"},
 }
 # rules that were logged in the past but are no longer tracked or reported (rows stay in signals.csv)
 RETIRED_RULES = {"growth_top10"}
@@ -96,14 +106,25 @@ def collect_rally(frames: Dict[str, pd.DataFrame], symbols: List[str], today: st
     return rows
 
 
-def mark_to_market(journal: pd.DataFrame, frames: Dict[str, pd.DataFrame], bench: Optional[pd.DataFrame] = None) -> pd.DataFrame:
-    """Fill entry prices (next open after the signal) and compute results for every logged signal."""
+def mark_to_market(journal: pd.DataFrame, frames: Dict[str, pd.DataFrame], bench: Optional[pd.DataFrame] = None,
+                   panels=None) -> pd.DataFrame:
+    """Fill entry prices (next open after the signal) and compute results for every logged signal.
+
+    ``panels`` = ``(open, close)`` panels from :func:`algovision.regime.build_panels` (built here when None); they give
+    ``basket_ret``, the equal-weight return of the stocks that were beaten down on the signal date over the same window,
+    the fair benchmark for a rule that only buys beaten-down stocks."""
+    from algovision.regime import basket_return, beaten_mask, build_panels
+
+    if panels is None:
+        panels = build_panels({s: df for s, df in frames.items() if s != "SPY"})
+    p_open, p_close = panels
+    members_cache: Dict[int, List[str]] = {}
     out = []
     for r in journal.itertuples():
         rec = r._asdict()
         rec.pop("Index", None)
         df = frames.get(r.symbol)
-        rec.update({"bars_elapsed": np.nan, "last_price": np.nan, "ret": np.nan, "done": False, "spy_ret": np.nan})
+        rec.update({"bars_elapsed": np.nan, "last_price": np.nan, "ret": np.nan, "done": False, "spy_ret": np.nan, "basket_ret": np.nan})
         if df is None:
             out.append(rec)
             continue
@@ -124,6 +145,15 @@ def mark_to_market(journal: pd.DataFrame, frames: Dict[str, pd.DataFrame], bench
             if bench is not None:
                 b = bench.reindex(idx).ffill()
                 rec["spy_ret"] = float(b["Close"].iloc[exit_pos] / b["Open"].iloc[entry_pos] - 1.0)
+            if len(p_close):
+                sig_pos = p_close.index.searchsorted(pd.Timestamp(r.signal_date), side="right") - 1
+                e = p_close.index.searchsorted(pd.Timestamp(idx[entry_pos]))
+                x = p_close.index.searchsorted(pd.Timestamp(idx[exit_pos]))
+                if sig_pos >= 200 and e < len(p_close) and x < len(p_close):
+                    if sig_pos not in members_cache:
+                        bm = beaten_mask(p_close, sig_pos)
+                        members_cache[sig_pos] = bm[bm].index.tolist()
+                    rec["basket_ret"] = basket_return(p_open, p_close, members_cache[sig_pos], e, x)
         out.append(rec)
     return pd.DataFrame(out)
 
@@ -146,8 +176,35 @@ def summary(mtm: pd.DataFrame) -> str:
         sp = g["spy_ret"].astype(float).dropna() if "spy_ret" in g.columns else pd.Series(dtype=float)
         if len(sp):
             lines.append(f"- SPY over the same holding periods: mean {sp.mean() * 100:+.2f}% (excess {(g['ret'].astype(float).dropna().mean() - sp.mean()) * 100:+.2f}%)")
+        bk = g["basket_ret"].astype(float).dropna() if "basket_ret" in g.columns else pd.Series(dtype=float)
+        if len(bk):
+            lines.append(f"- beaten-down basket over the same holding periods: mean {bk.mean() * 100:+.2f}% "
+                         f"(excess {(g['ret'].astype(float).dropna().mean() - bk.mean()) * 100:+.2f}%; the fair benchmark for a rule that only buys beaten-down stocks)")
         lines.append("")
     return "\n".join(lines)
+
+
+def expectation_table(mtm: pd.DataFrame, lang: str = "en") -> str:
+    """One line per rule: what the research expected and what the journal realised so far (all logged trades, closed and marked to market)."""
+    he = lang == "he"
+    rows = []
+    for rule, g in mtm.groupby("rule"):
+        r = g["ret"].astype(float).dropna()
+        closed = g[g["done"] == True]  # noqa: E712
+        sp = g["spy_ret"].astype(float).dropna() if "spy_ret" in g.columns else pd.Series(dtype=float)
+        bk = g["basket_ret"].astype(float).dropna() if "basket_ret" in g.columns else pd.Series(dtype=float)
+        rows.append({
+            ("כלל" if he else "rule"): rule,
+            ("המחקר ציפה" if he else "research expected"): EXPECT_SHORT.get(rule, {}).get("he" if he else "en", RULES.get(rule, {}).get("expect", "")),
+            ("נרשמו" if he else "logged"): len(g), ("נסגרו" if he else "closed"): len(closed),
+            ("ממוצע" if he else "mean"): f"{r.mean() * 100:+.2f}%" if len(r) else "",
+            ("פגיעה" if he else "hit"): f"{(r > 0).mean() * 100:.0f}%" if len(r) else "",
+            ("מול SPY" if he else "vs SPY"): f"{(r.mean() - sp.mean()) * 100:+.2f}%" if len(r) and len(sp) else "",
+            ("מול סל המוכות" if he else "vs beaten basket"): f"{(r.mean() - bk.mean()) * 100:+.2f}%" if len(r) and len(bk) else "",
+        })
+    if not rows:
+        return ""
+    return pd.DataFrame(rows).to_markdown(index=False) + "\n"
 
 
 def run(out_dir: Path, universe: str = "all", period: str = "2y", cache_dir: Optional[Path] = None,
@@ -193,6 +250,10 @@ def run(out_dir: Path, universe: str = "all", period: str = "2y", cache_dir: Opt
         md.append("none")
     shown = mtm[~mtm["rule"].isin(RETIRED_RULES)] if len(mtm) else mtm
     md.append("\n## Running results\n")
+    if len(shown):
+        md.append("Expectation vs realised (all logged trades, closed and open marked to market; 'vs beaten basket' = minus the equal-weight "
+                  "return of the stocks that were beaten down on the signal date over the same window):\n")
+        md.append(expectation_table(shown))
     md.append(summary(shown) if len(shown) else "no signals logged yet")
     if len(shown):
         open_ = shown[shown["done"] != True]  # noqa: E712

@@ -221,6 +221,40 @@ def log_picks(out_dir: Path, today: str, decisions: Dict[str, Dict], frames: Dic
     return [r["symbol"] for r in rows]
 
 
+SKIP_RULE = "jev_skip"
+SKIP_THRESHOLD = 0.50
+
+
+def log_skips(out_dir: Path, today: str, decisions: Dict[str, Dict], frames: Dict[str, pd.DataFrame],
+              threshold: float = SKIP_THRESHOLD) -> List[str]:
+    """Log ``jev_skip`` signals for the stocks the model says to skip with P(skip) >= threshold (no open jev_skip position).
+    The journal marks them to market like a long position; the model's call is right when the return is negative, which is
+    why the rule's expectation says so. In the first week of the forward test the 'skip' names did better than the 'buy'
+    names, so the call is tracked rather than trusted."""
+    from algovision.journal import COLS, _load
+
+    out_dir = Path(out_dir)
+    path = out_dir / "signals.csv"
+    journal = _load(path)
+    open_ = set(journal[(journal["rule"] == SKIP_RULE) & (journal["status"] != "closed")]["symbol"]) if len(journal) else set()
+    existing = set(zip(journal["rule"], journal["symbol"], journal["signal_date"])) if len(journal) else set()
+    rows = []
+    for s, d in decisions.items():
+        ps = d.get("p_skip")
+        if d.get("action") != "skip" or ps is None or ps < threshold or s in open_ or (SKIP_RULE, s, today) in existing:
+            continue
+        df = frames.get(s)
+        if df is None or not len(df):
+            continue
+        rows.append({"logged": today, "rule": SKIP_RULE, "symbol": s, "signal_date": today, "status": "open",
+                     "ref_price": f"{float(df['Close'].iloc[-1]):.4f}", "entry_date": "", "entry_price": "", "hold_bars": HOLD_BARS,
+                     "note": f"P(skip) {ps:.2f}, cause {d.get('cause_type')}, evidence {d.get('evidence')}, severity {d.get('severity')}"})
+    if rows:
+        journal = pd.concat([journal, pd.DataFrame(rows)[COLS]], ignore_index=True)
+        journal.to_csv(path, index=False)
+    return [r["symbol"] for r in rows]
+
+
 # ----------------------------------------------------------------------------
 # rendering
 # ----------------------------------------------------------------------------
@@ -345,10 +379,10 @@ def top_picks_he(decisions: Dict[str, Dict], anchors: Dict[str, str], tv_url, br
     """Hebrew section: the stocks Jev prioritised (P(buy) >= threshold), with links to their details."""
     from algovision.peers import peers_short
 
-    md = ["<a id=\"ai-picks\" name=\"ai-picks\"></a>", "## המניות שתועדפו גבוה על ידי Jev", "",
-          f"כל המניות שבטבלאות הדוח היום (טריז, יום חדשות, אינסיידרים) שמודל ההחלטה סימן \"קנייה\" בהסתברות {threshold:.2f} ומעלה, "
-          "מהבטוחה ביותר למטה. המודל קרא רק את התקציר של כל מניה; אין לו נימוק, וההחלטות נמדדות ביומן ככלל jev_pick. "
-          "\"פירוט\" מקפיץ לסעיף המניה בקובץ הזה (לטריזים) או לתקציר באנגלית ב-GitHub (לשאר).", ""]
+    md = ["<a id=\"ai-picks\" name=\"ai-picks\"></a>", "## המניות שהמודל סימן \"קנייה\" (נרשמות ליומן כ-jev_pick)", "",
+          f"כל המניות שבטבלאות הדוח היום שמודל ההחלטה סימן \"קנייה\" בהסתברות {threshold:.2f} ומעלה, מהבטוחה ביותר למטה. זה מבחן קדימה של המודל, "
+          "לא רשימת עדיפות: בשבוע הראשון שמות ה\"דילוג\" שלו עשו טוב יותר משמות ה\"קנייה\". המודל קרא רק את התקציר של כל מניה; אין לו נימוק, "
+          "וההחלטות נמדדות ביומן ככלל jev_pick. \"פירוט\" מקפיץ לסעיף המניה בקובץ הזה (לטריזים) או לתקציר באנגלית ב-GitHub (לשאר).", ""]
     picks = top_picks(decisions, threshold)
     if not picks:
         md += [f"אין היום מניות עם הסתברות קנייה של {threshold:.2f} ומעלה.", ""]

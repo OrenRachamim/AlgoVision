@@ -275,9 +275,21 @@ python -m algovision journal --out journal        # refresh data, log signals, m
 python -m algovision daily-report --out journal   # journal/report_<date>.md from cache
 ```
 
-One file with the day's insider purchases (beaten-down first), news-day and wedge signals, a summary of one
-research brief per listed stock, and the running forward-test results against SPY. A scheduled routine runs both
-after every US close and commits the result to `journal/`.
+One file with, in this order: the **regime line** (`algovision/regime.py`: the equal-weight basket of all beaten-down
+stocks over 10 and 20 bars with membership fixed at the start of the window, breadth above the 50-day MA, the share
+beaten down, SPY against its moving averages, and a warning line when the basket lost more than 3% over 20 bars,
+because every rule here buys beaten-down stocks and in September 2026 the basket itself fell while the index rose);
+the day's insider purchases in beaten-down stocks (the other purchases in one context line); the news-day and
+**confirmed** wedge signals and the early-rally rows, each with a *days listed* column (how many of the last 30
+reports carried the name: in the first five weeks the stale listings did worst); the **watch list** of wedges still
+forming (not a signal); the **checklist** (`algovision/checklist.py`: up to ten names in a tested signal table with no
+flag, with pass/fail columns for the read and a market-driven decline, not a composite score); the summary table
+with the **flags** (Z = z vs peers below -1, D = more than 40% below the 52-week high, S = negative sentiment, T =
+target upside above 50%: the four marks that identified the names that kept falling in the look-back; context, not a
+filter, until `docs/research_filters.md` says otherwise); the model decisions as a forward test (buys logged as
+`jev_pick`, skips as `jev_skip`); the **look-back ledger** (below); and the journal with an expectation-vs-realised
+table and the beaten-down basket next to SPY as the benchmark. A scheduled routine runs both after every US close and
+commits the result to `journal/`.
 
 The briefs themselves go to `journal/briefs_<date>.md` (`algovision/briefs.py`): for every stock in the report tables,
 where it is (drawdown, moving averages, RSI), why it fell (the largest down days of the last year plus every
@@ -423,17 +435,36 @@ What is delivered: the message text is only the short "what is new" note (`journ
 since the previous report, with TradingView links); the full report travels as an attached `.md` file and is
 never sent as text. Pass `--summary` to use a different note.
 
+## What has worked so far (`lookback` command)
+
+```bash
+python -m algovision lookback --out journal          # the ledger of the reports, English
+python -m algovision lookback --out journal --he     # Hebrew
+```
+
+`algovision/lookback.py` reads every dated report, takes the first day each (table, symbol) pair appeared, enters at
+the next open and measures the return after 5, 10 and 20 bars and to the latest close, against SPY and against the
+beaten-down basket of the same day (the fair benchmark for a rule that only buys beaten-down stocks). The scorecard
+groups the names by table, by the number of flags and by each flag, by the rule-based read, by whether "market-wide"
+was among the causes of the decline, by how many days the name stayed listed, and by the model's action. It runs
+inside every daily report (section 4, and section 5 of the Hebrew file) and writes `journal/lookback.csv` with the
+per-name rows, so the learning accumulates on its own. A ledger, not a backtest: a few weeks, one regime, overlapping
+windows. The first five weeks (2026-09-05 to 2026-10-08) said: every table lost about as much as the average
+beaten-down stock; the flags, the "market-wide" cause and a fresh listing separated the better names from the worse;
+forming wedges were not a signal.
+
 ## Forward test (`journal` command)
 
 ```bash
 python -m algovision journal --out journal
 ```
 
-Downloads fresh prices, logs today's live signals from the two rules that survived the research
-(news-day in a beaten-down stock, hold 60 bars; beaten-down Falling Wedge breakout, hold 20 bars) to
-`journal/signals.csv`, marks every earlier signal to market (entry = next open after the signal) and writes
-`journal/<date>.md` plus `journal/latest.md` with running hit rates and mean returns against the research
-expectation. A scheduled routine runs it every trading day after the US close and commits the journal.
+Downloads fresh prices, logs today's live signals (news-day in a beaten-down stock, hold 60 bars; beaten-down
+Falling Wedge breakout, hold 20 bars; insider buying in a beaten-down stock, hold 120; early rally, hold 20; the
+model's buys and skips, hold 20) to `journal/signals.csv`, marks every earlier signal to market (entry = next open
+after the signal) against SPY and against the beaten-down basket over the same window, and writes
+`journal/<date>.md` plus `journal/latest.md` with an expectation-vs-realised table per rule and the running hit rates
+and mean returns. A scheduled routine runs it every trading day after the US close and commits the journal.
 
 ## Project layout
 

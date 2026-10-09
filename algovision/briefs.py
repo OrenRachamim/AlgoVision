@@ -669,11 +669,50 @@ def build_brief(symbol: str, df: pd.DataFrame, data: Dict, tables: List[str], in
            "consensus": (an.get("key") or "").replace("_", " "), "analysts": an.get("n"), "target upside": an.get("upside"),
            "up/down 90d": f"{an.get('n_up', 0)}/{an.get('n_down', 0)}", "EPS est 30d": ea.get("y0_rev_30d"),
            "last surprise": ea.get("surprise"), "next report": ea.get("next_date")}
+    row["flags"] = flags_for(ctx, an, sent, peers)
     row["_story"] = story
     # everything the brief was rendered from, so the same stock can be rendered again in another language (the Hebrew daily file)
     row["_data"] = {"ctx": ctx, "an": an, "ea": ea, "fu": fu, "why": why_fell, "sent": sent, "news": news, "label": label, "score": score,
                     "fired": fired, "name": name, "tables": list(tables), "peers": peers}
     return row, brief_markdown(symbol, tables, ctx, an, ea, fu, news, label, score, why, why_fell, sent, peers, story)
+
+
+# warning flags, from the five-week look-back of the reports (docs/research_filters.md keeps the backtests): each one marked
+# the names that kept falling. Context, not a filter, until the backtest says otherwise.
+FLAGS = {
+    "Z": {"en": "z vs peers below -1 (an unusual drop against the peer group; such names fell a further 5-7 points in 5-10 bars)",
+          "he": "z מול עמיתים מתחת ל-1- (ירידה חריגה מול קבוצת העמיתים; שמות כאלה ירדו עוד 5-7 נקודות ב-5-10 נרות)"},
+    "D": {"en": "more than 40% below the 52-week high (the deepest declines kept falling)", "he": "יותר מ-40% מתחת לשיא 52 השבועות (הירידות העמוקות ביותר המשיכו)"},
+    "S": {"en": "negative sentiment read", "he": "קריאת סנטימנט שלילית"},
+    "T": {"en": "analysts' target more than 50% above the price (targets not yet cut)", "he": "יעד האנליסטים יותר מ-50% מעל המחיר (יעדים שטרם הורדו)"},
+}
+
+
+def flags_for(ctx: Dict, an: Dict, sent: Optional[Dict], peers: Optional[Dict]) -> List[str]:
+    out = []
+    z = (peers or {}).get("z")
+    if z is not None and z <= -1:
+        out.append("Z")
+    if ctx.get("drawdown") is not None and ctx["drawdown"] <= -0.40:
+        out.append("D")
+    if sent and sent.get("label") == "negative":
+        out.append("S")
+    if an.get("upside") is not None and an["upside"] >= 0.50:
+        out.append("T")
+    return out
+
+
+def flags_cell(flags) -> str:
+    f = list(flags or [])
+    s = " ".join(f)
+    return f"**{s}**" if len(f) >= 2 else s
+
+
+def flags_legend(lang: str = "en") -> str:
+    he = lang == "he"
+    items = "; ".join(f"**{k}** = {v['he' if he else 'en']}" for k, v in FLAGS.items())
+    return (("*דגלים* (מהמאזן של חמשת השבועות הראשונים, הקשר ולא מסנן עד שהבדיקה לאחור תאשר; שני דגלים ומעלה מודגשים): " + items + ".") if he
+            else ("*Flags* (from the look-back of the first five weeks; context, not a filter, until the backtest confirms; two or more are bold): " + items + "."))
 
 
 def summary_table(rows: List[Dict]) -> str:
@@ -684,6 +723,7 @@ def summary_table(rows: List[Dict]) -> str:
     d = d.sort_values(["read", "score"], key=lambda s: s.map(order) if s.name == "read" else -s).reset_index(drop=True)
     out = pd.DataFrame({
         "symbol": d["symbol"].map(tv), "in tables": d["tables"], "read": d["read"], "score": d["score"].map(lambda v: f"{v:+g}"),
+        "flags": d["flags"].map(flags_cell) if "flags" in d else "",
         "why fell": d["why fell"] if "why fell" in d else "",
         "concerns": d["concerns"] if "concerns" in d else "", "sentiment": d["sentiment"] if "sentiment" in d else "",
         **({"AI": d["AI"].fillna("")} if "AI" in d else {}),

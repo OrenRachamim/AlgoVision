@@ -219,6 +219,17 @@ def build_parser() -> argparse.ArgumentParser:
     rr.add_argument("--cache-dir", default=None)
     rr.add_argument("--offline", action="store_true")
 
+    rf = sub.add_parser("research-filters", help="backtest the filters the forward test suggested (regime gate, flags, market-driven decline, late entry) on the wedge, news-day and rally events (docs/research_filters.md)")
+    rf.add_argument("--universe", "-u", default="all", choices=UNIVERSES)
+    rf.add_argument("--period", default="10y")
+    rf.add_argument("--split", default="2023-01-01")
+    rf.add_argument("--out", default="docs/research/filters")
+    rf.add_argument("--doc", default="docs/research_filters.md")
+    rf.add_argument("--cache-dir", default=None)
+    rf.add_argument("--offline", action="store_true")
+    rf.add_argument("--workers", type=int, default=4)
+    rf.add_argument("--limit", type=int, default=0)
+
     fa = sub.add_parser("factors", help="classic anomalies on the universe: cross-sectional momentum, trend filter, short-term reversal")
     fa.add_argument("--universe", "-u", default="all", choices=UNIVERSES)
     fa.add_argument("--symbols", default=None)
@@ -293,6 +304,14 @@ def build_parser() -> argparse.ArgumentParser:
     dr.add_argument("--workers", type=int, default=4)
     dr.add_argument("--date", default=None)
     dr.add_argument("--no-briefs", action="store_true", help="skip the per-stock research briefs (no network needed then)")
+
+    lb = sub.add_parser("lookback", help="what has worked so far: every name the dated reports listed, measured forward vs SPY and vs the beaten-down basket")
+    lb.add_argument("--out", default="journal")
+    lb.add_argument("--universe", "-u", default="all", choices=UNIVERSES)
+    lb.add_argument("--cache-dir", default=None)
+    lb.add_argument("--workers", type=int, default=4)
+    lb.add_argument("--he", action="store_true", help="Hebrew")
+    lb.add_argument("--csv", default=None, help="also write the per-name rows here")
 
     wr = sub.add_parser("wedge-report", help="write the one-rule Hebrew file for the falling wedge (wedge_<date>.md) from cache")
     wr.add_argument("--out", default="journal")
@@ -422,6 +441,9 @@ def main(argv: Optional[List[str]] = None) -> int:
     if args.cmd == "research-rally":
         from algovision.research.cli import cmd_rally
         return cmd_rally(args)
+    if args.cmd == "research-filters":
+        from algovision.research.cli import cmd_filters
+        return cmd_filters(args)
     if args.cmd == "story":
         import json as _json
 
@@ -492,6 +514,19 @@ def main(argv: Optional[List[str]] = None) -> int:
         for x in want:
             print(f"## {x}")
             print("\n".join(peers_markdown(ctx[x], "he" if args.he else "en")) if x in ctx else "no peer data (not in the cached universe)")
+        return 0
+    if args.cmd == "lookback":
+        from algovision.lookback import lookback_markdown, run_lookback
+        symbols = get_universe(args.universe)
+        cache = Path(args.cache_dir) if args.cache_dir else DataProvider.__init__.__defaults__[0]
+        provider = DataProvider(cache_dir=cache, offline=True, workers=args.workers)
+        frames = provider.get_many(symbols, "2y", "1d")
+        bench = provider.get_many(["SPY"], "2y", "1d").get("SPY")
+        res = run_lookback(Path(args.out), frames, bench)
+        print("\n".join(lookback_markdown(res["rows"], res["forward"], "he" if args.he else "en")))
+        if args.csv and len(res["forward"]):
+            res["forward"].to_csv(args.csv, index=False)
+            print(f"wrote {args.csv}", file=sys.stderr)
         return 0
     if args.cmd == "daily-report":
         from algovision.daily_report import build_report

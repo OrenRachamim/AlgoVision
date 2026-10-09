@@ -23,6 +23,7 @@ SECTIONS: List[Tuple[str, str]] = [
     ("News-day", "### News-day rule"),
     ("Falling wedge, beaten-down", "### Falling Wedge in beaten-down stocks"),
     ("Early rally, beaten-down", "### Early rally in beaten-down stocks"),
+    ("Wedge watch list (forming, not a signal)", "### Watch list"),
 ]
 
 
@@ -58,6 +59,19 @@ def section_tickers(text: str) -> Dict[str, List[str]]:
     return out
 
 
+def days_listed(out_dir: Path, today: str, lookback: int = 30) -> Dict[str, Dict[str, int]]:
+    """For every section label: how many of the last ``lookback`` dated reports before ``today`` listed each symbol.
+    The signal tables show it as 'days listed' (+1 for today): in the first five weeks the names that stayed listed
+    4-7 days did worst, a stock that lingers in a table is a stock still falling."""
+    out: Dict[str, Dict[str, int]] = {label: {} for label, _ in SECTIONS}
+    dated = sorted(p for p in Path(out_dir).glob("report_????-??-??.md") if p.stem[7:] < today)[-lookback:]
+    for p in dated:
+        for label, syms in section_tickers(p.read_text(encoding="utf-8")).items():
+            for s in syms:
+                out[label][s] = out[label].get(s, 0) + 1
+    return out
+
+
 def previous_report(out_dir: Path, today: str) -> Optional[Path]:
     dated = sorted(p for p in Path(out_dir).glob("report_????-??-??.md") if p.stem[7:] < today)
     return dated[-1] if dated else None
@@ -86,13 +100,16 @@ def journal_new_signals(out_dir: Path) -> List[str]:
 
 
 LABEL_HE = {"Insider buys, beaten-down (tested setup)": "קניות אינסיידרים, מניות מוכות (התבנית שנבדקה)", "Insider buys, other stocks": "קניות אינסיידרים, מניות אחרות",
-            "News-day": "יום חדשות", "Falling wedge, beaten-down": "טריז יורד, מניות מוכות", "Early rally, beaten-down": "ראלי מוקדם, מניות מוכות"}
+            "News-day": "יום חדשות", "Falling wedge, beaten-down": "טריז יורד, מניות מוכות", "Early rally, beaten-down": "ראלי מוקדם, מניות מוכות",
+            "Wedge watch list (forming, not a signal)": "רשימת מעקב, טריזים בהתהוות (לא איתות)"}
 SHORT_EN = {"Insider buys, beaten-down (tested setup)": "insider buys (beaten-down)", "Insider buys, other stocks": "insider buys (other)",
-            "News-day": "news-day", "Falling wedge, beaten-down": "falling wedge", "Early rally, beaten-down": "early rally"}
+            "News-day": "news-day", "Falling wedge, beaten-down": "falling wedge", "Early rally, beaten-down": "early rally",
+            "Wedge watch list (forming, not a signal)": "wedge watch list"}
 SHORT_HE = {"Insider buys, beaten-down (tested setup)": "אינסיידרים (מוכות)", "Insider buys, other stocks": "אינסיידרים (אחרות)",
-            "News-day": "יום חדשות", "Falling wedge, beaten-down": "טריז יורד", "Early rally, beaten-down": "ראלי מוקדם"}
+            "News-day": "יום חדשות", "Falling wedge, beaten-down": "טריז יורד", "Early rally, beaten-down": "ראלי מוקדם",
+            "Wedge watch list (forming, not a signal)": "רשימת מעקב"}
 RULE_HE = {"newsday": "יום חדשות", "falling_wedge_beaten_down": "טריז יורד במניה מוכה", "insider_buy_beaten_down": "קניית אינסיידר במניה מוכה",
-           "jev_pick": "בחירת Jev", "early_rally_beaten_down": "ראלי מוקדם במניה מוכה"}
+           "jev_pick": "בחירת Jev", "jev_skip": "דילוג של Jev", "early_rally_beaten_down": "ראלי מוקדם במניה מוכה"}
 # the journal notes are short English key-value strings; these are their Hebrew readings
 _NOTE_HE = [("hold ", "החזקה "), (" bars", " נרות"), ("gap ", "פער "), ("vol ", "מחזור פי "), ("6m ", "6 חודשים "), ("vs MA200 ", "מול ממוצע 200 "),
             ("score ", "ציון "), ("stop ", "סטופ "), ("level ", "רמה "), ("day ", "יום "), ("10d ", "10 ימים "), ("P(buy) ", "P(קנייה) ")]

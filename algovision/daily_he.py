@@ -37,7 +37,18 @@ from algovision.wedge_report import (LABEL_HE, LABEL_SHORT_HE, STATUS_HE, _he_ca
 from algovision.whatsnew import RULE_HE
 
 TABLE_HE = {"insider buys (beaten-down)": "אינסיידרים (מוכות)", "insider buys (other)": "אינסיידרים (אחרות)", "news-day": "יום חדשות",
-            "falling wedge": "טריז יורד", "early rally": "ראלי מוקדם"}
+            "falling wedge": "טריז יורד", "falling wedge (forming)": "טריז בהתהוות (מעקב)", "early rally": "ראלי מוקדם"}
+DAYS_LABEL = {"insider_beaten": "Insider buys, beaten-down (tested setup)", "newsday": "News-day", "wedge": "Falling wedge, beaten-down",
+              "rally": "Early rally, beaten-down", "watch": "Wedge watch list (forming, not a signal)"}
+
+
+def _days(days: Optional[Dict[str, Dict[str, int]]], key: str, symbol: str) -> str:
+    if not days:
+        return ""
+    n = days.get(DAYS_LABEL[key], {}).get(symbol, 0)
+    if key == "watch":
+        n = max(n, days.get(DAYS_LABEL["wedge"], {}).get(symbol, 0))
+    return str(n + 1)
 READ_HE = {"signs of a bottom": "סימני תחתית", "undecided": "לא מוכרע", "still falling": "עדיין יורדת"}
 RULE_TEXT_HE = {"ma50_cross": "חזרה מעל ממוצע 50", "golden_20_50": "ממוצע 20 חוצה את 50", "higher_high": "שיא גבוה יותר (תפנית דאו)",
                 "thrust": "זינוק +8% ב-10 נרות", "rsi_turn": "RSI חוזר מעל 50"}
@@ -46,6 +57,7 @@ RULE_EXPECT_HE = {
     "falling_wedge_beaten_down": "+3% מול אקראי, הצלחה ~60% (docs/research_falling_wedge.md)",
     "insider_buy_beaten_down": "+10% מול אקראי ב-60 נרות, +15% ב-120, הצלחה ~68% (docs/research_insiders.md)",
     "jev_pick": "לא נבדק: ה\"קנייה\" של מודל ההחלטות Jev (P של 0.6 ומעלה) על מניה מהרשימה, נרשם על ידי הדוח היומי (algovision/decide.py)",
+    "jev_skip": "לא נבדק: ה\"דילוג\" של המודל (P(דילוג) 0.5 ומעלה); הקריאה נכונה כשהמניה יורדת, ולכן תשואה שלילית היא ההצלחה",
     "early_rally_beaten_down": "+2-3% נטו, הצלחה ~58-61%, +3.5-4% מול כניסה אקראית באותה מניה, ~0 מול SPY ב-20 נרות (docs/research_rally.md)",
 }
 
@@ -72,22 +84,23 @@ def _group_cell_he(p: Optional[Dict]) -> str:
 # ----------------------------------------------------------------------------
 # tables
 # ----------------------------------------------------------------------------
-def insiders_he(sig: pd.DataFrame, tx: pd.DataFrame, sectors: Dict[str, str], insider_days: int) -> List[str]:
+def insiders_he(sig: pd.DataFrame, tx: pd.DataFrame, sectors: Dict[str, str], insider_days: int, days: Optional[Dict] = None) -> List[str]:
     md = [f"## 1. קניות אינסיידרים (טופס 4 של ה-SEC, נושאי משרה ודירקטורים, {insider_days} הימים האחרונים)", "",
           "הכלל נבדק 2016-2026: רכישה של 100 אלף דולר ומעלה במניה **מוכה** (מתחת לממוצע הנע של 200 יום, תשואת 6 חודשים מתחת ל-8%-): "
           "+10% מול כניסה אקראית על פני 60 נרות, +15% על פני 120, שיעור הצלחה ~68%, בשני חצאי העשור. רכישות במניות במגמת עלייה "
-          "לא הראו יתרון ומוצגות להקשר בלבד.", ""]
+          "לא הראו יתרון ומוצגות בשורה אחת להקשר בלבד.", ""]
     if not len(sig):
         md += ["אין רכישות אינסיידרים בחלון.", ""]
         return md
     bd, rest = sig[sig["beaten_down"]], sig[~sig["beaten_down"]]
-    for title, d in (("### מניות מוכות (התבנית שנבדקה)", bd), ("### מניות אחרות עם רכישות אינסיידרים (הקשר)", rest)):
+    for title, d in (("### מניות מוכות (התבנית שנבדקה)", bd),):
         md += [title, ""]
         if not len(d):
             md += ["אין", ""]
             continue
         t = pd.DataFrame({
             "סימול": d["symbol"].map(_tv), "פירוט": d["symbol"].map(lambda s: f"[פירוט](#{_anchor(s)})"),
+            "ימים ברשימה": d["symbol"].map(lambda s: _days(days, "insider_beaten", s)),
             "סקטור": d["symbol"].map(lambda s: _he_sector(sectors.get(s, ""))), "דיווח אחרון": d["last_filing"],
             "אשכול (2+ אינסיידרים/30 יום)": np.where(d["cluster"], "כן", "לא"), "אינסיידרים 30 יום": d["n_insiders_30d"],
             "קניות": d["n_buys"], "סה\"כ": d["total_value"].map(lambda v: f"${v / 1e6:.2f}M"),
@@ -95,11 +108,19 @@ def insiders_he(sig: pd.DataFrame, tx: pd.DataFrame, sectors: Dict[str, str], in
             "6 חודשים": d["ret_6m"].map(_pct), "מול ממוצע 200": d["dist_ma200"].map(_pct), "מנכ\"ל/סמנכ\"ל כספים": np.where(d["ceo_cfo"], "כן", ""),
             "קונים": d["buyers"].str.slice(0, 70)})
         md += [t.to_markdown(index=False), ""]
+    md += ["### מניות אחרות עם רכישות אינסיידרים (הקשר)", ""]
+    if len(rest):
+        officer = ' מנכ"ל/סמנכ"ל כספים'
+        md += ["אין יתרון שנבדק (מניות במגמת עלייה), שורה אחת בלבד: " + ", ".join(
+            f"{_tv(r.symbol)} {r.last_filing} ${r.total_value / 1e6:.2f}M{officer if r.ceo_cfo else ''}{' אשכול' if r.cluster else ''}"
+            for r in rest.itertuples()) + ".", ""]
+    else:
+        md += ["אין", ""]
     md += [f"נסרקו {len(tx)} עסקאות שוק פתוח של נושאי משרה/דירקטורים.", ""]
     return md
 
 
-def newsday_he(nd: pd.DataFrame, sectors: Dict[str, str]) -> List[str]:
+def newsday_he(nd: pd.DataFrame, sectors: Dict[str, str], days: Optional[Dict] = None) -> List[str]:
     md = ["### כלל יום החדשות (פער של 4%+ על מחזור של פי 3+ במניה מוכה, 5 הנרות האחרונים; החזקה ~60 נרות; נבדק +6-7% מול אקראי)", ""]
     if not len(nd):
         return md + ["אין", ""]
@@ -107,7 +128,8 @@ def newsday_he(nd: pd.DataFrame, sectors: Dict[str, str]) -> List[str]:
     for c in ("gap", "ret_6m", "dist_ma200", "since_news"):
         t[c] = t[c].map(lambda v: _pct(v, 1))
     t["volume_ratio"] = t["volume_ratio"].map(lambda v: f"{v:.1f}x")
-    out = pd.DataFrame({"סימול": t["symbol"].map(_tv), "פירוט": t["symbol"].map(lambda s: f"[פירוט](#{_anchor(s)})"), "תאריך החדשות": t["news_date"],
+    out = pd.DataFrame({"סימול": t["symbol"].map(_tv), "פירוט": t["symbol"].map(lambda s: f"[פירוט](#{_anchor(s)})"),
+                        "ימים ברשימה": t["symbol"].map(lambda s: _days(days, "newsday", s)), "תאריך החדשות": t["news_date"],
                         "נרות מאז": t["bars_ago"], "פער": t["gap"], "יחס מחזור": t["volume_ratio"], "6 חודשים": t["ret_6m"],
                         "מול ממוצע 200": t["dist_ma200"], "סגירה אחרונה": t["last_close"], "מאז החדשות": t["since_news"], "נרות שנותרו": t["bars_left"],
                         "סקטור": t["symbol"].map(lambda s: _he_sector(sectors.get(s, "")))})
@@ -115,12 +137,21 @@ def newsday_he(nd: pd.DataFrame, sectors: Dict[str, str]) -> List[str]:
 
 
 def wedge_table_he(wedges: Dict, frames: Dict[str, pd.DataFrame], data: Dict[str, Dict], peers: Dict[str, Dict], decisions: Dict[str, Dict],
-                   sectors: Dict[str, str]) -> List[str]:
-    md = ["### טריז יורד במניות מוכות (מאושר = פרץ ב-5 הנרות האחרונים; בהתהוות = עדיין בתוך הטריז; החזקה ~20 נרות; נבדק +3% מול אקראי)", ""]
-    if not wedges:
-        return md + ["אין טריזים יורדים במניות מוכות היום.", ""]
+                   sectors: Dict[str, str], days: Optional[Dict] = None, watch: bool = False) -> List[str]:
+    """The confirmed wedges (the signal) or, with ``watch=True``, the forming ones as the watch list."""
+    if watch:
+        md = ["### רשימת מעקב: טריזים יורדים שעדיין בהתהוות (לא איתות; האיתות הוא הסגירה מעל הקו העליון)", ""]
+        wedges = {s: m for s, m in wedges.items() if m.status != "confirmed"}
+        if not wedges:
+            return md + ["אין", ""]
+    else:
+        md = ["### טריז יורד במניות מוכות (מאושר = סגר מעל הקו העליון ב-5 הנרות האחרונים; החזקה ~20 נרות; נבדק +3% מול אקראי). "
+              "טריזים שעדיין בהתהוות נמצאים ברשימת המעקב בסוף הסעיף, לא כאן.", ""]
+        wedges = {s: m for s, m in wedges.items() if m.status == "confirmed"}
+        if not wedges:
+            return md + ["אין פריצות מאושרות היום.", ""]
     rows = []
-    order = sorted(wedges, key=lambda s: (wedges[s].status != "confirmed", -wedges[s].score))
+    order = sorted(wedges, key=lambda s: -wedges[s].score)
     for s in order:
         m, df = wedges[s], frames[s]
         d = data.get(s) or {}
@@ -129,8 +160,10 @@ def wedge_table_he(wedges: Dict, frames: Dict[str, pd.DataFrame], data: Dict[str
         pr, dec = peers.get(s), decisions.get(s)
         why, sent, fu = d.get("why") or {}, d.get("sent"), d.get("fu") or {}
         rows.append({
-            "סימול": _tv(s), "פירוט": f"[פירוט](#{_anchor(s)})", "סטטוס": STATUS_HE.get(m.status, m.status), "ציון": f"{m.score:.2f}",
-            "התחלה": m.start_date, "פריצה": m.breakout_date or "", "רמה": f"{m.level:.2f}", "סטופ": f"{m.stop:.2f}", "יעד": f"{m.target:.2f}",
+            "סימול": _tv(s), "פירוט": f"[פירוט](#{_anchor(s)})", "ימים ברשימה": _days(days, "watch" if watch else "wedge", s),
+            "ציון": f"{m.score:.2f}", "התחלה": m.start_date,
+            **({} if watch else {"פריצה": m.breakout_date or "", "נרות מאז הפריצה": (len(df) - 1 - int(m.breakout_idx)) if m.breakout_idx is not None else ""}),
+            "רמה": f"{m.level:.2f}", "סטופ": f"{m.stop:.2f}", "יעד": f"{m.target:.2f}",
             "אחרון": f"{last:.2f}", "מהסטופ": _pct(m.stop / last - 1 if last else np.nan),
             "6 חודשים": _pct(m.metrics.get("context", {}).get("ret_126")), "מול ממוצע 200": _pct(m.metrics.get("context", {}).get("dist_ma200")),
             "ATR%": f"{m.metrics.get('context', {}).get('atr_pct', 0) * 100:.1f}%", "גובה הטריז": f"{geo['h0_pct'] * 100:.0f}%",
@@ -139,6 +172,10 @@ def wedge_table_he(wedges: Dict, frames: Dict[str, pd.DataFrame], data: Dict[str
             "סנטימנט": SENT_HE[sent["label"]] if sent else "", "קריאה": LABEL_SHORT_HE.get(d.get("label"), "") if d else "",
             "ציון קריאה": f"{d['score']:+g}" if d.get("score") is not None else "", "סקטור": _he_sector(fu.get("sector") or sectors.get(s)),
         })
+    if watch:
+        return md + [pd.DataFrame(rows).to_markdown(index=False), "",
+                     "בחמשת השבועות הראשונים של מבחן הקדימה הטריזים בהתהוות ירדו כ-6% ב-20 נרות (פגיעה 11%), המאושרים לא; מניה בתוך טריז יורד היא "
+                     "מניה שעדיין יורדת. היומן רושם טריז רק ביום הפריצה שלו.", ""]
     md += [pd.DataFrame(rows).to_markdown(index=False), "",
            "*הקבוצה*: קבוצת העמיתים של המניה כסל אחד במשקל שווה, מוכה או לא (בסוגריים חלקן של שאר החברות שמוכות), ו-\"+ טריז\" כאשר הסל "
            "עצמו בטריז יורד. איתותים שבהם רוב הקבוצה הייתה מוכה גם כן הרוויחו +1.2% (אימון) / +1.9% (מבחן) יותר על פני 20 נרות, חיובי בכל 6 "
@@ -154,13 +191,14 @@ def wedge_table_he(wedges: Dict, frames: Dict[str, pd.DataFrame], data: Dict[str
     return md
 
 
-def rally_table_he(rally: pd.DataFrame, peers: Dict[str, Dict], sectors: Dict[str, str]) -> List[str]:
+def rally_table_he(rally: pd.DataFrame, peers: Dict[str, Dict], sectors: Dict[str, str], days: Optional[Dict] = None) -> List[str]:
     md = ["### ראלי מוקדם במניות מוכות (כלל תפנית ירה ב-3 הנרות האחרונים; החזקה ~20 נרות; נבדק +2-3% נטו, הצלחה ~58-61%, +3.5-4% מול כניסה אקראית, כ-0 מול SPY ב-20 נרות)", ""]
     if not len(rally):
         return md + ["אין", ""]
     t = rally.copy()
     out = pd.DataFrame({
         "סימול": t["symbol"].map(_tv), "פירוט": t["symbol"].map(lambda s: f"[פירוט](#{_anchor(s)})"),
+        "ימים ברשימה": t["symbol"].map(lambda s: _days(days, "rally", s)),
         "כללים": t["rules"].map(lambda r: ", ".join(RULE_TEXT_HE.get(x.strip(), x.strip()) for x in str(r).split(","))), "כללים שירו": t["n_rules"],
         "תאריך האיתות": t["signal_date"], "נרות מאז": t["bars_ago"], "יום האיתות": t["day_ret"].map(lambda v: _pct(v, 1)), "10 ימים": t["ret_10"].map(lambda v: _pct(v, 1)),
         "6 חודשים": t["ret_6m"].map(lambda v: _pct(v, 1)), "משיא 52 שבועות": t["from_52w_high"].map(lambda v: _pct(v, 1)),
@@ -179,12 +217,16 @@ def rally_table_he(rally: pd.DataFrame, peers: Dict[str, Dict], sectors: Dict[st
     return md
 
 
-def summary_table_he(rows: List[Dict]) -> List[str]:
-    md = ["## 3. תקציר לכל מניה (אחת לכל שם בטבלאות שלמעלה)", "",
+def summary_table_he(rows: List[Dict], title: bool = True) -> List[str]:
+    from algovision.briefs import flags_cell, flags_legend
+
+    md = (["### טבלת התקציר", ""] if not title else []) + [
           "עמודת *קריאה* היא ציון מבוסס כללים על איתותים מתועדים (סימני תחתית / לא מוכרע / עדיין יורדת), לא תחזית. *למה ירדה* מציינת את הראיות "
           "שנמצאו סביב ימי הירידה הגדולים ביותר (כותרות המזכירות את החברה, הורדות דירוג, ימי שוק) או \"לא נמצא\"; שום דבר לא מוסק. *מול עמיתים 20 יום* "
           "הוא תשואת 20 הימים של המניה ביחס לקבוצת העמיתים שלה (המניות המתואמות איתה ביותר אחרי ניכוי השוק, מתוך מחירים) וציון ה-z שלה מול השנה "
-          "האחרונה; מתחת ל-2- פירושו ירידה חריגה מול העמיתים. \"פירוט\" מקפיץ לסעיף המלא של המניה בקובץ הזה.", ""]
+          "האחרונה; מתחת ל-2- פירושו ירידה חריגה מול העמיתים. \"פירוט\" מקפיץ לסעיף המלא של המניה בקובץ הזה.", "", flags_legend("he"), ""]
+    if title:
+        md = ["## 3. תקציר לכל מניה (אחת לכל שם בטבלאות שלמעלה)", ""] + md
     if not rows:
         return md + ["אין", ""]
     d = pd.DataFrame(rows)
@@ -194,6 +236,7 @@ def summary_table_he(rows: List[Dict]) -> List[str]:
         "סימול": d["symbol"].map(_tv), "פירוט": d["symbol"].map(lambda s: f"[פירוט](#{_anchor(s)})"),
         "בטבלאות": d["tables"].map(lambda t: ", ".join(TABLE_HE.get(x.strip(), x.strip()) for x in str(t).split(","))),
         "קריאה": d["read"].map(lambda r: READ_HE.get(r, r)), "ציון": d["score"].map(lambda v: f"{v:+g}"),
+        "דגלים": d["flags"].map(flags_cell) if "flags" in d else "",
         "למה ירדה": d["why fell"].map(_he_cause) if "why fell" in d else "",
         "חששות": d["concerns"].map(lambda c: ", ".join(CONCERN_HE.get(x.strip(), x.strip()) for x in str(c).split(",")) if c else "") if "concerns" in d else "",
         "סנטימנט": d["sentiment"].map(lambda s: SENT_HE.get(s, s)) if "sentiment" in d else "",
@@ -238,19 +281,19 @@ def decisions_table_he(decisions: Dict[str, Dict]) -> str:
     return t.to_markdown(index=False) + "\n"
 
 
-def jev_he(decisions: Dict[str, Dict], picks: List[str], anchors: Dict[str, str], peers: Dict[str, Dict]) -> List[str]:
-    md = ["### החלטות AI (Jev)", ""]
+def jev_he(decisions: Dict[str, Dict], picks: List[str], anchors: Dict[str, str], peers: Dict[str, Dict], skips: Optional[List[str]] = None) -> List[str]:
+    md = ["### החלטות המודל (Jev), מבחן קדימה", ""]
     if not decisions:
         return md + ["דולג (אין מפתח OpenRouter, או שהמודל לא היה זמין).", ""]
     md += ["מודל החלטות מוקלד (TypeSafe Jev 1.13 דרך OpenRouter) קרא כל תקציר, ואת התקציר בלבד, וענה על שאלות קבועות בהסתברויות מכוילות: "
            "הפעולה להחזקה של חודש (קנייה / מעקב / דילוג), סוג הירידה, האם הירידה היא פעולה תאגידית או תקלת נתונים ולא ירידה אמיתית, האם אירוע ידוע "
            "צפוי בתוך ארבעה שבועות, האם הראיות תומכות בתבנית או סותרות אותה, וכמה החדשות רעות לעסק (0-3). הוא לא נותן נימוק. קריאות ה\"קנייה\" שלו "
-           "עם P(קנייה) של 0.6 ומעלה נרשמות ביומן ככלל jev_pick (החזקה 20 נרות) ומשוערכות לשוק כמו כל כלל אחר; עד שלמבחן הקדימה הזה יהיו 20+ "
-           "עסקאות סגורות העמודה היא הקשר, לא המלצה. עמודת *AI* בטבלת התקצירים נושאת את אותה פעולה; ⚠ מסמן פעולה תאגידית או בעיית נתונים סבירה.", ""]
-    top = top_picks(decisions)
-    md += ["**מניות בעדיפות גבוהה (P(קנייה) >= 0.6):** " + (", ".join(f"{_tv(d['symbol'])} {d['p_buy']:.2f}" for d in top) if top else "אין") + ".", "",
-           decisions_table_he(decisions),
-           ("נרשמו היום ביומן כ-jev_pick: " + ", ".join(_tv(s) for s in picks)) if picks else "לא נרשם היום jev_pick חדש (אין \"קנייה\" עם P של 0.6 ומעלה ללא פוזיציה פתוחה).", ""]
+           "עם P(קנייה) של 0.6 ומעלה נרשמות ביומן ככלל jev_pick, וקריאות ה\"דילוג\" עם P(דילוג) של 0.5 ומעלה ככלל jev_skip (החזקה 20 נרות; דילוג צודק "
+           "כשהמניה יורדת), ושניהם משוערכים לשוק כמו כל כלל אחר. בשבוע הראשון שמות ה\"דילוג\" עשו טוב יותר משמות ה\"קנייה\", ולכן עד שלמבחן הקדימה "
+           "יהיו 20+ עסקאות סגורות העמודה היא הקשר, לא המלצה. עמודת *AI* בטבלת התקצירים נושאת את אותה פעולה; ⚠ מסמן פעולה תאגידית או בעיית נתונים סבירה.", ""]
+    md += [decisions_table_he(decisions),
+           (("נרשמו היום ביומן כ-jev_pick: " + ", ".join(_tv(s) for s in picks)) if picks else "לא נרשם היום jev_pick חדש (אין \"קנייה\" עם P של 0.6 ומעלה ללא פוזיציה פתוחה).")
+           + ((" נרשמו כ-jev_skip: " + ", ".join(_tv(s) for s in skips) + ".") if skips else ""), ""]
     md += top_picks_he(decisions, anchors, tradingview_url, None, peers)
     return md
 
@@ -343,16 +386,18 @@ def stock_section_he(symbol: str, row: Dict, df: pd.DataFrame, wedge, peers: Opt
 # the journal
 # ----------------------------------------------------------------------------
 def journal_he(out_dir: Path) -> List[str]:
-    md = ["## 5. מבחן קדימה (היומן)", ""]
+    md = ["## 6. מבחן קדימה (היומן)", ""]
     p = Path(out_dir) / "mark_to_market.csv"
     if not p.exists():
         return md + ["אין יומן עדיין.", ""]
     mtm = pd.read_csv(p)
-    from algovision.journal import RETIRED_RULES
+    from algovision.journal import RETIRED_RULES, expectation_table
     mtm = mtm[~mtm["rule"].isin(RETIRED_RULES)] if len(mtm) else mtm
     if not len(mtm):
         return md + ["אין איתותים רשומים עדיין.", ""]
-    md += ["### תוצאות שוטפות", ""]
+    md += ["### תוצאות שוטפות", "",
+           "ציפייה מול מציאות (כל העסקאות שנרשמו, סגורות ופתוחות לפי שווי שוק; \"מול סל המוכות\" = פחות התשואה שווה-המשקל של המניות שהיו מוכות "
+           "ביום האיתות על פני אותו חלון, ההשוואה ההוגנת לכלל שקונה רק מניות מוכות):", "", expectation_table(mtm, "he")]
     for rule, g in mtm.groupby("rule"):
         closed = g[g["done"].astype(bool)]
         open_ = g[~g["done"].astype(bool)]
@@ -369,6 +414,9 @@ def journal_he(out_dir: Path) -> List[str]:
         sp = g["spy_ret"].astype(float).dropna() if "spy_ret" in g.columns else pd.Series(dtype=float)
         if len(sp):
             md.append(f"- SPY על פני אותן תקופות החזקה: ממוצע {sp.mean() * 100:+.2f}% (עודף {(g['ret'].astype(float).dropna().mean() - sp.mean()) * 100:+.2f}%)")
+        bk = g["basket_ret"].astype(float).dropna() if "basket_ret" in g.columns else pd.Series(dtype=float)
+        if len(bk):
+            md.append(f"- סל המניות המוכות על פני אותן תקופות: ממוצע {bk.mean() * 100:+.2f}% (עודף {(g['ret'].astype(float).dropna().mean() - bk.mean()) * 100:+.2f}%)")
         md.append("")
     open_ = mtm[~mtm["done"].astype(bool)]
     if len(open_):
@@ -387,33 +435,46 @@ def journal_he(out_dir: Path) -> List[str]:
 # ----------------------------------------------------------------------------
 def build_daily_he(out_dir: Path, today: str, last_bar: str, n_frames: int, n_symbols: int, insider_days: int, sig: pd.DataFrame, tx: pd.DataFrame,
                    nd: pd.DataFrame, wedges: Dict, rally: pd.DataFrame, rows: List[Dict], frames: Dict[str, pd.DataFrame], peers: Dict[str, Dict],
-                   decisions: Dict[str, Dict], picks: List[str], sectors: Dict[str, str], bench: Optional[pd.DataFrame], note_he: str) -> Path:
+                   decisions: Dict[str, Dict], picks: List[str], sectors: Dict[str, str], bench: Optional[pd.DataFrame], note_he: str,
+                   regime: Optional[Dict] = None, days: Optional[Dict] = None, lookback: Optional[Dict] = None,
+                   skips: Optional[List[str]] = None) -> Path:
     """Write ``daily_<today>.md`` / ``daily_latest.md`` and return the dated path."""
+    from algovision.checklist import checklist_markdown
+    from algovision.lookback import lookback_markdown
+    from algovision.regime import regime_markdown
+
     out_dir = Path(out_dir)
     peers = peers or {}
     decisions = decisions or {}
+    regime = regime or {}
     by_sym = {r["symbol"]: r for r in rows if r.get("_data")}
     spy_below = _spy_below_ma200(bench)
     md = [f"# AlgoVision: הדוח היומי בעברית - {today}", "",
-          f"מחירים עד {last_bar}; {n_frames} מתוך {n_symbols} סימולים. כל סימול מקושר לגרף TradingView שלו; \"פירוט\" מקפיץ לסעיף המניה בקובץ הזה.", "",
-          "**מה בקובץ.** (1) מה חדש מאז הדוח הקודם; (2) טבלאות האיתותים: קניות אינסיידרים, יום חדשות, טריז יורד (עם הניתוח הטכני בסעיף כל מניה), "
-          "ראלי מוקדם; (3) טבלת תקציר לכל מניה, החלטות AI (Jev) והמניות שתועדפו; (4) סעיף מלא לכל מניה: סיכום בקצרה, הסיפור לאורך ציר הזמן (חמש "
-          "שנים בחמישה פרקים), הניתוח הטכני של הטריז (למניות הטריז), איפה המניה, למה ירדה והחדשות האחרונות, חששות המשקיעים והסנטימנט, עמיתים "
-          "וקבוצת ההשוואה, החלטת AI, אנליסטים, הדוח האחרון והתחזיות, נתוני יסוד וקריאה מבוססת כללים; (5) יומן מבחן הקדימה: תוצאות כל כלל וכל "
-          "פוזיציה פתוחה. \"למה ירדה\" ו\"הסיפור\" מציינים רק ראיות שנמצאו בנתונים (כותרות שמזכירות את החברה, דיווחי 8-K, דוחות ב-XBRL, הורדות "
-          "דירוג, ימי שוק) או \"לא נמצא\"; שום דבר לא מומצא. הכותרות, שמות החברות ובתי ההשקעות מובאים כפי שפורסמו. סינון שיטתי ומבחן קדימה, לא ייעוץ "
-          "השקעות.", "",
+          f"מחירים עד {last_bar}; {n_frames} מתוך {n_symbols} סימולים. כל סימול מקושר לגרף TradingView שלו; \"פירוט\" מקפיץ לסעיף המניה בקובץ הזה.", ""]
+    if regime:
+        md += regime_markdown(regime, "he")
+    md += ["**מה בקובץ.** (0) מה חדש מאז הדוח הקודם; (1) קניות אינסיידרים; (2) טבלאות האיתותים: יום חדשות, טריז יורד מאושר (עם הניתוח הטכני בסעיף כל מניה), "
+          "ראלי מוקדם, ורשימת המעקב של הטריזים בהתהוות; (3) רשימת הבדיקות, טבלת תקציר לכל מניה עם דגלי האזהרה, והחלטות המודל (Jev); (4) סעיף מלא לכל מניה: "
+          "סיכום בקצרה, הסיפור לאורך ציר הזמן (חמש שנים בחמישה פרקים), הניתוח הטכני של הטריז (למניות הטריז), איפה המניה, למה ירדה והחדשות האחרונות, "
+          "חששות המשקיעים והסנטימנט, עמיתים וקבוצת ההשוואה, החלטת המודל, אנליסטים, הדוח האחרון והתחזיות, נתוני יסוד וקריאה מבוססת כללים; (5) מה עבד עד "
+          "עכשיו: המאזן של כל שם שהדוחות הציגו; (6) יומן מבחן הקדימה: ציפייה מול מציאות, תוצאות כל כלל וכל פוזיציה פתוחה. \"למה ירדה\" ו\"הסיפור\" "
+          "מציינים רק ראיות שנמצאו בנתונים (כותרות שמזכירות את החברה, דיווחי 8-K, דוחות ב-XBRL, הורדות דירוג, ימי שוק) או \"לא נמצא\"; שום דבר לא "
+          "מומצא. הכותרות, שמות החברות ובתי ההשקעות מובאים כפי שפורסמו. סינון שיטתי ומבחן קדימה, לא ייעוץ השקעות.", "",
           "## 0. מה חדש", "", note_he.strip(), ""]
-    md += insiders_he(sig, tx, sectors, insider_days)
+    md += insiders_he(sig, tx, sectors, insider_days, days)
     md += ["## 2. איתותים לטווח קצר", ""]
-    md += newsday_he(nd, sectors)
+    md += newsday_he(nd, sectors, days)
     wedge_data = {s: by_sym[s]["_data"] for s in wedges if s in by_sym}
-    md += wedge_table_he(wedges, frames, wedge_data, peers, decisions, sectors)
-    md += rally_table_he(rally, peers, sectors)
-    md += ["<a id=\"summary\" name=\"summary\"></a>"]
-    md += summary_table_he(rows)
+    md += wedge_table_he(wedges, frames, wedge_data, peers, decisions, sectors, days)
+    md += rally_table_he(rally, peers, sectors, days)
+    md += wedge_table_he(wedges, frames, wedge_data, peers, decisions, sectors, days, watch=True)
+    md += ["*ימים ברשימה*: בכמה מהדוחות (מתוך 30 האחרונים) השם ישב בטבלה הזאת, כולל היום. בחמשת השבועות הראשונים השמות שהופיעו 4-7 ימים היו הגרועים; "
+           "רישום טרי היה טוב מרישום ישן.", ""]
+    md += ["<a id=\"summary\" name=\"summary\"></a>", "## 3. רשימת הבדיקות, תקציר לכל מניה והחלטות המודל", ""]
+    md += checklist_markdown(rows, "he", regime.get("warning"), anchor=_anchor)
+    md += summary_table_he(rows, title=False)
     anchors = {s: _anchor(s) for s in by_sym}
-    md += jev_he(decisions, picks, anchors, peers)
+    md += jev_he(decisions, picks, anchors, peers, skips)
     md += ["## 4. פירוט לכל מניה", ""]
     order = sorted(by_sym, key=lambda s: ({"signs of a bottom": 0, "undecided": 1, "still falling": 2}.get(by_sym[s].get("read"), 3), -(by_sym[s].get("score") or 0)))
     for s in order:
@@ -421,6 +482,10 @@ def build_daily_he(out_dir: Path, today: str, last_bar: str, n_frames: int, n_sy
             continue
         md += stock_section_he(s, by_sym[s], frames[s], wedges.get(s), peers.get(s), decisions.get(s), sectors, spy_below)
         md.append("")
+    if lookback and lookback.get("rows"):
+        md += [line.replace("## 4. מה עבד", "## 5. מה עבד") for line in lookback_markdown(lookback["rows"], lookback["forward"], "he")]
+    else:
+        md += ["## 5. מה עבד עד עכשיו", "", "אין עדיין מספיק דוחות למאזן.", ""]
     md += journal_he(out_dir)
     md += ["---", "סינון שיטתי ומבחן קדימה, לא ייעוץ השקעות. הטיית שרידות חלה על כל הבדיקות לאחור (חברות המדד של היום); ראו docs/research*.md לשיטות ולהסתייגויות.", ""]
     text = "\n".join(md)
