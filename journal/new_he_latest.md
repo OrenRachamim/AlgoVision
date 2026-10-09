@@ -1,32 +1,19 @@
 # AlgoVision 2026-10-08: מה חדש מאז 2026-10-07
 
-סיגנלים חדשים שנרשמו ביומן היום (15):
-- טריז יורד במניה מוכה: [ORLY](https://www.tradingview.com/chart/?symbol=ORLY) 2026-10-08 @ 86.01, החזקה 20 נרות. ציון 0.61, סטופ 82.37, רמה 84.69
-- ראלי מוקדם במניה מוכה: [STZ](https://www.tradingview.com/chart/?symbol=STZ) 2026-10-08 @ 123.63, החזקה 20 נרות. rsi_turn, thrust; יום +4.4%, 10 ימים +8.2%, 6 חודשים -23%, מול ממוצע 200 -13%
-- ראלי מוקדם במניה מוכה: [ZTS](https://www.tradingview.com/chart/?symbol=ZTS) 2026-10-08 @ 73.08, החזקה 20 נרות. rsi_turn; יום +2.1%, 10 ימים +4.0%, 6 חודשים -38%, מול ממוצע 200 -24%
-- ראלי מוקדם במניה מוכה: [DECK](https://www.tradingview.com/chart/?symbol=DECK) 2026-10-08 @ 82.56, החזקה 20 נרות. rsi_turn; יום +2.7%, 10 ימים +4.9%, 6 חודשים -25%, מול ממוצע 200 -18%
-- ראלי מוקדם במניה מוכה: [CSGP](https://www.tradingview.com/chart/?symbol=CSGP) 2026-10-08 @ 29.81, החזקה 20 נרות. rsi_turn; יום +8.0%, 10 ימים +7.0%, 6 חודשים -20%, מול ממוצע 200 -24%
-- ראלי מוקדם במניה מוכה: [DPZ](https://www.tradingview.com/chart/?symbol=DPZ) 2026-10-08 @ 308.65, החזקה 20 נרות. rsi_turn; יום +1.8%, 10 ימים +5.3%, 6 חודשים -16%, מול ממוצע 200 -11%
-- ראלי מוקדם במניה מוכה: [INTU](https://www.tradingview.com/chart/?symbol=INTU) 2026-10-08 @ 303.88, החזקה 20 נרות. rsi_turn; יום +2.2%, 10 ימים +9.7%, 6 חודשים -16%, מול ממוצע 200 -21%
-- ראלי מוקדם במניה מוכה: [WMT](https://www.tradingview.com/chart/?symbol=WMT) 2026-10-08 @ 110.56, החזקה 20 נרות. ma50_cross; יום +2.2%, 10 ימים +2.8%, 6 חודשים -14%, מול ממוצע 200 -6%
-- ראלי מוקדם במניה מוכה: [TAP](https://www.tradingview.com/chart/?symbol=TAP) 2026-10-08 @ 37.92, החזקה 20 נרות. rsi_turn; יום +2.6%, 10 ימים +4.3%, 6 חודשים -13%, מול ממוצע 200 -10%
-- ראלי מוקדם במניה מוכה: [TMUS](https://www.tradingview.com/chart/?symbol=TMUS) 2026-10-08 @ 171.31, החזקה 20 נרות. rsi_turn; יום +2.2%, 10 ימים +3.6%, 6 חודשים -12%, מול ממוצע 200 -9%
-- ראלי מוקדם במניה מוכה: [FE](https://www.tradingview.com/chart/?symbol=FE) 2026-10-08 @ 44.85, החזקה 20 נרות. rsi_turn; יום +0.6%, 10 ימים +3.8%, 6 חודשים -12%, מול ממוצע 200 -4%
-- ראלי מוקדם במניה מוכה: [DUK](https://www.tradingview.com/chart/?symbol=DUK) 2026-10-08 @ 116.84, החזקה 20 נרות. rsi_turn; יום +1.2%, 10 ימים +3.2%, 6 חודשים -11%, מול ממוצע 200 -5%
-- ראלי מוקדם במניה מוכה: [SO](https://www.tradingview.com/chart/?symbol=SO) 2026-10-08 @ 86.15, החזקה 20 נרות. rsi_turn; יום +0.8%, 10 ימים +3.9%, 6 חודשים -10%, מול ממוצע 200 -5%
-- ראלי מוקדם במניה מוכה: [YUM](https://www.tradingview.com/chart/?symbol=YUM) 2026-10-08 @ 143, החזקה 20 נרות. rsi_turn; יום +1.9%, 10 ימים +4.1%, 6 חודשים -10%, מול ממוצע 200 -6%
-- ראלי מוקדם במניה מוכה: [XEL](https://www.tradingview.com/chart/?symbol=XEL) 2026-10-08 @ 73.36, החזקה 20 נרות. rsi_turn; יום +1.3%, 10 ימים +5.5%, 6 חודשים -10%, מול ממוצע 200 -5%
+סיגנלים חדשים שנרשמו ביומן היום (0):
+- אין
 
 נכנסו לטבלאות הדוח:
-- טריז יורד, מניות מוכות: [NOC](https://www.tradingview.com/chart/?symbol=NOC), [ZTS](https://www.tradingview.com/chart/?symbol=ZTS), [ATO](https://www.tradingview.com/chart/?symbol=ATO)
 - ראלי מוקדם, מניות מוכות: [STZ](https://www.tradingview.com/chart/?symbol=STZ), [ZTS](https://www.tradingview.com/chart/?symbol=ZTS), [DECK](https://www.tradingview.com/chart/?symbol=DECK), [CSGP](https://www.tradingview.com/chart/?symbol=CSGP), [DPZ](https://www.tradingview.com/chart/?symbol=DPZ), [INTU](https://www.tradingview.com/chart/?symbol=INTU), [WMT](https://www.tradingview.com/chart/?symbol=WMT), [TAP](https://www.tradingview.com/chart/?symbol=TAP), [TMUS](https://www.tradingview.com/chart/?symbol=TMUS), [FE](https://www.tradingview.com/chart/?symbol=FE), [DUK](https://www.tradingview.com/chart/?symbol=DUK), [SO](https://www.tradingview.com/chart/?symbol=SO), [YUM](https://www.tradingview.com/chart/?symbol=YUM), [XEL](https://www.tradingview.com/chart/?symbol=XEL)
+- רשימת מעקב, טריזים בהתהוות (לא איתות): [YUM](https://www.tradingview.com/chart/?symbol=YUM), [ALB](https://www.tradingview.com/chart/?symbol=ALB), [TSN](https://www.tradingview.com/chart/?symbol=TSN), [HSY](https://www.tradingview.com/chart/?symbol=HSY), [CMI](https://www.tradingview.com/chart/?symbol=CMI), [NOC](https://www.tradingview.com/chart/?symbol=NOC), [ALGN](https://www.tradingview.com/chart/?symbol=ALGN), [TMUS](https://www.tradingview.com/chart/?symbol=TMUS), [WEC](https://www.tradingview.com/chart/?symbol=WEC), [PDD](https://www.tradingview.com/chart/?symbol=PDD), [PPL](https://www.tradingview.com/chart/?symbol=PPL), [LNT](https://www.tradingview.com/chart/?symbol=LNT), [CRH](https://www.tradingview.com/chart/?symbol=CRH), [SRE](https://www.tradingview.com/chart/?symbol=SRE), [IP](https://www.tradingview.com/chart/?symbol=IP), [BSX](https://www.tradingview.com/chart/?symbol=BSX), [ZTS](https://www.tradingview.com/chart/?symbol=ZTS), [LII](https://www.tradingview.com/chart/?symbol=LII), [LHX](https://www.tradingview.com/chart/?symbol=LHX), [ATO](https://www.tradingview.com/chart/?symbol=ATO)
 
 יצאו מטבלאות הדוח:
+- קניות אינסיידרים, מניות מוכות (התבנית שנבדקה): PODD
 - יום חדשות: CTVA, FICO
-- טריז יורד, מניות מוכות: COST, CBRE, NFLX, ROL
+- טריז יורד, מניות מוכות: YUM, ALB, TSN, CMI, HSY, ALGN, PPL, WEC, PDD, LNT, TMUS, CRH, IP, SRE, BSX, COST, CBRE, LHX, LII, NFLX, ROL
 - ראלי מוקדם, מניות מוכות: ECHO, IDXX
 
-הטבלאות כעת: אינסיידרים (מוכות) 5, אינסיידרים (אחרות) 16, יום חדשות 2, טריז יורד 29, ראלי מוקדם 25. הקובץ המלא בעברית מצורף. לא ייעוץ השקעות.
+הטבלאות כעת: אינסיידרים (מוכות) 4, אינסיידרים (אחרות) 16, יום חדשות 2, טריז יורד 9, ראלי מוקדם 25, רשימת מעקב 20. הקובץ המלא בעברית מצורף. לא ייעוץ השקעות.
 הקובץ היומי המלא בעברית (כל הטבלאות, סיפור ציר הזמן, ניתוח הטריזים, תקציר לכל מניה, החלטות Jev ויומן המעקב): https://github.com/OrenRachamim/AlgoVision/blob/claude/stock-pattern-detection-b94x35/journal/daily_2026-10-08.md
 הדוח באנגלית: https://github.com/OrenRachamim/AlgoVision/blob/claude/stock-pattern-detection-b94x35/journal/report_2026-10-08.md
 התקצירים באנגלית: https://github.com/OrenRachamim/AlgoVision/blob/claude/stock-pattern-detection-b94x35/journal/briefs_2026-10-08.md

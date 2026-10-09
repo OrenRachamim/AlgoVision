@@ -2,53 +2,52 @@
 
 Data through 2026-10-08; 518 of 518 symbols loaded.
 
-## New signals today (15)
+## New signals today (0)
 
-| rule                      | symbol                                                 | signal_date   |   ref_price |   hold_bars | note                                                           |
-|:--------------------------|:-------------------------------------------------------|:--------------|------------:|------------:|:---------------------------------------------------------------|
-| falling_wedge_beaten_down | [ORLY](https://www.tradingview.com/chart/?symbol=ORLY) | 2026-10-08    |       86.01 |          20 | score 0.61, stop 82.37, level 84.69                            |
-| early_rally_beaten_down   | [STZ](https://www.tradingview.com/chart/?symbol=STZ)   | 2026-10-08    |      123.63 |          20 | rsi_turn, thrust; day +4.4%, 10d +8.2%, 6m -23%, vs MA200 -13% |
-| early_rally_beaten_down   | [ZTS](https://www.tradingview.com/chart/?symbol=ZTS)   | 2026-10-08    |       73.08 |          20 | rsi_turn; day +2.1%, 10d +4.0%, 6m -38%, vs MA200 -24%         |
-| early_rally_beaten_down   | [DECK](https://www.tradingview.com/chart/?symbol=DECK) | 2026-10-08    |       82.56 |          20 | rsi_turn; day +2.7%, 10d +4.9%, 6m -25%, vs MA200 -18%         |
-| early_rally_beaten_down   | [CSGP](https://www.tradingview.com/chart/?symbol=CSGP) | 2026-10-08    |       29.81 |          20 | rsi_turn; day +8.0%, 10d +7.0%, 6m -20%, vs MA200 -24%         |
-| early_rally_beaten_down   | [DPZ](https://www.tradingview.com/chart/?symbol=DPZ)   | 2026-10-08    |      308.65 |          20 | rsi_turn; day +1.8%, 10d +5.3%, 6m -16%, vs MA200 -11%         |
-| early_rally_beaten_down   | [INTU](https://www.tradingview.com/chart/?symbol=INTU) | 2026-10-08    |      303.88 |          20 | rsi_turn; day +2.2%, 10d +9.7%, 6m -16%, vs MA200 -21%         |
-| early_rally_beaten_down   | [WMT](https://www.tradingview.com/chart/?symbol=WMT)   | 2026-10-08    |      110.56 |          20 | ma50_cross; day +2.2%, 10d +2.8%, 6m -14%, vs MA200 -6%        |
-| early_rally_beaten_down   | [TAP](https://www.tradingview.com/chart/?symbol=TAP)   | 2026-10-08    |       37.92 |          20 | rsi_turn; day +2.6%, 10d +4.3%, 6m -13%, vs MA200 -10%         |
-| early_rally_beaten_down   | [TMUS](https://www.tradingview.com/chart/?symbol=TMUS) | 2026-10-08    |      171.31 |          20 | rsi_turn; day +2.2%, 10d +3.6%, 6m -12%, vs MA200 -9%          |
-| early_rally_beaten_down   | [FE](https://www.tradingview.com/chart/?symbol=FE)     | 2026-10-08    |       44.85 |          20 | rsi_turn; day +0.6%, 10d +3.8%, 6m -12%, vs MA200 -4%          |
-| early_rally_beaten_down   | [DUK](https://www.tradingview.com/chart/?symbol=DUK)   | 2026-10-08    |      116.84 |          20 | rsi_turn; day +1.2%, 10d +3.2%, 6m -11%, vs MA200 -5%          |
-| early_rally_beaten_down   | [SO](https://www.tradingview.com/chart/?symbol=SO)     | 2026-10-08    |       86.15 |          20 | rsi_turn; day +0.8%, 10d +3.9%, 6m -10%, vs MA200 -5%          |
-| early_rally_beaten_down   | [YUM](https://www.tradingview.com/chart/?symbol=YUM)   | 2026-10-08    |      143    |          20 | rsi_turn; day +1.9%, 10d +4.1%, 6m -10%, vs MA200 -6%          |
-| early_rally_beaten_down   | [XEL](https://www.tradingview.com/chart/?symbol=XEL)   | 2026-10-08    |       73.36 |          20 | rsi_turn; day +1.3%, 10d +5.5%, 6m -10%, vs MA200 -5%          |
+none
 
 ## Running results
+
+Expectation vs realised (all logged trades, closed and open marked to market; 'vs beaten basket' = minus the equal-weight return of the stocks that were beaten down on the signal date over the same window):
+
+| rule                      | research expected                                |   logged |   closed | mean   | hit   | vs SPY   | vs beaten basket   |
+|:--------------------------|:-------------------------------------------------|---------:|---------:|:-------|:------|:---------|:-------------------|
+| early_rally_beaten_down   | +2-3% net at 20 bars, hit ~58-61%, ~0 vs SPY     |       27 |        0 | -0.32% | 54%   | -0.03%   | -1.47%             |
+| falling_wedge_beaten_down | +3% vs random at 20 bars, hit ~60%               |       19 |        2 | -1.70% | 28%   | -2.26%   | -1.61%             |
+| insider_buy_beaten_down   | +10% vs random at 60 bars, +15% at 120, hit ~68% |        3 |        0 | -1.29% | 33%   | -3.00%   | +1.06%             |
+| jev_pick                  | untested (forward test only)                     |       18 |        0 | +0.37% | 61%   | +0.20%   | -1.39%             |
+| newsday                   | +6-7% vs random at 60 bars, hit ~62%             |       13 |        0 | -0.39% | 46%   | -1.37%   | +0.31%             |
 
 **early_rally_beaten_down** (expected: +2-3% net, hit ~58-61%, +3.5-4% vs random entry in the same stock, ~0 vs SPY at 20 bars (docs/research_rally.md))
 - logged: 27, closed: 0, open: 27
 - open trades mark-to-market: mean -0.32%, hit 54%
 - SPY over the same holding periods: mean -0.29% (excess -0.03%)
+- beaten-down basket over the same holding periods: mean +1.15% (excess -1.47%; the fair benchmark for a rule that only buys beaten-down stocks)
 
 **falling_wedge_beaten_down** (expected: +3% vs random, hit ~60% (docs/research_falling_wedge.md))
 - logged: 19, closed: 2, open: 17
 - closed trades: mean -5.72%, median -5.72%, hit 0%, best -3.5%, worst -8.0%
 - open trades mark-to-market: mean -1.20%, hit 31%
 - SPY over the same holding periods: mean +0.56% (excess -2.26%)
+- beaten-down basket over the same holding periods: mean -0.09% (excess -1.61%; the fair benchmark for a rule that only buys beaten-down stocks)
 
 **insider_buy_beaten_down** (expected: +10% vs random at 60 bars, +15% at 120, hit ~68% (docs/research_insiders.md))
 - logged: 3, closed: 0, open: 3
 - open trades mark-to-market: mean -1.29%, hit 33%
 - SPY over the same holding periods: mean +1.72% (excess -3.00%)
+- beaten-down basket over the same holding periods: mean -2.35% (excess +1.06%; the fair benchmark for a rule that only buys beaten-down stocks)
 
 **jev_pick** (expected: untested: the Jev decision model's 'buy' (P >= 0.6) on a listed stock, logged by daily-report (algovision/decide.py))
 - logged: 18, closed: 0, open: 18
 - open trades mark-to-market: mean +0.37%, hit 61%
 - SPY over the same holding periods: mean +0.16% (excess +0.20%)
+- beaten-down basket over the same holding periods: mean +1.76% (excess -1.39%; the fair benchmark for a rule that only buys beaten-down stocks)
 
 **newsday** (expected: +6-7% vs random, hit ~62% (docs/research_anomalies.md))
 - logged: 13, closed: 0, open: 13
 - open trades mark-to-market: mean -0.39%, hit 46%
 - SPY over the same holding periods: mean +0.98% (excess -1.37%)
+- beaten-down basket over the same holding periods: mean -0.70% (excess +0.31%; the fair benchmark for a rule that only buys beaten-down stocks)
 
 
 ## Open positions
@@ -118,18 +117,18 @@ Data through 2026-10-08; 518 of 518 symbols loaded.
 | early_rally_beaten_down   | [NRG](https://www.tradingview.com/chart/?symbol=NRG)   | 2026-10-07    | 2026-10-08   |       107.5   |              1 |          20 | -1.10%  |
 | early_rally_beaten_down   | [CASY](https://www.tradingview.com/chart/?symbol=CASY) | 2026-10-07    | 2026-10-08   |       642     |              1 |          20 | +0.04%  |
 | jev_pick                  | [CBRE](https://www.tradingview.com/chart/?symbol=CBRE) | 2026-10-07    | 2026-10-08   |       126.47  |              1 |          20 | +3.65%  |
-| falling_wedge_beaten_down | [ORLY](https://www.tradingview.com/chart/?symbol=ORLY) | 2026-10-08    |              |               |            nan |          20 |         |
-| early_rally_beaten_down   | [STZ](https://www.tradingview.com/chart/?symbol=STZ)   | 2026-10-08    |              |               |            nan |          20 |         |
-| early_rally_beaten_down   | [ZTS](https://www.tradingview.com/chart/?symbol=ZTS)   | 2026-10-08    |              |               |            nan |          20 |         |
-| early_rally_beaten_down   | [DECK](https://www.tradingview.com/chart/?symbol=DECK) | 2026-10-08    |              |               |            nan |          20 |         |
-| early_rally_beaten_down   | [CSGP](https://www.tradingview.com/chart/?symbol=CSGP) | 2026-10-08    |              |               |            nan |          20 |         |
-| early_rally_beaten_down   | [DPZ](https://www.tradingview.com/chart/?symbol=DPZ)   | 2026-10-08    |              |               |            nan |          20 |         |
-| early_rally_beaten_down   | [INTU](https://www.tradingview.com/chart/?symbol=INTU) | 2026-10-08    |              |               |            nan |          20 |         |
-| early_rally_beaten_down   | [WMT](https://www.tradingview.com/chart/?symbol=WMT)   | 2026-10-08    |              |               |            nan |          20 |         |
-| early_rally_beaten_down   | [TAP](https://www.tradingview.com/chart/?symbol=TAP)   | 2026-10-08    |              |               |            nan |          20 |         |
-| early_rally_beaten_down   | [TMUS](https://www.tradingview.com/chart/?symbol=TMUS) | 2026-10-08    |              |               |            nan |          20 |         |
-| early_rally_beaten_down   | [FE](https://www.tradingview.com/chart/?symbol=FE)     | 2026-10-08    |              |               |            nan |          20 |         |
-| early_rally_beaten_down   | [DUK](https://www.tradingview.com/chart/?symbol=DUK)   | 2026-10-08    |              |               |            nan |          20 |         |
-| early_rally_beaten_down   | [SO](https://www.tradingview.com/chart/?symbol=SO)     | 2026-10-08    |              |               |            nan |          20 |         |
-| early_rally_beaten_down   | [YUM](https://www.tradingview.com/chart/?symbol=YUM)   | 2026-10-08    |              |               |            nan |          20 |         |
-| early_rally_beaten_down   | [XEL](https://www.tradingview.com/chart/?symbol=XEL)   | 2026-10-08    |              |               |            nan |          20 |         |
+| falling_wedge_beaten_down | [ORLY](https://www.tradingview.com/chart/?symbol=ORLY) | 2026-10-08    | nan          |       nan     |            nan |          20 |         |
+| early_rally_beaten_down   | [STZ](https://www.tradingview.com/chart/?symbol=STZ)   | 2026-10-08    | nan          |       nan     |            nan |          20 |         |
+| early_rally_beaten_down   | [ZTS](https://www.tradingview.com/chart/?symbol=ZTS)   | 2026-10-08    | nan          |       nan     |            nan |          20 |         |
+| early_rally_beaten_down   | [DECK](https://www.tradingview.com/chart/?symbol=DECK) | 2026-10-08    | nan          |       nan     |            nan |          20 |         |
+| early_rally_beaten_down   | [CSGP](https://www.tradingview.com/chart/?symbol=CSGP) | 2026-10-08    | nan          |       nan     |            nan |          20 |         |
+| early_rally_beaten_down   | [DPZ](https://www.tradingview.com/chart/?symbol=DPZ)   | 2026-10-08    | nan          |       nan     |            nan |          20 |         |
+| early_rally_beaten_down   | [INTU](https://www.tradingview.com/chart/?symbol=INTU) | 2026-10-08    | nan          |       nan     |            nan |          20 |         |
+| early_rally_beaten_down   | [WMT](https://www.tradingview.com/chart/?symbol=WMT)   | 2026-10-08    | nan          |       nan     |            nan |          20 |         |
+| early_rally_beaten_down   | [TAP](https://www.tradingview.com/chart/?symbol=TAP)   | 2026-10-08    | nan          |       nan     |            nan |          20 |         |
+| early_rally_beaten_down   | [TMUS](https://www.tradingview.com/chart/?symbol=TMUS) | 2026-10-08    | nan          |       nan     |            nan |          20 |         |
+| early_rally_beaten_down   | [FE](https://www.tradingview.com/chart/?symbol=FE)     | 2026-10-08    | nan          |       nan     |            nan |          20 |         |
+| early_rally_beaten_down   | [DUK](https://www.tradingview.com/chart/?symbol=DUK)   | 2026-10-08    | nan          |       nan     |            nan |          20 |         |
+| early_rally_beaten_down   | [SO](https://www.tradingview.com/chart/?symbol=SO)     | 2026-10-08    | nan          |       nan     |            nan |          20 |         |
+| early_rally_beaten_down   | [YUM](https://www.tradingview.com/chart/?symbol=YUM)   | 2026-10-08    | nan          |       nan     |            nan |          20 |         |
+| early_rally_beaten_down   | [XEL](https://www.tradingview.com/chart/?symbol=XEL)   | 2026-10-08    | nan          |       nan     |            nan |          20 |         |
