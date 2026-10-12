@@ -1,35 +1,32 @@
-# AlgoVision 2026-10-09: what is new since 2026-10-08
+# AlgoVision 2026-10-12: what is new since 2026-10-09
 
-New signals logged in the journal today (14):
-- newsday: [TMUS](https://www.tradingview.com/chart/?symbol=TMUS) 2026-10-09 @ 148.58, hold 60 bars. gap -9.2%, vol 3.7x, 6m -23%, vs MA200 -21%
-- newsday: [T](https://www.tradingview.com/chart/?symbol=T) 2026-10-09 @ 22.18, hold 60 bars. gap -10.0%, vol 3.9x, 6m -15%, vs MA200 -11%
-- falling_wedge_beaten_down: [ALGN](https://www.tradingview.com/chart/?symbol=ALGN) 2026-10-09 @ 142.71, hold 20 bars. score 0.72, stop 137.87, level 140.70
-- falling_wedge_beaten_down: [SRE](https://www.tradingview.com/chart/?symbol=SRE) 2026-10-09 @ 81.34, hold 20 bars. score 0.63, stop 74.63, level 80.01
-- early_rally_beaten_down: [SBAC](https://www.tradingview.com/chart/?symbol=SBAC) 2026-10-09 @ 182.49, hold 20 bars. ma50_cross, rsi_turn; day +7.3%, 10d +9.8%, 6m -17%, vs MA200 -3%
-- early_rally_beaten_down: [TSCO](https://www.tradingview.com/chart/?symbol=TSCO) 2026-10-09 @ 33.7, hold 20 bars. ma50_cross; day +0.7%, 10d +4.4%, 6m -24%, vs MA200 -13%
-- early_rally_beaten_down: [PDD](https://www.tradingview.com/chart/?symbol=PDD) 2026-10-09 @ 81.35, hold 20 bars. rsi_turn; day +3.9%, 10d +4.9%, 6m -19%, vs MA200 -13%
-- early_rally_beaten_down: [TSN](https://www.tradingview.com/chart/?symbol=TSN) 2026-10-09 @ 53.43, hold 20 bars. rsi_turn; day +2.1%, 10d +4.9%, 6m -17%, vs MA200 -9%
-- early_rally_beaten_down: [SRE](https://www.tradingview.com/chart/?symbol=SRE) 2026-10-09 @ 81.34, hold 20 bars. rsi_turn; day +1.6%, 10d +4.4%, 6m -16%, vs MA200 -8%
-- early_rally_beaten_down: [ATO](https://www.tradingview.com/chart/?symbol=ATO) 2026-10-09 @ 161.66, hold 20 bars. rsi_turn; day +0.6%, 10d +2.8%, 6m -14%, vs MA200 -6%
-- early_rally_beaten_down: [TPL](https://www.tradingview.com/chart/?symbol=TPL) 2026-10-09 @ 360.98, hold 20 bars. ma50_cross; day +0.9%, 10d +5.8%, 6m -12%, vs MA200 -9%
-- early_rally_beaten_down: [WEC](https://www.tradingview.com/chart/?symbol=WEC) 2026-10-09 @ 103.74, hold 20 bars. rsi_turn; day +0.1%, 10d +2.3%, 6m -10%, vs MA200 -6%
-- early_rally_beaten_down: [LNT](https://www.tradingview.com/chart/?symbol=LNT) 2026-10-09 @ 65.85, hold 20 bars. rsi_turn; day +0.5%, 10d +3.5%, 6m -9%, vs MA200 -5%
-- early_rally_beaten_down: [AEP](https://www.tradingview.com/chart/?symbol=AEP) 2026-10-09 @ 122.81, hold 20 bars. ma50_cross; day +0.4%, 10d +3.8%, 6m -9%, vs MA200 -2%
+New signals logged in the journal today (9):
+- falling_wedge_beaten_down: [NOC](https://www.tradingview.com/chart/?symbol=NOC) 2026-10-12 @ 485, hold 20 bars. score 0.69, stop 456.65, level 481.17
+- falling_wedge_beaten_down: [YUM](https://www.tradingview.com/chart/?symbol=YUM) 2026-10-12 @ 146.75, hold 20 bars. score 0.70, stop 134.41, level 145.91
+- early_rally_beaten_down: [PODD](https://www.tradingview.com/chart/?symbol=PODD) 2026-10-12 @ 139.81, hold 20 bars. rsi_turn; day +3.3%, 10d +5.0%, 6m -29%, vs MA200 -26%
+- early_rally_beaten_down: [PCG](https://www.tradingview.com/chart/?symbol=PCG) 2026-10-12 @ 13.16, hold 20 bars. thrust; day +0.2%, 10d +10.6%, 6m -25%, vs MA200 -19%
+- early_rally_beaten_down: [EIX](https://www.tradingview.com/chart/?symbol=EIX) 2026-10-12 @ 55.64, hold 20 bars. thrust; day +0.6%, 10d +9.9%, 6m -21%, vs MA200 -16%
+- early_rally_beaten_down: [CMS](https://www.tradingview.com/chart/?symbol=CMS) 2026-10-12 @ 65.86, hold 20 bars. rsi_turn; day +0.6%, 10d +5.2%, 6m -15%, vs MA200 -8%
+- early_rally_beaten_down: [EXC](https://www.tradingview.com/chart/?symbol=EXC) 2026-10-12 @ 42.12, hold 20 bars. rsi_turn; day +0.9%, 10d +4.5%, 6m -11%, vs MA200 -6%
+- early_rally_beaten_down: [TDG](https://www.tradingview.com/chart/?symbol=TDG) 2026-10-12 @ 1119.94, hold 20 bars. rsi_turn; day +1.1%, 10d +1.0%, 6m -9%, vs MA200 -10%
+- early_rally_beaten_down: [GEHC](https://www.tradingview.com/chart/?symbol=GEHC) 2026-10-12 @ 67.74, hold 20 bars. rsi_turn; day +3.0%, 10d +1.4%, 6m -8%, vs MA200 -4%
 
 Entered the report tables:
-- News-day: [TMUS](https://www.tradingview.com/chart/?symbol=TMUS), [T](https://www.tradingview.com/chart/?symbol=T)
-- Falling wedge, beaten-down: [ATO](https://www.tradingview.com/chart/?symbol=ATO), [SRE](https://www.tradingview.com/chart/?symbol=SRE), [ALGN](https://www.tradingview.com/chart/?symbol=ALGN), [PDD](https://www.tradingview.com/chart/?symbol=PDD)
-- Early rally, beaten-down: [SBAC](https://www.tradingview.com/chart/?symbol=SBAC), [TSCO](https://www.tradingview.com/chart/?symbol=TSCO), [PDD](https://www.tradingview.com/chart/?symbol=PDD), [TSN](https://www.tradingview.com/chart/?symbol=TSN), [SRE](https://www.tradingview.com/chart/?symbol=SRE), [ATO](https://www.tradingview.com/chart/?symbol=ATO), [TPL](https://www.tradingview.com/chart/?symbol=TPL), [WEC](https://www.tradingview.com/chart/?symbol=WEC), [LNT](https://www.tradingview.com/chart/?symbol=LNT), [AEP](https://www.tradingview.com/chart/?symbol=AEP)
-- Wedge watch list (forming, not a signal): [CNP](https://www.tradingview.com/chart/?symbol=CNP), [MKC](https://www.tradingview.com/chart/?symbol=MKC), [TDG](https://www.tradingview.com/chart/?symbol=TDG)
+- Insider buys, beaten-down (tested setup): [ORCL](https://www.tradingview.com/chart/?symbol=ORCL)
+- Falling wedge, beaten-down: [NOC](https://www.tradingview.com/chart/?symbol=NOC), [YUM](https://www.tradingview.com/chart/?symbol=YUM)
+- Early rally, beaten-down: [PODD](https://www.tradingview.com/chart/?symbol=PODD), [PCG](https://www.tradingview.com/chart/?symbol=PCG), [EIX](https://www.tradingview.com/chart/?symbol=EIX), [CMS](https://www.tradingview.com/chart/?symbol=CMS), [DTE](https://www.tradingview.com/chart/?symbol=DTE), [NI](https://www.tradingview.com/chart/?symbol=NI), [EXC](https://www.tradingview.com/chart/?symbol=EXC), [TJX](https://www.tradingview.com/chart/?symbol=TJX), [TDG](https://www.tradingview.com/chart/?symbol=TDG), [IDXX](https://www.tradingview.com/chart/?symbol=IDXX), [GEHC](https://www.tradingview.com/chart/?symbol=GEHC)
+- Wedge watch list (forming, not a signal): [CBRE](https://www.tradingview.com/chart/?symbol=CBRE), [TKO](https://www.tradingview.com/chart/?symbol=TKO), [TPL](https://www.tradingview.com/chart/?symbol=TPL), [PSKY](https://www.tradingview.com/chart/?symbol=PSKY), [HAL](https://www.tradingview.com/chart/?symbol=HAL)
 
 Left the report tables:
-- News-day: NKE
-- Falling wedge, beaten-down: DECK
-- Early rally, beaten-down: NI, TJX, DTE, CNP
-- Wedge watch list (forming, not a signal): TMUS, ATO, SRE, ALGN, PDD
+- Insider buys, beaten-down (tested setup): BSX
+- Insider buys, other stocks: ORCL, WELL, AMT, KDP, CINF
+- News-day: CHRW
+- Falling wedge, beaten-down: EQT
+- Early rally, beaten-down: NRG, CASY
+- Wedge watch list (forming, not a signal): CNP, YUM, NOC, TDG, LNT
 
-Tables now: insider buys (beaten-down) 4, insider buys (other) 16, news-day 3, falling wedge 12, early rally 31, wedge watch list 18. Full report attached. Not investment advice.
-Everything in one Hebrew file (all tables, the time-axis story, the wedge analyses, a brief per stock, Jev, the journal): https://github.com/OrenRachamim/AlgoVision/blob/claude/stock-pattern-detection-b94x35/journal/daily_2026-10-09.md
-Today's report on GitHub: https://github.com/OrenRachamim/AlgoVision/blob/claude/stock-pattern-detection-b94x35/journal/report_2026-10-09.md
-One research brief per listed stock (price context, what moved it, analysts, last report, fundamentals, rule-based read): https://github.com/OrenRachamim/AlgoVision/blob/claude/stock-pattern-detection-b94x35/journal/briefs_2026-10-09.md
-Falling wedge only, in Hebrew (technical analysis of each wedge, why it fell, brief; table rows link to the details): https://github.com/OrenRachamim/AlgoVision/blob/claude/stock-pattern-detection-b94x35/journal/wedge_2026-10-09.md
+Tables now: insider buys (beaten-down) 4, insider buys (other) 11, news-day 2, falling wedge 13, early rally 40, wedge watch list 18. Full report attached. Not investment advice.
+Everything in one Hebrew file (all tables, the time-axis story, the wedge analyses, a brief per stock, Jev, the journal): https://github.com/OrenRachamim/AlgoVision/blob/claude/stock-pattern-detection-b94x35/journal/daily_2026-10-12.md
+Today's report on GitHub: https://github.com/OrenRachamim/AlgoVision/blob/claude/stock-pattern-detection-b94x35/journal/report_2026-10-12.md
+One research brief per listed stock (price context, what moved it, analysts, last report, fundamentals, rule-based read): https://github.com/OrenRachamim/AlgoVision/blob/claude/stock-pattern-detection-b94x35/journal/briefs_2026-10-12.md
+Falling wedge only, in Hebrew (technical analysis of each wedge, why it fell, brief; table rows link to the details): https://github.com/OrenRachamim/AlgoVision/blob/claude/stock-pattern-detection-b94x35/journal/wedge_2026-10-12.md

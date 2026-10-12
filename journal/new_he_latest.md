@@ -1,35 +1,32 @@
-# AlgoVision 2026-10-09: מה חדש מאז 2026-10-08
+# AlgoVision 2026-10-12: מה חדש מאז 2026-10-09
 
-סיגנלים חדשים שנרשמו ביומן היום (14):
-- יום חדשות: [TMUS](https://www.tradingview.com/chart/?symbol=TMUS) 2026-10-09 @ 148.58, החזקה 60 נרות. פער -9.2%, מחזור פי 3.7x, 6 חודשים -23%, מול ממוצע 200 -21%
-- יום חדשות: [T](https://www.tradingview.com/chart/?symbol=T) 2026-10-09 @ 22.18, החזקה 60 נרות. פער -10.0%, מחזור פי 3.9x, 6 חודשים -15%, מול ממוצע 200 -11%
-- טריז יורד במניה מוכה: [ALGN](https://www.tradingview.com/chart/?symbol=ALGN) 2026-10-09 @ 142.71, החזקה 20 נרות. ציון 0.72, סטופ 137.87, רמה 140.70
-- טריז יורד במניה מוכה: [SRE](https://www.tradingview.com/chart/?symbol=SRE) 2026-10-09 @ 81.34, החזקה 20 נרות. ציון 0.63, סטופ 74.63, רמה 80.01
-- ראלי מוקדם במניה מוכה: [SBAC](https://www.tradingview.com/chart/?symbol=SBAC) 2026-10-09 @ 182.49, החזקה 20 נרות. ma50_cross, rsi_turn; יום +7.3%, 10 ימים +9.8%, 6 חודשים -17%, מול ממוצע 200 -3%
-- ראלי מוקדם במניה מוכה: [TSCO](https://www.tradingview.com/chart/?symbol=TSCO) 2026-10-09 @ 33.7, החזקה 20 נרות. ma50_cross; יום +0.7%, 10 ימים +4.4%, 6 חודשים -24%, מול ממוצע 200 -13%
-- ראלי מוקדם במניה מוכה: [PDD](https://www.tradingview.com/chart/?symbol=PDD) 2026-10-09 @ 81.35, החזקה 20 נרות. rsi_turn; יום +3.9%, 10 ימים +4.9%, 6 חודשים -19%, מול ממוצע 200 -13%
-- ראלי מוקדם במניה מוכה: [TSN](https://www.tradingview.com/chart/?symbol=TSN) 2026-10-09 @ 53.43, החזקה 20 נרות. rsi_turn; יום +2.1%, 10 ימים +4.9%, 6 חודשים -17%, מול ממוצע 200 -9%
-- ראלי מוקדם במניה מוכה: [SRE](https://www.tradingview.com/chart/?symbol=SRE) 2026-10-09 @ 81.34, החזקה 20 נרות. rsi_turn; יום +1.6%, 10 ימים +4.4%, 6 חודשים -16%, מול ממוצע 200 -8%
-- ראלי מוקדם במניה מוכה: [ATO](https://www.tradingview.com/chart/?symbol=ATO) 2026-10-09 @ 161.66, החזקה 20 נרות. rsi_turn; יום +0.6%, 10 ימים +2.8%, 6 חודשים -14%, מול ממוצע 200 -6%
-- ראלי מוקדם במניה מוכה: [TPL](https://www.tradingview.com/chart/?symbol=TPL) 2026-10-09 @ 360.98, החזקה 20 נרות. ma50_cross; יום +0.9%, 10 ימים +5.8%, 6 חודשים -12%, מול ממוצע 200 -9%
-- ראלי מוקדם במניה מוכה: [WEC](https://www.tradingview.com/chart/?symbol=WEC) 2026-10-09 @ 103.74, החזקה 20 נרות. rsi_turn; יום +0.1%, 10 ימים +2.3%, 6 חודשים -10%, מול ממוצע 200 -6%
-- ראלי מוקדם במניה מוכה: [LNT](https://www.tradingview.com/chart/?symbol=LNT) 2026-10-09 @ 65.85, החזקה 20 נרות. rsi_turn; יום +0.5%, 10 ימים +3.5%, 6 חודשים -9%, מול ממוצע 200 -5%
-- ראלי מוקדם במניה מוכה: [AEP](https://www.tradingview.com/chart/?symbol=AEP) 2026-10-09 @ 122.81, החזקה 20 נרות. ma50_cross; יום +0.4%, 10 ימים +3.8%, 6 חודשים -9%, מול ממוצע 200 -2%
+סיגנלים חדשים שנרשמו ביומן היום (9):
+- טריז יורד במניה מוכה: [NOC](https://www.tradingview.com/chart/?symbol=NOC) 2026-10-12 @ 485, החזקה 20 נרות. ציון 0.69, סטופ 456.65, רמה 481.17
+- טריז יורד במניה מוכה: [YUM](https://www.tradingview.com/chart/?symbol=YUM) 2026-10-12 @ 146.75, החזקה 20 נרות. ציון 0.70, סטופ 134.41, רמה 145.91
+- ראלי מוקדם במניה מוכה: [PODD](https://www.tradingview.com/chart/?symbol=PODD) 2026-10-12 @ 139.81, החזקה 20 נרות. rsi_turn; יום +3.3%, 10 ימים +5.0%, 6 חודשים -29%, מול ממוצע 200 -26%
+- ראלי מוקדם במניה מוכה: [PCG](https://www.tradingview.com/chart/?symbol=PCG) 2026-10-12 @ 13.16, החזקה 20 נרות. thrust; יום +0.2%, 10 ימים +10.6%, 6 חודשים -25%, מול ממוצע 200 -19%
+- ראלי מוקדם במניה מוכה: [EIX](https://www.tradingview.com/chart/?symbol=EIX) 2026-10-12 @ 55.64, החזקה 20 נרות. thrust; יום +0.6%, 10 ימים +9.9%, 6 חודשים -21%, מול ממוצע 200 -16%
+- ראלי מוקדם במניה מוכה: [CMS](https://www.tradingview.com/chart/?symbol=CMS) 2026-10-12 @ 65.86, החזקה 20 נרות. rsi_turn; יום +0.6%, 10 ימים +5.2%, 6 חודשים -15%, מול ממוצע 200 -8%
+- ראלי מוקדם במניה מוכה: [EXC](https://www.tradingview.com/chart/?symbol=EXC) 2026-10-12 @ 42.12, החזקה 20 נרות. rsi_turn; יום +0.9%, 10 ימים +4.5%, 6 חודשים -11%, מול ממוצע 200 -6%
+- ראלי מוקדם במניה מוכה: [TDG](https://www.tradingview.com/chart/?symbol=TDG) 2026-10-12 @ 1119.94, החזקה 20 נרות. rsi_turn; יום +1.1%, 10 ימים +1.0%, 6 חודשים -9%, מול ממוצע 200 -10%
+- ראלי מוקדם במניה מוכה: [GEHC](https://www.tradingview.com/chart/?symbol=GEHC) 2026-10-12 @ 67.74, החזקה 20 נרות. rsi_turn; יום +3.0%, 10 ימים +1.4%, 6 חודשים -8%, מול ממוצע 200 -4%
 
 נכנסו לטבלאות הדוח:
-- יום חדשות: [TMUS](https://www.tradingview.com/chart/?symbol=TMUS), [T](https://www.tradingview.com/chart/?symbol=T)
-- טריז יורד, מניות מוכות: [ATO](https://www.tradingview.com/chart/?symbol=ATO), [SRE](https://www.tradingview.com/chart/?symbol=SRE), [ALGN](https://www.tradingview.com/chart/?symbol=ALGN), [PDD](https://www.tradingview.com/chart/?symbol=PDD)
-- ראלי מוקדם, מניות מוכות: [SBAC](https://www.tradingview.com/chart/?symbol=SBAC), [TSCO](https://www.tradingview.com/chart/?symbol=TSCO), [PDD](https://www.tradingview.com/chart/?symbol=PDD), [TSN](https://www.tradingview.com/chart/?symbol=TSN), [SRE](https://www.tradingview.com/chart/?symbol=SRE), [ATO](https://www.tradingview.com/chart/?symbol=ATO), [TPL](https://www.tradingview.com/chart/?symbol=TPL), [WEC](https://www.tradingview.com/chart/?symbol=WEC), [LNT](https://www.tradingview.com/chart/?symbol=LNT), [AEP](https://www.tradingview.com/chart/?symbol=AEP)
-- רשימת מעקב, טריזים בהתהוות (לא איתות): [CNP](https://www.tradingview.com/chart/?symbol=CNP), [MKC](https://www.tradingview.com/chart/?symbol=MKC), [TDG](https://www.tradingview.com/chart/?symbol=TDG)
+- קניות אינסיידרים, מניות מוכות (התבנית שנבדקה): [ORCL](https://www.tradingview.com/chart/?symbol=ORCL)
+- טריז יורד, מניות מוכות: [NOC](https://www.tradingview.com/chart/?symbol=NOC), [YUM](https://www.tradingview.com/chart/?symbol=YUM)
+- ראלי מוקדם, מניות מוכות: [PODD](https://www.tradingview.com/chart/?symbol=PODD), [PCG](https://www.tradingview.com/chart/?symbol=PCG), [EIX](https://www.tradingview.com/chart/?symbol=EIX), [CMS](https://www.tradingview.com/chart/?symbol=CMS), [DTE](https://www.tradingview.com/chart/?symbol=DTE), [NI](https://www.tradingview.com/chart/?symbol=NI), [EXC](https://www.tradingview.com/chart/?symbol=EXC), [TJX](https://www.tradingview.com/chart/?symbol=TJX), [TDG](https://www.tradingview.com/chart/?symbol=TDG), [IDXX](https://www.tradingview.com/chart/?symbol=IDXX), [GEHC](https://www.tradingview.com/chart/?symbol=GEHC)
+- רשימת מעקב, טריזים בהתהוות (לא איתות): [CBRE](https://www.tradingview.com/chart/?symbol=CBRE), [TKO](https://www.tradingview.com/chart/?symbol=TKO), [TPL](https://www.tradingview.com/chart/?symbol=TPL), [PSKY](https://www.tradingview.com/chart/?symbol=PSKY), [HAL](https://www.tradingview.com/chart/?symbol=HAL)
 
 יצאו מטבלאות הדוח:
-- יום חדשות: NKE
-- טריז יורד, מניות מוכות: DECK
-- ראלי מוקדם, מניות מוכות: NI, TJX, DTE, CNP
-- רשימת מעקב, טריזים בהתהוות (לא איתות): TMUS, ATO, SRE, ALGN, PDD
+- קניות אינסיידרים, מניות מוכות (התבנית שנבדקה): BSX
+- קניות אינסיידרים, מניות אחרות: ORCL, WELL, AMT, KDP, CINF
+- יום חדשות: CHRW
+- טריז יורד, מניות מוכות: EQT
+- ראלי מוקדם, מניות מוכות: NRG, CASY
+- רשימת מעקב, טריזים בהתהוות (לא איתות): CNP, YUM, NOC, TDG, LNT
 
-הטבלאות כעת: אינסיידרים (מוכות) 4, אינסיידרים (אחרות) 16, יום חדשות 3, טריז יורד 12, ראלי מוקדם 31, רשימת מעקב 18. הקובץ המלא בעברית מצורף. לא ייעוץ השקעות.
-הקובץ היומי המלא בעברית (כל הטבלאות, סיפור ציר הזמן, ניתוח הטריזים, תקציר לכל מניה, החלטות Jev ויומן המעקב): https://github.com/OrenRachamim/AlgoVision/blob/claude/stock-pattern-detection-b94x35/journal/daily_2026-10-09.md
-הדוח באנגלית: https://github.com/OrenRachamim/AlgoVision/blob/claude/stock-pattern-detection-b94x35/journal/report_2026-10-09.md
-התקצירים באנגלית: https://github.com/OrenRachamim/AlgoVision/blob/claude/stock-pattern-detection-b94x35/journal/briefs_2026-10-09.md
-קובץ הטריז היורד: https://github.com/OrenRachamim/AlgoVision/blob/claude/stock-pattern-detection-b94x35/journal/wedge_2026-10-09.md
+הטבלאות כעת: אינסיידרים (מוכות) 4, אינסיידרים (אחרות) 11, יום חדשות 2, טריז יורד 13, ראלי מוקדם 40, רשימת מעקב 18. הקובץ המלא בעברית מצורף. לא ייעוץ השקעות.
+הקובץ היומי המלא בעברית (כל הטבלאות, סיפור ציר הזמן, ניתוח הטריזים, תקציר לכל מניה, החלטות Jev ויומן המעקב): https://github.com/OrenRachamim/AlgoVision/blob/claude/stock-pattern-detection-b94x35/journal/daily_2026-10-12.md
+הדוח באנגלית: https://github.com/OrenRachamim/AlgoVision/blob/claude/stock-pattern-detection-b94x35/journal/report_2026-10-12.md
+התקצירים באנגלית: https://github.com/OrenRachamim/AlgoVision/blob/claude/stock-pattern-detection-b94x35/journal/briefs_2026-10-12.md
+קובץ הטריז היורד: https://github.com/OrenRachamim/AlgoVision/blob/claude/stock-pattern-detection-b94x35/journal/wedge_2026-10-12.md
