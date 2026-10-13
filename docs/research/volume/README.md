@@ -2,7 +2,7 @@
 
 Hypothesis: when a decline starts to stop and the turn comes on relatively high volume, the odds of a reversal are better than on a quiet turn. Tested on the three rules with ten-year event tables, train (before 2023-01-01) and test (from 2023-01-01) separately. Entry at the next open, 10 bps cost, excess measured over random entries in the same stock within half a year of the signal (``xloc``), which cancels the stock's drift and the regime around the signal.
 
-Volume features are point-in-time at the signal bar and the averages end the bar before, so the signal day is never compared with itself: the signal-day ratio (volume / prior 20-day average), the 5-day ratio (last five bars / prior 20-day average), a climax day (>= 3x the prior 60-day average) within the last 10 bars, the ratio on the day of the lowest close of the last 20 bars, and the share of the last 10 bars' volume that came on up days.
+Volume features are point-in-time at the signal bar and the averages end the bar before, so the signal day is never compared with itself: the signal-day ratio (volume / prior 20-day average), the 5-day ratio (last five bars / prior 20-day average), a climax day (>= 3x the prior 60-day average) within the last 10 bars, the ratio on the day of the lowest close of the last 20 bars, and the share of the last 10 bars' volume that came on up days. Two more look at the base before the signal: a beaten-down stock whose last 15 closes span at most 8% and whose 40-bar low was made more than 10 bars ago (the decline stopped), with the base's average volume at least 1.3x (or at most 0.8x) the 40 bars before it.
 
 A condition **helps** when the yes rows beat the no rows in excess return in **both** periods by at least 0.5% over 20 bars with at least 30 events on each side; it **hurts** when the no rows beat the yes rows by the same margin in both periods; everything else is noise however good one period looks. Survivorship bias applies (today's index members).
 
@@ -21,6 +21,8 @@ A condition **helps** when the yes rows beat the no rows in excess return in **b
 | a >= 3x (60-day average) volume day within the last 10 bars (climax) | 99 / +3.09% / 66% vs 1637 / +2.31% / 64% | 98 / +1.17% / 61% vs 1307 / +0.67% / 56% | +0.78% / +0.51% | -1.44% / +3.15% | 6/10 | **helps (consistent)** |
 | volume on the 20-bar low-close day >= 2x its prior 20-day average (capitulation at the low) | 77 / +2.19% / 61% vs 1659 / +2.36% / 64% | 88 / +1.53% / 60% vs 1317 / +0.65% / 56% | -0.17% / +0.88% | -1.56% / +1.57% | 7/10 | noise |
 | >= 60% of the last 10 bars' volume on up days (accumulation) | 505 / +1.95% / 60% vs 1231 / +2.52% / 66% | 407 / +0.80% / 58% vs 998 / +0.66% / 56% | -0.57% / +0.14% | +0.57% / -0.53% | 4/10 | noise |
+| in a base (15-bar close range <= 8%, the 40-bar low made > 10 bars ago) with base volume >= 1.3x the 40 bars before it | 6 / +4.49% / 67% vs 1730 / +2.35% / 64% | 5 / -2.74% / 20% vs 1400 / +0.71% / 57% | +2.14% / -3.46% | +6.92% / -8.84% | 0/0 | noise |
+| in a base (same definition) with base volume <= 0.8x the 40 bars before it | 29 / +5.82% / 72% vs 1707 / +2.29% / 64% | 10 / -1.80% / 40% vs 1395 / +0.72% / 57% | +3.52% / -2.52% | -4.23% / -3.72% | 2/3 | noise |
 
 ### Signal-day volume (vs the prior 20-day average)
 
@@ -63,6 +65,8 @@ A condition **helps** when the yes rows beat the no rows in excess return in **b
 | a >= 3x (60-day average) volume day within the last 10 bars (climax) | 530 / +3.24% / 59% vs 74 / +3.01% / 69% | 428 / +2.93% / 58% vs 52 / +4.32% / 63% | +0.23% / -1.39% | +5.82% / -17.70% | 4/9 | noise |
 | volume on the 20-bar low-close day >= 2x its prior 20-day average (capitulation at the low) | 417 / +2.63% / 59% vs 187 / +4.50% / 64% | 373 / +2.65% / 58% vs 107 / +4.57% / 60% | -1.88% / -1.92% | -1.25% / -9.82% | 3/10 | **hurts (consistent)** |
 | >= 60% of the last 10 bars' volume on up days (accumulation) | 88 / +3.64% / 60% vs 516 / +3.13% / 60% | 51 / +6.06% / 55% vs 429 / +2.72% / 59% | +0.51% / +3.34% | -3.66% / +14.45% | 4/8 | **helps (consistent)** |
+| in a base (15-bar close range <= 8%, the 40-bar low made > 10 bars ago) with base volume >= 1.3x the 40 bars before it | 9 / -0.96% / 56% vs 595 / +3.27% / 61% | 3 / +1.06% / 67% vs 477 / +3.09% / 58% | -4.23% / -2.02% | -3.80% / -9.08% | 0/0 | noise |
+| in a base (same definition) with base volume <= 0.8x the 40 bars before it | 4 / +1.47% / 100% vs 600 / +3.22% / 60% | 0 /  /  vs 480 / +3.08% / 58% | -1.74% /  | +4.61% /  | 0/0 | noise |
 
 ### Signal-day volume (vs the prior 20-day average)
 
@@ -103,6 +107,8 @@ A condition **helps** when the yes rows beat the no rows in excess return in **b
 | a >= 3x (60-day average) volume day within the last 10 bars (climax) | 242 / +3.67% / 60% vs 3090 / +3.97% / 61% | 183 / +4.02% / 60% vs 1910 / +3.60% / 58% | -0.30% / +0.42% | +2.72% / +1.67% | 6/10 | noise |
 | volume on the 20-bar low-close day >= 2x its prior 20-day average (capitulation at the low) | 233 / +3.16% / 54% vs 3099 / +4.01% / 62% | 234 / +4.08% / 60% vs 1859 / +3.58% / 58% | -0.85% / +0.50% | -0.41% / -0.29% | 2/9 | noise |
 | >= 60% of the last 10 bars' volume on up days (accumulation) | 1536 / +3.73% / 59% vs 1796 / +4.14% / 62% | 1012 / +3.04% / 56% vs 1081 / +4.20% / 61% | -0.41% / -1.16% | -0.74% / -1.17% | 2/10 | noise |
+| in a base (15-bar close range <= 8%, the 40-bar low made > 10 bars ago) with base volume >= 1.3x the 40 bars before it | 42 / +4.32% / 62% vs 3290 / +3.95% / 61% | 55 / +1.62% / 45% vs 2038 / +3.69% / 59% | +0.37% / -2.08% | -0.29% / -4.57% | 4/8 | noise |
+| in a base (same definition) with base volume <= 0.8x the 40 bars before it | 259 / +2.91% / 60% vs 3073 / +4.04% / 61% | 152 / +3.58% / 63% vs 1941 / +3.64% / 58% | -1.12% / -0.07% | -4.75% / -3.03% | 6/9 | noise |
 
 ### Signal-day volume (vs the prior 20-day average)
 
@@ -131,6 +137,30 @@ A condition **helps** when the yes rows beat the no rows in excess return in **b
 | 1.5-3x | test | 1052 | +2.41% | 59% | +3.68% |
 | 3-5x | test | 148 | +2.88% | 63% | +4.53% |
 | > 5x | test | 35 | +0.14% | 46% | +1.88% |
+
+## Rising volume while the price stabilizes (every tight base after a decline, no rule)
+
+Every beaten-down stock whose last 15 closes span at most 8% and whose 40-bar low was made more than 10 bars ago is an event (first such day in a 30-bar window), 5713 events in 503 stocks, 2017-10-20 to 2026-07-15. Entry at the next open. *Left upward* = the close 20 / 60 bars later is above the base's high; *broke down* = below the base's low; the rest are still inside.
+
+| base volume vs the 40 bars before | period | n | 20 bars: left upward / broke down / net / excess over local random | 60 bars: left upward / broke down / net / excess over local random |
+|---|---|---|---|---|
+| < 0.8x | train | 943 | 41% / 34% / +1.08% / +1.67% | 48% / 35% / +2.64% / +4.08% |
+| 0.8-1x | train | 1089 | 44% / 31% / +1.64% / +2.21% | 50% / 32% / +3.29% / +5.37% |
+| 1-1.3x | train | 902 | 49% / 26% / +2.41% / +3.54% | 52% / 29% / +3.64% / +5.79% |
+| 1.3-1.6x | train | 217 | 44% / 28% / +1.55% / +1.86% | 54% / 28% / +3.27% / +4.62% |
+| > 1.6x | train | 79 | 37% / 20% / +1.15% / +1.78% | 49% / 33% / +1.68% / +2.26% |
+| < 0.8x | test | 585 | 42% / 32% / +1.39% / +2.11% | 53% / 34% / +4.35% / +8.02% |
+| 0.8-1x | test | 835 | 40% / 32% / +1.35% / +2.12% | 48% / 35% / +3.45% / +6.14% |
+| 1-1.3x | test | 739 | 41% / 30% / +1.16% / +2.19% | 49% / 37% / +2.98% / +6.30% |
+| 1.3-1.6x | test | 229 | 43% / 29% / +0.89% / +2.10% | 43% / 35% / +0.84% / +2.71% |
+| > 1.6x | test | 94 | 43% / 16% / +1.73% / +2.98% | 65% / 28% / +6.02% / +7.70% |
+
+### Conditions (base volume >= 1.3x vs the rest; <= 0.8x vs the rest)
+
+| condition | train: yes n / excess / hit vs no n / excess / hit (20) | test: the same (20) | yes - no train / test (20) | yes - no train / test (60) | years positive | verdict |
+|---|---|---|---|---|---|---|
+| in a base (15-bar close range <= 8%, the 40-bar low made > 10 bars ago) with base volume >= 1.3x the 40 bars before it | 296 / +1.83% / 60% vs 2935 / +2.45% / 58% | 323 / +2.35% / 59% vs 2159 / +2.14% / 56% | -0.61% / +0.21% | -1.11% / -2.54% | 6/10 | noise |
+| in a base (same definition) with base volume <= 0.8x the 40 bars before it | 944 / +1.68% / 54% vs 2287 / +2.68% / 60% | 585 / +2.11% / 58% vs 1897 / +2.19% / 56% | -1.00% / -0.08% | -1.24% / +2.15% | 5/10 | noise |
 
 ## Verdicts
 

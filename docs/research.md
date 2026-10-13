@@ -133,7 +133,8 @@ SEC Form 4 open-market purchases, especially in beaten-down stocks: +10 % over 6
 
 A turn on high volume is not a better turn: signal-day volume is noise for wedges and rallies, a 5-day volume
 expansion hurts the rally rule, days above 5x the 60-day average were the worst bucket, a high-volume 20-bar low
-hurts the news-day rule; only a 3-5x climax within 10 bars before a wedge breakout helped, by about half a percent:
+hurts the news-day rule; rising volume inside a tight base after a decline does not change how often the base resolves
+upward; only a 3-5x climax within 10 bars before a wedge breakout helped, by about half a percent:
 [`research_volume.md`](research_volume.md).
 
 ## Bottom line

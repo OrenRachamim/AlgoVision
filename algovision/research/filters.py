@@ -72,7 +72,7 @@ def panel_context(panel: Dict[str, pd.DataFrame], spy_close: pd.Series, sectors:
     rel20 = r20 - sec_r20
     z_rel20 = (rel20 - rel20.rolling(252, min_periods=120).mean()) / rel20.rolling(252, min_periods=120).std()
     return {"basket20": basket20, "breadth50": breadth50, "breadth50_ago": breadth50.shift(20), "spy_above_ma50": (spy > spy_ma50),
-            "dd252": dd252, "r60": r60, "sec_r60": sec_r60, "z_rel20": z_rel20, "close": close}
+            "dd252": dd252, "r60": r60, "sec_r60": sec_r60, "z_rel20": z_rel20, "close": close, "spy_close": spy}
 
 
 def attach_conditions(ev: pd.DataFrame, ctx: Dict[str, pd.DataFrame], date_col: str = "date") -> pd.DataFrame:

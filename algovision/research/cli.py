@@ -252,16 +252,19 @@ def cmd_filters(args) -> int:
 
 def cmd_volume(args) -> int:
     """Backtest volume around the turn on the same three event families (docs/research_volume.md)."""
-    from algovision.research.volume import attach_volume, volume_context, write_volume_report
+    from algovision.research.volume import attach_volume, base_events, volume_context, write_volume_report
 
     args.late_entry = False
-    families, panel, _, t0 = build_filter_families(args)
+    families, panel, ctx, t0 = build_filter_families(args)
     vctx = volume_context(panel)
+    base = base_events(vctx, ctx["spy_close"])
+    print(f"  base events: {len(base)} ({time.time() - t0:.0f}s)", file=sys.stderr)
+    base.to_csv(Path(args.out) / "base_events.csv", index=False)
     for fam in families.values():
         fam["events"] = attach_volume(fam["events"], vctx, fam["date_col"])
         fam["events"].drop(columns=[c for c in fam["events"].columns if c.startswith("rand_") or c.startswith("loc_")]).to_csv(
             Path(args.out) / f"{fam['slug']}_events.csv", index=False)
-    p = write_volume_report(Path(args.out), args.split, families, doc_path=Path(args.doc) if args.doc else None)
+    p = write_volume_report(Path(args.out), args.split, families, doc_path=Path(args.doc) if args.doc else None, base=base)
     print(f"wrote {p} ({time.time() - t0:.0f}s)", file=sys.stderr)
     return 0
 

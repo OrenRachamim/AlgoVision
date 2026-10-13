@@ -63,3 +63,24 @@ def test_volume_at_last_bar_and_breakout_bar():
     at = V.volume_at(df, 390)
     assert at["day"] >= 5.0
     assert all(np.isnan(x) for x in V.volume_at(df.iloc[:10]).values())     # too short
+
+
+def test_base_events_and_direction_table():
+    rng = np.random.default_rng(9)
+    n = 700
+    idx = pd.bdate_range("2023-01-02", periods=n)
+    c = np.r_[100 * np.cumprod(1 + rng.normal(0.0002, 0.004, 300)), None][:300].astype(float)
+    down = c[-1] * np.cumprod(1 + rng.normal(-0.004, 0.006, 150))          # a decline
+    base = down[-1] * (1 + rng.normal(0, 0.004, 250)).cumprod() ** 0.1       # then a flat, tight range
+    close = np.r_[c, down, base]
+    v = rng.integers(900_000, 1_100_000, n).astype(float)
+    v[520:] *= 1.6                                                            # volume rises in the base
+    df = pd.DataFrame({"Open": close, "High": close * 1.003, "Low": close * 0.997, "Close": close, "Volume": v}, index=idx)
+    panel = {k: pd.DataFrame({"AAA": df[k], "BBB": df[k] * 2}) for k in ("Open", "High", "Low", "Close", "Volume")}
+    vc = V.volume_context(panel)
+    assert bool(vc["base"]["AAA"].iloc[480:600].any())
+    spy = pd.Series(np.linspace(100, 120, n), index=idx)
+    ev = V.base_events(vc, spy)
+    assert len(ev) and {"ret_20", "xloc_60", "up_20", "down_60", "base_vol_bucket"} <= set(ev.columns)
+    t = V.base_direction_table(ev, "2024-06-01")
+    assert len(t) and (t["up_20"] + t["down_20"] <= 1.0 + 1e-9).all()

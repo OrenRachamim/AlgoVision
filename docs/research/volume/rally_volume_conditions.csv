@@ -55,3 +55,19 @@ volume on the 20-bar low-close day >= 2x its prior 20-day average (capitulation 
 >= 60% of the last 10 bars' volume on up days (accumulation),test,yes,60,1012,0.046523298559576806,0.5592885375494071,0.09030732088829949
 >= 60% of the last 10 bars' volume on up days (accumulation),test,no,20,1081,0.02885516026193695,0.6123959296947271,0.04200122901123324
 >= 60% of the last 10 bars' volume on up days (accumulation),test,no,60,1081,0.059537541148788786,0.6244218316373727,0.10199584197898666
+"in a base (15-bar close range <= 8%, the 40-bar low made > 10 bars ago) with base volume >= 1.3x the 40 bars before it",train,yes,20,42,0.028534566578234794,0.6190476190476191,0.043155492714298166
+"in a base (15-bar close range <= 8%, the 40-bar low made > 10 bars ago) with base volume >= 1.3x the 40 bars before it",train,yes,60,42,0.040288055332212115,0.5952380952380952,0.06290596162682371
+"in a base (15-bar close range <= 8%, the 40-bar low made > 10 bars ago) with base volume >= 1.3x the 40 bars before it",train,no,20,3290,0.027883286276737973,0.6094224924012158,0.03945610125080116
+"in a base (15-bar close range <= 8%, the 40-bar low made > 10 bars ago) with base volume >= 1.3x the 40 bars before it",train,no,60,3290,0.042885202375125324,0.6006079027355623,0.06579288346863316
+"in a base (15-bar close range <= 8%, the 40-bar low made > 10 bars ago) with base volume >= 1.3x the 40 bars before it",test,yes,20,55,0.00598133144453105,0.45454545454545453,0.016157117001040774
+"in a base (15-bar close range <= 8%, the 40-bar low made > 10 bars ago) with base volume >= 1.3x the 40 bars before it",test,yes,60,55,0.028513709442992637,0.6909090909090909,0.0518402376915161
+"in a base (15-bar close range <= 8%, the 40-bar low made > 10 bars ago) with base volume >= 1.3x the 40 bars before it",test,no,20,2038,0.02340393794993867,0.5888125613346418,0.03692004228754166
+"in a base (15-bar close range <= 8%, the 40-bar low made > 10 bars ago) with base volume >= 1.3x the 40 bars before it",test,no,60,2038,0.05391236805925801,0.5902845927379784,0.09754528991423467
+in a base (same definition) with base volume <= 0.8x the 40 bars before it,train,yes,20,259,0.017886349564442884,0.5984555984555985,0.02914741396720739
+in a base (same definition) with base volume <= 0.8x the 40 bars before it,train,yes,60,259,0.003186157134066927,0.5405405405405406,0.0219874134185538
+in a base (same definition) with base volume <= 0.8x the 40 bars before it,train,no,20,3073,0.02873475402198603,0.6104783599088838,0.04037550393479649
+in a base (same definition) with base volume <= 0.8x the 40 bars before it,train,no,60,3073,0.04619563925818154,0.6055971363488448,0.0694454594613486
+in a base (same definition) with base volume <= 0.8x the 40 bars before it,test,yes,20,152,0.023997999539577965,0.631578947368421,0.035751944226049624
+in a base (same definition) with base volume <= 0.8x the 40 bars before it,test,yes,60,152,0.01864453209577569,0.4934210526315789,0.06823682648528573
+in a base (same definition) with base volume <= 0.8x the 40 bars before it,test,no,20,1941,0.02286373149995279,0.5816589386913962,0.036423179853017816
+in a base (same definition) with base volume <= 0.8x the 40 bars before it,test,no,60,1941,0.055954503475308864,0.6007212776919114,0.09854534584877908
