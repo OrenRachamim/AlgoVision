@@ -471,6 +471,25 @@ noise (the rules earn more over random entries when the basket is falling), so t
 the peers-z proxy, gap size, the detector score (the highest tercile did worst in both periods) and a late entry after
 the gap day are noise. Only verdicts marked consistent change what the report does.
 
+## Volume around the turn, backtested (`research-volume` command)
+
+```bash
+python -m algovision research-volume             # 10 years, train < 2023 / test >= 2023, docs/research_volume.md
+```
+
+`algovision/research/volume.py` tests the trader's rule of thumb that a turn on high volume is a better turn, on
+the same three event families and with the same protocol and verdict rule as `research-filters`. Five point-in-time
+features at the signal bar: the signal day's volume vs the prior 20-day average, the last five bars vs the prior 20,
+a climax day (3x the prior 60-day average) within the last 10 bars, the volume on the day of the lowest close of the
+last 20 bars, and the share of the last 10 bars' volume on up days. Results
+([docs/research_volume.md](docs/research_volume.md)): the hypothesis is not supported. A loud signal day is noise
+in the wedge and rally rules (the quiet breakouts did best in the first half of the decade, flat in the second), a
+5-day volume expansion into the turn **hurts** the rally rule at 20 bars, a day above 5x the 60-day average within
+the last 10 bars was the worst bucket in both periods for wedges and rallies, and in the news-day rule a 2x volume
+day at the 20-bar low **hurts** (-1.9% in both periods). The only volume condition that passed is a 3-5x climax day
+within the 10 bars before a wedge breakout (+0.5-0.8% at 20 bars, small). Volume is therefore shown in the wedge and
+rally tables as context (`volume`, `max vol 10d`) and does not enter any rule, flag, checklist or order.
+
 ## Forward test (`journal` command)
 
 ```bash

@@ -177,12 +177,13 @@ def cmd_rally(args) -> int:
     return 0
 
 
-def cmd_filters(args) -> int:
-    """Backtest the filters the forward test suggested, on the wedge, news-day and early-rally events (docs/research_filters.md)."""
+def build_filter_families(args):
+    """The three ten-year event families (beaten-down wedge breakout, news-day, early rally) with the filter conditions
+    attached, plus the panel and the price context; shared by ``research-filters`` and ``research-volume``."""
     from algovision.data.universe import load_snapshot
     from algovision.research.anomalies import news_gap_events
     from algovision.research.factors import load_panel
-    from algovision.research.filters import attach_conditions, newsday_late_entry, panel_context, write_filters_report
+    from algovision.research.filters import attach_conditions, newsday_late_entry, panel_context
     from algovision.research.rally import combined_events, rally_events
 
     symbols = get_universe(args.universe)
@@ -223,9 +224,10 @@ def cmd_filters(args) -> int:
     nd = attach_conditions(nd, ctx, "date")
     nd["gap_size"] = pd.cut(nd["gap"].abs(), [0, 0.07, 0.12, 1.0], labels=["4-7%", "7-12%", ">12%"])
     nd["gap_dir"] = np.where(nd["dir"] > 0, "gap up", "gap down")
-    late = newsday_late_entry(panel, spy["Close"], nd)
+    late = newsday_late_entry(panel, spy["Close"], nd) if getattr(args, "late_entry", True) else None
     families["News-day in a beaten-down stock, long (hold 60 bars)"] = {"events": nd, "ret_col": "long", "x_col": "lxloc", "date_col": "date",
-                                                                       "buckets": {"Gap size": "gap_size", "Gap direction": "gap_dir"}, "late": late, "slug": "newsday"}
+                                                                       "buckets": {"Gap size": "gap_size", "Gap direction": "gap_dir"}, "late": late,
+                                                                       "slug": "newsday", "newsday": True}
     print(f"  news-day events: {len(nd)} ({time.time() - t0:.0f}s)", file=sys.stderr)
     # 3. early rally: the first turn rule in a beaten-down stock
     rv = rally_events(panel, spy["Close"], progress=lambda i, n, ne: print(f"  rally [{i}/{n}] events={ne}", file=sys.stderr) if i % 100 == 0 or i == n else None)
@@ -235,7 +237,31 @@ def cmd_filters(args) -> int:
         families["Early rally in a beaten-down stock (hold 20 bars)"] = {"events": cmb, "ret_col": "ret", "x_col": "xloc", "date_col": "date",
                                                                         "buckets": {"Depth of the decline (6-month return)": "depth", "Rules fired within a week": "n_rules"}, "slug": "rally"}
     print(f"  rally events: {len(cmb)} ({time.time() - t0:.0f}s)", file=sys.stderr)
+    return families, panel, ctx, t0
+
+
+def cmd_filters(args) -> int:
+    """Backtest the filters the forward test suggested, on the wedge, news-day and early-rally events (docs/research_filters.md)."""
+    from algovision.research.filters import write_filters_report
+
+    families, _, _, t0 = build_filter_families(args)
     p = write_filters_report(Path(args.out), args.split, families, doc_path=Path(args.doc) if args.doc else None)
+    print(f"wrote {p} ({time.time() - t0:.0f}s)", file=sys.stderr)
+    return 0
+
+
+def cmd_volume(args) -> int:
+    """Backtest volume around the turn on the same three event families (docs/research_volume.md)."""
+    from algovision.research.volume import attach_volume, volume_context, write_volume_report
+
+    args.late_entry = False
+    families, panel, _, t0 = build_filter_families(args)
+    vctx = volume_context(panel)
+    for fam in families.values():
+        fam["events"] = attach_volume(fam["events"], vctx, fam["date_col"])
+        fam["events"].drop(columns=[c for c in fam["events"].columns if c.startswith("rand_") or c.startswith("loc_")]).to_csv(
+            Path(args.out) / f"{fam['slug']}_events.csv", index=False)
+    p = write_volume_report(Path(args.out), args.split, families, doc_path=Path(args.doc) if args.doc else None)
     print(f"wrote {p} ({time.time() - t0:.0f}s)", file=sys.stderr)
     return 0
 

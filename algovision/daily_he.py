@@ -136,6 +136,13 @@ def newsday_he(nd: pd.DataFrame, sectors: Dict[str, str], days: Optional[Dict] =
     return md + [out.to_markdown(index=False), ""]
 
 
+from algovision.research.volume import volume_at
+
+
+def _x(v):
+    return "" if v is None or not np.isfinite(v) else f"{v:.1f}x"
+
+
 def wedge_table_he(wedges: Dict, frames: Dict[str, pd.DataFrame], data: Dict[str, Dict], peers: Dict[str, Dict], decisions: Dict[str, Dict],
                    sectors: Dict[str, str], days: Optional[Dict] = None, watch: bool = False) -> List[str]:
     """The confirmed wedges (the signal) or, with ``watch=True``, the forming ones as the watch list."""
@@ -157,6 +164,7 @@ def wedge_table_he(wedges: Dict, frames: Dict[str, pd.DataFrame], data: Dict[str
         d = data.get(s) or {}
         geo = wedge_geometry(m, df)
         last = float(df["Close"].iloc[-1])
+        vol = volume_at(df, int(m.breakout_idx) if m.breakout_idx is not None else None)
         pr, dec = peers.get(s), decisions.get(s)
         why, sent, fu = d.get("why") or {}, d.get("sent"), d.get("fu") or {}
         rows.append({
@@ -167,6 +175,7 @@ def wedge_table_he(wedges: Dict, frames: Dict[str, pd.DataFrame], data: Dict[str
             "אחרון": f"{last:.2f}", "מהסטופ": _pct(m.stop / last - 1 if last else np.nan),
             "6 חודשים": _pct(m.metrics.get("context", {}).get("ret_126")), "מול ממוצע 200": _pct(m.metrics.get("context", {}).get("dist_ma200")),
             "ATR%": f"{m.metrics.get('context', {}).get('atr_pct', 0) * 100:.1f}%", "גובה הטריז": f"{geo['h0_pct'] * 100:.0f}%",
+            "מחזור": _x(vol["day"]), "מחזור שיא 10 ימים": _x(vol["climax10"]),
             "מול עמיתים 20 יום": peers_short(pr), "AI": decision_cell(dec, "he"), "הקבוצה": _group_cell_he(pr),
             "למה ירדה": _he_cause(why.get("cause", "")) if why else "", "חששות": (", ".join(t["he"] for t in sent["concerns"]["themes"][:2]) or "לא נמצאו") if sent else "",
             "סנטימנט": SENT_HE[sent["label"]] if sent else "", "קריאה": LABEL_SHORT_HE.get(d.get("label"), "") if d else "",
@@ -182,6 +191,10 @@ def wedge_table_he(wedges: Dict, frames: Dict[str, pd.DataFrame], data: Dict[str
            "*הקבוצה*: קבוצת העמיתים של המניה כסל אחד במשקל שווה, מוכה או לא (בסוגריים חלקן של שאר החברות שמוכות), ו-\"+ טריז\" כאשר הסל "
            "עצמו בטריז יורד. איתותים שבהם רוב הקבוצה הייתה מוכה גם כן הרוויחו +1.2% (אימון) / +1.9% (מבחן) יותר על פני 20 נרות, חיובי בכל 6 "
            "השנים שנבדקו, לא אושר ב-60 נרות (docs/research_groups.md); ראיות בינוניות, הקשר ולא מסנן.", "",
+           "*מחזור*: מחזור יום הפריצה מול ממוצע 20 הימים שלפניו; *מחזור שיא 10 ימים*: יום המחזור הגדול ביותר ב-10 הנרות האחרונים מול ממוצע 60 "
+           "הימים שלפניו. בדיקה לאחור של עשר שנים (docs/research_volume.md): פריצה רועשת אינה פריצה טובה יותר (הפריצות השקטות ביותר היו הטובות "
+           "ביותר במחצית הראשונה של העשור, ללא הבדל בשנייה); יום שיא של 3-5x בתוך 10 הנרות שלפני הפריצה הוסיף +0.5-0.8% ב-20 נרות בשתי "
+           "התקופות, התנאי היחיד של מחזור שעבר, וימים מעל 5x היו הגרועים ביותר בשתי התקופות. הקשר, לא מסנן ולא דירוג.", "",
            "**הכלל בקצרה.** טריז יורד: שני קווי מגמה יורדים ומתכנסים, המחיר נסחר בתוכם ונשאר בפנים, ופריצה בסגירה מעל הקו העליון היא האיתות. "
            "נבדק על S&P 500 + NASDAQ-100 ב-2016-2026 עם חלוקה לאימון (עד 2022) ומבחן (2023-2026): היתרון קיים רק במניות **מוכות**, כלומר תשואת 6 "
            "חודשים מתחת ל-8%- ומחיר מתחת לממוצע הנע של 200 יום. בתת-הקבוצה הזו: כ-3%+ לעסקה מעל כניסה אקראית באותה מניה, שיעור פגיעה ~60%, מקדם "

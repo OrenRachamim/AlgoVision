@@ -138,14 +138,15 @@ def _side(g: pd.DataFrame, h: int, ret_col: str, x_col: str) -> Dict:
 
 
 def condition_study(ev: pd.DataFrame, split: str, conditions: Sequence[str], h: int = 20, h2: int = 60, ret_col: str = "ret",
-                    x_col: str = "xloc", date_col: str = "date") -> Tuple[pd.DataFrame, pd.DataFrame]:
+                    x_col: str = "xloc", date_col: str = "date", names: Optional[Dict[str, str]] = None) -> Tuple[pd.DataFrame, pd.DataFrame]:
     """(detail, findings): per condition x period x yes/no stats, and the yes-minus-no verdict table."""
+    names = names or CONDITION_NAMES
     d = pd.to_datetime(ev[date_col])
     years = d.dt.year
     detail, find = [], []
     for c in conditions:
         cond = ev[c].fillna(False).astype(bool)
-        rec: Dict = {"condition": CONDITION_NAMES.get(c, c), "key": c}
+        rec: Dict = {"condition": names.get(c, c), "key": c}
         for period, mask in (("train", d < split), ("test", d >= split)):
             for state, sel in (("yes", cond), ("no", ~cond)):
                 for hh in (h, h2):

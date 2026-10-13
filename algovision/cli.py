@@ -230,6 +230,17 @@ def build_parser() -> argparse.ArgumentParser:
     rf.add_argument("--workers", type=int, default=4)
     rf.add_argument("--limit", type=int, default=0)
 
+    rv = sub.add_parser("research-volume", help="backtest volume around the turn (signal-day volume, climax, capitulation at the low, accumulation) on the wedge, news-day and rally events (docs/research_volume.md)")
+    rv.add_argument("--universe", "-u", default="all", choices=UNIVERSES)
+    rv.add_argument("--period", default="10y")
+    rv.add_argument("--split", default="2023-01-01")
+    rv.add_argument("--out", default="docs/research/volume")
+    rv.add_argument("--doc", default="docs/research_volume.md")
+    rv.add_argument("--cache-dir", default=None)
+    rv.add_argument("--offline", action="store_true")
+    rv.add_argument("--workers", type=int, default=4)
+    rv.add_argument("--limit", type=int, default=0)
+
     fa = sub.add_parser("factors", help="classic anomalies on the universe: cross-sectional momentum, trend filter, short-term reversal")
     fa.add_argument("--universe", "-u", default="all", choices=UNIVERSES)
     fa.add_argument("--symbols", default=None)
@@ -444,6 +455,9 @@ def main(argv: Optional[List[str]] = None) -> int:
     if args.cmd == "research-filters":
         from algovision.research.cli import cmd_filters
         return cmd_filters(args)
+    if args.cmd == "research-volume":
+        from algovision.research.cli import cmd_volume
+        return cmd_volume(args)
     if args.cmd == "story":
         import json as _json
 

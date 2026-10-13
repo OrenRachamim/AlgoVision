@@ -129,6 +129,13 @@ On the tested entries (wedge, news day, insider buy): take-profit, rising target
 SEC Form 4 open-market purchases, especially in beaten-down stocks: +10 % over 60 bars and +15 % over 120 in both periods:
 [`research_insiders.md`](research_insiders.md).
 
+## Volume around the turn
+
+A turn on high volume is not a better turn: signal-day volume is noise for wedges and rallies, a 5-day volume
+expansion hurts the rally rule, days above 5x the 60-day average were the worst bucket, a high-volume 20-bar low
+hurts the news-day rule; only a 3-5x climax within 10 bars before a wedge breakout helped, by about half a percent:
+[`research_volume.md`](research_volume.md).
+
 ## Bottom line
 
 Do not trust a setup because the scanner found it. As a class, the classic patterns on daily large-cap charts

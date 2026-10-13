@@ -161,15 +161,21 @@ def build_report(out_dir: Path, universe: str = "all", cache_dir: Optional[Path]
     confirmed = {s: m for s, m in wedges.items() if m.status == "confirmed"}
     forming = {s: m for s, m in wedges.items() if m.status != "confirmed"}
 
+    from algovision.research.volume import volume_at
+
+    def _x(v):
+        return "" if v is None or not np.isfinite(v) else f"{v:.1f}x"
+
     def wedge_row(s, m, key):
         df = frames[s]
         since = ""
         if m.breakout_idx is not None:
             since = len(df) - 1 - int(m.breakout_idx)
+        vol = volume_at(df, int(m.breakout_idx) if m.breakout_idx is not None else None)
         return {"symbol": tv(s), "days listed": _days(days, key, s), "status": m.status, "score": round(m.score, 2), "start": m.start_date, "end": m.end_date,
                 "breakout": m.breakout_date or "", "bars since breakout": since, "level": round(m.level, 2), "stop": round(m.stop, 2),
                 "last": round(m.last_close, 2), "6m": _pct(m.metrics["context"]["ret_126"]), "vs MA200": _pct(m.metrics["context"]["dist_ma200"]),
-                "group": group_cell(s)}
+                "volume": _x(vol["day"]), "max vol 10d": _x(vol["climax10"]), "group": group_cell(s)}
 
     rows = [wedge_row(s, m, "wedge") for s, m in confirmed.items()]
     tag(confirmed, "falling wedge")
@@ -184,6 +190,11 @@ def build_report(out_dir: Path, universe: str = "all", cache_dir: Optional[Path]
                   "that are beaten down), and \"+ wedge\" when the basket itself is in a falling wedge. Signals where most of the group was beaten "
                   "down too earned +1.2% (train) / +1.9% (test) more over 20 bars, positive in all 6 years tested, not confirmed at 60 bars "
                   "(docs/research_groups.md); moderate evidence, context not a filter.\n")
+        md.append("*volume*: the breakout day's volume vs the prior 20-day average; *max vol 10d*: the largest volume day of the last 10 bars vs "
+                  "the prior 60-day average. Ten-year backtest (docs/research_volume.md): a loud breakout day is not a better one (the quietest "
+                  "breakouts did best in the first half of the decade, flat in the second); a 3-5x climax day within the 10 bars before the "
+                  "breakout added +0.5-0.8% at 20 bars in both periods, the only volume condition that passed, and days above 5x did worst in both "
+                  "periods. Context, not a filter or a rank.\n")
     if wedges:
         md.append(f"One-rule file in Hebrew with the full technical analysis of every wedge (confirmed and forming), why the stock fell and the brief, "
                   f"each table row linked to its section: `wedge_{today}.md` ({WEDGE_URL.format(date=today)}).\n")
@@ -212,6 +223,10 @@ def build_report(out_dir: Path, universe: str = "all", cache_dir: Optional[Path]
                   "the stock's own turn, it does not beat the index). Only the deepest declines beat the SPY (6m < -30%: +6.1% / +4.5% net at 20 bars, "
                   "+2.5% / +2.1% over the SPY); two or more rules within a week helps a little. The journal logs the day-0 rows as "
                   "`early_rally_beaten_down` (docs/research_rally.md).\n")
+        md.append("*volume*: the signal day's volume vs the prior 20-day average. Ten-year backtest (docs/research_volume.md): a loud turn is not a "
+                  "better one (signal-day volume above 1.5x: -1.4% train / 0.0% test vs the quiet turns; a 5-day volume expansion into the turn "
+                  "hurt at 20 bars in both periods; a day above 5x the 60-day average within the last 10 bars was the worst bucket in both periods, "
+                  "hit 46-47%). Shown as context only.\n")
     else:
         md.append("none\n")
     # the watch list: wedges still forming (no signal yet)
