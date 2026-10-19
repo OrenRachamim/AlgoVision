@@ -269,6 +269,24 @@ def cmd_volume(args) -> int:
     return 0
 
 
+def cmd_ma200(args) -> int:
+    """Backtest the cross back above the 200-day MA after a long run below it (docs/research_ma200.md)."""
+    from algovision.ma200 import ma200_cross_study, write_ma200_report
+
+    t0 = time.time()
+    symbols = get_universe(args.universe)
+    if args.limit:
+        symbols = symbols[: args.limit]
+    cache = Path(args.cache_dir) if args.cache_dir else DataProvider.__init__.__defaults__[0]
+    frames = DataProvider(cache_dir=cache, offline=args.offline, workers=args.workers).get_many(list(symbols) + ["SPY"], args.period, "1d")
+    spy = frames.pop("SPY")
+    ev = ma200_cross_study(frames, spy["Close"], min_below=60)
+    print(f"research-ma200: {len(ev)} crosses in {len(frames)} stocks ({time.time() - t0:.0f}s)", file=sys.stderr)
+    p = write_ma200_report(Path(args.doc), ev, args.split, out_dir=Path(args.out))
+    print(f"wrote {p} ({time.time() - t0:.0f}s)", file=sys.stderr)
+    return 0
+
+
 def cmd_factors(args) -> int:
     from algovision.research.factors import write_factors_report
 

@@ -241,6 +241,17 @@ def build_parser() -> argparse.ArgumentParser:
     rv.add_argument("--workers", type=int, default=4)
     rv.add_argument("--limit", type=int, default=0)
 
+    rm = sub.add_parser("research-ma200", help="backtest the cross back above the 200-day MA after a long run below it (docs/research_ma200.md)")
+    rm.add_argument("--universe", "-u", default="all", choices=UNIVERSES)
+    rm.add_argument("--period", default="10y")
+    rm.add_argument("--split", default="2023-01-01")
+    rm.add_argument("--out", default="docs/research/ma200")
+    rm.add_argument("--doc", default="docs/research_ma200.md")
+    rm.add_argument("--cache-dir", default=None)
+    rm.add_argument("--offline", action="store_true")
+    rm.add_argument("--workers", type=int, default=4)
+    rm.add_argument("--limit", type=int, default=0)
+
     fa = sub.add_parser("factors", help="classic anomalies on the universe: cross-sectional momentum, trend filter, short-term reversal")
     fa.add_argument("--universe", "-u", default="all", choices=UNIVERSES)
     fa.add_argument("--symbols", default=None)
@@ -458,6 +469,9 @@ def main(argv: Optional[List[str]] = None) -> int:
     if args.cmd == "research-volume":
         from algovision.research.cli import cmd_volume
         return cmd_volume(args)
+    if args.cmd == "research-ma200":
+        from algovision.research.cli import cmd_ma200
+        return cmd_ma200(args)
     if args.cmd == "story":
         import json as _json
 

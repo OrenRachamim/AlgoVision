@@ -137,6 +137,14 @@ hurts the news-day rule; rising volume inside a tight base after a decline does 
 upward; only a 3-5x climax within 10 bars before a wedge breakout helped, by about half a percent:
 [`research_volume.md`](research_volume.md).
 
+## Crossing back above the 200-day MA after a long run below it
+
+1866 crosses over ten years (a close above the 200-day MA after at least 60 consecutive closes at or below it). After
+120+ bars below, the cross earned about +1% raw at 20 bars in both halves of the decade but only +0.1% (train) /
++0.9% (test) over random entries in the same stock, hit 54% / 52%; at 60 bars +3.1% / +1.7% over random entries but
++2.7% / -2.5% against the SPY. The crosses after only 60-119 bars below did worse (-1.9% at 20 bars in train). No cut
+passed in both periods, so the daily list is context, not a rule: [`research_ma200.md`](research_ma200.md).
+
 ## Bottom line
 
 Do not trust a setup because the scanner found it. As a class, the classic patterns on daily large-cap charts

@@ -37,9 +37,9 @@ from algovision.wedge_report import (LABEL_HE, LABEL_SHORT_HE, STATUS_HE, _he_ca
 from algovision.whatsnew import RULE_HE
 
 TABLE_HE = {"insider buys (beaten-down)": "אינסיידרים (מוכות)", "insider buys (other)": "אינסיידרים (אחרות)", "news-day": "יום חדשות",
-            "falling wedge": "טריז יורד", "falling wedge (forming)": "טריז בהתהוות (מעקב)", "early rally": "ראלי מוקדם"}
+            "falling wedge": "טריז יורד", "falling wedge (forming)": "טריז בהתהוות (מעקב)", "early rally": "ראלי מוקדם", "ma200 cross": "חציית ממוצע 200"}
 DAYS_LABEL = {"insider_beaten": "Insider buys, beaten-down (tested setup)", "newsday": "News-day", "wedge": "Falling wedge, beaten-down",
-              "rally": "Early rally, beaten-down", "watch": "Wedge watch list (forming, not a signal)"}
+              "rally": "Early rally, beaten-down", "watch": "Wedge watch list (forming, not a signal)", "ma200": "MA200 cross after a long run below"}
 
 
 def _days(days: Optional[Dict[str, Dict[str, int]]], key: str, symbol: str) -> str:
@@ -238,6 +238,33 @@ def rally_table_he(rally: pd.DataFrame, peers: Dict[str, Dict], sectors: Dict[st
            "ה-SPY (6 חודשים מתחת ל-30%-: +6.1% / +4.5% נטו ב-20 נרות, +2.5% / +2.1% מעל ה-SPY); שני כללים ומעלה בתוך שבוע עוזרים מעט. היומן רושם "
            "את שורות יום 0 ככלל early_rally_beaten_down (docs/research_rally.md).", ""]
     return md
+
+
+def ma200_table_he(mx: pd.DataFrame, peers: Dict[str, Dict], sectors: Dict[str, str], days: Optional[Dict] = None, macd=None) -> List[str]:
+    from algovision.ma200 import BACKTEST, MIN_BELOW, heading_note_he
+
+    md = [f"### חצו מעלה את ממוצע 200 אחרי רצף ארוך מתחתיו (סגירה מעל הקו אחרי {MIN_BELOW}+ נרות על הקו או מתחתיו, 3 הנרות האחרונים; "
+          f"{heading_note_he(BACKTEST)})", ""]
+    if mx is None or not len(mx):
+        return md + ["אין", ""]
+    t = mx.copy()
+    out = pd.DataFrame({
+        "סימול": t["symbol"].map(_tv), "פירוט": t["symbol"].map(lambda s: f"[פירוט](#{_anchor(s)})"),
+        "ימים ברשימה": t["symbol"].map(lambda s: _days(days, "ma200", s)),
+        "תאריך החצייה": t["signal_date"], "נרות מאז": t["bars_ago"], "נרות מתחת": t["bars_below"], "מתחת מאז": t["below_since"],
+        "יום החצייה": t["day_ret"].map(lambda v: _pct(v, 1)), "10 ימים": t["ret_10"].map(lambda v: _pct(v, 1)),
+        "6 חודשים": t["ret_6m"].map(lambda v: _pct(v, 1)), "משיא 52 שבועות": t["from_52w_high"].map(lambda v: _pct(v, 1)),
+        "מול ממוצע 50": t["dist_ma50"].map(lambda v: _pct(v, 1)), "מול ממוצע 200": t["dist_ma200"].map(lambda v: _pct(v, 1)),
+        "מחזור": t["volume_ratio"].map(lambda v: "" if pd.isna(v) else f"{v:.1f}x"), "אחרון": t["last"].map(lambda v: f"{v:.2f}"),
+        "ממוצע 200": t["ma200"].map(lambda v: f"{v:.2f}"), "MACD נגיעה צפויה": t["symbol"].map(lambda s: _macd_he(macd, s)),
+        "הקבוצה": t["symbol"].map(lambda s: _group_cell_he(peers.get(s))), "סקטור": t["symbol"].map(lambda s: _he_sector(sectors.get(s, "")))})
+    return md + [out.to_markdown(index=False), "",
+                 "*נרות מתחת*: סגירות רצופות על ממוצע 200 או מתחתיו לפני החצייה (*מתחת מאז* היא הראשונה שבהן); הרשימה ממוינת לפי עדכניות ואז לפי "
+                 "אורך הרצף. מניה כאן כבר אינה מוכה בהגדרה, ולכן אף אחד מכללי המניות המוכות לא חל עליה; הבדיקה לאחור של עשר שנים של האירוע עצמו "
+                 "נמצאת ב-docs/research_ma200.md והכותרת מצטטת את תוצאתה: ב-20 נרות החציות אחרי 120+ נרות מתחת הרוויחו כ-+0.1% (אימון) / +0.9% (מבחן) מעל "
+                 "כניסות אקראיות באותה מניה, הצלחה 54% / 52%; ב-60 נרות +3.1% / +1.7% מעל כניסות אקראיות אבל +2.7% / -2.5% מול ה-SPY, כך ששום יתרון "
+                 "לא החזיק בשתי התקופות; החציות אחרי 60-119 נרות בלבד היו גרועות יותר במחצית הראשונה של העשור (-1.9% ב-20 נרות). הקשר, לא כלל: שום דבר "
+                 "לא נכנס ליומן, לרשימת הבדיקות או לדגלים.", ""]
 
 
 def summary_table_he(rows: List[Dict], title: bool = True) -> List[str]:
@@ -464,7 +491,7 @@ def build_daily_he(out_dir: Path, today: str, last_bar: str, n_frames: int, n_sy
                    nd: pd.DataFrame, wedges: Dict, rally: pd.DataFrame, rows: List[Dict], frames: Dict[str, pd.DataFrame], peers: Dict[str, Dict],
                    decisions: Dict[str, Dict], picks: List[str], sectors: Dict[str, str], bench: Optional[pd.DataFrame], note_he: str,
                    regime: Optional[Dict] = None, days: Optional[Dict] = None, lookback: Optional[Dict] = None,
-                   skips: Optional[List[str]] = None, macd=None) -> Path:
+                   skips: Optional[List[str]] = None, macd=None, ma200: Optional[pd.DataFrame] = None) -> Path:
     """Write ``daily_<today>.md`` / ``daily_latest.md`` and return the dated path."""
     from algovision.checklist import checklist_markdown
     from algovision.lookback import lookback_markdown
@@ -494,6 +521,7 @@ def build_daily_he(out_dir: Path, today: str, last_bar: str, n_frames: int, n_sy
     wedge_data = {s: by_sym[s]["_data"] for s in wedges if s in by_sym}
     md += wedge_table_he(wedges, frames, wedge_data, peers, decisions, sectors, days, macd=macd)
     md += rally_table_he(rally, peers, sectors, days, macd)
+    md += ma200_table_he(ma200, peers, sectors, days, macd)
     md += wedge_table_he(wedges, frames, wedge_data, peers, decisions, sectors, days, watch=True, macd=macd)
     md += ["*ימים ברשימה*: בכמה מהדוחות (מתוך 30 האחרונים) השם ישב בטבלה הזאת, כולל היום. בחמשת השבועות הראשונים השמות שהופיעו 4-7 ימים היו הגרועים; "
            "רישום טרי היה טוב מרישום ישן.", "", macd_note("he"), ""]

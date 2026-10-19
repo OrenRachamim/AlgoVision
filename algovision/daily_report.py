@@ -30,7 +30,8 @@ DAILY_URL = os.environ.get("ALGOVISION_DAILY_URL", "https://github.com/OrenRacha
 
 # the signal tables keyed by the 'what is new' section labels, for the 'days listed' column
 DAYS_LABEL = {"insider_beaten": "Insider buys, beaten-down (tested setup)", "insider_other": "Insider buys, other stocks", "newsday": "News-day",
-              "wedge": "Falling wedge, beaten-down", "rally": "Early rally, beaten-down", "watch": "Wedge watch list (forming, not a signal)"}
+              "wedge": "Falling wedge, beaten-down", "rally": "Early rally, beaten-down", "watch": "Wedge watch list (forming, not a signal)",
+              "ma200": "MA200 cross after a long run below"}
 
 
 def _pct(v, d=0):
@@ -140,12 +141,14 @@ def build_report(out_dir: Path, universe: str = "all", cache_dir: Optional[Path]
     wedges = wedge_matches(frames, symbols)
     from algovision.research.rally import early_rally_signals
     rally = early_rally_signals(frames, [s for s in symbols if s in frames], max_age=3)
+    from algovision.ma200 import BACKTEST, MIN_BELOW, heading_note, ma200_cross_signals
+    mx = ma200_cross_signals(frames, [s for s in symbols if s in frames], max_age=3)
     # peer groups (cached a week) and today's divergence / group state for every listed name
     peers: Dict[str, Dict] = {}
     try:
         from algovision.peers import load_peers
         from algovision.research.groups import group_context_today
-        listed = list(dict.fromkeys(list(brief_tables) + list(nd["symbol"]) + list(wedges) + list(rally["symbol"])))
+        listed = list(dict.fromkeys(list(brief_tables) + list(nd["symbol"]) + list(wedges) + list(rally["symbol"]) + list(mx["symbol"])))
         peers = load_peers(frames, cache, symbols=listed)
         import json as _json
         model = _json.loads((cache / "peers.json").read_text())
@@ -231,6 +234,35 @@ def build_report(out_dir: Path, universe: str = "all", cache_dir: Optional[Path]
                   "better one (signal-day volume above 1.5x: -1.4% train / 0.0% test vs the quiet turns; a 5-day volume expansion into the turn "
                   "hurt at 20 bars in both periods; a day above 5x the 60-day average within the last 10 bars was the worst bucket in both periods, "
                   "hit 46-47%). Shown as context only.\n")
+    else:
+        md.append("none\n")
+    # the MA200 cross list: back above the 200-day line after a long run below it (context, its own backtest in docs/research_ma200.md)
+    md.append(f"### Crossed above the 200-day MA after a long run below it (close above the line after >= {MIN_BELOW} bars at or below it, "
+              f"last 3 bars; {heading_note(BACKTEST)})\n")
+    if len(mx):
+        tag(mx["symbol"], "ma200 cross")
+        t = mx[["symbol", "signal_date", "bars_ago", "bars_below", "below_since", "day_ret", "ret_10", "ret_6m", "from_52w_high", "dist_ma50",
+                "dist_ma200", "volume_ratio", "last", "ma200"]].copy()
+        for c in ("day_ret", "ret_10", "ret_6m", "from_52w_high", "dist_ma50", "dist_ma200"):
+            t[c] = t[c].map(lambda v: _pct(v, 1))
+        t["volume_ratio"] = t["volume_ratio"].map(lambda v: "" if pd.isna(v) else f"{v:.1f}x")
+        t["ma200"] = t["ma200"].map(lambda v: f"{v:.2f}")
+        t["MACD pre-touch"] = t["symbol"].map(macd.cell)
+        t["group"] = t["symbol"].map(group_cell)
+        t["sector"] = t["symbol"].map(lambda s: sectors.get(s, ""))
+        t.insert(1, "days listed", t["symbol"].map(lambda s: _days(days, "ma200", s)))
+        t["symbol"] = t["symbol"].map(tv)
+        t = t.rename(columns={"signal_date": "cross date", "bars_ago": "bars ago", "bars_below": "bars below", "below_since": "below since",
+                              "day_ret": "cross day", "ret_10": "10d", "ret_6m": "6m", "from_52w_high": "from 52w high", "dist_ma50": "vs MA50",
+                              "dist_ma200": "vs MA200", "volume_ratio": "volume", "ma200": "MA200"})
+        md.append(t.to_markdown(index=False) + "\n")
+        md.append("*bars below*: consecutive closes at or below the 200-day MA before the cross (*below since* is the first of them); the list is "
+                  "sorted by recency, then by the length of the run. A stock here is by definition no longer beaten down, so none of the "
+                  "beaten-down rules apply to it; the ten-year backtest of this event itself is in docs/research_ma200.md and the heading quotes "
+                  "its result: at 20 bars the crosses after 120+ bars below earned about +0.1% (train) / +0.9% (test) over random entries in the "
+                  "same stock, hit 54% / 52%; at 60 bars +3.1% / +1.7% over random entries but +2.7% / -2.5% vs the SPY, so no edge held in both "
+                  "periods; the crosses after only 60-119 bars below did worse in the first half of the decade (-1.9% at 20 bars). Context, not a "
+                  "rule: nothing enters the journal, the checklist or the flags.\n")
     else:
         md.append("none\n")
     # the watch list: wedges still forming (no signal yet)
@@ -352,7 +384,7 @@ def build_report(out_dir: Path, universe: str = "all", cache_dir: Optional[Path]
         try:
             note_he = (out_dir / "new_he_latest.md").read_text(encoding="utf-8")
             build_daily_he(out_dir, today, last_bar, len(frames), len(symbols), insider_days, sig, tx, nd, wedges, rally, brows, frames, peers,
-                           decisions, picks, sectors, bench, note_he, regime=regime, days=days, lookback=look, skips=skips, macd=macd)
+                           decisions, picks, sectors, bench, note_he, regime=regime, days=days, lookback=look, skips=skips, macd=macd, ma200=mx)
         except Exception as exc:  # noqa: BLE001
             print(f"hebrew daily file unavailable: {exc}")
     return path

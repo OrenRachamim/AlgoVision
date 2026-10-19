@@ -50,6 +50,9 @@ def test_build_daily_he_carries_every_part(tmp_path):
     frames = {"AAA": _frame(), "BBB": _frame(seed=4)}
     rows = [_row("AAA", ["news-day"], "signs of a bottom", 4.0), _row("BBB", ["early rally", "insider buys (other)"])]
     from algovision.macd_touch import MacdTouch
+    mx = pd.DataFrame({"symbol": ["BBB"], "signal_date": ["2026-10-06"], "bars_ago": [0], "bars_below": [140], "below_since": ["2026-03-20"], "day_ret": [0.02],
+                       "ret_10": [0.05], "ret_6m": [-0.03], "from_52w_high": [-0.2], "dist_ma50": [0.03], "dist_ma200": [0.01], "volume_ratio": [1.2],
+                       "last": [50.0], "ma200": [49.5]})
     macd = MacdTouch(frames, tmp_path, offline=True)         # offline: the adjusted frames, marked ~
     rows[0]["_macd"] = macd.get("AAA")
     rows[1]["_macd"] = macd.get("BBB")
@@ -72,8 +75,10 @@ def test_build_daily_he_carries_every_part(tmp_path):
     days = {"News-day": {"AAA": 2}, "Early rally, beaten-down": {}}
     path = D.build_daily_he(tmp_path, "2026-10-06", "2026-10-06", 2, 2, 45, sig, pd.DataFrame({"x": range(7)}), nd, {}, rally, rows, frames, {}, decisions, ["AAA"],
                             {"AAA": "Industrials", "BBB": "Utilities"}, None, "# AlgoVision 2026-10-06: מה חדש\n- בדיקה\n", regime=regime, days=days,
-                            lookback=None, skips=["BBB"], macd=macd)
+                            lookback=None, skips=["BBB"], macd=macd, ma200=mx)
     text = path.read_text(encoding="utf-8")
+    assert "### חצו מעלה את ממוצע 200" in text and "נרות מתחת" in text and "אין יתרון שנבדק" in text
+    assert "| [BBB](" in text.split("### חצו מעלה")[1].split("### רשימת מעקב")[0]
     assert text.count("MACD נגיעה צפויה") >= 6           # the news-day and rally tables, the summary table, the note and the two stock sections
     assert "MACD נגיעה צפויה (הקשר בלבד" in text.split("## AAA - AAA Corp")[1].split("**בקצרה:**")[0]
     assert "~" in text.split("### טבלת התקציר")[1].split("## 4.")[0]     # the cell from the adjusted cache is marked

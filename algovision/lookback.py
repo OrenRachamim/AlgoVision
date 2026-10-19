@@ -24,10 +24,10 @@ _LINK = re.compile(r"\[([A-Z][A-Z0-9.\-]*)\]\(https://www\.tradingview\.com")
 HORIZONS = (5, 10, 20)
 SECTION_EN = {"insider_beaten": "insider buys, beaten-down", "insider_other": "insider buys, other", "newsday": "news-day",
               "wedge": "falling wedge (confirmed)", "wedge_watch": "falling wedge, forming (watch list)", "early_rally": "early rally",
-              "briefs": "every name with a brief", "jev": "Jev decision", "growth": "growth screen (retired)"}
+              "ma200_cross": "MA200 cross after a long run below", "briefs": "every name with a brief", "jev": "Jev decision", "growth": "growth screen (retired)"}
 SECTION_HE = {"insider_beaten": "אינסיידרים, מוכות", "insider_other": "אינסיידרים, אחרות", "newsday": "יום חדשות",
               "wedge": "טריז יורד (מאושר)", "wedge_watch": "טריז יורד בהתהוות (רשימת מעקב)", "early_rally": "ראלי מוקדם",
-              "briefs": "כל שם עם תקציר", "jev": "החלטת Jev", "growth": "סינון צמיחה (הופסק)"}
+              "ma200_cross": "חציית ממוצע 200 אחרי רצף ארוך מתחתיו", "briefs": "כל שם עם תקציר", "jev": "החלטת Jev", "growth": "סינון צמיחה (הופסק)"}
 
 
 def _section_of(h2: Optional[str], h3: Optional[str]) -> Optional[str]:
@@ -44,6 +44,8 @@ def _section_of(h2: Optional[str], h3: Optional[str]) -> Optional[str]:
         return "wedge"
     if h.startswith("early rally"):
         return "early_rally"
+    if h.startswith("crossed above the 200-day"):
+        return "ma200_cross"
     if h.startswith("ai decisions") or h.startswith("model decisions"):
         return "jev"
     if h.startswith("checklist"):

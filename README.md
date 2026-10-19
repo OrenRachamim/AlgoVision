@@ -510,6 +510,24 @@ does not separate the bases that resolve upward from those that break (noise in 
 about the same in every volume bucket). Volume is therefore shown in the wedge and
 rally tables as context (`volume`, `max vol 10d`) and does not enter any rule, flag, checklist or order.
 
+## Back above the 200-day MA after a long run below (`research-ma200` command)
+
+```bash
+python -m algovision research-ma200              # 10 years, train < 2023 / test >= 2023, docs/research_ma200.md
+```
+
+The daily report lists, after the early-rally table, every stock whose close crossed back above its 200-day moving
+average in the last 3 bars after at least 120 consecutive closes at or below the line (`algovision/ma200.py`), with
+the length of the run, the day it started, the usual context columns, the MACD pre-touch cell and the peer group. Such
+a stock is by definition no longer beaten down, so none of the beaten-down rules apply to it; the event has its own
+ten-year backtest ([docs/research_ma200.md](docs/research_ma200.md): every cross after 60+ bars below, entry at the
+next open, 20 and 60 bars, against random entries in the same stock and against the SPY, by the length of the run).
+Result: after 120+ bars below the cross earned about +1% raw at 20 bars in both halves of the decade but only +0.1%
+(train) / +0.9% (test) over random entries in the same stock, and at 60 bars +3.1% / +1.7% over random entries but
++2.7% / -2.5% against the SPY, so no cut held in both periods. The table heading quotes these numbers; the list is
+context and enters no rule, flag, checklist, journal or order. Its names get briefs and sit in the look-back ledger as
+their own group.
+
 ## Forward test (`journal` command)
 
 ```bash

@@ -15,3 +15,4 @@ out/
 docs/research/rally/rally_events.csv
 docs/research/filters/wedge_events.csv
 docs/research/volume/*_events.csv
+docs/research/ma200/ma200_events.csv

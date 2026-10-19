@@ -23,6 +23,7 @@ SECTIONS: List[Tuple[str, str]] = [
     ("News-day", "### News-day rule"),
     ("Falling wedge, beaten-down", "### Falling Wedge in beaten-down stocks"),
     ("Early rally, beaten-down", "### Early rally in beaten-down stocks"),
+    ("MA200 cross after a long run below", "### Crossed above the 200-day MA"),
     ("Wedge watch list (forming, not a signal)", "### Watch list"),
 ]
 
@@ -101,13 +102,14 @@ def journal_new_signals(out_dir: Path) -> List[str]:
 
 LABEL_HE = {"Insider buys, beaten-down (tested setup)": "קניות אינסיידרים, מניות מוכות (התבנית שנבדקה)", "Insider buys, other stocks": "קניות אינסיידרים, מניות אחרות",
             "News-day": "יום חדשות", "Falling wedge, beaten-down": "טריז יורד, מניות מוכות", "Early rally, beaten-down": "ראלי מוקדם, מניות מוכות",
+            "MA200 cross after a long run below": "חציית ממוצע 200 אחרי רצף ארוך מתחתיו",
             "Wedge watch list (forming, not a signal)": "רשימת מעקב, טריזים בהתהוות (לא איתות)"}
 SHORT_EN = {"Insider buys, beaten-down (tested setup)": "insider buys (beaten-down)", "Insider buys, other stocks": "insider buys (other)",
             "News-day": "news-day", "Falling wedge, beaten-down": "falling wedge", "Early rally, beaten-down": "early rally",
-            "Wedge watch list (forming, not a signal)": "wedge watch list"}
+            "MA200 cross after a long run below": "MA200 cross", "Wedge watch list (forming, not a signal)": "wedge watch list"}
 SHORT_HE = {"Insider buys, beaten-down (tested setup)": "אינסיידרים (מוכות)", "Insider buys, other stocks": "אינסיידרים (אחרות)",
             "News-day": "יום חדשות", "Falling wedge, beaten-down": "טריז יורד", "Early rally, beaten-down": "ראלי מוקדם",
-            "Wedge watch list (forming, not a signal)": "רשימת מעקב"}
+            "MA200 cross after a long run below": "חציית ממוצע 200", "Wedge watch list (forming, not a signal)": "רשימת מעקב"}
 RULE_HE = {"newsday": "יום חדשות", "falling_wedge_beaten_down": "טריז יורד במניה מוכה", "insider_buy_beaten_down": "קניית אינסיידר במניה מוכה",
            "jev_pick": "בחירת Jev", "jev_skip": "דילוג של Jev", "early_rally_beaten_down": "ראלי מוקדם במניה מוכה"}
 # the journal notes are short English key-value strings; these are their Hebrew readings
