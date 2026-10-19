@@ -84,7 +84,12 @@ def _group_cell_he(p: Optional[Dict]) -> str:
 # ----------------------------------------------------------------------------
 # tables
 # ----------------------------------------------------------------------------
-def insiders_he(sig: pd.DataFrame, tx: pd.DataFrame, sectors: Dict[str, str], insider_days: int, days: Optional[Dict] = None) -> List[str]:
+def _macd_he(macd, s: str) -> str:
+    return macd.cell(s, "he") if macd is not None else ""
+
+
+def insiders_he(sig: pd.DataFrame, tx: pd.DataFrame, sectors: Dict[str, str], insider_days: int, days: Optional[Dict] = None,
+                macd=None) -> List[str]:
     md = [f"## 1. קניות אינסיידרים (טופס 4 של ה-SEC, נושאי משרה ודירקטורים, {insider_days} הימים האחרונים)", "",
           "הכלל נבדק 2016-2026: רכישה של 100 אלף דולר ומעלה במניה **מוכה** (מתחת לממוצע הנע של 200 יום, תשואת 6 חודשים מתחת ל-8%-): "
           "+10% מול כניסה אקראית על פני 60 נרות, +15% על פני 120, שיעור הצלחה ~68%, בשני חצאי העשור. רכישות במניות במגמת עלייה "
@@ -106,7 +111,7 @@ def insiders_he(sig: pd.DataFrame, tx: pd.DataFrame, sectors: Dict[str, str], in
             "קניות": d["n_buys"], "סה\"כ": d["total_value"].map(lambda v: f"${v / 1e6:.2f}M"),
             "מחיר ממוצע": d["avg_price"].map(lambda v: f"{v:.2f}"), "אחרון": d["last_close"].map(lambda v: f"{v:.2f}"),
             "6 חודשים": d["ret_6m"].map(_pct), "מול ממוצע 200": d["dist_ma200"].map(_pct), "מנכ\"ל/סמנכ\"ל כספים": np.where(d["ceo_cfo"], "כן", ""),
-            "קונים": d["buyers"].str.slice(0, 70)})
+            "MACD נגיעה צפויה": d["symbol"].map(lambda s: _macd_he(macd, s)), "קונים": d["buyers"].str.slice(0, 70)})
         md += [t.to_markdown(index=False), ""]
     md += ["### מניות אחרות עם רכישות אינסיידרים (הקשר)", ""]
     if len(rest):
@@ -120,7 +125,7 @@ def insiders_he(sig: pd.DataFrame, tx: pd.DataFrame, sectors: Dict[str, str], in
     return md
 
 
-def newsday_he(nd: pd.DataFrame, sectors: Dict[str, str], days: Optional[Dict] = None) -> List[str]:
+def newsday_he(nd: pd.DataFrame, sectors: Dict[str, str], days: Optional[Dict] = None, macd=None) -> List[str]:
     md = ["### כלל יום החדשות (פער של 4%+ על מחזור של פי 3+ במניה מוכה, 5 הנרות האחרונים; החזקה ~60 נרות; נבדק +6-7% מול אקראי)", ""]
     if not len(nd):
         return md + ["אין", ""]
@@ -132,10 +137,12 @@ def newsday_he(nd: pd.DataFrame, sectors: Dict[str, str], days: Optional[Dict] =
                         "ימים ברשימה": t["symbol"].map(lambda s: _days(days, "newsday", s)), "תאריך החדשות": t["news_date"],
                         "נרות מאז": t["bars_ago"], "פער": t["gap"], "יחס מחזור": t["volume_ratio"], "6 חודשים": t["ret_6m"],
                         "מול ממוצע 200": t["dist_ma200"], "סגירה אחרונה": t["last_close"], "מאז החדשות": t["since_news"], "נרות שנותרו": t["bars_left"],
+                        "MACD נגיעה צפויה": t["symbol"].map(lambda s: _macd_he(macd, s)),
                         "סקטור": t["symbol"].map(lambda s: _he_sector(sectors.get(s, "")))})
     return md + [out.to_markdown(index=False), ""]
 
 
+from algovision.macd_touch import macd_cell, macd_note
 from algovision.research.volume import volume_at
 
 
@@ -144,7 +151,7 @@ def _x(v):
 
 
 def wedge_table_he(wedges: Dict, frames: Dict[str, pd.DataFrame], data: Dict[str, Dict], peers: Dict[str, Dict], decisions: Dict[str, Dict],
-                   sectors: Dict[str, str], days: Optional[Dict] = None, watch: bool = False) -> List[str]:
+                   sectors: Dict[str, str], days: Optional[Dict] = None, watch: bool = False, macd=None) -> List[str]:
     """The confirmed wedges (the signal) or, with ``watch=True``, the forming ones as the watch list."""
     if watch:
         md = ["### רשימת מעקב: טריזים יורדים שעדיין בהתהוות (לא איתות; האיתות הוא הסגירה מעל הקו העליון)", ""]
@@ -175,7 +182,7 @@ def wedge_table_he(wedges: Dict, frames: Dict[str, pd.DataFrame], data: Dict[str
             "אחרון": f"{last:.2f}", "מהסטופ": _pct(m.stop / last - 1 if last else np.nan),
             "6 חודשים": _pct(m.metrics.get("context", {}).get("ret_126")), "מול ממוצע 200": _pct(m.metrics.get("context", {}).get("dist_ma200")),
             "ATR%": f"{m.metrics.get('context', {}).get('atr_pct', 0) * 100:.1f}%", "גובה הטריז": f"{geo['h0_pct'] * 100:.0f}%",
-            "מחזור": _x(vol["day"]), "מחזור שיא 10 ימים": _x(vol["climax10"]),
+            "מחזור": _x(vol["day"]), "מחזור שיא 10 ימים": _x(vol["climax10"]), "MACD נגיעה צפויה": _macd_he(macd, s),
             "מול עמיתים 20 יום": peers_short(pr), "AI": decision_cell(dec, "he"), "הקבוצה": _group_cell_he(pr),
             "למה ירדה": _he_cause(why.get("cause", "")) if why else "", "חששות": (", ".join(t["he"] for t in sent["concerns"]["themes"][:2]) or "לא נמצאו") if sent else "",
             "סנטימנט": SENT_HE[sent["label"]] if sent else "", "קריאה": LABEL_SHORT_HE.get(d.get("label"), "") if d else "",
@@ -206,7 +213,7 @@ def wedge_table_he(wedges: Dict, frames: Dict[str, pd.DataFrame], data: Dict[str
     return md
 
 
-def rally_table_he(rally: pd.DataFrame, peers: Dict[str, Dict], sectors: Dict[str, str], days: Optional[Dict] = None) -> List[str]:
+def rally_table_he(rally: pd.DataFrame, peers: Dict[str, Dict], sectors: Dict[str, str], days: Optional[Dict] = None, macd=None) -> List[str]:
     md = ["### ראלי מוקדם במניות מוכות (כלל תפנית ירה ב-3 הנרות האחרונים; החזקה ~20 נרות; נבדק +2-3% נטו, הצלחה ~58-61%, +3.5-4% מול כניסה אקראית, כ-0 מול SPY ב-20 נרות)", ""]
     if not len(rally):
         return md + ["אין", ""]
@@ -219,6 +226,7 @@ def rally_table_he(rally: pd.DataFrame, peers: Dict[str, Dict], sectors: Dict[st
         "6 חודשים": t["ret_6m"].map(lambda v: _pct(v, 1)), "משיא 52 שבועות": t["from_52w_high"].map(lambda v: _pct(v, 1)),
         "מול ממוצע 50": t["dist_ma50"].map(lambda v: _pct(v, 1)), "מול ממוצע 200": t["dist_ma200"].map(lambda v: _pct(v, 1)),
         "מחזור": t["volume_ratio"].map(lambda v: "" if pd.isna(v) else f"{v:.1f}x"), "אחרון": t["last"].map(lambda v: f"{v:.2f}"),
+        "MACD נגיעה צפויה": t["symbol"].map(lambda s: _macd_he(macd, s)),
         "הקבוצה": t["symbol"].map(lambda s: _group_cell_he(peers.get(s))), "סקטור": t["symbol"].map(lambda s: _he_sector(sectors.get(s, "")))})
     md += [out.to_markdown(index=False), "",
            "*כללים*: חזרה מעל ממוצע 50 = הסגירה חוזרת מעל הממוצע הנע של 50 יום אחרי 15+ מתוך 20 נרות מתחתיו; ממוצע 20 חוצה את 50 = הממוצע של 20 יום "
@@ -258,6 +266,7 @@ def summary_table_he(rows: List[Dict], title: bool = True) -> List[str]:
         **({"AI": d["AI"].fillna("").map(_ai_he)} if "AI" in d else {}),
         "אחרון": d["last"].map(lambda v: f"{v:.2f}"), "משיא 52 שבועות": d["from 52w high"].map(_pct), "מול ממוצע 50": d["vs MA50"].map(_pct),
         "מול עמיתים 20 יום": d["vs peers 20d"] if "vs peers 20d" in d else "",
+        **({"MACD נגיעה צפויה": d["_macd"].map(lambda fc: macd_cell(fc, "he"))} if "_macd" in d else {}),
         "קונצנזוס": d["consensus"].map(_he_consensus), "אנליסטים": d["analysts"].map(lambda v: "" if v is None or pd.isna(v) else f"{int(v)}"),
         "אפסייד ליעד": d["target upside"].map(_pct), "העלאות/הורדות 90 יום": d["up/down 90d"],
         "תחזית EPS 30 יום": d["EPS est 30d"].map(lambda v: _pct(v, 1)), "הפתעה אחרונה": d["last surprise"].map(lambda v: _pct(v, 1)),
@@ -373,6 +382,9 @@ def stock_section_he(symbol: str, row: Dict, df: pd.DataFrame, wedge, peers: Opt
            f"[גרף ב-TradingView]({tradingview_url(symbol)}) · [חזרה לטבלה](#summary)", "",
            f"*בטבלאות היום: {_tables_he(d['tables'])}. {_he_sector(fu.get('sector') or sectors.get(symbol))}"
            + (f" / {fu['industry']}" if fu.get("industry") else "") + ".*" + (f" *{fu['summary'].rstrip('.')}.*" if fu.get("summary") else ""), ""]
+    macd_txt = macd_cell(row.get("_macd"), "he")
+    if macd_txt:
+        sec += [f"*MACD נגיעה צפויה (הקשר בלבד, תנועת קווי האינדיקטור ולא כיוון המחיר): {macd_txt}.*", ""]
     if wedge is not None:
         geo = wedge_geometry(wedge, df)
         sec += summary_he(wedge, geo, ctx, why, sent, an, ea, label, score, peers, decision)
@@ -452,7 +464,7 @@ def build_daily_he(out_dir: Path, today: str, last_bar: str, n_frames: int, n_sy
                    nd: pd.DataFrame, wedges: Dict, rally: pd.DataFrame, rows: List[Dict], frames: Dict[str, pd.DataFrame], peers: Dict[str, Dict],
                    decisions: Dict[str, Dict], picks: List[str], sectors: Dict[str, str], bench: Optional[pd.DataFrame], note_he: str,
                    regime: Optional[Dict] = None, days: Optional[Dict] = None, lookback: Optional[Dict] = None,
-                   skips: Optional[List[str]] = None) -> Path:
+                   skips: Optional[List[str]] = None, macd=None) -> Path:
     """Write ``daily_<today>.md`` / ``daily_latest.md`` and return the dated path."""
     from algovision.checklist import checklist_markdown
     from algovision.lookback import lookback_markdown
@@ -476,15 +488,15 @@ def build_daily_he(out_dir: Path, today: str, last_bar: str, n_frames: int, n_sy
           "מציינים רק ראיות שנמצאו בנתונים (כותרות שמזכירות את החברה, דיווחי 8-K, דוחות ב-XBRL, הורדות דירוג, ימי שוק) או \"לא נמצא\"; שום דבר לא "
           "מומצא. הכותרות, שמות החברות ובתי ההשקעות מובאים כפי שפורסמו. סינון שיטתי ומבחן קדימה, לא ייעוץ השקעות.", "",
           "## 0. מה חדש", "", note_he.strip(), ""]
-    md += insiders_he(sig, tx, sectors, insider_days, days)
+    md += insiders_he(sig, tx, sectors, insider_days, days, macd)
     md += ["## 2. איתותים לטווח קצר", ""]
-    md += newsday_he(nd, sectors, days)
+    md += newsday_he(nd, sectors, days, macd)
     wedge_data = {s: by_sym[s]["_data"] for s in wedges if s in by_sym}
-    md += wedge_table_he(wedges, frames, wedge_data, peers, decisions, sectors, days)
-    md += rally_table_he(rally, peers, sectors, days)
-    md += wedge_table_he(wedges, frames, wedge_data, peers, decisions, sectors, days, watch=True)
+    md += wedge_table_he(wedges, frames, wedge_data, peers, decisions, sectors, days, macd=macd)
+    md += rally_table_he(rally, peers, sectors, days, macd)
+    md += wedge_table_he(wedges, frames, wedge_data, peers, decisions, sectors, days, watch=True, macd=macd)
     md += ["*ימים ברשימה*: בכמה מהדוחות (מתוך 30 האחרונים) השם ישב בטבלה הזאת, כולל היום. בחמשת השבועות הראשונים השמות שהופיעו 4-7 ימים היו הגרועים; "
-           "רישום טרי היה טוב מרישום ישן.", ""]
+           "רישום טרי היה טוב מרישום ישן.", "", macd_note("he"), ""]
     md += ["<a id=\"summary\" name=\"summary\"></a>", "## 3. רשימת הבדיקות, תקציר לכל מניה והחלטות המודל", ""]
     md += checklist_markdown(rows, "he", regime.get("warning"), anchor=_anchor)
     md += summary_table_he(rows, title=False)

@@ -22,6 +22,7 @@ import numpy as np
 import pandas as pd
 
 from algovision.links import tv
+from algovision.macd_touch import macd_cell as _macd_cell
 
 log = logging.getLogger(__name__)
 from algovision.peers import peers_short
@@ -741,6 +742,7 @@ def summary_table(rows: List[Dict]) -> str:
         **({"AI": d["AI"].fillna("")} if "AI" in d else {}),
         "last": d["last"].map(lambda v: f"{v:.2f}"), "from 52w high": d["from 52w high"].map(_pct), "vs MA50": d["vs MA50"].map(_pct),
         "vs peers 20d": d["vs peers 20d"] if "vs peers 20d" in d else "",
+        **({"MACD pre-touch": d["_macd"].map(lambda fc: _macd_cell(fc, "en"))} if "_macd" in d else {}),
         "consensus": d["consensus"], "analysts": d["analysts"].map(lambda v: "" if v is None or pd.isna(v) else f"{int(v)}"),
         "target upside": d["target upside"].map(_pct), "up/down 90d": d["up/down 90d"],
         "EPS est 30d": d["EPS est 30d"].map(lambda v: _pct(v, 1)), "last surprise": d["last surprise"].map(lambda v: _pct(v, 1)),

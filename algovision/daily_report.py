@@ -65,6 +65,8 @@ def build_report(out_dir: Path, universe: str = "all", cache_dir: Optional[Path]
     sectors = {x["symbol"]: x["sector"] for x in load_snapshot()["sp500"]}
     bench = provider.get_many(["SPY"], "2y", "1d").get("SPY")
     days = days_listed(out_dir, today)
+    from algovision.macd_touch import MacdTouch, macd_cell, macd_note
+    macd = MacdTouch(frames, cache)        # the MACD pre-touch cell of every listed name (context only)
     md: List[str] = [f"# AlgoVision daily report - {today}\n", f"Prices through {last_bar}; {len(frames)} of {len(symbols)} symbols. "
                      "Every ticker links to its TradingView chart.\n"]
     # 0. the regime: is the beaten-down basket itself falling?
@@ -105,7 +107,7 @@ def build_report(out_dir: Path, universe: str = "all", cache_dir: Optional[Path]
                 "buys": bd["n_buys"], "total": bd["total_value"].map(lambda v: f"${v / 1e6:.2f}M"),
                 "avg price": bd["avg_price"].map(lambda v: f"{v:.2f}"), "last": bd["last_close"].map(lambda v: f"{v:.2f}"),
                 "6m": bd["ret_6m"].map(_pct), "vs MA200": bd["dist_ma200"].map(_pct), "CEO/CFO": np.where(bd["ceo_cfo"], "yes", ""),
-                "buyers": bd["buyers"].str.slice(0, 70)})
+                "MACD pre-touch": bd["symbol"].map(macd.cell), "buyers": bd["buyers"].str.slice(0, 70)})
             md.append(t.to_markdown(index=False) + "\n")
         else:
             md.append("none\n")
@@ -127,6 +129,7 @@ def build_report(out_dir: Path, universe: str = "all", cache_dir: Optional[Path]
         for c in ("gap", "ret_6m", "dist_ma200", "since_news"):
             t[c] = t[c].map(lambda v: _pct(v, 1))
         t["volume_ratio"] = t["volume_ratio"].map(lambda v: f"{v:.1f}x")
+        t["MACD pre-touch"] = t["symbol"].map(macd.cell)
         t["sector"] = t["symbol"].map(lambda s: sectors.get(s, ""))
         t.insert(1, "days listed", t["symbol"].map(lambda s: _days(days, "newsday", s)))
         t["symbol"] = t["symbol"].map(tv)
@@ -175,7 +178,7 @@ def build_report(out_dir: Path, universe: str = "all", cache_dir: Optional[Path]
         return {"symbol": tv(s), "days listed": _days(days, key, s), "status": m.status, "score": round(m.score, 2), "start": m.start_date, "end": m.end_date,
                 "breakout": m.breakout_date or "", "bars since breakout": since, "level": round(m.level, 2), "stop": round(m.stop, 2),
                 "last": round(m.last_close, 2), "6m": _pct(m.metrics["context"]["ret_126"]), "vs MA200": _pct(m.metrics["context"]["dist_ma200"]),
-                "volume": _x(vol["day"]), "max vol 10d": _x(vol["climax10"]), "group": group_cell(s)}
+                "volume": _x(vol["day"]), "max vol 10d": _x(vol["climax10"]), "MACD pre-touch": macd.cell(s), "group": group_cell(s)}
 
     rows = [wedge_row(s, m, "wedge") for s, m in confirmed.items()]
     tag(confirmed, "falling wedge")
@@ -207,6 +210,7 @@ def build_report(out_dir: Path, universe: str = "all", cache_dir: Optional[Path]
         for c in ("day_ret", "ret_10", "ret_6m", "from_52w_high", "dist_ma50", "dist_ma200"):
             t[c] = t[c].map(lambda v: _pct(v, 1))
         t["volume_ratio"] = t["volume_ratio"].map(lambda v: "" if pd.isna(v) else f"{v:.1f}x")
+        t["MACD pre-touch"] = t["symbol"].map(macd.cell)
         t["group"] = t["symbol"].map(group_cell)
         t["sector"] = t["symbol"].map(lambda s: sectors.get(s, ""))
         t.insert(1, "days listed", t["symbol"].map(lambda s: _days(days, "rally", s)))
@@ -241,6 +245,7 @@ def build_report(out_dir: Path, universe: str = "all", cache_dir: Optional[Path]
         md.append("none\n")
     md.append("*days listed*: reports (of the last 30) in which the name sat in that table, today included. In the first five weeks the names "
               "listed 4-7 days did worst; a fresh listing was better than a stale one.\n")
+    md.append(macd_note("en") + "\n")
     # 3. one research brief per name in the tables above
     md.append("## 3. Stock briefs (one per name in the tables above)\n")
     briefs_written = False
@@ -259,6 +264,7 @@ def build_report(out_dir: Path, universe: str = "all", cache_dir: Optional[Path]
                                         cache_dir=cache, workers=workers, bench=bench, peers=peers, decisions=use_ai)
             decisions = {}
             for r in brows:
+                r["_macd"] = macd.get(r["symbol"])
                 if r.get("_decision"):
                     decisions[r["symbol"]] = {**r["_decision"], "tables": r.get("tables"), "read": r.get("read"), "score": r.get("score")}
             if decisions:
@@ -288,6 +294,7 @@ def build_report(out_dir: Path, universe: str = "all", cache_dir: Optional[Path]
                       "from prices) and its z-score against the last year; below -2 means an unusual drop versus peers.\n")
             md.append(flags_legend("en") + "\n")
             md.append(summary_table(brows))
+            md.append(macd_note("en") + "\n")
             md.append("### Model decisions (Jev), a forward test\n")
             if decisions:
                 md.append("A typed decision model (TypeSafe Jev 1.13 through OpenRouter) read each brief above, and only the brief, and "
@@ -345,7 +352,7 @@ def build_report(out_dir: Path, universe: str = "all", cache_dir: Optional[Path]
         try:
             note_he = (out_dir / "new_he_latest.md").read_text(encoding="utf-8")
             build_daily_he(out_dir, today, last_bar, len(frames), len(symbols), insider_days, sig, tx, nd, wedges, rally, brows, frames, peers,
-                           decisions, picks, sectors, bench, note_he, regime=regime, days=days, lookback=look, skips=skips)
+                           decisions, picks, sectors, bench, note_he, regime=regime, days=days, lookback=look, skips=skips, macd=macd)
         except Exception as exc:  # noqa: BLE001
             print(f"hebrew daily file unavailable: {exc}")
     return path

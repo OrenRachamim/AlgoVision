@@ -49,6 +49,10 @@ def _row(symbol, tables, read="undecided", score=1.0):
 def test_build_daily_he_carries_every_part(tmp_path):
     frames = {"AAA": _frame(), "BBB": _frame(seed=4)}
     rows = [_row("AAA", ["news-day"], "signs of a bottom", 4.0), _row("BBB", ["early rally", "insider buys (other)"])]
+    from algovision.macd_touch import MacdTouch
+    macd = MacdTouch(frames, tmp_path, offline=True)         # offline: the adjusted frames, marked ~
+    rows[0]["_macd"] = macd.get("AAA")
+    rows[1]["_macd"] = macd.get("BBB")
     sig = pd.DataFrame({"symbol": ["BBB"], "beaten_down": [False], "last_filing": ["2026-09-30"], "cluster": [False], "n_insiders_30d": [1], "n_buys": [1],
                         "total_value": [2.5e5], "avg_price": [48.0], "last_close": [50.0], "ret_6m": [-0.15], "dist_ma200": [-0.12], "ceo_cfo": [True], "buyers": ["Doe J"]})
     nd = pd.DataFrame({"symbol": ["AAA"], "news_date": ["2026-10-03"], "bars_ago": [1], "gap": [-0.06], "volume_ratio": [3.5], "ret_6m": [-0.15], "dist_ma200": [-0.12],
@@ -68,8 +72,11 @@ def test_build_daily_he_carries_every_part(tmp_path):
     days = {"News-day": {"AAA": 2}, "Early rally, beaten-down": {}}
     path = D.build_daily_he(tmp_path, "2026-10-06", "2026-10-06", 2, 2, 45, sig, pd.DataFrame({"x": range(7)}), nd, {}, rally, rows, frames, {}, decisions, ["AAA"],
                             {"AAA": "Industrials", "BBB": "Utilities"}, None, "# AlgoVision 2026-10-06: מה חדש\n- בדיקה\n", regime=regime, days=days,
-                            lookback=None, skips=["BBB"])
+                            lookback=None, skips=["BBB"], macd=macd)
     text = path.read_text(encoding="utf-8")
+    assert text.count("MACD נגיעה צפויה") >= 6           # the news-day and rally tables, the summary table, the note and the two stock sections
+    assert "MACD נגיעה צפויה (הקשר בלבד" in text.split("## AAA - AAA Corp")[1].split("**בקצרה:**")[0]
+    assert "~" in text.split("### טבלת התקציר")[1].split("## 4.")[0]     # the cell from the adjusted cache is marked
     assert (tmp_path / "daily_latest.md").exists()
     for piece in ("**משטר השוק.**", "הסל יורד", "## 0. מה חדש", "## 1. קניות אינסיידרים", "### מניות אחרות עם רכישות אינסיידרים", "שורה אחת בלבד",
                   "### כלל יום החדשות", "ימים ברשימה", "### טריז יורד", "### ראלי מוקדם", "### רשימת מעקב", "## 3. רשימת הבדיקות", "### רשימת הבדיקות",

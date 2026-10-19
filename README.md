@@ -291,6 +291,21 @@ strongest positive condition in the ten-year backtests of `docs/research_filters
 table and the beaten-down basket next to SPY as the benchmark. A scheduled routine runs both after every US close and
 commits the result to `journal/`.
 
+Every listed stock also carries a **MACD pre-touch** cell (`algovision/macd_touch.py`; in the signal tables, the
+summary table, the Hebrew file's tables and each stock's section): will the daily MACD line (12/26) reach its signal
+line (9) at the next close while the lines are still apart today (signal - MACD above 5% of |signal|)? MACD is
+linear in tomorrow's close, so the close at which the lines touch is exact; the probability maps the move that
+touch needs, in units of the 60-day daily volatility, through a calibration table from the AdaptiveMACD project
+(`OrenRachamim/AdaptiveMACD`, fitted on 2.2M US stock-days; at >= 70% about 82% of the flagged stocks touched or
+crossed the next day in 2015-2026 out of sample). The cell shows the probability (bold at >= 70%), the touch price
+with the move it needs from the last close (negative: the lines touch even on a drop that size) and today's gap, or
+"touching" / "above signal" when there is nothing to forecast. It predicts the movement of the indicator lines, not
+the price direction, and nothing here has been tested against returns, so it is context only and enters no rule,
+flag, checklist or order. The calibration was fitted on split-adjusted, dividend-unadjusted closes and the report's
+price cache is dividend-adjusted (enough to flip a dividend payer's status), so the raw closes of the listed names
+are fetched from the Yahoo chart endpoint at report time (cached per day under the price cache as `macd_raw/`); a
+`~` marks a cell that fell back to the adjusted cache.
+
 The briefs themselves go to `journal/briefs_<date>.md` (`algovision/briefs.py`): for every stock in the report tables,
 where it is (drawdown, moving averages, RSI), why it fell (the largest down days of the last year plus every
 earnings reaction that closed down, each with the evidence found: headlines that name the company and state a cause,
