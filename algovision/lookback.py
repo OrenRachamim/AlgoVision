@@ -49,7 +49,7 @@ def _section_of(h2: Optional[str], h3: Optional[str]) -> Optional[str]:
     if h.startswith("ai decisions") or h.startswith("model decisions"):
         return "jev"
     if h.startswith("checklist"):
-        return None
+        return "checklist"
     g = (h2 or "").lower()
     if g.startswith("3. growth screen"):
         return "growth"

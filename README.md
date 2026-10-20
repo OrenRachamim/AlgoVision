@@ -528,6 +528,27 @@ Result: after 120+ bars below the cross earned about +1% raw at 20 bars in both 
 context and enters no rule, flag, checklist, journal or order. Its names get briefs and sit in the look-back ledger as
 their own group.
 
+## The periodic review (`review` command)
+
+```bash
+python -m algovision review --out journal        # journal/review_<date>.md (en) + review_he_<date>.md (he) + review_latest.json
+```
+
+`algovision/review.py` answers, every day or two, what in the daily report has actually been relevant so far. It
+reads the look-back ledger (every (table, symbol) pair from its first appearance in the dated reports, 20 bars
+forward against the SPY and against the beaten-down basket of that day) and the journal's realised trades, and
+applies fixed rules written next to the numbers: a table *works so far* only with 20+ names and a t-statistic of 2
+or more on the basket excess (*not working* when negative with t <= -2, *noise* in between, *too early* below 20
+names); a condition (each flag, the read, 'market-wide', sentiment, consensus, depth, peers, days listed, the peer
+group, volume, MACD pre-touch, rules fired, the checklist, Jev's probabilities) *separates* only with 12+ names on
+each side and a Welch t of 2 or more on the difference; a journal rule is *on track* when its closed trades (10+)
+have a positive mean and a hit rate within 10 points of the research expectation. The file opens with a bottom
+line (works / not working / noise / too early), then the tables, the conditions, the journal, what changed since the
+previous review (the verdicts are kept in `review_latest.json`), and the method. The windows overlap and the sample
+is weeks in one regime, so the t overstates the evidence and the thresholds are strict on purpose; the review
+changes no rule, the ten-year backtests decide what enters the report. A scheduled routine runs it every other
+morning, commits the files and sends the Hebrew file to Telegram (Val Town `send-algovision-review.ts`).
+
 ## Forward test (`journal` command)
 
 ```bash

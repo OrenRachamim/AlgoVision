@@ -335,6 +335,14 @@ def build_parser() -> argparse.ArgumentParser:
     lb.add_argument("--he", action="store_true", help="Hebrew")
     lb.add_argument("--csv", default=None, help="also write the per-name rows here")
 
+    rv2 = sub.add_parser("review", help="the periodic review: what in the daily report has worked so far, what has not, what is too early (journal/review_<date>.md, en + he)")
+    rv2.add_argument("--out", default="journal")
+    rv2.add_argument("--universe", "-u", default="all", choices=UNIVERSES)
+    rv2.add_argument("--cache-dir", default=None)
+    rv2.add_argument("--workers", type=int, default=4)
+    rv2.add_argument("--today", default=None)
+    rv2.add_argument("--he", action="store_true", help="print the Hebrew file instead of the English one")
+
     wr = sub.add_parser("wedge-report", help="write the one-rule Hebrew file for the falling wedge (wedge_<date>.md) from cache")
     wr.add_argument("--out", default="journal")
     wr.add_argument("--universe", "-u", default="all", choices=UNIVERSES)
@@ -542,6 +550,17 @@ def main(argv: Optional[List[str]] = None) -> int:
         for x in want:
             print(f"## {x}")
             print("\n".join(peers_markdown(ctx[x], "he" if args.he else "en")) if x in ctx else "no peer data (not in the cached universe)")
+        return 0
+    if args.cmd == "review":
+        from algovision.review import write_review
+        symbols = get_universe(args.universe)
+        cache = Path(args.cache_dir) if args.cache_dir else DataProvider.__init__.__defaults__[0]
+        provider = DataProvider(cache_dir=cache, offline=True, workers=args.workers)
+        frames = provider.get_many(symbols, "2y", "1d")
+        bench = provider.get_many(["SPY"], "2y", "1d").get("SPY")
+        en, he, _ = write_review(Path(args.out), frames, bench, args.today)
+        print((he if args.he else en).read_text(encoding="utf-8"))
+        print(f"wrote {en} and {he}", file=sys.stderr)
         return 0
     if args.cmd == "lookback":
         from algovision.lookback import lookback_markdown, run_lookback
