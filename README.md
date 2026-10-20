@@ -535,9 +535,10 @@ python -m algovision review --out journal        # journal/review_<date>.md (en)
 ```
 
 `algovision/review.py` answers, every day or two, what in the daily report has actually been relevant so far. It
-reads the look-back ledger (every (table, symbol) pair from its first appearance in the dated reports, 20 bars
-forward against the SPY and against the beaten-down basket of that day) and the journal's realised trades, and
-applies fixed rules written next to the numbers: a table *works so far* only with 20+ names and a t-statistic of 2
+reads the look-back ledger (every (table, symbol) pair from its first appearance in the dated reports, over two
+horizons: 20 bars forward, and to the current close for every name ever listed, each against the SPY and against
+the beaten-down basket of that day) and the journal's realised trades (closed, and every trade marked to the
+current price), and applies fixed rules written next to the numbers, one verdict per horizon: a table *works so far* only with 20+ names and a t-statistic of 2
 or more on the basket excess (*not working* when negative with t <= -2, *noise* in between, *too early* below 20
 names); a condition (each flag, the read, 'market-wide', sentiment, consensus, depth, peers, days listed, the peer
 group, volume, MACD pre-touch, rules fired, the checklist, Jev's probabilities) *separates* only with 12+ names on

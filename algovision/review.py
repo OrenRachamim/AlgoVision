@@ -76,18 +76,20 @@ def group_stats(g: pd.DataFrame, h: str = "20") -> Dict:
            "xspy": float(g[f"xspy_{h}"].dropna().mean()) if len(r) else np.nan, "xbk": float(g[f"xbk_{h}"].dropna().mean()) if len(r) else np.nan,
            "t_xbk": _t(g[f"xbk_{h}"]) if len(r) else np.nan}
     rl = g["ret_latest"].dropna()
-    out.update({"n_latest": int(len(rl)), "mean_latest": float(rl.mean()) if len(rl) else np.nan,
+    out.update({"n_latest": int(len(rl)), "mean_latest": float(rl.mean()) if len(rl) else np.nan, "hit_latest": float((rl > 0).mean()) if len(rl) else np.nan,
                 "xbk_latest": float(g["xbk_latest"].dropna().mean()) if len(rl) else np.nan,
-                "xspy_latest": float(g["xspy_latest"].dropna().mean()) if len(rl) else np.nan})
+                "xspy_latest": float(g["xspy_latest"].dropna().mean()) if len(rl) else np.nan, "t_xbk_latest": _t(g["xbk_latest"]) if len(rl) else np.nan})
     return out
 
 
-def table_verdict(s: Dict) -> str:
-    if s["n_h"] < MIN_N or not np.isfinite(s.get("t_xbk", np.nan)):
+def table_verdict(s: Dict, latest: bool = False) -> str:
+    """The verdict at 20 bars, or (``latest``) at the current close over every name listed so far."""
+    n, x, tt = (s["n_latest"], s["xbk_latest"], s["t_xbk_latest"]) if latest else (s["n_h"], s["xbk"], s["t_xbk"])
+    if n < MIN_N or not np.isfinite(tt):
         return "early"
-    if s["xbk"] > 0 and s["t_xbk"] >= T_STRONG:
+    if x > 0 and tt >= T_STRONG:
         return "works"
-    if s["xbk"] < 0 and s["t_xbk"] <= -T_STRONG:
+    if x < 0 and tt <= -T_STRONG:
         return "fails"
     return "noise"
 
@@ -208,6 +210,8 @@ def journal_verdicts(out_dir: Path) -> List[Dict]:
                "mean_closed": float(c["ret"].mean()) if len(c) else np.nan, "hit_closed": float((c["ret"] > 0).mean()) if len(c) else np.nan,
                "xspy_closed": float((c["ret"] - c["spy_ret"]).mean()) if len(c) else np.nan, "xbk_closed": float((c["ret"] - c["basket_ret"]).mean()) if len(c) else np.nan,
                "mean_open": float(o["ret"].mean()) if len(o) else np.nan, "hit_open": float((o["ret"] > 0).mean()) if len(o) else np.nan,
+               "mean_all": float(g["ret"].mean()) if g["ret"].notna().any() else np.nan, "hit_all": float((g["ret"].dropna() > 0).mean()) if g["ret"].notna().any() else np.nan,
+               "xbk_all": float((g["ret"] - g["basket_ret"]).mean()) if g["ret"].notna().any() else np.nan,
                "expect_hit": EXPECT_HIT.get(rule, np.nan)}
         if rec["closed"] < MIN_CLOSED:
             rec["verdict"] = "early"
@@ -239,7 +243,7 @@ def build_review(out_dir: Path, frames: Dict[str, pd.DataFrame], bench: Optional
         if not len(g):
             continue
         s = group_stats(g)
-        s.update({"section": sec, "en": SECTION_EN.get(sec, sec), "he": SECTION_HE.get(sec, sec), "verdict": table_verdict(s),
+        s.update({"section": sec, "en": SECTION_EN.get(sec, sec), "he": SECTION_HE.get(sec, sec), "verdict": table_verdict(s), "verdict_latest": table_verdict(s, latest=True),
                   "expected_en": EXPECTED.get(sec, {}).get("en", ""), "expected_he": EXPECTED.get(sec, {}).get("he", "")})
         # stability: the sign of the basket excess in the first and second half of the dates
         d = pd.to_datetime(g["date"])
@@ -252,7 +256,9 @@ def build_review(out_dir: Path, frames: Dict[str, pd.DataFrame], bench: Optional
     for c in conditions(F):
         yes, no = c["pop"][c["mask"]], c["pop"][~c["mask"]]
         s = split_stats(yes, no)
-        s.update({"key": c["key"], "en": c["en"], "he": c["he"], "verdict": split_verdict(s), "note_en": c["note_en"], "note_he": c["note_he"]})
+        sl = split_stats(yes, no, "latest")
+        s.update({"key": c["key"], "en": c["en"], "he": c["he"], "verdict": split_verdict(s), "note_en": c["note_en"], "note_he": c["note_he"],
+                  "latest": sl, "verdict_latest": split_verdict(sl)})
         res["conditions"].append(s)
     return res
 
@@ -263,10 +269,12 @@ def _changes(res: Dict, prev: Optional[Dict]) -> List[Dict]:
         return []
     out = []
     for kind, key in (("tables", "section"), ("conditions", "key"), ("journal", "rule")):
-        old = {r[key]: r["verdict"] for r in prev.get(kind, [])}
-        for r in res.get(kind, []):
-            if r[key] in old and old[r[key]] != r["verdict"]:
-                out.append({"kind": kind, "key": r[key], "en": r.get("en", r[key]), "he": r.get("he", r[key]), "from": old[r[key]], "to": r["verdict"]})
+        for field, tag_en, tag_he in (("verdict", "20 bars", "20 נרות"), ("verdict_latest", "to date", "עד היום")):
+            old = {r[key]: r.get(field) for r in prev.get(kind, []) if r.get(field)}
+            for r in res.get(kind, []):
+                if r.get(field) and r[key] in old and old[r[key]] != r[field]:
+                    out.append({"kind": kind, "key": r[key], "en": f"{r.get('en', r[key])} ({tag_en})", "he": f"{r.get('he', r[key])} ({tag_he})",
+                                "from": old[r[key]], "to": r[field]})
     return out
 
 
@@ -290,60 +298,75 @@ def review_markdown(res: Dict, prev: Optional[Dict] = None, lang: str = "en") ->
     if not res["tables"]:
         return md + [("אין עדיין מספיק דוחות מתוארכים." if he else "Not enough dated reports yet."), ""]
     md += [(f"מה בדוח היומי באמת רלוונטי לפי הראיות עד כה: {res['n_reports']} דוחות מתוארכים, {res['first']} עד {res['last']}. כל שם נמדד מההופעה "
-            f"הראשונה שלו בטבלה, כניסה בפתיחה הבאה, 20 נרות קדימה, מול סל המניות המוכות של אותו יום (המדד ההוגן לכללים שקונים רק מניות מוכות) "
-            f"ומול SPY. הפסיקות הן כללים קבועים (בסוף הקובץ), לא שיקול דעת: טבלה \"עובדת\" רק עם {MIN_N}+ שמות ו-t של {T_STRONG:.0f} ומעלה על "
+            f"הראשונה שלו בטבלה, כניסה בפתיחה הבאה, בשני אופקים: 20 נרות קדימה, ועד הסגירה הנוכחית (\"עד היום\": כל שם שנרשם אי פעם, כל אחד באורך "
+            f"החזקה שלו), מול סל המניות המוכות של אותו יום (המדד ההוגן לכללים שקונים רק מניות מוכות) ומול SPY. לכל טבלה ולכל תנאי יש פסיקה "
+            f"לכל אופק. הפסיקות הן כללים קבועים (בסוף הקובץ), לא שיקול דעת: טבלה \"עובדת\" רק עם {MIN_N}+ שמות ו-t של {T_STRONG:.0f} ומעלה על "
             f"העודף מול הסל; תנאי \"מפריד\" רק עם {MIN_SPLIT}+ שמות בכל צד ו-t של {T_STRONG:.0f} ומעלה על ההפרש. החלונות חופפים והמדגם הוא שבועות "
             f"ספורים במשטר אחד, אז ה-t מוגזם; הספים מחמירים בכוונה. הסקירה לא משנה שום כלל: הבדיקות של עשר שנים קובעות מה נכנס לדוח.") if he else
            (f"What in the daily report is actually relevant on the evidence so far: {res['n_reports']} dated reports, {res['first']} to {res['last']}. "
-            f"Every name is measured from its first appearance in a table, entry at the next open, 20 bars ahead, against the beaten-down basket of "
-            f"that day (the fair benchmark for rules that only buy beaten-down stocks) and against the SPY. The verdicts are fixed rules (at the end), "
+            f"Every name is measured from its first appearance in a table, entry at the next open, over two horizons: 20 bars ahead, and to the current "
+            f"close ('to date': every name ever listed, each over its own holding length), against the beaten-down basket of that day (the fair "
+            f"benchmark for rules that only buy beaten-down stocks) and against the SPY. Every table and condition gets a verdict per horizon. The verdicts are fixed rules (at the end), "
             f"not judgement: a table 'works' only with {MIN_N}+ names and a t of {T_STRONG:.0f} or more on the basket excess; a condition 'separates' "
             f"only with {MIN_SPLIT}+ names on each side and a t of {T_STRONG:.0f} or more on the difference. The windows overlap and the sample is a "
             f"few weeks in one regime, so the t overstates the evidence; the thresholds are strict on purpose. The review changes no rule: the ten-year "
             f"backtests decide what enters the report."), ""]
     # bottom line
     md += [("## השורה התחתונה" if he else "## Bottom line"), ""]
-    buckets = {"works": [], "fails": [], "noise": [], "early": []}
-    for t in res["tables"]:
-        buckets[t["verdict"]].append(f"{L(t)} (n {t['n_h']}, {'מול הסל' if he else 'vs basket'} {_p(t['xbk'])}, t {_tt(t['t_xbk'])})")
-    for c in res["conditions"]:
-        key = {"better_yes": "works", "better_no": "fails", "noise": "noise", "early": "early"}[c["verdict"]]
-        txt = f"{L(c)} ({'הפרש' if he else 'diff'} {_p(c['diff'])}, n {c['n_yes']}/{c['n_no']}, t {_tt(c['t'])})"
-        buckets[key].append(txt if c["verdict"] != "better_no" else txt)
     titles = {"works": ("עובד / מפריד עד כה", "Works or separates so far"), "fails": ("לא עובד / הצד השני טוב יותר", "Not working, or the other side did better"),
               "noise": ("רעש עד כה", "Noise so far"), "early": ("מוקדם מדי לומר", "Too early to say")}
-    for k in ("works", "fails", "noise", "early"):
-        md.append(f"**{titles[k][0] if he else titles[k][1]}:** " + ("; ".join(buckets[k]) if buckets[k] else ("אין" if he else "none")))
+    for latest in (False, True):
+        md.append(("### עד היום (מול המחיר הנוכחי, כל שם שנרשם)" if he else "### To date (against the current price, every name listed)") if latest
+                  else ("### 20 נרות אחרי הרישום" if he else "### 20 bars after the listing"))
         md.append("")
+        buckets = {"works": [], "fails": [], "noise": [], "early": []}
+        for t in res["tables"]:
+            v = t["verdict_latest"] if latest else t["verdict"]
+            n, x, tt = (t["n_latest"], t["xbk_latest"], t["t_xbk_latest"]) if latest else (t["n_h"], t["xbk"], t["t_xbk"])
+            buckets[v].append(f"{L(t)} (n {n}, {'מול הסל' if he else 'vs basket'} {_p(x)}, t {_tt(tt)})")
+        for c in res["conditions"]:
+            s = c["latest"] if latest else c
+            v = c["verdict_latest"] if latest else c["verdict"]
+            key = {"better_yes": "works", "better_no": "fails", "noise": "noise", "early": "early"}[v]
+            buckets[key].append(f"{L(c)} ({'הפרש' if he else 'diff'} {_p(s['diff'])}, n {s['n_yes']}/{s['n_no']}, t {_tt(s['t'])})")
+        for k in ("works", "fails", "noise", "early"):
+            md.append(f"**{titles[k][0] if he else titles[k][1]}:** " + ("; ".join(buckets[k]) if buckets[k] else ("אין" if he else "none")))
+            md.append("")
     # tables
     md += [("## לפי טבלה (20 נרות)" if he else "## By table (20 bars)"), ""]
-    hdr = (["טבלה", "n", "n20", "תשואה 20", "פגיעה", "מול SPY", "מול הסל", "t", "עד היום", "מול הסל עד היום", "ציפיית המחקר", "פסיקה", "יציב בשני החצאים"] if he else
-           ["table", "n", "n20", "ret 20", "hit", "vs SPY", "vs basket", "t", "to date", "vs basket to date", "research expected", "verdict", "same sign in both halves"])
-    md += ["| " + " | ".join(hdr) + " |", "|:--|" + "--:|" * 9 + ":--|:--|:--|"]
+    hdr = (["טבלה", "n", "n20", "תשואה 20", "פגיעה 20", "מול SPY 20", "מול הסל 20", "t 20", "פסיקה 20", "עד היום", "פגיעה", "מול SPY", "מול הסל", "t", "פסיקה עד היום", "ציפיית המחקר", "יציב בשני החצאים"] if he else
+           ["table", "n", "n20", "ret 20", "hit 20", "vs SPY 20", "vs basket 20", "t 20", "verdict 20", "to date", "hit", "vs SPY", "vs basket", "t", "verdict to date", "research expected", "same sign in both halves"])
+    md += ["| " + " | ".join(hdr) + " |", "|:--|" + "--:|" * 7 + ":--|" + "--:|" * 5 + ":--|:--|:--|"]
     for t in res["tables"]:
         stable = ("" if t["half1_n"] < 8 or t["half2_n"] < 8 else (("כן" if he else "yes") if t["stable"] else ("לא" if he else "no")))
-        md.append("| " + " | ".join([L(t), str(t["n"]), str(t["n_h"]), _p(t["mean"]), _h(t["hit"]), _p(t["xspy"]), _p(t["xbk"]), _tt(t["t_xbk"]), _p(t["mean_latest"]),
-                                     _p(t["xbk_latest"]), t["expected_he"] if he else t["expected_en"], V[t["verdict"]],
+        md.append("| " + " | ".join([L(t), str(t["n"]), str(t["n_h"]), _p(t["mean"]), _h(t["hit"]), _p(t["xspy"]), _p(t["xbk"]), _tt(t["t_xbk"]), V[t["verdict"]],
+                                     _p(t["mean_latest"]), _h(t["hit_latest"]), _p(t["xspy_latest"]), _p(t["xbk_latest"]), _tt(t["t_xbk_latest"]), V[t["verdict_latest"]],
+                                     t["expected_he"] if he else t["expected_en"],
                                      stable + (f" ({_p(t['half1_xbk'])} / {_p(t['half2_xbk'])})" if stable else "")]) + " |")
     md.append("")
     # conditions
-    md += [("## לפי תנאי (עודף מול הסל ב-20 נרות, עם התנאי לעומת בלי)" if he else "## By condition (basket excess at 20 bars, with vs without)"), ""]
-    hdr = (["תנאי", "n עם", "n בלי", "תשואה עם", "תשואה בלי", "פגיעה עם", "פגיעה בלי", "מול הסל עם", "מול הסל בלי", "הפרש", "t", "פסיקה"] if he else
-           ["condition", "n with", "n without", "ret with", "ret without", "hit with", "hit without", "vs basket with", "vs basket without", "diff", "t", "verdict"])
-    md += ["| " + " | ".join(hdr) + " |", "|:--|" + "--:|" * 10 + ":--|"]
+    md += [("## לפי תנאי (עודף מול הסל, עם התנאי לעומת בלי; 20 נרות ועד היום)" if he else "## By condition (basket excess, with vs without; 20 bars and to date)"), ""]
+    hdr = (["תנאי", "n עם", "n בלי", "תשואה 20 עם", "תשואה 20 בלי", "פגיעה 20 עם", "פגיעה 20 בלי", "מול הסל 20 עם", "מול הסל 20 בלי", "הפרש 20", "t 20", "פסיקה 20",
+            "n עם (עד היום)", "n בלי", "תשואה עם", "תשואה בלי", "מול הסל עם", "מול הסל בלי", "הפרש", "t", "פסיקה עד היום"] if he else
+           ["condition", "n with", "n without", "ret 20 with", "ret 20 without", "hit 20 with", "hit 20 without", "vs basket 20 with", "vs basket 20 without", "diff 20", "t 20", "verdict 20",
+            "n with (to date)", "n without", "ret with", "ret without", "vs basket with", "vs basket without", "diff", "t", "verdict to date"])
+    md += ["| " + " | ".join(hdr) + " |", "|:--|" + "--:|" * 10 + ":--|" + "--:|" * 8 + ":--|"]
     for c in res["conditions"]:
+        s = c["latest"]
         md.append("| " + " | ".join([L(c), str(c["n_yes"]), str(c["n_no"]), _p(c["ret_yes"]), _p(c["ret_no"]), _h(c["hit_yes"]), _h(c["hit_no"]), _p(c["xbk_yes"]),
-                                     _p(c["xbk_no"]), _p(c["diff"]), _tt(c["t"]), V[c["verdict"]]]) + " |")
+                                     _p(c["xbk_no"]), _p(c["diff"]), _tt(c["t"]), V[c["verdict"]],
+                                     str(s["n_yes"]), str(s["n_no"]), _p(s["ret_yes"]), _p(s["ret_no"]), _p(s["xbk_yes"]), _p(s["xbk_no"]), _p(s["diff"]), _tt(s["t"]), V[c["verdict_latest"]]]) + " |")
     md.append("")
     # journal
     if res["journal"]:
         md += [("## היומן: עסקאות סגורות מול ציפיית המחקר" if he else "## The journal: closed trades against the research expectation"), ""]
-        hdr = (["כלל", "נרשמו", "נסגרו", "ממוצע סגורות", "פגיעה סגורות", "מול SPY", "מול הסל", "פגיעה צפויה", "פתוחות: ממוצע", "פתוחות: פגיעה", "פסיקה"] if he else
-               ["rule", "logged", "closed", "closed mean", "closed hit", "vs SPY", "vs basket", "expected hit", "open: mean", "open: hit", "verdict"])
-        md += ["| " + " | ".join(hdr) + " |", "|:--|" + "--:|" * 9 + ":--|"]
+        hdr = (["כלל", "נרשמו", "נסגרו", "ממוצע סגורות", "פגיעה סגורות", "מול SPY", "מול הסל", "פגיעה צפויה", "פתוחות: ממוצע", "פתוחות: פגיעה", "הכול במחיר הנוכחי: ממוצע", "פגיעה", "מול הסל", "פסיקה (סגורות)"] if he else
+               ["rule", "logged", "closed", "closed mean", "closed hit", "vs SPY", "vs basket", "expected hit", "open: mean", "open: hit", "all at the current price: mean", "hit", "vs basket", "verdict (closed)"])
+        md += ["| " + " | ".join(hdr) + " |", "|:--|" + "--:|" * 12 + ":--|"]
         for j in res["journal"]:
             md.append("| " + " | ".join([j["rule"], str(j["logged"]), str(j["closed"]), _p(j["mean_closed"], 2), _h(j["hit_closed"]), _p(j["xspy_closed"], 2),
-                                         _p(j["xbk_closed"], 2), _h(j["expect_hit"]), _p(j["mean_open"], 2), _h(j["hit_open"]), V[j["verdict"]]]) + " |")
+                                         _p(j["xbk_closed"], 2), _h(j["expect_hit"]), _p(j["mean_open"], 2), _h(j["hit_open"]), _p(j["mean_all"], 2), _h(j["hit_all"]),
+                                         _p(j["xbk_all"], 2), V[j["verdict"]]]) + " |")
         md.append("")
     # changes
     ch = _changes(res, prev)
@@ -357,13 +380,15 @@ def review_markdown(res: Dict, prev: Optional[Dict] = None, lang: str = "en") ->
             md.append(f"- {x['he'] if he else x['en']}: {V[x['from']]} -> {V[x['to']]}")
     md.append("")
     md += [("## השיטה" if he else "## Method"), "",
-           (f"מקור: הטבלאות של הדוחות המתוארכים (journal/report_<date>.md) ו-mark_to_market.csv של היומן. פסיקה לטבלה: {MIN_N}+ שמות עם תשואת 20 נרות; "
+           (f"מקור: הטבלאות של הדוחות המתוארכים (journal/report_<date>.md) ו-mark_to_market.csv של היומן. שני אופקים: 20 נרות אחרי הרישום, ועד הסגירה "
+            f"הנוכחית (כל שם, באורך ההחזקה שלו; אופק לא אחיד, אז הוא מסכם את המצב עכשיו ולא תוצאה של כלל קבוע). פסיקה לטבלה: {MIN_N}+ שמות עם תשואה באופק; "
             f"\"עובד\" כשהעודף הממוצע מול סל המניות המוכות חיובי ו-t >= {T_STRONG:.0f}; \"לא עובד\" כשהוא שלילי ו-t <= -{T_STRONG:.0f}; אחרת \"רעש\". "
             f"פסיקה לתנאי: {MIN_SPLIT}+ שמות בכל צד, t של Welch על ההפרש בעודף מול הסל; |t| >= {T_STRONG:.0f} אומר איזה צד טוב יותר. כלל ביומן: "
             f"{MIN_CLOSED}+ עסקאות סגורות; \"במסלול\" כשהממוצע חיובי ושיעור הפגיעה בתוך 10 נקודות מהציפייה. הטיית שרידות, חלונות חופפים ומשטר אחד "
             f"חלים על הכול. סינונים שיטתיים ומבחן קדימה, לא ייעוץ השקעות.") if he else
-           (f"Source: the tables of the dated reports (journal/report_<date>.md) and the journal's mark_to_market.csv. Table verdict: {MIN_N}+ names with a "
-            f"20-bar return; 'works' when the mean excess over the beaten-down basket is positive with t >= {T_STRONG:.0f}; 'not working' when negative with "
+           (f"Source: the tables of the dated reports (journal/report_<date>.md) and the journal's mark_to_market.csv. Two horizons: 20 bars after the listing, "
+            f"and to the current close (every name, over its own holding length; an uneven horizon, so it summarises where things stand now rather "
+            f"than the result of a fixed rule). Table verdict: {MIN_N}+ names with a return at the horizon; 'works' when the mean excess over the beaten-down basket is positive with t >= {T_STRONG:.0f}; 'not working' when negative with "
             f"t <= -{T_STRONG:.0f}; 'noise' otherwise. Condition verdict: {MIN_SPLIT}+ names on each side, Welch t on the difference in basket excess; "
             f"|t| >= {T_STRONG:.0f} names the better side. Journal rule: {MIN_CLOSED}+ closed trades; 'on track' when the mean is positive and the hit rate is "
             f"within 10 points of the expectation. Survivorship bias, overlapping windows and a single regime apply throughout. Systematic screens and a "

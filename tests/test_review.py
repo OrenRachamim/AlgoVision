@@ -49,6 +49,9 @@ def test_review_end_to_end(tmp_path):
     assert "First review" in text
     t = {x["section"]: x for x in res["tables"]}
     assert t["wedge"]["n"] == 30 and t["wedge"]["verdict"] in ("works", "fails", "noise", "early")
+    assert t["wedge"]["verdict_latest"] in ("works", "fails", "noise", "early") and t["wedge"]["n_latest"] == 30
+    assert all("latest" in c and "verdict_latest" in c for c in res["conditions"])
+    assert "To date (against the current price" in text and "verdict to date" in text and "all at the current price" in text
     keys = {c["key"] for c in res["conditions"]}
     assert {"flag_Z", "no_warning", "market_wide", "sent_pos", "fresh", "group_beaten"} <= keys
     j = {x["rule"]: x for x in res["journal"]}
