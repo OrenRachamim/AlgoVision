@@ -252,6 +252,18 @@ def build_parser() -> argparse.ArgumentParser:
     rm.add_argument("--workers", type=int, default=4)
     rm.add_argument("--limit", type=int, default=0)
 
+    rd = sub.add_parser("research-doji", help="side study: a doji candle on the 10-day MA, returns at 1/5/21 bars (docs/research_doji_ma10.md)")
+    rd.add_argument("--universe", "-u", default="all", choices=UNIVERSES)
+    rd.add_argument("--period", default="10y")
+    rd.add_argument("--window", type=int, default=252, help="main window: the last N bars (default one year)")
+    rd.add_argument("--split", default="2023-01-01")
+    rd.add_argument("--out", default="docs/research/doji_ma10")
+    rd.add_argument("--doc", default="docs/research_doji_ma10.md")
+    rd.add_argument("--cache-dir", default=None)
+    rd.add_argument("--offline", action="store_true")
+    rd.add_argument("--workers", type=int, default=4)
+    rd.add_argument("--limit", type=int, default=0)
+
     fa = sub.add_parser("factors", help="classic anomalies on the universe: cross-sectional momentum, trend filter, short-term reversal")
     fa.add_argument("--universe", "-u", default="all", choices=UNIVERSES)
     fa.add_argument("--symbols", default=None)
@@ -480,6 +492,9 @@ def main(argv: Optional[List[str]] = None) -> int:
     if args.cmd == "research-ma200":
         from algovision.research.cli import cmd_ma200
         return cmd_ma200(args)
+    if args.cmd == "research-doji":
+        from algovision.research.cli import cmd_doji
+        return cmd_doji(args)
     if args.cmd == "story":
         import json as _json
 

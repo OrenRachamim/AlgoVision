@@ -137,6 +137,16 @@ hurts the news-day rule; rising volume inside a tight base after a decline does 
 upward; only a 3-5x climax within 10 bars before a wedge breakout helped, by about half a percent:
 [`research_volume.md`](research_volume.md).
 
+## Side study: a doji sitting on the 10-day MA
+
+31,156 daily dojis (body at most 10% of the range) with the 10-day MA inside the candle, 513 stocks, ten years; the
+main window is the last year (3,129 events). After the doji the stock did nothing in particular: -0.01% the next day
+(up 50%), +0.04% at 5 bars (up 50%), +0.79% at 21 bars (up 51%), all below the base rate of the same stocks on any day
+(+0.07% / +0.31% / +1.36%) and -0.6% below random days of the same stock at 21 bars; the ten-year train/test split
+agrees (+0.0% / -0.3% over random days). The context splits (MA10 slope, side of approach, above or below the MA50)
+only reproduce the trend they condition on: against every day with the same context the doji days were no better, and
+usually a little worse. Not a rule: [`research_doji_ma10.md`](research_doji_ma10.md).
+
 ## Crossing back above the 200-day MA after a long run below it
 
 1866 crosses over ten years (a close above the 200-day MA after at least 60 consecutive closes at or below it). After

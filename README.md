@@ -510,6 +510,24 @@ does not separate the bases that resolve upward from those that break (noise in 
 about the same in every volume bucket). Volume is therefore shown in the wedge and
 rally tables as context (`volume`, `max vol 10d`) and does not enter any rule, flag, checklist or order.
 
+## Side study: a doji on the 10-day MA (`research-doji` command)
+
+```bash
+python -m algovision research-doji --offline        # from the price cache: last year + 10-year train/test, docs/research_doji_ma10.md
+```
+
+A separate question, not part of the daily report: what does a stock do after a daily doji candle (body at most 10% of
+the high-low range) that sits on its 10-day moving average (the line inside the candle's range; a strict variant
+within 0.25% of the body)? `algovision/research/doji_ma10.py` measures the close-to-close return 1, 5 and 21 bars
+later (and from the next open), against the SPY, against random days of the same stock within +-63 bars, against the
+unconditional base rate of the same stocks, and against every day with the same context (MA10 slope, pullback from
+above or bounce from below, above or below the MA50, range vs ATR, the 5-day move before). Main window: the last 252
+bars; the ten-year train/test split is the robustness check. Result ([docs/research_doji_ma10.md](docs/research_doji_ma10.md)):
+3,129 dojis in the last year went nowhere: -0.01% the next day (up 50%), +0.04% at 5 bars (50%), +0.79% at 21 bars
+(51%), below the any-day base rate (+0.07% / +0.31% / +1.36%, up 51-53%) and -0.6% below random days of the same stock
+at 21 bars; the ten-year split agrees (train +0.0%, test -0.3% over random days). Within every context the doji days
+did no better than the other days of the same context. Not a rule; nothing enters the report, the journal or the flags.
+
 ## Back above the 200-day MA after a long run below (`research-ma200` command)
 
 ```bash

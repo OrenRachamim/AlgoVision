@@ -287,6 +287,22 @@ def cmd_ma200(args) -> int:
     return 0
 
 
+def cmd_doji(args) -> int:
+    """Side study: a doji candle on the 10-day MA, returns at 1/5/21 bars (docs/research_doji_ma10.md)."""
+    from algovision.research.doji_ma10 import write_doji_report
+
+    t0 = time.time()
+    symbols = get_universe(args.universe)
+    if args.limit:
+        symbols = symbols[: args.limit]
+    cache = Path(args.cache_dir) if args.cache_dir else DataProvider.__init__.__defaults__[0]
+    frames = DataProvider(cache_dir=cache, offline=args.offline, workers=args.workers).get_many(list(symbols) + ["SPY"], args.period, "1d")
+    spy = frames.pop("SPY")
+    p = write_doji_report(Path(args.doc), frames, spy["Close"], args.split, out_dir=Path(args.out), window=args.window)
+    print(f"wrote {p} ({time.time() - t0:.0f}s)", file=sys.stderr)
+    return 0
+
+
 def cmd_factors(args) -> int:
     from algovision.research.factors import write_factors_report
 
