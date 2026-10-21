@@ -537,6 +537,18 @@ were no different (|t| <= 2.1 everywhere). The one cut that looked better, a bod
 over random weeks at 12 weeks, n 326, t 2.4), holds only in the last year and not at the 10% or 20% thresholds, so it
 is noise until it shows up in both halves of the decade.
 
+Both reports end with an "After a downtrend before the doji" section: the dojis whose stock had fallen before (quarter
+return below -10% or -20%, half-year return below -15%, 20%+ below the one-year high, MA10 falling 4+ bars, 3+ down
+bars in a row, MA10 falling and close below MA50, and the three combined), each against random bars of the same stock
+and against every bar of the same downtrend without a doji, in the last year, train and test. On weekly bars the
+stock did rise after a quarter's drop of 10%+ (last year: +2.8% at 4 weeks, up 63%; train +2.3%, test +2.2%), but so
+did every other week of the same downtrend (+2.1% / +3.4% / +2.9%), and at 12 weeks the doji weeks did worse than
+those other weeks in train (t -4.1) and in test (t -2.5). The large excess over random weeks of the same stock (+11%
+in the last year) is the rebound of the downtrend itself, which any week in it shows. The one sign that repeats in all
+three windows is negative: a weekly doji after 3+ down weeks in a row underperformed random weeks of the same stock at
+12 weeks (-7% / -1% / -3%, t -2.5 / -0.8 / -2.2) and the other weeks after such a run (t -2.1 / -3.3 / -1.7), too weak
+to be a rule. Daily bars: the same picture, the doji adds nothing to the downtrend's rebound.
+
 ## Back above the 200-day MA after a long run below (`research-ma200` command)
 
 ```bash

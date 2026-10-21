@@ -32,6 +32,37 @@ MIN_GAP = 5
 WINDOW = 252
 WEEKLY_HORIZONS = (1, 4, 12)
 WEEKLY_WINDOW = 52
+SPANS = (63, 126, 252)          # a quarter, half a year, a year in daily bars (the trend-before context)
+WEEKLY_SPANS = (13, 26, 52)
+
+
+def _runs(flag: np.ndarray) -> np.ndarray:
+    """Consecutive True values ending at each position."""
+    run = np.zeros(len(flag), dtype=int)
+    for i in range(1, len(flag)):
+        run[i] = run[i - 1] + 1 if flag[i] else 0
+    return run
+
+
+def _trend_before(c: np.ndarray, ma10: np.ndarray, spans: Sequence[int]) -> Dict[str, np.ndarray]:
+    """Per bar: the return over the last quarter / half year, the distance from the 1-year high, consecutive down closes
+    ending at the previous bar, consecutive falling MA10 bars ending at this bar (all over ``spans`` bars)."""
+    q, hf, y = spans
+    n = len(c)
+    out = {k: np.full(n, np.nan) for k in ("ret_q_before", "ret_h_before", "from_high_y")}
+    out["ret_q_before"][q:] = c[q:] / c[:-q] - 1.0
+    out["ret_h_before"][hf:] = c[hf:] / c[:-hf] - 1.0
+    hi = pd.Series(c).rolling(y, min_periods=20).max().to_numpy()
+    with np.errstate(invalid="ignore", divide="ignore"):
+        out["from_high_y"] = c / hi - 1.0
+    down = np.zeros(n, dtype=bool)
+    down[1:] = c[1:] < c[:-1]
+    r = _runs(down)
+    out["down_bars_before"] = np.concatenate([[0], r[:-1]]).astype(float)   # ending at the previous bar
+    ma_down = np.zeros(n, dtype=bool)
+    ma_down[1:] = np.isfinite(ma10[1:]) & np.isfinite(ma10[:-1]) & (ma10[1:] < ma10[:-1])
+    out["ma10_down_bars"] = _runs(ma_down).astype(float)
+    return out
 
 
 def to_weekly(df: pd.DataFrame, min_days: int = 3) -> pd.DataFrame:
@@ -74,7 +105,7 @@ def on_ma10_mask(df: pd.DataFrame, strict_tol: Optional[float] = None) -> np.nda
 
 def doji_on_ma10_events(frames: Dict[str, pd.DataFrame], spy_close: pd.Series, horizons: Sequence[int] = HORIZONS, body_max: float = BODY_MAX,
                         min_range: float = MIN_RANGE, min_gap: int = MIN_GAP, local_window: int = 63, random_draws: int = 10,
-                        seed: int = 7) -> pd.DataFrame:
+                        seed: int = 7, spans: Sequence[int] = SPANS) -> pd.DataFrame:
     """One row per doji on the 10-day MA with forward returns, SPY and local-random excess and context columns."""
     rows: List[Dict] = []
     hmax = max(horizons)
@@ -93,6 +124,7 @@ def doji_on_ma10_events(frames: Dict[str, pd.DataFrame], spy_close: pd.Series, h
         spy = spy_close.reindex(df.index).ffill().to_numpy(dtype=float)
         mask = doji_mask(df, body_max, min_range) & on_ma10_mask(df)
         strict = on_ma10_mask(df, STRICT_TOL)
+        trend = _trend_before(c, ma10, spans)
         rng = np.random.default_rng(seed + zlib.crc32(s.encode()) % 100000)
         last = -10 ** 6
         for t in np.flatnonzero(mask):
@@ -105,6 +137,7 @@ def doji_on_ma10_events(frames: Dict[str, pd.DataFrame], spy_close: pd.Series, h
                    "ma10_slope": float(ma10[t] / ma10[t - 5] - 1.0), "ret_5_before": float(c[t] / c[t - 5] - 1.0),
                    "from_above": bool(c[t - 5] > ma10[t - 5] * 1.01), "from_below": bool(c[t - 5] < ma10[t - 5] * 0.99),
                    "above_ma50": bool(c[t] > ma50[t]) if np.isfinite(ma50[t]) else None, "day_ret": float(c[t] / c[t - 1] - 1.0)}
+            row.update({k: float(v[t]) for k, v in trend.items()})
             for hz in horizons:
                 r = c[t + hz] / c[t] - 1.0
                 row[f"ret_{hz}"] = float(r)
@@ -145,9 +178,9 @@ def base_rates(frames: Dict[str, pd.DataFrame], start, end, horizons: Sequence[i
     return out
 
 
-def context_base_rates(frames: Dict[str, pd.DataFrame], start, end, horizons: Sequence[int] = HORIZONS) -> pd.DataFrame:
-    """The same context splits over every bar of every stock in the window, doji or not: the control for the context
-    table (does the doji add anything beyond the trend it sits in?)."""
+def all_bars(frames: Dict[str, pd.DataFrame], start, end, horizons: Sequence[int] = HORIZONS, spans: Sequence[int] = SPANS) -> pd.DataFrame:
+    """Every bar of every stock in the window with the context columns, the forward returns and a ``doji`` flag (a doji
+    on the MA10 that bar): the control population for the context and downtrend tables."""
     parts = []
     for s, df in frames.items():
         if df is None or len(df) < 80:
@@ -171,32 +204,82 @@ def context_base_rates(frames: Dict[str, pd.DataFrame], start, end, horizons: Se
         with np.errstate(invalid="ignore", divide="ignore"):
             rec = {"ma10_slope": ma10[t] / ma10[t - 5] - 1.0, "from_above": c[t - 5] > ma10[t - 5] * 1.01, "from_below": c[t - 5] < ma10[t - 5] * 0.99,
                    "above_ma50": c[t] > ma50[t], "range_atr": (h[t] - l[t]) / atr20[t], "ret_5_before": c[t] / c[t - 5] - 1.0, "doji": doji_mask(df)[t] & on_ma10_mask(df)[t]}
+            rec.update({k: v[t] for k, v in _trend_before(c, ma10, spans).items()})
             for hz in horizons:
                 rec[f"ret_{hz}"] = c[t + hz] / c[t] - 1.0
         parts.append(pd.DataFrame(rec))
-    if not parts:
-        return pd.DataFrame()
-    allday = pd.concat(parts, ignore_index=True)
-    groups = [("all", allday), ("MA10 rising", allday[allday["ma10_slope"] > 0]), ("MA10 falling", allday[allday["ma10_slope"] <= 0]),
-              ("pullback from above", allday[allday["from_above"]]), ("bounce from below", allday[allday["from_below"]]),
-              ("above MA50", allday[allday["above_ma50"]]), ("below MA50", allday[~allday["above_ma50"]]),
-              ("range >= 1.2 ATR", allday[allday["range_atr"] >= 1.2]), ("range < 0.8 ATR", allday[allday["range_atr"] < 0.8]),
-              ("down day before (5 bars < -2%)", allday[allday["ret_5_before"] < -0.02]), ("up run before (5 bars > +2%)", allday[allday["ret_5_before"] > 0.02])]
+    return pd.concat(parts, ignore_index=True) if parts else pd.DataFrame()
+
+
+def _doji_vs_rest(groups, horizons: Sequence[int], n_label: str) -> pd.DataFrame:
     rows = []
     for name, g in groups:
         if not len(g):
             continue
-        rec = {"group": name, "n (any day)": int(len(g)), "n (doji)": int(g["doji"].sum())}
+        rec = {"group": name, n_label: int(len(g)), "n (doji)": int(g["doji"].sum())}
         for hz in horizons:
             dj, nd = g[g["doji"]], g[~g["doji"]]
-            rec[f"ret_{hz} any day"] = float(g[f"ret_{hz}"].mean())
-            rec[f"hit_{hz} any day"] = float((g[f"ret_{hz}"] > 0).mean())
+            rec[f"ret_{hz} any"] = float(g[f"ret_{hz}"].mean())
+            rec[f"hit_{hz} any"] = float((g[f"ret_{hz}"] > 0).mean())
             rec[f"ret_{hz} doji"] = float(dj[f"ret_{hz}"].mean()) if len(dj) else np.nan
             rec[f"hit_{hz} doji"] = float((dj[f"ret_{hz}"] > 0).mean()) if len(dj) else np.nan
             a, b = dj[f"ret_{hz}"].dropna(), nd[f"ret_{hz}"].dropna()
             rec[f"t_{hz} doji-rest"] = float((a.mean() - b.mean()) / np.sqrt(a.var() / len(a) + b.var() / len(b))) if len(a) > 2 and len(b) > 2 else np.nan
         rows.append(rec)
     return pd.DataFrame(rows)
+
+
+def downtrend_defs(spans: Sequence[int], bar: str) -> List:
+    """(name, mask function) pairs describing a downtrend before the bar, plus an uptrend for contrast."""
+    q, hf, y = spans
+    return [(f"{q}-{bar} return < -10%", lambda d: d["ret_q_before"] < -0.10), (f"{q}-{bar} return < -20%", lambda d: d["ret_q_before"] < -0.20),
+            (f"{hf}-{bar} return < -15%", lambda d: d["ret_h_before"] < -0.15), (f"20%+ below the {y}-{bar} high", lambda d: d["from_high_y"] <= -0.20),
+            (f"MA10 falling 4+ {bar}s in a row", lambda d: d["ma10_down_bars"] >= 4), (f"3+ down {bar}s in a row before", lambda d: d["down_bars_before"] >= 3),
+            ("MA10 falling and close below MA50", lambda d: (d["ma10_slope"] <= 0) & (d["above_ma50"] == False)),  # noqa: E712
+            (f"{q}-{bar} return < -10%, below MA50, MA10 falling", lambda d: (d["ret_q_before"] < -0.10) & (d["above_ma50"] == False) & (d["ma10_slope"] <= 0)),  # noqa: E712
+            (f"uptrend for contrast: {q}-{bar} return > +10%", lambda d: d["ret_q_before"] > 0.10)]
+
+
+def downtrend_table(ev: pd.DataFrame, bars: pd.DataFrame, horizons: Sequence[int], spans: Sequence[int] = SPANS, bar: str = "day") -> pd.DataFrame:
+    """Dojis after a downtrend (each definition) against random bars of the same stock (xloc) and against every bar in
+    the same downtrend without a doji (the control)."""
+    hz = horizons[-1]
+    rows = []
+    for name, fn in downtrend_defs(spans, bar):
+        e = ev[fn(ev).fillna(False)] if len(ev) else ev
+        b = bars[fn(bars).fillna(False)] if len(bars) else bars
+        if len(e) < 5:
+            continue
+        rec = {"downtrend before": name, "n doji": int(len(e))}
+        for k in horizons:
+            rec[f"ret_{k} doji"] = float(e[f"ret_{k}"].mean())
+            rec[f"hit_{k} doji"] = float((e[f"ret_{k}"] > 0).mean())
+        st = _stats(e, hz)
+        rec[f"xloc_{hz}"], rec[f"t_{hz} xloc"] = st[f"xloc_{hz}"], st[f"t_{hz}"]
+        rec["n any"] = int(len(b))
+        for k in horizons:
+            rec[f"ret_{k} any"] = float(b[f"ret_{k}"].mean()) if len(b) else np.nan
+            rec[f"hit_{k} any"] = float((b[f"ret_{k}"] > 0).mean()) if len(b) else np.nan
+            dj, nd = b[b["doji"]], b[~b["doji"]]
+            x, yv = dj[f"ret_{k}"].dropna(), nd[f"ret_{k}"].dropna()
+            rec[f"t_{k} doji-rest"] = float((x.mean() - yv.mean()) / np.sqrt(x.var() / len(x) + yv.var() / len(yv))) if len(x) > 2 and len(yv) > 2 else np.nan
+        rows.append(rec)
+    return pd.DataFrame(rows)
+
+
+def context_base_rates(frames: Dict[str, pd.DataFrame], start, end, horizons: Sequence[int] = HORIZONS, spans: Sequence[int] = SPANS,
+                       bars: Optional[pd.DataFrame] = None) -> pd.DataFrame:
+    """The same context splits over every bar of every stock in the window, doji or not: the control for the context
+    table (does the doji add anything beyond the trend it sits in?)."""
+    allday = all_bars(frames, start, end, horizons, spans) if bars is None else bars
+    if not len(allday):
+        return pd.DataFrame()
+    groups = [("all", allday), ("MA10 rising", allday[allday["ma10_slope"] > 0]), ("MA10 falling", allday[allday["ma10_slope"] <= 0]),
+              ("pullback from above", allday[allday["from_above"]]), ("bounce from below", allday[allday["from_below"]]),
+              ("above MA50", allday[allday["above_ma50"]]), ("below MA50", allday[~allday["above_ma50"]]),
+              ("range >= 1.2 ATR", allday[allday["range_atr"] >= 1.2]), ("range < 0.8 ATR", allday[allday["range_atr"] < 0.8]),
+              ("down day before (5 bars < -2%)", allday[allday["ret_5_before"] < -0.02]), ("up run before (5 bars > +2%)", allday[allday["ret_5_before"] > 0.02])]
+    return _doji_vs_rest(groups, horizons, "n (any day)")
 
 
 def _stats(g: pd.DataFrame, hz: int, col: str = "ret") -> Dict:
@@ -229,12 +312,12 @@ def summarise(ev: pd.DataFrame, horizons: Sequence[int] = HORIZONS, col: str = "
 
 
 def sensitivity(frames: Dict[str, pd.DataFrame], spy_close: pd.Series, start, end, horizons: Sequence[int] = HORIZONS, min_gap: int = MIN_GAP,
-                local_window: int = 63) -> pd.DataFrame:
+                local_window: int = 63, spans: Sequence[int] = SPANS) -> pd.DataFrame:
     """Body thresholds 5/10/20% x (MA inside the range / strict on the line) at the last horizon, within the window."""
     hz = horizons[-1]
     rows = []
     for body in (0.05, 0.10, 0.20):
-        ev = doji_on_ma10_events(frames, spy_close, horizons, body_max=body, min_gap=min_gap, local_window=local_window)
+        ev = doji_on_ma10_events(frames, spy_close, horizons, body_max=body, min_gap=min_gap, local_window=local_window, spans=spans)
         if not len(ev):
             continue
         d = pd.to_datetime(ev["date"])
@@ -311,8 +394,9 @@ def write_doji_report(doc_path: Path, frames: Dict[str, pd.DataFrame], spy_close
         horizons = tuple(horizons) if tuple(horizons) != HORIZONS else WEEKLY_HORIZONS
         window = window if window != WINDOW else WEEKLY_WINDOW
     min_gap, local_window = (2, 26) if weekly else (MIN_GAP, 63)
+    spans = WEEKLY_SPANS if weekly else SPANS
     hz = horizons[-1]
-    ev = doji_on_ma10_events(frames, spy_close, horizons, min_gap=min_gap, local_window=local_window)
+    ev = doji_on_ma10_events(frames, spy_close, horizons, min_gap=min_gap, local_window=local_window, spans=spans)
     if not len(ev):
         doc_path.write_text("# Doji on the 10-day MA\n\nNo events.\n", encoding="utf-8")
         return doc_path
@@ -326,8 +410,13 @@ def write_doji_report(doc_path: Path, frames: Dict[str, pd.DataFrame], spy_close
     s_year, s_train, s_test = summarise(ev_year, horizons), summarise(ev_train, horizons), summarise(ev_test, horizons)
     s_year_open = summarise(ev_year, horizons, col="oret")
     base = base_rates(frames, start, last_date, horizons)
-    ctx = context_base_rates(frames, start, last_date, horizons)
-    sens = sensitivity(frames, spy_close, start, last_date, horizons, min_gap=min_gap, local_window=local_window)
+    first_date = min(df.index[0] for df in frames.values() if df is not None and len(df))
+    bars_year = all_bars(frames, start, last_date, horizons, spans)
+    bars_train = all_bars(frames, first_date, pd.Timestamp(split) - pd.Timedelta(days=1), horizons, spans)
+    bars_test = all_bars(frames, pd.Timestamp(split), last_date, horizons, spans)
+    ctx = context_base_rates(frames, start, last_date, horizons, spans, bars=bars_year)
+    dt_year, dt_train, dt_test = (downtrend_table(e, b, horizons, spans, bar) for e, b in ((ev_year, bars_year), (ev_train, bars_train), (ev_test, bars_test)))
+    sens = sensitivity(frames, spy_close, start, last_date, horizons, min_gap=min_gap, local_window=local_window, spans=spans)
     years = by_year(ev, horizons)
     v = verdict(s_year, s_train, s_test, hz=hz)
     if out_dir:
@@ -339,6 +428,7 @@ def write_doji_report(doc_path: Path, frames: Dict[str, pd.DataFrame], spy_close
         sens.to_csv(out_dir / "doji_ma10_sensitivity.csv", index=False)
         years.to_csv(out_dir / "doji_ma10_by_year.csv", index=False)
         ctx.to_csv(out_dir / "doji_ma10_context_control.csv", index=False)
+        pd.concat([dt_year.assign(period="last year"), dt_train.assign(period="train"), dt_test.assign(period="test")]).to_csv(out_dir / "doji_ma10_downtrend.csv", index=False)
     yr = s_year[s_year["group"] == "all"].iloc[0] if len(s_year) else None
     hz_txt = ", ".join(str(k) for k in horizons[:-1]) + f" and {hz} {bar}s"
     md = [f"# A doji sitting on the 10-{bar} moving average ({'weekly' if weekly else 'daily'} bars)", "",
@@ -370,6 +460,13 @@ def write_doji_report(doc_path: Path, frames: Dict[str, pd.DataFrame], spy_close
            f"Every stock-{bar} in the window split by the same context; the doji columns are the dojis on the MA10 within that context (no {min_gap}-{bar} "
            f"gap here, so n differs a little from the table above) and *t doji-rest* is the Welch t of the doji {bar}s against the other {bar}s of the "
            f"same context. If the doji adds nothing, its columns match the any-{bar} columns.", "", _table(ctx) if len(ctx) else "No data.", "",
+           "## After a downtrend before the doji", "",
+           f"Dojis on the MA10 whose stock was in a downtrend by each definition (the trend columns: return over the last {spans[0]} and {spans[1]} {bar}s, "
+           f"distance from the {spans[2]}-{bar} high, consecutive falling MA10 {bar}s, consecutive down closes ending the {bar} before). *doji* columns = the "
+           f"dojis; *xloc* and its t = against random {bar}s of the same stock; *any* columns = every {bar} of every stock in the same downtrend, doji or "
+           f"not; *t doji-rest* = Welch t of the doji {bar}s against the other {bar}s of the same downtrend. An uptrend row is included for contrast.", "",
+           f"Last {window} {bar}s:", "", _table(dt_year) if len(dt_year) else "Too few events.", "", f"Train (< {split}):", "",
+           _table(dt_train) if len(dt_train) else "Too few events.", "", f"Test (>= {split}):", "", _table(dt_test) if len(dt_test) else "Too few events.", "",
            "## Sensitivity (last year, body threshold x position on the line)", "", _table(sens) if len(sens) else "No events.", "",
            "## Ten years, train / test", "", "Train:", "", _table(s_train) if len(s_train) else "No events.", "", "Test:", "",
            _table(s_test) if len(s_test) else "No events.", "", "## By year (all events)", "", _table(years), "",

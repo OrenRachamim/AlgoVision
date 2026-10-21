@@ -149,7 +149,10 @@ usually a little worse. Not a rule: [`research_doji_ma10.md`](research_doji_ma10
 10-week MA in the last 52 weeks) the picture is the same: +0.36% / +1.55% / +5.03% at 1 / 4 / 12 weeks, against +0.31%
 / +1.25% / +4.85% for any week of the same stocks, +1.0% over random weeks at 12 weeks (t 0.9) in the last year but
 -0.6% in train and -0.1% in test, and no difference from the other weeks of the same context:
-[`research_doji_ma10_weekly.md`](research_doji_ma10_weekly.md).
+[`research_doji_ma10_weekly.md`](research_doji_ma10_weekly.md). After a downtrend (a quarter's drop of 10%+ and six
+other definitions) the stock rebounded, doji or not: the weekly doji weeks matched the other weeks of the same
+downtrend at 1 and 4 weeks and did worse at 12 weeks in both halves of the decade (t -4.1 train, -2.5 test); after 3+
+down weeks in a row the doji underperformed in all three windows, too weakly for a rule.
 
 ## Crossing back above the 200-day MA after a long run below it
 

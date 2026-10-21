@@ -62,6 +62,20 @@ def test_events_summary_and_report(tmp_path):
     assert (tmp_path / "out" / "doji_ma10_events.csv").exists() and (tmp_path / "out" / "doji_ma10_context_control.csv").exists()
     ctx = D.context_base_rates(frames, ev["date"].min(), ev["date"].max())
     assert ctx.iloc[0]["group"] == "all" and ctx.iloc[0]["n (any day)"] > ctx.iloc[0]["n (doji)"] > 0 and "Control" in text
+    # trend-before columns and the downtrend table
+    assert {"ret_q_before", "ret_h_before", "from_high_y", "down_bars_before", "ma10_down_bars"} <= set(ev.columns)
+    assert (ev["from_high_y"] <= 1e-12).all() and (ev["down_bars_before"] >= 0).all()
+    e0 = ev.iloc[0]
+    df0 = frames[e0["symbol"]]
+    t0 = df0.index.get_loc(e0["date"])
+    assert abs(e0["ret_q_before"] - (df0["Close"].iloc[t0] / df0["Close"].iloc[t0 - 63] - 1)) < 1e-12
+    k, c0 = 0, df0["Close"].to_numpy()
+    while c0[t0 - 1 - k] < c0[t0 - 2 - k]:
+        k += 1
+    assert e0["down_bars_before"] == k
+    bars = D.all_bars(frames, ev["date"].min(), ev["date"].max())
+    dt = D.downtrend_table(ev, bars, D.HORIZONS)
+    assert "After a downtrend" in text and (len(dt) == 0 or {"n doji", "n any", "xloc_21", "t_21 doji-rest"} <= set(dt.columns))
 
 
 def test_verdict_rule():
