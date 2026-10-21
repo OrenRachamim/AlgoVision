@@ -528,6 +528,15 @@ bars; the ten-year train/test split is the robustness check. Result ([docs/resea
 at 21 bars; the ten-year split agrees (train +0.0%, test -0.3% over random days). Within every context the doji days
 did no better than the other days of the same context. Not a rule; nothing enters the report, the journal or the flags.
 
+`--weekly` runs the same study on weekly bars (Monday-to-Friday aggregates of the daily cache; MA10 = 10 weeks,
+horizons 1, 4 and 12 weeks, main window the last 52 weeks; [docs/research_doji_ma10_weekly.md](docs/research_doji_ma10_weekly.md)).
+Result: 602 weekly dojis in the last year, +0.36% the next week (up 54%), +1.55% at 4 weeks (55%), +5.03% at 12 weeks
+(56%) against +0.31% / +1.25% / +4.85% (up 52-57%) for any week of the same stocks; +1.0% over random weeks of the same
+stock at 12 weeks (t 0.9), -0.6% in train and -0.1% in test. Against every week with the same context the doji weeks
+were no different (|t| <= 2.1 everywhere). The one cut that looked better, a body of at most 5% of the range (+3.5%
+over random weeks at 12 weeks, n 326, t 2.4), holds only in the last year and not at the 10% or 20% thresholds, so it
+is noise until it shows up in both halves of the decade.
+
 ## Back above the 200-day MA after a long run below (`research-ma200` command)
 
 ```bash

@@ -71,3 +71,21 @@ def test_verdict_rule():
     assert D.verdict(s(-0.01), s(-0.008), s(-0.006))["direction"] == "down"
     assert not D.verdict(s(0.01), s(-0.008), s(0.006))["passed"]
     assert not D.verdict(s(0.01, n=10), s(0.008), s(0.006))["passed"]
+
+
+def test_weekly_resample_and_report(tmp_path):
+    df = _frame(n=600, seed=5)
+    w = D.to_weekly(df)
+    assert len(w) > 100 and (w["High"] >= w[["Open", "Close"]].max(axis=1)).all() and (w["Low"] <= w[["Open", "Close"]].min(axis=1)).all()
+    first_week = df.loc[: w.index[0]]
+    assert w["Open"].iloc[0] == first_week["Open"].iloc[0] and w["Close"].iloc[0] == first_week["Close"].iloc[-1]
+    # a frame ending mid-week drops the unfinished week
+    cut = df.iloc[:-2] if df.index[-1].weekday() == 4 else df
+    assert D.to_weekly(cut).index[-1] < cut.index[-1] or cut.index[-1].weekday() == 4
+    frames = {f"S{i}": _frame(n=1500, seed=20 + i) for i in range(15)}
+    spy = _frame(n=1500, seed=98)["Close"]
+    p = D.write_doji_report(tmp_path / "w.md", frames, spy, split="2027-01-01", out_dir=tmp_path / "w", weekly=True)
+    text = p.read_text(encoding="utf-8")
+    assert "weekly bars" in text and "12 weeks" in text and "Last 52 weeks" in text
+    ev = pd.read_csv(tmp_path / "w" / "doji_ma10_events.csv")
+    assert {"ret_1", "ret_4", "ret_12", "xloc_12"} <= set(ev.columns) and "ret_21" not in ev.columns

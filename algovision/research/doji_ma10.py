@@ -30,6 +30,26 @@ MIN_RANGE = 0.0025
 STRICT_TOL = 0.0025
 MIN_GAP = 5
 WINDOW = 252
+WEEKLY_HORIZONS = (1, 4, 12)
+WEEKLY_WINDOW = 52
+
+
+def to_weekly(df: pd.DataFrame, min_days: int = 3) -> pd.DataFrame:
+    """Daily bars to weekly bars (Monday to Friday): open = first, high = max, low = min, close = last, volume = sum.
+    Weeks with fewer than ``min_days`` sessions are dropped, and so is the last week when it has not reached Friday."""
+    if df is None or not len(df):
+        return df
+    g = df.resample("W-FRI")
+    w = pd.DataFrame({"Open": g["Open"].first(), "High": g["High"].max(), "Low": g["Low"].min(), "Close": g["Close"].last(),
+                      "Volume": g["Volume"].sum() if "Volume" in df.columns else g["Close"].count(), "days": g["Close"].count()})
+    w = w[w["days"] >= min_days].drop(columns="days")
+    if len(w) and df.index[-1].weekday() < 4:
+        w = w.iloc[:-1]
+    return w
+
+
+def weekly_frames(frames: Dict[str, pd.DataFrame]) -> Dict[str, pd.DataFrame]:
+    return {s: to_weekly(df) for s, df in frames.items() if df is not None and len(df)}
 
 
 def doji_mask(df: pd.DataFrame, body_max: float = BODY_MAX, min_range: float = MIN_RANGE) -> np.ndarray:
@@ -126,7 +146,7 @@ def base_rates(frames: Dict[str, pd.DataFrame], start, end, horizons: Sequence[i
 
 
 def context_base_rates(frames: Dict[str, pd.DataFrame], start, end, horizons: Sequence[int] = HORIZONS) -> pd.DataFrame:
-    """The same context splits over every day of every stock in the window, doji or not: the control for the context
+    """The same context splits over every bar of every stock in the window, doji or not: the control for the context
     table (does the doji add anything beyond the trend it sits in?)."""
     parts = []
     for s, df in frames.items():
@@ -208,11 +228,13 @@ def summarise(ev: pd.DataFrame, horizons: Sequence[int] = HORIZONS, col: str = "
     return pd.DataFrame(rows)
 
 
-def sensitivity(frames: Dict[str, pd.DataFrame], spy_close: pd.Series, start, end, hz: int = 21) -> pd.DataFrame:
-    """Body thresholds 5/10/20% x (MA inside the range / strict on the line) at ``hz`` bars, within the window."""
+def sensitivity(frames: Dict[str, pd.DataFrame], spy_close: pd.Series, start, end, horizons: Sequence[int] = HORIZONS, min_gap: int = MIN_GAP,
+                local_window: int = 63) -> pd.DataFrame:
+    """Body thresholds 5/10/20% x (MA inside the range / strict on the line) at the last horizon, within the window."""
+    hz = horizons[-1]
     rows = []
     for body in (0.05, 0.10, 0.20):
-        ev = doji_on_ma10_events(frames, spy_close, body_max=body)
+        ev = doji_on_ma10_events(frames, spy_close, horizons, body_max=body, min_gap=min_gap, local_window=local_window)
         if not len(ev):
             continue
         d = pd.to_datetime(ev["date"])
@@ -226,13 +248,19 @@ def sensitivity(frames: Dict[str, pd.DataFrame], spy_close: pd.Series, start, en
     return pd.DataFrame(rows)
 
 
-def by_year(ev: pd.DataFrame, hz: int = 21) -> pd.DataFrame:
+def by_year(ev: pd.DataFrame, horizons: Sequence[int] = HORIZONS) -> pd.DataFrame:
     e = ev.copy()
     e["year"] = pd.to_datetime(e["date"]).dt.year
-    return e.groupby("year").apply(lambda g: pd.Series({"n": len(g), "ret_1": g["ret_1"].mean(), "hit_1": (g["ret_1"] > 0).mean(),
-                                                        "ret_5": g["ret_5"].mean(), "hit_5": (g["ret_5"] > 0).mean(),
-                                                        f"ret_{hz}": g[f"ret_{hz}"].mean(), f"hit_{hz}": (g[f"ret_{hz}"] > 0).mean(),
-                                                        f"xloc_{hz}": g[f"xloc_{hz}"].mean()}), include_groups=False).reset_index()
+    hz = horizons[-1]
+
+    def agg(g):
+        rec = {"n": len(g)}
+        for k in horizons:
+            rec[f"ret_{k}"] = g[f"ret_{k}"].mean()
+            rec[f"hit_{k}"] = (g[f"ret_{k}"] > 0).mean()
+        rec[f"xloc_{hz}"] = g[f"xloc_{hz}"].mean()
+        return pd.Series(rec)
+    return e.groupby("year").apply(agg, include_groups=False).reset_index()
 
 
 def verdict(summ_year: pd.DataFrame, summ_train: pd.DataFrame, summ_test: pd.DataFrame, hz: int = 21, threshold: float = 0.005) -> Dict:
@@ -271,10 +299,20 @@ def _table(df: pd.DataFrame) -> str:
 
 
 def write_doji_report(doc_path: Path, frames: Dict[str, pd.DataFrame], spy_close: pd.Series, split: str, out_dir: Optional[Path] = None,
-                      window: int = WINDOW, horizons: Sequence[int] = HORIZONS) -> Path:
+                      window: int = WINDOW, horizons: Sequence[int] = HORIZONS, weekly: bool = False) -> Path:
+    """``weekly=True`` resamples the daily frames to weekly bars first and uses weekly horizons (1, 4, 12 weeks), a
+    52-week main window, a 2-bar gap between events and +-26 weeks for the random days."""
     doc_path = Path(doc_path)
     doc_path.parent.mkdir(parents=True, exist_ok=True)
-    ev = doji_on_ma10_events(frames, spy_close, horizons)
+    bar = "week" if weekly else "day"
+    if weekly:
+        frames = weekly_frames(frames)
+        spy_close = to_weekly(spy_close.to_frame("Close").assign(Open=spy_close, High=spy_close, Low=spy_close))["Close"]
+        horizons = tuple(horizons) if tuple(horizons) != HORIZONS else WEEKLY_HORIZONS
+        window = window if window != WINDOW else WEEKLY_WINDOW
+    min_gap, local_window = (2, 26) if weekly else (MIN_GAP, 63)
+    hz = horizons[-1]
+    ev = doji_on_ma10_events(frames, spy_close, horizons, min_gap=min_gap, local_window=local_window)
     if not len(ev):
         doc_path.write_text("# Doji on the 10-day MA\n\nNo events.\n", encoding="utf-8")
         return doc_path
@@ -289,9 +327,9 @@ def write_doji_report(doc_path: Path, frames: Dict[str, pd.DataFrame], spy_close
     s_year_open = summarise(ev_year, horizons, col="oret")
     base = base_rates(frames, start, last_date, horizons)
     ctx = context_base_rates(frames, start, last_date, horizons)
-    sens = sensitivity(frames, spy_close, start, last_date)
-    years = by_year(ev)
-    v = verdict(s_year, s_train, s_test)
+    sens = sensitivity(frames, spy_close, start, last_date, horizons, min_gap=min_gap, local_window=local_window)
+    years = by_year(ev, horizons)
+    v = verdict(s_year, s_train, s_test, hz=hz)
     if out_dir:
         out_dir = Path(out_dir)
         out_dir.mkdir(parents=True, exist_ok=True)
@@ -302,33 +340,36 @@ def write_doji_report(doc_path: Path, frames: Dict[str, pd.DataFrame], spy_close
         years.to_csv(out_dir / "doji_ma10_by_year.csv", index=False)
         ctx.to_csv(out_dir / "doji_ma10_context_control.csv", index=False)
     yr = s_year[s_year["group"] == "all"].iloc[0] if len(s_year) else None
-    md = ["# A doji sitting on the 10-day moving average (daily bars)", "",
-          f"Event: a daily candle whose body is at most {BODY_MAX:.0%} of its high-low range (range at least {MIN_RANGE:.2%} of the close) with the "
-          f"10-day simple moving average of closes inside the candle's low-high range; at most one event per stock per {MIN_GAP} bars. Returns are "
-          f"close-to-close from the doji's close at 1, 5 and 21 bars (and from the next open in a separate table). *xloc* = the return minus the mean "
-          f"return of 10 random days of the same stock within +-63 bars over the same horizon, *xspy* = minus the SPY over the same window, *hit* = share "
-          f"of positive returns, *med* = median, *t* = t-statistic of xloc. {len(ev)} events in {ev['symbol'].nunique()} stocks, {d.min().date()} to "
-          f"{d.max().date()}; the main window is the last {window} bars ({start.date()} to {last_date.date()}, {len(ev_year)} events); the ten-year "
-          f"train < {split} / test >= {split} split is the robustness check.", ""]
+    hz_txt = ", ".join(str(k) for k in horizons[:-1]) + f" and {hz} {bar}s"
+    md = [f"# A doji sitting on the 10-{bar} moving average ({'weekly' if weekly else 'daily'} bars)", "",
+          f"Event: a {'weekly' if weekly else 'daily'} candle whose body is at most {BODY_MAX:.0%} of its high-low range (range at least {MIN_RANGE:.2%} "
+          f"of the close) with the 10-{bar} simple moving average of closes inside the candle's low-high range; at most one event per stock per {min_gap} "
+          f"{bar}s. Returns are close-to-close from the doji's close at {hz_txt} (and from the next open in a separate table). *xloc* = the return minus "
+          f"the mean return of 10 random {bar}s of the same stock within +-{local_window} {bar}s over the same horizon, *xspy* = minus the SPY over the "
+          f"same window, *hit* = share of positive returns, *med* = median, *t* = t-statistic of xloc. {len(ev)} events in {ev['symbol'].nunique()} "
+          f"stocks, {d.min().date()} to {d.max().date()}; the main window is the last {window} {bar}s ({start.date()} to {last_date.date()}, "
+          f"{len(ev_year)} events); the ten-year train < {split} / test >= {split} split is the robustness check."
+          + (" Weekly bars are Monday-to-Friday aggregates of the daily cache (open = first, high = max, low = min, close = last); weeks with fewer than "
+             "3 sessions and the current unfinished week are dropped. The context splits use the same bar counts (MA10 = 10 weeks, MA50 = 50 weeks, "
+             "ATR20 = 20 weeks, the 5-bar move before = 5 weeks)." if weekly else ""), ""]
     md += ["## Verdict", ""]
     if v.get("reason"):
         md.append(f"No verdict: {v['reason']}.")
     else:
-        md.append(f"**{'Passed' if v['passed'] else 'Not passed'}** (direction: {v['direction']}) at 21 bars for all events. The rule: at least +0.5% "
+        md.append(f"**{'Passed' if v['passed'] else 'Not passed'}** (direction: {v['direction']}) at {hz} {bar}s for all events. The rule: at least +0.5% "
                   f"(or at most -0.5%) over random days of the same stock in the last year, in train and in test, with 30+ events each. Last year: xloc "
                   f"{_pct(v['year']['xloc'], 2)}, hit {v['year']['hit']:.0%}, raw {_pct(v['year']['ret'], 2)} (n {v['year']['n']}); train {_pct(v['train']['xloc'], 2)} "
                   f"(n {v['train']['n']}); test {_pct(v['test']['xloc'], 2)} (n {v['test']['n']}).")
     if yr is not None:
-        md += ["", f"Last year, after the doji: 1 bar {_pct(yr['ret_1'], 2)} (hit {yr['hit_1']:.0%}), 5 bars {_pct(yr['ret_5'], 2)} (hit {yr['hit_5']:.0%}), "
-               f"21 bars {_pct(yr['ret_21'], 2)} (hit {yr['hit_21']:.0%}). The same stocks on any day over the same period: 1 bar {_pct(base['ret_1'], 2)} "
-               f"(up {base['hit_1']:.0%}), 5 bars {_pct(base['ret_5'], 2)} (up {base['hit_5']:.0%}), 21 bars {_pct(base['ret_21'], 2)} (up {base['hit_21']:.0%}), "
-               f"n {base['n']:,} stock-days."]
-    md += ["", f"## Last {window} bars, by context (close-to-close)", "", _table(s_year), "",
-           f"## Last {window} bars, from the next open (a trade's entry)", "", _table(s_year_open), "",
-           f"## Control: the same context on any day of the last {window} bars (doji or not)", "",
-           "Every stock-day in the window split by the same context; the doji columns are the dojis on the MA10 within that context (no 5-bar gap "
-           "here, so n differs a little from the table above) and *t doji-rest* is the Welch t of the doji days against the other days of the same "
-           "context. If the doji adds nothing, its columns match the any-day columns.", "", _table(ctx) if len(ctx) else "No data.", "",
+        after = ", ".join(f"{k} {bar}{'s' if k > 1 else ''} {_pct(yr[f'ret_{k}'], 2)} (hit {yr[f'hit_{k}']:.0%})" for k in horizons)
+        anyd = ", ".join(f"{k} {bar}{'s' if k > 1 else ''} {_pct(base[f'ret_{k}'], 2)} (up {base[f'hit_{k}']:.0%})" for k in horizons)
+        md += ["", f"Last year, after the doji: {after}. The same stocks on any {bar} over the same period: {anyd}, n {base['n']:,} stock-{bar}s."]
+    md += ["", f"## Last {window} {bar}s, by context (close-to-close)", "", _table(s_year), "",
+           f"## Last {window} {bar}s, from the next open (a trade's entry)", "", _table(s_year_open), "",
+           f"## Control: the same context on any {bar} of the last {window} {bar}s (doji or not)", "",
+           f"Every stock-{bar} in the window split by the same context; the doji columns are the dojis on the MA10 within that context (no {min_gap}-{bar} "
+           f"gap here, so n differs a little from the table above) and *t doji-rest* is the Welch t of the doji {bar}s against the other {bar}s of the "
+           f"same context. If the doji adds nothing, its columns match the any-{bar} columns.", "", _table(ctx) if len(ctx) else "No data.", "",
            "## Sensitivity (last year, body threshold x position on the line)", "", _table(sens) if len(sens) else "No events.", "",
            "## Ten years, train / test", "", "Train:", "", _table(s_train) if len(s_train) else "No events.", "", "Test:", "",
            _table(s_test) if len(s_test) else "No events.", "", "## By year (all events)", "", _table(years), "",

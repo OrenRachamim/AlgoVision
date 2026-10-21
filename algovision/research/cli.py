@@ -298,7 +298,11 @@ def cmd_doji(args) -> int:
     cache = Path(args.cache_dir) if args.cache_dir else DataProvider.__init__.__defaults__[0]
     frames = DataProvider(cache_dir=cache, offline=args.offline, workers=args.workers).get_many(list(symbols) + ["SPY"], args.period, "1d")
     spy = frames.pop("SPY")
-    p = write_doji_report(Path(args.doc), frames, spy["Close"], args.split, out_dir=Path(args.out), window=args.window)
+    doc, out = Path(args.doc), Path(args.out)
+    if args.weekly:
+        doc = doc if args.doc != "docs/research_doji_ma10.md" else Path("docs/research_doji_ma10_weekly.md")
+        out = out if args.out != "docs/research/doji_ma10" else Path("docs/research/doji_ma10_weekly")
+    p = write_doji_report(doc, frames, spy["Close"], args.split, out_dir=out, window=args.window, weekly=args.weekly)
     print(f"wrote {p} ({time.time() - t0:.0f}s)", file=sys.stderr)
     return 0
 

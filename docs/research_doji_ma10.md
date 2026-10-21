@@ -1,14 +1,14 @@
 # A doji sitting on the 10-day moving average (daily bars)
 
-Event: a daily candle whose body is at most 10% of its high-low range (range at least 0.25% of the close) with the 10-day simple moving average of closes inside the candle's low-high range; at most one event per stock per 5 bars. Returns are close-to-close from the doji's close at 1, 5 and 21 bars (and from the next open in a separate table). *xloc* = the return minus the mean return of 10 random days of the same stock within +-63 bars over the same horizon, *xspy* = minus the SPY over the same window, *hit* = share of positive returns, *med* = median, *t* = t-statistic of xloc. 31156 events in 513 stocks, 2017-01-09 to 2026-09-18; the main window is the last 252 bars (2025-10-17 to 2026-10-19, 3129 events); the ten-year train < 2023-01-01 / test >= 2023-01-01 split is the robustness check.
+Event: a daily candle whose body is at most 10% of its high-low range (range at least 0.25% of the close) with the 10-day simple moving average of closes inside the candle's low-high range; at most one event per stock per 5 days. Returns are close-to-close from the doji's close at 1, 5 and 21 days (and from the next open in a separate table). *xloc* = the return minus the mean return of 10 random days of the same stock within +-63 days over the same horizon, *xspy* = minus the SPY over the same window, *hit* = share of positive returns, *med* = median, *t* = t-statistic of xloc. 31156 events in 513 stocks, 2017-01-09 to 2026-09-18; the main window is the last 252 days (2025-10-17 to 2026-10-19, 3129 events); the ten-year train < 2023-01-01 / test >= 2023-01-01 split is the robustness check.
 
 ## Verdict
 
-**Not passed** (direction: none) at 21 bars for all events. The rule: at least +0.5% (or at most -0.5%) over random days of the same stock in the last year, in train and in test, with 30+ events each. Last year: xloc -0.61%, hit 51%, raw +0.79% (n 3129); train +0.00% (n 18976); test -0.27% (n 12180).
+**Not passed** (direction: none) at 21 days for all events. The rule: at least +0.5% (or at most -0.5%) over random days of the same stock in the last year, in train and in test, with 30+ events each. Last year: xloc -0.61%, hit 51%, raw +0.79% (n 3129); train +0.00% (n 18976); test -0.27% (n 12180).
 
-Last year, after the doji: 1 bar -0.01% (hit 50%), 5 bars +0.04% (hit 50%), 21 bars +0.79% (hit 51%). The same stocks on any day over the same period: 1 bar +0.07% (up 51%), 5 bars +0.31% (up 52%), 21 bars +1.36% (up 53%), n 129,031 stock-days.
+Last year, after the doji: 1 day -0.01% (hit 50%), 5 days +0.04% (hit 50%), 21 days +0.79% (hit 51%). The same stocks on any day over the same period: 1 day +0.07% (up 51%), 5 days +0.31% (up 52%), 21 days +1.36% (up 53%), n 129,031 stock-days.
 
-## Last 252 bars, by context (close-to-close)
+## Last 252 days, by context (close-to-close)
 
 | group                          |    n | ret_1   | med_1   | hit_1   | xspy_1   | xloc_1   |   t_1 | ret_5   | med_5   | hit_5   | xspy_5   | xloc_5   |   t_5 | ret_21   | med_21   | hit_21   | xspy_21   | xloc_21   |   t_21 |
 |:-------------------------------|-----:|:--------|:--------|:--------|:---------|:---------|------:|:--------|:--------|:--------|:---------|:---------|------:|:---------|:---------|:---------|:----------|:----------|-------:|
@@ -25,7 +25,7 @@ Last year, after the doji: 1 bar -0.01% (hit 50%), 5 bars +0.04% (hit 50%), 21 b
 | down day before (5 bars < -2%) |  409 | -0.02%  | -0.11%  | 47%     | -0.04%   | -0.11%   |  -0.6 | +0.43%  | +0.46%  | 53%     | +0.22%   | -0.18%   |  -0.5 | +2.92%   | +1.30%   | 55%      | +1.47%    | +0.23%    |    0.3 |
 | up run before (5 bars > +2%)   |  461 | -0.12%  | -0.10%  | 48%     | -0.24%   | -0.17%   |  -1.3 | -0.02%  | +0.20%  | 51%     | -0.64%   | -0.35%   |  -1.1 | +1.63%   | +0.33%   | 52%      | -0.09%    | -0.26%    |   -0.4 |
 
-## Last 252 bars, from the next open (a trade's entry)
+## Last 252 days, from the next open (a trade's entry)
 
 | group                          |    n | ret_1   | med_1   | hit_1   | xspy_1   | xloc_1   |   t_1 | ret_5   | med_5   | hit_5   | xspy_5   | xloc_5   |   t_5 | ret_21   | med_21   | hit_21   | xspy_21   | xloc_21   |   t_21 |
 |:-------------------------------|-----:|:--------|:--------|:--------|:---------|:---------|------:|:--------|:--------|:--------|:---------|:---------|------:|:---------|:---------|:---------|:----------|:----------|-------:|
@@ -42,9 +42,9 @@ Last year, after the doji: 1 bar -0.01% (hit 50%), 5 bars +0.04% (hit 50%), 21 b
 | down day before (5 bars < -2%) |  409 | +0.02%  | -0.07%  | 48%     | -0.04%   | -0.11%   |  -0.6 | +0.47%  | +0.51%  | 53%     | +0.22%   | -0.18%   |  -0.5 | +2.95%   | +1.80%   | 56%      | +1.47%    | +0.23%    |    0.3 |
 | up run before (5 bars > +2%)   |  461 | -0.24%  | -0.19%  | 45%     | -0.24%   | -0.17%   |  -1.3 | -0.14%  | +0.02%  | 50%     | -0.64%   | -0.35%   |  -1.1 | +1.49%   | +0.23%   | 51%      | -0.09%    | -0.26%    |   -0.4 |
 
-## Control: the same context on any day of the last 252 bars (doji or not)
+## Control: the same context on any day of the last 252 days (doji or not)
 
-Every stock-day in the window split by the same context; the doji columns are the dojis on the MA10 within that context (no 5-bar gap here, so n differs a little from the table above) and *t doji-rest* is the Welch t of the doji days against the other days of the same context. If the doji adds nothing, its columns match the any-day columns.
+Every stock-day in the window split by the same context; the doji columns are the dojis on the MA10 within that context (no 5-day gap here, so n differs a little from the table above) and *t doji-rest* is the Welch t of the doji days against the other days of the same context. If the doji adds nothing, its columns match the any-day columns.
 
 | group                          |   n (any day) |   n (doji) | ret_1 any day   | hit_1 any day   | ret_1 doji   | hit_1 doji   |   t_1 doji-rest | ret_5 any day   | hit_5 any day   | ret_5 doji   | hit_5 doji   |   t_5 doji-rest | ret_21 any day   | hit_21 any day   | ret_21 doji   | hit_21 doji   |   t_21 doji-rest |
 |:-------------------------------|--------------:|-----------:|:----------------|:----------------|:-------------|:-------------|----------------:|:----------------|:----------------|:-------------|:-------------|----------------:|:-----------------|:-----------------|:--------------|:--------------|-----------------:|

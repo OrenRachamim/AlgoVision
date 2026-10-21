@@ -145,7 +145,11 @@ main window is the last year (3,129 events). After the doji the stock did nothin
 (+0.07% / +0.31% / +1.36%) and -0.6% below random days of the same stock at 21 bars; the ten-year train/test split
 agrees (+0.0% / -0.3% over random days). The context splits (MA10 slope, side of approach, above or below the MA50)
 only reproduce the trend they condition on: against every day with the same context the doji days were no better, and
-usually a little worse. Not a rule: [`research_doji_ma10.md`](research_doji_ma10.md).
+usually a little worse. Not a rule: [`research_doji_ma10.md`](research_doji_ma10.md). On weekly bars (602 dojis on the
+10-week MA in the last 52 weeks) the picture is the same: +0.36% / +1.55% / +5.03% at 1 / 4 / 12 weeks, against +0.31%
+/ +1.25% / +4.85% for any week of the same stocks, +1.0% over random weeks at 12 weeks (t 0.9) in the last year but
+-0.6% in train and -0.1% in test, and no difference from the other weeks of the same context:
+[`research_doji_ma10_weekly.md`](research_doji_ma10_weekly.md).
 
 ## Crossing back above the 200-day MA after a long run below it
 
