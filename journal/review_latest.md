@@ -1,4 +1,4 @@
-# AlgoVision review: what has worked so far - 2026-10-20
+# AlgoVision review: what has worked so far - 2026-10-21
 
 What in the daily report is actually relevant on the evidence so far: 31 dated reports, 2026-09-05 to 2026-10-19. Every name is measured from its first appearance in a table, entry at the next open, over two horizons: 20 bars ahead, and to the current close ('to date': every name ever listed, each over its own holding length), against the beaten-down basket of that day (the fair benchmark for rules that only buy beaten-down stocks) and against the SPY. Every table and condition gets a verdict per horizon. The verdicts are fixed rules (at the end), not judgement: a table 'works' only with 20+ names and a t of 2 or more on the basket excess; a condition 'separates' only with 12+ names on each side and a t of 2 or more on the difference. The windows overlap and the sample is a few weeks in one regime, so the t overstates the evidence; the thresholds are strict on purpose. The review changes no rule: the ten-year backtests decide what enters the report.
 
@@ -76,8 +76,7 @@ What in the daily report is actually relevant on the evidence so far: 31 dated r
 
 ## What changed since the previous review
 
-- 20-day return above the peer group (vs peers 20d > 0) (20 bars): noise so far -> better with the condition
-- checklist: 4 or 5 checks passed (vs 3 or fewer, among the names in the checklist) (to date): too early -> noise so far
+No verdict changed since 2026-10-20.
 
 ## Method
 
