@@ -407,3 +407,68 @@ date,symbol,action,p_buy,p_watch,p_skip,action_confidence,cause_type,cause_confi
 2026-10-21,PNR,watch,0.12,0.8,0.08,0.7,transitory,0.42,0.03,0.98,contradicts,0.77,1.92,0.92,typesafe/jev-1.13-20260917,6687,0.000280854,falling wedge (forming),undecided,0.5
 2026-10-21,PLD,watch,0.11,0.75,0.14,0.62,transitory,0.79,0.05,0.36,neutral,0.43,0.91,0.85,typesafe/jev-1.13-20260917,6769,0.000284298,falling wedge (forming),undecided,2.0
 2026-10-21,TPL,watch,0.05,0.78,0.17,0.67,transitory,0.81,0.05,0.95,supports,0.73,0.38,0.62,typesafe/jev-1.13-20260917,6555,0.00027531,falling wedge (forming),undecided,2.0
+2026-10-22,PEP,watch,0.05,0.74,0.21,0.61,structural,0.42,0.04,0.27,contradicts,0.89,1.24,0.75,typesafe/jev-1.13-20260917,6244,0.000262248,"insider buys (beaten-down), early rally",undecided,-1.0
+2026-10-22,ORCL,buy,0.51,0.43,0.06,0.27,structural,0.75,0.03,0.79,neutral,0.4,0.98,0.66,typesafe/jev-1.13-20260917,7603,0.000319326,"insider buys (beaten-down), falling wedge (forming)",signs of a bottom,3.0
+2026-10-22,TSN,watch,0.06,0.76,0.18,0.64,transitory,0.54,0.04,0.93,contradicts,0.82,1.77,0.78,typesafe/jev-1.13-20260917,6280,0.00026376,"insider buys (beaten-down), early rally, falling wedge (forming)",undecided,2.0
+2026-10-22,BX,watch,0.35,0.57,0.08,0.35,transitory,0.64,0.06,0.36,contradicts,0.64,0.77,0.73,typesafe/jev-1.13-20260917,7741,0.000325122,falling wedge,undecided,0.0
+2026-10-22,CBRE,buy,0.76,0.2,0.04,0.64,transitory,0.75,0.03,0.47,supports,1.0,0.65,0.63,typesafe/jev-1.13-20260917,7437,0.000312354,"falling wedge, early rally",signs of a bottom,4.5
+2026-10-22,CPRT,watch,0.28,0.69,0.03,0.53,transitory,0.64,0.03,0.83,neutral,0.37,1.03,0.87,typesafe/jev-1.13-20260917,6613,0.000277746,"falling wedge, early rally",undecided,2.0
+2026-10-22,CRH,watch,0.14,0.8,0.06,0.7,transitory,0.44,0.04,0.97,contradicts,0.7,0.92,0.86,typesafe/jev-1.13-20260917,6607,0.000277494,"falling wedge, early rally",undecided,-1.0
+2026-10-22,HSY,buy,0.54,0.33,0.13,0.31,transitory,0.6,0.09,0.97,neutral,0.3,0.6,0.6,typesafe/jev-1.13-20260917,6707,0.000281694,falling wedge,signs of a bottom,3.0
+2026-10-22,LII,watch,0.07,0.8,0.13,0.7,transitory,0.84,0.03,0.97,contradicts,0.88,1.65,0.64,typesafe/jev-1.13-20260917,6414,0.000269388,"falling wedge, early rally",undecided,1.0
+2026-10-22,MKC,watch,0.08,0.75,0.17,0.62,transitory,0.5,0.03,0.26,contradicts,0.43,1.47,0.5,typesafe/jev-1.13-20260917,7096,0.000298032,falling wedge,undecided,-0.5
+2026-10-22,ROL,skip,0.1,0.44,0.45999999999999996,0.19,structural,0.65,0.03,0.3,contradicts,1.0,1.75,0.75,typesafe/jev-1.13-20260917,7096,0.000298032,early rally,still falling,-2.0
+2026-10-22,LULU,skip,0.07,0.43,0.5,0.25,structural,0.89,0.03,0.29,contradicts,1.0,1.95,0.95,typesafe/jev-1.13-20260917,7857,0.000329994,early rally,still falling,-3.5
+2026-10-22,ALGN,watch,0.43,0.53,0.04,0.3,transitory,0.68,0.04,0.98,contradicts,0.46,1.09,0.85,typesafe/jev-1.13-20260917,7211,0.000302862,"early rally, falling wedge (forming)",signs of a bottom,3.0
+2026-10-22,LOW,buy,0.52,0.37,0.11,0.28,transitory,0.45,0.03,0.88,contradicts,0.79,1.15,0.83,typesafe/jev-1.13-20260917,6824,0.000286608,early rally,signs of a bottom,3.5
+2026-10-22,FIS,watch,0.06,0.76,0.18,0.64,structural,0.42,0.08,0.93,contradicts,0.79,1.3,0.63,typesafe/jev-1.13-20260917,7141,0.000299922,early rally,undecided,2.5
+2026-10-22,NEE,watch,0.07,0.73,0.2,0.59,transitory,0.34,0.04,0.29,neutral,0.41,0.83,0.67,typesafe/jev-1.13-20260917,6197,0.000260274,early rally,undecided,1.5
+2026-10-22,LEN,skip,0.03,0.45,0.52,0.28,structural,0.62,0.03,0.42,contradicts,1.0,1.82,0.83,typesafe/jev-1.13-20260917,7518,0.000315756,early rally,still falling,-4.5
+2026-10-22,BSX,watch,0.09,0.84,0.07,0.76,transitory,0.49,0.03,0.96,contradicts,0.77,1.8,0.81,typesafe/jev-1.13-20260917,7242,0.000304164,early rally,undecided,1.5
+2026-10-22,ZTS,watch,0.06,0.68,0.26,0.52,structural,0.92,0.03,0.95,contradicts,0.98,1.86,0.87,typesafe/jev-1.13-20260917,7160,0.00030072,early rally,undecided,0.0
+2026-10-22,FISV,watch,0.07,0.57,0.36,0.35,structural,0.49,0.03,0.95,contradicts,0.98,1.99,0.98,typesafe/jev-1.13-20260917,7032,0.000295344,early rally,still falling,-2.0
+2026-10-22,MLM,buy,0.64,0.32,0.04,0.46,transitory,0.45,0.03,0.97,contradicts,0.35,1.28,0.68,typesafe/jev-1.13-20260917,6911,0.000290262,early rally,signs of a bottom,4.5
+2026-10-22,DPZ,watch,0.13,0.73,0.14,0.59,structural,0.55,0.03,0.31,neutral,0.3,1.42,0.57,typesafe/jev-1.13-20260917,7359,0.000309078,early rally,undecided,2.0
+2026-10-22,VICI,watch,0.12,0.76,0.12,0.64,transitory,0.56,0.04,0.97,contradicts,0.64,1.29,0.69,typesafe/jev-1.13-20260917,5643,0.000237006,early rally,undecided,-0.5
+2026-10-22,XYL,buy,0.68,0.27,0.05,0.52,transitory,0.55,0.03,0.98,supports,0.3,0.78,0.76,typesafe/jev-1.13-20260917,7263,0.000305046,early rally,signs of a bottom,5.0
+2026-10-22,O,watch,0.11,0.59,0.3,0.38,transitory,0.5,0.04,0.93,contradicts,0.95,1.11,0.81,typesafe/jev-1.13-20260917,6043,0.000253806,early rally,still falling,-2.5
+2026-10-22,SRE,watch,0.05,0.71,0.24,0.56,sector_wide,0.16,0.05,0.89,neutral,0.38,1.04,0.82,typesafe/jev-1.13-20260917,6129,0.000257418,early rally,undecided,1.0
+2026-10-22,CLX,watch,0.07,0.51,0.42,0.27,structural,0.91,0.06,0.93,contradicts,1.0,1.87,0.87,typesafe/jev-1.13-20260917,6329,0.000265818,early rally,still falling,-4.0
+2026-10-22,TTD,skip,0.02,0.41,0.57,0.35,structural,0.91,0.03,0.91,contradicts,1.0,2.01,0.97,typesafe/jev-1.13-20260917,7178,0.000301476,early rally,still falling,-3.5
+2026-10-22,PNR,watch,0.19,0.76,0.05,0.64,transitory,0.44,0.03,0.97,contradicts,0.83,1.94,0.94,typesafe/jev-1.13-20260917,6804,0.000285768,"early rally, falling wedge (forming)",undecided,0.5
+2026-10-22,BLDR,skip,0.02,0.44,0.54,0.31,structural,0.9,0.03,0.96,contradicts,1.0,1.93,0.93,typesafe/jev-1.13-20260917,7210,0.00030282,early rally,still falling,-2.5
+2026-10-22,CMCSA,watch,0.4,0.55,0.05,0.33,structural,0.99,0.07,0.42,contradicts,0.89,1.71,0.71,typesafe/jev-1.13-20260917,7061,0.000296562,early rally,undecided,-1.5
+2026-10-22,LHX,buy,0.57,0.39,0.04,0.35,transitory,0.77,0.03,0.97,contradicts,0.4,1.02,0.8,typesafe/jev-1.13-20260917,6917,0.000290514,"early rally, falling wedge (forming)",signs of a bottom,4.0
+2026-10-22,SBAC,watch,0.04,0.75,0.21,0.62,transitory,0.4,0.04,0.94,contradicts,0.74,1.08,0.86,typesafe/jev-1.13-20260917,6267,0.000263214,early rally,undecided,0.0
+2026-10-22,FICO,watch,0.1,0.66,0.24,0.49,structural,0.99,0.03,0.95,contradicts,0.97,1.96,0.95,typesafe/jev-1.13-20260917,8100,0.0003402,early rally,undecided,0.5
+2026-10-22,MCD,watch,0.11,0.75,0.14,0.62,transitory,0.75,0.03,0.96,contradicts,0.89,1.31,0.67,typesafe/jev-1.13-20260917,6022,0.000252924,early rally,undecided,2.5
+2026-10-22,NVR,skip,0.02,0.37,0.61,0.41,transitory,0.45,0.03,0.75,contradicts,0.98,1.5,0.51,typesafe/jev-1.13-20260917,6271,0.000263382,early rally,still falling,-3.0
+2026-10-22,PHM,watch,0.09,0.59,0.32,0.38,transitory,0.45,0.03,0.53,contradicts,0.98,1.33,0.65,typesafe/jev-1.13-20260917,6513,0.000273546,early rally,still falling,-2.0
+2026-10-22,LDOS,buy,0.63,0.31,0.06,0.45,transitory,0.81,0.03,0.96,neutral,0.27,0.93,0.8,typesafe/jev-1.13-20260917,7273,0.000305466,early rally,signs of a bottom,4.0
+2026-10-22,KKR,buy,0.76,0.18,0.06,0.64,transitory,0.68,0.05,0.94,supports,0.95,0.97,0.86,typesafe/jev-1.13-20260917,6843,0.000287406,early rally,signs of a bottom,3.5
+2026-10-22,NCLH,watch,0.07,0.66,0.27,0.49,structural,0.79,0.03,0.96,contradicts,0.91,1.73,0.72,typesafe/jev-1.13-20260917,8048,0.000338016,early rally,undecided,0.0
+2026-10-22,FERG,buy,0.69,0.26,0.05,0.53,transitory,0.84,0.03,0.94,supports,0.83,0.84,0.82,typesafe/jev-1.13-20260917,6201,0.000260442,early rally,signs of a bottom,6.5
+2026-10-22,CASY,buy,0.53,0.29,0.18,0.3,transitory,0.97,0.03,0.59,supports,0.19,0.5,0.49,typesafe/jev-1.13-20260917,6106,0.000256452,early rally,signs of a bottom,5.5
+2026-10-22,VMC,buy,0.54,0.42,0.04,0.31,transitory,0.62,0.03,0.97,contradicts,0.55,1.05,0.89,typesafe/jev-1.13-20260917,6423,0.000269766,early rally,undecided,1.5
+2026-10-22,CARR,watch,0.08,0.83,0.09,0.74,transitory,0.79,0.04,0.97,contradicts,0.55,0.86,0.8,typesafe/jev-1.13-20260917,6490,0.00027258,early rally,undecided,1.5
+2026-10-22,DTE,watch,0.05,0.69,0.26,0.53,structural,0.42,0.15,0.94,contradicts,0.79,1.11,0.85,typesafe/jev-1.13-20260917,5974,0.000250908,early rally,undecided,0.0
+2026-10-22,EIX,watch,0.04,0.51,0.45,0.27,structural,0.55,0.03,0.97,contradicts,1.0,1.9,0.89,typesafe/jev-1.13-20260917,6879,0.000288918,early rally,still falling,-3.0
+2026-10-22,HII,watch,0.24,0.67,0.09,0.51,transitory,0.62,0.03,0.96,contradicts,0.33,1.02,0.88,typesafe/jev-1.13-20260917,7009,0.000294378,early rally,undecided,2.0
+2026-10-22,NKE,watch,0.17,0.46,0.37,0.19,structural,0.96,0.03,0.75,contradicts,1.0,1.98,0.97,typesafe/jev-1.13-20260917,7955,0.00033411,early rally,still falling,-3.0
+2026-10-22,ODFL,buy,0.63,0.29,0.08,0.45,transitory,0.54,0.03,0.97,supports,0.64,0.83,0.78,typesafe/jev-1.13-20260917,6001,0.000252042,early rally,signs of a bottom,6.5
+2026-10-22,CMI,watch,0.05,0.8,0.15,0.7,transitory,0.87,0.04,0.95,contradicts,0.46,0.97,0.87,typesafe/jev-1.13-20260917,7014,0.000294588,"early rally, falling wedge (forming)",undecided,0.5
+2026-10-22,TXT,watch,0.16,0.78,0.06,0.67,transitory,0.69,0.03,0.96,contradicts,0.35,1.12,0.84,typesafe/jev-1.13-20260917,6595,0.00027699,early rally,undecided,2.0
+2026-10-22,STZ,watch,0.28,0.47,0.25,0.2,structural,0.73,0.03,0.26,contradicts,0.43,1.59,0.59,typesafe/jev-1.13-20260917,7043,0.000295806,early rally,signs of a bottom,3.0
+2026-10-22,NOC,buy,0.73,0.19,0.08,0.59,transitory,0.87,0.04,0.45,supports,0.82,0.63,0.63,typesafe/jev-1.13-20260917,7477,0.000314034,early rally,signs of a bottom,5.5
+2026-10-22,HAL,buy,0.48,0.41,0.11,0.22,transitory,0.9,0.03,0.82,supports,0.62,1.06,0.88,typesafe/jev-1.13-20260917,6738,0.000282996,"early rally, falling wedge (forming)",signs of a bottom,4.0
+2026-10-22,PEG,buy,0.57,0.33,0.1,0.35,transitory,0.54,0.04,0.94,neutral,0.49,0.61,0.58,typesafe/jev-1.13-20260917,5608,0.000235536,early rally,signs of a bottom,3.0
+2026-10-22,ISRG,buy,0.63,0.28,0.09,0.45,transitory,0.91,0.03,0.53,neutral,0.23,1.08,0.84,typesafe/jev-1.13-20260917,7404,0.000310968,ma200 cross,signs of a bottom,6.5
+2026-10-22,AZO,watch,0.09,0.7,0.21,0.55,transitory,0.6,0.03,0.58,contradicts,0.72,1.1,0.88,typesafe/jev-1.13-20260917,6903,0.000289926,ma200 cross,undecided,1.0
+2026-10-22,TRMB,buy,0.63,0.22,0.15,0.45,transitory,0.64,0.04,0.97,supports,0.91,0.81,0.73,typesafe/jev-1.13-20260917,7113,0.000298746,ma200 cross,signs of a bottom,7.0
+2026-10-22,AVGO,buy,0.66,0.28,0.05,0.49,transitory,0.95,0.03,0.83,supports,0.98,0.78,0.76,typesafe/jev-1.13-20260917,7695,0.00032319,falling wedge (forming),signs of a bottom,4.5
+2026-10-22,BG,watch,0.05,0.77,0.18,0.66,transitory,0.66,0.05,0.97,neutral,0.28,0.92,0.85,typesafe/jev-1.13-20260917,6508,0.000273336,falling wedge (forming),undecided,1.0
+2026-10-22,CVNA,watch,0.02,0.77,0.21,0.66,transitory,0.74,0.03,0.97,contradicts,0.53,1.55,0.53,typesafe/jev-1.13-20260917,7325,0.00030765,falling wedge (forming),undecided,2.5
+2026-10-22,CAT,watch,0.27,0.6799999999999999,0.05,0.52,transitory,0.71,0.03,0.97,neutral,0.34,0.95,0.75,typesafe/jev-1.13-20260917,6729,0.000282618,falling wedge (forming),undecided,2.5
+2026-10-22,HUBB,buy,0.71,0.25,0.04,0.56,transitory,0.8,0.04,0.97,supports,0.98,0.73,0.73,typesafe/jev-1.13-20260917,6141,0.000257922,falling wedge (forming),signs of a bottom,4.5
+2026-10-22,PLD,buy,0.61,0.31,0.08,0.41,transitory,0.82,0.04,0.33,supports,0.66,0.76,0.74,typesafe/jev-1.13-20260917,6716,0.000282072,falling wedge (forming),signs of a bottom,3.0
+2026-10-22,TPL,watch,0.05,0.76,0.19,0.64,transitory,0.75,0.04,0.93,supports,0.31,0.35,0.65,typesafe/jev-1.13-20260917,6586,0.000276612,falling wedge (forming),undecided,2.0
