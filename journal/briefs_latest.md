@@ -1,6 +1,6 @@
-# AlgoVision stock briefs - 2026-10-27
+# AlgoVision stock briefs - 2026-10-28
 
-One brief per name in today's report tables (39 stocks): where the stock is, why it fell (only evidence found in the data: headlines naming the company near the largest down days, rating cuts, market-wide days; otherwise "not found"), what analysts say, the last report and the estimates, the fundamentals, and a rule-based read (signs of a bottom / undecided / still falling) whose signals are listed so it can be checked, plus what worries investors (the themes of the negative headlines of the last year, each with the headlines behind it) and a sentiment read over listed signals (analysts, targets, estimate revisions, short interest, the StockTwits crowd, headline tone). Data: Yahoo Finance (analysts, estimates, statistics, news), Google News headlines, StockTwits, SEC EDGAR; peer groups and the 20-day divergence from the peer group are computed from prices (market-neutral correlation clustering). Systematic screens, not investment advice.
+One brief per name in today's report tables (44 stocks): where the stock is, why it fell (only evidence found in the data: headlines naming the company near the largest down days, rating cuts, market-wide days; otherwise "not found"), what analysts say, the last report and the estimates, the fundamentals, and a rule-based read (signs of a bottom / undecided / still falling) whose signals are listed so it can be checked, plus what worries investors (the themes of the negative headlines of the last year, each with the headlines behind it) and a sentiment read over listed signals (analysts, targets, estimate revisions, short interest, the StockTwits crowd, headline tone). Data: Yahoo Finance (analysts, estimates, statistics, news), Google News headlines, StockTwits, SEC EDGAR; peer groups and the 20-day divergence from the peer group are computed from prices (market-neutral correlation clustering). Systematic screens, not investment advice.
 
 ## Summary
 
@@ -11,6 +11,22 @@ none
 no data
 
 ## [ORCL](https://www.tradingview.com/chart/?symbol=ORCL)
+
+no data
+
+## [LII](https://www.tradingview.com/chart/?symbol=LII)
+
+no data
+
+## [BSX](https://www.tradingview.com/chart/?symbol=BSX)
+
+no data
+
+## [VRT](https://www.tradingview.com/chart/?symbol=VRT)
+
+no data
+
+## [CSGP](https://www.tradingview.com/chart/?symbol=CSGP)
 
 no data
 
@@ -30,11 +46,7 @@ no data
 
 no data
 
-## [BX](https://www.tradingview.com/chart/?symbol=BX)
-
-no data
-
-## [CVNA](https://www.tradingview.com/chart/?symbol=CVNA)
+## [ALB](https://www.tradingview.com/chart/?symbol=ALB)
 
 no data
 
@@ -46,15 +58,51 @@ no data
 
 no data
 
-## [BLDR](https://www.tradingview.com/chart/?symbol=BLDR)
-
-no data
-
-## [LII](https://www.tradingview.com/chart/?symbol=LII)
-
-no data
-
 ## [PNR](https://www.tradingview.com/chart/?symbol=PNR)
+
+no data
+
+## [FER](https://www.tradingview.com/chart/?symbol=FER)
+
+no data
+
+## [TXT](https://www.tradingview.com/chart/?symbol=TXT)
+
+no data
+
+## [CRH](https://www.tradingview.com/chart/?symbol=CRH)
+
+no data
+
+## [FISV](https://www.tradingview.com/chart/?symbol=FISV)
+
+no data
+
+## [FIS](https://www.tradingview.com/chart/?symbol=FIS)
+
+no data
+
+## [PCG](https://www.tradingview.com/chart/?symbol=PCG)
+
+no data
+
+## [MLM](https://www.tradingview.com/chart/?symbol=MLM)
+
+no data
+
+## [CPRT](https://www.tradingview.com/chart/?symbol=CPRT)
+
+no data
+
+## [AVGO](https://www.tradingview.com/chart/?symbol=AVGO)
+
+no data
+
+## [VMC](https://www.tradingview.com/chart/?symbol=VMC)
+
+no data
+
+## [BLDR](https://www.tradingview.com/chart/?symbol=BLDR)
 
 no data
 
@@ -67,10 +115,6 @@ no data
 no data
 
 ## [BKR](https://www.tradingview.com/chart/?symbol=BKR)
-
-no data
-
-## [FER](https://www.tradingview.com/chart/?symbol=FER)
 
 no data
 
@@ -90,19 +134,7 @@ no data
 
 no data
 
-## [CSGP](https://www.tradingview.com/chart/?symbol=CSGP)
-
-no data
-
 ## [MCD](https://www.tradingview.com/chart/?symbol=MCD)
-
-no data
-
-## [CPRT](https://www.tradingview.com/chart/?symbol=CPRT)
-
-no data
-
-## [TXT](https://www.tradingview.com/chart/?symbol=TXT)
 
 no data
 
@@ -110,35 +142,15 @@ no data
 
 no data
 
-## [HAL](https://www.tradingview.com/chart/?symbol=HAL)
-
-no data
-
-## [ZTS](https://www.tradingview.com/chart/?symbol=ZTS)
-
-no data
-
-## [NI](https://www.tradingview.com/chart/?symbol=NI)
-
-no data
-
-## [ISRG](https://www.tradingview.com/chart/?symbol=ISRG)
-
-no data
-
-## [AZO](https://www.tradingview.com/chart/?symbol=AZO)
-
-no data
-
 ## [ALGN](https://www.tradingview.com/chart/?symbol=ALGN)
 
 no data
 
-## [AVGO](https://www.tradingview.com/chart/?symbol=AVGO)
+## [BG](https://www.tradingview.com/chart/?symbol=BG)
 
 no data
 
-## [BG](https://www.tradingview.com/chart/?symbol=BG)
+## [CVNA](https://www.tradingview.com/chart/?symbol=CVNA)
 
 no data
 
@@ -147,6 +159,14 @@ no data
 no data
 
 ## [CMI](https://www.tradingview.com/chart/?symbol=CMI)
+
+no data
+
+## [JBL](https://www.tradingview.com/chart/?symbol=JBL)
+
+no data
+
+## [MPWR](https://www.tradingview.com/chart/?symbol=MPWR)
 
 no data
 
