@@ -1,37 +1,30 @@
-# AlgoVision 2026-11-04: מה חדש מאז 2026-11-03
+# AlgoVision 2026-11-05: מה חדש מאז 2026-11-04
 
-סיגנלים חדשים שנרשמו ביומן היום (11):
-- יום חדשות: [NRG](https://www.tradingview.com/chart/?symbol=NRG) 2026-11-04 @ 83.25, החזקה 60 נרות. פער -5.4%, מחזור פי 3.3x, 6 חודשים -44%, מול ממוצע 200 -37%
-- יום חדשות: [FIS](https://www.tradingview.com/chart/?symbol=FIS) 2026-11-04 @ 29.76, החזקה 60 נרות. פער -21.6%, מחזור פי 6.1x, 6 חודשים -34%, מול ממוצע 200 -30%
-- יום חדשות: [VST](https://www.tradingview.com/chart/?symbol=VST) 2026-11-04 @ 120.29, החזקה 60 נרות. פער -10.2%, מחזור פי 3.2x, 6 חודשים -24%, מול ממוצע 200 -21%
-- יום חדשות: [TRMB](https://www.tradingview.com/chart/?symbol=TRMB) 2026-11-04 @ 54.25, החזקה 60 נרות. פער -11.5%, מחזור פי 3.9x, 6 חודשים -14%, מול ממוצע 200 -11%
-- יום חדשות: [FSLR](https://www.tradingview.com/chart/?symbol=FSLR) 2026-11-04 @ 194.51, החזקה 60 נרות. פער +10.8%, מחזור פי 3.9x, 6 חודשים -11%, מול ממוצע 200 -10%
-- קניית אינסיידר במניה מוכה: [BA](https://www.tradingview.com/chart/?symbol=BA) 2026-11-03 @ 177, החזקה 120 נרות. cluster, 2 buy(s) $1.51M @ 172.05, 6 חודשים -23%, מול ממוצע 200 -18%; Buckley Mortimer J; MOLLENKOPF STEVEN M
-- קניית אינסיידר במניה מוכה: [MGM](https://www.tradingview.com/chart/?symbol=MGM) 2026-11-03 @ 32.82, החזקה 120 נרות. 3 buy(s) $51.74M @ 29.64, 6 חודשים -14%, מול ממוצע 200 -16%; Meister Keith A.
-- קניית אינסיידר במניה מוכה: [CAT](https://www.tradingview.com/chart/?symbol=CAT) 2026-11-03 @ 591.3, החזקה 120 נרות. 1 buy(s) $0.62M @ 620.39, 6 חודשים -36%, מול ממוצע 200 -27%; Fish James C Jr
-- ראלי מוקדם במניה מוכה: [FSLR](https://www.tradingview.com/chart/?symbol=FSLR) 2026-11-04 @ 194.51, החזקה 20 נרות. ma50_cross, thrust; יום +4.6%, 10 ימים +11.3%, 6 חודשים -11%, מול ממוצע 200 -10%
-- ראלי מוקדם במניה מוכה: [APP](https://www.tradingview.com/chart/?symbol=APP) 2026-11-04 @ 271.75, החזקה 20 נרות. rsi_turn; יום +10.7%, 10 ימים +1.4%, 6 חודשים -42%, מול ממוצע 200 -34%
-- ראלי מוקדם במניה מוכה: [UBER](https://www.tradingview.com/chart/?symbol=UBER) 2026-11-04 @ 69.87, החזקה 20 נרות. rsi_turn; יום +4.9%, 10 ימים +3.3%, 6 חודשים -12%, מול ממוצע 200 -4%
+סיגנלים חדשים שנרשמו ביומן היום (9):
+- יום חדשות: [SNDK](https://www.tradingview.com/chart/?symbol=SNDK) 2026-11-05 @ 806.43, החזקה 60 נרות. פער -7.2%, מחזור פי 3.3x, 6 חודשים -40%, מול ממוצע 200 -37%
+- יום חדשות: [PWR](https://www.tradingview.com/chart/?symbol=PWR) 2026-11-05 @ 509.06, החזקה 60 נרות. פער -4.9%, מחזור פי 3.5x, 6 חודשים -32%, מול ממוצע 200 -19%
+- יום חדשות: [APP](https://www.tradingview.com/chart/?symbol=APP) 2026-11-05 @ 356.1, החזקה 60 נרות. פער +28.7%, מחזור פי 5.1x, 6 חודשים -29%, מול ממוצע 200 -13%
+- יום חדשות: [QCOM](https://www.tradingview.com/chart/?symbol=QCOM) 2026-11-05 @ 156.75, החזקה 60 נרות. פער -13.4%, מחזור פי 3.5x, 6 חודשים -22%, מול ממוצע 200 -7%
+- יום חדשות: [MELI](https://www.tradingview.com/chart/?symbol=MELI) 2026-11-05 @ 1530.28, החזקה 60 נרות. פער -7.5%, מחזור פי 3.9x, 6 חודשים -18%, מול ממוצע 200 -15%
+- יום חדשות: [IRM](https://www.tradingview.com/chart/?symbol=IRM) 2026-11-05 @ 105.5, החזקה 60 נרות. פער -7.5%, מחזור פי 3.3x, 6 חודשים -16%, מול ממוצע 200 -8%
+- יום חדשות: [ROK](https://www.tradingview.com/chart/?symbol=ROK) 2026-11-05 @ 381.05, החזקה 60 נרות. פער -9.2%, מחזור פי 3.1x, 6 חודשים -15%, מול ממוצע 200 -11%
+- יום חדשות: [ADI](https://www.tradingview.com/chart/?symbol=ADI) 2026-11-05 @ 361.01, החזקה 60 נרות. פער -4.7%, מחזור פי 3.2x, 6 חודשים -11%, מול ממוצע 200 -3%
+- קניית אינסיידר במניה מוכה: [INTC](https://www.tradingview.com/chart/?symbol=INTC) 2026-11-04 @ 52.25, החזקה 120 נרות. 1 buy(s) $9.71M @ 64.73, 6 חודשים -52%, מול ממוצע 200 -40%; TAN LIP BU
 
 נכנסו לטבלאות הדוח:
-- קניות אינסיידרים, מניות מוכות (התבנית שנבדקה): [BA](https://www.tradingview.com/chart/?symbol=BA), [MGM](https://www.tradingview.com/chart/?symbol=MGM), [CAT](https://www.tradingview.com/chart/?symbol=CAT)
-- קניות אינסיידרים, מניות אחרות: [PEP](https://www.tradingview.com/chart/?symbol=PEP)
-- יום חדשות: [NRG](https://www.tradingview.com/chart/?symbol=NRG), [FIS](https://www.tradingview.com/chart/?symbol=FIS), [VST](https://www.tradingview.com/chart/?symbol=VST), [TRMB](https://www.tradingview.com/chart/?symbol=TRMB), [FSLR](https://www.tradingview.com/chart/?symbol=FSLR)
-- טריז יורד, מניות מוכות: [UBER](https://www.tradingview.com/chart/?symbol=UBER)
-- ראלי מוקדם, מניות מוכות: [FSLR](https://www.tradingview.com/chart/?symbol=FSLR), [APP](https://www.tradingview.com/chart/?symbol=APP), [PCG](https://www.tradingview.com/chart/?symbol=PCG), [LULU](https://www.tradingview.com/chart/?symbol=LULU), [UBER](https://www.tradingview.com/chart/?symbol=UBER), [ODFL](https://www.tradingview.com/chart/?symbol=ODFL), [VICI](https://www.tradingview.com/chart/?symbol=VICI)
-- חציית ממוצע 200 אחרי רצף ארוך מתחתיו: [CPRT](https://www.tradingview.com/chart/?symbol=CPRT), [DPZ](https://www.tradingview.com/chart/?symbol=DPZ), [INTU](https://www.tradingview.com/chart/?symbol=INTU), [MCD](https://www.tradingview.com/chart/?symbol=MCD), [LOW](https://www.tradingview.com/chart/?symbol=LOW)
-- רשימת מעקב, טריזים בהתהוות (לא איתות): [ETN](https://www.tradingview.com/chart/?symbol=ETN), [HAL](https://www.tradingview.com/chart/?symbol=HAL), [NFLX](https://www.tradingview.com/chart/?symbol=NFLX)
+- קניות אינסיידרים, מניות מוכות (התבנית שנבדקה): [INTC](https://www.tradingview.com/chart/?symbol=INTC)
+- יום חדשות: [SNDK](https://www.tradingview.com/chart/?symbol=SNDK), [PWR](https://www.tradingview.com/chart/?symbol=PWR), [APP](https://www.tradingview.com/chart/?symbol=APP), [QCOM](https://www.tradingview.com/chart/?symbol=QCOM), [MELI](https://www.tradingview.com/chart/?symbol=MELI), [IRM](https://www.tradingview.com/chart/?symbol=IRM), [ROK](https://www.tradingview.com/chart/?symbol=ROK), [ADI](https://www.tradingview.com/chart/?symbol=ADI)
+- רשימת מעקב, טריזים בהתהוות (לא איתות): [EME](https://www.tradingview.com/chart/?symbol=EME)
 
 יצאו מטבלאות הדוח:
-- קניות אינסיידרים, מניות מוכות (התבנית שנבדקה): PEP
-- יום חדשות: LII, BSX, VRT, CSGP
-- טריז יורד, מניות מוכות: CVNA
-- ראלי מוקדם, מניות מוכות: WY, FIS, INTU, SBAC, CPRT
-- חציית ממוצע 200 אחרי רצף ארוך מתחתיו: IDXX, LDOS, AOS
-- רשימת מעקב, טריזים בהתהוות (לא איתות): VST, TPL, UBER
+- יום חדשות: ALNY, GOOGL, GOOG, HII
+- טריז יורד, מניות מוכות: ALB
+- ראלי מוקדם, מניות מוכות: TPR, LHX, ZTS, CASY, FISV, ALGN, CMCSA
+- חציית ממוצע 200 אחרי רצף ארוך מתחתיו: OTIS
+- רשימת מעקב, טריזים בהתהוות (לא איתות): ETN, CARR, NFLX, JBL, CMI, PCAR
 
-הטבלאות כעת: אינסיידרים (מוכות) 5, אינסיידרים (אחרות) 6, יום חדשות 11, טריז יורד 2, ראלי מוקדם 32, חציית ממוצע 200 9, רשימת מעקב 10. הקובץ המלא בעברית מצורף. לא ייעוץ השקעות.
-הקובץ היומי המלא בעברית (כל הטבלאות, סיפור ציר הזמן, ניתוח הטריזים, תקציר לכל מניה, החלטות Jev ויומן המעקב): https://github.com/OrenRachamim/AlgoVision/blob/claude/stock-pattern-detection-b94x35/journal/daily_2026-11-04.md
-הדוח באנגלית: https://github.com/OrenRachamim/AlgoVision/blob/claude/stock-pattern-detection-b94x35/journal/report_2026-11-04.md
-התקצירים באנגלית: https://github.com/OrenRachamim/AlgoVision/blob/claude/stock-pattern-detection-b94x35/journal/briefs_2026-11-04.md
-קובץ הטריז היורד: https://github.com/OrenRachamim/AlgoVision/blob/claude/stock-pattern-detection-b94x35/journal/wedge_2026-11-04.md
+הטבלאות כעת: אינסיידרים (מוכות) 6, אינסיידרים (אחרות) 6, יום חדשות 15, טריז יורד 1, ראלי מוקדם 25, חציית ממוצע 200 8, רשימת מעקב 5. הקובץ המלא בעברית מצורף. לא ייעוץ השקעות.
+הקובץ היומי המלא בעברית (כל הטבלאות, סיפור ציר הזמן, ניתוח הטריזים, תקציר לכל מניה, החלטות Jev ויומן המעקב): https://github.com/OrenRachamim/AlgoVision/blob/claude/stock-pattern-detection-b94x35/journal/daily_2026-11-05.md
+הדוח באנגלית: https://github.com/OrenRachamim/AlgoVision/blob/claude/stock-pattern-detection-b94x35/journal/report_2026-11-05.md
+התקצירים באנגלית: https://github.com/OrenRachamim/AlgoVision/blob/claude/stock-pattern-detection-b94x35/journal/briefs_2026-11-05.md
+קובץ הטריז היורד: https://github.com/OrenRachamim/AlgoVision/blob/claude/stock-pattern-detection-b94x35/journal/wedge_2026-11-05.md
