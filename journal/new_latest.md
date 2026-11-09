@@ -1,29 +1,25 @@
-# AlgoVision 2026-11-06: what is new since 2026-11-05
+# AlgoVision 2026-11-09: what is new since 2026-11-06
 
 New signals logged in the journal today (6):
-- newsday: [AXON](https://www.tradingview.com/chart/?symbol=AXON) 2026-11-06 @ 313, hold 60 bars. gap -11.9%, vol 5.0x, 6m -22%, vs MA200 -34%
-- insider_buy_beaten_down: [BKR](https://www.tradingview.com/chart/?symbol=BKR) 2026-11-05 @ 47.87, hold 120 bars. 1 buy(s) $0.53M @ 53.10, 6m -25%, vs MA200 -20%; RICE JOHN G
-- insider_buy_beaten_down: [CRH](https://www.tradingview.com/chart/?symbol=CRH) 2026-11-05 @ 94.81, hold 120 bars. 1 buy(s) $0.19M @ 94.63, 6m -16%, vs MA200 -8%; Talbot Siobhan
-- early_rally_beaten_down: [ALB](https://www.tradingview.com/chart/?symbol=ALB) 2026-11-06 @ 99.25, hold 20 bars. rsi_turn; day +0.9%, 10d +6.0%, 6m -51%, vs MA200 -33%
-- early_rally_beaten_down: [HWM](https://www.tradingview.com/chart/?symbol=HWM) 2026-11-06 @ 205.81, hold 20 bars. thrust; day +2.4%, 10d +10.7%, 6m -24%, vs MA200 -17%
-- early_rally_beaten_down: [TMUS](https://www.tradingview.com/chart/?symbol=TMUS) 2026-11-06 @ 162.01, hold 20 bars. thrust; day +0.9%, 10d +10.6%, 6m -15%, vs MA200 -12%
+- newsday: [TTD](https://www.tradingview.com/chart/?symbol=TTD) 2026-11-09 @ 14.93, hold 60 bars. gap +6.6%, vol 6.0x, 6m -31%, vs MA200 -23%
+- newsday: [NVDA](https://www.tradingview.com/chart/?symbol=NVDA) 2026-11-09 @ 178.67, hold 60 bars. gap -7.3%, vol 3.9x, 6m -18%, vs MA200 -13%
+- early_rally_beaten_down: [RKLB](https://www.tradingview.com/chart/?symbol=RKLB) 2026-11-09 @ 58.86, hold 20 bars. rsi_turn; day +10.9%, 10d +9.4%, 6m -50%, vs MA200 -25%
+- early_rally_beaten_down: [NRG](https://www.tradingview.com/chart/?symbol=NRG) 2026-11-09 @ 97.4, hold 20 bars. rsi_turn; day +10.3%, 10d +4.6%, 6m -28%, vs MA200 -26%
+- early_rally_beaten_down: [EXE](https://www.tradingview.com/chart/?symbol=EXE) 2026-11-09 @ 85.96, hold 20 bars. golden_20_50; day +1.6%, 10d -8.6%, 6m -10%, vs MA200 -10%
+- early_rally_beaten_down: [PLD](https://www.tradingview.com/chart/?symbol=PLD) 2026-11-09 @ 130.55, hold 20 bars. rsi_turn; day +2.8%, 10d +3.4%, 6m -8%, vs MA200 -4%
 
 Entered the report tables:
-- Insider buys, beaten-down (tested setup): [BKR](https://www.tradingview.com/chart/?symbol=BKR), [CRH](https://www.tradingview.com/chart/?symbol=CRH)
-- Insider buys, other stocks: [CLX](https://www.tradingview.com/chart/?symbol=CLX), [SYY](https://www.tradingview.com/chart/?symbol=SYY)
-- News-day: [AXON](https://www.tradingview.com/chart/?symbol=AXON)
-- Early rally, beaten-down: [ALB](https://www.tradingview.com/chart/?symbol=ALB), [HWM](https://www.tradingview.com/chart/?symbol=HWM), [CRH](https://www.tradingview.com/chart/?symbol=CRH)
-- Wedge watch list (forming, not a signal): [CARR](https://www.tradingview.com/chart/?symbol=CARR)
+- Insider buys, other stocks: [KMI](https://www.tradingview.com/chart/?symbol=KMI), [CVS](https://www.tradingview.com/chart/?symbol=CVS)
+- News-day: [TTD](https://www.tradingview.com/chart/?symbol=TTD), [NVDA](https://www.tradingview.com/chart/?symbol=NVDA)
+- Early rally, beaten-down: [RKLB](https://www.tradingview.com/chart/?symbol=RKLB), [NRG](https://www.tradingview.com/chart/?symbol=NRG), [EXE](https://www.tradingview.com/chart/?symbol=EXE), [PLD](https://www.tradingview.com/chart/?symbol=PLD)
+- MA200 cross after a long run below: [TSCO](https://www.tradingview.com/chart/?symbol=TSCO)
 
 Left the report tables:
-- Insider buys, other stocks: CRM
-- News-day: RDDT, INTC
-- Early rally, beaten-down: VRT, ROL, GEV, ECHO, NEE, MLM, NKE
-- MA200 cross after a long run below: LEN, TAP
-- Wedge watch list (forming, not a signal): GEV
+- Early rally, beaten-down: BSX, PDD, UBER, ODFL, PNR, EIX
+- MA200 cross after a long run below: FISV
 
-Tables now: insider buys (beaten-down) 8, insider buys (other) 7, news-day 14, falling wedge 1, early rally 21, MA200 cross 6, wedge watch list 5. Full report attached. Not investment advice.
-Everything in one Hebrew file (all tables, the time-axis story, the wedge analyses, a brief per stock, Jev, the journal): https://github.com/OrenRachamim/AlgoVision/blob/claude/stock-pattern-detection-b94x35/journal/daily_2026-11-06.md
-Today's report on GitHub: https://github.com/OrenRachamim/AlgoVision/blob/claude/stock-pattern-detection-b94x35/journal/report_2026-11-06.md
-One research brief per listed stock (price context, what moved it, analysts, last report, fundamentals, rule-based read): https://github.com/OrenRachamim/AlgoVision/blob/claude/stock-pattern-detection-b94x35/journal/briefs_2026-11-06.md
-Falling wedge only, in Hebrew (technical analysis of each wedge, why it fell, brief; table rows link to the details): https://github.com/OrenRachamim/AlgoVision/blob/claude/stock-pattern-detection-b94x35/journal/wedge_2026-11-06.md
+Tables now: insider buys (beaten-down) 8, insider buys (other) 9, news-day 16, falling wedge 1, early rally 19, MA200 cross 6, wedge watch list 5. Full report attached. Not investment advice.
+Everything in one Hebrew file (all tables, the time-axis story, the wedge analyses, a brief per stock, Jev, the journal): https://github.com/OrenRachamim/AlgoVision/blob/claude/stock-pattern-detection-b94x35/journal/daily_2026-11-09.md
+Today's report on GitHub: https://github.com/OrenRachamim/AlgoVision/blob/claude/stock-pattern-detection-b94x35/journal/report_2026-11-09.md
+One research brief per listed stock (price context, what moved it, analysts, last report, fundamentals, rule-based read): https://github.com/OrenRachamim/AlgoVision/blob/claude/stock-pattern-detection-b94x35/journal/briefs_2026-11-09.md
+Falling wedge only, in Hebrew (technical analysis of each wedge, why it fell, brief; table rows link to the details): https://github.com/OrenRachamim/AlgoVision/blob/claude/stock-pattern-detection-b94x35/journal/wedge_2026-11-09.md
