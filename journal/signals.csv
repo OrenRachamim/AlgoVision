@@ -307,3 +307,4 @@ logged,rule,symbol,signal_date,status,ref_price,entry_date,entry_price,hold_bars
 2026-11-09,jev_skip,FIS,2026-11-09,open,28.3400,2026-11-10,28.4400,20,"P(skip) 0.51, cause structural, evidence contradicts, severity 1.85"
 2026-11-10,insider_buy_beaten_down,ROK,2026-11-09,open,397.1600,2026-11-10,391.9900,120,"3 buy(s) $1.55M @ 386.36, 6m -12%, vs MA200 -7%; Moret Blake D."
 2026-11-10,insider_buy_beaten_down,ADM,2026-11-09,open,69.3000,2026-11-10,69.7400,120,"1 buy(s) $0.20M @ 70.27, 6m -13%, vs MA200 -9%; McAtee David R II"
+2026-11-10,jev_pick,ADM,2026-11-10,open,69.3000,,,20,"P(buy) 0.69, cause transitory, evidence supports, severity 0.42"
