@@ -1,20 +1,23 @@
-# AlgoVision 2026-11-10: מה חדש מאז 2026-11-09
+# AlgoVision 2026-11-11: מה חדש מאז 2026-11-10
 
-סיגנלים חדשים שנרשמו ביומן היום (2):
-- קניית אינסיידר במניה מוכה: [ROK](https://www.tradingview.com/chart/?symbol=ROK) 2026-11-09 @ 397.16, החזקה 120 נרות. 3 buy(s) $1.55M @ 386.36, 6 חודשים -12%, מול ממוצע 200 -7%; Moret Blake D.
-- קניית אינסיידר במניה מוכה: [ADM](https://www.tradingview.com/chart/?symbol=ADM) 2026-11-09 @ 69.3, החזקה 120 נרות. 1 buy(s) $0.20M @ 70.27, 6 חודשים -13%, מול ממוצע 200 -9%; McAtee David R II
+סיגנלים חדשים שנרשמו ביומן היום (3):
+- טריז יורד במניה מוכה: [EME](https://www.tradingview.com/chart/?symbol=EME) 2026-11-11 @ 666.74, החזקה 20 נרות. ציון 0.62, סטופ 570.52, רמה 663.43
+- ראלי מוקדם במניה מוכה: [ON](https://www.tradingview.com/chart/?symbol=ON) 2026-11-11 @ 73.62, החזקה 20 נרות. rsi_turn; יום +5.8%, 10 ימים -2.7%, 6 חודשים -36%, מול ממוצע 200 -11%
+- ראלי מוקדם במניה מוכה: [PWR](https://www.tradingview.com/chart/?symbol=PWR) 2026-11-11 @ 607.94, החזקה 20 נרות. rsi_turn; יום +4.3%, 10 ימים +0.2%, 6 חודשים -21%, מול ממוצע 200 -4%
 
 נכנסו לטבלאות הדוח:
-- קניות אינסיידרים, מניות מוכות (התבנית שנבדקה): [ROK](https://www.tradingview.com/chart/?symbol=ROK), [ADM](https://www.tradingview.com/chart/?symbol=ADM)
-- ראלי מוקדם, מניות מוכות: [BSX](https://www.tradingview.com/chart/?symbol=BSX), [ECHO](https://www.tradingview.com/chart/?symbol=ECHO), [BLDR](https://www.tradingview.com/chart/?symbol=BLDR)
-- רשימת מעקב, טריזים בהתהוות (לא איתות): [GEV](https://www.tradingview.com/chart/?symbol=GEV), [FIX](https://www.tradingview.com/chart/?symbol=FIX)
+- טריז יורד, מניות מוכות: [EME](https://www.tradingview.com/chart/?symbol=EME)
+- ראלי מוקדם, מניות מוכות: [PWR](https://www.tradingview.com/chart/?symbol=PWR), [AVGO](https://www.tradingview.com/chart/?symbol=AVGO), [ON](https://www.tradingview.com/chart/?symbol=ON), [APP](https://www.tradingview.com/chart/?symbol=APP)
+- רשימת מעקב, טריזים בהתהוות (לא איתות): [NFLX](https://www.tradingview.com/chart/?symbol=NFLX), [AKAM](https://www.tradingview.com/chart/?symbol=AKAM)
 
 יצאו מטבלאות הדוח:
-- ראלי מוקדם, מניות מוכות: APP
-- חציית ממוצע 200 אחרי רצף ארוך מתחתיו: CPRT, DPZ, INTU, MCD, LOW
+- יום חדשות: NRG, FIS, VST, TRMB, FSLR
+- טריז יורד, מניות מוכות: UBER
+- ראלי מוקדם, מניות מוכות: ALB, CRH, LULU, VICI, FSLR
+- רשימת מעקב, טריזים בהתהוות (לא איתות): EME, FIX, HUBB
 
-הטבלאות כעת: אינסיידרים (מוכות) 10, אינסיידרים (אחרות) 9, יום חדשות 16, טריז יורד 1, ראלי מוקדם 21, חציית ממוצע 200 1, רשימת מעקב 7. הקובץ המלא בעברית מצורף. לא ייעוץ השקעות.
-הקובץ היומי המלא בעברית (כל הטבלאות, סיפור ציר הזמן, ניתוח הטריזים, תקציר לכל מניה, החלטות Jev ויומן המעקב): https://github.com/OrenRachamim/AlgoVision/blob/claude/stock-pattern-detection-b94x35/journal/daily_2026-11-10.md
-הדוח באנגלית: https://github.com/OrenRachamim/AlgoVision/blob/claude/stock-pattern-detection-b94x35/journal/report_2026-11-10.md
-התקצירים באנגלית: https://github.com/OrenRachamim/AlgoVision/blob/claude/stock-pattern-detection-b94x35/journal/briefs_2026-11-10.md
-קובץ הטריז היורד: https://github.com/OrenRachamim/AlgoVision/blob/claude/stock-pattern-detection-b94x35/journal/wedge_2026-11-10.md
+הטבלאות כעת: אינסיידרים (מוכות) 10, אינסיידרים (אחרות) 9, יום חדשות 11, טריז יורד 1, ראלי מוקדם 20, חציית ממוצע 200 1, רשימת מעקב 6. הקובץ המלא בעברית מצורף. לא ייעוץ השקעות.
+הקובץ היומי המלא בעברית (כל הטבלאות, סיפור ציר הזמן, ניתוח הטריזים, תקציר לכל מניה, החלטות Jev ויומן המעקב): https://github.com/OrenRachamim/AlgoVision/blob/claude/stock-pattern-detection-b94x35/journal/daily_2026-11-11.md
+הדוח באנגלית: https://github.com/OrenRachamim/AlgoVision/blob/claude/stock-pattern-detection-b94x35/journal/report_2026-11-11.md
+התקצירים באנגלית: https://github.com/OrenRachamim/AlgoVision/blob/claude/stock-pattern-detection-b94x35/journal/briefs_2026-11-11.md
+קובץ הטריז היורד: https://github.com/OrenRachamim/AlgoVision/blob/claude/stock-pattern-detection-b94x35/journal/wedge_2026-11-11.md
