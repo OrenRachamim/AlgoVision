@@ -282,8 +282,14 @@ because every rule here buys beaten-down stocks and in September 2026 the basket
 the day's insider purchases in beaten-down stocks (the other purchases in one context line); the news-day and
 **confirmed** wedge signals and the early-rally rows, each with a *days listed* column (how many of the last 30
 reports carried the name: in the first five weeks the stale listings did worst); the **watch list** of wedges still
-forming (not a signal); the **checklist** (`algovision/checklist.py`: up to ten names in a tested signal table with no
-warning flag, with pass/fail columns for a deep decline, a market-driven decline and the read, not a composite score);
+forming (not a signal); under every signal heading one **forward-test line** (`algovision/forward_note.py`: the table's
+20-bar and to-date return, against the SPY and against the beaten-down basket, with the review's own verdict and a
+"below the research expectation" marker only when the review says *not working so far*); in the wedge and early-rally
+tables the names whose **peer group is beaten down too** come first (the one condition that separated in the ten-year
+backtest and in every review so far; a display order, not a filter); the **checklist** (`algovision/checklist.py`: up to
+ten names in a tested signal table with no warning flag, with pass/fail columns for a deep decline, the peer group
+beaten down too and the read, not a composite score; the group column replaced "market-wide among the causes", noise or
+worse in every review); above the summary table one line on how the read "signs of a bottom" has done in the forward test;
 the summary table with the **flags** (Z = z vs peers below -1, S = negative sentiment, T = target upside above 50%:
 warnings from the five-week look-back, context not a filter; D = more than 40% below the 52-week high: a plus, the
 strongest positive condition in the ten-year backtests of `docs/research_filters.md`); the model decisions as a forward test (buys logged as

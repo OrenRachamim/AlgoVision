@@ -89,7 +89,7 @@ def _macd_he(macd, s: str) -> str:
 
 
 def insiders_he(sig: pd.DataFrame, tx: pd.DataFrame, sectors: Dict[str, str], insider_days: int, days: Optional[Dict] = None,
-                macd=None) -> List[str]:
+                macd=None, note: str = "") -> List[str]:
     md = [f"## 1. קניות אינסיידרים (טופס 4 של ה-SEC, נושאי משרה ודירקטורים, {insider_days} הימים האחרונים)", "",
           "הכלל נבדק 2016-2026: רכישה של 100 אלף דולר ומעלה במניה **מוכה** (מתחת לממוצע הנע של 200 יום, תשואת 6 חודשים מתחת ל-8%-): "
           "+10% מול כניסה אקראית על פני 60 נרות, +15% על פני 120, שיעור הצלחה ~68%, בשני חצאי העשור. רכישות במניות במגמת עלייה "
@@ -99,7 +99,7 @@ def insiders_he(sig: pd.DataFrame, tx: pd.DataFrame, sectors: Dict[str, str], in
         return md
     bd, rest = sig[sig["beaten_down"]], sig[~sig["beaten_down"]]
     for title, d in (("### מניות מוכות (התבנית שנבדקה)", bd),):
-        md += [title, ""]
+        md += [title, ""] + _note(note)
         if not len(d):
             md += ["אין", ""]
             continue
@@ -125,8 +125,13 @@ def insiders_he(sig: pd.DataFrame, tx: pd.DataFrame, sectors: Dict[str, str], in
     return md
 
 
-def newsday_he(nd: pd.DataFrame, sectors: Dict[str, str], days: Optional[Dict] = None, macd=None) -> List[str]:
-    md = ["### כלל יום החדשות (פער של 4%+ על מחזור של פי 3+ במניה מוכה, 5 הנרות האחרונים; החזקה ~60 נרות; נבדק +6-7% מול אקראי)", ""]
+def _note(note: str) -> List[str]:
+    """The forward-test line under a table heading (:mod:`algovision.forward_note`), or nothing."""
+    return [note, ""] if note else []
+
+
+def newsday_he(nd: pd.DataFrame, sectors: Dict[str, str], days: Optional[Dict] = None, macd=None, note: str = "") -> List[str]:
+    md = ["### כלל יום החדשות (פער של 4%+ על מחזור של פי 3+ במניה מוכה, 5 הנרות האחרונים; החזקה ~60 נרות; נבדק +6-7% מול אקראי)", ""] + _note(note)
     if not len(nd):
         return md + ["אין", ""]
     t = nd[["symbol", "news_date", "bars_ago", "gap", "volume_ratio", "ret_6m", "dist_ma200", "last_close", "since_news", "bars_left"]].copy()
@@ -151,21 +156,25 @@ def _x(v):
 
 
 def wedge_table_he(wedges: Dict, frames: Dict[str, pd.DataFrame], data: Dict[str, Dict], peers: Dict[str, Dict], decisions: Dict[str, Dict],
-                   sectors: Dict[str, str], days: Optional[Dict] = None, watch: bool = False, macd=None) -> List[str]:
+                   sectors: Dict[str, str], days: Optional[Dict] = None, watch: bool = False, macd=None, note: str = "") -> List[str]:
     """The confirmed wedges (the signal) or, with ``watch=True``, the forming ones as the watch list."""
+    from algovision.forward_note import GROUP_FIRST_HE, group_first
+
     if watch:
-        md = ["### רשימת מעקב: טריזים יורדים שעדיין בהתהוות (לא איתות; האיתות הוא הסגירה מעל הקו העליון)", ""]
+        md = ["### רשימת מעקב: טריזים יורדים שעדיין בהתהוות (לא איתות; האיתות הוא הסגירה מעל הקו העליון)", ""] + _note(note)
         wedges = {s: m for s, m in wedges.items() if m.status != "confirmed"}
         if not wedges:
             return md + ["אין", ""]
     else:
         md = ["### טריז יורד במניות מוכות (מאושר = סגר מעל הקו העליון ב-5 הנרות האחרונים; החזקה ~20 נרות; נבדק +3% מול אקראי). "
-              "טריזים שעדיין בהתהוות נמצאים ברשימת המעקב בסוף הסעיף, לא כאן.", ""]
+              "טריזים שעדיין בהתהוות נמצאים ברשימת המעקב בסוף הסעיף, לא כאן.", ""] + _note(note)
         wedges = {s: m for s, m in wedges.items() if m.status == "confirmed"}
         if not wedges:
             return md + ["אין פריצות מאושרות היום.", ""]
     rows = []
     order = sorted(wedges, key=lambda s: wedges[s].metrics.get("context", {}).get("ret_126", 0))      # deepest decline first
+    if not watch:
+        order = group_first(order, peers)       # the signal table: peer group beaten down too first (display only)
     for s in order:
         m, df = wedges[s], frames[s]
         d = data.get(s) or {}
@@ -193,8 +202,9 @@ def wedge_table_he(wedges: Dict, frames: Dict[str, pd.DataFrame], data: Dict[str
                      "בחמשת השבועות הראשונים של מבחן הקדימה הטריזים בהתהוות ירדו כ-6% ב-20 נרות (פגיעה 11%), המאושרים לא; מניה בתוך טריז יורד היא "
                      "מניה שעדיין יורדת. היומן רושם טריז רק ביום הפריצה שלו.", ""]
     md += [pd.DataFrame(rows).to_markdown(index=False), "",
-           "הירידה העמוקה ביותר קודם: בבדיקות עשר השנים ירידה של יותר מ-40% משיא 52 השבועות הוסיפה +5-6% מעל כניסות אקראיות ב-20 נרות, וציון הדטקטור "
-           "לא ניבא דבר (השליש הגבוה היה הגרוע ביותר בשני חצאי העשור), ולכן הציון מוצג אבל לא קובע את הסדר (docs/research_filters.md).", "",
+           GROUP_FIRST_HE + " בתוך זה, הירידה העמוקה ביותר קודם: בבדיקות עשר השנים ירידה של יותר מ-40% משיא 52 השבועות הוסיפה +5-6% מעל כניסות "
+           "אקראיות ב-20 נרות, וציון הדטקטור לא ניבא דבר (השליש הגבוה היה הגרוע ביותר בשני חצאי העשור), ולכן הציון מוצג אבל לא קובע את הסדר "
+           "(docs/research_filters.md).", "",
            "*הקבוצה*: קבוצת העמיתים של המניה כסל אחד במשקל שווה, מוכה או לא (בסוגריים חלקן של שאר החברות שמוכות), ו-\"+ טריז\" כאשר הסל "
            "עצמו בטריז יורד. איתותים שבהם רוב הקבוצה הייתה מוכה גם כן הרוויחו +1.2% (אימון) / +1.9% (מבחן) יותר על פני 20 נרות, חיובי בכל 6 "
            "השנים שנבדקו, לא אושר ב-60 נרות (docs/research_groups.md); ראיות בינוניות, הקשר ולא מסנן.", "",
@@ -213,11 +223,14 @@ def wedge_table_he(wedges: Dict, frames: Dict[str, pd.DataFrame], data: Dict[str
     return md
 
 
-def rally_table_he(rally: pd.DataFrame, peers: Dict[str, Dict], sectors: Dict[str, str], days: Optional[Dict] = None, macd=None) -> List[str]:
-    md = ["### ראלי מוקדם במניות מוכות (כלל תפנית ירה ב-3 הנרות האחרונים; החזקה ~20 נרות; נבדק +2-3% נטו, הצלחה ~58-61%, +3.5-4% מול כניסה אקראית, כ-0 מול SPY ב-20 נרות)", ""]
+def rally_table_he(rally: pd.DataFrame, peers: Dict[str, Dict], sectors: Dict[str, str], days: Optional[Dict] = None, macd=None, note: str = "") -> List[str]:
+    from algovision.forward_note import GROUP_FIRST_HE, group_first_frame
+
+    md = ["### ראלי מוקדם במניות מוכות (כלל תפנית ירה ב-3 הנרות האחרונים; החזקה ~20 נרות; נבדק +2-3% נטו, הצלחה ~58-61%, +3.5-4% מול כניסה אקראית, כ-0 מול SPY ב-20 נרות)", ""] + _note(note)
     if not len(rally):
         return md + ["אין", ""]
-    t = rally.copy()
+    # the names whose peer group is beaten down too first, then the detector's order (a stable re-order, display only)
+    t = group_first_frame(rally, peers)
     out = pd.DataFrame({
         "סימול": t["symbol"].map(_tv), "פירוט": t["symbol"].map(lambda s: f"[פירוט](#{_anchor(s)})"),
         "ימים ברשימה": t["symbol"].map(lambda s: _days(days, "rally", s)),
@@ -228,7 +241,7 @@ def rally_table_he(rally: pd.DataFrame, peers: Dict[str, Dict], sectors: Dict[st
         "מחזור": t["volume_ratio"].map(lambda v: "" if pd.isna(v) else f"{v:.1f}x"), "אחרון": t["last"].map(lambda v: f"{v:.2f}"),
         "MACD נגיעה צפויה": t["symbol"].map(lambda s: _macd_he(macd, s)),
         "הקבוצה": t["symbol"].map(lambda s: _group_cell_he(peers.get(s))), "סקטור": t["symbol"].map(lambda s: _he_sector(sectors.get(s, "")))})
-    md += [out.to_markdown(index=False), "",
+    md += [out.to_markdown(index=False), "", GROUP_FIRST_HE, "",
            "*כללים*: חזרה מעל ממוצע 50 = הסגירה חוזרת מעל הממוצע הנע של 50 יום אחרי 15+ מתוך 20 נרות מתחתיו; ממוצע 20 חוצה את 50 = הממוצע של 20 יום "
            "חוצה מעלה את זה של 50; שיא גבוה יותר (תפנית דאו) = סגירה ראשונה מעל שיא הביניים אחרי שפל גבוה יותר; זינוק = +8% ב-10 נרות מתוך שפל 60 "
            "הנרות אחרי חצי שנה שטוחה או שלילית; RSI חוזר מעל 50 = RSI(14) חוזר מעל 50 אחרי שהיה מתחת ל-35. נבדק 2016-2026 על מניות מוכות בלבד "
@@ -240,11 +253,11 @@ def rally_table_he(rally: pd.DataFrame, peers: Dict[str, Dict], sectors: Dict[st
     return md
 
 
-def ma200_table_he(mx: pd.DataFrame, peers: Dict[str, Dict], sectors: Dict[str, str], days: Optional[Dict] = None, macd=None) -> List[str]:
+def ma200_table_he(mx: pd.DataFrame, peers: Dict[str, Dict], sectors: Dict[str, str], days: Optional[Dict] = None, macd=None, note: str = "") -> List[str]:
     from algovision.ma200 import BACKTEST, MIN_BELOW, heading_note_he
 
     md = [f"### חצו מעלה את ממוצע 200 אחרי רצף ארוך מתחתיו (סגירה מעל הקו אחרי {MIN_BELOW}+ נרות על הקו או מתחתיו, 3 הנרות האחרונים; "
-          f"{heading_note_he(BACKTEST)})", ""]
+          f"{heading_note_he(BACKTEST)})", ""] + _note(note)
     if mx is None or not len(mx):
         return md + ["אין", ""]
     t = mx.copy()
@@ -267,10 +280,10 @@ def ma200_table_he(mx: pd.DataFrame, peers: Dict[str, Dict], sectors: Dict[str, 
                  "לא נכנס ליומן, לרשימת הבדיקות או לדגלים.", ""]
 
 
-def summary_table_he(rows: List[Dict], title: bool = True) -> List[str]:
+def summary_table_he(rows: List[Dict], title: bool = True, note: str = "") -> List[str]:
     from algovision.briefs import flags_cell, flags_legend
 
-    md = (["### טבלת התקציר", ""] if not title else []) + [
+    md = (["### טבלת התקציר", ""] if not title else []) + _note(note) + [
           "עמודת *קריאה* היא ציון מבוסס כללים על איתותים מתועדים (סימני תחתית / לא מוכרע / עדיין יורדת), לא תחזית. *למה ירדה* מציינת את הראיות "
           "שנמצאו סביב ימי הירידה הגדולים ביותר (כותרות המזכירות את החברה, הורדות דירוג, ימי שוק) או \"לא נמצא\"; שום דבר לא מוסק. *מול עמיתים 20 יום* "
           "הוא תשואת 20 הימים של המניה ביחס לקבוצת העמיתים שלה (המניות המתואמות איתה ביותר אחרי ניכוי השוק, מתוך מחירים) וציון ה-z שלה מול השנה "
@@ -515,19 +528,26 @@ def build_daily_he(out_dir: Path, today: str, last_bar: str, n_frames: int, n_sy
           "מציינים רק ראיות שנמצאו בנתונים (כותרות שמזכירות את החברה, דיווחי 8-K, דוחות ב-XBRL, הורדות דירוג, ימי שוק) או \"לא נמצא\"; שום דבר לא "
           "מומצא. הכותרות, שמות החברות ובתי ההשקעות מובאים כפי שפורסמו. סינון שיטתי ומבחן קדימה, לא ייעוץ השקעות.", "",
           "## 0. מה חדש", "", note_he.strip(), ""]
-    md += insiders_he(sig, tx, sectors, insider_days, days, macd)
+    # the forward test so far under every table heading (display only, from the look-back ledger)
+    from algovision.forward_note import read_note, table_note
+    fwd = (lookback or {}).get("forward")
+
+    def fnote(section: str) -> str:
+        return table_note(fwd, section, "he")
+
+    md += insiders_he(sig, tx, sectors, insider_days, days, macd, note=fnote("insider_beaten"))
     md += ["## 2. איתותים לטווח קצר", ""]
-    md += newsday_he(nd, sectors, days, macd)
+    md += newsday_he(nd, sectors, days, macd, note=fnote("newsday"))
     wedge_data = {s: by_sym[s]["_data"] for s in wedges if s in by_sym}
-    md += wedge_table_he(wedges, frames, wedge_data, peers, decisions, sectors, days, macd=macd)
-    md += rally_table_he(rally, peers, sectors, days, macd)
-    md += ma200_table_he(ma200, peers, sectors, days, macd)
-    md += wedge_table_he(wedges, frames, wedge_data, peers, decisions, sectors, days, watch=True, macd=macd)
+    md += wedge_table_he(wedges, frames, wedge_data, peers, decisions, sectors, days, macd=macd, note=fnote("wedge"))
+    md += rally_table_he(rally, peers, sectors, days, macd, note=fnote("early_rally"))
+    md += ma200_table_he(ma200, peers, sectors, days, macd, note=fnote("ma200_cross"))
+    md += wedge_table_he(wedges, frames, wedge_data, peers, decisions, sectors, days, watch=True, macd=macd, note=fnote("wedge_watch"))
     md += ["*ימים ברשימה*: בכמה מהדוחות (מתוך 30 האחרונים) השם ישב בטבלה הזאת, כולל היום. בחמשת השבועות הראשונים השמות שהופיעו 4-7 ימים היו הגרועים; "
            "רישום טרי היה טוב מרישום ישן.", "", macd_note("he"), ""]
     md += ["<a id=\"summary\" name=\"summary\"></a>", "## 3. רשימת הבדיקות, תקציר לכל מניה והחלטות המודל", ""]
     md += checklist_markdown(rows, "he", regime.get("warning"), anchor=_anchor)
-    md += summary_table_he(rows, title=False)
+    md += summary_table_he(rows, title=False, note=read_note(fwd, "he"))
     anchors = {s: _anchor(s) for s in by_sym}
     md += jev_he(decisions, picks, anchors, peers, skips)
     md += ["## 4. פירוט לכל מניה", ""]

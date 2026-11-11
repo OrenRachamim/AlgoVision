@@ -68,6 +68,21 @@ def build_report(out_dir: Path, universe: str = "all", cache_dir: Optional[Path]
     days = days_listed(out_dir, today)
     from algovision.macd_touch import MacdTouch, macd_cell, macd_note
     macd = MacdTouch(frames, cache)        # the MACD pre-touch cell of every listed name (context only)
+    # the look-back ledger of the earlier reports, computed first so every table heading can quote the forward test so far
+    # (section 4 prints it in full); display only, nothing enters the journal from it
+    from algovision.forward_note import GROUP_FIRST_EN, group_first, group_first_frame, read_note, table_note
+    look: Dict = {"rows": [], "forward": pd.DataFrame()}
+    look_error: Optional[str] = None
+    try:
+        from algovision.lookback import lookback_markdown, run_lookback
+        look = run_lookback(out_dir, frames, bench)
+    except Exception as exc:  # noqa: BLE001
+        look_error = str(exc)
+
+    def fnote(section: str) -> None:
+        note = table_note(look.get("forward"), section)
+        if note:
+            md.append(note + "\n")
     md: List[str] = [f"# AlgoVision daily report - {today}\n", f"Prices through {last_bar}; {len(frames)} of {len(symbols)} symbols. "
                      "Every ticker links to its TradingView chart.\n"]
     # 0. the regime: is the beaten-down basket itself falling?
@@ -100,6 +115,7 @@ def build_report(out_dir: Path, universe: str = "all", cache_dir: Optional[Path]
         rest = sig[~sig["beaten_down"]]
         tag(bd["symbol"], "insider buys (beaten-down)")
         md.append("### Beaten-down stocks (the tested setup)\n")
+        fnote("insider_beaten")
         if len(bd):
             t = pd.DataFrame({
                 "symbol": bd["symbol"].map(tv), "days listed": bd["symbol"].map(lambda s: _days(days, "insider_beaten", s)),
@@ -124,6 +140,7 @@ def build_report(out_dir: Path, universe: str = "all", cache_dir: Optional[Path]
     md.append("## 2. Short-horizon signals\n")
     nd = newsday_signals(lambda s: frames[s], [s for s in symbols if s in frames], max_age=5)
     md.append("### News-day rule (>=4% gap on >=3x volume in a beaten-down stock, last 5 bars; hold ~60 bars; tested +6-7% vs random)\n")
+    fnote("newsday")
     if len(nd):
         tag(nd["symbol"], "news-day")
         t = nd[["symbol", "news_date", "bars_ago", "gap", "volume_ratio", "ret_6m", "dist_ma200", "last_close", "since_news", "bars_left"]].copy()
@@ -183,15 +200,18 @@ def build_report(out_dir: Path, universe: str = "all", cache_dir: Optional[Path]
                 "last": round(m.last_close, 2), "6m": _pct(m.metrics["context"]["ret_126"]), "vs MA200": _pct(m.metrics["context"]["dist_ma200"]),
                 "volume": _x(vol["day"]), "max vol 10d": _x(vol["climax10"]), "MACD pre-touch": macd.cell(s), "group": group_cell(s)}
 
-    rows = [wedge_row(s, m, "wedge") for s, m in confirmed.items()]
+    # order: deepest decline first, then the names whose peer group is beaten down too ahead of the rest (a stable re-order, display only)
+    wedge_order = group_first(sorted(confirmed, key=lambda s: confirmed[s].metrics.get("context", {}).get("ret_126", 0)), peers)
+    rows = [wedge_row(s, confirmed[s], "wedge") for s in wedge_order]
     tag(confirmed, "falling wedge")
     md.append("### Falling Wedge in beaten-down stocks (confirmed = closed above the upper line within the last 5 bars; hold ~20 bars; "
               "tested +3% vs random). Wedges still forming are on the watch list at the end of this section, not here.\n")
-    md.append((pd.DataFrame(rows).sort_values("6m").drop(columns=["status"]).to_markdown(index=False) if rows else "none") + "\n")
+    fnote("wedge")
+    md.append((pd.DataFrame(rows).drop(columns=["status"]).to_markdown(index=False) if rows else "none") + "\n")
     if rows:
-        md.append("Deepest decline first: in the ten-year backtests a decline of more than 40% from the 52-week high added +5-6% excess over random "
-                  "entries at 20 bars, and the detector *score* predicted nothing (the highest tercile did worst in both halves of the decade), so the "
-                  "score is shown but not used for the order (docs/research_filters.md).\n")
+        md.append(GROUP_FIRST_EN + " Within that, deepest decline first: in the ten-year backtests a decline of more than 40% from the 52-week high "
+                  "added +5-6% excess over random entries at 20 bars, and the detector *score* predicted nothing (the highest tercile did worst in both "
+                  "halves of the decade), so the score is shown but not used for the order (docs/research_filters.md).\n")
         md.append("*group*: the stock's peer group as one equal-weight basket, beaten down or not (in brackets the share of the other members "
                   "that are beaten down), and \"+ wedge\" when the basket itself is in a falling wedge. Signals where most of the group was beaten "
                   "down too earned +1.2% (train) / +1.9% (test) more over 20 bars, positive in all 6 years tested, not confirmed at 60 bars "
@@ -206,8 +226,11 @@ def build_report(out_dir: Path, universe: str = "all", cache_dir: Optional[Path]
                   f"each table row linked to its section: `wedge_{today}.md` ({WEDGE_URL.format(date=today)}).\n")
     md.append("### Early rally in beaten-down stocks (a turn rule fired in the last 3 bars; hold ~20 bars; tested +2-3% net, "
               "hit ~58-61%, +3.5-4% vs random entry, about 0 vs SPY at 20 bars)\n")
+    fnote("early_rally")
     if len(rally):
         tag(rally["symbol"], "early rally")
+        # the names whose peer group is beaten down too first, then the detector's order (a stable re-order, display only)
+        rally = group_first_frame(rally, peers)
         t = rally[["symbol", "rules", "n_rules", "signal_date", "bars_ago", "day_ret", "ret_10", "ret_6m", "from_52w_high", "dist_ma50",
                    "dist_ma200", "volume_ratio", "last"]].copy()
         for c in ("day_ret", "ret_10", "ret_6m", "from_52w_high", "dist_ma50", "dist_ma200"):
@@ -221,6 +244,7 @@ def build_report(out_dir: Path, universe: str = "all", cache_dir: Optional[Path]
         t = t.rename(columns={"n_rules": "rules fired", "day_ret": "signal day", "ret_10": "10d", "ret_6m": "6m", "from_52w_high": "from 52w high",
                               "dist_ma50": "vs MA50", "dist_ma200": "vs MA200", "volume_ratio": "volume"})
         md.append(t.to_markdown(index=False) + "\n")
+        md.append(GROUP_FIRST_EN + "\n")
         md.append("*rules*: `ma50_cross` = close back above the 50-day MA after >= 15 of 20 bars below it; `golden_20_50` = 20-day MA crosses "
                   "above the 50-day; `higher_high` = first close above the swing high after a higher low (Dow turn); `thrust` = +8% in 10 bars "
                   "from the 60-bar low after a flat or negative 6 months; `rsi_turn` = RSI(14) back above 50 after < 35. Tested 2016-2026 on "
@@ -239,6 +263,7 @@ def build_report(out_dir: Path, universe: str = "all", cache_dir: Optional[Path]
     # the MA200 cross list: back above the 200-day line after a long run below it (context, its own backtest in docs/research_ma200.md)
     md.append(f"### Crossed above the 200-day MA after a long run below it (close above the line after >= {MIN_BELOW} bars at or below it, "
               f"last 3 bars; {heading_note(BACKTEST)})\n")
+    fnote("ma200_cross")
     if len(mx):
         tag(mx["symbol"], "ma200 cross")
         t = mx[["symbol", "signal_date", "bars_ago", "bars_below", "below_since", "day_ret", "ret_10", "ret_6m", "from_52w_high", "dist_ma50",
@@ -268,6 +293,7 @@ def build_report(out_dir: Path, universe: str = "all", cache_dir: Optional[Path]
     # the watch list: wedges still forming (no signal yet)
     tag(forming, "falling wedge (forming)")
     md.append("### Watch list: falling wedges still forming (not a signal; the signal is the close above the upper line)\n")
+    fnote("wedge_watch")
     if forming:
         wrows = [wedge_row(s, m, "watch") for s, m in forming.items()]
         md.append(pd.DataFrame(wrows).sort_values("6m").drop(columns=["status", "breakout", "bars since breakout"]).to_markdown(index=False) + "\n")
@@ -297,6 +323,7 @@ def build_report(out_dir: Path, universe: str = "all", cache_dir: Optional[Path]
             decisions = {}
             for r in brows:
                 r["_macd"] = macd.get(r["symbol"])
+                r["group"] = (peers.get(r["symbol"]) or {}).get("g_beaten")       # for the checklist column (display only)
                 if r.get("_decision"):
                     decisions[r["symbol"]] = {**r["_decision"], "tables": r.get("tables"), "read": r.get("read"), "score": r.get("score")}
             if decisions:
@@ -325,6 +352,9 @@ def build_report(out_dir: Path, universe: str = "all", cache_dir: Optional[Path]
                       "the stock's 20-day return relative to its peer group (the stocks most correlated with it after removing the market, "
                       "from prices) and its z-score against the last year; below -2 means an unusual drop versus peers.\n")
             md.append(flags_legend("en") + "\n")
+            rnote = read_note(look.get("forward"))
+            if rnote:
+                md.append(rnote + "\n")
             md.append(summary_table(brows))
             md.append(macd_note("en") + "\n")
             md.append("### Model decisions (Jev), a forward test\n")
@@ -349,14 +379,14 @@ def build_report(out_dir: Path, universe: str = "all", cache_dir: Optional[Path]
             md.append(f"briefs unavailable: {exc}\n")
     else:
         md.append("skipped\n")
-    # 4. the look-back ledger: what every listed name did after it was listed
-    look: Dict = {"rows": [], "forward": pd.DataFrame()}
-    try:
-        from algovision.lookback import lookback_markdown, run_lookback
-        look = run_lookback(out_dir, frames, bench)
-        md += lookback_markdown(look["rows"], look["forward"], "en")
-    except Exception as exc:  # noqa: BLE001
-        md.append(f"## 4. What has worked so far\n\nlook-back unavailable: {exc}\n")
+    # 4. the look-back ledger: what every listed name did after it was listed (computed above, before the tables)
+    if look_error is None:
+        try:
+            md += lookback_markdown(look["rows"], look["forward"], "en")
+        except Exception as exc:  # noqa: BLE001
+            look_error = str(exc)
+    if look_error is not None:
+        md.append(f"## 4. What has worked so far\n\nlook-back unavailable: {look_error}\n")
     # 5. forward-test journal
     md.append("## 5. Forward test (journal)\n")
     latest = out_dir / "latest.md"

@@ -108,3 +108,18 @@ def test_hebrew_whatsnew_note(tmp_path):
     assert he.startswith("# AlgoVision 2026-10-06: מה חדש") and "יום חדשות" in he and "ראלי מוקדם, מניות מוכות" in he and "https://d" in he
     assert "- יום חדשות:" in he and "פער -6.0%, מחזור פי 3.5x" in he
     assert en.startswith("# AlgoVision 2026-10-06: what is new") and "Everything in one Hebrew file" in en
+
+
+def test_hebrew_tables_carry_the_forward_note_and_the_group_order():
+    rally = pd.DataFrame({"symbol": ["AAA", "BBB"], "rules": ["rsi_turn", "thrust"], "n_rules": [1, 1], "signal_date": ["2026-10-03"] * 2,
+                          "bars_ago": [0, 0], "day_ret": [0.03, 0.02], "ret_10": [0.09, 0.05], "ret_6m": [-0.15, -0.2], "from_52w_high": [-0.2, -0.3],
+                          "dist_ma50": [-0.01, 0.02], "dist_ma200": [-0.1, -0.2], "volume_ratio": [1.4, 0.9], "last": [50.0, 40.0]})
+    peers = {"AAA": {"g_beaten": False, "share_beaten": 0.2}, "BBB": {"g_beaten": True, "share_beaten": 0.8}}
+    text = "\n".join(D.rally_table_he(rally, peers, {"AAA": "Industrials", "BBB": "Utilities"}, note="**מבחן קדימה עד כה**: בדיקה"))
+    assert text.index("**מבחן קדימה עד כה**: בדיקה") < text.index("| [BBB](")      # the note sits under the heading
+    assert text.index("| [BBB](") < text.index("| [AAA](")                           # peer group beaten down first
+    assert "סדר: קודם השמות שגם קבוצת העמיתים שלהם מוכה" in text
+    nd = pd.DataFrame({"symbol": ["AAA"], "news_date": ["2026-10-03"], "bars_ago": [1], "gap": [-0.06], "volume_ratio": [3.5], "ret_6m": [-0.15],
+                       "dist_ma200": [-0.12], "last_close": [50.0], "since_news": [0.01], "bars_left": [59]})
+    assert "ללא הערה" not in "\n".join(D.newsday_he(nd, {}, note=""))
+    assert "**מבחן קדימה עד כה**: x" in "\n".join(D.newsday_he(nd, {}, note="**מבחן קדימה עד כה**: x"))

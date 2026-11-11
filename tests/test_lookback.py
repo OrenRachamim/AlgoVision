@@ -54,15 +54,22 @@ def test_events_forward_and_scorecard(tmp_path):
 
 
 def test_checklist():
-    rows = [{"symbol": "AAA", "tables": "news-day", "read": "signs of a bottom", "score": 4.0, "why fell": "earnings, market-wide", "flags": ["D"], "sentiment": "positive"},
+    rows = [{"symbol": "AAA", "tables": "news-day", "read": "signs of a bottom", "score": 4.0, "why fell": "earnings, market-wide", "flags": ["D"], "sentiment": "positive",
+             "group": True},
             {"symbol": "BBB", "tables": "falling wedge", "read": "undecided", "score": 1.0, "why fell": "earnings", "flags": ["Z"], "sentiment": "negative"},
             {"symbol": "CCC", "tables": ["falling wedge (forming)"], "read": "signs of a bottom", "score": 5.0, "why fell": "market-wide", "flags": [], "sentiment": "mixed"},
-            {"symbol": "DDD", "tables": "early rally", "read": "undecided", "score": 0.5, "why fell": "guidance", "flags": [], "sentiment": "mixed"}]
+            {"symbol": "DDD", "tables": "early rally", "read": "undecided", "score": 0.5, "why fell": "guidance", "flags": [], "sentiment": "mixed",
+             "_data": {"peers": {"g_beaten": False}}},
+            {"symbol": "EEE", "tables": "early rally", "read": "undecided", "score": 0.4, "why fell": "market-wide", "flags": [], "sentiment": "mixed",
+             "_data": {"peers": {"g_beaten": True}}}]
     ck = checklist_rows(rows)
-    assert [d["symbol"] for d in ck] == ["AAA", "DDD"]           # BBB has a warning flag, CCC is only on the watch list; D is a plus
-    assert ck[0]["passes"] == 5 and ck[0]["deep"] and ck[1]["passes"] == 2
+    assert [d["symbol"] for d in ck] == ["AAA", "EEE", "DDD"]    # BBB has a warning flag, CCC is only on the watch list; D is a plus
+    assert ck[0]["passes"] == 5 and ck[0]["deep"] and ck[0]["group"]
+    assert ck[1]["passes"] == 3 and ck[1]["group"]                # the group state read from the brief's peer context
+    assert ck[2]["passes"] == 2 and not ck[2]["group"]            # 'market-wide' among the causes no longer counts
     en = "\n".join(checklist_markdown(rows, "en", True))
-    assert "Checklist" in en and "Basket falling" in en and "5/5" in en and "deep decline (D)" in en
+    assert "Checklist" in en and "Basket falling" in en and "5/5" in en and "deep decline (D)" in en and "peer group beaten down" in en
+    assert "market-driven" not in en
     he = "\n".join(checklist_markdown(rows, "he", False, anchor=lambda s: "s-" + s.lower()))
     assert "רשימת הבדיקות" in he and "[פירוט](#s-aaa)" in he and "הסל יורד" not in he
     assert "No name passes" in "\n".join(checklist_markdown([], "en"))
