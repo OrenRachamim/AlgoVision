@@ -1,23 +1,23 @@
-# AlgoVision 2026-11-11: מה חדש מאז 2026-11-10
+# AlgoVision 2026-11-12: מה חדש מאז 2026-11-11
 
 סיגנלים חדשים שנרשמו ביומן היום (3):
-- טריז יורד במניה מוכה: [EME](https://www.tradingview.com/chart/?symbol=EME) 2026-11-11 @ 666.74, החזקה 20 נרות. ציון 0.62, סטופ 570.52, רמה 663.43
-- ראלי מוקדם במניה מוכה: [ON](https://www.tradingview.com/chart/?symbol=ON) 2026-11-11 @ 73.62, החזקה 20 נרות. rsi_turn; יום +5.8%, 10 ימים -2.7%, 6 חודשים -36%, מול ממוצע 200 -11%
-- ראלי מוקדם במניה מוכה: [PWR](https://www.tradingview.com/chart/?symbol=PWR) 2026-11-11 @ 607.94, החזקה 20 נרות. rsi_turn; יום +4.3%, 10 ימים +0.2%, 6 חודשים -21%, מול ממוצע 200 -4%
+- יום חדשות: [NVDA](https://www.tradingview.com/chart/?symbol=NVDA) 2026-11-12 @ 166.19, החזקה 60 נרות. פער -13.1%, מחזור פי 4.5x, 6 חודשים -29%, מול ממוצע 200 -19%
+- יום חדשות: [CTVA](https://www.tradingview.com/chart/?symbol=CTVA) 2026-11-12 @ 9.19, החזקה 60 נרות. פער -13.4%, מחזור פי 3.2x, 6 חודשים -26%, מול ממוצע 200 -24%
+- טריז יורד במניה מוכה: [AVGO](https://www.tradingview.com/chart/?symbol=AVGO) 2026-11-12 @ 364.36, החזקה 20 נרות. ציון 0.76, סטופ 293.83, רמה 345.08
 
 נכנסו לטבלאות הדוח:
-- טריז יורד, מניות מוכות: [EME](https://www.tradingview.com/chart/?symbol=EME)
-- ראלי מוקדם, מניות מוכות: [PWR](https://www.tradingview.com/chart/?symbol=PWR), [AVGO](https://www.tradingview.com/chart/?symbol=AVGO), [ON](https://www.tradingview.com/chart/?symbol=ON), [APP](https://www.tradingview.com/chart/?symbol=APP)
-- רשימת מעקב, טריזים בהתהוות (לא איתות): [NFLX](https://www.tradingview.com/chart/?symbol=NFLX), [AKAM](https://www.tradingview.com/chart/?symbol=AKAM)
+- יום חדשות: [CTVA](https://www.tradingview.com/chart/?symbol=CTVA)
+- טריז יורד, מניות מוכות: [AVGO](https://www.tradingview.com/chart/?symbol=AVGO)
+- ראלי מוקדם, מניות מוכות: [HAL](https://www.tradingview.com/chart/?symbol=HAL)
+- רשימת מעקב, טריזים בהתהוות (לא איתות): [ODFL](https://www.tradingview.com/chart/?symbol=ODFL), [HUBB](https://www.tradingview.com/chart/?symbol=HUBB)
 
 יצאו מטבלאות הדוח:
-- יום חדשות: NRG, FIS, VST, TRMB, FSLR
-- טריז יורד, מניות מוכות: UBER
-- ראלי מוקדם, מניות מוכות: ALB, CRH, LULU, VICI, FSLR
-- רשימת מעקב, טריזים בהתהוות (לא איתות): EME, FIX, HUBB
+- יום חדשות: SNDK, PWR, APP, QCOM, MELI, IRM, ROK, ADI
+- ראלי מוקדם, מניות מוכות: NRG, FER, PCG, CHTR, EXE, PLD
+- רשימת מעקב, טריזים בהתהוות (לא איתות): AVGO, NFLX
 
-הטבלאות כעת: אינסיידרים (מוכות) 10, אינסיידרים (אחרות) 9, יום חדשות 11, טריז יורד 1, ראלי מוקדם 20, חציית ממוצע 200 1, רשימת מעקב 6. הקובץ המלא בעברית מצורף. לא ייעוץ השקעות.
-הקובץ היומי המלא בעברית (כל הטבלאות, סיפור ציר הזמן, ניתוח הטריזים, תקציר לכל מניה, החלטות Jev ויומן המעקב): https://github.com/OrenRachamim/AlgoVision/blob/claude/stock-pattern-detection-b94x35/journal/daily_2026-11-11.md
-הדוח באנגלית: https://github.com/OrenRachamim/AlgoVision/blob/claude/stock-pattern-detection-b94x35/journal/report_2026-11-11.md
-התקצירים באנגלית: https://github.com/OrenRachamim/AlgoVision/blob/claude/stock-pattern-detection-b94x35/journal/briefs_2026-11-11.md
-קובץ הטריז היורד: https://github.com/OrenRachamim/AlgoVision/blob/claude/stock-pattern-detection-b94x35/journal/wedge_2026-11-11.md
+הטבלאות כעת: אינסיידרים (מוכות) 10, אינסיידרים (אחרות) 9, יום חדשות 4, טריז יורד 2, ראלי מוקדם 15, חציית ממוצע 200 1, רשימת מעקב 6. הקובץ המלא בעברית מצורף. לא ייעוץ השקעות.
+הקובץ היומי המלא בעברית (כל הטבלאות, סיפור ציר הזמן, ניתוח הטריזים, תקציר לכל מניה, החלטות Jev ויומן המעקב): https://github.com/OrenRachamim/AlgoVision/blob/claude/stock-pattern-detection-b94x35/journal/daily_2026-11-12.md
+הדוח באנגלית: https://github.com/OrenRachamim/AlgoVision/blob/claude/stock-pattern-detection-b94x35/journal/report_2026-11-12.md
+התקצירים באנגלית: https://github.com/OrenRachamim/AlgoVision/blob/claude/stock-pattern-detection-b94x35/journal/briefs_2026-11-12.md
+קובץ הטריז היורד: https://github.com/OrenRachamim/AlgoVision/blob/claude/stock-pattern-detection-b94x35/journal/wedge_2026-11-12.md
