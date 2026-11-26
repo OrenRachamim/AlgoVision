@@ -1,16 +1,10 @@
-# Forward-test journal - 2026-11-25
+# Forward-test journal - 2026-11-26
 
 Data through 2026-11-25; 518 of 518 symbols loaded.
 
-## New signals today (5)
+## New signals today (0)
 
-| rule                      | symbol                                                 | signal_date   |   ref_price |   hold_bars | note                                                        |
-|:--------------------------|:-------------------------------------------------------|:--------------|------------:|------------:|:------------------------------------------------------------|
-| falling_wedge_beaten_down | [ODFL](https://www.tradingview.com/chart/?symbol=ODFL) | 2026-11-25    |      174.66 |          20 | score 0.64, stop 161.53, level 172.87                       |
-| early_rally_beaten_down   | [LII](https://www.tradingview.com/chart/?symbol=LII)   | 2026-11-25    |      349.97 |          20 | rsi_turn; day +2.4%, 10d -0.2%, 6m -29%, vs MA200 -23%      |
-| early_rally_beaten_down   | [JBHT](https://www.tradingview.com/chart/?symbol=JBHT) | 2026-11-25    |      227.92 |          20 | ma50_cross; day +2.0%, 10d +0.1%, 6m -16%, vs MA200 -7%     |
-| early_rally_beaten_down   | [CARR](https://www.tradingview.com/chart/?symbol=CARR) | 2026-11-25    |       53.9  |          20 | rsi_turn; day +2.2%, 10d -1.2%, 6m -15%, vs MA200 -11%      |
-| early_rally_beaten_down   | [MOS](https://www.tradingview.com/chart/?symbol=MOS)   | 2026-11-25    |       20.35 |          20 | golden_20_50; day +3.4%, 10d -10.7%, 6m -15%, vs MA200 -11% |
+none
 
 ## Running results
 
@@ -18,52 +12,52 @@ Expectation vs realised (all logged trades, closed and open marked to market; 'v
 
 | rule                      | research expected                                |   logged |   closed | mean   | hit   | vs SPY   | vs beaten basket   |
 |:--------------------------|:-------------------------------------------------|---------:|---------:|:-------|:------|:---------|:-------------------|
-| early_rally_beaten_down   | +2-3% net at 20 bars, hit ~58-61%, ~0 vs SPY     |      143 |      106 | +3.52% | 71%   | +7.18%   | +0.18%             |
-| falling_wedge_beaten_down | +3% vs random at 20 bars, hit ~60%               |       40 |       35 | +1.35% | 59%   | +3.62%   | -2.35%             |
-| insider_buy_beaten_down   | +10% vs random at 60 bars, +15% at 120, hit ~68% |       23 |        0 | +0.29% | 52%   | +4.35%   | +2.47%             |
-| jev_pick                  | untested (forward test only)                     |       78 |       33 | -1.71% | 46%   | +1.72%   | -1.75%             |
-| jev_skip                  | untested; a fall is the success case             |       16 |        6 | +2.37% | 56%   | +7.69%   | +4.91%             |
-| newsday                   | +6-7% vs random at 60 bars, hit ~62%             |       54 |        0 | -3.62% | 46%   | +1.62%   | -4.36%             |
+| early_rally_beaten_down   | +2-3% net at 20 bars, hit ~58-61%, ~0 vs SPY     |      143 |      106 | +3.52% | 71%   | +7.17%   | +0.14%             |
+| falling_wedge_beaten_down | +3% vs random at 20 bars, hit ~60%               |       40 |       35 | +1.35% | 59%   | +3.62%   | -2.37%             |
+| insider_buy_beaten_down   | +10% vs random at 60 bars, +15% at 120, hit ~68% |       23 |        0 | +0.29% | 52%   | +4.35%   | +2.33%             |
+| jev_pick                  | untested (forward test only)                     |       81 |       33 | -1.46% | 46%   | +1.96%   | -1.59%             |
+| jev_skip                  | untested; a fall is the success case             |       16 |        6 | +2.37% | 56%   | +7.69%   | +4.84%             |
+| newsday                   | +6-7% vs random at 60 bars, hit ~62%             |       54 |        0 | -3.26% | 46%   | +1.98%   | -4.09%             |
 
 **early_rally_beaten_down** (expected: +2-3% net, hit ~58-61%, +3.5-4% vs random entry in the same stock, ~0 vs SPY at 20 bars (docs/research_rally.md))
 - logged: 143, closed: 106, open: 37
 - closed trades: mean +5.25%, median +6.46%, hit 78%, best +34.5%, worst -27.9%
 - open trades mark-to-market: mean -2.04%, hit 45%
-- SPY over the same holding periods: mean -3.66% (excess +7.18%)
-- beaten-down basket over the same holding periods: mean +3.34% (excess +0.18%; the fair benchmark for a rule that only buys beaten-down stocks)
+- SPY over the same holding periods: mean -3.66% (excess +7.17%)
+- beaten-down basket over the same holding periods: mean +3.38% (excess +0.14%; the fair benchmark for a rule that only buys beaten-down stocks)
 
 **falling_wedge_beaten_down** (expected: +3% vs random, hit ~60% (docs/research_falling_wedge.md))
 - logged: 40, closed: 35, open: 5
 - closed trades: mean +2.10%, median +3.72%, hit 63%, best +15.9%, worst -22.2%
 - open trades mark-to-market: mean -5.26%, hit 25%
 - SPY over the same holding periods: mean -2.27% (excess +3.62%)
-- beaten-down basket over the same holding periods: mean +3.70% (excess -2.35%; the fair benchmark for a rule that only buys beaten-down stocks)
+- beaten-down basket over the same holding periods: mean +3.72% (excess -2.37%; the fair benchmark for a rule that only buys beaten-down stocks)
 
 **insider_buy_beaten_down** (expected: +10% vs random at 60 bars, +15% at 120, hit ~68% (docs/research_insiders.md))
 - logged: 23, closed: 0, open: 23
 - open trades mark-to-market: mean +0.29%, hit 52%
 - SPY over the same holding periods: mean -4.06% (excess +4.35%)
-- beaten-down basket over the same holding periods: mean -2.18% (excess +2.47%; the fair benchmark for a rule that only buys beaten-down stocks)
+- beaten-down basket over the same holding periods: mean -2.04% (excess +2.33%; the fair benchmark for a rule that only buys beaten-down stocks)
 
 **jev_pick** (expected: untested: the Jev decision model's 'buy' (P >= 0.6) on a listed stock, logged by daily-report (algovision/decide.py))
-- logged: 78, closed: 33, open: 45
+- logged: 81, closed: 33, open: 48
 - closed trades: mean +2.47%, median +1.06%, hit 55%, best +26.9%, worst -13.9%
-- open trades mark-to-market: mean -4.77%, hit 40%
-- SPY over the same holding periods: mean -3.43% (excess +1.72%)
-- beaten-down basket over the same holding periods: mean +0.04% (excess -1.75%; the fair benchmark for a rule that only buys beaten-down stocks)
+- open trades mark-to-market: mean -4.35%, hit 40%
+- SPY over the same holding periods: mean -3.43% (excess +1.96%)
+- beaten-down basket over the same holding periods: mean +0.13% (excess -1.59%; the fair benchmark for a rule that only buys beaten-down stocks)
 
 **jev_skip** (expected: untested: the model's 'skip' (P(skip) >= 0.5); the call is right when the stock falls, so a NEGATIVE return is the success case)
 - logged: 16, closed: 6, open: 10
 - closed trades: mean +6.82%, median +5.51%, hit 67%, best +28.5%, worst -8.4%
 - open trades mark-to-market: mean -0.30%, hit 50%
 - SPY over the same holding periods: mean -5.31% (excess +7.69%)
-- beaten-down basket over the same holding periods: mean -2.54% (excess +4.91%; the fair benchmark for a rule that only buys beaten-down stocks)
+- beaten-down basket over the same holding periods: mean -2.46% (excess +4.84%; the fair benchmark for a rule that only buys beaten-down stocks)
 
 **newsday** (expected: +6-7% vs random, hit ~62% (docs/research_anomalies.md))
 - logged: 54, closed: 0, open: 54
-- open trades mark-to-market: mean -3.62%, hit 46%
-- SPY over the same holding periods: mean -5.24% (excess +1.62%)
-- beaten-down basket over the same holding periods: mean +0.74% (excess -4.36%; the fair benchmark for a rule that only buys beaten-down stocks)
+- open trades mark-to-market: mean -3.26%, hit 46%
+- SPY over the same holding periods: mean -5.24% (excess +1.98%)
+- beaten-down basket over the same holding periods: mean +0.83% (excess -4.09%; the fair benchmark for a rule that only buys beaten-down stocks)
 
 
 ## Open positions
@@ -86,7 +80,7 @@ Expectation vs realised (all logged trades, closed and open marked to market; 'v
 | newsday                   | [FICO](https://www.tradingview.com/chart/?symbol=FICO)   | 2026-10-01    | 2026-10-02   |      614      |             39 |          60 | +13.98% |
 | newsday                   | [NKE](https://www.tradingview.com/chart/?symbol=NKE)     | 2026-10-02    | 2026-10-05   |       33.82   |             38 |          60 | +8.40%  |
 | newsday                   | [CHRW](https://www.tradingview.com/chart/?symbol=CHRW)   | 2026-10-05    | 2026-10-06   |      140.83   |             37 |          60 | +2.83%  |
-| newsday                   | [TMUS](https://www.tradingview.com/chart/?symbol=TMUS)   | 2026-10-09    | 2026-10-12   |      149.6    |             33 |          60 | +11.13% |
+| newsday                   | [TMUS](https://www.tradingview.com/chart/?symbol=TMUS)   | 2026-10-09    | 2026-10-12   |      148.554  |             33 |          60 | +11.91% |
 | newsday                   | [T](https://www.tradingview.com/chart/?symbol=T)         | 2026-10-09    | 2026-10-12   |       22.26   |             33 |          60 | +3.19%  |
 | newsday                   | [CRWV](https://www.tradingview.com/chart/?symbol=CRWV)   | 2026-10-14    | 2026-10-15   |       61.43   |             30 |          60 | -30.70% |
 | newsday                   | [CRWV](https://www.tradingview.com/chart/?symbol=CRWV)   | 2026-10-15    | 2026-10-16   |       65.195  |             29 |          60 | -34.70% |
@@ -111,7 +105,7 @@ Expectation vs realised (all logged trades, closed and open marked to market; 'v
 | insider_buy_beaten_down   | [XYL](https://www.tradingview.com/chart/?symbol=XYL)     | 2026-10-29    | 2026-10-30   |       91.7006 |             19 |         120 | +5.15%  |
 | early_rally_beaten_down   | [WY](https://www.tradingview.com/chart/?symbol=WY)       | 2026-10-30    | 2026-11-02   |       20.57   |             18 |          20 | -0.24%  |
 | jev_pick                  | [VRT](https://www.tradingview.com/chart/?symbol=VRT)     | 2026-10-30    | 2026-11-02   |      235.603  |             18 |          20 | -26.41% |
-| jev_pick                  | [CPRT](https://www.tradingview.com/chart/?symbol=CPRT)   | 2026-10-30    | 2026-11-02   |       30.24   |             18 |          20 | +9.67%  |
+| jev_pick                  | [CPRT](https://www.tradingview.com/chart/?symbol=CPRT)   | 2026-10-30    | 2026-11-02   |       30.24   |             18 |          20 | +9.69%  |
 | jev_pick                  | [FER](https://www.tradingview.com/chart/?symbol=FER)     | 2026-10-30    | 2026-11-02   |       56.5664 |             18 |          20 | +4.51%  |
 | jev_pick                  | [CEG](https://www.tradingview.com/chart/?symbol=CEG)     | 2026-10-30    | 2026-11-02   |      263.777  |             18 |          20 | -10.80% |
 | jev_pick                  | [PEG](https://www.tradingview.com/chart/?symbol=PEG)     | 2026-10-30    | 2026-11-02   |       72.21   |             18 |          20 | +4.13%  |
@@ -122,7 +116,7 @@ Expectation vs realised (all logged trades, closed and open marked to market; 'v
 | early_rally_beaten_down   | [CHTR](https://www.tradingview.com/chart/?symbol=CHTR)   | 2026-11-02    | 2026-11-03   |      113.99   |             17 |          20 | +29.20% |
 | early_rally_beaten_down   | [LVS](https://www.tradingview.com/chart/?symbol=LVS)     | 2026-11-02    | 2026-11-03   |       38.15   |             17 |          20 | +4.22%  |
 | early_rally_beaten_down   | [WYNN](https://www.tradingview.com/chart/?symbol=WYNN)   | 2026-11-02    | 2026-11-03   |       77.3719 |             17 |          20 | +11.25% |
-| jev_pick                  | [TMUS](https://www.tradingview.com/chart/?symbol=TMUS)   | 2026-11-02    | 2026-11-03   |      159.6    |             17 |          20 | +4.17%  |
+| jev_pick                  | [TMUS](https://www.tradingview.com/chart/?symbol=TMUS)   | 2026-11-02    | 2026-11-03   |      158.484  |             17 |          20 | +4.90%  |
 | jev_pick                  | [ETN](https://www.tradingview.com/chart/?symbol=ETN)     | 2026-11-02    | 2026-11-03   |      378.388  |             17 |          20 | -16.01% |
 | jev_pick                  | [MPWR](https://www.tradingview.com/chart/?symbol=MPWR)   | 2026-11-02    | 2026-11-03   |     1303.15   |             17 |          20 | -8.33%  |
 | jev_skip                  | [IDXX](https://www.tradingview.com/chart/?symbol=IDXX)   | 2026-11-02    | 2026-11-03   |      662.26   |             17 |          20 | +7.13%  |
@@ -150,7 +144,7 @@ Expectation vs realised (all logged trades, closed and open marked to market; 'v
 | jev_skip                  | [NEE](https://www.tradingview.com/chart/?symbol=NEE)     | 2026-11-04    | 2026-11-05   |       89.95   |             15 |          20 | -5.05%  |
 | jev_skip                  | [FISV](https://www.tradingview.com/chart/?symbol=FISV)   | 2026-11-04    | 2026-11-05   |       62.27   |             15 |          20 | -4.00%  |
 | jev_skip                  | [MCD](https://www.tradingview.com/chart/?symbol=MCD)     | 2026-11-04    | 2026-11-05   |      281      |             15 |          20 | +0.89%  |
-| newsday                   | [SNDK](https://www.tradingview.com/chart/?symbol=SNDK)   | 2026-11-05    | 2026-11-06   |      112.284  |             11 |          60 | -34.44% |
+| newsday                   | [SNDK](https://www.tradingview.com/chart/?symbol=SNDK)   | 2026-11-05    | 2026-11-06   |      112.284  |             10 |          60 | -15.93% |
 | newsday                   | [PWR](https://www.tradingview.com/chart/?symbol=PWR)     | 2026-11-05    | 2026-11-06   |      539.5    |             14 |          60 | +4.81%  |
 | newsday                   | [APP](https://www.tradingview.com/chart/?symbol=APP)     | 2026-11-05    | 2026-11-06   |      355.95   |             14 |          60 | +6.46%  |
 | newsday                   | [QCOM](https://www.tradingview.com/chart/?symbol=QCOM)   | 2026-11-05    | 2026-11-06   |      161.28   |             14 |          60 | +4.58%  |
@@ -159,7 +153,7 @@ Expectation vs realised (all logged trades, closed and open marked to market; 'v
 | newsday                   | [ROK](https://www.tradingview.com/chart/?symbol=ROK)     | 2026-11-05    | 2026-11-06   |      385.935  |             14 |          60 | -0.27%  |
 | newsday                   | [ADI](https://www.tradingview.com/chart/?symbol=ADI)     | 2026-11-05    | 2026-11-06   |      374.81   |             14 |          60 | -11.13% |
 | insider_buy_beaten_down   | [INTC](https://www.tradingview.com/chart/?symbol=INTC)   | 2026-11-04    | 2026-11-05   |       56.51   |             15 |         120 | -3.61%  |
-| jev_pick                  | [SNDK](https://www.tradingview.com/chart/?symbol=SNDK)   | 2026-11-05    | 2026-11-06   |      112.284  |             11 |          20 | -34.44% |
+| jev_pick                  | [SNDK](https://www.tradingview.com/chart/?symbol=SNDK)   | 2026-11-05    | 2026-11-06   |      112.284  |             10 |          20 | -15.93% |
 | jev_pick                  | [PWR](https://www.tradingview.com/chart/?symbol=PWR)     | 2026-11-05    | 2026-11-06   |      539.5    |             14 |          20 | +4.81%  |
 | jev_pick                  | [ADI](https://www.tradingview.com/chart/?symbol=ADI)     | 2026-11-05    | 2026-11-06   |      374.81   |             14 |          20 | -11.13% |
 | jev_pick                  | [FSLR](https://www.tradingview.com/chart/?symbol=FSLR)   | 2026-11-05    | 2026-11-06   |      196.05   |             14 |          20 | -24.57% |
@@ -169,7 +163,7 @@ Expectation vs realised (all logged trades, closed and open marked to market; 'v
 | insider_buy_beaten_down   | [CRH](https://www.tradingview.com/chart/?symbol=CRH)     | 2026-11-05    | 2026-11-06   |       92.4744 |             14 |         120 | +5.22%  |
 | early_rally_beaten_down   | [ALB](https://www.tradingview.com/chart/?symbol=ALB)     | 2026-11-06    | 2026-11-09   |       97.46   |             13 |          20 | -16.38% |
 | early_rally_beaten_down   | [HWM](https://www.tradingview.com/chart/?symbol=HWM)     | 2026-11-06    | 2026-11-09   |      210.21   |             13 |          20 | +0.41%  |
-| early_rally_beaten_down   | [TMUS](https://www.tradingview.com/chart/?symbol=TMUS)   | 2026-11-06    | 2026-11-09   |      162.81   |             13 |          20 | +2.11%  |
+| early_rally_beaten_down   | [TMUS](https://www.tradingview.com/chart/?symbol=TMUS)   | 2026-11-06    | 2026-11-09   |      161.671  |             13 |          20 | +2.83%  |
 | jev_pick                  | [BKR](https://www.tradingview.com/chart/?symbol=BKR)     | 2026-11-06    | 2026-11-09   |       48.1006 |             13 |          20 | -3.62%  |
 | jev_pick                  | [CRH](https://www.tradingview.com/chart/?symbol=CRH)     | 2026-11-06    | 2026-11-09   |       96.896  |             13 |          20 | +0.42%  |
 | jev_pick                  | [HWM](https://www.tradingview.com/chart/?symbol=HWM)     | 2026-11-06    | 2026-11-09   |      210.21   |             13 |          20 | +0.41%  |
@@ -237,10 +231,13 @@ Expectation vs realised (all logged trades, closed and open marked to market; 'v
 | jev_pick                  | [STLD](https://www.tradingview.com/chart/?symbol=STLD)   | 2026-11-23    | 2026-11-24   |      211.71   |              2 |          20 | +2.43%  |
 | insider_buy_beaten_down   | [BG](https://www.tradingview.com/chart/?symbol=BG)       | 2026-11-23    | 2026-11-24   |       91.8    |              2 |         120 | -3.98%  |
 | insider_buy_beaten_down   | [WMB](https://www.tradingview.com/chart/?symbol=WMB)     | 2026-11-23    | 2026-11-24   |       65.05   |              2 |         120 | +2.15%  |
-| early_rally_beaten_down   | [ALNY](https://www.tradingview.com/chart/?symbol=ALNY)   | 2026-11-24    | 2026-11-25   |      163      |              1 |          20 | +1.06%  |
+| early_rally_beaten_down   | [ALNY](https://www.tradingview.com/chart/?symbol=ALNY)   | 2026-11-24    | 2026-11-25   |      164.43   |              1 |          20 | +0.18%  |
 | early_rally_beaten_down   | [F](https://www.tradingview.com/chart/?symbol=F)         | 2026-11-24    | 2026-11-25   |       11.91   |              1 |          20 | +2.18%  |
-| falling_wedge_beaten_down | [ODFL](https://www.tradingview.com/chart/?symbol=ODFL)   | 2026-11-25    |              |               |            nan |          20 |         |
-| early_rally_beaten_down   | [LII](https://www.tradingview.com/chart/?symbol=LII)     | 2026-11-25    |              |               |            nan |          20 |         |
-| early_rally_beaten_down   | [JBHT](https://www.tradingview.com/chart/?symbol=JBHT)   | 2026-11-25    |              |               |            nan |          20 |         |
-| early_rally_beaten_down   | [CARR](https://www.tradingview.com/chart/?symbol=CARR)   | 2026-11-25    |              |               |            nan |          20 |         |
-| early_rally_beaten_down   | [MOS](https://www.tradingview.com/chart/?symbol=MOS)     | 2026-11-25    |              |               |            nan |          20 |         |
+| falling_wedge_beaten_down | [ODFL](https://www.tradingview.com/chart/?symbol=ODFL)   | 2026-11-25    | nan          |      nan      |            nan |          20 |         |
+| early_rally_beaten_down   | [LII](https://www.tradingview.com/chart/?symbol=LII)     | 2026-11-25    | nan          |      nan      |            nan |          20 |         |
+| early_rally_beaten_down   | [JBHT](https://www.tradingview.com/chart/?symbol=JBHT)   | 2026-11-25    | nan          |      nan      |            nan |          20 |         |
+| early_rally_beaten_down   | [CARR](https://www.tradingview.com/chart/?symbol=CARR)   | 2026-11-25    | nan          |      nan      |            nan |          20 |         |
+| early_rally_beaten_down   | [MOS](https://www.tradingview.com/chart/?symbol=MOS)     | 2026-11-25    | nan          |      nan      |            nan |          20 |         |
+| jev_pick                  | [WY](https://www.tradingview.com/chart/?symbol=WY)       | 2026-11-25    | nan          |      nan      |            nan |          20 |         |
+| jev_pick                  | [ODFL](https://www.tradingview.com/chart/?symbol=ODFL)   | 2026-11-25    | nan          |      nan      |            nan |          20 |         |
+| jev_pick                  | [KLAC](https://www.tradingview.com/chart/?symbol=KLAC)   | 2026-11-25    | nan          |      nan      |            nan |          20 |         |
